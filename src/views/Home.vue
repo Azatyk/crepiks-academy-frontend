@@ -1,9 +1,19 @@
 <template>
-  <div class="page"></div>
+  <div class="page">
+    <offer-bar linkUrl="/promo" linkText="Подробнее"
+      >Бесплатный курс по верстке</offer-bar
+    >
+  </div>
 </template>
 
 <script>
-export default {};
+import OfferBar from "@/components/general/OfferBar";
+
+export default {
+  components: {
+    "offer-bar": OfferBar
+  }
+};
 </script>
 
 <style scoped></style>
