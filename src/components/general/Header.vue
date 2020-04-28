@@ -55,6 +55,7 @@ export default {
   font-weight: 500;
   color: #a285fc;
   text-decoration: none;
+  border-radius: 5px;
   background-color: #f8f7fc;
 }
 </style>
