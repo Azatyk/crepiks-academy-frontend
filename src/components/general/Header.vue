@@ -6,7 +6,10 @@
       <router-link to="#" class="header__link">Подписка</router-link>
       <router-link to="#" class="header__link">Блог</router-link>
     </nav>
-    <div class="header__buttons"></div>
+    <div class="header__auth-links">
+      <router-link to="#" class="header__auth-link">Войти</router-link>
+      <router-link to="#" class="header__auth-button">Регистрация</router-link>
+    </div>
   </header>
 </template>
 
@@ -36,5 +39,22 @@ export default {
   font-weight: 500;
   color: #767ead;
   text-decoration: none;
+}
+
+.header__auth-link {
+  margin-right: 47px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #f8f7fc;
+  text-decoration: none;
+}
+
+.header__auth-button {
+  padding: 11px 33px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #a285fc;
+  text-decoration: none;
+  background-color: #f8f7fc;
 }
 </style>
