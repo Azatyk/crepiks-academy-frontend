@@ -3,7 +3,9 @@
     <offer-bar linkUrl="/promo" linkText="Подробнее"
       >Бесплатный курс по верстке</offer-bar
     >
-    <c-header />
+    <section class="intro">
+      <c-header />
+    </section>
   </div>
 </template>
 
@@ -19,4 +21,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.intro {
+  height: 100vh;
+  background-image: url("../assets/images/purple_bubble.svg");
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+</style>
