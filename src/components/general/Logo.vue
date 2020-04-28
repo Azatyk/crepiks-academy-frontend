@@ -32,6 +32,7 @@ export default {};
 .logo__text_big {
   font-size: 18px;
   font-weight: 900;
+  color: #33334f;
   text-transform: uppercase;
 }
 
