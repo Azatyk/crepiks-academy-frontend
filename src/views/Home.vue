@@ -27,5 +27,12 @@ export default {
   background-image: url("../assets/images/purple_bubble.svg");
   background-position: right top;
   background-repeat: no-repeat;
+  background-size: 50%;
+}
+
+@media all and (max-width: 1100px) {
+  .intro {
+    background-image: none;
+  }
 }
 </style>

@@ -10,6 +10,13 @@
       <router-link to="#" class="header__auth-link">Войти</router-link>
       <router-link to="#" class="header__auth-button">Регистрация</router-link>
     </div>
+    <button class="header__menu-open-button">
+      <img
+        src="@/assets/icons/bars_light.svg"
+        alt="Bars icon"
+        class="header__menu-open-icon"
+      />
+    </button>
   </header>
 </template>
 
@@ -57,5 +64,38 @@ export default {
   text-decoration: none;
   border-radius: 5px;
   background-color: #f8f7fc;
+}
+
+.header__menu-open-button {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a285fc;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.header__menu-open-icon {
+  width: 25px;
+  display: none;
+}
+
+@media all and (max-width: 1100px) {
+  .header__nav,
+  .header__auth-links {
+    display: none;
+  }
+
+  .header__menu-open-icon {
+    display: block;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .header {
+    width: 90%;
+  }
 }
 </style>
