@@ -5,6 +5,7 @@
     >
     <section class="intro">
       <c-header />
+      <register-section />
     </section>
   </div>
 </template>
@@ -12,11 +13,13 @@
 <script>
 import OfferBar from "@/components/general/OfferBar";
 import Header from "@/components/general/Header";
+import RegisterSection from "./components/RegisterSection";
 
 export default {
   components: {
     "offer-bar": OfferBar,
-    "c-header": Header
+    "c-header": Header,
+    "register-section": RegisterSection
   }
 };
 </script>
@@ -24,7 +27,7 @@ export default {
 <style scoped>
 .intro {
   height: 100vh;
-  background-image: url("../assets/images/purple_bubble.svg");
+  background-image: url("../../assets/images/purple_bubble.svg");
   background-position: right top;
   background-repeat: no-repeat;
   background-size: 50%;
