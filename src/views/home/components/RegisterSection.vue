@@ -38,6 +38,7 @@ export default {
 .register-section {
   width: 80%;
   margin: auto;
+  padding: 40px 0;
   display: flex;
   justify-content: space-between;
 }
