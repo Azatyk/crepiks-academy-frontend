@@ -6,6 +6,7 @@
     <section class="intro">
       <c-header />
       <register-section />
+      <our-platform-section />
     </section>
   </div>
 </template>
@@ -14,12 +15,14 @@
 import OfferBar from "@/components/general/OfferBar";
 import Header from "@/components/general/Header";
 import RegisterSection from "./components/RegisterSection";
+import OurPlatformSection from "./components/OurPlatformSection";
 
 export default {
   components: {
     "offer-bar": OfferBar,
     "c-header": Header,
-    "register-section": RegisterSection
+    "register-section": RegisterSection,
+    "our-platform-section": OurPlatformSection
   }
 };
 </script>
