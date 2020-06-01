@@ -8,7 +8,9 @@
     </nav>
     <div class="header__auth-links">
       <router-link to="#" class="header__auth-link">Войти</router-link>
-      <router-link to="#" class="header__auth-button">Регистрация</router-link>
+      <router-link to="/register" class="header__auth-button"
+        >Регистрация</router-link
+      >
     </div>
     <button class="header__menu-open-button">
       <img

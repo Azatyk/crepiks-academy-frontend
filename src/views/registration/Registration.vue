@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="login" class="register-form">
+  <form @submit.prevent="registration" class="register-form">
     <h3 class="register-form__heading">Создайте аккаунт</h3>
     <div class="register-form__social-container">
       <button class="register-form__social-button">Вконтакте</button>
@@ -9,16 +9,37 @@
     <div class="register-form__divider"></div>
     <c-input
       :icon="emailIcon"
-      placeholder="Email"
+      placeholder="Имя"
+      class="register-form__input"
+      v-model="name"
+      id="name"
+    />
+    <c-input
+      :icon="emailIcon"
+      placeholder="Фамилия"
+      class="register-form__input"
+      v-model="surname"
+      id="surname"
+    />
+    <c-input
+      :icon="emailIcon"
+      placeholder="Почта"
       class="register-form__input"
       v-model="email"
       id="email"
     />
     <c-input
       :icon="lockIcon"
-      placeholder="Password"
+      placeholder="Пароль"
       class="register-form__input"
       v-model="password"
+      id="password"
+    />
+    <c-input
+      :icon="lockIcon"
+      placeholder="Подтверждение пароля"
+      class="register-form__input"
+      v-model="secondPassword"
       id="password"
     />
     <button type="submit" class="register-form__submit-button">
@@ -43,18 +64,28 @@ export default {
     return {
       emailIcon,
       lockIcon,
+      name: "",
+      surname: "",
       email: "",
-      password: ""
+      password: "",
+      secondPassword: ""
     };
   },
   methods: {
-    login() {
-      if (this.email.trim() && this.password.trim()) {
-        const { email, password } = this;
+    registration() {
+      if (this.password.trim() == this.secondPassword.trim()) {
+        let data = {
+          firstName: this.name,
+          lastName: this.surname,
+          email: this.email,
+          password: this.password
+        };
+
         this.$store
-          .dispatch("login", { email, password })
-          // .then(() => this.$router.push('/'))
-          .then(() => alert("success login"));
+          .dispatch("register", data)
+          .then(() => this.$router.push("/"));
+      } else {
+        () => alert("Неверное подтверждение пароля");
       }
     }
   }
@@ -63,7 +94,9 @@ export default {
 
 <style scoped>
 .register-form {
+  margin: 10vh auto;
   padding: 52px 26px;
+  width: 30%;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
