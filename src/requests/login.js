@@ -29,7 +29,7 @@ request.interceptors.response.use(
   err => {
     if (err.response.status === 401) {
       store.commit("logout");
-      router.push("/auth/login");
+      router.push("/");
     }
     // message.error({ content: "Error", key });
     return Promise.reject(err);

@@ -1,44 +1,54 @@
 <template>
   <div class="page">
-    <offer-bar linkUrl="/promo" linkText="Подробнее"
-      >Бесплатный курс по верстке</offer-bar
-    >
     <section class="intro">
-      <c-header />
-      <register-section />
-      <our-platform-section />
+      <cHeader />
+      <cWelcome />
+      <cAbout
+        :image="loveDouble"
+        :reversed="false"
+        textHeading="Курсы сделанные с любовью"
+        textDescription="Структурированное обучение, десятки видеоуроков и интерактивных курсов сделанных для вас помогут вам вм изучении программирования с нуля"
+        route="/courses"
+        buttonText="Подобрать курс"
+      />
+      <cAdvantages />
+      <cAbout
+        :image="meditation"
+        :reversed="true"
+        textHeading="Открой для себя новый мир"
+        textDescription="Мы не только обучим вас всем современным технологиям в мире IT, но и расскажем почему эта сфера так важна в нашем мире"
+        route="/courses"
+        buttonText="Перейти к курсам"
+      />
     </section>
   </div>
 </template>
 
 <script>
-import OfferBar from "@/components/general/OfferBar";
-import Header from "@/components/general/Header";
-import RegisterSection from "./components/RegisterSection";
-import OurPlatformSection from "./components/OurPlatformSection";
+import cHeader from "@/components/general/cHeader";
+import cWelcome from "./components/cWelcome";
+import cAbout from "./components/cAbout";
+import loveDouble from "@/assets/images/love.svg";
+
+import cAdvantages from "./components/cAdvantages";
+
+import meditation from "@/assets/images/newWorld.svg";
 
 export default {
+  data() {
+    return {
+      loveDouble: loveDouble,
+      meditation: meditation
+    };
+  },
+
   components: {
-    "offer-bar": OfferBar,
-    "c-header": Header,
-    "register-section": RegisterSection,
-    "our-platform-section": OurPlatformSection
+    cHeader,
+    cWelcome,
+    cAbout,
+    cAdvantages
   }
 };
 </script>
 
-<style scoped>
-.intro {
-  height: 100vh;
-  background-image: url("../../assets/images/purple_bubble.svg");
-  background-position: right top;
-  background-repeat: no-repeat;
-  background-size: 50%;
-}
-
-@media all and (max-width: 1100px) {
-  .intro {
-    background-image: none;
-  }
-}
-</style>
+<style scoped></style>

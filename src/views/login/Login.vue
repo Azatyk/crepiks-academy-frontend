@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <form @submit.prevent="registration" class="register-form">
+    <form @submit.prevent="login" class="register-form">
       <h3 class="register-form__heading">Создайте аккаунт</h3>
       <div class="register-form__social-container">
         <button class="register-form__social-button">Вконтакте</button>
@@ -8,20 +8,6 @@
         <button class="register-form__social-button">Facebook</button>
       </div>
       <div class="register-form__divider"></div>
-      <c-input
-        :icon="emailIcon"
-        placeholder="Имя"
-        class="register-form__input"
-        v-model="name"
-        id="name"
-      />
-      <c-input
-        :icon="emailIcon"
-        placeholder="Фамилия"
-        class="register-form__input"
-        v-model="surname"
-        id="surname"
-      />
       <c-input
         :icon="emailIcon"
         placeholder="Почта"
@@ -34,13 +20,6 @@
         placeholder="Пароль"
         class="register-form__input"
         v-model="password"
-        id="password"
-      />
-      <c-input
-        :icon="lockIcon"
-        placeholder="Подтверждение пароля"
-        class="register-form__input"
-        v-model="secondPassword"
         id="password"
       />
       <button type="submit" class="register-form__submit-button">
@@ -77,21 +56,13 @@ export default {
     };
   },
   methods: {
-    registration() {
-      if (this.password.trim() == this.secondPassword.trim()) {
-        let data = {
-          firstName: this.name,
-          lastName: this.surname,
-          email: this.email,
-          password: this.password
-        };
+    login() {
+      let data = {
+        email: this.email,
+        password: this.password
+      };
 
-        this.$store
-          .dispatch("register", data)
-          .then(() => this.$router.push("/"));
-      } else {
-        () => alert("Неверное подтверждение пароля");
-      }
+      this.$store.dispatch("login", data).then(() => this.$router.push("/"));
     }
   }
 };
@@ -99,7 +70,7 @@ export default {
 
 <style scoped>
 .register-form {
-  margin: 10vh auto;
+  margin: 20vh auto;
   padding: 52px 26px;
   width: 30%;
   background-color: #ffffff;

@@ -76,9 +76,6 @@ export default {
       state.token = {};
       state.user = {};
       window.localStorage.removeItem("token");
-    },
-    devicesLoading(state) {
-      state.status = "loading";
     }
   },
   getters: {
