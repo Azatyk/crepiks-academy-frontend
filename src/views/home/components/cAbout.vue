@@ -10,7 +10,7 @@
       <div class="text-block" :class="{ changeMargin: reversed }">
         <h2 class="text-block__heading">{{ textHeading }}</h2>
         <div class="text-block__description">{{ textDescription }}</div>
-        <cButton
+        <cButtonLink
           :route="route"
           :text="buttonText"
           :isBold="true"
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import cButton from "@/components/general/cButton";
+import cButtonLink from "@/components/general/cButtonLink";
 
 export default {
   props: {
@@ -56,7 +56,7 @@ export default {
     }
   },
   components: {
-    cButton
+    cButtonLink
   }
 };
 </script>

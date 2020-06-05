@@ -6,10 +6,10 @@
         Приобрети навыки 21 века с помощью веселых и увлекательных итерактивных
         курсов
       </div>
-      <cButton
+      <cButtonLink
         route="/courses"
         text="Начать обучение"
-        isBold=""
+        :isBold="false"
         class="text-block__button"
       />
     </div>
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import cButton from "@/components/general/cButton";
+import cButtonLink from "@/components/general/cButtonLink";
 
 export default {
   components: {
-    cButton
+    cButtonLink
   }
 };
 </script>
@@ -76,5 +76,6 @@ export default {
 .text-block__button {
   padding: 15px 38px;
   font-size: 1.2vw;
+  box-shadow: none;
 }
 </style>

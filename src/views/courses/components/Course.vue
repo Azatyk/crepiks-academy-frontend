@@ -6,32 +6,33 @@
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta rerum
       error excepturi, dicta facere eveniet eum consectetur similique cum sunt.
     </div>
+    <cButtonLink route="/courses/markup" text="Перейти к курсу" />
   </div>
 </template>
 
 <script>
-export default {};
+import cButtonLink from "@/components/general/cButtonLink";
+
+export default {
+  components: {
+    cButtonLink
+  }
+};
 </script>
 
 <style>
 .course {
-  padding: 20px 10px;
-  height: 300px;
+  padding: 30px 20px;
+  height: auto;
   width: 300px;
-  color: #33334f;
-  border: 5px solid #f1f0f2;
+  color: #f8f7fc;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  transition: 300ms ease-in-out;
-}
-
-.course:hover {
-  background-color: #f1f0f2;
-  transition: 300ms ease-in-out;
+  background-color: #34495e;
 }
 
 .course__image {
@@ -41,10 +42,12 @@ export default {};
 }
 
 .course__heading {
+  margin-bottom: 5%;
   font-size: 1.7vw;
 }
 
 .course__description {
+  margin-bottom: 5%;
   font-size: 0.7vw;
 }
 </style>

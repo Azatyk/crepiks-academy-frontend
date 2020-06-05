@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <section class="intro">
-      <cHeader />
+      <cHeader class="header" />
       <cWelcome />
       <cAbout
         :image="loveDouble"
@@ -20,6 +20,8 @@
         route="/courses"
         buttonText="Перейти к курсам"
       />
+      <cMailing />
+      <cFooter />
     </section>
   </div>
 </template>
@@ -34,6 +36,10 @@ import cAdvantages from "./components/cAdvantages";
 
 import meditation from "@/assets/images/newWorld.svg";
 
+import cMailing from "./components/cMailing";
+
+import cFooter from "./components/cFooter";
+
 export default {
   data() {
     return {
@@ -46,9 +52,15 @@ export default {
     cHeader,
     cWelcome,
     cAbout,
-    cAdvantages
+    cAdvantages,
+    cMailing,
+    cFooter
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.header {
+  background-color: #ffffff00;
+}
+</style>
