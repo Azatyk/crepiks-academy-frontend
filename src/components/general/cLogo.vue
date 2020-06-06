@@ -1,11 +1,21 @@
 <template>
   <router-link to="/" class="link">
-    <h3 class="logo">Crepiks <span class="logo__bold">Academy</span></h3>
+    <h3 class="logo" :style="{ fontSize: fontSize + 'vw' }">
+      Crepiks <span class="logo__bold">Academy</span>
+    </h3>
   </router-link>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    fontSize: {
+      type: Number,
+      required: false,
+      default: 2
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -14,7 +24,6 @@ export default {};
 }
 
 .logo {
-  font-size: 1.2vw;
   color: white;
   font-weight: normal;
   text-transform: uppercase;

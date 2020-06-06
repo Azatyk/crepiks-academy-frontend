@@ -6,7 +6,8 @@ export default {
     token: {
       accessToken: localStorage.getItem("token") || ""
     },
-    user: {}
+    user: {},
+    errorMessage: ""
   },
   actions: {
     login({ commit }, { email, password }) {
@@ -33,9 +34,13 @@ export default {
           });
       });
     },
-    register({ commit }, user) {
+    register({ commit, dispatch }, user) {
       return new Promise((resolve, reject) => {
         commit("authLoading");
+        let loginData = {
+          email: user.email,
+          password: user.password
+        };
         request({
           url: "auth/register",
           data: user,
@@ -43,6 +48,7 @@ export default {
         })
           .then(res => {
             resolve(res);
+            dispatch("login", loginData);
           })
           .catch(err => {
             commit("authError", err);
@@ -68,8 +74,9 @@ export default {
         lastName: data.lastName
       };
     },
-    authError(state) {
+    authError(state, err) {
       state.status = "error";
+      state.errorMessage = err.response.data.message;
     },
     logout(state) {
       state.status = "";

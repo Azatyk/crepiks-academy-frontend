@@ -15,28 +15,28 @@
         v-model="name"
         id="name"
       />
-      <c-input
+      <cFormInput
         :icon="emailIcon"
         placeholder="Фамилия"
         class="register-form__input"
         v-model="surname"
         id="surname"
       />
-      <c-input
+      <cFormInput
         :icon="emailIcon"
         placeholder="Почта"
         class="register-form__input"
         v-model="email"
         id="email"
       />
-      <c-input
+      <cFormInput
         :icon="lockIcon"
         placeholder="Пароль"
         class="register-form__input"
         v-model="password"
         id="password"
       />
-      <c-input
+      <cFormInput
         :icon="lockIcon"
         placeholder="Подтверждение пароля"
         class="register-form__input"
@@ -57,13 +57,13 @@
 </template>
 
 <script>
-import Input from "@/components/general/Input";
+import cFormInput from "@/components/general/cFormInput";
 import emailIcon from "@/assets/icons/email_light.svg";
 import lockIcon from "@/assets/icons/lock_light.svg";
 
 export default {
   components: {
-    "c-input": Input
+    cFormInput
   },
   data() {
     return {

@@ -1,22 +1,37 @@
 <template>
   <header class="header">
     <div class="content">
-      <cLogo class="header__logo" />
+      <cLogo class="header__logo" :fontSize="1.3" />
       <nav class="header__nav">
         <router-link to="/courses" class="header__link">Курсы</router-link>
-        <router-link to="#" class="header__link">Подписка</router-link>
-        <router-link to="#" class="header__link">Блог</router-link>
+        <router-link to="/empty" class="header__link">Подписка</router-link>
+        <router-link to="/empty" class="header__link">Блог</router-link>
       </nav>
-      <div class="header__auth-links" v-if="!isLoggedIn">
+      <div
+        class="header__auth-links"
+        v-if="!isLoggedIn"
+        :class="[
+          pageType == 'register' || pageType == 'login' ? 'centerlize' : ''
+        ]"
+      >
         <cButtonLink
+          v-show="pageType == 'register' || pageType == 'common'"
           route="/login"
-          text="Войти"
+          text="Вход"
           isBold=""
-          class="header__auth-login"
+          class="header__auth-button"
         />
-        <cButtonLink route="/register" text="Регистрация" isBold="" />
+        <cButtonLink
+          route="/register"
+          text="Регистрация"
+          isBold=""
+          v-show="pageType == 'login' || pageType == 'common'"
+          class="header__auth-button"
+        />
       </div>
-      <cButton @action="logout" text="Выйти" v-else>Выйти</cButton>
+      <div class="header__auth-links centerlize" v-else>
+        <cButton @action="logout" text="Выйти">Выйти</cButton>
+      </div>
     </div>
   </header>
 </template>
@@ -28,6 +43,14 @@ import cButtonLink from "@/components/general/cButtonLink";
 import cButton from "@/components/general/cButton";
 
 export default {
+  props: {
+    pageType: {
+      type: String,
+      required: false,
+      default: "common"
+    }
+  },
+
   components: {
     cLogo,
     cButtonLink,
@@ -80,15 +103,20 @@ export default {
 }
 
 .header__auth-links {
-  width: auto;
+  width: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  box-shadow: none;
 }
 
-.header__auth-login {
-  margin-right: 5%;
+.header__auth-button {
+  box-shadow: none;
+}
+
+.centerlize {
+  justify-content: center;
 }
 
 .header__exit-button {
@@ -103,6 +131,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   transition: 300ms ease-in-out;
+  box-shadow: none;
 }
 
 .header__exit-button:hover {

@@ -29,6 +29,9 @@ export default {
 .button {
   padding: 11px 35px;
   width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 0.8vw;
   color: white;
   font-weight: 300;

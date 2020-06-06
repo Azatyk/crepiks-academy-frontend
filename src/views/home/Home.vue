@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <section class="intro">
-      <cHeader class="header" />
+      <cHeader class="header" pageType="common" />
       <cWelcome />
       <cAbout
         :image="loveDouble"
@@ -38,7 +38,7 @@ import meditation from "@/assets/images/newWorld.svg";
 
 import cMailing from "./components/cMailing";
 
-import cFooter from "./components/cFooter";
+import cFooter from "@/components/general/cFooter";
 
 export default {
   data() {

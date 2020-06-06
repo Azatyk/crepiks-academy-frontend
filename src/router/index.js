@@ -2,10 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Home from "@/views/home/Home";
-import Registration from "@/views/registration/Registration";
-import Login from "@/views/login/Login";
+import cRegister from "@/views/register/cRegister";
+import cLogin from "@/views/login/cLogin";
 import Courses from "@/views/courses/Courses";
-import cCourse from "@/views/course/cCourse";
+import cEmpty from "@/views/empty/cEmpty";
 
 import store from "@/store";
 
@@ -15,31 +15,42 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
+    meta: {
+      title: "Crepiks Academy - программируй вместе с нами"
+    }
   },
   {
     path: "/register",
     name: "register",
-    component: Registration
+    component: cRegister,
+    meta: {
+      title: "Регистрация"
+    }
   },
   {
     path: "/login",
     name: "login",
-    component: Login
+    component: cLogin,
+    meta: {
+      title: "Вход"
+    }
   },
   {
     path: "/courses",
     name: "courses",
     component: Courses,
-    children: [
-      {
-        path: "markup",
-        component: cCourse,
-        meta: {
-          needAuth: true
-        }
-      }
-    ]
+    meta: {
+      title: "Курсы"
+    }
+  },
+  {
+    path: "/empty",
+    name: "empty",
+    component: cEmpty,
+    meta: {
+      title: "Crepiks Academy - программируй вместе с нами"
+    }
   }
 ];
 
@@ -50,9 +61,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
   if (to.matched.some(record => record.meta.needAuth)) {
-    // этот путь требует авторизации, проверяем залогинен ли
-    // пользователь, и если нет, перенаправляем на страницу логина
     if (!store.getters.isLoggedIn) {
       next({
         path: "/login",
@@ -62,7 +72,7 @@ router.beforeEach((to, from, next) => {
       next();
     }
   } else {
-    next(); // всегда так или иначе нужно вызвать next()!
+    next();
   }
 });
 

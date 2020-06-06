@@ -1,5 +1,10 @@
 <template>
-  <button class="button" @click="$emit('action')" :class="{ bold: isBold }">
+  <button
+    :type="type"
+    class="button"
+    @click="$emit('action')"
+    :class="{ bold: isBold }"
+  >
     {{ text }}
   </button>
 </template>
@@ -15,6 +20,10 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    type: {
+      type: String,
+      required: false
     }
   }
 };

@@ -6,7 +6,7 @@
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta rerum
       error excepturi, dicta facere eveniet eum consectetur similique cum sunt.
     </div>
-    <cButtonLink route="/courses/markup" text="Перейти к курсу" />
+    <cButtonLink route="/empty" text="Перейти к курсу" class="button" />
   </div>
 </template>
 
@@ -49,5 +49,9 @@ export default {
 .course__description {
   margin-bottom: 5%;
   font-size: 0.7vw;
+}
+
+.button {
+  box-shadow: none !important;
 }
 </style>

@@ -63,12 +63,14 @@ export default {
 
 <style scoped>
 .about {
+  height: 35vw;
   width: 100%;
   background-color: #f8f7fc;
 }
 
 .content {
-  padding: 10vw 0vh;
+  /* padding: 10vw 0vh; */
+  height: 100%;
   margin: auto;
   box-sizing: border-box;
   height: 100%;

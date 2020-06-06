@@ -2,49 +2,37 @@
   <footer class="footer">
     <div class="footer__main-content">
       <div class="main-content__intro">
-        <cLogo class="intro__logo" />
+        <cLogo class="intro__logo" :fontSize="1.2" />
         <div class="intro__social-networks">
-          <img
-            class="social-networks__link"
-            src="@/assets/icons/linkdinIcon.svg"
-            alt="linkedin"
-          />
-          <img
-            class="social-networks__link"
-            src="@/assets/icons/instagramIcon.svg"
-            alt="instagram"
-          />
-          <img
-            class="social-networks__link"
-            src="@/assets/icons/facebookIcon.svg"
-            alt="facebook"
-          />
-          <img
-            class="social-networks__link"
-            src="@/assets/icons/telegramIcon.svg"
-            alt="telegram"
-          />
+          <a href="https://www.linkedin.com/groups/8942269"
+            ><i class="fab fa-linkedin social-networks__link"></i
+          ></a>
+          <a href="https://www.instagram.com/crepiks_academy?r=nametag"
+            ><i class="fab fa-instagram-square social-networks__link"></i
+          ></a>
+          <a href="https://www.facebook.com/groups/349003656061200"
+            ><i class="fab fa-facebook-square social-networks__link"></i
+          ></a>
+          <a href="https://vk.com/public196053339"
+            ><i class="fab fa-vk social-networks__link"></i
+          ></a>
         </div>
       </div>
       <div class="main-content__nav-bar">
         <router-link to="/courses" class="nav-bar__link">Курсы</router-link>
-        <router-link to="#" class="nav-bar__link">Блог</router-link>
-        <router-link to="#" class="nav-bar__link">Подписка</router-link>
-        <router-link to="#" class="nav-bar__link">О платформе</router-link>
+        <router-link to="/empty" class="nav-bar__link">Блог</router-link>
+        <router-link to="/empty" class="nav-bar__link">Подписка</router-link>
+        <router-link to="/empty" class="nav-bar__link">О платформе</router-link>
       </div>
       <div class="main-content__extra-info">
         <cButtonLink
           route="/courses"
-          text="Выбрать курс"
+          text="Подобрать курс"
           :isBold="true"
           class="extra-info__button"
         />
         <div class="extra-info__email">
-          <img
-            src="@/assets/icons/footerEmail.svg"
-            alt="email"
-            class="email__image"
-          />
+          <i class="fas fa-envelope email__icon"></i>
           <div class="email__text">
             <div class="email__heading">Почта</div>
             <div class="email__adress">crepiks.academy@mail.ru</div>
@@ -74,7 +62,7 @@ export default {
 
 <style scoped>
 .footer {
-  height: 30vw;
+  height: 20vw;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -93,16 +81,16 @@ export default {
 }
 
 .main-content__intro {
-  width: 25%;
+  width: 30%;
   height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .intro__social-networks {
-  width: 100%;
+  width: 43%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -110,37 +98,67 @@ export default {
 }
 
 .social-networks__link {
+  font-size: 1.7vw;
+  color: #fc7979;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+}
+
+.social-networks__link:hover {
+  color: #f78f8f;
+  transition: 100ms ease-in-out;
 }
 
 .main-content__nav-bar {
-  height: 90%;
+  width: 30%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.nav-bar__link {
+  font-size: 1vw;
+  color: #dbdbdb;
+  text-decoration: none;
+  transition: 100ms ease-in-out;
+}
+
+.nav-bar__link:hover {
+  color: white;
+  transition: 100ms ease-in-out;
 }
 
 .main-content__extra-info {
   height: 70%;
-  width: 25%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
-.extra__info-button {
+.extra-info__button {
+  padding: 0;
+  height: 3.2vw;
+  width: 55%;
+  font-size: 1vw;
+  box-shadow: none;
 }
 
 .extra-info__email {
-  width: 100%;
+  width: 55%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 
-.email__image {
+.email__icon {
+  color: #c9c9c9;
+  /* margin-right: 1vw; */
+  font-size: 2vw;
 }
 
 .email__text {
@@ -151,18 +169,27 @@ export default {
 }
 
 .email__heading {
+  margin-bottom: 0.5vh;
+  font-size: 1vw;
+  color: #c9c9c9;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .email__adress {
+  font-size: 0.85vw;
+  color: #c9c9c9;
+  font-weight: 300;
 }
 
 .line {
-  height: 2px;
+  height: 1px;
   width: 85%;
   background-color: #c4c4c4;
 }
 
 .footer__company-content {
+  height: 29%;
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -171,5 +198,8 @@ export default {
 }
 
 .company-content__text {
+  font-size: 0.9vw;
+  color: #c9c9c9;
+  font-weight: 500;
 }
 </style>

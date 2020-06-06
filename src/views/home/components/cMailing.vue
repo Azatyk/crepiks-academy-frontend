@@ -1,6 +1,6 @@
 <template>
   <section class="mailing">
-    <form class="mailing__form form">
+    <form @submit.prevent="save" class="mailing__form form">
       <div class="form__text">
         <h2 class="form__heading">Узнавайте обо всем первым</h2>
         <div class="form__description">
@@ -8,8 +8,18 @@
         </div>
       </div>
       <div class="form__functional">
-        <cInput class="form__input" type="email" placeholder="Email" />
-        <cButton class="form__button" text="Подписаться" :isBold="true" />
+        <cInput
+          class="form__input"
+          type="email"
+          placeholder="Email"
+          v-model="email"
+        />
+        <cButton
+          type="submit"
+          class="form__button"
+          text="Подписаться"
+          :isBold="true"
+        />
       </div>
     </form>
   </section>
@@ -18,18 +28,31 @@
 <script>
 import cInput from "@/components/general/cInput";
 import cButton from "@/components/general/cButton";
+// import {mapGetters} from "vuex";
 
 export default {
   components: {
     cInput,
     cButton
+  },
+  data() {
+    return {
+      email: ""
+    };
+  },
+  methods: {
+    save() {
+      let email = this.email;
+      this.$store.dispatch("saveEmail", { email });
+    }
   }
+  // computed: mapGetters(['saveSuccess'])
 };
 </script>
 
 <style scoped>
 .mailing {
-  height: 50vw;
+  height: 40vw;
   width: 100%;
   display: flex;
   justify-content: center;
