@@ -15,7 +15,7 @@
         ]"
       >
         <cButtonLink
-          v-show="pageType == 'register' || pageType == 'common'"
+          v-show="pageType == 'common' || pageType == 'register'"
           route="/login"
           text="Вход"
           isBold=""
@@ -25,7 +25,7 @@
           route="/register"
           text="Регистрация"
           isBold=""
-          v-show="pageType == 'login' || pageType == 'common'"
+          v-show="pageType == 'common' || pageType == 'login'"
           class="header__auth-button"
         />
       </div>

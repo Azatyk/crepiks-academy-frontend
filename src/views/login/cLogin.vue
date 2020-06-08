@@ -1,7 +1,12 @@
 <template>
   <div class="page">
     <cHeader pageType="login" />
-    <cMessage icon="fas fa-times-circle" text="Неверный логин или пароль" />
+    <cMessage
+      icon="fas fa-times-circle"
+      :text="errResponse"
+      :isActive="isError"
+      @change="messageVisibleChange"
+    />
     <div class="content">
       <cForm @submit="login" class="form">
         <h3 class="auth-form__heading">Войти</h3>
@@ -49,13 +54,10 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errResponse: "",
+      isError: false
     };
-  },
-  computed: {
-    isButtonActive() {
-      return this.email && this.password;
-    }
   },
   methods: {
     login() {
@@ -63,8 +65,15 @@ export default {
         const { email, password } = this;
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/"));
+          .then(() => this.$router.push("/"))
+          .catch(err => {
+            this.errResponse = err.response.data.message;
+            this.isError = true;
+          });
       }
+    },
+    messageVisibleChange(status) {
+      this.isError = status;
     }
   }
 };
@@ -117,12 +126,12 @@ export default {
 }
 
 .form__link-text {
-  font-size: 0.8vw;
+  font-size: 0.95vw;
   color: #516f8c;
 }
 
 .form__link-register {
-  font-size: 0.8vw;
+  font-size: 0.95vw;
   color: #fc7979;
   text-decoration: none;
   cursor: pointer;

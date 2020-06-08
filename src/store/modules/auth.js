@@ -28,7 +28,7 @@ export default {
             resolve(res);
           })
           .catch(err => {
-            commit("authError");
+            commit("authError", err.response.data.message);
             localStorage.removeItem("token");
             reject(err);
           });
@@ -51,7 +51,7 @@ export default {
             dispatch("login", loginData);
           })
           .catch(err => {
-            commit("authError", err);
+            commit("authError", err.response.data.message);
             reject(err);
           });
       });
@@ -74,9 +74,12 @@ export default {
         lastName: data.lastName
       };
     },
-    authError(state, err) {
+    authError(state, errMessage) {
       state.status = "error";
-      state.errorMessage = err.response.data.message;
+      state.errorMessage = errMessage;
+      // setTimeout(state => {
+      //   state.errorMessage = ""
+      // }, 2500)
     },
     logout(state) {
       state.status = "";
@@ -88,6 +91,7 @@ export default {
   getters: {
     isLoggedIn: state => Boolean(state.token.accessToken),
     authStatus: state => state.status,
-    accessToken: state => state.token.accessToken
+    accessToken: state => state.token.accessToken,
+    errorRes: state => state.errorMessage
   }
 };

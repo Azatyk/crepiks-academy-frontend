@@ -1,6 +1,12 @@
 <template>
   <div class="page">
     <cHeader pageType="register" />
+    <cMessage
+      icon="fas fa-times-circle"
+      :text="errResponse"
+      :isActive="isError"
+      @change="messageVisibleChange"
+    />
     <div class="content">
       <cForm @submit="register" class="form">
         <h3 class="register-form__heading">Регистрация</h3>
@@ -19,6 +25,7 @@
           class="register-form__input"
         />
         <cFormInput
+          type="email"
           icon="fas fa-envelope"
           placeholder="Email"
           v-model="email"
@@ -60,13 +67,15 @@ import cHeader from "@/components/general/cHeader";
 import cForm from "@/components/general/cForm";
 import cFormInput from "@/components/general/cFormInput";
 import cButton from "@/components/general/cButton";
+import cMessage from "@/components/general/cMessage";
 
 export default {
   components: {
     cHeader,
     cForm,
     cFormInput,
-    cButton
+    cButton,
+    cMessage
   },
   data() {
     return {
@@ -74,7 +83,9 @@ export default {
       surname: "",
       email: "",
       password: "",
-      passwordCheck: ""
+      passwordCheck: "",
+      errResponse: "",
+      isError: false
     };
   },
   methods: {
@@ -89,10 +100,17 @@ export default {
 
         this.$store
           .dispatch("register", data)
-          .then(() => this.$router.push("/"));
+          .then(() => this.$router.push("/"))
+          .catch(err => {
+            this.errResponse = err.response.data.message;
+          });
       } else {
-        () => alert("Неверное подтверждение пароля");
+        this.errResponse = "Пароли должны совпадать";
+        this.isError = true;
       }
+    },
+    messageVisibleChange(status) {
+      this.isError = status;
     }
   }
 };
@@ -145,12 +163,12 @@ export default {
 }
 
 .form__link-text {
-  font-size: 0.8vw;
+  font-size: 0.95vw;
   color: #516f8c;
 }
 
 .form__link-register {
-  font-size: 0.8vw;
+  font-size: 0.95vw;
   color: #fc7979;
   text-decoration: none;
   cursor: pointer;

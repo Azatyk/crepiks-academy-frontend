@@ -26,7 +26,7 @@ export default {
     },
     icon: {
       type: String,
-      required: true
+      required: false
     },
     type: {
       type: String,
@@ -67,7 +67,7 @@ export default {
   padding: 0 17px;
   font-size: 16px;
   font-weight: 400;
-  color: #5164cd;
+  color: #5e87ad;
   background-color: #dae4eb;
   border: none;
   border-radius: 0 5px 5px 0;

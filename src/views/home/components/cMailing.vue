@@ -1,5 +1,12 @@
 <template>
   <section class="mailing">
+    <cMessage
+      icon="fas fa-exclamation-circle"
+      :text="errorText"
+      :isActive="Boolean(errorText)"
+      backColor="#f1c40f"
+      textColor="white"
+    />
     <form @submit.prevent="save" class="mailing__form form">
       <div class="form__text">
         <h2 class="form__heading">Узнавайте обо всем первым</h2>
@@ -9,10 +16,11 @@
       </div>
       <div class="form__functional">
         <cInput
+          v-model="userEmail"
           class="form__input"
           type="email"
           placeholder="Email"
-          v-model="email"
+          id="email"
         />
         <cButton
           type="submit"
@@ -28,25 +36,27 @@
 <script>
 import cInput from "@/components/general/cInput";
 import cButton from "@/components/general/cButton";
-// import {mapGetters} from "vuex";
+import cMessage from "@/components/general/cMessage";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     cInput,
-    cButton
+    cButton,
+    cMessage
   },
   data() {
     return {
-      email: ""
+      userEmail: ""
     };
   },
   methods: {
     save() {
-      let email = this.email;
-      this.$store.dispatch("saveEmail", { email });
+      let email = this.userEmail;
+      this.$store.dispatch("saveEmail", email);
     }
-  }
-  // computed: mapGetters(['saveSuccess'])
+  },
+  computed: mapGetters(["errorText"])
 };
 </script>
 

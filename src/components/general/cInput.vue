@@ -1,9 +1,18 @@
 <template>
-  <input :type="type" class="input" :placeholder="placeholder" />
+  <input
+    :type="type"
+    class="input"
+    :placeholder="placeholder"
+    @input="$emit('input', $event.target.value)"
+  />
 </template>
 
 <script>
 export default {
+  model: {
+    prop: "value",
+    event: "input"
+  },
   props: {
     type: {
       type: String,
