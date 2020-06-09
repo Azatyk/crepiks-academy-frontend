@@ -1,15 +1,23 @@
 <template>
   <div class="page">
     <cHeader pageType="common" />
+    <cMessage
+      icon="fas fa-exclamation-circle"
+      :text="errResponse"
+      :isActive="isError"
+      backColor="#ffcc00"
+      textColor="white"
+      @change="messageVisibleChange"
+    />
     <div class="content">
-      <div class="message">
-        <div class="message__text">
-          <h1 class="message__heading">Не терпится начать?</h1>
-          <div class="message__description">
+      <div class="soon">
+        <div class="soon__text">
+          <h1 class="soon__heading">Не терпится начать?</h1>
+          <div class="soon__description">
             Дай нам пару дней и мы все устроим!
           </div>
         </div>
-        <form class="mailing__form form">
+        <form class="mailing__form form" @submit.prevent="save">
           <div class="form__text">
             <h2 class="form__heading">
               А пока
@@ -19,7 +27,13 @@
             </div>
           </div>
           <div class="form__functional">
-            <cInput class="form__input" type="email" placeholder="Email" />
+            <cInput
+              v-model="userEmail"
+              class="form__input"
+              type="email"
+              placeholder="Email"
+              id="email"
+            />
             <cButton class="form__button" text="Подписаться" :isBold="true" />
           </div>
         </form>
@@ -32,12 +46,33 @@
 import cHeader from "@/components/general/cHeader";
 import cInput from "@/components/general/cInput";
 import cButton from "@/components/general/cButton";
+import cMessage from "@/components/general/cMessage";
 
 export default {
   components: {
     cHeader,
     cInput,
-    cButton
+    cButton,
+    cMessage
+  },
+  data() {
+    return {
+      userEmail: "",
+      errResponse: "",
+      isError: false
+    };
+  },
+  methods: {
+    save() {
+      let email = this.userEmail;
+      this.$store.dispatch("saveEmail", email).catch(err => {
+        this.errResponse = err.response.data.message;
+        this.isError = true;
+      });
+    },
+    messageVisibleChange(status) {
+      this.isError = status;
+    }
   }
 };
 </script>
@@ -57,22 +92,18 @@ export default {
   align-items: center;
 }
 
-.message {
-  width: 50%;
-}
-
-.message__text {
+.soon__text {
   margin-bottom: 10%;
 }
 
-.message__heading {
+.soon__heading {
   margin-bottom: 0.5%;
   font-size: 3.5vw;
   color: #f8f7fc;
   text-align: center;
 }
 
-.message__description {
+.soon__description {
   font-size: 1.7vw;
   color: #dbdbdb;
   text-align: center;

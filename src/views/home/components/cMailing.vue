@@ -2,10 +2,11 @@
   <section class="mailing">
     <cMessage
       icon="fas fa-exclamation-circle"
-      :text="errorText"
-      :isActive="Boolean(errorText)"
-      backColor="#f1c40f"
+      :text="errResponse"
+      :isActive="isError"
+      backColor="#ffcc00"
       textColor="white"
+      @change="messageVisibleChange"
     />
     <form @submit.prevent="save" class="mailing__form form">
       <div class="form__text">
@@ -37,7 +38,6 @@
 import cInput from "@/components/general/cInput";
 import cButton from "@/components/general/cButton";
 import cMessage from "@/components/general/cMessage";
-import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -47,16 +47,23 @@ export default {
   },
   data() {
     return {
-      userEmail: ""
+      userEmail: "",
+      errResponse: "",
+      isError: false
     };
   },
   methods: {
     save() {
       let email = this.userEmail;
-      this.$store.dispatch("saveEmail", email);
+      this.$store.dispatch("saveEmail", email).catch(err => {
+        this.errResponse = err.response.data.message;
+        this.isError = true;
+      });
+    },
+    messageVisibleChange(status) {
+      this.isError = status;
     }
-  },
-  computed: mapGetters(["errorText"])
+  }
 };
 </script>
 

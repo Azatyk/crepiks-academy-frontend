@@ -103,6 +103,7 @@ export default {
           .then(() => this.$router.push("/"))
           .catch(err => {
             this.errResponse = err.response.data.message;
+            this.isError = true;
           });
       } else {
         this.errResponse = "Пароли должны совпадать";

@@ -55,8 +55,10 @@ export default {
   top: 0%;
   left: 0;
   right: 0;
+  padding: 3px 7px;
   margin: auto;
-  height: 2.1vw;
+  min-height: 2.1vw;
+  height: auto;
   width: 18%;
   display: flex;
   flex-direction: row;

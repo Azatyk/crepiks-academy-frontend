@@ -3,8 +3,7 @@ import { request } from "@/requests/login";
 export default {
   state: {
     status: "",
-    email: "",
-    errorText: ""
+    email: ""
   },
   actions: {
     saveEmail({ commit }, email) {
@@ -22,7 +21,7 @@ export default {
             resolve(res);
           })
           .catch(err => {
-            commit("saveError", err.response.data.message);
+            commit("saveError");
             reject(err);
           });
       });
@@ -36,16 +35,11 @@ export default {
       state.status = "Success";
       state.email = email;
     },
-    saveError(state, text) {
+    saveError(state) {
       state.status = "Error";
-      state.errorText = text;
-      setTimeout(state => {
-        state.errorText = "";
-      }, 1000);
     }
   },
   getters: {
-    saveSuccess: state => Boolean(state.email),
-    errorText: state => state.errorText
+    saveSuccess: state => Boolean(state.email)
   }
 };
