@@ -30,7 +30,17 @@
         />
       </div>
       <div class="header__auth-links centerlize" v-else>
-        <cButton @action="logout" text="Выйти">Выйти</cButton>
+        <!-- <cButton @action="logout" text="Выйти">Выйти</cButton> -->
+        <div class="profile__data">
+          <div class="profile__first-name">{{ userData.firstName }}</div>
+          <div class="profile__image-container">
+            <img
+              :src="userData.image"
+              :alt="userData.firstName"
+              class="profile__image"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -40,7 +50,6 @@
 import { mapGetters, mapMutations } from "vuex";
 import cLogo from "@/components/general/cLogo";
 import cButtonLink from "@/components/general/cButtonLink";
-import cButton from "@/components/general/cButton";
 
 export default {
   props: {
@@ -53,11 +62,17 @@ export default {
 
   components: {
     cLogo,
-    cButtonLink,
-    cButton
+    cButtonLink
   },
   methods: mapMutations(["logout"]),
-  computed: mapGetters(["isLoggedIn"])
+  computed: mapGetters(["isLoggedIn", "userData"]),
+  watch: {
+    isLoggedIn(val) {
+      if (val) {
+        this.$store.dispatch("getUserData");
+      }
+    }
+  }
 };
 </script>
 
@@ -116,7 +131,7 @@ export default {
 }
 
 .centerlize {
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .header__exit-button {
@@ -137,5 +152,28 @@ export default {
 .header__exit-button:hover {
   background-color: #f78f8f;
   transition: 300ms ease-in-out;
+}
+
+.profile__data {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile__first-name {
+  font-size: 1.5vw;
+  color: #dbdbdb;
+}
+
+.profile__image-container {
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile__image {
+  width: 100%;
 }
 </style>

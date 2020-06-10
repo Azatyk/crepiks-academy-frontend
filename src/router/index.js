@@ -6,6 +6,9 @@ import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
 import Courses from "@/views/courses/Courses";
 import cEmpty from "@/views/empty/cEmpty";
+import cProfile from "@/views/profile/cProfile";
+
+// import { mapGetters } from "vuex";
 
 import store from "@/store";
 
@@ -50,6 +53,17 @@ const routes = [
     component: cEmpty,
     meta: {
       title: "Crepiks Academy - программируй вместе с нами"
+    }
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: cProfile,
+    meta: {
+      title: "Личный кабинет",
+      needAuth: true
+      // title: mapGetters(['userData']).lastName + " " + mapGetters(['userData']).firstName + " - личный кабинет"
+      // title: store.getters.userData.firstName
     }
   }
 ];

@@ -1,4 +1,4 @@
-import { request } from "@/requests/login";
+import { request } from "@/requests/request";
 
 export default {
   state: {
