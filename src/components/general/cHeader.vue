@@ -73,6 +73,11 @@ export default {
         this.$store.dispatch("getUserData");
       }
     }
+  },
+  mounted() {
+    if (this.isLoggedIn) {
+      this.$store.dispatch("getUserData");
+    }
   }
 };
 </script>
@@ -178,7 +183,6 @@ export default {
 .profile__image-container {
   width: 2.5vw;
   height: 2.5vw;
-  border: 2px solid #fc7979;
   border-radius: 50%;
   overflow: hidden;
 }

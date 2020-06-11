@@ -1,8 +1,25 @@
 <template>
   <div class="page">
     <cHeader pageType="common" />
+    <cMessage
+      :icon="messageIcon"
+      :backColor="messageBackColor"
+      :text="messageText"
+      :isActive="isMessage"
+      @change="messageVisibleChange"
+    />
     <div class="content-container">
       <div class="content">
+        <i
+          class="fas fa-edit content__change-button"
+          @click="changeTrigger"
+          v-if="!isChange"
+        ></i>
+        <i
+          class="fas fa-times-circle content__change-button"
+          @click="changeTrigger"
+          v-else
+        ></i>
         <cButton @action="profileLogout" text="Выйти" class="logout" />
         <div class="content__user user">
           <div class="user__image-container">
@@ -15,17 +32,48 @@
           <div class="user__text">
             <div class="user__data-element">
               <div class="user__text-label">Имя:</div>
-              <div class="user__text-data">{{ userData.firstName }}</div>
+              <div class="user__text-data" v-show="!isChange">
+                {{ userData.firstName }}
+              </div>
+              <input
+                type="text"
+                class="user__text-input"
+                v-model="firstName"
+                v-show="isChange"
+              />
             </div>
             <div class="user__data-element">
               <div class="user__text-label">Фамилия:</div>
-              <div class="user__text-data">{{ userData.lastName }}</div>
+              <div class="user__text-data" v-show="!isChange">
+                {{ userData.lastName }}
+              </div>
+              <input
+                type="text"
+                class="user__text-input"
+                v-model="lastName"
+                v-show="isChange"
+              />
             </div>
             <div class="user__data-element">
               <div class="user__text-label">Email:</div>
-              <div class="user__text-data">{{ userData.email }}</div>
+              <div class="user__text-data" v-show="!isChange">
+                {{ userData.email }}
+              </div>
+              <input
+                type="text"
+                class="user__text-input"
+                v-model="email"
+                v-show="isChange"
+              />
             </div>
           </div>
+          <cButton
+            text="Сохранить"
+            type="submit"
+            v-show="isChange"
+            class="content__save-button"
+            @action="changeData"
+          />
         </div>
       </div>
     </div>
@@ -35,26 +83,65 @@
 <script>
 import cHeader from "@/components/general/cHeader";
 import cButton from "@/components/general/cButton";
+import cMessage from "@/components/general/cMessage";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     cHeader,
-    cButton
+    cButton,
+    cMessage
   },
   data() {
     return {
-      isError: ""
+      isChange: false,
+      firstName: "",
+      lastName: "",
+      email: "",
+      isMessage: false,
+      messageText: "",
+      messageIcon: "",
+      messageBackColor: ""
     };
   },
-  mounted() {
-    this.$store.dispatch("getUserData").catch(err => (this.isError = err));
-  },
+  // mounted() {
+  // this.$store.dispatch("getUserData").catch(err => (this.isError = err));
+  // },
   computed: mapGetters(["userData"]),
   methods: {
     profileLogout() {
       this.$store.commit("logout");
       this.$router.push("/");
+    },
+    changeTrigger() {
+      this.isChange = !this.isChange;
+      if (this.isChange) {
+        this.firstName = this.userData.firstName;
+        this.lastName = this.userData.lastName;
+        this.email = this.userData.email;
+      }
+    },
+    changeData() {
+      this.$store
+        .dispatch("changeUserData", {
+          image:
+            "https://www.peoples.ru/art/cinema/actor/the_rock/larisa-vojjtovich_s_s",
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email
+        })
+        .then(res => {
+          this.changeTrigger();
+          if (res.status == 200) {
+            this.messageText = "Профиль изменен";
+            this.messageIcon = "fas fa-check-circle";
+            this.messageBackColor = "#2ecc71";
+            this.isMessage = true;
+          }
+        });
+    },
+    messageVisibleChange(status) {
+      this.isMessage = status;
     }
   }
 };
@@ -136,6 +223,34 @@ export default {
   position: absolute;
   top: 5%;
   right: 5%;
+  font-size: 1.5vw;
+}
+
+.content__change-button {
+  position: absolute;
+  top: 6.5%;
+  right: 20%;
+  font-size: 2vw;
+  color: #fc7979;
+  cursor: pointer;
+}
+
+.user__text-input {
+  padding: 2% 5%;
+  height: 1.7vw;
+  min-width: 15vw;
+  width: auto;
+  font-size: 2vw;
+  color: #34495e;
+  border: 1px solid #4c6b8a;
+  border-radius: 5px;
+  background-color: #dae4eb;
+}
+
+.content__save-button {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
   font-size: 1.5vw;
 }
 </style>

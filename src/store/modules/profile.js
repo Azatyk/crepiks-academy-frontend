@@ -14,12 +14,29 @@ export default {
           method: "GET"
         })
           .then(res => {
-            console.log(res.data);
             commit("gettingSuccess", res.data);
             resolve(res);
           })
           .catch(err => {
             commit("gettingError");
+            reject(err);
+          });
+      });
+    },
+    changeUserData({ commit }, profile) {
+      return new Promise((resolve, reject) => {
+        commit("changingLoading");
+        request({
+          url: "/profile",
+          data: profile,
+          method: "PATCH"
+        })
+          .then(res => {
+            commit("changingSuccess", profile);
+            resolve(res);
+          })
+          .catch(err => {
+            commit("changingError");
             reject(err);
           });
       });
@@ -34,6 +51,16 @@ export default {
       state.userData = data;
     },
     gettingError(state) {
+      state.status = "error";
+    },
+    changingLoading(state) {
+      state.status = "loading";
+    },
+    changingSuccess(state, profile) {
+      state.status = "success";
+      state.userData = profile;
+    },
+    changingError(state) {
       state.status = "error";
     }
   },

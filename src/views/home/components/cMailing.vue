@@ -1,10 +1,10 @@
 <template>
   <section class="mailing">
     <cMessage
-      icon="fas fa-exclamation-circle"
-      :text="errResponse"
-      :isActive="isError"
-      backColor="#ffcc00"
+      :icon="messageIcon"
+      :text="messageText"
+      :isActive="isMessage"
+      :backColor="messageBackColor"
       textColor="white"
       @change="messageVisibleChange"
     />
@@ -48,20 +48,34 @@ export default {
   data() {
     return {
       userEmail: "",
-      errResponse: "",
-      isError: false
+      messageText: "",
+      isMessage: false,
+      messageIcon: "",
+      messageBackColor: ""
     };
   },
   methods: {
     save() {
       let email = this.userEmail;
-      this.$store.dispatch("saveEmail", email).catch(err => {
-        this.errResponse = err.response.data.message;
-        this.isError = true;
-      });
+      this.$store
+        .dispatch("saveEmail", email)
+        .then(res => {
+          if (res.status == 200) {
+            this.messageText = "Спасибо за подписку";
+            this.messageIcon = "fas fa-check-circle";
+            this.messageBackColor = "#2ecc71";
+            this.isMessage = true;
+          }
+        })
+        .catch(err => {
+          this.messageText = err.response.data.message;
+          this.messageIcon = "fas fa-exclamation-circle";
+          this.messageBackColor = "#ffcc00";
+          this.isMessage = true;
+        });
     },
     messageVisibleChange(status) {
-      this.isError = status;
+      this.isMessage = status;
     }
   }
 };
