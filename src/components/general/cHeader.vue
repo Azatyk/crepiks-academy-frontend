@@ -156,7 +156,7 @@ export default {
 }
 
 .profile__link {
-  width: 60%;
+  width: 70%;
   text-decoration: none;
 }
 

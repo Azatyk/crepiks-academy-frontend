@@ -3,7 +3,7 @@
     <cHeader pageType="common" />
     <div class="content-container">
       <div class="content">
-        <cButton @action="logout" text="Выйти" class="logout" />
+        <cButton @action="profileLogout" text="Выйти" class="logout" />
         <div class="content__user user">
           <div class="user__image-container">
             <img
@@ -35,7 +35,7 @@
 <script>
 import cHeader from "@/components/general/cHeader";
 import cButton from "@/components/general/cButton";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -51,7 +51,12 @@ export default {
     this.$store.dispatch("getUserData").catch(err => (this.isError = err));
   },
   computed: mapGetters(["userData"]),
-  methods: mapMutations(["logout"])
+  methods: {
+    profileLogout() {
+      this.$store.commit("logout");
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 
