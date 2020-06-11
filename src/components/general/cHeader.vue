@@ -30,17 +30,18 @@
         />
       </div>
       <div class="header__auth-links centerlize" v-else>
-        <!-- <cButton @action="logout" text="Выйти">Выйти</cButton> -->
-        <div class="profile__data">
-          <div class="profile__first-name">{{ userData.firstName }}</div>
-          <div class="profile__image-container">
-            <img
-              :src="userData.image"
-              :alt="userData.firstName"
-              class="profile__image"
-            />
+        <router-link to="/profile" class="profile__link">
+          <div class="profile__data">
+            <div class="profile__first-name">{{ userData.firstName }}</div>
+            <div class="profile__image-container">
+              <img
+                :src="userData.image"
+                :alt="userData.firstName"
+                class="profile__image"
+              />
+            </div>
           </div>
-        </div>
+        </router-link>
       </div>
     </div>
   </header>
@@ -154,6 +155,10 @@ export default {
   transition: 300ms ease-in-out;
 }
 
+.profile__link {
+  text-decoration: none;
+}
+
 .profile__data {
   display: flex;
   flex-direction: row;
@@ -162,13 +167,14 @@ export default {
 }
 
 .profile__first-name {
+  padding-right: 10%;
   font-size: 1.5vw;
-  color: #dbdbdb;
+  color: #fc7979;
 }
 
 .profile__image-container {
-  width: 4vw;
-  height: 4vw;
+  width: 2.5vw;
+  height: 2.5vw;
   border-radius: 50%;
   overflow: hidden;
 }
