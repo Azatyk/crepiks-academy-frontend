@@ -112,7 +112,7 @@ export default {
 .mailing__form {
   margin: auto;
   height: 11vw;
-  width: 70%;
+  width: 82%;
   display: flex;
   flex-direction: column;
   justify-content: center;

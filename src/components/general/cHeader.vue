@@ -156,25 +156,29 @@ export default {
 }
 
 .profile__link {
+  width: 60%;
   text-decoration: none;
 }
 
 .profile__data {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
 }
 
 .profile__first-name {
-  padding-right: 10%;
+  margin-right: 10px;
   font-size: 1.5vw;
   color: #fc7979;
+  font-weight: 500;
 }
 
 .profile__image-container {
   width: 2.5vw;
   height: 2.5vw;
+  border: 2px solid #fc7979;
   border-radius: 50%;
   overflow: hidden;
 }
