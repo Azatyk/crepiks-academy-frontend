@@ -1,28 +1,26 @@
 <template>
   <div class="page">
-    <section class="intro">
-      <cHeader class="header" pageType="common" />
-      <cWelcome />
-      <cAbout
-        :image="loveDouble"
-        :reversed="false"
-        textHeading="Курсы сделанные с любовью"
-        textDescription="Структурированное обучение, десятки видеоуроков и интерактивных курсов сделанных для вас помогут вам вм изучении программирования с нуля"
-        route="/courses"
-        buttonText="Подобрать курс"
-      />
-      <cAdvantages />
-      <cAbout
-        :image="meditation"
-        :reversed="true"
-        textHeading="Открой для себя новый мир"
-        textDescription="Мы не только обучим вас всем современным технологиям в мире IT, но и расскажем почему эта сфера так важна в нашем мире"
-        route="/courses"
-        buttonText="Перейти к курсам"
-      />
-      <cMailing />
-      <cFooter />
-    </section>
+    <cHeader class="header" pageType="common" />
+    <cWelcome />
+    <cAbout
+      :image="loveDouble"
+      :reversed="false"
+      textHeading="Курсы сделанные с любовью"
+      textDescription="Структурированное обучение, десятки видеоуроков и интерактивных курсов сделанных для вас помогут вам вм изучении программирования с нуля"
+      route="/courses"
+      buttonText="Подобрать курс"
+    />
+    <cAdvantages />
+    <cAbout
+      :image="meditation"
+      :reversed="true"
+      textHeading="Открой для себя новый мир"
+      textDescription="Мы не только обучим вас всем современным технологиям в мире IT, но и расскажем почему эта сфера так важна в нашем мире"
+      route="/courses"
+      buttonText="Перейти к курсам"
+    />
+    <cMailing />
+    <cFooter />
   </div>
 </template>
 
@@ -60,6 +58,10 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  width: 100%;
+}
+
 .header {
   background-color: #ffffff00;
 }

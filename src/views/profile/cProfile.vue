@@ -1,79 +1,83 @@
 <template>
   <div class="page">
-    <cHeader pageType="common" />
-    <cMessage
-      :icon="messageIcon"
-      :backColor="messageBackColor"
-      :text="messageText"
-      :isActive="isMessage"
-      @change="messageVisibleChange"
-    />
-    <div class="content-container">
-      <div class="content">
-        <i
-          class="fas fa-edit content__change-button"
-          @click="changeTrigger"
-          v-if="!isChange"
-        ></i>
-        <i
-          class="fas fa-times-circle content__change-button"
-          @click="changeTrigger"
-          v-else
-        ></i>
-        <cButton @action="profileLogout" text="Выйти" class="logout" />
-        <div class="content__user user">
-          <div class="user__image-container">
-            <img
-              :src="userData.image"
-              :alt="userData.firstName"
-              class="user__image"
-            />
-          </div>
-          <div class="user__text">
-            <div class="user__data-element">
-              <div class="user__text-label">Имя:</div>
-              <div class="user__text-data" v-show="!isChange">
-                {{ userData.firstName }}
+    <cHeader type="common" class="header" />
+    <div class="page__back-color"></div>
+    <div class="content">
+      <div class="profile">
+        <div class="profile__main">
+          <div class="profile__first-info">
+            <div class="profile__avatar-container">
+              <div class="profile__avatar-square">
+                <img
+                  src="https://crepiks.s3.eu-central-1.amazonaws.com/users/avatars/5ee71fded3a4df0017bb9d85"
+                  alt="Avatar"
+                  class="profile__avatar"
+                />
               </div>
-              <input
-                type="text"
-                class="user__text-input"
-                v-model="firstName"
-                v-show="isChange"
-              />
             </div>
-            <div class="user__data-element">
-              <div class="user__text-label">Фамилия:</div>
-              <div class="user__text-data" v-show="!isChange">
-                {{ userData.lastName }}
+            <div class="profile__description">
+              <div class="profile__text">
+                <h1 class="profile__full-name">Онласын Саяжан</h1>
+                <div class="profile__about">
+                  Всегда хотел попробовать себя в программировании и в IT сфере
+                  в целом. В свободное время читаю книги, варю картошку и сплю
+                  вверх ногами с:
+                </div>
               </div>
-              <input
-                type="text"
-                class="user__text-input"
-                v-model="lastName"
-                v-show="isChange"
-              />
-            </div>
-            <div class="user__data-element">
-              <div class="user__text-label">Email:</div>
-              <div class="user__text-data" v-show="!isChange">
-                {{ userData.email }}
-              </div>
-              <input
-                type="text"
-                class="user__text-input"
-                v-model="email"
-                v-show="isChange"
-              />
+              <router-link to="/profile/change"
+                ><div class="profile__change-button">
+                  Редактировать профиль
+                </div></router-link
+              >
             </div>
           </div>
-          <cButton
-            text="Сохранить"
-            type="submit"
-            v-show="isChange"
-            class="content__save-button"
-            @action="changeData"
-          />
+          <div class="profile__social-networks">
+            <i class="fab fa-github-square profile__social-network"></i>
+            <i class="fab fa-linkedin profile__social-network"></i>
+            <i class="fab fa-instagram-square profile__social-network"></i>
+            <i class="fab fa-vk profile__social-network"></i>
+          </div>
+        </div>
+        <div class="profile__extra">
+          <div class="profile__extra-info">
+            <div class="extra-info__element">
+              <i class="far fa-calendar-alt extra-info__icon"></i>
+              <div class="extra-info__text">27/02/2003</div>
+            </div>
+            <div class="extra-info__element">
+              <i class="fas fa-phone-square-alt extra-info__icon"></i>
+              <div class="extra-info__text">+7 (707) 149 84 84</div>
+            </div>
+            <div class="extra-info__element">
+              <i class="fas fa-envelope extra-info__icon"></i>
+              <div class="extra-info__text">sayazhan.onlasyn@mail.ru</div>
+            </div>
+            <div class="extra-info__element">
+              <i class="fas fa-house-user extra-info__icon"></i>
+              <div class="extra-info__text">г. Тараз, мкр. Астана</div>
+            </div>
+          </div>
+          <div class="profile__courses">
+            <div class="profile__courses-heading">Курсы Саяжана:</div>
+            <div class="courses__container">
+              <div class="profile__course">
+                <div class="course__main-info">
+                  <i class="fab fa-js-square course__icon"></i>
+                  <div class="course__heading">JavaScript Базовый</div>
+                </div>
+                <div class="course__progress">
+                  <div class="progress__line">
+                    <div class="progress__full-line"></div>
+                    <div class="progress__comleted-line"></div>
+                  </div>
+                  <div class="progress__percent">60%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="profile__logout-container">
+          <cButton text="Выйти" @action="profileLogout" />
         </div>
       </div>
     </div>
@@ -83,65 +87,16 @@
 <script>
 import cHeader from "@/components/general/cHeader";
 import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
-import { mapGetters } from "vuex";
 
 export default {
   components: {
     cHeader,
-    cButton,
-    cMessage
+    cButton
   },
-  data() {
-    return {
-      isChange: false,
-      firstName: "",
-      lastName: "",
-      email: "",
-      isMessage: false,
-      messageText: "",
-      messageIcon: "",
-      messageBackColor: ""
-    };
-  },
-  // mounted() {
-  // this.$store.dispatch("getUserData").catch(err => (this.isError = err));
-  // },
-  computed: mapGetters(["userData"]),
   methods: {
     profileLogout() {
       this.$store.commit("logout");
       this.$router.push("/");
-    },
-    changeTrigger() {
-      this.isChange = !this.isChange;
-      if (this.isChange) {
-        this.firstName = this.userData.firstName;
-        this.lastName = this.userData.lastName;
-        this.email = this.userData.email;
-      }
-    },
-    changeData() {
-      this.$store
-        .dispatch("changeUserData", {
-          image:
-            "https://www.peoples.ru/art/cinema/actor/the_rock/larisa-vojjtovich_s_s",
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email
-        })
-        .then(res => {
-          this.changeTrigger();
-          if (res.status == 200) {
-            this.messageText = "Профиль изменен";
-            this.messageIcon = "fas fa-check-circle";
-            this.messageBackColor = "#2ecc71";
-            this.isMessage = true;
-          }
-        });
-    },
-    messageVisibleChange(status) {
-      this.isMessage = status;
     }
   }
 };
@@ -149,108 +104,250 @@ export default {
 
 <style scoped>
 .page {
-  height: 100vh;
   width: 100%;
-  background-color: #34495e;
+  height: 100vh;
+  background-color: #f8f7fc;
 }
 
-.content-container {
+.header {
+  z-index: 2;
+}
+
+.page__back-color {
+  position: absolute;
+  top: 0;
   width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 70vh;
+  background-color: #34495e;
+  z-index: 0;
 }
 
 .content {
-  position: relative;
-  width: 80%;
-  height: 60%;
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f7fc;
-  border-radius: 20px;
 }
 
-.user {
-  width: 80%;
+.profile {
+  padding: 3vh 4vh;
+  width: 50%;
+  height: 35vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f7fc;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #757575;
+  z-index: 2;
+}
+
+.profile__main {
+  width: 100%;
+  height: 17vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__first-info {
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
 
-.user__image-container {
-  margin-right: 7%;
+.profile__avatar-container {
   width: 20vw;
-  height: 20vw;
-  border-radius: 50%;
-  overflow: hidden;
+  height: 100%;
 }
 
-.user__image {
+.profile__avatar-square {
+  height: 17vw;
+  width: 17vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.profile__avatar {
+  width: 200%;
+}
+
+.profile__description {
+  height: 100%;
+  width: 17vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.profile__text {
   width: 100%;
 }
 
-.user__text {
+.profile__full-name {
+  margin-bottom: 5%;
+  font-size: 2.5vw;
+  color: #34495e;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.profile__about {
+  font-size: 0.9vw;
+  color: #516f8c;
+  font-weight: 300;
+}
+
+.profile__change-button {
+  font-size: 0.9vw;
+  color: #516f8c;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.profile__social-networks {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.user__data-element {
-  margin-bottom: 7%;
+.profile__social-network {
+  margin-bottom: 2vw;
+  font-size: 2vw;
+  color: #516f8c;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.profile__social-network:hover {
+  color: #7799ba;
+  transition: 300ms ease-in-out;
+}
+
+.profile__extra {
+  margin-top: 5%;
+  width: 100%;
+  height: 10vw;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
 
-.user__text-label {
+.profile__extra-info {
+  height: 100%;
+  width: 20vw;
+}
+
+.extra-info__element {
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.extra-info__icon {
+  margin-right: 5%;
+  font-size: 1.2vw;
+  color: #34495e;
+}
+
+.extra-info__text {
+  font-size: 0.8vw;
+  color: #516f8c;
+  font-weight: 300;
+}
+
+.profile__courses {
+  height: 100%;
+}
+
+.profile__courses-heading {
+  margin-bottom: 10%;
+  font-size: 1.2vw;
+  color: #34495e;
+  font-weight: 300;
+}
+
+.courses__container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile__course {
+  padding: 1vh 2vh !important;
+  width: 11vw;
+  height: 7vw;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #c9c9c9;
+}
+
+.course__main-info {
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.course__icon {
   margin-right: 10%;
-  font-size: 2.5vw;
-  color: #5a728a;
-}
-
-.user__text-data {
-  font-size: 2.5vw;
+  font-size: 4vw;
   color: #34495e;
 }
 
-.logout {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  font-size: 1.5vw;
+.course__heading {
+  width: 45%;
+  font-size: 0.9vw;
+  color: #33334f;
+  font-weight: 500;
 }
 
-.content__change-button {
-  position: absolute;
-  top: 6.5%;
-  right: 20%;
-  font-size: 2vw;
-  color: #fc7979;
-  cursor: pointer;
+.course__progress {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.user__text-input {
-  padding: 2% 5%;
-  height: 1.7vw;
-  min-width: 15vw;
-  width: auto;
-  font-size: 2vw;
-  color: #34495e;
-  border: 1px solid #4c6b8a;
-  border-radius: 5px;
-  background-color: #dae4eb;
+.progress__line {
+  position: relative;
+  width: 70%;
 }
 
-.content__save-button {
+.progress__full-line {
   position: absolute;
-  right: 5%;
-  bottom: 5%;
-  font-size: 1.5vw;
+  height: 3px;
+  width: 100%;
+  background-color: #b2c4d6;
+  z-index: 1;
+}
+
+.progress__comleted-line {
+  position: absolute;
+  height: 3px;
+  width: 60%;
+  background-color: #34495e;
+  z-index: 2;
+}
+
+.profile__logout-container {
+  width: 100%;
 }
 </style>

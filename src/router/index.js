@@ -7,6 +7,7 @@ import cLogin from "@/views/login/cLogin";
 import Courses from "@/views/courses/Courses";
 import cEmpty from "@/views/empty/cEmpty";
 import cProfile from "@/views/profile/cProfile";
+// import cChangeProfile from "@/views/change-profile/cChangeProfile";
 
 // import { mapGetters } from "vuex";
 
@@ -60,10 +61,18 @@ const routes = [
     name: "profile",
     component: cProfile,
     meta: {
-      title: "Личный кабинет",
+      title: "Ваш профиль",
       needAuth: true
       // title: mapGetters(['userData']).lastName + " " + mapGetters(['userData']).firstName + " - личный кабинет"
       // title: store.getters.userData.firstName
+    }
+  },
+  {
+    path: "/profile/change",
+    name: "change",
+    component: cProfile,
+    meta: {
+      title: "Изменение профиля"
     }
   }
 ];

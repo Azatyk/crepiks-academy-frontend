@@ -2,13 +2,11 @@ import { request } from "@/requests/request";
 
 export default {
   state: {
-    status: "",
     userData: {}
   },
   actions: {
     getUserData({ commit }) {
       return new Promise((resolve, reject) => {
-        commit("gettingLoading");
         request({
           url: "/profile",
           method: "GET"
@@ -18,14 +16,12 @@ export default {
             resolve(res);
           })
           .catch(err => {
-            commit("gettingError");
             reject(err);
           });
       });
     },
     changeUserData({ commit }, profile) {
       return new Promise((resolve, reject) => {
-        commit("changingLoading");
         request({
           url: "/profile",
           data: profile,
@@ -36,32 +32,36 @@ export default {
             resolve(res);
           })
           .catch(err => {
-            commit("changingError");
+            reject(err);
+          });
+      });
+    },
+    changePassword(ctx, { currentPassword, newPassword }) {
+      return new Promise((resolve, reject) => {
+        console.log(currentPassword, newPassword);
+        request({
+          url: "/profile/change-password",
+          data: {
+            currentPassword,
+            newPassword
+          },
+          method: "PATCH"
+        })
+          .then(res => {
+            resolve(res);
+          })
+          .catch(err => {
             reject(err);
           });
       });
     }
   },
   mutations: {
-    gettingLoading(state) {
-      state.status = "loading";
-    },
     gettingSuccess(state, data) {
-      state.status = "success";
       state.userData = data;
     },
-    gettingError(state) {
-      state.status = "error";
-    },
-    changingLoading(state) {
-      state.status = "loading";
-    },
     changingSuccess(state, profile) {
-      state.status = "success";
       state.userData = profile;
-    },
-    changingError(state) {
-      state.status = "error";
     }
   },
   getters: {

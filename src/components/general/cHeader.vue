@@ -85,9 +85,10 @@ export default {
 <style scoped>
 .header {
   position: absolute;
+  height: 10vh;
   width: 100%;
   box-sizing: border-box;
-  height: 10vh;
+  background-color: #34495e;
 }
 
 .content {
@@ -175,19 +176,22 @@ export default {
 
 .profile__first-name {
   margin-right: 10px;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
   color: #fc7979;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .profile__image-container {
   width: 2.5vw;
   height: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   overflow: hidden;
 }
 
 .profile__image {
-  width: 100%;
+  width: 200%;
 }
 </style>

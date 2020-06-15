@@ -2,9 +2,9 @@
   <div class="page">
     <cHeader pageType="register" />
     <cMessage
-      icon="fas fa-times-circle"
-      :text="errResponse"
-      :isActive="isError"
+      :icon="messageIcon"
+      :text="messageText"
+      :isActive="isMessage"
       @change="messageVisibleChange"
     />
     <div class="content">
@@ -84,8 +84,9 @@ export default {
       email: "",
       password: "",
       passwordCheck: "",
-      errResponse: "",
-      isError: false
+      messageText: "",
+      messageIcon: "",
+      isMessage: false
     };
   },
   methods: {
@@ -102,16 +103,18 @@ export default {
           .dispatch("register", data)
           .then(() => this.$router.push("/"))
           .catch(err => {
-            this.errResponse = err.response.data.message;
-            this.isError = true;
+            this.messageText = err.response.data.message;
+            this.messageIcon = "fas fa-times-circle";
+            this.isMessage = true;
           });
       } else {
-        this.errResponse = "Пароли должны совпадать";
-        this.isError = true;
+        this.messageText = "Пароли должны совпадать";
+        this.messageIcon = "fas fa-times-circle";
+        this.isMessage = true;
       }
     },
     messageVisibleChange(status) {
-      this.isError = status;
+      this.isMessage = status;
     }
   }
 };

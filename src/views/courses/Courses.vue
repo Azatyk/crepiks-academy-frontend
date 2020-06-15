@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <cHeader class="header" />
+    <cHeader pageType="common" class="header" />
     <div class="courses">
       <c-Course class="course" />
     </div>
@@ -20,13 +20,17 @@ export default {
 </script>
 
 <style scoped>
+.main {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+}
+
 .courses {
   width: 100%;
   box-sizing: border-box;
   padding: 20vh 10%;
-}
-
-.header {
-  background-color: #34495e;
 }
 </style>
