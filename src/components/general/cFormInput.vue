@@ -1,7 +1,7 @@
 <template>
   <div class="input">
     <label :for="id" class="input__label">
-      <img :src="icon" alt="Icon" class="input__icon" />
+      <i :class="icon" class="input__icon"></i>
     </label>
     <input
       :type="type"
@@ -26,7 +26,7 @@ export default {
     },
     icon: {
       type: String,
-      required: true
+      required: false
     },
     type: {
       type: String,
@@ -56,7 +56,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a285fc;
+  background-color: #fc7979;
   border-radius: 5px 0 0 5px;
   cursor: pointer;
 }
@@ -67,10 +67,21 @@ export default {
   padding: 0 17px;
   font-size: 16px;
   font-weight: 400;
-  color: #5164cd;
-  background-color: rgba(96, 120, 255, 0.14);
+  color: #5e87ad;
+  background-color: #dae4eb;
   border: none;
   border-radius: 0 5px 5px 0;
   box-sizing: border-box;
+}
+
+.input__icon {
+  color: #f8f7fc;
+}
+
+input::-webkit-input-placeholder {
+  color: #516f8c;
+}
+input::-moz-placeholder {
+  color: #516f8c;
 }
 </style>
