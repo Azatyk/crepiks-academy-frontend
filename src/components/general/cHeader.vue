@@ -66,19 +66,14 @@ export default {
     cButtonLink
   },
   methods: mapMutations(["logout"]),
-  computed: mapGetters(["isLoggedIn", "userData"]),
-  watch: {
-    isLoggedIn(val) {
-      if (val) {
-        this.$store.dispatch("getUserData");
-      }
-    }
-  },
-  mounted() {
-    if (this.isLoggedIn) {
-      this.$store.dispatch("getUserData");
-    }
-  }
+  computed: mapGetters(["isLoggedIn", "userData"])
+  // watch: {
+  //   isLoggedIn(val) {
+  //     if (val) {
+  //       this.$store.dispatch("getUserData");
+  //     }
+  //   }
+  // },
 };
 </script>
 
@@ -184,14 +179,11 @@ export default {
 .profile__image-container {
   width: 2.5vw;
   height: 2.5vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 50%;
   overflow: hidden;
 }
 
 .profile__image {
-  width: 200%;
+  width: 100%;
 }
 </style>

@@ -7,7 +7,8 @@ import cLogin from "@/views/login/cLogin";
 import Courses from "@/views/courses/Courses";
 import cEmpty from "@/views/empty/cEmpty";
 import cProfile from "@/views/profile/cProfile";
-// import cChangeProfile from "@/views/change-profile/cChangeProfile";
+import cChangeProfile from "@/views/change-profile/cChangeProfile";
+import cChangePassword from "@/views/change-password/cChangePassword";
 
 // import { mapGetters } from "vuex";
 
@@ -70,9 +71,17 @@ const routes = [
   {
     path: "/profile/change",
     name: "change",
-    component: cProfile,
+    component: cChangeProfile,
     meta: {
       title: "Изменение профиля"
+    }
+  },
+  {
+    path: "/profile/change-password",
+    name: "change-password",
+    component: cChangePassword,
+    meta: {
+      title: "Изменение пароля"
     }
   }
 ];

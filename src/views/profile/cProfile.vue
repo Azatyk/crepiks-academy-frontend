@@ -9,56 +9,82 @@
             <div class="profile__avatar-container">
               <div class="profile__avatar-square">
                 <img
-                  src="https://crepiks.s3.eu-central-1.amazonaws.com/users/avatars/5ee71fded3a4df0017bb9d85"
-                  alt="Avatar"
+                  :src="user.image"
+                  :alt="user.firstName"
                   class="profile__avatar"
                 />
               </div>
             </div>
             <div class="profile__description">
               <div class="profile__text">
-                <h1 class="profile__full-name">Онласын Саяжан</h1>
+                <h1 class="profile__full-name">
+                  {{ user.lastName }} {{ user.firstName }}
+                </h1>
                 <div class="profile__about">
-                  Всегда хотел попробовать себя в программировании и в IT сфере
-                  в целом. В свободное время читаю книги, варю картошку и сплю
-                  вверх ногами с:
+                  {{ user.description || "Не указано" }}
                 </div>
               </div>
-              <router-link to="/profile/change"
-                ><div class="profile__change-button">
+              <router-link to="/profile/change" class="profile__change-link">
+                <div class="profile__change-button">
                   Редактировать профиль
                 </div></router-link
               >
             </div>
           </div>
           <div class="profile__social-networks">
-            <i class="fab fa-github-square profile__social-network"></i>
-            <i class="fab fa-linkedin profile__social-network"></i>
-            <i class="fab fa-instagram-square profile__social-network"></i>
-            <i class="fab fa-vk profile__social-network"></i>
+            <a :href="user.links.github"
+              ><i
+                class="fab fa-github-square profile__social-network"
+                :class="{ active: user.links.github }"
+              ></i
+            ></a>
+            <a :href="user.links.linkedIn"
+              ><i
+                class="fab fa-linkedin profile__social-network"
+                :class="{ active: user.links.linkedIn }"
+              ></i
+            ></a>
+            <a :href="user.links.instagram"
+              ><i
+                class="fab fa-instagram-square profile__social-network"
+                :class="{ active: user.links.instagram }"
+              ></i
+            ></a>
+            <a :href="user.links.vk"
+              ><i
+                class="fab fa-vk profile__social-network"
+                :class="{ active: user.links.vk }"
+              ></i
+            ></a>
           </div>
         </div>
         <div class="profile__extra">
           <div class="profile__extra-info">
             <div class="extra-info__element">
               <i class="far fa-calendar-alt extra-info__icon"></i>
-              <div class="extra-info__text">27/02/2003</div>
+              <div class="extra-info__text">
+                {{ user.birthday || "не указано" }}
+              </div>
             </div>
             <div class="extra-info__element">
               <i class="fas fa-phone-square-alt extra-info__icon"></i>
-              <div class="extra-info__text">+7 (707) 149 84 84</div>
+              <div class="extra-info__text">
+                {{ user.phone || "не указано" }}
+              </div>
             </div>
             <div class="extra-info__element">
               <i class="fas fa-envelope extra-info__icon"></i>
-              <div class="extra-info__text">sayazhan.onlasyn@mail.ru</div>
+              <div class="extra-info__text">{{ user.email }}</div>
             </div>
             <div class="extra-info__element">
               <i class="fas fa-house-user extra-info__icon"></i>
-              <div class="extra-info__text">г. Тараз, мкр. Астана</div>
+              <div class="extra-info__text">
+                {{ user.address || "не указано" }}
+              </div>
             </div>
           </div>
           <div class="profile__courses">
-            <div class="profile__courses-heading">Курсы Саяжана:</div>
+            <div class="profile__courses-heading">Курсы:</div>
             <div class="courses__container">
               <div class="profile__course">
                 <div class="course__main-info">
@@ -87,6 +113,7 @@
 <script>
 import cHeader from "@/components/general/cHeader";
 import cButton from "@/components/general/cButton";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -97,6 +124,24 @@ export default {
     profileLogout() {
       this.$store.commit("logout");
       this.$router.push("/");
+    }
+  },
+  data() {
+    return {
+      user: {
+        links: {}
+      }
+    };
+  },
+  computed: mapGetters(["userData"]),
+  watch: {
+    userData(updatedData) {
+      this.user = updatedData;
+    }
+  },
+  mounted() {
+    if (this.userData.links) {
+      this.user = this.userData;
     }
   }
 };
@@ -131,6 +176,7 @@ export default {
 }
 
 .profile {
+  margin-top: 3%;
   padding: 3vh 4vh;
   width: 50%;
   height: 35vw;
@@ -170,15 +216,12 @@ export default {
 .profile__avatar-square {
   height: 17vw;
   width: 17vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   border-radius: 20px;
 }
 
 .profile__avatar {
-  width: 200%;
+  width: 100%;
 }
 
 .profile__description {
@@ -213,6 +256,16 @@ export default {
   color: #516f8c;
   font-weight: 500;
   cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.profile__change-button:hover {
+  color: #fc7979;
+  transition: 300ms ease-in-out;
+}
+
+.profile__change-link {
+  text-decoration: none;
 }
 
 .profile__social-networks {

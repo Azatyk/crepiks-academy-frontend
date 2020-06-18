@@ -68,6 +68,7 @@ export default {
   opacity: 0.2;
   transform: translateY(-100px);
   transition: 500ms ease-in-out;
+  z-index: 3;
 }
 
 .visible {

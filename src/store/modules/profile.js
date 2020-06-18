@@ -1,4 +1,5 @@
 import { request } from "@/requests/request";
+import axios from "axios";
 
 export default {
   state: {
@@ -36,9 +37,39 @@ export default {
           });
       });
     },
+    changeImage({ getters }, file) {
+      // let formData = new FormData();
+      // formData.append('profileImage', image)
+      // console.log(formData)
+      // request({
+      //   url: "/profile/change-image",
+      //   data: formData,
+      //   method: "PATCH",
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // })
+      // .catch(err => console.log(err.response))
+      return new Promise((resolve, reject) => {
+        let image = new FormData();
+        image.append("image", file);
+        axios
+          .patch(
+            "https://api-crepiks.herokuapp.com/api/v1/profile/change-image",
+            image,
+            {
+              headers: {
+                Authorization: getters.accessToken,
+                "Content-Type": "multipart/form-data"
+              }
+            }
+          )
+          .then(res => resolve(res))
+          .catch(err => reject(err));
+      });
+    },
     changePassword(ctx, { currentPassword, newPassword }) {
       return new Promise((resolve, reject) => {
-        console.log(currentPassword, newPassword);
         request({
           url: "/profile/change-password",
           data: {

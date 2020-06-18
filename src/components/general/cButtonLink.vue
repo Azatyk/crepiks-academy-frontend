@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .button {
-  padding: 11px 35px;
+  padding: 0.8vw 2vw;
   width: auto;
   display: flex;
   justify-content: center;
