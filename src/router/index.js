@@ -1,10 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "@/views/home/Home";
+import cHome from "@/views/home/cHome";
 import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
-import Courses from "@/views/courses/Courses";
+import cCourses from "@/views/courses/cCourses";
+import cCourse from "@/views/course/cCourse";
+import cLesson from "@/views/lesson/cLesson";
 import cEmpty from "@/views/empty/cEmpty";
 import cProfile from "@/views/profile/cProfile";
 import cChangeProfile from "@/views/change-profile/cChangeProfile";
@@ -20,7 +22,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home,
+    component: cHome,
     meta: {
       title: "Crepiks Academy - программируй вместе с нами"
     }
@@ -44,9 +46,25 @@ const routes = [
   {
     path: "/courses",
     name: "courses",
-    component: Courses,
+    component: cCourses,
     meta: {
       title: "Курсы"
+    }
+  },
+  {
+    path: "/courses/:id",
+    name: "course",
+    component: cCourse,
+    meta: {
+      title: "Курс"
+    }
+  },
+  {
+    path: "/courses/:courseId/lessons/:lessonId",
+    name: "lesson",
+    component: cLesson,
+    meta: {
+      title: "Урок"
     }
   },
   {

@@ -146,4 +146,30 @@ export default {
   width: 30%;
   font-size: 1vw;
 }
+
+@media (max-width: 1024px) {
+  .mailing__form {
+    height: 17vw;
+    width: 45%;
+  }
+
+  .form__heading {
+    font-size: 2.8vw;
+  }
+
+  .form__description {
+    font-size: 1.05vw;
+  }
+
+  .form__input {
+    padding: 1vw 1.5vw;
+    height: 4vw;
+    font-size: 1.5vw;
+  }
+
+  .form__button {
+    height: 4vw;
+    font-size: 1.3vw;
+  }
+}
 </style>

@@ -78,4 +78,30 @@ export default {
   font-size: 1.2vw;
   box-shadow: none;
 }
+
+@media (max-width: 1024px) {
+  .welcome {
+    background-size: 90%;
+  }
+
+  .welcome__text-block {
+    margin-top: 18%;
+    margin-left: 12%;
+    width: 50%;
+  }
+
+  .text-block__heading {
+    margin-bottom: 3%;
+    font-size: 4vw;
+  }
+
+  .text-block__description {
+    width: 80%;
+    font-size: 2vw;
+  }
+
+  .text-block__button {
+    padding: 1.2vw 2.3vw;
+  }
+}
 </style>

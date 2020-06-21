@@ -128,4 +128,15 @@ export default {
   margin-left: 0;
   margin-right: -5%;
 }
+
+@media (max-width: 1024px) {
+  .text-block__heading {
+    font-size: 3vw;
+  }
+
+  .text-block__description {
+    width: 90%;
+    font-size: 1.7vw;
+  }
+}
 </style>

@@ -129,6 +129,7 @@ export default {
 }
 
 .header__auth-button {
+  padding: 0.7vw 1.5vw;
   box-shadow: none;
 }
 

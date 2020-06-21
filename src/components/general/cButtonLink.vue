@@ -39,7 +39,6 @@ export default {
   background-color: #fc7979;
   border-radius: 4px;
   transition: 300ms ease-in-out;
-  box-shadow: 0 0 20px 0px #d4d4d4;
 }
 
 .button:hover {

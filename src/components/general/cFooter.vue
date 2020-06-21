@@ -202,4 +202,10 @@ export default {
   color: #c9c9c9;
   font-weight: 500;
 }
+
+@media (max-width: 1024px) {
+  .logo {
+    font-size: 1.5vw;
+  }
+}
 </style>

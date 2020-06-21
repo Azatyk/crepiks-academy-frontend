@@ -82,4 +82,14 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
+
+@media (max-width: 1024px) {
+  .advantages__container {
+    width: 80vw;
+  }
+
+  .advantages__heading {
+    font-size: 3vw;
+  }
+}
 </style>

@@ -17,13 +17,20 @@
           <div class="profile__avatar-container">
             <div class="profile__avatar-square">
               <img
-                :src="userData.image"
-                :alt="userData.firstName"
+                :src="user.image"
+                :alt="user.firstName"
                 class="profile__avatar"
               />
+              <div class="black-background"></div>
+              <input
+                type="file"
+                ref="file"
+                @change="changeImage"
+                id="file"
+                class="input-file"
+              />
+              <label for="file" class="input-label">Загрузить файл</label>
             </div>
-            <input type="file" ref="file" @change="changeImage" id="file" />
-            <cButton text="Изменить" @action="submitImage" />
           </div>
           <div class="profile__main-inputs">
             <div class="input__write">
@@ -198,10 +205,15 @@ export default {
   },
   methods: {
     changeData() {
+      if (this.file) {
+        this.submitImage();
+      }
       if (this.user.firstName.trim() != "" && this.user.lastName.trim() != "") {
         this.$store
           .dispatch("changeUserData", this.user)
           .then(() => {
+            // this.$router.push('/profile');
+            // window.location.reload();
             this.messageIcon = "fas fa-check-circle";
             this.messageText = "Профиль изменен";
             this.messageBackColor = "#2ecc71";
@@ -304,14 +316,54 @@ export default {
 }
 
 .profile__avatar-square {
+  position: relative;
   height: 17vw;
   width: 17vw;
   overflow: hidden;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__avatar-square:hover .black-background {
+  opacity: 1;
+  transition: 300ms ease-in-out;
+}
+
+.profile__avatar-square:hover .input-label {
+  opacity: 1;
+  transition: 300ms ease-in-out;
 }
 
 .profile__avatar {
   width: 100%;
+}
+
+.input-label {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  z-index: 3;
+  transition: 300ms ease-in-out;
+  opacity: 0;
+}
+
+.black-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background-color: #00000080;
+  transition: 300ms ease-in-out;
+  opacity: 0;
 }
 
 .profile__main-inputs {
@@ -326,6 +378,15 @@ export default {
 .input__write {
   margin-bottom: 5%;
   width: 100%;
+}
+
+.input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .input__label {

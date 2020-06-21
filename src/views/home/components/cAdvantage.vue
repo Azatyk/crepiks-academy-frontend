@@ -51,4 +51,15 @@ export default {
   color: #34495e;
   font-weight: 700;
 }
+
+@media (max-width: 1024px) {
+  .image-container {
+    height: 13vw;
+    width: 13vw;
+  }
+
+  .advantage__title {
+    font-size: 2.1vw;
+  }
+}
 </style>
