@@ -103,7 +103,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
-  box-shadow: 0 0 15px 0px #9c9c9c;
+  box-shadow: 0 0 10px 0px #00000080;
   border-radius: 5px;
 }
 
@@ -148,6 +148,10 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .mailing {
+    background-image: none;
+  }
+
   .mailing__form {
     height: 17vw;
     width: 45%;

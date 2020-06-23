@@ -1,17 +1,11 @@
 <template>
   <header class="header">
     <div class="content">
-      <cLogo class="header__logo" :fontSize="1.3" :colorType="colorType" />
+      <cLogo class="header__logo" :fontSize="adaptiveSize" />
       <nav class="header__nav">
-        <router-link to="/courses" class="header__link" :class="colorType"
-          >Курсы</router-link
-        >
-        <router-link to="/empty" class="header__link" :class="colorType"
-          >Подписка</router-link
-        >
-        <router-link to="/empty" class="header__link" :class="colorType"
-          >Блог</router-link
-        >
+        <router-link to="/courses" class="header__link">Курсы</router-link>
+        <router-link to="/empty" class="header__link">Подписка</router-link>
+        <router-link to="/empty" class="header__link">Блог</router-link>
       </nav>
       <div
         class="header__auth-links"
@@ -64,11 +58,6 @@ export default {
       type: String,
       required: false,
       default: "common"
-    },
-    colorType: {
-      type: String,
-      required: false,
-      default: "dark"
     }
   },
 
@@ -77,14 +66,16 @@ export default {
     cButtonLink
   },
   methods: mapMutations(["logout"]),
-  computed: mapGetters(["isLoggedIn", "userData"])
-  // watch: {
-  //   isLoggedIn(val) {
-  //     if (val) {
-  //       this.$store.dispatch("getUserData");
-  //     }
-  //   }
-  // },
+  computed: {
+    ...mapGetters(["isLoggedIn", "userData"]),
+    adaptiveSize() {
+      if (document.body.clientWidth > 1024) {
+        return 1.3;
+      } else if (document.body.clientWidth <= 1024) {
+        return 2;
+      } else return 0;
+    }
+  }
 };
 </script>
 
@@ -120,16 +111,9 @@ export default {
 .header__link {
   margin-right: 12%;
   font-size: 1vw;
+  color: #516f8c;
   text-decoration: none;
   transition: 300ms ease-in-out;
-}
-
-.dark {
-  color: #516f8c;
-}
-
-.light {
-  color: #dbdbdb;
 }
 
 .header__link:hover {
@@ -204,5 +188,16 @@ export default {
 
 .profile__image {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .profile__first-name {
+    font-size: 2.3vw;
+  }
+
+  .profile__image-container {
+    width: 4vw;
+    height: 4vw;
+  }
 }
 </style>

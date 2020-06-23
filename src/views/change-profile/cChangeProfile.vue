@@ -10,7 +10,6 @@
       :isActive="isMessageActive"
       @change="messageVisibleChange"
     />
-    <div class="page__back-color"></div>
     <div class="content">
       <div class="profile">
         <div class="profile__main">
@@ -295,7 +294,7 @@ export default {
   align-items: center;
   background-color: #f8f7fc;
   border-radius: 20px;
-  box-shadow: 0 0 10px #757575;
+  box-shadow: 0 0 10px #0000004d;
   z-index: 2;
 }
 

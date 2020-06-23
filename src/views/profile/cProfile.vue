@@ -1,7 +1,6 @@
 <template>
   <div class="page">
     <cHeader type="common" class="header" />
-    <div class="page__back-color"></div>
     <div class="content">
       <div class="profile">
         <div class="profile__main">
@@ -24,38 +23,46 @@
                   {{ user.description || "Не указано" }}
                 </div>
               </div>
-              <router-link to="/profile/change" class="profile__change-link">
-                <div class="profile__change-button">
-                  Редактировать профиль
-                </div></router-link
-              >
+              <div class="profile__links">
+                <router-link to="/profile/change" class="profile__change-link">
+                  <div class="profile__change-button">
+                    Редактировать профиль
+                  </div>
+                </router-link>
+                <router-link
+                  to="/profile/change-password"
+                  class="profile__change-link"
+                >
+                  <div class="profile__change-button">Изменить пароль</div>
+                </router-link>
+              </div>
             </div>
           </div>
           <div class="profile__social-networks">
-            <a :href="user.links.github"
-              ><i
+            <a :href="user.links.github">
+              <i
                 class="fab fa-github-square profile__social-network"
                 :class="{ active: user.links.github }"
-              ></i
-            ></a>
-            <a :href="user.links.linkedIn"
-              ><i
+              ></i>
+            </a>
+            <a :href="user.links.linkedIn">
+              <i
                 class="fab fa-linkedin profile__social-network"
                 :class="{ active: user.links.linkedIn }"
-              ></i
-            ></a>
-            <a :href="user.links.instagram"
-              ><i
+              ></i>
+            </a>
+            <a :href="user.links.instagram">
+              <i
                 class="fab fa-instagram-square profile__social-network"
                 :class="{ active: user.links.instagram }"
-              ></i
-            ></a>
-            <a :href="user.links.vk"
-              ><i
+              ></i>
+            </a>
+            <a :href="user.links.vk">
+              <i
                 class="fab fa-vk profile__social-network"
                 :class="{ active: user.links.vk }"
-              ></i
-            ></a>
+              ></i>
+            </a>
           </div>
         </div>
         <div class="profile__extra">
@@ -176,7 +183,6 @@ export default {
 }
 
 .profile {
-  margin-top: 3%;
   padding: 3vh 4vh;
   width: 50%;
   height: 35vw;
@@ -187,7 +193,7 @@ export default {
   align-items: center;
   background-color: #f8f7fc;
   border-radius: 20px;
-  box-shadow: 0 0 10px #757575;
+  box-shadow: 0 0 10px #0000004d;
   z-index: 2;
 }
 
@@ -264,7 +270,14 @@ export default {
   transition: 300ms ease-in-out;
 }
 
+.profile__links {
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+}
+
 .profile__change-link {
+  margin-right: 5%;
   text-decoration: none;
 }
 

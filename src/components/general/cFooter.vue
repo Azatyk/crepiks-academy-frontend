@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__main-content">
       <div class="main-content__intro">
-        <cLogo class="intro__logo" :fontSize="1.2" type="light" />
+        <cLogo class="intro__logo" :fontSize="adaptiveSize" colorType="light" />
         <div class="intro__social-networks">
           <a href="https://www.linkedin.com/groups/8942269"
             ><i class="fab fa-linkedin social-networks__link"></i
@@ -35,7 +35,7 @@
           <i class="fas fa-envelope email__icon"></i>
           <div class="email__text">
             <div class="email__heading">Почта</div>
-            <div class="email__adress">crepiks.academy@mail.ru</div>
+            <div class="email__address">crepiks.academy@mail.ru</div>
           </div>
         </div>
       </div>
@@ -56,6 +56,18 @@ export default {
   components: {
     cLogo,
     cButtonLink
+  },
+  mounted() {
+    console.log(document.body.clientWidth);
+  },
+  computed: {
+    adaptiveSize() {
+      if (document.body.clientWidth > 1024) {
+        return 1.2;
+      } else if (document.body.clientWidth <= 1024) {
+        return 2;
+      } else return 0;
+    }
   }
 };
 </script>
@@ -68,7 +80,7 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .footer__main-content {
@@ -121,13 +133,13 @@ export default {
 
 .nav-bar__link {
   font-size: 1vw;
-  color: #dbdbdb;
+  color: #516f8c;
   text-decoration: none;
   transition: 100ms ease-in-out;
 }
 
 .nav-bar__link:hover {
-  color: white;
+  color: #34495e;
   transition: 100ms ease-in-out;
 }
 
@@ -157,7 +169,7 @@ export default {
 }
 
 .email__icon {
-  color: #c9c9c9;
+  color: #516f8c;
   /* margin-right: 1vw; */
   font-size: 2vw;
 }
@@ -172,14 +184,14 @@ export default {
 .email__heading {
   margin-bottom: 0.5vh;
   font-size: 1vw;
-  color: #c9c9c9;
+  color: #516f8c;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.email__adress {
+.email__address {
   font-size: 0.85vw;
-  color: #c9c9c9;
+  color: #516f8c;
   font-weight: 300;
 }
 
@@ -187,7 +199,7 @@ export default {
   height: 1px;
   width: 85%;
   max-width: 1440px;
-  background-color: #c4c4c4;
+  background-color: #516f8c;
 }
 
 .footer__company-content {
@@ -202,13 +214,73 @@ export default {
 
 .company-content__text {
   font-size: 0.9vw;
-  color: #c9c9c9;
+  color: #516f8c;
   font-weight: 500;
 }
 
 @media (max-width: 1024px) {
-  .logo {
+  .footer__main-content {
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .main-content__intro {
+    margin: auto;
+    margin-bottom: 3%;
+    height: auto;
+    width: 90%;
+    flex-direction: row;
+  }
+
+  .main-content__nav-bar {
+    width: 45%;
+  }
+
+  .main-content__extra-info {
+    width: 45%;
+    align-items: center;
+    align-items: flex-end;
+  }
+
+  .extra-info__button {
+    width: 40%;
+    height: 4vw;
     font-size: 1.5vw;
+  }
+
+  .extra-info__email {
+    width: 53%;
+  }
+
+  .email__icon {
+    font-size: 2.5vw;
+  }
+
+  .email__heading {
+    font-size: 1.5vw;
+  }
+
+  .email__address {
+    font-size: 1.3vw;
+  }
+
+  .intro__social-networks {
+    width: 15vw;
+  }
+
+  .social-networks__link {
+    font-size: 2.8vw;
+  }
+
+  .nav-bar__link {
+    margin-bottom: 3%;
+    font-size: 1.7vw;
+  }
+
+  .footer__company-content {
+    height: 20%;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <router-link to="/" class="link">
-    <h3 class="logo" :style="{ fontSize: fontSize + 'vw' }" :class="colorType">
+    <h3 class="logo" :style="{ fontSize: fontSize + 'vw' }">
       Crepiks <span class="logo__bold">Academy</span>
     </h3>
   </router-link>
@@ -13,11 +13,6 @@ export default {
       type: Number,
       required: false,
       default: 2
-    },
-    colorType: {
-      type: String,
-      required: false,
-      default: "dark"
     }
   }
 };
@@ -29,16 +24,9 @@ export default {
 }
 
 .logo {
+  color: #34495e;
   font-weight: normal;
   text-transform: uppercase;
-}
-
-.dark {
-  color: #34495e;
-}
-
-.light {
-  color: #f8f7fc;
 }
 
 .logo__bold {

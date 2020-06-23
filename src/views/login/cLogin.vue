@@ -85,7 +85,7 @@ export default {
 .page {
   height: 100vh;
   width: 100%;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .content {

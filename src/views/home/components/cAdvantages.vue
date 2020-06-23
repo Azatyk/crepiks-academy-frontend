@@ -84,6 +84,10 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .advantages {
+    padding-bottom: 15%;
+  }
+
   .advantages__container {
     width: 80vw;
   }

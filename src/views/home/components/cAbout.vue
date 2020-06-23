@@ -111,7 +111,7 @@ export default {
 }
 
 .text-block__button {
-  padding: 13px 37px;
+  padding: 2.3% 5%;
   font-size: 1.1vw;
 }
 
@@ -130,13 +130,40 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .about {
+    height: 100%;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .text-block {
+    margin: 0;
+    margin-bottom: 10%;
+    width: 60%;
+    align-items: center;
+  }
+
   .text-block__heading {
-    font-size: 3vw;
+    font-size: 4vw;
+    text-align: center;
   }
 
   .text-block__description {
-    width: 90%;
+    width: 80%;
     font-size: 1.7vw;
+    text-align: center;
+  }
+
+  .text-block__button {
+    text-align: center;
+    font-size: 1.5vw;
+  }
+
+  .image {
+    margin: 0;
+    width: 45%;
   }
 }
 </style>

@@ -53,7 +53,7 @@ export default {
   padding: 42px 50px;
   background-color: #f8f7fc;
   border-radius: 5px;
-  box-shadow: 0 0 15px #435059;
+  box-shadow: 0 0 10px #0000004d;
 }
 
 /* .register-form__heading {

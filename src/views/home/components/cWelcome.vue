@@ -1,6 +1,6 @@
 <template>
-  <section class="welcome">
-    <div class="content">
+  <section class="page">
+    <div class="welcome">
       <div class="welcome__text-block">
         <h1 class="text-block__heading">Учись программировать вместе с нами</h1>
         <div class="text-block__description">
@@ -34,26 +34,29 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f7fc;
+}
+
 .welcome {
   padding-bottom: 5vw;
   padding: 0.1px;
+  margin: auto;
   height: 100vh;
-  width: 100%;
-  background-color: #f8f7fc;
-  background-image: url("../../../assets/images/welcomeSpot.svg");
-  background-size: 60%;
-  background-repeat: no-repeat;
-}
-
-.content {
-  width: 100%;
+  width: 80%;
   max-width: 1440px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flexstart;
 }
 
 .welcome__text-block {
+  margin-top: 18%;
   margin-left: 7%;
-  margin-top: 13%;
-  width: 45%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -63,52 +66,59 @@ export default {
 .text-block__heading {
   margin-bottom: 2%;
   font-size: 3vw;
-  color: #f8f7fc;
+  color: #34495e;
 }
 
 .text-block__description {
   margin-bottom: 7%;
   width: 60%;
   font-size: 1.1vw;
-  color: #e8e8e8;
+  color: #516f8c;
 }
 
 .welcome__siting-man {
-  position: absolute;
-  bottom: 2%;
-  right: 2%;
-  width: 45%;
+  margin-top: 20%;
+  width: 50%;
 }
 
 .text-block__button {
-  padding: 15px 38px;
   font-size: 1.2vw;
   box-shadow: none;
 }
 
 @media (max-width: 1024px) {
   .welcome {
-    background-size: 90%;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
   }
 
   .welcome__text-block {
-    margin-top: 18%;
-    margin-left: 12%;
-    width: 50%;
+    margin: 0;
+    width: 70%;
+    align-items: center;
   }
 
   .text-block__heading {
     margin-bottom: 3%;
-    font-size: 4vw;
+    font-size: 4.5vw;
+    text-align: center;
   }
 
   .text-block__description {
-    width: 80%;
+    width: 100%;
     font-size: 2vw;
+    text-align: center;
   }
 
   .text-block__button {
+    font-size: 1.5vw;
     padding: 1.2vw 2.3vw;
+  }
+
+  .welcome__siting-man {
+    margin: 0;
+    width: 60%;
   }
 }
 </style>

@@ -81,7 +81,7 @@ export default {
 .page {
   height: 100vh;
   width: 100%;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .content {
@@ -99,13 +99,13 @@ export default {
 .soon__heading {
   margin-bottom: 0.5%;
   font-size: 3.5vw;
-  color: #f8f7fc;
+  color: #34495e;
   text-align: center;
 }
 
 .soon__description {
   font-size: 1.7vw;
-  color: #dbdbdb;
+  color: #516f8c;
   text-align: center;
 }
 
@@ -118,6 +118,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
+  box-shadow: 0 0 10px #0000004d;
   border-radius: 5px;
 }
 

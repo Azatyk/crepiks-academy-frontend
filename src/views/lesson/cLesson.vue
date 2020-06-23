@@ -21,12 +21,7 @@
           class="navigation-lesson__link"
         >
           <div class="navigation-lesson">
-            <div
-              class="navigation-lesson__point"
-              :class="{
-                'navigation-lesson__active-point': id.lessonId == lesson._id
-              }"
-            ></div>
+            <div class="navigation-lesson__point"></div>
             <h2 class="navigation-lesson__title">{{ lesson.title }}</h2>
           </div>
         </router-link>
@@ -45,6 +40,12 @@ export default {
     cHeader,
     cButton
   },
+  // route: {
+  //   canReuse: false, // force to reload data
+  //   activate(transition) {
+  //     console.log("Reload", transition);
+  //   },
+  // },
   data() {
     return {
       lessons: [],
@@ -56,16 +57,24 @@ export default {
   },
   computed: mapGetters(["isLoggedIn", "lesson", "course"]),
   mounted() {
+    console.log("mounted");
     this.$store.dispatch("getLesson", this.id);
     this.$store.dispatch("getLessons", this.id.courseId).then(res => {
       this.lessons = res.data;
     });
   },
-  beforeRouteUpdate() {
-    // this.id.courseId = this.$route.params.courseId;
-    // this.id.lessonId = this.$route.params.lessonId;
-    // this.$store.dispatch("getLesson", this.id);
-    // console.log(this.id);
+  // beforeRouteUpdate() {
+  //   this.$store.dispatch("getLesson", this.id);
+  //   this.$store.dispatch("getLessons", this.id.courseId).then((res) => {
+  //     this.lessons = res.data;
+  //   });
+  // },
+  watch: {
+    $route() {
+      (this.id.courseId = this.$route.params.courseId),
+        (this.id.lessonId = this.$route.params.lessonId);
+      this.$store.dispatch("getLesson", this.id);
+    }
   },
   methods: {
     getLessonNumber(index) {
@@ -178,7 +187,7 @@ export default {
   border-radius: 50%;
 }
 
-.navigation-lesson__active-point {
+.router-link-active .navigation-lesson__point {
   background-color: #fc7979;
   border: 1px solid #fc7979;
 }
