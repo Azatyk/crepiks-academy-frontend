@@ -2,28 +2,29 @@ import axios from "axios";
 import config from "@/config/config";
 import store from "@/store";
 import router from "@/router";
+import { message } from "ant-design-vue";
 
 const request = axios.create({
   baseURL: config.apiBaseUrl,
   headers: { "Content-Type": "application/json" }
 });
 
-// const key = "request";
+const key = "request";
 request.interceptors.request.use(
   config => {
     config.headers["Authorization"] = store.getters.accessToken;
-    // message.loading({ content: "Please wait", key });
+    message.loading({ content: "Please wait", key });
     return config;
   },
   err => {
-    // message.error({ content: "Error", key });
+    message.error({ content: "Error", key });
     return Promise.reject(err);
   }
 );
 
 request.interceptors.response.use(
   res => {
-    // message.success({ content: "Success", key });
+    message.success({ content: "Success", key });
     return res;
   },
   err => {
@@ -31,7 +32,7 @@ request.interceptors.response.use(
       store.commit("logout");
       router.push("/");
     }
-    // message.error({ content: "Error", key });
+    message.error({ content: "Error", key });
     return Promise.reject(err);
   }
 );
