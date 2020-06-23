@@ -1,11 +1,17 @@
 <template>
   <header class="header">
     <div class="content">
-      <cLogo class="header__logo" :fontSize="1.3" />
+      <cLogo class="header__logo" :fontSize="1.3" :colorType="colorType" />
       <nav class="header__nav">
-        <router-link to="/courses" class="header__link">Курсы</router-link>
-        <router-link to="/empty" class="header__link">Подписка</router-link>
-        <router-link to="/empty" class="header__link">Блог</router-link>
+        <router-link to="/courses" class="header__link" :class="colorType"
+          >Курсы</router-link
+        >
+        <router-link to="/empty" class="header__link" :class="colorType"
+          >Подписка</router-link
+        >
+        <router-link to="/empty" class="header__link" :class="colorType"
+          >Блог</router-link
+        >
       </nav>
       <div
         class="header__auth-links"
@@ -58,6 +64,11 @@ export default {
       type: String,
       required: false,
       default: "common"
+    },
+    colorType: {
+      type: String,
+      required: false,
+      default: "dark"
     }
   },
 
@@ -83,7 +94,7 @@ export default {
   height: 10vh;
   width: 100%;
   box-sizing: border-box;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .content {
@@ -109,13 +120,20 @@ export default {
 .header__link {
   margin-right: 12%;
   font-size: 1vw;
-  color: #dbdbdb;
   text-decoration: none;
   transition: 300ms ease-in-out;
 }
 
+.dark {
+  color: #516f8c;
+}
+
+.light {
+  color: #dbdbdb;
+}
+
 .header__link:hover {
-  color: white;
+  color: #34495e;
   transition: 300ms ease-in-out;
 }
 

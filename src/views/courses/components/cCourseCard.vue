@@ -52,6 +52,7 @@ export default {
   align-items: center;
   border-radius: 10px;
   background-color: #f8f7fc;
+  box-shadow: 0 0 20px #00000026;
 }
 
 .course:hover .main-content {
@@ -68,7 +69,7 @@ export default {
   padding: 0.1px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   transform: translateY(1.2vw);
   transition: 300ms ease-in-out;
@@ -76,7 +77,7 @@ export default {
 
 .course__image {
   margin: auto;
-  margin-bottom: 10%;
+  margin-bottom: 1vw;
   width: 5vw;
   height: 5vw;
   border-radius: 50%;
@@ -91,7 +92,7 @@ export default {
 }
 
 .course__lessons-amount {
-  margin-bottom: 10%;
+  margin-bottom: 1vw;
   font-size: 1vw;
   color: #516f8c;
   font-weight: 400;

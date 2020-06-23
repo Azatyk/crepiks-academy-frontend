@@ -1,23 +1,25 @@
 <template>
   <section class="welcome">
-    <div class="welcome__text-block">
-      <h1 class="text-block__heading">Учись программировать вместе с нами</h1>
-      <div class="text-block__description">
-        Приобрети навыки 21 века с помощью веселых и увлекательных итерактивных
-        курсов
+    <div class="content">
+      <div class="welcome__text-block">
+        <h1 class="text-block__heading">Учись программировать вместе с нами</h1>
+        <div class="text-block__description">
+          Приобрети навыки 21 века с помощью веселых и увлекательных
+          итерактивных курсов
+        </div>
+        <cButtonLink
+          route="/courses"
+          text="Начать обучение"
+          :isBold="false"
+          class="text-block__button"
+        />
       </div>
-      <cButtonLink
-        route="/courses"
-        text="Начать обучение"
-        :isBold="false"
-        class="text-block__button"
+      <img
+        src="@/assets/images/welcomeSitingMan.svg"
+        alt="Siting Man"
+        class="welcome__siting-man"
       />
     </div>
-    <img
-      src="@/assets/images/welcomeSitingMan.svg"
-      alt="Siting Man"
-      class="welcome__siting-man"
-    />
   </section>
 </template>
 
@@ -41,6 +43,11 @@ export default {
   background-image: url("../../../assets/images/welcomeSpot.svg");
   background-size: 60%;
   background-repeat: no-repeat;
+}
+
+.content {
+  width: 100%;
+  max-width: 1440px;
 }
 
 .welcome__text-block {

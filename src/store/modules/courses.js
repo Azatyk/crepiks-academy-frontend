@@ -31,6 +31,7 @@ export default {
           method: "GET"
         })
           .then(res => {
+            console.log("Course", res.data);
             commit("successGetCourse", res.data);
             resolve(res);
           })
@@ -78,7 +79,7 @@ export default {
       state.currentCourse = course;
     },
     successGetLessons(state, lessons) {
-      state.currentCourse.lessons = lessons;
+      state.currentLessons = lessons;
     },
     successGetLesson(state, lesson) {
       state.currentLesson = lesson;
@@ -87,6 +88,7 @@ export default {
   getters: {
     courses: state => state.courses,
     course: state => state.currentCourse,
+    lessons: state => state.currentLessons,
     lesson: state => state.currentLesson
   }
 };

@@ -4,19 +4,15 @@
     <div class="content">
       <div class="course__intro">
         <div class="course__text">
-          <h1 class="intro__heading">{{ personalCourse.title }}</h1>
-          <div class="intro__description">{{ personalCourse.description }}</div>
+          <h1 class="intro__heading">{{ course.title }}</h1>
+          <div class="intro__description">{{ course.description }}</div>
         </div>
-        <img
-          :src="personalCourse.image"
-          :alt="personalCourse.title"
-          class="intro__image"
-        />
+        <img :src="course.image" :alt="course.title" class="intro__image" />
       </div>
       <div class="course__lessons">
         <div
           class="course__lesson"
-          v-for="(lesson, index) in personalCourse.lessons"
+          v-for="(lesson, index) in lessons"
           :key="index"
         >
           <div class="course__lesson-content">
@@ -26,6 +22,7 @@
           <cButtonLink
             :route="'/courses/' + id + '/lessons/' + lesson._id"
             text="Перейти"
+            class="lesson__button"
           />
         </div>
       </div>
@@ -46,27 +43,15 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
-      personalCourse: {
-        title: "",
-        description: "",
-        image: "",
-        lessons: []
-      }
+      lessons: []
     };
   },
   computed: mapGetters(["isLoggedIn", "course"]),
   mounted() {
-    if (this.isLoggedIn) {
-      this.$store.dispatch("getCourse", this.id);
-      this.$store
-        .dispatch("getLessons", this.id)
-        .then(() => {
-          this.personalCourse = this.course;
-        })
-        .catch(err => console.log(err.response));
-    } else {
-      this.$router.push("/login");
-    }
+    this.$store.dispatch("getCourse", this.id);
+    this.$store.dispatch("getLessons", this.id).then(res => {
+      this.lessons = res.data;
+    });
   },
   methods: {
     getLessonNumber(index) {
@@ -86,7 +71,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   height: auto;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .content {
@@ -116,14 +101,14 @@ export default {
   margin-bottom: 3%;
   width: 90%;
   font-size: 3.5vw;
-  color: #f8f7fc;
+  color: #34495e;
   font-weight: 800;
 }
 
 .intro__description {
   width: 100%;
   font-size: 1.5vw;
-  color: #e8e8e8;
+  color: #516f8c;
   font-weight: 400;
 }
 
@@ -153,7 +138,14 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: #f8f7fc;
-  border-radius: 5px;
+  border-radius: 10px;
+  transition: 300ms ease-in-out;
+  cursor: pointer;
+}
+
+.course__lesson:hover {
+  box-shadow: 0 0 30px #00000040;
+  transition: 300ms ease-in-out;
 }
 
 .course__lesson-content {
@@ -167,13 +159,17 @@ export default {
 .lesson__number {
   margin-right: 2vw;
   font-size: 4vw;
-  color: #516f8c;
+  color: #34495e;
   font-weight: 700;
 }
 
 .lesson__heading {
   font-size: 2.3vw;
-  color: #516f8c;
+  color: #34495e;
   font-weight: 300;
+}
+
+.lesson__button {
+  font-size: 1vw;
 }
 </style>

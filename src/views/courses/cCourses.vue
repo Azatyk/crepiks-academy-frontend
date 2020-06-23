@@ -58,7 +58,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   height: auto;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .content {
@@ -87,14 +87,14 @@ export default {
   margin-bottom: 3%;
   width: 90%;
   font-size: 2.8vw;
-  color: #f8f7fc;
+  color: #34495e;
   font-weight: 800;
 }
 
 .intro__description {
   width: 80%;
   font-size: 1.2vw;
-  color: #e8e8e8;
+  color: #516f8c;
   font-weight: 400;
 }
 

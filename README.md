@@ -1,4 +1,4 @@
-# frontend
+# Crepiks Academy
 
 ## Project setup
 ```

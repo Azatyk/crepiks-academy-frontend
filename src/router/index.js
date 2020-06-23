@@ -82,8 +82,6 @@ const routes = [
     meta: {
       title: "Ваш профиль",
       needAuth: true
-      // title: mapGetters(['userData']).lastName + " " + mapGetters(['userData']).firstName + " - личный кабинет"
-      // title: store.getters.userData.firstName
     }
   },
   {

@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <cHeader class="header" pageType="common" />
+    <cHeader class="header" pageType="common" colorType="light" />
     <cWelcome />
     <cAbout
       :image="loveDouble"

@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__main-content">
       <div class="main-content__intro">
-        <cLogo class="intro__logo" :fontSize="1.2" />
+        <cLogo class="intro__logo" :fontSize="1.2" type="light" />
         <div class="intro__social-networks">
           <a href="https://www.linkedin.com/groups/8942269"
             ><i class="fab fa-linkedin social-networks__link"></i
@@ -74,6 +74,7 @@ export default {
 .footer__main-content {
   height: 70%;
   width: 80%;
+  max-width: 1440px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -185,12 +186,14 @@ export default {
 .line {
   height: 1px;
   width: 85%;
+  max-width: 1440px;
   background-color: #c4c4c4;
 }
 
 .footer__company-content {
   height: 29%;
   width: 80%;
+  max-width: 1440px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
