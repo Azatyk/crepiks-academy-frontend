@@ -31,7 +31,6 @@ export default {
           method: "GET"
         })
           .then(res => {
-            console.log("Course", res.data);
             commit("successGetCourse", res.data);
             resolve(res);
           })

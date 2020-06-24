@@ -7,12 +7,12 @@
           Приобрети навыки 21 века с помощью веселых и увлекательных
           итерактивных курсов
         </div>
-        <cButtonLink
-          route="/courses"
-          text="Начать обучение"
-          :isBold="false"
-          class="text-block__button"
-        />
+        <a-button
+          type="primary"
+          class="welcome__button"
+          @click="$router.push('/courses')"
+          >Начать обучение</a-button
+        >
       </div>
       <img
         src="@/assets/images/welcomeSitingMan.svg"
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import cButtonLink from "@/components/common/cButtonLink";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
-    cButtonLink
+    "a-button": Button
   }
 };
 </script>
@@ -82,9 +82,10 @@ export default {
   width: 50%;
 }
 
-.text-block__button {
-  font-size: 1.2vw;
-  box-shadow: none;
+.welcome__button {
+  padding: 0 5%;
+  height: 3vw;
+  font-size: 1.3vw;
 }
 
 @media (max-width: 1024px) {
@@ -110,11 +111,6 @@ export default {
     width: 100%;
     font-size: 2.5vw;
     text-align: center;
-  }
-
-  .text-block__button {
-    font-size: 2.5vw;
-    padding: 1.2vw 2.3vw;
   }
 
   .welcome__siting-man {

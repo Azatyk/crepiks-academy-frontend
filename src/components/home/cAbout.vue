@@ -10,19 +10,19 @@
       <div class="text-block" :class="{ changeMargin: reversed }">
         <h2 class="text-block__heading">{{ textHeading }}</h2>
         <div class="text-block__description">{{ textDescription }}</div>
-        <cButtonLink
-          :route="route"
-          :text="buttonText"
-          :isBold="true"
-          class="text-block__button"
-        />
+        <a-button
+          type="primary"
+          class="about__button"
+          @click="$router.push(route)"
+          >{{ buttonText }}</a-button
+        >
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import cButtonLink from "@/components/common/cButtonLink";
+import { Button } from "ant-design-vue";
 
 export default {
   props: {
@@ -56,7 +56,7 @@ export default {
     }
   },
   components: {
-    cButtonLink
+    "a-button": Button
   }
 };
 </script>
@@ -112,8 +112,9 @@ export default {
   color: #516f8c;
 }
 
-.text-block__button {
-  padding: 2.3% 5%;
+.about__button {
+  padding: 0 5%;
+  height: 2.7vw;
   font-size: 1.1vw;
 }
 

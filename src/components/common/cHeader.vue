@@ -1,8 +1,7 @@
 <template>
   <header class="header">
     <div class="content">
-      <a-button type="primary">Hello fucking shit</a-button>
-      <cLogo class="header__logo" :fontSize="adaptiveSize" />
+      <cLogo class="header__logo" />
       <nav class="header__nav">
         <router-link to="/courses" class="header__link">Курсы</router-link>
         <router-link to="/empty" class="header__link">Подписка</router-link>
@@ -67,16 +66,7 @@ export default {
     cButtonLink
   },
   methods: mapMutations(["logout"]),
-  computed: {
-    ...mapGetters(["isLoggedIn", "userData"]),
-    adaptiveSize() {
-      if (document.body.clientWidth > 1024) {
-        return 1.3;
-      } else if (document.body.clientWidth <= 1024) {
-        return 2.5;
-      } else return 0;
-    }
-  }
+  computed: mapGetters(["isLoggedIn", "userData"])
 };
 </script>
 
@@ -98,6 +88,10 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.header__logo {
+  font-size: 1.2vw;
 }
 
 .header__nav {
@@ -192,6 +186,10 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .header__logo {
+    font-size: 1vw;
+  }
+
   .profile__first-name {
     font-size: 2.5vw;
   }

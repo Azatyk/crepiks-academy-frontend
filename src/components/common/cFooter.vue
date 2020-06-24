@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__main-content">
       <div class="main-content__intro">
-        <cLogo class="intro__logo" :fontSize="adaptiveSize" colorType="light" />
+        <cLogo class="footer__logo" />
         <div class="intro__social-networks">
           <a href="https://www.linkedin.com/groups/8942269"
             ><i class="fab fa-linkedin social-networks__link"></i
@@ -25,12 +25,12 @@
         <router-link to="/empty" class="nav-bar__link">О платформе</router-link>
       </div>
       <div class="main-content__extra-info">
-        <cButtonLink
-          route="/courses"
-          text="Подобрать курс"
-          :isBold="true"
+        <a-button
+          type="primary"
+          @click="$router.push('/courses')"
           class="extra-info__button"
-        />
+          >Подобрать курс</a-button
+        >
         <div class="extra-info__email">
           <i class="fas fa-envelope email__icon"></i>
           <div class="email__text">
@@ -50,24 +50,12 @@
 
 <script>
 import cLogo from "@/components/common/cLogo";
-import cButtonLink from "@/components/common/cButtonLink";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
     cLogo,
-    cButtonLink
-  },
-  mounted() {
-    console.log(document.body.clientWidth);
-  },
-  computed: {
-    adaptiveSize() {
-      if (document.body.clientWidth > 1024) {
-        return 1.2;
-      } else if (document.body.clientWidth <= 1024) {
-        return 2.5;
-      } else return 0;
-    }
+    "a-button": Button
   }
 };
 </script>
@@ -100,6 +88,10 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.footer__logo {
+  font-size: 1vw;
 }
 
 .intro__social-networks {
@@ -153,11 +145,10 @@ export default {
 }
 
 .extra-info__button {
-  padding: 0;
-  height: 3.2vw;
+  padding: 0 5%;
+  height: 3vw;
   width: 55%;
-  font-size: 1vw;
-  box-shadow: none;
+  font-size: 1.1vw;
 }
 
 .extra-info__email {

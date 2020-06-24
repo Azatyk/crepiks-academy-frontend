@@ -2,16 +2,28 @@
   <div class="page">
     <cHeader type="common" />
     <div class="content">
+      <div class="lesson__title">
+        <span class="lesson__topic">Тема урока:</span> {{ lesson.title }}
+      </div>
       <div class="lesson">
         <video :src="lesson.video" controls class="lesson__player"></video>
-        <div class="lesson__buttons">
-          <cButton
-            text="Текстовый конспект"
-            class="lesson__button lesson__active-button"
-          />
-          <cButton text="Ссылки и файлы" class="lesson__button" />
+        <div class="lesson__tabs-container">
+          <a-tabs default-active-key="1">
+            <a-tab-pane key="1" tab="Описание" class="tab-text">
+              {{ lesson.description }}
+            </a-tab-pane>
+            <a-tab-pane key="2" tab="Ссылки и файлы" class="tab-text">
+              <a
+                :href="link"
+                class="lesson__link"
+                v-for="(link, index) in lesson.links"
+                :key="index"
+              >
+                {{ link }}
+              </a>
+            </a-tab-pane>
+          </a-tabs>
         </div>
-        <div class="lesson__text">{{ lesson.description }}</div>
       </div>
       <div class="navigation">
         <router-link
@@ -32,13 +44,15 @@
 
 <script>
 import cHeader from "@/components/common/cHeader";
-import cButton from "@/components/common/cButton";
 import { mapGetters } from "vuex";
+import { Tabs } from "ant-design-vue";
+import { TabPane } from "ant-design-vue/lib/tabs/index";
 
 export default {
   components: {
     cHeader,
-    cButton
+    "a-tabs": Tabs,
+    "a-tab-pane": TabPane
   },
   data() {
     return {
@@ -51,22 +65,15 @@ export default {
   },
   computed: mapGetters(["isLoggedIn", "lesson", "course"]),
   mounted() {
-    console.log("mounted");
-    this.$store.dispatch("getLesson", this.id);
+    this.$store.dispatch("getLesson", this.id).then(res => console.log(res));
     this.$store.dispatch("getLessons", this.id.courseId).then(res => {
       this.lessons = res.data;
     });
   },
-  // beforeRouteUpdate() {
-  //   this.$store.dispatch("getLesson", this.id);
-  //   this.$store.dispatch("getLessons", this.id.courseId).then((res) => {
-  //     this.lessons = res.data;
-  //   });
-  // },
   watch: {
     $route() {
-      (this.id.courseId = this.$route.params.courseId),
-        (this.id.lessonId = this.$route.params.lessonId);
+      this.id.courseId = this.$route.params.courseId;
+      this.id.lessonId = this.$route.params.lessonId;
       this.$store.dispatch("getLesson", this.id);
     }
   },
@@ -98,46 +105,42 @@ export default {
   max-width: 1440px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 .lesson {
-  margin-right: 5%;
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.lesson__buttons {
-  margin-bottom: 3%;
-  height: 5vh;
+.lesson__title {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  height: 3vw;
+  font-size: 1.2vw;
+  color: #516f8c;
+  text-align: left;
 }
 
-.lesson__button {
-  margin-right: 2%;
-  color: white;
-  background-color: #516f8c;
-  box-shadow: none;
+.lesson__topic {
+  color: #fc7979;
+}
+
+.lesson__link {
+  margin-bottom: 0.5vw;
+  width: 10%;
+  display: block;
+  color: #516f8c;
+  font-weight: 300;
 }
 
 .lesson__active-button {
   color: white;
   background-color: #fc7979;
-}
-
-.lesson__text {
-  width: 100%;
-  font-size: 1.3vw;
-  color: #516f8c;
-  font-weight: 300;
 }
 
 .lesson__player {
@@ -147,11 +150,20 @@ export default {
   border-radius: 10px;
 }
 
+.lesson__tabs-container {
+  margin-bottom: 5vw;
+}
+
+.tab-text {
+  font-size: 1.3vw;
+  color: #516f8c;
+  font-weight: 300;
+}
+
 .navigation {
   padding: 2.5% 1%;
   padding-bottom: 1%;
   padding-left: 2%;
-  /* min-height: 50vh; */
   width: 25%;
   box-sizing: border-box;
   display: flex;

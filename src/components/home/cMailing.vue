@@ -15,12 +15,9 @@
           placeholder="Email"
           id="email"
         />
-        <cButton
-          type="submit"
-          class="form__button"
-          text="Подписаться"
-          :isBold="true"
-        />
+        <a-button @click="save" type="primary" class="form__button"
+          >Подписаться</a-button
+        >
       </div>
     </form>
   </section>
@@ -28,12 +25,12 @@
 
 <script>
 import cInput from "@/components/common/cInput";
-import cButton from "@/components/common/cButton";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
     cInput,
-    cButton
+    "a-button": Button
   },
   data() {
     return {
@@ -115,7 +112,7 @@ export default {
 .form__button {
   height: 3vw;
   width: 30%;
-  font-size: 1vw;
+  font-size: 1.1vw;
 }
 
 @media (max-width: 1024px) {

@@ -19,11 +19,12 @@
             <div class="lesson__number">{{ getLessonNumber(index + 1) }}</div>
             <h2 class="lesson__heading">{{ lesson.title }}</h2>
           </div>
-          <cButtonLink
-            :route="'/courses/' + id + '/lessons/' + lesson._id"
-            text="Перейти"
+          <a-button
+            type="primary"
+            @click="$router.push('/courses/' + id + '/lessons/' + lesson._id)"
             class="lesson__button"
-          />
+            >Перейти</a-button
+          >
         </div>
       </div>
     </div>
@@ -31,14 +32,14 @@
 </template>
 
 <script>
-import cButtonLink from "@/components/common/cButtonLink";
 import cHeader from "@/components/common/cHeader";
+import { Button } from "ant-design-vue";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     cHeader,
-    cButtonLink
+    "a-button": Button
   },
   data() {
     return {
@@ -164,12 +165,15 @@ export default {
 }
 
 .lesson__heading {
+  margin: 0;
   font-size: 2.3vw;
   color: #34495e;
   font-weight: 300;
 }
 
 .lesson__button {
+  padding: 0 3%;
+  height: 2.7vw;
   font-size: 1vw;
 }
 </style>

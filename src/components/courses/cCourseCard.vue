@@ -5,16 +5,22 @@
       <h3 class="course__heading">{{ title }}</h3>
       <div class="course__lessons-amount">{{ lessonsAmount }} уроков</div>
     </div>
-    <cButtonLink
+    <!-- <cButtonLink
       :route="'/courses/' + id"
       text="Перейти к курсу"
       class="course__button"
-    />
+    /> -->
+    <a-button
+      type="primary"
+      @click="$router.push('/courses/' + id)"
+      class="course__button"
+      >Перейти к курсу</a-button
+    >
   </div>
 </template>
 
 <script>
-import cButtonLink from "@/components/common/cButtonLink";
+import { Button } from "ant-design-vue";
 
 export default {
   props: {
@@ -36,7 +42,7 @@ export default {
     }
   },
   components: {
-    cButtonLink
+    "a-button": Button
   }
 };
 </script>
@@ -100,7 +106,9 @@ export default {
 }
 
 .course__button {
-  padding: 4% 7%;
+  padding: 0 7%;
+  height: 2vw;
+  font-size: 0.8vw;
   opacity: 0;
   transition: 300ms ease-in-out;
 }
