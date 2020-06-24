@@ -101,6 +101,8 @@ export default {
   margin-bottom: 2%;
   font-size: 2.6vw;
   color: #34495e;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .text-block__description {

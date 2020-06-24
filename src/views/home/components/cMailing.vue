@@ -124,8 +124,10 @@ export default {
 }
 
 .form__heading {
+  margin-bottom: 0;
   font-size: 2.2vw;
   color: #34495e;
+  font-weight: 500;
 }
 
 .form__description {
@@ -149,6 +151,8 @@ export default {
 
 @media (max-width: 1024px) {
   .mailing {
+    padding-bottom: 15vh;
+    height: 40vh;
     background-image: none;
   }
 

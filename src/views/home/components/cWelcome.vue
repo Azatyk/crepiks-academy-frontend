@@ -45,18 +45,17 @@ export default {
   padding: 0.1px;
   margin: auto;
   height: 100vh;
-  width: 80%;
+  width: 85%;
   max-width: 1440px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: flexstart;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .welcome__text-block {
-  margin-top: 18%;
-  margin-left: 7%;
-  width: 100%;
+  margin-top: 15%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -66,6 +65,8 @@ export default {
 .text-block__heading {
   margin-bottom: 2%;
   font-size: 3vw;
+  font-weight: 700;
+  line-height: 1.2;
   color: #34495e;
 }
 

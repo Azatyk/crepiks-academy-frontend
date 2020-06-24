@@ -91,11 +91,11 @@ export default {
 .content {
   margin: auto;
   height: 100%;
-  width: 100%;
+  width: 85%;
   max-width: 1440px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
