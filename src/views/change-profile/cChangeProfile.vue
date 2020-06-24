@@ -1,15 +1,6 @@
 <template>
   <div class="page">
     <cHeader type="common" />
-    <cMessage
-      class="message"
-      :icon="messageIcon"
-      :text="messageText"
-      :backColor="messageBackColor"
-      :textColor="messageTextColor"
-      :isActive="isMessageActive"
-      @change="messageVisibleChange"
-    />
     <div class="content">
       <div class="profile">
         <div class="profile__main">
@@ -162,20 +153,19 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cButton from "@/components/general/cButton";
-import cButtonLink from "@/components/general/cButtonLink";
-import cMessage from "@/components/general/cMessage";
+import cHeader from "@/components/common/cHeader";
+import cButton from "@/components/common/cButton";
+import cButtonLink from "@/components/common/cButtonLink";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 import { mapGetters } from "vuex";
+import { message } from "ant-design-vue";
 
 export default {
   components: {
     cHeader,
     cButton,
     cButtonLink,
-    cMessage,
     DatePicker
   },
   data() {
@@ -183,12 +173,7 @@ export default {
       user: {
         links: {}
       },
-      file: "",
-      messageIcon: "",
-      messageText: "",
-      messageBackColor: "",
-      messageTextColor: "",
-      isMessageActive: false
+      file: ""
     };
   },
   computed: mapGetters(["userData"]),
@@ -210,28 +195,9 @@ export default {
       if (this.user.firstName.trim() != "" && this.user.lastName.trim() != "") {
         this.$store
           .dispatch("changeUserData", this.user)
-          .then(() => {
-            // this.$router.push('/profile');
-            // window.location.reload();
-            this.messageIcon = "fas fa-check-circle";
-            this.messageText = "Профиль изменен";
-            this.messageBackColor = "#2ecc71";
-            this.messageTextColor = "white";
-            this.isMessageActive = true;
-          })
-          .catch(err => {
-            this.messageIcon = "fas fa-times-circle";
-            this.messageText = err.response.message;
-            this.messageBackColor = "#FC7979";
-            this.messageTextColor = "#dbdbdb";
-            this.isMessageActive = true;
-          });
+          .then(() => this.$router.push("/profile"));
       } else {
-        this.messageIcon = "fas fa-times-circle";
-        this.messageText = "Введите имя и фамилию";
-        this.messageBackColor = "#FC7979";
-        this.messageTextColor = "#dbdbdb";
-        this.isMessageActive = true;
+        message.eror("Введите имя и фамилию");
       }
     },
     changeImage() {
@@ -240,11 +206,7 @@ export default {
     submitImage() {
       this.$store
         .dispatch("changeImage", this.file)
-        .then(() => console.log("success"))
-        .catch(err => console.log(err, err.response));
-    },
-    messageVisibleChange(status) {
-      this.isMessageActive = status;
+        .then(() => this.$router.push("/profile"));
     }
   }
 };

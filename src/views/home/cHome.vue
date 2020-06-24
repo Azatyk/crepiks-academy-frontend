@@ -25,18 +25,18 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cWelcome from "./components/cWelcome";
-import cAbout from "./components/cAbout";
+import cHeader from "@/components/common/cHeader";
+import cWelcome from "@/components/home/cWelcome";
+import cAbout from "@/components/home/cAbout";
 import loveDouble from "@/assets/images/love.svg";
 
-import cAdvantages from "./components/cAdvantages";
+import cAdvantages from "@/components/home/cAdvantages";
 
 import meditation from "@/assets/images/newWorld.svg";
 
-import cMailing from "./components/cMailing";
+import cMailing from "@/components/home/cMailing";
 
-import cFooter from "@/components/general/cFooter";
+import cFooter from "@/components/common/cFooter";
 
 export default {
   data() {

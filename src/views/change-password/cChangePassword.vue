@@ -63,10 +63,10 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cMessage from "@/components/general/cMessage";
-import cButton from "@/components/general/cButton";
-import cButtonLink from "@/components/general/cButtonLink";
+import cHeader from "@/components/common/cHeader";
+import cMessage from "@/components/common/cMessage";
+import cButton from "@/components/common/cButton";
+import cButtonLink from "@/components/common/cButtonLink";
 import { mapGetters } from "vuex";
 
 export default {

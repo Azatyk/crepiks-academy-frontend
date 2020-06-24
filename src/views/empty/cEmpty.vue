@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cInput from "@/components/general/cInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cHeader from "@/components/common/cHeader";
+import cInput from "@/components/common/cInput";
+import cButton from "@/components/common/cButton";
+import cMessage from "@/components/common/cMessage";
 
 export default {
   components: {

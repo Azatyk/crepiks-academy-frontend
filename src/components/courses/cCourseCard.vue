@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import cButtonLink from "@/components/general/cButtonLink";
+import cButtonLink from "@/components/common/cButtonLink";
 
 export default {
   props: {

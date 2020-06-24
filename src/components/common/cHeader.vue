@@ -49,8 +49,8 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
-import cLogo from "@/components/general/cLogo";
-import cButtonLink from "@/components/general/cButtonLink";
+import cLogo from "@/components/common/cLogo";
+import cButtonLink from "@/components/common/cButtonLink";
 
 export default {
   props: {
@@ -72,7 +72,7 @@ export default {
       if (document.body.clientWidth > 1024) {
         return 1.3;
       } else if (document.body.clientWidth <= 1024) {
-        return 2;
+        return 2.5;
       } else return 0;
     }
   }
@@ -192,12 +192,12 @@ export default {
 
 @media (max-width: 1024px) {
   .profile__first-name {
-    font-size: 2.3vw;
+    font-size: 2.5vw;
   }
 
   .profile__image-container {
-    width: 4vw;
-    height: 4vw;
+    width: 5vw;
+    height: 5vw;
   }
 }
 </style>

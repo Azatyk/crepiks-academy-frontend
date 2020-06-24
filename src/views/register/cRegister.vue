@@ -1,12 +1,6 @@
 <template>
   <div class="page">
     <cHeader pageType="register" />
-    <cMessage
-      :icon="messageIcon"
-      :text="messageText"
-      :isActive="isMessage"
-      @change="messageVisibleChange"
-    />
     <div class="content">
       <cForm @submit="register" class="form">
         <h3 class="register-form__heading">Регистрация</h3>
@@ -63,19 +57,18 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cForm from "@/components/general/cForm";
-import cFormInput from "@/components/general/cFormInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cHeader from "@/components/common/cHeader";
+import cForm from "@/components/common/cForm";
+import cFormInput from "@/components/common/cFormInput";
+import cButton from "@/components/common/cButton";
+import { message } from "ant-design-vue";
 
 export default {
   components: {
     cHeader,
     cForm,
     cFormInput,
-    cButton,
-    cMessage
+    cButton
   },
   data() {
     return {
@@ -83,10 +76,7 @@ export default {
       surname: "",
       email: "",
       password: "",
-      passwordCheck: "",
-      messageText: "",
-      messageIcon: "",
-      isMessage: false
+      passwordCheck: ""
     };
   },
   methods: {
@@ -101,20 +91,10 @@ export default {
 
         this.$store
           .dispatch("register", data)
-          .then(() => this.$router.push("/"))
-          .catch(err => {
-            this.messageText = err.response.data.message;
-            this.messageIcon = "fas fa-times-circle";
-            this.isMessage = true;
-          });
+          .then(() => this.$router.push("/"));
       } else {
-        this.messageText = "Пароли должны совпадать";
-        this.messageIcon = "fas fa-times-circle";
-        this.isMessage = true;
+        message.error("Пароли должны совпадать");
       }
-    },
-    messageVisibleChange(status) {
-      this.isMessage = status;
     }
   }
 };

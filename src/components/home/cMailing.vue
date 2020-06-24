@@ -1,13 +1,5 @@
 <template>
   <section class="mailing">
-    <cMessage
-      :icon="messageIcon"
-      :text="messageText"
-      :isActive="isMessage"
-      :backColor="messageBackColor"
-      textColor="white"
-      @change="messageVisibleChange"
-    />
     <form @submit.prevent="save" class="mailing__form form">
       <div class="form__text">
         <h2 class="form__heading">Узнавайте обо всем первым</h2>
@@ -35,47 +27,24 @@
 </template>
 
 <script>
-import cInput from "@/components/general/cInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cInput from "@/components/common/cInput";
+import cButton from "@/components/common/cButton";
 
 export default {
   components: {
     cInput,
-    cButton,
-    cMessage
+    cButton
   },
   data() {
     return {
       userEmail: "",
-      messageText: "",
-      isMessage: false,
-      messageIcon: "",
-      messageBackColor: ""
+      messageText: ""
     };
   },
   methods: {
     save() {
       let email = this.userEmail;
-      this.$store
-        .dispatch("saveEmail", email)
-        .then(res => {
-          if (res.status == 200) {
-            this.messageText = "Спасибо за подписку";
-            this.messageIcon = "fas fa-check-circle";
-            this.messageBackColor = "#2ecc71";
-            this.isMessage = true;
-          }
-        })
-        .catch(err => {
-          this.messageText = err.response.data.message;
-          this.messageIcon = "fas fa-exclamation-circle";
-          this.messageBackColor = "#ffcc00";
-          this.isMessage = true;
-        });
-    },
-    messageVisibleChange(status) {
-      this.isMessage = status;
+      this.$store.dispatch("saveEmail", email);
     }
   }
 };
@@ -89,7 +58,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
-  background-image: url("../../../assets/images/mailingSpot.svg");
+  background-image: url("../../assets/images/mailingSpot.svg");
   background-size: 60%;
   background-position: bottom right;
   background-repeat: no-repeat;
@@ -157,27 +126,27 @@ export default {
   }
 
   .mailing__form {
-    height: 17vw;
-    width: 45%;
+    height: 25vw;
+    width: 65%;
   }
 
   .form__heading {
-    font-size: 2.8vw;
+    font-size: 4vw;
   }
 
   .form__description {
-    font-size: 1.05vw;
+    font-size: 1.5vw;
   }
 
   .form__input {
     padding: 1vw 1.5vw;
-    height: 4vw;
-    font-size: 1.5vw;
+    height: 5vw;
+    font-size: 2vw;
   }
 
   .form__button {
-    height: 4vw;
-    font-size: 1.3vw;
+    height: 5vw;
+    font-size: 2vw;
   }
 }
 </style>

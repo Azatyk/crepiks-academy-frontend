@@ -13,18 +13,18 @@ const key = "request";
 request.interceptors.request.use(
   config => {
     config.headers["Authorization"] = store.getters.accessToken;
-    message.loading({ content: "Please wait", key });
+    message.loading({ content: "Пожалуйста подождите...", key });
     return config;
   },
   err => {
-    message.error({ content: "Error", key });
+    message.error({ content: "Что-то пошло не так", key });
     return Promise.reject(err);
   }
 );
 
 request.interceptors.response.use(
   res => {
-    message.success({ content: "Success", key });
+    message.success({ content: "Данные загружены", key });
     return res;
   },
   err => {
@@ -32,7 +32,7 @@ request.interceptors.response.use(
       store.commit("logout");
       router.push("/");
     }
-    message.error({ content: "Error", key });
+    message.error({ content: err.response.data.message, key });
     return Promise.reject(err);
   }
 );

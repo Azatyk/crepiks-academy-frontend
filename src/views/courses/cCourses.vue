@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cCourseCard from "@/views/courses/components/cCourseCard";
-import cFooter from "@/components/general/cFooter";
+import cHeader from "@/components/common/cHeader";
+import cCourseCard from "@/components/courses/cCourseCard";
+import cFooter from "@/components/common/cFooter";
 import { mapGetters } from "vuex";
 
 export default {

@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import cLogo from "@/components/general/cLogo";
-import cButtonLink from "@/components/general/cButtonLink";
+import cLogo from "@/components/common/cLogo";
+import cButtonLink from "@/components/common/cButtonLink";
 
 export default {
   components: {
@@ -65,7 +65,7 @@ export default {
       if (document.body.clientWidth > 1024) {
         return 1.2;
       } else if (document.body.clientWidth <= 1024) {
-        return 2;
+        return 2.5;
       } else return 0;
     }
   }
@@ -219,8 +219,12 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .footer {
+    height: 35vw;
+  }
+
   .footer__main-content {
-    height: auto;
+    height: 80%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -228,7 +232,6 @@ export default {
 
   .main-content__intro {
     margin: auto;
-    margin-bottom: 3%;
     height: auto;
     width: 90%;
     flex-direction: row;
@@ -267,11 +270,11 @@ export default {
   }
 
   .intro__social-networks {
-    width: 15vw;
+    width: 17vw;
   }
 
   .social-networks__link {
-    font-size: 2.8vw;
+    font-size: 3.5vw;
   }
 
   .nav-bar__link {

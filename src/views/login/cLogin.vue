@@ -1,12 +1,6 @@
 <template>
   <div class="page">
     <cHeader pageType="login" />
-    <cMessage
-      :icon="messageIcon"
-      :text="messageText"
-      :isActive="isMessage"
-      @change="messageVisibleChange"
-    />
     <div class="content">
       <cForm @submit="login" class="form">
         <h3 class="auth-form__heading">Войти</h3>
@@ -37,27 +31,22 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cForm from "@/components/general/cForm";
-import cFormInput from "@/components/general/cFormInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cHeader from "@/components/common/cHeader";
+import cForm from "@/components/common/cForm";
+import cFormInput from "@/components/common/cFormInput";
+import cButton from "@/components/common/cButton";
 
 export default {
   components: {
     cHeader,
     cForm,
     cFormInput,
-    cButton,
-    cMessage
+    cButton
   },
   data() {
     return {
       email: "",
-      password: "",
-      messageText: "",
-      messageIcon: "",
-      isMessage: false
+      password: ""
     };
   },
   methods: {
@@ -66,16 +55,8 @@ export default {
         const { email, password } = this;
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/"))
-          .catch(err => {
-            this.messageText = err.response.data.message;
-            this.messageIcon = "fas fa-times-circle";
-            this.isMessage = true;
-          });
+          .then(() => this.$router.push("/"));
       }
-    },
-    messageVisibleChange(status) {
-      this.isMessage = status;
     }
   }
 };

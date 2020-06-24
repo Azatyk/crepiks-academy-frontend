@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import cButtonLink from "@/components/general/cButtonLink";
-import cHeader from "@/components/general/cHeader";
+import cButtonLink from "@/components/common/cButtonLink";
+import cHeader from "@/components/common/cHeader";
 import { mapGetters } from "vuex";
 
 export default {

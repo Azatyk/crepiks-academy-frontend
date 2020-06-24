@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import cButtonLink from "@/components/general/cButtonLink";
+import cButtonLink from "@/components/common/cButtonLink";
 
 export default {
   props: {
@@ -148,24 +148,24 @@ export default {
   }
 
   .text-block__heading {
-    font-size: 4vw;
+    font-size: 5vw;
     text-align: center;
   }
 
   .text-block__description {
-    width: 80%;
-    font-size: 1.7vw;
+    width: 100%;
+    font-size: 2.5vw;
     text-align: center;
   }
 
   .text-block__button {
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
 
   .image {
     margin: 0;
-    width: 45%;
+    width: 50%;
   }
 }
 </style>

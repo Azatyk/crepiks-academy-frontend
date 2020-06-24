@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import cButtonLink from "@/components/general/cButtonLink";
+import cButtonLink from "@/components/common/cButtonLink";
 
 export default {
   components: {
@@ -102,24 +102,24 @@ export default {
 
   .text-block__heading {
     margin-bottom: 3%;
-    font-size: 4.5vw;
+    font-size: 5vw;
     text-align: center;
   }
 
   .text-block__description {
     width: 100%;
-    font-size: 2vw;
+    font-size: 2.5vw;
     text-align: center;
   }
 
   .text-block__button {
-    font-size: 1.5vw;
+    font-size: 2.5vw;
     padding: 1.2vw 2.3vw;
   }
 
   .welcome__siting-man {
     margin: 0;
-    width: 60%;
+    width: 70%;
   }
 }
 </style>

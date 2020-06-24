@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cButton from "@/components/general/cButton";
+import cHeader from "@/components/common/cHeader";
+import cButton from "@/components/common/cButton";
 import { mapGetters } from "vuex";
 
 export default {
@@ -40,12 +40,6 @@ export default {
     cHeader,
     cButton
   },
-  // route: {
-  //   canReuse: false, // force to reload data
-  //   activate(transition) {
-  //     console.log("Reload", transition);
-  //   },
-  // },
   data() {
     return {
       lessons: [],
@@ -99,12 +93,12 @@ export default {
 
 .content {
   margin: auto;
-  margin-top: 10vh;
-  width: 90%;
+  margin-top: 15vh;
+  width: 85%;
   max-width: 1440px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
 }
 
@@ -154,10 +148,11 @@ export default {
 }
 
 .navigation {
-  padding: 3% 1%;
+  padding: 2.5% 1%;
+  padding-bottom: 1%;
   padding-left: 2%;
-  min-height: 50vh;
-  width: 30%;
+  /* min-height: 50vh; */
+  width: 25%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -172,7 +167,8 @@ export default {
 }
 
 .navigation-lesson {
-  margin-bottom: 5%;
+  margin: auto;
+  margin-bottom: 2vh;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -180,9 +176,9 @@ export default {
 }
 
 .navigation-lesson__point {
-  margin-right: 3%;
-  width: 15px;
-  height: 15px;
+  margin-right: 5%;
+  width: 13px;
+  height: 13px;
   border: 1px solid #516f8c;
   border-radius: 50%;
 }
@@ -193,7 +189,8 @@ export default {
 }
 
 .navigation-lesson__title {
-  font-size: 1.3vw;
+  margin-bottom: 0;
+  font-size: 1vw;
   color: #516f8c;
   font-weight: 500;
 }

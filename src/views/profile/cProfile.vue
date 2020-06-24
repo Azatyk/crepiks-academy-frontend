@@ -118,8 +118,8 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cButton from "@/components/general/cButton";
+import cHeader from "@/components/common/cHeader";
+import cButton from "@/components/common/cButton";
 import { mapGetters } from "vuex";
 
 export default {
