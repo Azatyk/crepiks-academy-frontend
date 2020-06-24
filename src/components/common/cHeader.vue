@@ -1,6 +1,7 @@
 <template>
   <header class="header">
     <div class="content">
+      <a-button type="primary">Hello fucking shit</a-button>
       <cLogo class="header__logo" :fontSize="adaptiveSize" />
       <nav class="header__nav">
         <router-link to="/courses" class="header__link">Курсы</router-link>
