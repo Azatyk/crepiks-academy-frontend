@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader type="common" />
+  <div class="lesson__page">
     <div class="content">
       <div class="lesson__title">
         <span class="lesson__topic">Тема урока:</span> {{ lesson.title }}
@@ -43,14 +42,12 @@
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import { mapGetters } from "vuex";
 import { Tabs } from "ant-design-vue";
 import { TabPane } from "ant-design-vue/lib/tabs/index";
 
 export default {
   components: {
-    cHeader,
     "a-tabs": Tabs,
     "a-tab-pane": TabPane
   },
@@ -90,12 +87,8 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.lesson__page {
   padding: 0.1px;
-  min-height: 100vh;
-  height: auto;
-  width: 100%;
-  background-color: #f8f7fc;
 }
 
 .content {

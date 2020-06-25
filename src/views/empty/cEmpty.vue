@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader pageType="common" />
+  <div class="empty__page">
     <cMessage
       icon="fas fa-exclamation-circle"
       :text="errResponse"
@@ -43,14 +42,12 @@
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import cInput from "@/components/common/cInput";
 import cButton from "@/components/common/cButton";
 import cMessage from "@/components/common/cMessage";
 
 export default {
   components: {
-    cHeader,
     cInput,
     cButton,
     cMessage
@@ -78,10 +75,9 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.empty__page {
   height: 100vh;
   width: 100%;
-  background-color: #f8f7fc;
 }
 
 .content {
@@ -139,6 +135,7 @@ export default {
 }
 
 .form__heading {
+  margin: 0;
   margin-right: 3%;
   font-size: 3vw;
   color: #34495e;

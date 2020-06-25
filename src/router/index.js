@@ -11,6 +11,7 @@ import cEmpty from "@/views/empty/cEmpty";
 import cProfile from "@/views/profile/cProfile";
 import cChangeProfile from "@/views/change-profile/cChangeProfile";
 import cChangePassword from "@/views/change-password/cChangePassword";
+import cDefaultLayout from "@/views/layouts/cDefaultLayout";
 
 // import { mapGetters } from "vuex";
 
@@ -21,84 +22,90 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: cHome,
-    meta: {
-      title: "Crepiks Academy - программируй вместе с нами"
-    }
-  },
-  {
-    path: "/register",
-    name: "register",
-    component: cRegister,
-    meta: {
-      title: "Регистрация"
-    }
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: cLogin,
-    meta: {
-      title: "Вход"
-    }
-  },
-  {
-    path: "/courses",
-    name: "courses",
-    component: cCourses,
-    meta: {
-      title: "Курсы"
-    }
-  },
-  {
-    path: "/courses/:id",
-    name: "course",
-    component: cCourse,
-    meta: {
-      title: "Курс"
-    }
-  },
-  {
-    path: "/courses/:courseId/lessons/:lessonId",
-    name: "lesson",
-    component: cLesson,
-    meta: {
-      title: "Урок"
-    }
-  },
-  {
-    path: "/empty",
-    name: "empty",
-    component: cEmpty,
-    meta: {
-      title: "Crepiks Academy - программируй вместе с нами"
-    }
-  },
-  {
-    path: "/profile",
-    name: "profile",
-    component: cProfile,
-    meta: {
-      title: "Ваш профиль",
-      needAuth: true
-    }
-  },
-  {
-    path: "/profile/change",
-    name: "change",
-    component: cChangeProfile,
-    meta: {
-      title: "Изменение профиля"
-    }
-  },
-  {
-    path: "/profile/change-password",
-    name: "change-password",
-    component: cChangePassword,
-    meta: {
-      title: "Изменение пароля"
-    }
+    component: cDefaultLayout,
+    children: [
+      {
+        path: "/",
+        name: "home",
+        component: cHome,
+        meta: {
+          title: "Crepiks Academy - программируй вместе с нами"
+        }
+      },
+      {
+        path: "/register",
+        name: "register",
+        component: cRegister,
+        meta: {
+          title: "Регистрация"
+        }
+      },
+      {
+        path: "/login",
+        name: "login",
+        component: cLogin,
+        meta: {
+          title: "Вход"
+        }
+      },
+      {
+        path: "/courses",
+        name: "courses",
+        component: cCourses,
+        meta: {
+          title: "Курсы"
+        }
+      },
+      {
+        path: "/courses/:id",
+        name: "course",
+        component: cCourse,
+        meta: {
+          title: "Курс"
+        }
+      },
+      {
+        path: "/courses/:courseId/lessons/:lessonId",
+        name: "lesson",
+        component: cLesson,
+        meta: {
+          title: "Урок"
+        }
+      },
+      {
+        path: "/empty",
+        name: "empty",
+        component: cEmpty,
+        meta: {
+          title: "Crepiks Academy - программируй вместе с нами"
+        }
+      },
+      {
+        path: "/profile",
+        name: "profile",
+        component: cProfile,
+        meta: {
+          title: "Ваш профиль",
+          needAuth: true
+        }
+      },
+      {
+        path: "/profile/change",
+        name: "change",
+        component: cChangeProfile,
+        meta: {
+          title: "Изменение профиля"
+        }
+      },
+      {
+        path: "/profile/change-password",
+        name: "change-password",
+        component: cChangePassword,
+        meta: {
+          title: "Изменение пароля"
+        }
+      }
+    ]
   }
 ];
 

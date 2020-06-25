@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader type="common" class="header" />
+  <div class="profile__page">
     <div class="content">
       <div class="profile">
         <div class="profile__main">
@@ -110,7 +109,13 @@
           </div>
         </div>
         <div class="profile__logout-container">
-          <cButton text="Выйти" @action="profileLogout" />
+          <a-button
+            type="primary"
+            class="profile__logout-button"
+            @click="profileLogout"
+          >
+            Выйти
+          </a-button>
         </div>
       </div>
     </div>
@@ -118,14 +123,12 @@
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
-import cButton from "@/components/common/cButton";
+import { Button } from "ant-design-vue";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    cHeader,
-    cButton
+    "a-button": Button
   },
   methods: {
     profileLogout() {
@@ -155,12 +158,6 @@ export default {
 </script>
 
 <style scoped>
-.page {
-  width: 100%;
-  height: 100vh;
-  background-color: #f8f7fc;
-}
-
 .header {
   z-index: 2;
 }
@@ -369,6 +366,12 @@ export default {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+
+.profile__logout-button {
+  padding: 0 4%;
+  height: 2.4vw;
+  font-size: 1.1vw;
 }
 
 .course__icon {

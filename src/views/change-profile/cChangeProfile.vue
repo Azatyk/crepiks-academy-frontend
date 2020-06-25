@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader type="common" />
+  <div class="profile__page">
     <div class="content">
       <div class="profile">
         <div class="profile__main">
@@ -153,7 +152,6 @@
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import cButton from "@/components/common/cButton";
 import cButtonLink from "@/components/common/cButtonLink";
 import DatePicker from "vue2-datepicker";
@@ -163,7 +161,6 @@ import { message } from "ant-design-vue";
 
 export default {
   components: {
-    cHeader,
     cButton,
     cButtonLink,
     DatePicker
@@ -213,7 +210,7 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.profile__page {
   width: 100%;
   height: 100vh;
   background-color: #f8f7fc;
@@ -221,19 +218,6 @@ export default {
 
 .header {
   z-index: 2;
-}
-
-.message {
-  z-index: 3;
-}
-
-.page__back-color {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 70vh;
-  background-color: #34495e;
-  z-index: 0;
 }
 
 .content {
@@ -338,7 +322,7 @@ export default {
 
 .input__write {
   margin-bottom: 5%;
-  width: 100%;
+  width: auto;
 }
 
 .input-file {

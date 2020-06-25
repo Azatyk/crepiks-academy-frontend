@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader type="common" />
+  <div class="change-password__page">
     <cMessage
       class="message"
       :icon="messageIcon"
@@ -63,7 +62,6 @@
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import cMessage from "@/components/common/cMessage";
 import cButton from "@/components/common/cButton";
 import cButtonLink from "@/components/common/cButtonLink";
@@ -71,7 +69,6 @@ import { mapGetters } from "vuex";
 
 export default {
   components: {
-    cHeader,
     cMessage,
     cButton,
     cButtonLink
@@ -140,12 +137,6 @@ export default {
 </script>
 
 <style scoped>
-.page {
-  width: 100%;
-  height: 100vh;
-  background-color: #f8f7fc;
-}
-
 .header {
   z-index: 2;
 }

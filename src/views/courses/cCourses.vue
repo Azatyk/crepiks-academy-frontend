@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader pageType="common" class="header" />
+  <div class="courses__page">
     <div class="content">
       <div class="courses__intro">
         <div class="courses__text">
@@ -29,21 +28,16 @@
         />
       </div>
     </div>
-    <cFooter class="footer" />
   </div>
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import cCourseCard from "@/components/courses/cCourseCard";
-import cFooter from "@/components/common/cFooter";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    cHeader,
-    cCourseCard,
-    cFooter
+    cCourseCard
   },
   mounted() {
     this.$store.dispatch("getCourses");
@@ -53,12 +47,8 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.courses__page {
   padding: 0.1px;
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background-color: #f8f7fc;
 }
 
 .content {

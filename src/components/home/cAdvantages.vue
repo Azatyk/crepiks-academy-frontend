@@ -55,7 +55,6 @@ export default {
 .advantages {
   padding: 10vw 0;
   width: 100%;
-  background-color: #f8f7fc;
 }
 
 .content {

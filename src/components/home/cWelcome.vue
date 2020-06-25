@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section class="welcome__content">
     <div class="welcome">
       <div class="welcome__text-block">
         <h1 class="text-block__heading">Учись программировать вместе с нами</h1>
@@ -34,10 +34,9 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.welcome__content {
   width: 100%;
   height: 100vh;
-  background-color: #f8f7fc;
 }
 
 .welcome {

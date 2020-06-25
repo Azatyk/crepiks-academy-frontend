@@ -65,7 +65,6 @@ export default {
 .about {
   height: 35vw;
   width: 100%;
-  background-color: #f8f7fc;
 }
 
 .content {

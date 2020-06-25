@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader type="common" />
+  <div class="course__page">
     <div class="content">
       <div class="course__intro">
         <div class="course__text">
@@ -32,13 +31,11 @@
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import { Button } from "ant-design-vue";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    cHeader,
     "a-button": Button
   },
   data() {
@@ -67,12 +64,8 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.course__page {
   padding: 0.1px;
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background-color: #f8f7fc;
 }
 
 .content {
@@ -120,6 +113,7 @@ export default {
 
 .course__lessons {
   margin: auto;
+  margin-bottom: 10%;
   width: 80%;
   height: auto;
   display: flex;

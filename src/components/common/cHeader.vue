@@ -14,20 +14,22 @@
           pageType == 'register' || pageType == 'login' ? 'centerlize' : ''
         ]"
       >
-        <cButtonLink
+        <a-button
+          type="primary"
           v-show="pageType == 'common' || pageType == 'register'"
-          route="/login"
-          text="Вход"
-          isBold=""
+          @click="$router.push('/login')"
           class="header__auth-button"
-        />
-        <cButtonLink
-          route="/register"
-          text="Регистрация"
-          isBold=""
+        >
+          Вход
+        </a-button>
+        <a-button
+          type="primary"
           v-show="pageType == 'common' || pageType == 'login'"
+          @click="$router.push('/register')"
           class="header__auth-button"
-        />
+        >
+          Регистрация
+        </a-button>
       </div>
       <div class="header__auth-links centerlize" v-else>
         <router-link to="/profile" class="profile__link">
@@ -50,7 +52,7 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import cLogo from "@/components/common/cLogo";
-import cButtonLink from "@/components/common/cButtonLink";
+import { Button } from "ant-design-vue";
 
 export default {
   props: {
@@ -63,7 +65,7 @@ export default {
 
   components: {
     cLogo,
-    cButtonLink
+    "a-button": Button
   },
   methods: mapMutations(["logout"]),
   computed: mapGetters(["isLoggedIn", "userData"])
@@ -117,7 +119,7 @@ export default {
 }
 
 .header__auth-links {
-  width: 20%;
+  width: 17%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -126,8 +128,8 @@ export default {
 }
 
 .header__auth-button {
-  padding: 0.7vw 1.5vw;
-  box-shadow: none;
+  height: 2.2vw;
+  font-size: 1vw;
 }
 
 .centerlize {

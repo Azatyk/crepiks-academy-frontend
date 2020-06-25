@@ -1,6 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader class="header" pageType="common" colorType="light" />
+  <div class="home__content">
     <cWelcome />
     <cAbout
       :image="loveDouble"
@@ -20,12 +19,10 @@
       buttonText="Перейти к курсам"
     />
     <cMailing />
-    <cFooter />
   </div>
 </template>
 
 <script>
-import cHeader from "@/components/common/cHeader";
 import cWelcome from "@/components/home/cWelcome";
 import cAbout from "@/components/home/cAbout";
 import loveDouble from "@/assets/images/love.svg";
@@ -36,8 +33,6 @@ import meditation from "@/assets/images/newWorld.svg";
 
 import cMailing from "@/components/home/cMailing";
 
-import cFooter from "@/components/common/cFooter";
-
 export default {
   data() {
     return {
@@ -47,22 +42,16 @@ export default {
   },
 
   components: {
-    cHeader,
     cWelcome,
     cAbout,
     cAdvantages,
-    cMailing,
-    cFooter
+    cMailing
   }
 };
 </script>
 
 <style scoped>
-.page {
+.home__content {
   width: 100%;
-}
-
-.header {
-  background-color: #ffffff00;
 }
 </style>

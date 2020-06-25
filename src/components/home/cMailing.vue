@@ -54,7 +54,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f7fc;
   background-image: url("../../assets/images/mailingSpot.svg");
   background-size: 60%;
   background-position: bottom right;
