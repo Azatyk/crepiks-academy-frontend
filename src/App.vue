@@ -13,6 +13,13 @@ export default {
     if (this.isLoggedIn) {
       this.$store.dispatch("getUserData");
     }
+  },
+  watch: {
+    isLoggedIn() {
+      if (this.isLoggedIn) {
+        this.$store.dispatch("getUserData");
+      }
+    }
   }
 };
 </script>

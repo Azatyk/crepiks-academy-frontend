@@ -214,6 +214,10 @@ export default {
     height: 35vw;
   }
 
+  .footer__logo {
+    font-size: 2vw;
+  }
+
   .footer__main-content {
     height: 80%;
     flex-direction: row;
@@ -239,29 +243,34 @@ export default {
   }
 
   .extra-info__button {
-    width: 40%;
-    height: 4vw;
-    font-size: 1.5vw;
+    width: 55%;
+    height: 5vw;
+    font-size: 2vw;
   }
 
   .extra-info__email {
-    width: 53%;
+    width: 85%;
   }
 
   .email__icon {
-    font-size: 2.5vw;
+    font-size: 4vw;
+  }
+
+  .email__text {
+    justify-content: center;
   }
 
   .email__heading {
-    font-size: 1.5vw;
+    margin-bottom: 0;
+    font-size: 2vw;
   }
 
   .email__address {
-    font-size: 1.3vw;
+    font-size: 2.2vw;
   }
 
   .intro__social-networks {
-    width: 17vw;
+    width: 27%;
   }
 
   .social-networks__link {
@@ -270,11 +279,21 @@ export default {
 
   .nav-bar__link {
     margin-bottom: 3%;
-    font-size: 1.7vw;
+    font-size: 2.2vw;
   }
 
   .footer__company-content {
     height: 20%;
+    width: 72%;
+  }
+
+  .company-content__text {
+    font-size: 2vw;
+  }
+
+  .line {
+    margin-top: 3%;
+    width: 72%;
   }
 }
 </style>

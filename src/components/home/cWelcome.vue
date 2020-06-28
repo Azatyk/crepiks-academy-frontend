@@ -116,5 +116,12 @@ export default {
     margin: 0;
     width: 70%;
   }
+
+  .welcome__button {
+    padding: 0 7%;
+    height: 7vw;
+    font-size: 3vw;
+    border-radius: 5px;
+  }
 }
 </style>

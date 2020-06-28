@@ -1,13 +1,5 @@
 <template>
   <div class="empty__page">
-    <cMessage
-      icon="fas fa-exclamation-circle"
-      :text="errResponse"
-      :isActive="isError"
-      backColor="#ffcc00"
-      textColor="white"
-      @change="messageVisibleChange"
-    />
     <div class="content">
       <div class="soon">
         <div class="soon__text">
@@ -44,31 +36,21 @@
 <script>
 import cInput from "@/components/common/cInput";
 import cButton from "@/components/common/cButton";
-import cMessage from "@/components/common/cMessage";
 
 export default {
   components: {
     cInput,
-    cButton,
-    cMessage
+    cButton
   },
   data() {
     return {
-      userEmail: "",
-      errResponse: "",
-      isError: false
+      userEmail: ""
     };
   },
   methods: {
     save() {
       let email = this.userEmail;
-      this.$store.dispatch("saveEmail", email).catch(err => {
-        this.errResponse = err.response.data.message;
-        this.isError = true;
-      });
-    },
-    messageVisibleChange(status) {
-      this.isError = status;
+      this.$store.dispatch("saveEmail", email);
     }
   }
 };

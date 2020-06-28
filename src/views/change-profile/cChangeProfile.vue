@@ -10,15 +10,32 @@
                 :alt="user.firstName"
                 class="profile__avatar"
               />
-              <div class="black-background"></div>
-              <input
-                type="file"
-                ref="file"
-                @change="changeImage"
-                id="file"
-                class="input-file"
-              />
-              <label for="file" class="input-label">Загрузить файл</label>
+              <div class="black-background" @click="showModal">
+                Изменить аватар
+              </div>
+              <a-modal
+                v-model="visible"
+                title="Изменение фотографии"
+                on-ok="handleOk"
+              >
+                <template slot="footer">
+                  <a-button type="primary" key="cancel" @click="handleCancel">
+                    Отмена
+                  </a-button>
+                  <a-button
+                    type="primary"
+                    key="save"
+                    :loading="loading"
+                    @click="submitImage"
+                  >
+                    Сохранить
+                  </a-button>
+                </template>
+                <input type="file" ref="file" id="file" class="input-file" />
+                <label for="file" class="input-file__label"
+                  >Загрузить файл</label
+                >
+              </a-modal>
             </div>
           </div>
           <div class="profile__main-inputs">
@@ -90,17 +107,20 @@
               </label>
             </div>
             <div class="profile__extra-buttons">
-              <cButton
-                text="Сохранить"
-                appearanceType="positive"
+              <a-button
+                type="primary"
+                @click="changeData"
+                class="profile__extra-button profile__save-button"
+              >
+                Сохранить
+              </a-button>
+              <a-button
+                type="primary"
+                @click="$router.push('/profile')"
                 class="profile__extra-button"
-                @action="changeData"
-              />
-              <cButtonLink
-                route="/profile"
-                text="Отмена"
-                class="profile__extra-button"
-              />
+              >
+                Отмена
+              </a-button>
             </div>
           </div>
           <div class="profile__links">
@@ -152,25 +172,25 @@
 </template>
 
 <script>
-import cButton from "@/components/common/cButton";
-import cButtonLink from "@/components/common/cButtonLink";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
+import { Button, message, Modal } from "ant-design-vue";
 import { mapGetters } from "vuex";
-import { message } from "ant-design-vue";
 
 export default {
   components: {
-    cButton,
-    cButtonLink,
-    DatePicker
+    DatePicker,
+    "a-button": Button,
+    "a-modal": Modal
   },
   data() {
     return {
       user: {
         links: {}
       },
-      file: ""
+      file: "",
+      loading: false,
+      visible: false
     };
   },
   computed: mapGetters(["userData"]),
@@ -186,9 +206,6 @@ export default {
   },
   methods: {
     changeData() {
-      if (this.file) {
-        this.submitImage();
-      }
       if (this.user.firstName.trim() != "" && this.user.lastName.trim() != "") {
         this.$store
           .dispatch("changeUserData", this.user)
@@ -197,13 +214,18 @@ export default {
         message.eror("Введите имя и фамилию");
       }
     },
-    changeImage() {
-      this.file = this.$refs.file.files[0];
-    },
     submitImage() {
+      this.loading = true;
+      this.file = this.$refs.file.files[0];
       this.$store
         .dispatch("changeImage", this.file)
-        .then(() => this.$router.push("/profile"));
+        .then(() => (this.loading = false));
+    },
+    showModal() {
+      this.visible = true;
+    },
+    handleCancel() {
+      this.visible = false;
     }
   }
 };
@@ -214,10 +236,6 @@ export default {
   width: 100%;
   height: 100vh;
   background-color: #f8f7fc;
-}
-
-.header {
-  z-index: 2;
 }
 
 .content {
@@ -241,12 +259,11 @@ export default {
   background-color: #f8f7fc;
   border-radius: 20px;
   box-shadow: 0 0 10px #0000004d;
-  z-index: 2;
 }
 
 .profile__main {
   margin-bottom: 5%;
-  height: 45%;
+  height: 50%;
   width: 100%;
   height: 17vw;
   display: flex;
@@ -256,7 +273,7 @@ export default {
 }
 
 .profile__avatar-container {
-  width: 20vw;
+  width: 55%;
   height: 100%;
 }
 
@@ -305,9 +322,16 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5vw;
+  color: #f8f7fc;
+  font-weight: 500;
+  align-items: center;
   z-index: 3;
   background-color: #00000080;
   transition: 300ms ease-in-out;
+  cursor: pointer;
   opacity: 0;
 }
 
@@ -317,12 +341,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .input__write {
-  margin-bottom: 5%;
-  width: auto;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 3%;
+  width: 90%;
 }
 
 .input-file {
@@ -334,7 +360,16 @@ export default {
   z-index: -1;
 }
 
+.input-file__label {
+  margin: auto;
+  font-size: 1vw;
+  color: #34495e;
+  cursor: pointer;
+}
+
 .input__label {
+  padding: 0;
+  margin: 0;
   font-size: 1.2vw;
   color: #516f8c;
   font-weight: 300;
@@ -342,7 +377,10 @@ export default {
 }
 
 .input__input {
+  padding: 0;
+  margin: 0;
   padding: 1% 1%;
+  width: 100%;
   font-size: 1.2vw;
   color: #516f8c;
   font-weight: 400;
@@ -363,11 +401,11 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .profile__extra-inputs {
-  width: 20vw;
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -379,8 +417,8 @@ export default {
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .profile__extra-buttons {
@@ -394,6 +432,17 @@ export default {
 
 .profile__extra-button {
   margin-right: 5%;
+  height: 2.5vw;
+  font-size: 1vw;
+}
+
+.profile__save-button {
+  background-color: #2ecc71;
+  border: none;
+}
+
+.profile__save-button:hover {
+  background-color: #5bed99;
 }
 
 .birthday__input {

@@ -1,14 +1,5 @@
 <template>
   <div class="change-password__page">
-    <cMessage
-      class="message"
-      :icon="messageIcon"
-      :text="messageText"
-      :backColor="messageBackColor"
-      :textColor="messageTextColor"
-      :isActive="isMessageActive"
-      @change="messageVisibleChange"
-    />
     <div class="content">
       <div class="profile">
         <div class="profile__avatar-container">
@@ -62,14 +53,12 @@
 </template>
 
 <script>
-import cMessage from "@/components/common/cMessage";
 import cButton from "@/components/common/cButton";
 import cButtonLink from "@/components/common/cButtonLink";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    cMessage,
     cButton,
     cButtonLink
   },
@@ -79,12 +68,7 @@ export default {
         currentPassword: "",
         newPassword: "",
         newPasswordCheck: ""
-      },
-      messageIcon: "",
-      messageText: "",
-      messageBackColor: "",
-      messageTextColor: "",
-      isMessageActive: false
+      }
     };
   },
   computed: mapGetters(["userData"]),
@@ -105,32 +89,8 @@ export default {
           currentPassword: this.passwords.currentPassword,
           newPassword: this.passwords.newPassword
         };
-        this.$store
-          .dispatch("changePassword", data)
-          .then(() => {
-            this.messageText = "Пароль изменен";
-            this.messageIcon = "fas fa-check-circle";
-            this.messageBackColor = "#2ecc71";
-            this.messageTextColor = "white";
-            this.isMessageActive = true;
-          })
-          .catch(err => {
-            this.messageText = err.response.data.message;
-            this.messageIcon = "fas fa-times-circle";
-            this.messageBackColor = "#FC7979";
-            this.messageTextColor = "white";
-            this.isMessageActive = true;
-          });
-      } else {
-        this.messageText = "Пароли должны совпадать";
-        this.messageIcon = "fas fa-times-circle";
-        this.messageBackColor = "#FC7979";
-        this.messageTextColor = "white";
-        this.isMessageActive = true;
+        this.$store.dispatch("changePassword", data);
       }
-    },
-    messageVisibleChange(status) {
-      this.isMessageActive = status;
     }
   }
 };

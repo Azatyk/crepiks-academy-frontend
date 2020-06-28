@@ -17,7 +17,7 @@
         <a-button
           type="primary"
           v-show="pageType == 'common' || pageType == 'register'"
-          @click="$router.push('/login')"
+          @click="$router.push('/auth/login')"
           class="header__auth-button"
         >
           Вход
@@ -25,7 +25,7 @@
         <a-button
           type="primary"
           v-show="pageType == 'common' || pageType == 'login'"
-          @click="$router.push('/register')"
+          @click="$router.push('/auth/register')"
           class="header__auth-button"
         >
           Регистрация
@@ -157,12 +157,12 @@ export default {
 }
 
 .profile__link {
-  width: 70%;
+  width: auto;
   text-decoration: none;
 }
 
 .profile__data {
-  width: 100%;
+  width: auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -189,16 +189,16 @@ export default {
 
 @media (max-width: 1024px) {
   .header__logo {
-    font-size: 1vw;
-  }
-
-  .profile__first-name {
     font-size: 2.5vw;
   }
 
+  .profile__first-name {
+    font-size: 3vw;
+  }
+
   .profile__image-container {
-    width: 5vw;
-    height: 5vw;
+    width: 7vw;
+    height: 7vw;
   }
 }
 </style>

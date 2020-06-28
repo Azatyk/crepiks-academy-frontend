@@ -68,7 +68,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
-  box-shadow: 0 0 10px 0px #00000080;
+  box-shadow: 0 0 20px 0px #00000026;
   border-radius: 5px;
 }
 
@@ -116,13 +116,14 @@ export default {
 
 @media (max-width: 1024px) {
   .mailing {
-    padding-bottom: 15vh;
-    height: 40vh;
+    padding: 15vw 0;
+    height: auto;
     background-image: none;
   }
 
   .mailing__form {
-    height: 25vw;
+    padding: 5% 1%;
+    height: auto;
     width: 65%;
   }
 
@@ -131,18 +132,29 @@ export default {
   }
 
   .form__description {
-    font-size: 1.5vw;
+    width: 90%;
+    font-size: 2.5vw;
+    text-align: center;
+  }
+
+  .form__functional {
+    width: 100%;
+    flex-direction: column;
   }
 
   .form__input {
-    padding: 1vw 1.5vw;
-    height: 5vw;
-    font-size: 2vw;
+    padding: 1vw 2vw;
+    margin: auto;
+    margin-bottom: 3%;
+    width: 80%;
+    height: 6vw;
+    font-size: 2.5vw;
   }
 
   .form__button {
-    height: 5vw;
-    font-size: 2vw;
+    height: 6vw;
+    width: 80%;
+    font-size: 2.5vw;
   }
 }
 </style>

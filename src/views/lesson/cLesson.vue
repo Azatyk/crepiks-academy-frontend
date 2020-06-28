@@ -53,6 +53,7 @@ export default {
   },
   data() {
     return {
+      lesson: {},
       lessons: [],
       id: {
         courseId: this.$route.params.courseId,
@@ -60,18 +61,22 @@ export default {
       }
     };
   },
-  computed: mapGetters(["isLoggedIn", "lesson", "course"]),
+  computed: mapGetters(["isLoggedIn"]),
   mounted() {
-    this.$store.dispatch("getLesson", this.id).then(res => console.log(res));
-    this.$store.dispatch("getLessons", this.id.courseId).then(res => {
-      this.lessons = res.data;
-    });
+    this.$store
+      .dispatch("getLesson", this.id)
+      .then(res => (this.lesson = res.data));
+    this.$store
+      .dispatch("getLessons", this.id.courseId)
+      .then(res => (this.lessons = res.data));
   },
   watch: {
     $route() {
       this.id.courseId = this.$route.params.courseId;
       this.id.lessonId = this.$route.params.lessonId;
-      this.$store.dispatch("getLesson", this.id);
+      this.$store
+        .dispatch("getLesson", this.id)
+        .then(res => (this.lesson = res.data));
     }
   },
   methods: {

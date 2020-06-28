@@ -84,15 +84,18 @@ export default {
 
 @media (max-width: 1024px) {
   .advantages {
-    padding-bottom: 15%;
+    padding-bottom: 0;
   }
 
   .advantages__container {
     width: 80vw;
+    flex-wrap: wrap;
   }
 
   .advantages__heading {
-    font-size: 3vw;
+    width: 70%;
+    font-size: 6vw;
+    text-align: center;
   }
 }
 </style>

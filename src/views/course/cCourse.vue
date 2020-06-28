@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
 import { mapGetters } from "vuex";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
@@ -41,12 +41,15 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      course: {},
       lessons: []
     };
   },
-  computed: mapGetters(["isLoggedIn", "course"]),
+  computed: mapGetters(["isLoggedIn"]),
   mounted() {
-    this.$store.dispatch("getCourse", this.id);
+    this.$store
+      .dispatch("getCourse", this.id)
+      .then(res => (this.course = res.data));
     this.$store.dispatch("getLessons", this.id).then(res => {
       this.lessons = res.data;
     });

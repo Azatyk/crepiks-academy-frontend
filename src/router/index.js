@@ -12,8 +12,8 @@ import cProfile from "@/views/profile/cProfile";
 import cChangeProfile from "@/views/change-profile/cChangeProfile";
 import cChangePassword from "@/views/change-password/cChangePassword";
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-
-// import { mapGetters } from "vuex";
+import cEmptyLayout from "@/views/layouts/cEmptyLayout";
+import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
 
 import store from "@/store";
 
@@ -25,7 +25,7 @@ const routes = [
     component: cDefaultLayout,
     children: [
       {
-        path: "/",
+        path: "",
         name: "home",
         component: cHome,
         meta: {
@@ -33,20 +33,27 @@ const routes = [
         }
       },
       {
-        path: "/register",
-        name: "register",
-        component: cRegister,
-        meta: {
-          title: "Регистрация"
-        }
-      },
-      {
-        path: "/login",
-        name: "login",
-        component: cLogin,
-        meta: {
-          title: "Вход"
-        }
+        path: "auth",
+        name: "auth",
+        component: cEmptyLayout,
+        children: [
+          {
+            path: "register",
+            name: "register",
+            component: cRegister,
+            meta: {
+              title: "Регистрация"
+            }
+          },
+          {
+            path: "login",
+            name: "login",
+            component: cLogin,
+            meta: {
+              title: "Вход"
+            }
+          }
+        ]
       },
       {
         path: "/courses",
@@ -103,6 +110,13 @@ const routes = [
         component: cChangePassword,
         meta: {
           title: "Изменение пароля"
+        }
+      },
+      {
+        path: "interactive-course",
+        component: cInteractiveCourse,
+        meta: {
+          title: "Интерактивный курс"
         }
       }
     ]

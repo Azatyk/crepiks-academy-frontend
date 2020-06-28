@@ -142,7 +142,7 @@ export default {
 
   .text-block {
     margin: 0;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     width: 60%;
     align-items: center;
   }
@@ -166,6 +166,13 @@ export default {
   .image {
     margin: 0;
     width: 50%;
+  }
+
+  .about__button {
+    padding: 0 7%;
+    height: 7vw;
+    font-size: 3vw;
+    border-radius: 5px;
   }
 }
 </style>

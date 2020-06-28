@@ -53,13 +53,17 @@ export default {
 }
 
 @media (max-width: 1024px) {
+  .advantage {
+    margin-bottom: 15%;
+  }
+
   .image-container {
-    height: 13vw;
-    width: 13vw;
+    height: 27vw;
+    width: 27vw;
   }
 
   .advantage__title {
-    font-size: 2.1vw;
+    font-size: 4vw;
   }
 }
 </style>

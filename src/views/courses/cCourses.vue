@@ -33,16 +33,19 @@
 
 <script>
 import cCourseCard from "@/components/courses/cCourseCard";
-import { mapGetters } from "vuex";
 
 export default {
   components: {
     cCourseCard
   },
-  mounted() {
-    this.$store.dispatch("getCourses");
+  data() {
+    return {
+      courses: {}
+    };
   },
-  computed: mapGetters(["courses"])
+  mounted() {
+    this.$store.dispatch("getCourses").then(res => (this.courses = res.data));
+  }
 };
 </script>
 
