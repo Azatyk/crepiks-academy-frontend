@@ -92,7 +92,7 @@
           <div class="profile__courses">
             <div class="profile__courses-heading">Курсы:</div>
             <div class="courses__container">
-              <div class="profile__course">
+              <!-- <div class="profile__course">
                 <div class="course__main-info">
                   <i class="fab fa-js-square course__icon"></i>
                   <div class="course__heading">JavaScript Базовый</div>
@@ -104,7 +104,8 @@
                   </div>
                   <div class="progress__percent">60%</div>
                 </div>
-              </div>
+              </div> -->
+              <h2 class="courses__heading">Нет активных курсов</h2>
             </div>
           </div>
         </div>
@@ -182,7 +183,7 @@ export default {
 .profile {
   padding: 3vh 4vh;
   width: 50%;
-  height: 35vw;
+  height: 37vw;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -349,6 +350,13 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.courses__heading {
+  color: #516f8c;
+  font-size: 1.5vw;
 }
 
 .profile__course {
@@ -418,5 +426,171 @@ export default {
 
 .profile__logout-container {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .profile {
+    height: 80vw;
+    width: 90%;
+  }
+
+  .profile__main {
+    height: auto;
+  }
+
+  .profile__first-info {
+    width: auto;
+  }
+
+  .profile__avatar-container {
+    width: 38vw;
+  }
+
+  .profile__avatar-square {
+    width: 35vw;
+    height: 35vw;
+  }
+
+  .profile__text {
+    width: auto;
+  }
+
+  .profile__full-name {
+    font-size: 5vw;
+  }
+
+  .profile__about {
+    font-size: 2.2vw;
+  }
+
+  .profile__links {
+    flex-direction: column;
+  }
+
+  .profile__change-button {
+    margin-top: 2%;
+    font-size: 2.3vw;
+  }
+
+  .profile__social-network {
+    margin-bottom: 3vw;
+    font-size: 4.5vw;
+  }
+
+  .profile__extra-info {
+    width: 38vw;
+    height: auto;
+  }
+
+  .profile__extra {
+    height: auto;
+  }
+
+  .extra-info__icon {
+    font-size: 3vw;
+  }
+
+  .extra-info__text {
+    width: auto;
+    font-size: 2.7vw;
+  }
+
+  .profile__courses-heading {
+    font-size: 3vw;
+  }
+
+  .courses__heading {
+    font-size: 3vw;
+  }
+
+  .profile__logout-button {
+    padding: 0 7%;
+    height: 5.5vw;
+    font-size: 2.7vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .profile {
+    height: 90vw;
+    border-radius: 5%;
+  }
+
+  .profile__main {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .profile__first-info {
+    width: 100%;
+  }
+
+  .profile__avatar-container {
+    width: 43vw;
+  }
+
+  .profile__avatar-square {
+    width: 40vw;
+    height: 40vw;
+    border-radius: 5%;
+  }
+
+  .profile__full-name {
+    font-size: 6vw;
+  }
+
+  .profile__about {
+    font-size: 2.8vw;
+  }
+
+  .profile__links {
+    flex-direction: column;
+  }
+
+  .profile__change-button {
+    margin-top: 3%;
+    font-size: 2.2vw;
+  }
+
+  .profile__social-networks {
+    margin-top: 7%;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .profile__social-network {
+    font-size: 5vw;
+  }
+
+  .profile__extra {
+    margin-top: 0;
+  }
+
+  .profile__extra-info {
+    width: 43vw;
+  }
+
+  .extra-info__icon {
+    font-size: 3vw;
+  }
+
+  .extra-info__text {
+    font-size: 2vw;
+  }
+
+  .profile__courses-heading {
+    font-size: 2vw;
+  }
+
+  .courses__heading {
+    font-size: 2.2vw;
+  }
+
+  .profile__logout-button {
+    padding: 0 7%;
+    height: 4.5vw;
+    font-size: 2vw;
+  }
 }
 </style>

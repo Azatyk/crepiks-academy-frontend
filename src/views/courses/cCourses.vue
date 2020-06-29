@@ -1,6 +1,6 @@
 <template>
   <div class="courses__page">
-    <div class="content">
+    <div class="courses__content">
       <div class="courses__intro">
         <div class="courses__text">
           <h1 class="intro__heading">Подбери идеальный курс для себя</h1>
@@ -110,5 +110,40 @@ export default {
 .course {
   margin-left: 1%;
   margin-right: 1%;
+}
+
+@media (max-width: 1024px) {
+  .courses__content {
+    margin-top: 15%;
+  }
+
+  .courses__intro {
+    width: 85%;
+    justify-content: center;
+  }
+
+  .courses__text {
+    margin-right: 0;
+    width: 60%;
+  }
+
+  .intro__heading {
+    width: 100%;
+    font-size: 5vw;
+  }
+
+  .intro__description {
+    width: 90%;
+    font-size: 2.3vw;
+  }
+
+  .intro__image {
+    width: 40vw;
+  }
+
+  .courses {
+    width: 85%;
+    justify-content: space-around;
+  }
 }
 </style>

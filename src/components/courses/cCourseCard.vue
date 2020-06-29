@@ -112,4 +112,37 @@ export default {
   opacity: 0;
   transition: 300ms ease-in-out;
 }
+
+@media (max-width: 1024px) {
+  .course {
+    width: 33vw;
+    height: 34vw;
+  }
+
+  .course__image {
+    width: 12vw;
+    height: 12vw;
+  }
+
+  .course__heading {
+    margin-bottom: 0;
+    font-size: 2.7vw;
+  }
+
+  .course__lessons-amount {
+    margin-bottom: 5%;
+    font-size: 2vw;
+  }
+
+  .main-content {
+    transform: translateY(-1px);
+  }
+
+  .course__button {
+    padding: 0 7%;
+    height: 4vw;
+    font-size: 1.8vw;
+    opacity: 1;
+  }
+}
 </style>
