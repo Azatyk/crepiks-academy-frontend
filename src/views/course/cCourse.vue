@@ -173,4 +173,54 @@ export default {
   height: 2.7vw;
   font-size: 1vw;
 }
+
+@media (max-width: 1024px) {
+  .course__intro {
+    margin-top: 15%;
+    width: 85%;
+    justify-content: center;
+  }
+
+  .course__text {
+    margin-right: 0;
+    margin-left: 7%;
+    width: auto;
+  }
+
+  .intro__heading {
+    font-size: 6vw;
+  }
+
+  .intro__description {
+    font-size: 2.5vw;
+  }
+
+  .intro__image {
+    margin-right: 5%;
+    width: 50%;
+  }
+
+  .course__lessons {
+    width: 85%;
+  }
+
+  .course__lesson {
+    margin-bottom: 7%;
+  }
+
+  .lesson__number {
+    margin-right: 3vw;
+    font-size: 6vw;
+  }
+
+  .lesson__heading {
+    font-size: 3.2vw;
+  }
+
+  .lesson__button {
+    padding: 0 3%;
+    height: 5vw;
+    font-size: 2.2vw;
+  }
+}
 </style>
