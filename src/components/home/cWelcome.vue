@@ -124,4 +124,32 @@ export default {
     border-radius: 5px;
   }
 }
+
+@media (max-width: 700px) {
+  .welcome__content {
+    margin-top: 25%;
+    margin-bottom: 10%;
+    height: auto;
+  }
+
+  .welcome {
+    height: auto;
+  }
+
+  .welcome__siting-man {
+    width: 80%;
+  }
+
+  .welcome__text-block {
+    width: 100%;
+  }
+
+  .text-block__heading {
+    font-size: 7vw;
+  }
+
+  .text-block__description {
+    font-size: 3vw;
+  }
+}
 </style>

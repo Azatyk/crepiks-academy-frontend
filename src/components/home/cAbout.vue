@@ -175,4 +175,23 @@ export default {
     border-radius: 5px;
   }
 }
+
+@media (max-width: 700px) {
+  .image {
+    width: 80%;
+  }
+
+  .text-block {
+    width: 100%;
+  }
+
+  .text-block__heading {
+    font-size: 8vw;
+  }
+
+  .text-block__description {
+    width: 80%;
+    font-size: 3vw;
+  }
+}
 </style>

@@ -219,17 +219,19 @@ export default {
   }
 
   .footer__main-content {
-    height: 80%;
+    height: 150%;
+    width: 85%;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .main-content__intro {
     margin: auto;
     height: auto;
-    width: 90%;
+    width: 100%;
     flex-direction: row;
+    align-items: center;
   }
 
   .main-content__nav-bar {
@@ -283,8 +285,8 @@ export default {
   }
 
   .footer__company-content {
-    height: 20%;
-    width: 72%;
+    height: 40%;
+    width: 85%;
   }
 
   .company-content__text {
@@ -293,7 +295,82 @@ export default {
 
   .line {
     margin-top: 3%;
-    width: 72%;
+    width: 85%;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer {
+    height: auto;
+  }
+
+  .main-content__intro {
+    margin-bottom: 5%;
+    width: 100%;
+  }
+
+  .footer__logo {
+    font-size: 3.5vw;
+  }
+
+  .intro__social-networks {
+    width: 35%;
+  }
+
+  .social-networks__link {
+    font-size: 5vw;
+  }
+
+  .main-content__nav-bar {
+    width: 50%;
+  }
+
+  .nav-bar__link {
+    margin-bottom: 5%;
+    font-size: 3vw;
+  }
+
+  .extra-info__button {
+    width: 70%;
+    height: 7vw;
+    font-size: 2.7vw;
+  }
+
+  .extra-info__email {
+    width: 105%;
+  }
+
+  .email__icon {
+    font-size: 6vw;
+  }
+
+  .email__heading {
+    font-size: 3vw;
+  }
+
+  .email__address {
+    font-size: 3vw;
+  }
+
+  .main-content__extra-info {
+    height: 20vw;
+    width: 50%;
+    flex-direction: column;
+  }
+
+  .line {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 85%;
+  }
+
+  .footer__company-content {
+    margin-bottom: 2%;
+    width: 85%;
+  }
+
+  .company-content__text {
+    font-size: 2.7vw;
   }
 }
 </style>

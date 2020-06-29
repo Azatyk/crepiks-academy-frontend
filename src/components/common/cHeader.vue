@@ -4,8 +4,8 @@
       <cLogo class="header__logo" />
       <nav class="header__nav">
         <router-link to="/courses" class="header__link">Курсы</router-link>
-        <router-link to="/empty" class="header__link">Подписка</router-link>
-        <router-link to="/empty" class="header__link">Блог</router-link>
+        <router-link to="/empty" class="header__link">Интерактивы</router-link>
+        <router-link to="/empty" class="header__link">Тесты</router-link>
       </nav>
       <div
         class="header__auth-links"
@@ -192,6 +192,10 @@ export default {
     font-size: 2.5vw;
   }
 
+  .header__nav {
+    display: none;
+  }
+
   .profile__first-name {
     font-size: 3vw;
   }
@@ -199,6 +203,21 @@ export default {
   .profile__image-container {
     width: 7vw;
     height: 7vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .header__logo {
+    font-size: 3vw;
+  }
+
+  .profile__first-name {
+    font-size: 4vw;
+  }
+
+  .profile__image-container {
+    width: 9vw;
+    height: 9vw;
   }
 }
 </style>

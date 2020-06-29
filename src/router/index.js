@@ -13,7 +13,8 @@ import cChangeProfile from "@/views/change-profile/cChangeProfile";
 import cChangePassword from "@/views/change-password/cChangePassword";
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
 import cEmptyLayout from "@/views/layouts/cEmptyLayout";
-import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
+import cHeaderFooterLayout from "@/views/layouts/cHeaderFooterLayout";
+// import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
 
 import store from "@/store";
 
@@ -26,69 +27,75 @@ const routes = [
     children: [
       {
         path: "",
-        name: "home",
-        component: cHome,
-        meta: {
-          title: "Crepiks Academy - программируй вместе с нами"
-        }
-      },
-      {
-        path: "auth",
-        name: "auth",
-        component: cEmptyLayout,
+        component: cHeaderFooterLayout,
         children: [
           {
-            path: "register",
-            name: "register",
-            component: cRegister,
+            path: "",
+            name: "home",
+            component: cHome,
             meta: {
-              title: "Регистрация"
+              title: "Crepiks Academy - программируй вместе с нами"
             }
           },
           {
-            path: "login",
-            name: "login",
-            component: cLogin,
+            path: "auth",
+            name: "auth",
+            component: cEmptyLayout,
+            children: [
+              {
+                path: "register",
+                name: "register",
+                component: cRegister,
+                meta: {
+                  title: "Регистрация"
+                }
+              },
+              {
+                path: "login",
+                name: "login",
+                component: cLogin,
+                meta: {
+                  title: "Вход"
+                }
+              }
+            ]
+          },
+          {
+            path: "courses",
+            name: "courses",
+            component: cCourses,
             meta: {
-              title: "Вход"
+              title: "Курсы"
+            }
+          },
+          {
+            path: "courses/:id",
+            name: "course",
+            component: cCourse,
+            meta: {
+              title: "Курс"
+            }
+          },
+          {
+            path: "courses/:courseId/lessons/:lessonId",
+            name: "lesson",
+            component: cLesson,
+            meta: {
+              title: "Урок"
+            }
+          },
+          {
+            path: "empty",
+            name: "empty",
+            component: cEmpty,
+            meta: {
+              title: "Crepiks Academy - программируй вместе с нами"
             }
           }
         ]
       },
       {
-        path: "/courses",
-        name: "courses",
-        component: cCourses,
-        meta: {
-          title: "Курсы"
-        }
-      },
-      {
-        path: "/courses/:id",
-        name: "course",
-        component: cCourse,
-        meta: {
-          title: "Курс"
-        }
-      },
-      {
-        path: "/courses/:courseId/lessons/:lessonId",
-        name: "lesson",
-        component: cLesson,
-        meta: {
-          title: "Урок"
-        }
-      },
-      {
-        path: "/empty",
-        name: "empty",
-        component: cEmpty,
-        meta: {
-          title: "Crepiks Academy - программируй вместе с нами"
-        }
-      },
-      {
-        path: "/profile",
+        path: "profile",
         name: "profile",
         component: cProfile,
         meta: {
@@ -97,7 +104,7 @@ const routes = [
         }
       },
       {
-        path: "/profile/change",
+        path: "profile/change",
         name: "change",
         component: cChangeProfile,
         meta: {
@@ -105,20 +112,20 @@ const routes = [
         }
       },
       {
-        path: "/profile/change-password",
+        path: "profile/change-password",
         name: "change-password",
         component: cChangePassword,
         meta: {
           title: "Изменение пароля"
         }
-      },
-      {
-        path: "interactive-course",
-        component: cInteractiveCourse,
-        meta: {
-          title: "Интерактивный курс"
-        }
       }
+      // {
+      //   path: "interactive-course",
+      //   component: cInteractiveCourse,
+      //   meta: {
+      //     title: "Интерактивный курс"
+      //   }
+      // }
     ]
   }
 ];

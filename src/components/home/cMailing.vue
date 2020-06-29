@@ -93,6 +93,7 @@ export default {
   font-size: 2.2vw;
   color: #34495e;
   font-weight: 500;
+  text-align: center;
 }
 
 .form__description {
@@ -155,6 +156,41 @@ export default {
     height: 6vw;
     width: 80%;
     font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .mailing__form {
+    padding: 5% 2%;
+    width: 80%;
+  }
+
+  .form__text {
+    width: 90%;
+    margin-bottom: 5%;
+  }
+
+  .form__heading {
+    margin-bottom: 5%;
+    font-size: 8vw;
+    line-height: 1;
+  }
+
+  .form__description {
+    width: 100%;
+    font-size: 3.2vw;
+  }
+
+  .form__input {
+    width: 90%;
+    height: 8vw;
+    font-size: 3vw;
+  }
+
+  .form__button {
+    height: 8vw;
+    width: 90%;
+    font-size: 3vw;
   }
 }
 </style>
