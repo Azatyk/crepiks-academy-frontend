@@ -7,7 +7,7 @@
       <div class="lesson">
         <video :src="lesson.video" controls class="lesson__player"></video>
         <div class="lesson__tabs-container">
-          <a-tabs default-active-key="1">
+          <a-tabs default-active-key="1" class="lesson__tabs">
             <a-tab-pane key="1" tab="Описание" class="tab-text">
               {{ lesson.description }}
             </a-tab-pane>
@@ -203,5 +203,53 @@ export default {
   font-size: 1vw;
   color: #516f8c;
   font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .lesson__title {
+    height: 7vw;
+    font-size: 3.5vw;
+  }
+
+  .lesson {
+    width: 100%;
+  }
+
+  .lesson__player {
+    font-size: 3vw;
+  }
+
+  .lesson__tabs-container {
+    width: 100%;
+  }
+
+  .lesson__tabs {
+    font-size: 5vw !important;
+  }
+
+  .tab-text {
+    font-size: 3vw;
+  }
+
+  .navigation {
+    margin-bottom: 10%;
+    padding: 3% 5%;
+    padding-bottom: 1%;
+    width: 100%;
+  }
+
+  .navigation-lesson__point {
+    margin-right: 3%;
+    width: 22px;
+    height: 22px;
+  }
+
+  .navigation-lesson__title {
+    font-size: 3vw;
+  }
 }
 </style>
