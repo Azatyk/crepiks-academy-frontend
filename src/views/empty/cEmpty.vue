@@ -146,4 +146,92 @@ export default {
   width: 30%;
   font-size: 1vw;
 }
+
+@media (max-width: 1024px) {
+  .soon__heading {
+    font-size: 8vw;
+  }
+
+  .soon__description {
+    font-size: 3.5vw;
+  }
+
+  .mailing__form {
+    padding: 5% 0;
+    height: auto;
+    width: 80%;
+  }
+
+  .form__heading {
+    font-size: 7vw;
+  }
+
+  .form__description {
+    font-size: 2.1vw;
+  }
+
+  .form__input {
+    padding: 0 2vw;
+    height: 6vw;
+    font-size: 3vw;
+  }
+
+  .form__button {
+    height: 6vw;
+    font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .soon__heading {
+    font-size: 9vw;
+  }
+
+  .soon__description {
+    font-size: 4vw;
+  }
+
+  .form {
+    width: 90%;
+  }
+
+  .form__text {
+    margin-bottom: 5%;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .form__heading {
+    margin-right: 0;
+    margin-bottom: -5%;
+    margin-top: -5%;
+    font-size: 20vw;
+  }
+
+  .form__description {
+    width: 80%;
+    font-size: 4vw;
+    text-align: center;
+  }
+
+  .form__functional {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .form__input {
+    padding: 0 3vw;
+    margin-right: 0;
+    margin-bottom: 5%;
+    width: 100%;
+    height: 10vw;
+    font-size: 4vw;
+  }
+
+  .form__button {
+    width: 100%;
+    height: 10vw;
+    font-size: 3.5vw;
+  }
+}
 </style>
