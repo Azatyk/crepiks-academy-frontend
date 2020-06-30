@@ -512,7 +512,7 @@ export default {
 
 @media (max-width: 700px) {
   .profile {
-    height: 90vw;
+    height: 94vw;
     border-radius: 5%;
   }
 
@@ -549,7 +549,7 @@ export default {
 
   .profile__change-button {
     margin-top: 3%;
-    font-size: 2.2vw;
+    font-size: 2.4vw;
   }
 
   .profile__social-networks {
@@ -572,25 +572,25 @@ export default {
   }
 
   .extra-info__icon {
-    font-size: 3vw;
+    font-size: 3.5vw;
   }
 
   .extra-info__text {
-    font-size: 2vw;
+    font-size: 2.8vw;
   }
 
   .profile__courses-heading {
-    font-size: 2vw;
+    font-size: 3vw;
   }
 
   .courses__heading {
-    font-size: 2.2vw;
+    font-size: 3.2vw;
   }
 
   .profile__logout-button {
     padding: 0 7%;
-    height: 4.5vw;
-    font-size: 2vw;
+    height: 6vw;
+    font-size: 2.7vw;
   }
 }
 </style>

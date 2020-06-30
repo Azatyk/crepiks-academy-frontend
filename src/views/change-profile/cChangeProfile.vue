@@ -83,11 +83,11 @@
             <div class="input__write">
               <label>
                 <div class="input__label birthday__input">Дата рождения:</div>
-                <date-picker
+                <a-date-picker
                   class="calendar"
-                  v-model="user.birthday"
-                  valueType="format"
-                ></date-picker>
+                  :size="adaptivitySize"
+                  @change="changeDate"
+                />
               </label>
             </div>
             <div class="input__write">
@@ -172,14 +172,13 @@
 </template>
 
 <script>
-import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
-import { Button, message, Modal } from "ant-design-vue";
+import { Button, message, Modal, DatePicker } from "ant-design-vue";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    DatePicker,
+    "a-date-picker": DatePicker,
     "a-button": Button,
     "a-modal": Modal
   },
@@ -193,7 +192,16 @@ export default {
       visible: false
     };
   },
-  computed: mapGetters(["userData"]),
+  computed: {
+    ...mapGetters(["userData"]),
+    adaptivitySize() {
+      if (document.body.clientWidth <= 700) {
+        return "small";
+      } else {
+        return "large";
+      }
+    }
+  },
   watch: {
     userData(updatedUserData) {
       this.user = updatedUserData;
@@ -205,6 +213,9 @@ export default {
     }
   },
   methods: {
+    changeDate(date, dateString) {
+      this.user.birthday = dateString;
+    },
     changeData() {
       if (this.user.firstName.trim() != "" && this.user.lastName.trim() != "") {
         this.$store
@@ -250,7 +261,8 @@ export default {
   margin-top: 3%;
   padding: 3vh 4vh;
   width: 40%;
-  height: 40vw;
+  min-height: 40vw;
+  height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -405,6 +417,7 @@ export default {
 }
 
 .profile__extra-inputs {
+  height: 100%;
   width: 55%;
   display: flex;
   flex-direction: column;
@@ -450,6 +463,58 @@ export default {
 }
 
 .calendar {
-  width: 81%;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .profile {
+    padding-bottom: 3%;
+    min-height: 80vw;
+    height: auto;
+    width: 90%;
+    border-radius: 5%;
+  }
+
+  .profile__main {
+    height: 50%;
+  }
+
+  .profile__avatar-container {
+    width: 50%;
+  }
+
+  .profile__avatar-square {
+    width: 100%;
+    height: 100%;
+  }
+
+  .input__label {
+    font-size: 3.5vw;
+  }
+
+  .input__input {
+    font-size: 3.5vw;
+  }
+
+  .profile__extra-inputs {
+    height: 100%;
+    width: 50%;
+    justify-content: space-between;
+  }
+
+  .calendar {
+    width: 100%;
+  }
+
+  .profile__extra-buttons {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile__extra-button {
+    margin-bottom: 5%;
+    height: 8vw;
+    font-size: 3vw;
+  }
 }
 </style>
