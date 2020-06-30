@@ -145,4 +145,29 @@ export default {
     opacity: 1;
   }
 }
+
+@media (max-width: 700px) {
+  .course {
+    width: 80%;
+    height: 80vw;
+  }
+
+  .course__image {
+    width: 32vw;
+    height: 32vw;
+  }
+
+  .course__heading {
+    font-size: 6vw;
+  }
+
+  .course__lessons-amount {
+    font-size: 5vw;
+  }
+
+  .course__button {
+    height: 8vw;
+    font-size: 3.5vw;
+  }
+}
 </style>

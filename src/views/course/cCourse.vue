@@ -223,4 +223,46 @@ export default {
     font-size: 2.2vw;
   }
 }
+
+@media (max-width: 700px) {
+  .course__intro {
+    margin-top: 20%;
+    margin-bottom: 20%;
+    flex-direction: column-reverse;
+  }
+
+  .intro__image {
+    width: 80%;
+  }
+
+  .course__text {
+    margin-left: 0;
+    width: 90%;
+    text-align: center;
+  }
+
+  .intro__heading {
+    margin: auto;
+    font-size: 7vw;
+  }
+
+  .intro__description {
+    margin: auto;
+    font-size: 4vw;
+  }
+
+  .lesson__number {
+    font-size: 7vw;
+  }
+
+  .lesson__heading {
+    font-size: 3.5vw;
+  }
+
+  .lesson__button {
+    padding: 0 4%;
+    height: 6.5vw;
+    font-size: 3vw;
+  }
+}
 </style>

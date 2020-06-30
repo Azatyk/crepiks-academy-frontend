@@ -7,7 +7,7 @@
       <div class="lesson">
         <video :src="lesson.video" controls class="lesson__player"></video>
         <div class="lesson__tabs-container">
-          <a-tabs default-active-key="1" class="lesson__tabs">
+          <a-tabs default-active-key="1" class="lesson__tabs" size="medium">
             <a-tab-pane key="1" tab="Описание" class="tab-text">
               {{ lesson.description }}
             </a-tab-pane>
@@ -250,6 +250,40 @@ export default {
 
   .navigation-lesson__title {
     font-size: 3vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .lesson__title {
+    height: 9vw;
+    font-size: 4.2vw;
+  }
+
+  .lesson__player {
+    border-radius: 5px;
+  }
+
+  .lesson__tabs-container {
+    margin-bottom: 10%;
+  }
+
+  .tab-text {
+    font-size: 4vw;
+  }
+
+  .navigation {
+    margin-bottom: 20%;
+    padding: 5% 5%;
+    padding-bottom: 1%;
+  }
+
+  .navigation-lesson__point {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  .navigation-lesson__title {
+    font-size: 4vw;
   }
 }
 </style>

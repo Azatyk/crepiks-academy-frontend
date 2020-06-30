@@ -146,4 +146,36 @@ export default {
     justify-content: space-around;
   }
 }
+
+@media (max-width: 700px) {
+  .courses__intro {
+    margin-top: 20%;
+    margin-bottom: 20%;
+    flex-direction: column-reverse;
+  }
+
+  .intro__image {
+    width: 80%;
+  }
+
+  .courses__text {
+    width: 90%;
+    text-align: center;
+  }
+
+  .intro__heading {
+    font-size: 7vw;
+  }
+
+  .intro__description {
+    margin: auto;
+    font-size: 4vw;
+  }
+
+  .courses {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 </style>
