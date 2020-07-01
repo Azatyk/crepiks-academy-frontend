@@ -6,7 +6,7 @@
           <div class="profile__avatar-container">
             <div class="profile__avatar-square">
               <img
-                :src="user.image"
+                :src="`${user.image}?postfix=${imagePostfix}`"
                 :alt="user.firstName"
                 class="profile__avatar"
               />
@@ -16,7 +16,6 @@
               <a-modal
                 v-model="visible"
                 title="Изменение фотографии"
-                on-ok="handleOk"
                 class="profile__modal"
               >
                 <template slot="footer">
@@ -196,7 +195,8 @@ export default {
       },
       file: "",
       loading: false,
-      visible: false
+      visible: false,
+      imagePostfix: null
     };
   },
   computed: {
@@ -235,17 +235,20 @@ export default {
     submitImage() {
       this.loading = true;
       this.file = this.$refs.file.files[0];
-      this.$store
-        .dispatch("changeImage", this.file)
-        .then(() => (this.loading = false))
-        .then(() => (this.user = this.userData))
-        .then(() => console.log(this.user));
+      this.$store.dispatch("changeImage", this.file).then(() => {
+        this.loading = false;
+        this.user = this.userData;
+        this.imagePostfix = this.getRandomInt(100000);
+      });
     },
     showModal() {
       this.visible = true;
     },
     handleCancel() {
       this.visible = false;
+    },
+    getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
     }
   }
 };
