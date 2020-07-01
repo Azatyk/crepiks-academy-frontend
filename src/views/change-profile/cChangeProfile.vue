@@ -17,9 +17,15 @@
                 v-model="visible"
                 title="Изменение фотографии"
                 on-ok="handleOk"
+                class="profile__modal"
               >
                 <template slot="footer">
-                  <a-button type="primary" key="cancel" @click="handleCancel">
+                  <a-button
+                    type="primary"
+                    key="cancel"
+                    @click="handleCancel"
+                    class="profile__modal-button"
+                  >
                     Отмена
                   </a-button>
                   <a-button
@@ -27,14 +33,15 @@
                     key="save"
                     :loading="loading"
                     @click="submitImage"
+                    class="profile__modal-button profile__save-button"
                   >
                     Сохранить
                   </a-button>
                 </template>
                 <input type="file" ref="file" id="file" class="input-file" />
-                <label for="file" class="input-file__label"
-                  >Загрузить файл</label
-                >
+                <label for="file" class="input-file__label">
+                  Загрузить файл
+                </label>
               </a-modal>
             </div>
           </div>
@@ -230,7 +237,9 @@ export default {
       this.file = this.$refs.file.files[0];
       this.$store
         .dispatch("changeImage", this.file)
-        .then(() => (this.loading = false));
+        .then(() => (this.loading = false))
+        .then(() => (this.user = this.userData))
+        .then(() => console.log(this.user));
     },
     showModal() {
       this.visible = true;
@@ -298,6 +307,24 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.profile__modal-button {
+  height: 2vw;
+  font-size: 1vw;
+}
+
+.profile__save-button {
+  background-color: #2ecc71;
+  border: none;
+}
+
+.profile__save-button:hover {
+  background-color: #5bed99;
+}
+
+.profile__save-button:active {
+  background-color: #5bed99;
 }
 
 .profile__avatar-square:hover .black-background {
@@ -373,10 +400,13 @@ export default {
 }
 
 .input-file__label {
+  padding: 2% 5%;
   margin: auto;
   font-size: 1vw;
-  color: #34495e;
+  color: #f8f7fc;
+  border-radius: 5px;
   cursor: pointer;
+  background-color: #34495e;
 }
 
 .input__label {
@@ -469,10 +499,10 @@ export default {
 @media (max-width: 1024px) {
   .profile {
     padding-bottom: 3%;
-    min-height: 80vw;
+    min-height: 70vw;
     height: auto;
     width: 90%;
-    border-radius: 5%;
+    border-radius: 3%;
   }
 
   .profile__main {
@@ -488,12 +518,21 @@ export default {
     height: 100%;
   }
 
+  .black-background {
+    font-size: 4vw;
+    opacity: 1;
+  }
+
+  .input-file__label {
+    font-size: 3vw;
+  }
+
   .input__label {
-    font-size: 3.5vw;
+    font-size: 3vw;
   }
 
   .input__input {
-    font-size: 3.5vw;
+    font-size: 3vw;
   }
 
   .profile__extra-inputs {
@@ -508,13 +547,32 @@ export default {
 
   .profile__extra-buttons {
     align-items: flex-start;
-    flex-direction: column;
   }
 
   .profile__extra-button {
     margin-bottom: 5%;
     height: 8vw;
     font-size: 3vw;
+  }
+
+  .input-file__button {
+    height: 7vw;
+    font-size: 3vw;
+  }
+
+  .profile__modal-button {
+    height: 5vw;
+    font-size: 2.5vw;
+  }
+
+  /* .profile__modal {
+    font-size: 5vw;
+  } */
+}
+
+@media (max-width: 700px) {
+  .profile__extra-buttons {
+    flex-direction: column;
   }
 }
 </style>

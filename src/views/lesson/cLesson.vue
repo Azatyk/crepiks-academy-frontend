@@ -7,7 +7,7 @@
       <div class="lesson">
         <video :src="lesson.video" controls class="lesson__player"></video>
         <div class="lesson__tabs-container">
-          <a-tabs default-active-key="1" class="lesson__tabs" size="medium">
+          <a-tabs default-active-key="1" class="lesson__tabs">
             <a-tab-pane key="1" tab="Описание" class="tab-text">
               {{ lesson.description }}
             </a-tab-pane>
