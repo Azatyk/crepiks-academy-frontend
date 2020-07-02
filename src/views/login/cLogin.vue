@@ -1,12 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader pageType="login" />
-    <cMessage
-      icon="fas fa-times-circle"
-      :text="errResponse"
-      :isActive="isError"
-      @change="messageVisibleChange"
-    />
+  <div class="login__page">
     <div class="content">
       <cForm @submit="login" class="form">
         <h3 class="auth-form__heading">Войти</h3>
@@ -24,7 +17,13 @@
           id="password"
           class="auth-form__input"
         />
-        <cButton text="Войти" type="submit" class="auth-form__submit-button" />
+        <a-button
+          type="primary"
+          @click="login"
+          class="auth-form__submit-button"
+        >
+          Войти
+        </a-button>
         <div class="form__link-text">
           Нет аккаунта?
           <router-link to="/register" class="form__link-register"
@@ -37,26 +36,20 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cForm from "@/components/general/cForm";
-import cFormInput from "@/components/general/cFormInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cForm from "@/components/common/cForm";
+import cFormInput from "@/components/common/cFormInput";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
-    cHeader,
     cForm,
     cFormInput,
-    cButton,
-    cMessage
+    "a-button": Button
   },
   data() {
     return {
       email: "",
-      password: "",
-      errResponse: "",
-      isError: false
+      password: ""
     };
   },
   methods: {
@@ -65,27 +58,14 @@ export default {
         const { email, password } = this;
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/"))
-          .catch(err => {
-            this.errResponse = err.response.data.message;
-            this.isError = true;
-          });
+          .then(() => this.$router.push("/"));
       }
-    },
-    messageVisibleChange(status) {
-      this.isError = status;
     }
   }
 };
 </script>
 
 <style scoped>
-.page {
-  height: 100vh;
-  width: 100%;
-  background-color: #34495e;
-}
-
 .content {
   height: 100vh;
   width: 100%;
@@ -111,18 +91,10 @@ export default {
 
 .auth-form__submit-button {
   margin-bottom: 3%;
-  padding: 14px 0;
+  height: 2.7vw;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #f8f7fc;
-  font-size: 18px;
+  font-size: 1.1vw;
   font-weight: 500;
-  background-color: #fc7979;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .form__link-text {

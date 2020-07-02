@@ -10,19 +10,19 @@
       <div class="text-block" :class="{ changeMargin: reversed }">
         <h2 class="text-block__heading">{{ textHeading }}</h2>
         <div class="text-block__description">{{ textDescription }}</div>
-        <cButtonLink
-          :route="route"
-          :text="buttonText"
-          :isBold="true"
-          class="text-block__button"
-        />
+        <a-button
+          type="primary"
+          class="about__button"
+          @click="$router.push(route)"
+          >{{ buttonText }}</a-button
+        >
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import cButtonLink from "@/components/general/cButtonLink";
+import { Button } from "ant-design-vue";
 
 export default {
   props: {
@@ -56,7 +56,7 @@ export default {
     }
   },
   components: {
-    cButtonLink
+    "a-button": Button
   }
 };
 </script>
@@ -65,7 +65,6 @@ export default {
 .about {
   height: 35vw;
   width: 100%;
-  background-color: #f8f7fc;
 }
 
 .content {
@@ -101,6 +100,8 @@ export default {
   margin-bottom: 2%;
   font-size: 2.6vw;
   color: #34495e;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .text-block__description {
@@ -110,8 +111,9 @@ export default {
   color: #516f8c;
 }
 
-.text-block__button {
-  padding: 13px 37px;
+.about__button {
+  padding: 0 5%;
+  height: 2.7vw;
   font-size: 1.1vw;
 }
 
@@ -127,5 +129,69 @@ export default {
 .changeMargin {
   margin-left: 0;
   margin-right: -5%;
+}
+
+@media (max-width: 1024px) {
+  .about {
+    height: 100%;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .text-block {
+    margin: 0;
+    margin-bottom: 5%;
+    width: 60%;
+    align-items: center;
+  }
+
+  .text-block__heading {
+    font-size: 5vw;
+    text-align: center;
+  }
+
+  .text-block__description {
+    width: 100%;
+    font-size: 2.5vw;
+    text-align: center;
+  }
+
+  .text-block__button {
+    text-align: center;
+    font-size: 2vw;
+  }
+
+  .image {
+    margin: 0;
+    width: 50%;
+  }
+
+  .about__button {
+    padding: 0 7%;
+    height: 7vw;
+    font-size: 3vw;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  .image {
+    width: 80%;
+  }
+
+  .text-block {
+    width: 100%;
+  }
+
+  .text-block__heading {
+    font-size: 8vw;
+  }
+
+  .text-block__description {
+    width: 80%;
+    font-size: 3vw;
+  }
 }
 </style>

@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer__main-content">
       <div class="main-content__intro">
-        <cLogo class="intro__logo" :fontSize="1.2" />
+        <cLogo class="footer__logo" />
         <div class="intro__social-networks">
           <a href="https://www.linkedin.com/groups/8942269"
             ><i class="fab fa-linkedin social-networks__link"></i
@@ -25,17 +25,17 @@
         <router-link to="/empty" class="nav-bar__link">О платформе</router-link>
       </div>
       <div class="main-content__extra-info">
-        <cButtonLink
-          route="/courses"
-          text="Подобрать курс"
-          :isBold="true"
+        <a-button
+          type="primary"
+          @click="$router.push('/courses')"
           class="extra-info__button"
-        />
+          >Подобрать курс</a-button
+        >
         <div class="extra-info__email">
           <i class="fas fa-envelope email__icon"></i>
           <div class="email__text">
             <div class="email__heading">Почта</div>
-            <div class="email__adress">crepiks.academy@mail.ru</div>
+            <div class="email__address">crepiks.academy@mail.ru</div>
           </div>
         </div>
       </div>
@@ -49,13 +49,13 @@
 </template>
 
 <script>
-import cLogo from "@/components/general/cLogo";
-import cButtonLink from "@/components/general/cButtonLink";
+import cLogo from "@/components/common/cLogo";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
     cLogo,
-    cButtonLink
+    "a-button": Button
   }
 };
 </script>
@@ -68,12 +68,13 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: #34495e;
+  background-color: #f8f7fc;
 }
 
 .footer__main-content {
   height: 70%;
   width: 80%;
+  max-width: 1440px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -87,6 +88,10 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.footer__logo {
+  font-size: 1vw;
 }
 
 .intro__social-networks {
@@ -120,13 +125,13 @@ export default {
 
 .nav-bar__link {
   font-size: 1vw;
-  color: #dbdbdb;
+  color: #516f8c;
   text-decoration: none;
   transition: 100ms ease-in-out;
 }
 
 .nav-bar__link:hover {
-  color: white;
+  color: #34495e;
   transition: 100ms ease-in-out;
 }
 
@@ -140,11 +145,10 @@ export default {
 }
 
 .extra-info__button {
-  padding: 0;
-  height: 3.2vw;
+  padding: 0 5%;
+  height: 3vw;
   width: 55%;
-  font-size: 1vw;
-  box-shadow: none;
+  font-size: 1.1vw;
 }
 
 .extra-info__email {
@@ -156,7 +160,7 @@ export default {
 }
 
 .email__icon {
-  color: #c9c9c9;
+  color: #516f8c;
   /* margin-right: 1vw; */
   font-size: 2vw;
 }
@@ -171,26 +175,28 @@ export default {
 .email__heading {
   margin-bottom: 0.5vh;
   font-size: 1vw;
-  color: #c9c9c9;
+  color: #516f8c;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.email__adress {
+.email__address {
   font-size: 0.85vw;
-  color: #c9c9c9;
+  color: #516f8c;
   font-weight: 300;
 }
 
 .line {
   height: 1px;
   width: 85%;
-  background-color: #c4c4c4;
+  max-width: 1440px;
+  background-color: #516f8c;
 }
 
 .footer__company-content {
   height: 29%;
   width: 80%;
+  max-width: 1440px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -199,7 +205,172 @@ export default {
 
 .company-content__text {
   font-size: 0.9vw;
-  color: #c9c9c9;
+  color: #516f8c;
   font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    height: 35vw;
+  }
+
+  .footer__logo {
+    font-size: 2vw;
+  }
+
+  .footer__main-content {
+    height: 150%;
+    width: 85%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .main-content__intro {
+    margin: auto;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .main-content__nav-bar {
+    width: 45%;
+  }
+
+  .main-content__extra-info {
+    width: 45%;
+    align-items: center;
+    align-items: flex-end;
+  }
+
+  .extra-info__button {
+    width: 55%;
+    height: 5vw;
+    font-size: 2vw;
+  }
+
+  .extra-info__email {
+    width: 85%;
+  }
+
+  .email__icon {
+    font-size: 4vw;
+  }
+
+  .email__text {
+    justify-content: center;
+  }
+
+  .email__heading {
+    margin-bottom: 0;
+    font-size: 2vw;
+  }
+
+  .email__address {
+    font-size: 2.2vw;
+  }
+
+  .intro__social-networks {
+    width: 27%;
+  }
+
+  .social-networks__link {
+    font-size: 3.5vw;
+  }
+
+  .nav-bar__link {
+    margin-bottom: 3%;
+    font-size: 2.2vw;
+  }
+
+  .footer__company-content {
+    height: 40%;
+    width: 85%;
+  }
+
+  .company-content__text {
+    font-size: 2vw;
+  }
+
+  .line {
+    margin-top: 3%;
+    width: 85%;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer {
+    height: auto;
+  }
+
+  .main-content__intro {
+    margin-bottom: 5%;
+    width: 100%;
+  }
+
+  .footer__logo {
+    font-size: 3.5vw;
+  }
+
+  .intro__social-networks {
+    width: 35%;
+  }
+
+  .social-networks__link {
+    font-size: 5vw;
+  }
+
+  .main-content__nav-bar {
+    width: 50%;
+  }
+
+  .nav-bar__link {
+    margin-bottom: 5%;
+    font-size: 3vw;
+  }
+
+  .extra-info__button {
+    width: 70%;
+    height: 7vw;
+    font-size: 2.7vw;
+  }
+
+  .extra-info__email {
+    width: 105%;
+  }
+
+  .email__icon {
+    font-size: 6vw;
+  }
+
+  .email__heading {
+    font-size: 3vw;
+  }
+
+  .email__address {
+    font-size: 3vw;
+  }
+
+  .main-content__extra-info {
+    height: 20vw;
+    width: 50%;
+    flex-direction: column;
+  }
+
+  .line {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 85%;
+  }
+
+  .footer__company-content {
+    margin-bottom: 2%;
+    width: 85%;
+  }
+
+  .company-content__text {
+    font-size: 2.7vw;
+  }
 }
 </style>

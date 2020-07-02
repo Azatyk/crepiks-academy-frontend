@@ -51,4 +51,19 @@ export default {
   color: #34495e;
   font-weight: 700;
 }
+
+@media (max-width: 1024px) {
+  .advantage {
+    margin-bottom: 15%;
+  }
+
+  .image-container {
+    height: 27vw;
+    width: 27vw;
+  }
+
+  .advantage__title {
+    font-size: 4vw;
+  }
+}
 </style>

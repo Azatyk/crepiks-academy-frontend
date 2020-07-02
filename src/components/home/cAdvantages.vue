@@ -55,7 +55,6 @@ export default {
 .advantages {
   padding: 10vw 0;
   width: 100%;
-  background-color: #f8f7fc;
 }
 
 .content {
@@ -81,5 +80,22 @@ export default {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .advantages {
+    padding-bottom: 0;
+  }
+
+  .advantages__container {
+    width: 80vw;
+    flex-wrap: wrap;
+  }
+
+  .advantages__heading {
+    width: 70%;
+    font-size: 6vw;
+    text-align: center;
+  }
 }
 </style>

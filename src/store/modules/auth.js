@@ -1,18 +1,15 @@
-import { request } from "@/requests/login";
+import { request } from "@/requests/request";
 
 export default {
   state: {
-    status: "",
     token: {
       accessToken: localStorage.getItem("token") || ""
     },
-    user: {},
-    errorMessage: ""
+    user: {}
   },
   actions: {
     login({ commit }, { email, password }) {
       return new Promise((resolve, reject) => {
-        commit("authLoading");
         request({
           url: "auth/login",
           data: {
@@ -28,15 +25,13 @@ export default {
             resolve(res);
           })
           .catch(err => {
-            commit("authError", err.response.data.message);
             localStorage.removeItem("token");
             reject(err);
           });
       });
     },
-    register({ commit, dispatch }, user) {
+    register({ dispatch }, user) {
       return new Promise((resolve, reject) => {
-        commit("authLoading");
         let loginData = {
           email: user.email,
           password: user.password
@@ -51,18 +46,13 @@ export default {
             dispatch("login", loginData);
           })
           .catch(err => {
-            commit("authError", err.response.data.message);
             reject(err);
           });
       });
     }
   },
   mutations: {
-    authLoading(state) {
-      state.status = "loading";
-    },
     authSuccess(state, data) {
-      state.status = "success";
       state.token = {
         accessToken: data.accessToken,
         accessTokenExpiredAt: data.accessTokenExpiredAt
@@ -74,24 +64,16 @@ export default {
         lastName: data.lastName
       };
     },
-    authError(state, errMessage) {
-      state.status = "error";
-      state.errorMessage = errMessage;
-      // setTimeout(state => {
-      //   state.errorMessage = ""
-      // }, 2500)
-    },
     logout(state) {
       state.status = "";
       state.token = {};
-      state.user = {};
+      state.user = null;
       window.localStorage.removeItem("token");
     }
   },
   getters: {
     isLoggedIn: state => Boolean(state.token.accessToken),
     authStatus: state => state.status,
-    accessToken: state => state.token.accessToken,
-    errorRes: state => state.errorMessage
+    accessToken: state => state.token.accessToken
   }
 };

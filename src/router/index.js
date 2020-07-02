@@ -1,11 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import Home from "@/views/home/Home";
+import cHome from "@/views/home/cHome";
 import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
-import Courses from "@/views/courses/Courses";
+import cCourses from "@/views/courses/cCourses";
+import cCourse from "@/views/course/cCourse";
+import cLesson from "@/views/lesson/cLesson";
 import cEmpty from "@/views/empty/cEmpty";
+import cProfile from "@/views/profile/cProfile";
+import cChangeProfile from "@/views/change-profile/cChangeProfile";
+import cChangePassword from "@/views/change-password/cChangePassword";
+import cDefaultLayout from "@/views/layouts/cDefaultLayout";
+import cEmptyLayout from "@/views/layouts/cEmptyLayout";
+import cHeaderFooterLayout from "@/views/layouts/cHeaderFooterLayout";
+// import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
 
 import store from "@/store";
 
@@ -14,43 +23,110 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: Home,
-    meta: {
-      title: "Crepiks Academy - программируй вместе с нами"
-    }
-  },
-  {
-    path: "/register",
-    name: "register",
-    component: cRegister,
-    meta: {
-      title: "Регистрация"
-    }
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: cLogin,
-    meta: {
-      title: "Вход"
-    }
-  },
-  {
-    path: "/courses",
-    name: "courses",
-    component: Courses,
-    meta: {
-      title: "Курсы"
-    }
-  },
-  {
-    path: "/empty",
-    name: "empty",
-    component: cEmpty,
-    meta: {
-      title: "Crepiks Academy - программируй вместе с нами"
-    }
+    component: cDefaultLayout,
+    children: [
+      {
+        path: "",
+        component: cHeaderFooterLayout,
+        children: [
+          {
+            path: "",
+            name: "home",
+            component: cHome,
+            meta: {
+              title: "Crepiks Academy - программируй вместе с нами"
+            }
+          },
+          {
+            path: "auth",
+            name: "auth",
+            component: cEmptyLayout,
+            children: [
+              {
+                path: "register",
+                name: "register",
+                component: cRegister,
+                meta: {
+                  title: "Регистрация"
+                }
+              },
+              {
+                path: "login",
+                name: "login",
+                component: cLogin,
+                meta: {
+                  title: "Вход"
+                }
+              }
+            ]
+          },
+          {
+            path: "courses",
+            name: "courses",
+            component: cCourses,
+            meta: {
+              title: "Курсы"
+            }
+          },
+          {
+            path: "courses/:id",
+            name: "course",
+            component: cCourse,
+            meta: {
+              title: "Курс"
+            }
+          },
+          {
+            path: "courses/:courseId/lessons/:lessonId",
+            name: "lesson",
+            component: cLesson,
+            meta: {
+              title: "Урок"
+            }
+          },
+          {
+            path: "empty",
+            name: "empty",
+            component: cEmpty,
+            meta: {
+              title: "Crepiks Academy - программируй вместе с нами"
+            }
+          }
+        ]
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: cProfile,
+        meta: {
+          title: "Ваш профиль",
+          needAuth: true
+        }
+      },
+      {
+        path: "profile/change",
+        name: "change",
+        component: cChangeProfile,
+        meta: {
+          title: "Изменение профиля"
+        }
+      },
+      {
+        path: "profile/change-password",
+        name: "change-password",
+        component: cChangePassword,
+        meta: {
+          title: "Изменение пароля"
+        }
+      }
+      // {
+      //   path: "interactive-course",
+      //   component: cInteractiveCourse,
+      //   meta: {
+      //     title: "Интерактивный курс"
+      //   }
+      // }
+    ]
   }
 ];
 
