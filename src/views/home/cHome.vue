@@ -6,7 +6,7 @@
       :reversed="false"
       textHeading="Курсы сделанные с любовью"
       textDescription="Структурированное обучение, десятки видеоуроков и интерактивных курсов сделанных для вас помогут вам в изучении программирования с нуля"
-      route="/courses"
+      route="/app/courses"
       buttonText="Подобрать курс"
     />
     <cAdvantages />
@@ -15,7 +15,7 @@
       :reversed="true"
       textHeading="Открой для себя новый мир"
       textDescription="Мы не только обучим вас всем современным технологиям в мире IT, но и расскажем почему эта сфера так важна в нашем мире"
-      route="/courses"
+      route="/app/courses"
       buttonText="Перейти к курсам"
     />
     <cMailing />

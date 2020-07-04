@@ -34,6 +34,29 @@ const routes = [
     component: cDefaultLayout,
     children: [
       {
+        path: "auth",
+        name: "auth",
+        component: cAuthLayout,
+        children: [
+          {
+            path: "register",
+            name: "register",
+            component: cRegister,
+            meta: {
+              title: "Регистрация"
+            }
+          },
+          {
+            path: "login",
+            name: "login",
+            component: cLogin,
+            meta: {
+              title: "Вход"
+            }
+          }
+        ]
+      },
+      {
         path: "",
         component: cLandingLayout,
         children: [
@@ -51,30 +74,10 @@ const routes = [
         path: "app",
         component: cAppLayout,
         name: "app",
+        meta: {
+          needAuth: true
+        },
         children: [
-          {
-            path: "auth",
-            name: "auth",
-            component: cAuthLayout,
-            children: [
-              {
-                path: "register",
-                name: "register",
-                component: cRegister,
-                meta: {
-                  title: "Регистрация"
-                }
-              },
-              {
-                path: "login",
-                name: "login",
-                component: cLogin,
-                meta: {
-                  title: "Вход"
-                }
-              }
-            ]
-          },
           {
             path: "",
             component: cProfileLayout,
@@ -84,8 +87,7 @@ const routes = [
                 name: "profile",
                 component: cProfile,
                 meta: {
-                  title: "Ваш профиль",
-                  needAuth: true
+                  title: "Ваш профиль"
                 }
               },
               {
@@ -109,6 +111,9 @@ const routes = [
           {
             path: "",
             component: cCoursesLayout,
+            meta: {
+              needAuth: true
+            },
             children: [
               {
                 path: "courses",
