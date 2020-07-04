@@ -26,7 +26,7 @@
         </a-button>
         <div class="form__link-text">
           Нет аккаунта?
-          <router-link to="/register" class="form__link-register"
+          <router-link to="/auth/register" class="form__link-register"
             >Зарегистрируйтесь</router-link
           >
         </div>

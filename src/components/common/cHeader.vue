@@ -2,49 +2,14 @@
   <header class="header">
     <div class="content">
       <cLogo class="header__logo" />
-      <nav class="header__nav">
-        <router-link to="/courses" class="header__link">Курсы</router-link>
-        <router-link to="/empty" class="header__link">Интерактивы</router-link>
-        <router-link to="/empty" class="header__link">Тесты</router-link>
-      </nav>
-      <div
-        class="header__auth-links"
-        v-if="!isLoggedIn"
-        :class="[
-          pageType == 'register' || pageType == 'login' ? 'centerlize' : ''
-        ]"
+      <a-button
+        type="primary"
+        v-show="pageType == 'common' || pageType == 'register'"
+        @click="$router.push('/auth/login')"
+        class="header__auth-button"
       >
-        <a-button
-          type="primary"
-          v-show="pageType == 'common' || pageType == 'register'"
-          @click="$router.push('/auth/login')"
-          class="header__auth-button"
-        >
-          Вход
-        </a-button>
-        <a-button
-          type="primary"
-          v-show="pageType == 'common' || pageType == 'login'"
-          @click="$router.push('/auth/register')"
-          class="header__auth-button"
-        >
-          Регистрация
-        </a-button>
-      </div>
-      <div class="header__auth-links centerlize" v-else>
-        <router-link to="/profile" class="profile__link">
-          <div class="profile__data">
-            <div class="profile__first-name">{{ userData.firstName }}</div>
-            <div class="profile__image-container">
-              <img
-                :src="userData.image"
-                :alt="userData.firstName"
-                class="profile__image"
-              />
-            </div>
-          </div>
-        </router-link>
-      </div>
+        Вход
+      </a-button>
     </div>
   </header>
 </template>
@@ -96,44 +61,9 @@ export default {
   font-size: 1.2vw;
 }
 
-.header__nav {
-  height: 100%;
-  width: 25%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.header__link {
-  margin-right: 12%;
-  font-size: 1vw;
-  color: #516f8c;
-  text-decoration: none;
-  transition: 300ms ease-in-out;
-}
-
-.header__link:hover {
-  color: #34495e;
-  transition: 300ms ease-in-out;
-}
-
-.header__auth-links {
-  width: 17%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: none;
-}
-
 .header__auth-button {
   height: 2.2vw;
   font-size: 1vw;
-}
-
-.centerlize {
-  justify-content: flex-end;
 }
 
 .header__exit-button {

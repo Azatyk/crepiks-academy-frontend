@@ -48,7 +48,7 @@
         </a-button>
         <div class="form__link-text">
           Есть аккаунт?
-          <router-link to="/login" class="form__link-register"
+          <router-link to="/auth/login" class="form__link-register"
             >Войдите</router-link
           >
         </div>

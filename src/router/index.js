@@ -2,19 +2,27 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import cHome from "@/views/home/cHome";
+
 import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
+
 import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
+import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
+
 import cEmpty from "@/views/empty/cEmpty";
+
 import cProfile from "@/views/profile/cProfile";
 import cChangeProfile from "@/views/change-profile/cChangeProfile";
 import cChangePassword from "@/views/change-password/cChangePassword";
+
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-import cEmptyLayout from "@/views/layouts/cEmptyLayout";
-import cHeaderFooterLayout from "@/views/layouts/cHeaderFooterLayout";
-// import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
+import cLandingLayout from "@/views/layouts/cLandingLayout";
+import cAppLayout from "@/views/layouts/cAppLayout";
+import cAuthLayout from "@/views/layouts/cAuthLayout";
+import cProfileLayout from "@/views/layouts/cProfileLayout";
+import cCoursesLayout from "@/views/layouts/cCoursesLayout";
 
 import store from "@/store";
 
@@ -27,7 +35,7 @@ const routes = [
     children: [
       {
         path: "",
-        component: cHeaderFooterLayout,
+        component: cLandingLayout,
         children: [
           {
             path: "",
@@ -36,11 +44,18 @@ const routes = [
             meta: {
               title: "Crepiks Academy - программируй вместе с нами"
             }
-          },
+          }
+        ]
+      },
+      {
+        path: "app",
+        component: cAppLayout,
+        name: "app",
+        children: [
           {
             path: "auth",
             name: "auth",
-            component: cEmptyLayout,
+            component: cAuthLayout,
             children: [
               {
                 path: "register",
@@ -61,28 +76,65 @@ const routes = [
             ]
           },
           {
-            path: "courses",
-            name: "courses",
-            component: cCourses,
-            meta: {
-              title: "Курсы"
-            }
+            path: "",
+            component: cProfileLayout,
+            children: [
+              {
+                path: "profile",
+                name: "profile",
+                component: cProfile,
+                meta: {
+                  title: "Ваш профиль",
+                  needAuth: true
+                }
+              },
+              {
+                path: "profile/change",
+                name: "change",
+                component: cChangeProfile,
+                meta: {
+                  title: "Изменение профиля"
+                }
+              },
+              {
+                path: "profile/change-password",
+                name: "change-password",
+                component: cChangePassword,
+                meta: {
+                  title: "Изменение пароля"
+                }
+              }
+            ]
           },
           {
-            path: "courses/:id",
-            name: "course",
-            component: cCourse,
-            meta: {
-              title: "Курс"
-            }
-          },
-          {
-            path: "courses/:courseId/lessons/:lessonId",
-            name: "lesson",
-            component: cLesson,
-            meta: {
-              title: "Урок"
-            }
+            path: "",
+            component: cCoursesLayout,
+            children: [
+              {
+                path: "courses",
+                name: "courses",
+                component: cCourses,
+                meta: {
+                  title: "Курсы"
+                }
+              },
+              {
+                path: "courses/:id",
+                name: "course",
+                component: cCourse,
+                meta: {
+                  title: "Курс"
+                }
+              },
+              {
+                path: "courses/:courseId/lessons/:lessonId",
+                name: "lesson",
+                component: cLesson,
+                meta: {
+                  title: "Урок"
+                }
+              }
+            ]
           },
           {
             path: "empty",
@@ -91,41 +143,16 @@ const routes = [
             meta: {
               title: "Crepiks Academy - программируй вместе с нами"
             }
+          },
+          {
+            path: "interactive-course",
+            component: cInteractiveCourse,
+            meta: {
+              title: "Интерактивный курс"
+            }
           }
         ]
-      },
-      {
-        path: "profile",
-        name: "profile",
-        component: cProfile,
-        meta: {
-          title: "Ваш профиль",
-          needAuth: true
-        }
-      },
-      {
-        path: "profile/change",
-        name: "change",
-        component: cChangeProfile,
-        meta: {
-          title: "Изменение профиля"
-        }
-      },
-      {
-        path: "profile/change-password",
-        name: "change-password",
-        component: cChangePassword,
-        meta: {
-          title: "Изменение пароля"
-        }
       }
-      // {
-      //   path: "interactive-course",
-      //   component: cInteractiveCourse,
-      //   meta: {
-      //     title: "Интерактивный курс"
-      //   }
-      // }
     ]
   }
 ];

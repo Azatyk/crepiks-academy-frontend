@@ -1,18 +1,15 @@
 <template>
-  <div class="page">
+  <div class="app-page">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  components: {}
-};
+export default {};
 </script>
 
 <style scoped>
-.page {
-  padding: 0.1px;
+.app-page {
   width: 100%;
   min-height: 100vh;
   height: auto;
