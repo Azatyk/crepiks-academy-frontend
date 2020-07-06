@@ -7,9 +7,11 @@
         </div></router-link
       >
       <div class="nav__bar">
-        <a href="#" class="nav__link nav__link-active">Курсы</a>
-        <a href="#" class="nav__link">Тренажер</a>
-        <a href="#" class="nav__link">Тесты</a>
+        <router-link to="/app/courses" class="nav__link nav__link-active"
+          >Курсы</router-link
+        >
+        <router-link to="/app/courses" class="nav__link">Тренажер</router-link>
+        <router-link to="/app/courses" class="nav__link">Тесты</router-link>
       </div>
     </div>
     <div class="content">
@@ -42,6 +44,7 @@ export default {};
 }
 
 .content {
+  padding: 0.1px;
   margin-left: 300px;
   width: calc(100% - 300px);
   min-height: 100vh;

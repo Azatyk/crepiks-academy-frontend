@@ -1,32 +1,30 @@
 <template>
-  <div class="courses__page">
-    <div class="courses__content">
-      <div class="courses__intro">
-        <div class="courses__text">
-          <h1 class="intro__heading">Подбери идеальный курс для себя</h1>
-          <div class="intro__description">
-            Приобрети навыки 21 века с помощью веселых и увлекательных
-            интерактивных курсов
-          </div>
+  <div class="courses-page">
+    <div class="courses__intro">
+      <div class="courses__text">
+        <h1 class="intro__heading">Подбери идеальный курс для себя</h1>
+        <div class="intro__description">
+          Приобрети навыки 21 века с помощью веселых и увлекательных
+          интерактивных курсов
         </div>
-        <img
-          src="@/assets/images/coursesImage.png"
-          alt="Подбери курсы для себя"
-          class="intro__image"
-        />
       </div>
-      <div class="courses">
-        <cCourseCard
-          class="course"
-          v-for="(course, index) in courses"
-          :key="index"
-          :image="course.preview"
-          :title="course.title"
-          :description="course.description"
-          :lessonsAmount="course.lessons.length"
-          :id="course._id"
-        />
-      </div>
+      <img
+        src="@/assets/images/coursesImage.png"
+        alt="Подбери курсы для себя"
+        class="intro__image"
+      />
+    </div>
+    <div class="courses">
+      <cCourseCard
+        class="course"
+        v-for="(course, index) in courses"
+        :key="index"
+        :image="course.preview"
+        :title="course.title"
+        :description="course.description"
+        :lessonsAmount="course.lessons.length"
+        :id="course._id"
+      />
     </div>
   </div>
 </template>
@@ -50,21 +48,17 @@ export default {
 </script>
 
 <style scoped>
-.courses__page {
-  padding: 0.1px;
-}
-
-.content {
+.courses-page {
+  margin: auto;
   margin-top: 5%;
   width: 100%;
+  max-width: 1000px;
   height: auto;
 }
 
 .courses__intro {
   margin: auto;
-  margin-top: 10%;
-  max-width: 1440px;
-  width: 65%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -72,35 +66,32 @@ export default {
 }
 
 .courses__text {
-  margin-right: 5%;
   width: 100%;
 }
 
 .intro__heading {
   margin-bottom: 3%;
   width: 90%;
-  font-size: 2.8vw;
+  font-size: 45px;
   color: #34495e;
   font-weight: 800;
 }
 
 .intro__description {
   width: 80%;
-  font-size: 1.2vw;
+  font-size: 22px;
   color: #516f8c;
   font-weight: 400;
 }
 
 .intro__image {
   margin-top: 3%;
-  width: 30vw;
+  width: 500px;
 }
 
 .courses {
-  margin: auto;
   margin-top: 10%;
-  margin-bottom: 10%;
-  width: 70%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;

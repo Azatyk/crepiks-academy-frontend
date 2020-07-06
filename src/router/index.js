@@ -9,7 +9,6 @@ import cLogin from "@/views/login/cLogin";
 import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
-import cInteractiveCourse from "@/views/interactive-course/cInteractiveCourse";
 
 import cEmpty from "@/views/empty/cEmpty";
 
@@ -153,14 +152,6 @@ const routes = [
             component: cEmpty,
             meta: {
               title: "Crepiks Academy - программируй вместе с нами"
-            }
-          },
-          {
-            path: "interactive-course",
-            component: cInteractiveCourse,
-            meta: {
-              title: "Интерактивный курс",
-              needAuth: true
             }
           }
         ]

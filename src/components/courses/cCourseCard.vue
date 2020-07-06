@@ -12,7 +12,7 @@
     /> -->
     <a-button
       type="primary"
-      @click="$router.push('/courses/' + id)"
+      @click="$router.push('/app/courses/' + id)"
       class="course__button"
       >Перейти к курсу</a-button
     >
@@ -50,15 +50,15 @@ export default {
 <style scoped>
 .course {
   margin-bottom: 5%;
-  width: 16vw;
-  height: 17vw;
+  width: 280px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #f8f7fc;
-  box-shadow: 0 0 20px #00000026;
+  background-color: white;
+  box-shadow: 0 0 10px #0000000d;
 }
 
 .course:hover .main-content {
@@ -84,14 +84,14 @@ export default {
 .course__image {
   margin: auto;
   margin-bottom: 1vw;
-  width: 5vw;
-  height: 5vw;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
 }
 
 .course__heading {
   margin-bottom: 5%;
-  font-size: 1.3vw;
+  font-size: 22px;
   color: #516f8c;
   font-weight: 300;
   text-align: center;
@@ -99,7 +99,7 @@ export default {
 
 .course__lessons-amount {
   margin-bottom: 1vw;
-  font-size: 1vw;
+  font-size: 17px;
   color: #516f8c;
   font-weight: 400;
   text-align: center;
@@ -107,8 +107,8 @@ export default {
 
 .course__button {
   padding: 0 7%;
-  height: 2vw;
-  font-size: 0.8vw;
+  height: 35px;
+  font-size: 15px;
   opacity: 0;
   transition: 300ms ease-in-out;
 }
