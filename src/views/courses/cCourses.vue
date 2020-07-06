@@ -50,7 +50,7 @@ export default {
 <style scoped>
 .courses-page {
   margin: auto;
-  margin-top: 5%;
+  margin-top: 50px;
   width: 100%;
   max-width: 1000px;
   height: auto;
