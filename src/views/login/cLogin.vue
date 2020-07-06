@@ -58,7 +58,7 @@ export default {
         const { email, password } = this;
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/"));
+          .then(() => this.$router.push("/app/courses"));
       }
     }
   }

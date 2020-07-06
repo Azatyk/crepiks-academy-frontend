@@ -11,7 +11,6 @@ export default {};
 <style scoped>
 .profile-page {
   width: 100%;
-  min-height: 100vh;
-  height: auto;
+  height: 100%;
 }
 </style>

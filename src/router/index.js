@@ -20,9 +20,9 @@ import cChangePassword from "@/views/change-password/cChangePassword";
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
 import cLandingLayout from "@/views/layouts/cLandingLayout";
 import cAppLayout from "@/views/layouts/cAppLayout";
+import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
 import cAuthLayout from "@/views/layouts/cAuthLayout";
 import cProfileLayout from "@/views/layouts/cProfileLayout";
-import cCoursesLayout from "@/views/layouts/cCoursesLayout";
 
 import store from "@/store";
 
@@ -43,7 +43,8 @@ const routes = [
             name: "register",
             component: cRegister,
             meta: {
-              title: "Регистрация"
+              title: "Регистрация",
+              noAuthOnly: true
             }
           },
           {
@@ -51,7 +52,8 @@ const routes = [
             name: "login",
             component: cLogin,
             meta: {
-              title: "Вход"
+              title: "Вход",
+              noAuthOnly: true
             }
           }
         ]
@@ -65,7 +67,8 @@ const routes = [
             name: "home",
             component: cHome,
             meta: {
-              title: "Crepiks Academy - программируй вместе с нами"
+              title: "Crepiks Academy - программируй вместе с нами",
+              noAuthOnly: true
             }
           }
         ]
@@ -80,47 +83,15 @@ const routes = [
         children: [
           {
             path: "",
-            component: cProfileLayout,
-            children: [
-              {
-                path: "profile",
-                name: "profile",
-                component: cProfile,
-                meta: {
-                  title: "Ваш профиль"
-                }
-              },
-              {
-                path: "profile/change",
-                name: "change",
-                component: cChangeProfile,
-                meta: {
-                  title: "Изменение профиля"
-                }
-              },
-              {
-                path: "profile/change-password",
-                name: "change-password",
-                component: cChangePassword,
-                meta: {
-                  title: "Изменение пароля"
-                }
-              }
-            ]
-          },
-          {
-            path: "",
-            component: cCoursesLayout,
-            meta: {
-              needAuth: true
-            },
+            component: cMainNavigationLayout,
             children: [
               {
                 path: "courses",
                 name: "courses",
                 component: cCourses,
                 meta: {
-                  title: "Курсы"
+                  title: "Курсы",
+                  needAuth: true
                 }
               },
               {
@@ -128,18 +99,53 @@ const routes = [
                 name: "course",
                 component: cCourse,
                 meta: {
-                  title: "Курс"
-                }
-              },
-              {
-                path: "courses/:courseId/lessons/:lessonId",
-                name: "lesson",
-                component: cLesson,
-                meta: {
-                  title: "Урок"
+                  title: "Курс",
+                  needAuth: true
                 }
               }
             ]
+          },
+          {
+            path: "",
+            component: cProfileLayout,
+            children: [
+              {
+                path: "profile",
+                name: "profile",
+                component: cProfile,
+                meta: {
+                  title: "Ваш профиль",
+                  needAuth: true
+                }
+              },
+              {
+                path: "profile/change",
+                name: "change",
+                component: cChangeProfile,
+                meta: {
+                  title: "Изменение профиля",
+                  needAuth: true
+                }
+              },
+              {
+                path: "profile/change-password",
+                name: "change-password",
+                component: cChangePassword,
+                meta: {
+                  title: "Изменение пароля",
+                  needAuth: true
+                }
+              }
+            ]
+          },
+          {
+            path: "courses/:courseId/lessons/:lessonId",
+            name: "lesson",
+            component: cLesson,
+            meta: {
+              title: "Урок",
+              needAuth: true
+            }
           },
           {
             path: "empty",
@@ -153,7 +159,8 @@ const routes = [
             path: "interactive-course",
             component: cInteractiveCourse,
             meta: {
-              title: "Интерактивный курс"
+              title: "Интерактивный курс",
+              needAuth: true
             }
           }
         ]
@@ -173,7 +180,19 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.needAuth)) {
     if (!store.getters.isLoggedIn) {
       next({
-        path: "/login",
+        path: "/auth/login",
+        query: { redirect: to.fullPath }
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+  if (to.matched.some(record => record.meta.noAuthOnly)) {
+    if (store.getters.isLoggedIn) {
+      next({
+        path: "/app/courses",
         query: { redirect: to.fullPath }
       });
     } else {
