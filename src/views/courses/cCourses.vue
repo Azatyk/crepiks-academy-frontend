@@ -103,38 +103,26 @@ export default {
   margin-right: 1%;
 }
 
-@media (max-width: 1024px) {
-  .courses__content {
-    margin-top: 15%;
-  }
-
-  .courses__intro {
-    width: 85%;
-    justify-content: center;
-  }
-
-  .courses__text {
-    margin-right: 0;
-    width: 60%;
+@media (max-width: 1400px) {
+  .courses-page {
+    padding: 0% 3%;
+    margin-top: 100px;
+    max-width: 760px;
+    box-sizing: border-box;
   }
 
   .intro__heading {
     width: 100%;
-    font-size: 5vw;
+    font-size: 32px;
   }
 
   .intro__description {
     width: 90%;
-    font-size: 2.3vw;
+    font-size: 16px;
   }
 
   .intro__image {
-    width: 40vw;
-  }
-
-  .courses {
-    width: 85%;
-    justify-content: space-around;
+    width: 350px;
   }
 }
 

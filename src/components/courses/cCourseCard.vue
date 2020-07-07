@@ -5,11 +5,6 @@
       <h3 class="course__heading">{{ title }}</h3>
       <div class="course__lessons-amount">{{ lessonsAmount }} уроков</div>
     </div>
-    <!-- <cButtonLink
-      :route="'/courses/' + id"
-      text="Перейти к курсу"
-      class="course__button"
-    /> -->
     <a-button
       type="primary"
       @click="$router.push('/app/courses/' + id)"
@@ -113,36 +108,29 @@ export default {
   transition: 300ms ease-in-out;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
   .course {
-    width: 33vw;
-    height: 34vw;
+    width: 210px;
+    height: 220px;
   }
 
   .course__image {
-    width: 12vw;
-    height: 12vw;
+    width: 70px;
+    height: 70px;
   }
 
   .course__heading {
-    margin-bottom: 0;
-    font-size: 2.7vw;
+    margin-bottom: 0px;
+    font-size: 18px;
   }
 
   .course__lessons-amount {
-    margin-bottom: 5%;
-    font-size: 2vw;
-  }
-
-  .main-content {
-    transform: translateY(-1px);
+    font-size: 13px;
   }
 
   .course__button {
-    padding: 0 7%;
-    height: 4vw;
-    font-size: 1.8vw;
-    opacity: 1;
+    height: 28px;
+    font-size: 12px;
   }
 }
 

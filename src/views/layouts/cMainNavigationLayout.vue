@@ -20,7 +20,7 @@
           class="navigation__icon active"
         />
         <a-icon
-          type="close"
+          type="left"
           id="navigation__icon-close"
           class="navigation__icon"
         />
@@ -77,18 +77,13 @@ export default {
 .navigation__nav {
   position: fixed;
   top: 0;
-  left: -240px;
+  left: 0;
   padding: 30px 0 0 30px;
   width: 300px;
   min-height: 100vh;
   height: 100%;
   box-sizing: border-box;
   background-color: #1e272e;
-  transition: 200ms ease-in-out;
-}
-
-.show {
-  left: 0;
   transition: 200ms ease-in-out;
 }
 
@@ -134,12 +129,44 @@ export default {
   color: #dff9fb;
 }
 
+.navigation__icon {
+  display: none;
+}
+
 @media (max-width: 1400px) {
+  .navigation__nav {
+    left: -200px;
+    padding-top: 35px;
+  }
+
+  .navigation__nav {
+    width: 250px;
+  }
+
+  .nav__logo {
+    margin-bottom: 100px;
+    font-size: 20px;
+  }
+
+  .nav__link {
+    font-size: 17px;
+  }
+
+  .content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  .show {
+    left: 0;
+    transition: 200ms ease-in-out;
+  }
+
   .navigation__target {
     position: absolute;
     top: 0;
     right: 0;
-    width: 60px;
+    width: 50px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -156,23 +183,25 @@ export default {
 
   .navigation__target:hover .navigation__icon {
     color: #dff9fb;
-    transition: 200ms ease-in-out;
   }
 
   .navigation__icon {
-    font-size: 20px;
+    position: absolute;
+    display: block;
+    font-size: 18px;
     color: #acbebf;
     transition: 200ms ease-in-out;
-    display: none;
+    opacity: 0;
   }
 
   .active {
-    display: block;
+    opacity: 1;
+    transition: 200ms ease-in-out;
   }
 
   .wide {
-    margin-left: 60px;
-    width: calc(100% - 60px);
+    margin-left: 50px;
+    width: calc(100% - 50px);
     transition: 200ms ease-in-out;
   }
 }
