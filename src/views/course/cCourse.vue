@@ -151,60 +151,95 @@ export default {
   font-size: 17px;
 }
 
-@media (max-width: 1024px) {
-  .course__intro {
-    margin-top: 15%;
-    width: 85%;
-    justify-content: center;
-  }
-
-  .course__text {
-    margin-right: 0;
-    margin-left: 7%;
-    width: auto;
+@media (max-width: 1400px) {
+  .course-page {
+    padding: 0% 3%;
+    margin-top: 100px;
+    max-width: 760px;
+    box-sizing: border-box;
   }
 
   .intro__heading {
-    font-size: 6vw;
+    width: 100%;
+    font-size: 43px;
   }
 
   .intro__description {
-    font-size: 2.5vw;
-  }
-
-  .intro__image {
-    margin-right: 5%;
-    width: 50%;
-  }
-
-  .course__lessons {
-    width: 85%;
+    width: 100%;
+    font-size: 20px;
   }
 
   .course__lesson {
-    margin-bottom: 7%;
+    margin-bottom: 5px;
   }
 
   .lesson__number {
-    margin-right: 3vw;
-    font-size: 6vw;
+    font-size: 50px;
   }
 
   .lesson__heading {
-    font-size: 3.2vw;
+    font-size: 25px;
+  }
+
+  .intro__image {
+    width: 330px;
   }
 
   .lesson__button {
-    padding: 0 3%;
-    height: 5vw;
-    font-size: 2.2vw;
+    height: 35px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .course-page {
+    margin-top: 5%;
+    max-width: 100%;
+    width: 95%;
+  }
+
+  .course__intro {
+    margin-bottom: 5%;
+  }
+
+  .intro__heading {
+    font-size: 5.5vw;
+  }
+
+  .intro__image {
+    width: 40vw;
+  }
+
+  .intro__description {
+    width: 90%;
+    font-size: 2.3vw;
+  }
+
+  .course__lessons {
+    margin-bottom: 60px;
+  }
+
+  .lesson__number {
+    font-size: 60px;
+  }
+
+  .lesson__heading {
+    font-size: 27px;
+  }
+
+  .lesson__button {
+    height: 37px;
+    font-size: 17px;
   }
 }
 
 @media (max-width: 700px) {
+  .course-page {
+    margin-top: 5%;
+  }
+
   .course__intro {
-    margin-top: 20%;
-    margin-bottom: 20%;
+    margin-bottom: 10%;
     flex-direction: column-reverse;
   }
 
@@ -220,26 +255,31 @@ export default {
 
   .intro__heading {
     margin: auto;
-    font-size: 7vw;
+    font-size: 9vw;
   }
 
   .intro__description {
-    margin: auto;
-    font-size: 4vw;
+    width: 100%;
+    font-size: 4.5vw;
+  }
+
+  .course__lesson {
+    height: 70px;
   }
 
   .lesson__number {
-    font-size: 7vw;
+    margin-right: 10px;
+    font-size: 9vw;
   }
 
   .lesson__heading {
-    font-size: 3.5vw;
+    font-size: 4vw;
   }
 
   .lesson__button {
     padding: 0 4%;
-    height: 6.5vw;
-    font-size: 3vw;
+    height: 7.5vw;
+    font-size: 3.3vw;
   }
 }
 </style>

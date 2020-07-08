@@ -6,19 +6,12 @@
           Crepiks <span class="nav__logo-thin">Academy</span>
         </div></router-link
       >
-      <div class="nav__bar">
-        <router-link
-          to="/app/courses"
-          class="nav__link nav__link-active"
-          @click="isOpen = false"
+      <div @click="isOpen = false" class="nav__bar">
+        <router-link to="/app/courses" class="nav__link nav__link-active"
           >Курсы</router-link
         >
-        <router-link @click="isOpen = false" to="/app/courses" class="nav__link"
-          >Тренажер</router-link
-        >
-        <router-link @click="isOpen = false" to="/app/courses" class="nav__link"
-          >Тесты</router-link
-        >
+        <router-link to="/app/courses" class="nav__link">Тренажер</router-link>
+        <router-link to="/app/courses" class="nav__link">Тесты</router-link>
       </div>
       <div class="navigation__target" @click="isOpen = !isOpen">
         <a-icon type="right" class="navigation__icon-open navigation__icon" />
@@ -27,7 +20,7 @@
         <a-icon type="down" class="navigation__icon navigation__icon-down" />
       </div>
     </div>
-    <div class="content">
+    <div class="content" @click="isOpen = false">
       <router-view></router-view>
     </div>
   </div>
@@ -194,13 +187,14 @@ export default {
   .navigation__nav {
     bottom: 0;
     padding: 0;
+    padding-left: 8%;
     width: 100vw;
     height: 500px;
     min-height: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     border-radius: 30px 30px 0 0;
     z-index: 5;
   }
@@ -275,6 +269,10 @@ export default {
 }
 
 @media (max-width: 700px) {
+  .navigation__nav {
+    padding-left: 15%;
+  }
+
   .nav__logo {
     font-size: 30px;
   }
