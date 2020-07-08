@@ -1,32 +1,33 @@
 <template>
-  <div class="navigation-page">
-    <div id="navigation__nav" class="navigation__nav">
+  <div class="navigation-page" :class="{ navClosed: !isOpen }">
+    <div class="navigation__nav">
       <router-link to="/"
         ><div class="nav__logo">
           Crepiks <span class="nav__logo-thin">Academy</span>
         </div></router-link
       >
       <div class="nav__bar">
-        <router-link to="/app/courses" class="nav__link nav__link-active"
+        <router-link
+          to="/app/courses"
+          class="nav__link nav__link-active"
+          @click="isOpen = false"
           >Курсы</router-link
         >
-        <router-link to="/app/courses" class="nav__link">Тренажер</router-link>
-        <router-link to="/app/courses" class="nav__link">Тесты</router-link>
+        <router-link @click="isOpen = false" to="/app/courses" class="nav__link"
+          >Тренажер</router-link
+        >
+        <router-link @click="isOpen = false" to="/app/courses" class="nav__link"
+          >Тесты</router-link
+        >
       </div>
-      <div class="navigation__target" @click="ShowHideNav">
-        <a-icon
-          type="right"
-          id="navigation__icon-open"
-          class="navigation__icon active"
-        />
-        <a-icon
-          type="left"
-          id="navigation__icon-close"
-          class="navigation__icon"
-        />
+      <div class="navigation__target" @click="isOpen = !isOpen">
+        <a-icon type="right" class="navigation__icon-open navigation__icon" />
+        <a-icon type="left" class="navigation__icon-close navigation__icon" />
+        <a-icon type="up" class="navigation__icon navigation__icon-up" />
+        <a-icon type="down" class="navigation__icon navigation__icon-down" />
       </div>
     </div>
-    <div id="content" class="content wide">
+    <div class="content">
       <router-view></router-view>
     </div>
   </div>
@@ -38,31 +39,6 @@ export default {
     return {
       isOpen: false
     };
-  },
-  methods: {
-    ShowHideNav() {
-      if (this.isOpen) {
-        document
-          .getElementById("navigation__icon-open")
-          .classList.add("active");
-        document
-          .getElementById("navigation__icon-close")
-          .classList.remove("active");
-        document.getElementById("navigation__nav").classList.remove("show");
-        document.getElementById("content").classList.add("wide");
-        this.isOpen = !this.isOpen;
-      } else {
-        document
-          .getElementById("navigation__icon-close")
-          .classList.add("active");
-        document
-          .getElementById("navigation__icon-open")
-          .classList.remove("active");
-        document.getElementById("navigation__nav").classList.add("show");
-        document.getElementById("content").classList.remove("wide");
-        this.isOpen = !this.isOpen;
-      }
-    }
   }
 };
 </script>
@@ -76,7 +52,6 @@ export default {
 
 .navigation__nav {
   position: fixed;
-  top: 0;
   left: 0;
   padding: 30px 0 0 30px;
   width: 300px;
@@ -135,12 +110,14 @@ export default {
 
 @media (max-width: 1400px) {
   .navigation__nav {
-    left: -200px;
+    left: 0px;
     padding-top: 35px;
+    width: 250px;
+    border-radius: 20px 20px 0 0;
   }
 
-  .navigation__nav {
-    width: 250px;
+  .navClosed > .navigation__nav {
+    left: -200px;
   }
 
   .nav__logo {
@@ -157,9 +134,9 @@ export default {
     width: calc(100% - 250px);
   }
 
-  .show {
-    left: 0;
-    transition: 200ms ease-in-out;
+  .navClosed > .content {
+    margin-left: 50px;
+    width: calc(100% - 50px);
   }
 
   .navigation__target {
@@ -172,6 +149,7 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: #1e272e;
+    border-radius: 20px 20px 0 0;
     transition: 200ms ease-in-out;
     cursor: pointer;
   }
@@ -191,18 +169,126 @@ export default {
     font-size: 18px;
     color: #acbebf;
     transition: 200ms ease-in-out;
+  }
+
+  .navigation__icon-close {
+    opacity: 1;
+  }
+
+  .navigation__icon-open {
     opacity: 0;
   }
 
-  .active {
-    opacity: 1;
-    transition: 200ms ease-in-out;
+  .navClosed .navigation__icon-close {
+    opacity: 0;
   }
 
-  .wide {
-    margin-left: 50px;
-    width: calc(100% - 50px);
-    transition: 200ms ease-in-out;
+  .navClosed .navigation__icon-open {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navigation__nav {
+    bottom: 0;
+    padding: 0;
+    width: 100vw;
+    height: 500px;
+    min-height: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+
+  .navClosed > .navigation__nav {
+    left: 0;
+    right: 0;
+    bottom: -430px;
+  }
+
+  .navigation__target {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+  }
+
+  .nav__logo {
+    margin-bottom: 50px;
+    font-size: 40px;
+  }
+
+  .nav__link {
+    width: auto;
+    font-size: 30px;
+  }
+
+  .navigation__target:hover {
+    background-color: #1e272e;
+  }
+
+  .navigation__icon {
+    color: #dff9fb;
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navClosed > .content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navigation__icon-close,
+  .navigation__icon-open {
+    opacity: 0;
+  }
+  .navClosed .navigation__icon-open,
+  .navigation__icon-close {
+    opacity: 0;
+  }
+
+  .navigation__icon-dowm {
+    opacity: 1;
+  }
+
+  .navigation__icon-up {
+    opacity: 0;
+  }
+
+  .navClosed .navigation__icon-down {
+    opacity: 0;
+  }
+
+  .navClosed .navigation__icon-up {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav__logo {
+    font-size: 30px;
+  }
+
+  .nav__link {
+    font-size: 23px;
+  }
+
+  .navigation__nav {
+    height: 400px;
+  }
+
+  .navClosed > .navigation__nav {
+    bottom: -350px;
+  }
+
+  .navigation__target {
+    height: 50px;
   }
 }
 </style>
