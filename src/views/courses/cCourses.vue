@@ -126,9 +126,36 @@ export default {
   }
 }
 
+@media (max-width: 1024px) {
+  .courses-page {
+    margin-top: 5%;
+    max-width: 100%;
+    width: 95%;
+  }
+
+  .intro__heading {
+    font-size: 4.5vw;
+  }
+
+  .intro__description {
+    font-size: 2.5vw;
+  }
+
+  .intro__image {
+    width: 40vw;
+  }
+
+  .courses {
+    margin-bottom: 100px;
+  }
+}
+
 @media (max-width: 700px) {
+  .courses-page {
+    margin-top: 10%;
+  }
+
   .courses__intro {
-    margin-top: 20%;
     margin-bottom: 20%;
     flex-direction: column-reverse;
   }

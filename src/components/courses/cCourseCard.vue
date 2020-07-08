@@ -134,23 +134,55 @@ export default {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
   .course {
-    width: 80%;
-    height: 80vw;
+    width: 27vw;
+    height: 28vw;
+  }
+
+  .main-content {
+    transform: translateY(-8px);
   }
 
   .course__image {
-    width: 32vw;
-    height: 32vw;
+    width: 8vw;
+    height: 8vw;
   }
 
   .course__heading {
-    font-size: 6vw;
+    margin-bottom: 5px;
+    font-size: 2.5vw;
   }
 
   .course__lessons-amount {
-    font-size: 5vw;
+    font-size: 2vw;
+  }
+
+  .course__button {
+    height: 4vw;
+    font-size: 1.6vw;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .course {
+    width: 280px;
+    height: 290px;
+  }
+
+  .course__image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .course__heading {
+    margin-bottom: 0;
+    font-size: 25px;
+  }
+
+  .course__lessons-amount {
+    font-size: 20px;
   }
 
   .course__button {

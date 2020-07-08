@@ -60,6 +60,7 @@ export default {
   box-sizing: border-box;
   background-color: #1e272e;
   transition: 200ms ease-in-out;
+  border-radius: 0;
 }
 
 .content {
@@ -113,7 +114,7 @@ export default {
     left: 0px;
     padding-top: 35px;
     width: 250px;
-    border-radius: 20px 20px 0 0;
+    border-radius: 0;
   }
 
   .navClosed > .navigation__nav {
@@ -149,7 +150,7 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: #1e272e;
-    border-radius: 20px 20px 0 0;
+    border-radius: 0;
     transition: 200ms ease-in-out;
     cursor: pointer;
   }
@@ -169,6 +170,7 @@ export default {
     font-size: 18px;
     color: #acbebf;
     transition: 200ms ease-in-out;
+    opacity: 0;
   }
 
   .navigation__icon-close {
@@ -199,6 +201,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 30px 30px 0 0;
     z-index: 5;
   }
 
@@ -214,6 +217,7 @@ export default {
     left: 0;
     width: 100%;
     height: 70px;
+    border-radius: 30px 30px 0 0;
   }
 
   .nav__logo {
@@ -253,7 +257,7 @@ export default {
     opacity: 0;
   }
 
-  .navigation__icon-dowm {
+  .navigation__icon-down {
     opacity: 1;
   }
 
