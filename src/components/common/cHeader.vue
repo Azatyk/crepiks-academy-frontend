@@ -62,8 +62,9 @@ export default {
 }
 
 .header__auth-button {
-  height: 2.2vw;
-  font-size: 1vw;
+  padding: 0 3vw;
+  height: 6vw;
+  font-size: 3vw;
 }
 
 .header__exit-button {

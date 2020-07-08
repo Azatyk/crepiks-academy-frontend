@@ -84,4 +84,21 @@ input::-webkit-input-placeholder {
 input::-moz-placeholder {
   color: #516f8c;
 }
+
+@media (max-width: 1024px) {
+  .input__label {
+    width: 10vw;
+    height: 8vw;
+  }
+
+  .input__input {
+    padding: 0 2.5vw;
+    height: 8vw;
+    font-size: 3vw;
+  }
+
+  .input__icon {
+    font-size: 3vw;
+  }
+}
 </style>

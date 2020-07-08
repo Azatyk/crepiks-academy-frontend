@@ -52,6 +52,7 @@ export default {
 
 <style scoped>
 .home__content {
+  padding: 0.1px;
   width: 100%;
 }
 </style>
