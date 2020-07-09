@@ -13,6 +13,7 @@
         <router-link to="/app/courses" class="nav__link">Тренажер</router-link>
         <router-link to="/app/courses" class="nav__link">Тесты</router-link>
       </div>
+      <div class="nav__logout-button" @click="logout">Выйти</div>
       <div class="navigation__target" @click="isOpen = !isOpen">
         <a-icon type="right" class="navigation__icon-open navigation__icon" />
         <a-icon type="left" class="navigation__icon-close navigation__icon" />
@@ -27,12 +28,15 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
       isOpen: false
     };
-  }
+  },
+  methods: mapMutations(["logout"])
 };
 </script>
 
@@ -102,6 +106,20 @@ export default {
   display: none;
 }
 
+.nav__logout-button {
+  position: absolute;
+  bottom: 3%;
+  font-size: 18px;
+  color: #acbebf;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.nav__logout-button:hover {
+  color: #fc7979;
+  transition: 200ms ease-in-out;
+}
+
 @media (max-width: 1400px) {
   .navigation__nav {
     left: 0px;
@@ -120,6 +138,10 @@ export default {
   }
 
   .nav__link {
+    font-size: 17px;
+  }
+
+  .nav__logout-button {
     font-size: 17px;
   }
 
@@ -216,12 +238,18 @@ export default {
 
   .nav__logo {
     margin-bottom: 50px;
-    font-size: 40px;
+    font-size: 38px;
   }
 
   .nav__link {
     width: auto;
-    font-size: 30px;
+    font-size: 28px;
+  }
+
+  .nav__logout-button {
+    bottom: 5%;
+    font-size: 28px;
+    color: #fc7979;
   }
 
   .navigation__target:hover {
@@ -274,11 +302,15 @@ export default {
   }
 
   .nav__logo {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .nav__link {
-    font-size: 23px;
+    font-size: 20px;
+  }
+
+  .nav__logout-button {
+    font-size: 20px;
   }
 
   .navigation__nav {

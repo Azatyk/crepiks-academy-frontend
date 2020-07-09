@@ -1,4 +1,5 @@
 import { request } from "@/requests/request";
+import router from "../../router";
 
 export default {
   state: {
@@ -69,6 +70,7 @@ export default {
       state.token = {};
       state.user = null;
       window.localStorage.removeItem("token");
+      router.push("/");
     }
   },
   getters: {
