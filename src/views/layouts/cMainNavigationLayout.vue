@@ -1,0 +1,328 @@
+<template>
+  <div class="navigation-page" :class="{ navClosed: !isOpen }">
+    <div class="navigation__nav">
+      <router-link to="/"
+        ><div class="nav__logo">
+          Crepiks <span class="nav__logo-thin">Academy</span>
+        </div></router-link
+      >
+      <div @click="isOpen = false" class="nav__bar">
+        <router-link to="/app/courses" class="nav__link nav__link-active"
+          >Курсы</router-link
+        >
+        <router-link to="/app/courses" class="nav__link">Тренажер</router-link>
+        <router-link to="/app/courses" class="nav__link">Тесты</router-link>
+      </div>
+      <div class="nav__logout-button" @click="logout">Выйти</div>
+      <div class="navigation__target" @click="isOpen = !isOpen">
+        <a-icon type="right" class="navigation__icon-open navigation__icon" />
+        <a-icon type="left" class="navigation__icon-close navigation__icon" />
+        <a-icon type="up" class="navigation__icon navigation__icon-up" />
+        <a-icon type="down" class="navigation__icon navigation__icon-down" />
+      </div>
+    </div>
+    <div class="content" @click="isOpen = false">
+      <router-view></router-view>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapMutations } from "vuex";
+
+export default {
+  data() {
+    return {
+      isOpen: false
+    };
+  },
+  methods: mapMutations(["logout"])
+};
+</script>
+
+<style scoped>
+.navigation-page {
+  width: 100%;
+  height: 100%;
+  background-color: #dff9fb;
+}
+
+.navigation__nav {
+  position: fixed;
+  left: 0;
+  padding: 30px 0 0 30px;
+  width: 300px;
+  min-height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: #1e272e;
+  transition: 200ms ease-in-out;
+  border-radius: 0;
+}
+
+.content {
+  padding: 0.1px;
+  margin-left: 300px;
+  width: calc(100% - 300px);
+  min-height: 100vh;
+  height: auto;
+  transition: 200ms ease-in-out;
+}
+
+.nav__logo {
+  margin-bottom: 20%;
+  color: #dff9fb;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.nav__logo-thin {
+  font-weight: 300;
+}
+
+.nav__bar {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__link {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #acbebf;
+  transition: 100ms ease-in-out;
+}
+
+.nav__link:hover {
+  color: #dff9fb;
+  transition: 100ms ease-in-out;
+}
+
+.nav__link-active {
+  color: #dff9fb;
+}
+
+.navigation__icon {
+  display: none;
+}
+
+.nav__logout-button {
+  position: absolute;
+  bottom: 3%;
+  font-size: 18px;
+  color: #acbebf;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.nav__logout-button:hover {
+  color: #fc7979;
+  transition: 200ms ease-in-out;
+}
+
+@media (max-width: 1400px) {
+  .navigation__nav {
+    left: 0px;
+    padding-top: 35px;
+    width: 250px;
+    border-radius: 0;
+  }
+
+  .navClosed > .navigation__nav {
+    left: -200px;
+  }
+
+  .nav__logo {
+    margin-bottom: 100px;
+    font-size: 20px;
+  }
+
+  .nav__link {
+    font-size: 17px;
+  }
+
+  .nav__logout-button {
+    font-size: 17px;
+  }
+
+  .content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+  }
+
+  .navClosed > .content {
+    margin-left: 50px;
+    width: calc(100% - 50px);
+  }
+
+  .navigation__target {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e272e;
+    border-radius: 0;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+  }
+
+  .navigation__target:hover {
+    background-color: #242e36;
+    transition: 200ms ease-in-out;
+  }
+
+  .navigation__target:hover .navigation__icon {
+    color: #dff9fb;
+  }
+
+  .navigation__icon {
+    position: absolute;
+    display: block;
+    font-size: 18px;
+    color: #acbebf;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+  }
+
+  .navigation__icon-close {
+    opacity: 1;
+  }
+
+  .navigation__icon-open {
+    opacity: 0;
+  }
+
+  .navClosed .navigation__icon-close {
+    opacity: 0;
+  }
+
+  .navClosed .navigation__icon-open {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .navigation__nav {
+    bottom: 0;
+    padding: 0;
+    padding-left: 8%;
+    width: 100vw;
+    height: 500px;
+    min-height: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 30px 30px 0 0;
+    z-index: 5;
+  }
+
+  .navClosed > .navigation__nav {
+    left: 0;
+    right: 0;
+    bottom: -430px;
+  }
+
+  .navigation__target {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    border-radius: 30px 30px 0 0;
+  }
+
+  .nav__logo {
+    margin-bottom: 50px;
+    font-size: 38px;
+  }
+
+  .nav__link {
+    width: auto;
+    font-size: 28px;
+  }
+
+  .nav__logout-button {
+    bottom: 5%;
+    font-size: 28px;
+    color: #fc7979;
+  }
+
+  .navigation__target:hover {
+    background-color: #1e272e;
+  }
+
+  .navigation__icon {
+    color: #dff9fb;
+  }
+
+  .content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navClosed > .content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navigation__icon-close,
+  .navigation__icon-open {
+    opacity: 0;
+  }
+  .navClosed .navigation__icon-open,
+  .navigation__icon-close {
+    opacity: 0;
+  }
+
+  .navigation__icon-down {
+    opacity: 1;
+  }
+
+  .navigation__icon-up {
+    opacity: 0;
+  }
+
+  .navClosed .navigation__icon-down {
+    opacity: 0;
+  }
+
+  .navClosed .navigation__icon-up {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .navigation__nav {
+    padding-left: 15%;
+  }
+
+  .nav__logo {
+    font-size: 28px;
+  }
+
+  .nav__link {
+    font-size: 20px;
+  }
+
+  .nav__logout-button {
+    font-size: 20px;
+  }
+
+  .navigation__nav {
+    height: 400px;
+  }
+
+  .navClosed > .navigation__nav {
+    bottom: -350px;
+  }
+
+  .navigation__target {
+    height: 50px;
+  }
+}
+</style>

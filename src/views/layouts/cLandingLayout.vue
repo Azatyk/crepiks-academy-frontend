@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="landing-page">
     <cHeader />
     <router-view></router-view>
     <cFooter />
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.landing-page {
   width: 100%;
   height: 100%;
   background-color: #f8f7fc;
