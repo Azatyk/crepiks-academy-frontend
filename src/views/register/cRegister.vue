@@ -168,4 +168,15 @@ export default {
     font-size: 3vw;
   }
 }
+
+@media (max-width: 700px) {
+  .form {
+    min-width: 0;
+    height: auto;
+  }
+
+  .register-form__heading {
+    font-size: 6vw;
+  }
+}
 </style>

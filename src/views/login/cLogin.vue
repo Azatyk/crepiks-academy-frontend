@@ -136,4 +136,15 @@ export default {
     font-size: 3vw;
   }
 }
+
+@media (max-width: 700px) {
+  .form {
+    min-width: 0;
+    height: auto;
+  }
+
+  .auth-form__heading {
+    font-size: 7vw;
+  }
+}
 </style>

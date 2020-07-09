@@ -62,24 +62,9 @@ export default {
 }
 
 .header__auth-button {
-  padding: 0 3vw;
-  height: 6vw;
-  font-size: 3vw;
-}
-
-.header__exit-button {
-  padding: 11px 35px;
-  width: auto;
-  font-size: 0.8vw;
-  color: white;
-  font-weight: 300;
-  text-decoration: none;
-  border: none;
-  background-color: #fc7979;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 300ms ease-in-out;
-  box-shadow: none;
+  padding: 0 1vw;
+  height: 2.2vw;
+  font-size: 1.2vw;
 }
 
 .header__exit-button:hover {
@@ -87,53 +72,19 @@ export default {
   transition: 300ms ease-in-out;
 }
 
-.profile__link {
-  width: auto;
-  text-decoration: none;
-}
-
-.profile__data {
-  width: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.profile__first-name {
-  margin-right: 10px;
-  font-size: 1.3vw;
-  color: #fc7979;
-  font-weight: 300;
-}
-
-.profile__image-container {
-  width: 2.5vw;
-  height: 2.5vw;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.profile__image {
-  width: 100%;
-}
-
 @media (max-width: 1024px) {
   .header__logo {
     font-size: 2.5vw;
   }
 
+  .header__auth-button {
+    padding: 0 2vw;
+    height: 4.5vw;
+    font-size: 2.5vw;
+  }
+
   .header__nav {
     display: none;
-  }
-
-  .profile__first-name {
-    font-size: 3vw;
-  }
-
-  .profile__image-container {
-    width: 7vw;
-    height: 7vw;
   }
 }
 
@@ -142,13 +93,10 @@ export default {
     font-size: 3vw;
   }
 
-  .profile__first-name {
-    font-size: 4vw;
-  }
-
-  .profile__image-container {
-    width: 9vw;
-    height: 9vw;
+  .header__auth-button {
+    padding: 0 3vw;
+    height: 7vw;
+    font-size: 3vw;
   }
 }
 </style>
