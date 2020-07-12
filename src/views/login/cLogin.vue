@@ -1,12 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader pageType="login" />
-    <cMessage
-      icon="fas fa-times-circle"
-      :text="errResponse"
-      :isActive="isError"
-      @change="messageVisibleChange"
-    />
+  <div class="login__page">
     <div class="content">
       <cForm @submit="login" class="form">
         <h3 class="auth-form__heading">Войти</h3>
@@ -23,40 +16,43 @@
           v-model="password"
           id="password"
           class="auth-form__input"
+          type="password"
         />
-        <cButton text="Войти" type="submit" class="auth-form__submit-button" />
-        <div class="form__link-text">
+        <a-button
+          type="primary"
+          @click="login"
+          class="auth-form__submit-button"
+        >
+          Войти
+        </a-button>
+        <!-- <div class="form__link-text">
           Нет аккаунта?
-          <router-link to="/register" class="form__link-register"
+          <router-link
+            to="/auth/register"
+            class="form__link-text form__link-register"
             >Зарегистрируйтесь</router-link
           >
-        </div>
+        </div> -->
       </cForm>
     </div>
   </div>
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cForm from "@/components/general/cForm";
-import cFormInput from "@/components/general/cFormInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cForm from "@/components/common/cForm";
+import cFormInput from "@/components/common/cFormInput";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
-    cHeader,
     cForm,
     cFormInput,
-    cButton,
-    cMessage
+    "a-button": Button
   },
   data() {
     return {
       email: "",
-      password: "",
-      errResponse: "",
-      isError: false
+      password: ""
     };
   },
   methods: {
@@ -65,27 +61,14 @@ export default {
         const { email, password } = this;
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/"))
-          .catch(err => {
-            this.errResponse = err.response.data.message;
-            this.isError = true;
-          });
+          .then(() => this.$router.push("/app/courses"));
       }
-    },
-    messageVisibleChange(status) {
-      this.isError = status;
     }
   }
 };
 </script>
 
 <style scoped>
-.page {
-  height: 100vh;
-  width: 100%;
-  background-color: #34495e;
-}
-
 .content {
   height: 100vh;
   width: 100%;
@@ -95,13 +78,15 @@ export default {
 }
 
 .form {
-  width: 25%;
+  min-width: 300px;
+  width: 500px;
+  height: 380px;
 }
 
 .auth-form__heading {
   color: #34495e;
-  margin-bottom: 5%;
-  font-size: 2vw;
+  margin-bottom: 15px;
+  font-size: 35px;
   font-weight: 500;
 }
 
@@ -111,29 +96,56 @@ export default {
 
 .auth-form__submit-button {
   margin-bottom: 3%;
-  padding: 14px 0;
+  height: 45px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #f8f7fc;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
-  background-color: #fc7979;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .form__link-text {
-  font-size: 0.95vw;
+  font-size: 17px;
   color: #516f8c;
 }
 
 .form__link-register {
-  font-size: 0.95vw;
   color: #fc7979;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .form {
+    width: 80%;
+    height: 60vw;
+  }
+
+  .auth-form__heading {
+    margin-bottom: 3vw;
+    font-size: 6vw;
+  }
+
+  .auth-form__input {
+    margin-bottom: 3vw;
+  }
+
+  .auth-form__submit-button {
+    height: 8vw;
+    font-size: 3vw;
+  }
+
+  .form__link-text {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .form {
+    min-width: 0;
+    height: auto;
+  }
+
+  .auth-form__heading {
+    font-size: 7vw;
+  }
 }
 </style>

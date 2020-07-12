@@ -3,7 +3,11 @@
     :type="type"
     class="button"
     @click="$emit('action')"
-    :class="{ bold: isBold }"
+    :class="[
+      appearanceType == 'negative' ? 'negative' : '',
+      appearanceType == 'positive' ? 'positive' : '',
+      { bold: isBold }
+    ]"
   >
     {{ text }}
   </button>
@@ -24,6 +28,11 @@ export default {
     type: {
       type: String,
       required: false
+    },
+    appearanceType: {
+      type: String,
+      required: false,
+      default: "negative"
     }
   }
 };
@@ -31,7 +40,7 @@ export default {
 
 <style scoped>
 .button {
-  padding: 11px 35px;
+  padding: 0.8vw 2vw;
   width: auto;
   display: flex;
   justify-content: center;
@@ -41,15 +50,29 @@ export default {
   font-weight: 300;
   text-decoration: none;
   border: none;
-  background-color: #fc7979;
   border-radius: 4px;
   cursor: pointer;
   transition: 300ms ease-in-out;
   box-shadow: 0 0 5px 0px #d4d4d4;
 }
 
+.negative {
+  background-color: #fc7979;
+}
+
+.negative:hover {
+  background-color: #ff9191;
+}
+
+.positive {
+  background-color: #2ecc71;
+}
+
+.positive:hover {
+  background-color: #60e699;
+}
+
 .button:hover {
-  background-color: #f78f8f;
   transition: 300ms ease-in-out;
 }
 

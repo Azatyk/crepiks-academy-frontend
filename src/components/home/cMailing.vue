@@ -1,13 +1,5 @@
 <template>
   <section class="mailing">
-    <cMessage
-      icon="fas fa-exclamation-circle"
-      :text="errResponse"
-      :isActive="isError"
-      backColor="#ffcc00"
-      textColor="white"
-      @change="messageVisibleChange"
-    />
     <form @submit.prevent="save" class="mailing__form form">
       <div class="form__text">
         <h2 class="form__heading">Узнавайте обо всем первым</h2>
@@ -23,45 +15,33 @@
           placeholder="Email"
           id="email"
         />
-        <cButton
-          type="submit"
-          class="form__button"
-          text="Подписаться"
-          :isBold="true"
-        />
+        <a-button @click="save" type="primary" class="form__button"
+          >Подписаться</a-button
+        >
       </div>
     </form>
   </section>
 </template>
 
 <script>
-import cInput from "@/components/general/cInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cInput from "@/components/common/cInput";
+import { Button } from "ant-design-vue";
 
 export default {
   components: {
     cInput,
-    cButton,
-    cMessage
+    "a-button": Button
   },
   data() {
     return {
       userEmail: "",
-      errResponse: "",
-      isError: false
+      messageText: ""
     };
   },
   methods: {
     save() {
       let email = this.userEmail;
-      this.$store.dispatch("saveEmail", email).catch(err => {
-        this.errResponse = err.response.data.message;
-        this.isError = true;
-      });
-    },
-    messageVisibleChange(status) {
-      this.isError = status;
+      this.$store.dispatch("saveEmail", email);
     }
   }
 };
@@ -74,8 +54,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f7fc;
-  background-image: url("../../../assets/images/mailingSpot.svg");
+  background-image: url("../../assets/images/mailingSpot.svg");
   background-size: 60%;
   background-position: bottom right;
   background-repeat: no-repeat;
@@ -89,7 +68,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
-  box-shadow: 0 0 15px 0px #9c9c9c;
+  box-shadow: 0 0 20px 0px #00000026;
   border-radius: 5px;
 }
 
@@ -110,8 +89,11 @@ export default {
 }
 
 .form__heading {
+  margin-bottom: 0;
   font-size: 2.2vw;
   color: #34495e;
+  font-weight: 500;
+  text-align: center;
 }
 
 .form__description {
@@ -130,6 +112,85 @@ export default {
 .form__button {
   height: 3vw;
   width: 30%;
-  font-size: 1vw;
+  font-size: 1.1vw;
+}
+
+@media (max-width: 1024px) {
+  .mailing {
+    padding: 15vw 0;
+    height: auto;
+    background-image: none;
+  }
+
+  .mailing__form {
+    padding: 5% 1%;
+    height: auto;
+    width: 65%;
+  }
+
+  .form__heading {
+    font-size: 4vw;
+  }
+
+  .form__description {
+    width: 90%;
+    font-size: 2.5vw;
+    text-align: center;
+  }
+
+  .form__functional {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .form__input {
+    padding: 1vw 2vw;
+    margin: auto;
+    margin-bottom: 3%;
+    width: 80%;
+    height: 6vw;
+    font-size: 2.5vw;
+  }
+
+  .form__button {
+    height: 6vw;
+    width: 80%;
+    font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .mailing__form {
+    padding: 5% 2%;
+    width: 80%;
+  }
+
+  .form__text {
+    width: 90%;
+    margin-bottom: 5%;
+  }
+
+  .form__heading {
+    margin-bottom: 5%;
+    font-size: 8vw;
+    line-height: 1;
+  }
+
+  .form__description {
+    width: 100%;
+    font-size: 3.2vw;
+  }
+
+  .form__input {
+    width: 90%;
+    height: 8vw;
+    font-size: 3vw;
+  }
+
+  .form__button {
+    height: 8vw;
+    width: 90%;
+    font-size: 3vw;
+  }
 }
 </style>

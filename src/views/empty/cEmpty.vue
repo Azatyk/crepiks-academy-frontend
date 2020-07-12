@@ -1,14 +1,5 @@
 <template>
-  <div class="page">
-    <cHeader pageType="common" />
-    <cMessage
-      icon="fas fa-exclamation-circle"
-      :text="errResponse"
-      :isActive="isError"
-      backColor="#ffcc00"
-      textColor="white"
-      @change="messageVisibleChange"
-    />
+  <div class="empty__page">
     <div class="content">
       <div class="soon">
         <div class="soon__text">
@@ -43,45 +34,33 @@
 </template>
 
 <script>
-import cHeader from "@/components/general/cHeader";
-import cInput from "@/components/general/cInput";
-import cButton from "@/components/general/cButton";
-import cMessage from "@/components/general/cMessage";
+import cInput from "@/components/common/cInput";
+import cButton from "@/components/common/cButton";
 
 export default {
   components: {
-    cHeader,
     cInput,
-    cButton,
-    cMessage
+    cButton
   },
   data() {
     return {
-      userEmail: "",
-      errResponse: "",
-      isError: false
+      userEmail: ""
     };
   },
   methods: {
     save() {
       let email = this.userEmail;
-      this.$store.dispatch("saveEmail", email).catch(err => {
-        this.errResponse = err.response.data.message;
-        this.isError = true;
-      });
-    },
-    messageVisibleChange(status) {
-      this.isError = status;
+      this.$store.dispatch("saveEmail", email);
     }
   }
 };
 </script>
 
 <style scoped>
-.page {
+.empty__page {
   height: 100vh;
   width: 100%;
-  background-color: #34495e;
+  background-color: #dff9fb;
 }
 
 .content {
@@ -99,25 +78,26 @@ export default {
 .soon__heading {
   margin-bottom: 0.5%;
   font-size: 3.5vw;
-  color: #f8f7fc;
+  color: #34495e;
   text-align: center;
 }
 
 .soon__description {
   font-size: 1.7vw;
-  color: #dbdbdb;
+  color: #516f8c;
   text-align: center;
 }
 
 .mailing__form {
   margin: auto;
   height: 11vw;
-  width: 70%;
+  width: 82%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
+  box-shadow: 0 0 10px #0000001a;
   border-radius: 5px;
 }
 
@@ -138,6 +118,7 @@ export default {
 }
 
 .form__heading {
+  margin: 0;
   margin-right: 3%;
   font-size: 3vw;
   color: #34495e;
@@ -165,5 +146,93 @@ export default {
   height: 3vw;
   width: 30%;
   font-size: 1vw;
+}
+
+@media (max-width: 1024px) {
+  .soon__heading {
+    font-size: 8vw;
+  }
+
+  .soon__description {
+    font-size: 3.5vw;
+  }
+
+  .mailing__form {
+    padding: 5% 0;
+    height: auto;
+    width: 80%;
+  }
+
+  .form__heading {
+    font-size: 7vw;
+  }
+
+  .form__description {
+    font-size: 2.1vw;
+  }
+
+  .form__input {
+    padding: 0 2vw;
+    height: 6vw;
+    font-size: 3vw;
+  }
+
+  .form__button {
+    height: 6vw;
+    font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .soon__heading {
+    font-size: 9vw;
+  }
+
+  .soon__description {
+    font-size: 4vw;
+  }
+
+  .form {
+    width: 90%;
+  }
+
+  .form__text {
+    margin-bottom: 5%;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .form__heading {
+    margin-right: 0;
+    margin-bottom: -5%;
+    margin-top: -5%;
+    font-size: 20vw;
+  }
+
+  .form__description {
+    width: 80%;
+    font-size: 4.2vw;
+    text-align: center;
+  }
+
+  .form__functional {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .form__input {
+    padding: 0 3vw;
+    margin-right: 0;
+    margin-bottom: 5%;
+    width: 100%;
+    height: 10vw;
+    font-size: 4vw;
+  }
+
+  .form__button {
+    width: 100%;
+    height: 10vw;
+    font-size: 3.5vw;
+  }
 }
 </style>
