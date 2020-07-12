@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 
 import cHome from "@/views/home/cHome";
 
-import cRegister from "@/views/register/cRegister";
+// import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
 
 import cCourses from "@/views/courses/cCourses";
@@ -37,15 +37,15 @@ const routes = [
         name: "auth",
         component: cAuthLayout,
         children: [
-          {
-            path: "register",
-            name: "register",
-            component: cRegister,
-            meta: {
-              title: "Регистрация",
-              noAuthOnly: true
-            }
-          },
+          // {
+          //   path: "register",
+          //   name: "register",
+          //   component: cRegister,
+          //   meta: {
+          //     title: "Регистрация",
+          //     noAuthOnly: true
+          //   }
+          // },
           {
             path: "login",
             name: "login",

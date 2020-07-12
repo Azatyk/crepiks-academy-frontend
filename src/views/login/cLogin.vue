@@ -16,6 +16,7 @@
           v-model="password"
           id="password"
           class="auth-form__input"
+          type="password"
         />
         <a-button
           type="primary"
@@ -24,14 +25,14 @@
         >
           Войти
         </a-button>
-        <div class="form__link-text">
+        <!-- <div class="form__link-text">
           Нет аккаунта?
           <router-link
             to="/auth/register"
             class="form__link-text form__link-register"
             >Зарегистрируйтесь</router-link
           >
-        </div>
+        </div> -->
       </cForm>
     </div>
   </div>
