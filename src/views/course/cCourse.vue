@@ -19,7 +19,7 @@
         </div>
         <a-button
           type="primary"
-          @click="$router.push('/app/empty')"
+          @click="$router.push('/app/courses/' + id + '/lessons/' + lesson._id)"
           class="lesson__button"
           >Перейти</a-button
         >
@@ -35,7 +35,6 @@ import { Button } from "ant-design-vue";
 export default {
   components: {
     "a-button": Button
-    // @click="$router.push('/app/courses/' + id + '/lessons/' + lesson._id)"
   },
   data() {
     return {
