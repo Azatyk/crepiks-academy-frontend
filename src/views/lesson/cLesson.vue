@@ -1,13 +1,36 @@
 <template>
   <div class="interactive__page">
-    <div class="interactive__navigation-menu">
+    <div class="interactive__navigation-menu" :class="{ navClosed: !isOpen }">
       <div class="navigation">
-        <div class="navigation__logo">Crepiks</div>
+        <router-link to="/app/courses"
+          ><div class="navigation__logo">
+            Crepiks <span class="navigation__logo-thin">Academy</span>
+          </div></router-link
+        >
+        <div class="navigation__lessons">
+          <!-- <router-link v-for="(lesson, index) in lessons" :key="index">
+        </router-link> -->
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">1.</span>Основы HTML
+          </div>
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">2.</span>Как работает
+            интернет
+          </div>
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">3.</span>Стилезуем страницу
+          </div>
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">4.</span>Делаем сайт
+            интерактивным
+          </div>
+        </div>
       </div>
-      <div class="interactive__navigation-target">
+      <div class="interactive__navigation-target" @click="isOpen = !isOpen">
         <a-icon type="up" class="interactive__navigation-icon" />
       </div>
     </div>
+    <div class="black__background" @click="isOpen = false"></div>
     <div class="interactive__content">
       <div class="interactive__programming">
         <div class="interactive__lesson-editor">
@@ -15,9 +38,10 @@
             Программный код
           </div>
           <prism-editor
-            code="code"
             language="js"
-            :lineNumbers="true"
+            class="interactive__editor"
+            code="console.log('Hello, World!')"
+            :readonly="true"
           ></prism-editor>
         </div>
         <div class="interactive__lesson-instructions">
@@ -26,7 +50,20 @@
           >
             Задания
           </div>
-          <div class="intractive__instructions-content"></div>
+          <div class="interactive__instructions-content">
+            <div class="instructions__task">
+              <span class="instructions__task-dash">—</span>Удалите
+              закомментированный код на 13 строке
+            </div>
+            <div class="instructions__task">
+              <span class="instructions__task-dash">—</span>На 15 строке
+              добавьте кнопку &lt;button&gt;Это кнопка&lt;/button&gt;
+            </div>
+            <div class="instructions__task">
+              <span class="instructions__task-dash">—</span>Оформите подписку на
+              Crepiks Academy!
+            </div>
+          </div>
         </div>
       </div>
       <div class="interactive__browser">
@@ -36,34 +73,86 @@
         <iframe class="interactive__frame">
           Ваш браузер не поддерживает фреймы!
         </iframe>
-        <div class="interactive__theory-button">
+        <div class="interactive__theory-button" @click="isModalActive = true">
           Теория
         </div>
+        <vs-dialog full-screen blur v-model="isModalActive">
+          <div class="theory">
+            <h1 class="theory__title">Основы HTML</h1>
+            <div class="theory__content">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Obcaecati incidunt sequi iusto autem explicabo minima repellendus.
+              Distinctio, est, enim voluptatum obcaecati sequi itaque natus eius
+              possimus labore dolorum dolorem laudantium quaerat cum voluptas ab
+              praesentium ducimus vero quo? Neque voluptas accusantium dolore.
+              Voluptatibus, maxime. Ad, labore non. Cum dolor, ipsa eveniet
+              adipisci iure alias error quia dolorem, illum recusandae atque
+              debitis ut, esse tenetur praesentium quisquam a vitae inventore
+              labore consectetur aspernatur. Sapiente nobis consectetur,
+              assumenda error cupiditate vel doloremque accusamus delectus. Unde
+              omnis aspernatur amet ipsa? Beatae numquam tempora illum, ex,
+              voluptas impedit nulla eaque facilis, sequi repellendus
+              repudiandae. Lorem, ipsum dolor sit amet consectetur adipisicing
+              elit. Obcaecati incidunt sequi iusto autem explicabo minima
+              repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+              itaque natus eius possimus labore dolorum dolorem laudantium
+              quaerat cum voluptas ab praesentium ducimus vero quo? Neque
+              voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore non.
+              Cum dolor, ipsa eveniet adipisci iure alias error quia dolorem,
+              illum recusandae atque debitis ut, esse tenetur praesentium
+              quisquam a vitae inventore labore consectetur aspernatur. Sapiente
+              nobis consectetur, assumenda error cupiditate vel doloremque
+              accusamus delectus. Unde omnis aspernatur amet ipsa? Beatae
+              numquam tempora illum, ex, voluptas impedit nulla eaque facilis,
+              sequi repellendus repudiandae.
+            </div>
+          </div>
+        </vs-dialog>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import PrismEditor from "vue-prism-editor";
 import "prismjs";
 import "prismjs/themes/prism.css";
+import PrismEditor from "vue-prism-editor";
+import dialog from "vuesax/dist/vsDialog";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    PrismEditor
+    PrismEditor,
+    "vs-dialog": dialog
   },
 
   data() {
     return {
-      code: "console.log('Hello, Crepiks!')"
+      code: "console.log('Hello, Crepiks!')",
+      lesson: {},
+      lessons: [],
+      isOpen: false,
+      isModalActive: false
     };
-  },
-  methods: {
-    onChange(value) {
-      console.log(value);
-    }
   }
+  // mounted() {
+  //   this.$store
+  //     .dispatch("getLesson", this.id)
+  //     .then((res) => (this.lesson = res.data));
+  //   this.$store
+  //     .dispatch("getLessons", this.id.courseId)
+  //     .then((res) => (this.lessons = res.data));
+  // },
+  // methods: {
+  //   mounted() {
+  //     this.$store
+  //       .dispatch("getLesson", this.id)
+  //       .then((res) => (this.lesson = res.data));
+  //     this.$store
+  //       .dispatch("getLessons", this.id.courseId)
+  //       .then((res) => (this.lessons = res.data));
+  //   },
+  // },
 };
 </script>
 
@@ -78,12 +167,19 @@ export default {
   left: 0;
   height: 100%;
   width: 500px;
-  background-color: #d1d2d6;
+  background-color: white;
   z-index: 3;
+  transition: 200ms ease-in-out;
+}
+
+.navClosed {
+  left: -450px;
+  transition: 200ms ease-in-out;
 }
 
 .interactive__navigation-target {
   position: absolute;
+  top: 0;
   right: 0;
   height: 100vh;
   width: 50px;
@@ -91,12 +187,48 @@ export default {
   justify-content: center;
   align-items: center;
   border-right: 1px solid #d1d2d6;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.interactive__navigation-target:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
+}
+
+.interactive__navigation-target:hover > .interactive__navigation-icon {
+  color: #1e272e !important;
+  transition: 200ms ease-in-out;
 }
 
 .interactive__navigation-icon {
   font-size: 18px;
-  color: #1e272e;
+  color: #747b80 !important;
+  transform: rotate(270deg);
+  transition: 200ms ease-in-out;
+}
+
+.navClosed .interactive__navigation-icon {
   transform: rotate(90deg);
+  transition: 200ms ease-in-out;
+}
+
+.black__background {
+  position: absolute;
+  top: 0;
+  margin-left: 50px;
+  height: 100vh;
+  width: calc(100% - 50px);
+  background-color: #1e272e;
+  opacity: 0.5;
+  transition: 200ms ease-in-out;
+  z-index: 2;
+}
+
+.navClosed ~ .black__background {
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  z-index: -1;
 }
 
 .interactive__content {
@@ -105,10 +237,17 @@ export default {
   width: calc(100% - 50px);
   display: flex;
   flex-direction: row;
+  filter: blur(3px);
+  transition: 200ms ease-in-out;
+}
+
+.navClosed ~ .interactive__content {
+  filter: none;
+  transition: 200ms ease-in-out;
 }
 
 .interactive-block__heading {
-  padding-left: 5%;
+  padding-left: 3%;
   box-sizing: border-box;
   width: 100%;
   height: 50px;
@@ -137,6 +276,10 @@ export default {
   flex-direction: column;
 }
 
+.interactive__editor {
+  margin-top: -7px;
+}
+
 .interactive__lesson-editor {
   width: 100%;
   height: 50%;
@@ -147,9 +290,21 @@ export default {
   height: calc(100% - 50px);
 }
 
-.interactive__lesson-instructions {
+.interactive__instructions-content {
+  padding-left: 3%;
+  padding-top: 3%;
   width: 100%;
   height: 50%;
+}
+
+.instructions__task {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #1e272e;
+}
+
+.instructions__task-dash {
+  margin-right: 10px;
 }
 
 .interactive__instructions-content {
@@ -180,5 +335,61 @@ export default {
   font-size: 18px;
   color: #1e272e;
   border-top: 1px solid #d1d2d6;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.theory {
+  padding: 5%;
+}
+
+.theory__title {
+  margin-bottom: 50px;
+  font-size: 50px;
+  color: #1e272e;
+  font-weight: 700;
+}
+
+.theory__content {
+  font-size: 30px;
+  color: #1e272e;
+  font-weight: 300;
+}
+
+.interactive__theory-button:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
+}
+
+.navigation {
+  padding: 50px 0 0 40px;
+}
+
+.navigation__logo {
+  margin-bottom: 70px;
+  font-size: 30px;
+  color: #1e272e;
+  font-weight: bold;
+}
+
+.navigation__logo-thin {
+  font-weight: 300;
+}
+
+.navigation__lesson {
+  margin-bottom: 15px;
+  font-size: 17px;
+  color: #1e272e;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.navigation__lesson:hover {
+  color: #8e9599;
+  transition: 200ms ease-in-out;
+}
+
+.navigation__lesson-number {
+  margin-right: 10px;
 }
 </style>
