@@ -31,9 +31,9 @@
       </div>
     </div>
     <div class="black__background" @click="isOpen = false"></div>
-    <div class="interactive__content">
-      <div class="interactive__programming">
-        <div class="interactive__lesson-editor">
+    <div class="interactive__content" ref="interactiveContent">
+      <div class="interactive__programming" ref="interactiveProgramming">
+        <div class="interactive__lesson-editor" ref="lessonEditor">
           <div class="interactive-block__heading interactive__code-heading">
             Программный код
           </div>
@@ -44,7 +44,12 @@
             :readonly="true"
           ></prism-editor>
         </div>
-        <div class="interactive__lesson-instructions">
+        <div class="interactive__lesson-instructions" ref="lessonInstructions">
+          <div
+            class="dragHeight"
+            @mousedown="handleStartHeightResizing"
+            @mouseup="handleEndHeightResizing"
+          ></div>
           <div
             class="interactive-block__heading interactive__instructions-heading"
           >
@@ -66,48 +71,56 @@
           </div>
         </div>
       </div>
-      <div class="interactive__browser">
-        <div class="interactive-block__heading interactive__browser-heading">
-          Браузер
-        </div>
-        <iframe class="interactive__frame">
-          Ваш браузер не поддерживает фреймы!
-        </iframe>
-        <div class="interactive__theory-button" @click="isModalActive = true">
-          Теория
-        </div>
-        <vs-dialog full-screen blur v-model="isModalActive">
-          <div class="theory">
-            <h1 class="theory__title">Основы HTML</h1>
-            <div class="theory__content">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Obcaecati incidunt sequi iusto autem explicabo minima repellendus.
-              Distinctio, est, enim voluptatum obcaecati sequi itaque natus eius
-              possimus labore dolorum dolorem laudantium quaerat cum voluptas ab
-              praesentium ducimus vero quo? Neque voluptas accusantium dolore.
-              Voluptatibus, maxime. Ad, labore non. Cum dolor, ipsa eveniet
-              adipisci iure alias error quia dolorem, illum recusandae atque
-              debitis ut, esse tenetur praesentium quisquam a vitae inventore
-              labore consectetur aspernatur. Sapiente nobis consectetur,
-              assumenda error cupiditate vel doloremque accusamus delectus. Unde
-              omnis aspernatur amet ipsa? Beatae numquam tempora illum, ex,
-              voluptas impedit nulla eaque facilis, sequi repellendus
-              repudiandae. Lorem, ipsum dolor sit amet consectetur adipisicing
-              elit. Obcaecati incidunt sequi iusto autem explicabo minima
-              repellendus. Distinctio, est, enim voluptatum obcaecati sequi
-              itaque natus eius possimus labore dolorum dolorem laudantium
-              quaerat cum voluptas ab praesentium ducimus vero quo? Neque
-              voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore non.
-              Cum dolor, ipsa eveniet adipisci iure alias error quia dolorem,
-              illum recusandae atque debitis ut, esse tenetur praesentium
-              quisquam a vitae inventore labore consectetur aspernatur. Sapiente
-              nobis consectetur, assumenda error cupiditate vel doloremque
-              accusamus delectus. Unde omnis aspernatur amet ipsa? Beatae
-              numquam tempora illum, ex, voluptas impedit nulla eaque facilis,
-              sequi repellendus repudiandae.
-            </div>
+      <div class="interactive__browser" ref="interactiveBrowser">
+        <div
+          class="dragWidth"
+          @mousedown="handleStartWidthResizing"
+          @mouseup="handleEndWidthResizing"
+        ></div>
+        <div class="interactive__browser-content">
+          <div class="interactive-block__heading interactive__browser-heading">
+            Браузер
           </div>
-        </vs-dialog>
+          <iframe class="interactive__frame">
+            Ваш браузер не поддерживает фреймы!
+          </iframe>
+          <div class="interactive__theory-button" @click="isModalActive = true">
+            Теория
+          </div>
+          <vs-dialog full-screen blur v-model="isModalActive">
+            <div class="theory">
+              <h1 class="theory__title">Основы HTML</h1>
+              <div class="theory__content">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati incidunt sequi iusto autem explicabo minima
+                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+                itaque natus eius possimus labore dolorum dolorem laudantium
+                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
+                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
+                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
+                dolorem, illum recusandae atque debitis ut, esse tenetur
+                praesentium quisquam a vitae inventore labore consectetur
+                aspernatur. Sapiente nobis consectetur, assumenda error
+                cupiditate vel doloremque accusamus delectus. Unde omnis
+                aspernatur amet ipsa? Beatae numquam tempora illum, ex, voluptas
+                impedit nulla eaque facilis, sequi repellendus repudiandae.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati incidunt sequi iusto autem explicabo minima
+                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+                itaque natus eius possimus labore dolorum dolorem laudantium
+                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
+                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
+                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
+                dolorem, illum recusandae atque debitis ut, esse tenetur
+                praesentium quisquam a vitae inventore labore consectetur
+                aspernatur. Sapiente nobis consectetur, assumenda error
+                cupiditate vel doloremque accusamus delectus. Unde omnis
+                aspernatur amet ipsa? Beatae numquam tempora illum, ex, voluptas
+                impedit nulla eaque facilis, sequi repellendus repudiandae.
+              </div>
+            </div>
+          </vs-dialog>
+        </div>
       </div>
     </div>
   </div>
@@ -134,6 +147,46 @@ export default {
       isOpen: false,
       isModalActive: false
     };
+  },
+  // mounted() {
+  //   let container = this.$refs.interactiveProgramming,
+  //     codeEditorBlock = this.$refs.lessonEditor,
+  //     instructionsBlock = this.$refs.lessonInstructions;
+  //   let offsetBottom = 50;
+  //   codeEditorBlock.style.height = container.clientHeight - offsetBottom + "vh";
+  //   instructionsBlock.style.height = offsetBottom + "vh";
+  // },
+  methods: {
+    handleHeightResizing(e) {
+      let container = this.$refs.interactiveProgramming,
+        codeEditorBlock = this.$refs.lessonEditor,
+        instructionsBlock = this.$refs.lessonInstructions;
+      let offsetBottom = container.clientHeight - e.clientY;
+      codeEditorBlock.style.height =
+        container.clientHeight - offsetBottom + "px";
+      instructionsBlock.style.height = offsetBottom + "px";
+    },
+    handleStartHeightResizing() {
+      document.addEventListener("mousemove", this.handleHeightResizing);
+    },
+    handleEndHeightResizing() {
+      document.removeEventListener("mousemove", this.handleHeightResizing);
+    },
+
+    handleWidthResizing(e) {
+      let container = this.$refs.interactiveContent,
+        programmingBlock = this.$refs.interactiveProgramming,
+        browserBlock = this.$refs.interactiveBrowser;
+      let offsetRight = container.clientWidth - e.clientX;
+      programmingBlock.style.width = container.clientWidth - offsetRight + "px";
+      browserBlock.style.width = offsetRight + "px";
+    },
+    handleStartWidthResizing() {
+      document.addEventListener("mousemove", this.handleWidthResizing);
+    },
+    handleEndWidthResizing() {
+      document.removeEventListener("mousemove", this.handleWidthResizing);
+    }
   }
   // mounted() {
   //   this.$store
@@ -261,10 +314,6 @@ export default {
   border-bottom: 1px solid #d1d2d6;
 }
 
-.interactive__instructions-heading {
-  border-top: 1px solid #d1d2d6;
-}
-
 .interactive__browser-heading {
   border-bottom: 1px solid #d1d2d6;
 }
@@ -285,16 +334,35 @@ export default {
   height: 50%;
 }
 
+.interactive__lesson-instructions {
+  width: 100%;
+  height: 50%;
+}
+
 .editor {
   width: 100%;
   height: calc(100% - 50px);
 }
 
+.dragHeight {
+  width: 100%;
+  height: 5px;
+  border-top: 1px solid #d1d2d6;
+  cursor: s-resize;
+}
+
+.dragWidth {
+  height: 100%;
+  width: 5px;
+  border-left: 1px solid #d1d2d6;
+  cursor: w-resize;
+}
+
 .interactive__instructions-content {
+  box-sizing: border-box;
   padding-left: 3%;
   padding-top: 3%;
   width: 100%;
-  height: 50%;
 }
 
 .instructions__task {
@@ -307,17 +375,17 @@ export default {
   margin-right: 10px;
 }
 
-.interactive__instructions-content {
-  width: 100%;
-  height: calc(100% - 50px);
-}
-
 .interactive__browser {
   width: 50%;
   height: 100vh;
   display: flex;
+  flex-direction: row;
+}
+
+.interactive__browser-content {
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  border-left: 1px solid #d1d2d6;
 }
 
 .interactive__frame {
