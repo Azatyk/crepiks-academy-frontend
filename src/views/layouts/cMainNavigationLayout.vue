@@ -15,10 +15,7 @@
       </div>
       <div class="nav__logout-button" @click="logout">Выйти</div>
       <div class="navigation__target" @click="isOpen = !isOpen">
-        <a-icon type="right" class="navigation__icon-open navigation__icon" />
-        <a-icon type="left" class="navigation__icon-close navigation__icon" />
-        <a-icon type="up" class="navigation__icon navigation__icon-up" />
-        <a-icon type="down" class="navigation__icon navigation__icon-down" />
+        <a-icon type="up" class="navigation__icon" />
       </div>
     </div>
     <div class="content" @click="isOpen = false">
@@ -184,24 +181,13 @@ export default {
     display: block;
     font-size: 18px;
     color: #acbebf;
+    transform: rotate(270deg);
     transition: 200ms ease-in-out;
-    opacity: 0;
   }
 
-  .navigation__icon-close {
-    opacity: 1;
-  }
-
-  .navigation__icon-open {
-    opacity: 0;
-  }
-
-  .navClosed .navigation__icon-close {
-    opacity: 0;
-  }
-
-  .navClosed .navigation__icon-open {
-    opacity: 1;
+  .navClosed .navigation__icon {
+    transform: rotate(90deg);
+    transition: 200ms ease-in-out;
   }
 }
 
@@ -258,6 +244,13 @@ export default {
 
   .navigation__icon {
     color: #dff9fb;
+    transform: rotate(180deg);
+    transition: 200ms ease-in-out;
+  }
+
+  .navClosed .navigation__icon {
+    transform: rotate(0deg);
+    transition: 200ms ease-in-out;
   }
 
   .content {
@@ -268,31 +261,6 @@ export default {
   .navClosed > .content {
     margin-left: 0;
     width: 100%;
-  }
-
-  .navigation__icon-close,
-  .navigation__icon-open {
-    opacity: 0;
-  }
-  .navClosed .navigation__icon-open,
-  .navigation__icon-close {
-    opacity: 0;
-  }
-
-  .navigation__icon-down {
-    opacity: 1;
-  }
-
-  .navigation__icon-up {
-    opacity: 0;
-  }
-
-  .navClosed .navigation__icon-down {
-    opacity: 0;
-  }
-
-  .navClosed .navigation__icon-up {
-    opacity: 1;
   }
 }
 
