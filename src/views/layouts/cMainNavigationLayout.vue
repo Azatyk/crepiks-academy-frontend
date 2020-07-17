@@ -10,8 +10,8 @@
         <router-link to="/app/courses" class="nav__link nav__link-active"
           >Курсы</router-link
         >
-        <router-link to="/app/courses" class="nav__link">Тренажер</router-link>
-        <router-link to="/app/courses" class="nav__link">Тесты</router-link>
+        <router-link to="/app/trainer" class="nav__link">Тренажер</router-link>
+        <router-link to="/app/empty" class="nav__link">Тесты</router-link>
       </div>
       <div class="nav__logout-button" @click="logout">Выйти</div>
       <div class="navigation__target" @click="isOpen = !isOpen">
@@ -87,16 +87,17 @@ export default {
   margin-bottom: 15px;
   font-size: 18px;
   color: #acbebf;
-  transition: 100ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 
 .nav__link:hover {
   color: #dff9fb;
-  transition: 100ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 
-.nav__link-active {
+.router-link-active {
   color: #dff9fb;
+  transition: 200ms ease-in-out;
 }
 
 .navigation__icon {

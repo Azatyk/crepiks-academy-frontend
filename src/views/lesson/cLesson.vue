@@ -39,7 +39,7 @@
           </div>
           <prism-editor
             language="js"
-            class="interactive__editor"
+            class="editor"
             code="console.log('Hello, World!')"
             :readonly="true"
           ></prism-editor>
@@ -209,7 +209,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .interactive__page {
   width: 100%;
   height: 100vh;
@@ -327,6 +327,7 @@ export default {
 
 .interactive__editor {
   margin-top: -7px;
+  height: 300px;
 }
 
 .interactive__lesson-editor {

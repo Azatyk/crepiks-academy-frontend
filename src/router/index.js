@@ -10,6 +10,8 @@ import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
+import cTrainer from "@/views/trainer/cTrainer";
+
 import cEmpty from "@/views/empty/cEmpty";
 
 import cProfile from "@/views/profile/cProfile";
@@ -99,6 +101,15 @@ const routes = [
                 component: cCourse,
                 meta: {
                   title: "Курс",
+                  needAuth: true
+                }
+              },
+              {
+                path: "trainer",
+                name: "trainer",
+                component: cTrainer,
+                meta: {
+                  title: "Тренажёр",
                   needAuth: true
                 }
               }
