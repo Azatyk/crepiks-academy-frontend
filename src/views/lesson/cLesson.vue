@@ -38,10 +38,11 @@
             Программный код
           </div>
           <prism-editor
+            v-model="code"
+            :lineNumbers="true"
+            :code="firstCode"
             language="js"
-            class="editor"
-            code="console.log('Hello, World!')"
-            :readonly="true"
+            class="interactive__editor"
           ></prism-editor>
         </div>
         <div class="interactive__lesson-instructions" ref="lessonInstructions">
@@ -127,21 +128,23 @@
 </template>
 
 <script>
+import dialog from "vuesax/dist/vsDialog";
+import "vuesax/dist/vuesax.css";
 import "prismjs";
 import "prismjs/themes/prism.css";
 import PrismEditor from "vue-prism-editor";
-import dialog from "vuesax/dist/vsDialog";
-import "vuesax/dist/vuesax.css";
+import "vue-prism-editor/dist/VuePrismEditor.css";
 
 export default {
   components: {
-    PrismEditor,
-    "vs-dialog": dialog
+    "vs-dialog": dialog,
+    PrismEditor
   },
 
   data() {
     return {
-      code: "console.log('Hello, Crepiks!')",
+      firstCode: "console.log('Hello, Crepiks!')",
+      code: null,
       lesson: {},
       lessons: [],
       isOpen: false,
@@ -178,6 +181,7 @@ export default {
         programmingBlock = this.$refs.interactiveProgramming,
         browserBlock = this.$refs.interactiveBrowser;
       let offsetRight = container.clientWidth - e.clientX;
+      console.log("Client width", container.clientWidth);
       programmingBlock.style.width = container.clientWidth - offsetRight + "px";
       browserBlock.style.width = offsetRight + "px";
     },
@@ -273,7 +277,7 @@ export default {
   height: 100vh;
   width: calc(100% - 50px);
   background-color: #1e272e;
-  opacity: 0.5;
+  opacity: 0.2;
   transition: 200ms ease-in-out;
   z-index: 2;
 }
@@ -326,8 +330,8 @@ export default {
 }
 
 .interactive__editor {
-  margin-top: -7px;
-  height: 300px;
+  width: 100%;
+  height: calc(100% - 50px);
 }
 
 .interactive__lesson-editor {
@@ -338,11 +342,6 @@ export default {
 .interactive__lesson-instructions {
   width: 100%;
   height: 50%;
-}
-
-.editor {
-  width: 100%;
-  height: calc(100% - 50px);
 }
 
 .dragHeight {
@@ -357,6 +356,7 @@ export default {
   width: 5px;
   border-left: 1px solid #d1d2d6;
   cursor: w-resize;
+  background-color: green;
 }
 
 .interactive__instructions-content {
