@@ -47,7 +47,7 @@
         </div>
         <div class="interactive__lesson-instructions" ref="lessonInstructions">
           <div
-            class="dragHeight"
+            class="drag-height"
             @mousedown="handleStartHeightResizing"
             @mouseup="handleEndHeightResizing"
           ></div>
@@ -70,11 +70,29 @@
               Crepiks Academy!
             </div>
           </div>
+          <div class="instructions__hint" @click="isHintActive = true">
+            Подсказка
+          </div>
+          <vs-dialog blur v-model="isHintActive">
+            <div class="hint">
+              <h1 class="hint__title">Подсказка</h1>
+              <div class="hint__content">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati incidunt sequi iusto autem explicabo minima
+                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+                itaque natus eius possimus labore dolorum dolorem laudantium
+                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
+                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
+                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
+              </div>
+            </div>
+          </vs-dialog>
+          <div class="instructions__button">Выполнить</div>
         </div>
       </div>
       <div class="interactive__browser" ref="interactiveBrowser">
         <div
-          class="dragWidth"
+          class="drag-width"
           @mousedown="handleStartWidthResizing"
           @mouseup="handleEndWidthResizing"
         ></div>
@@ -85,10 +103,13 @@
           <iframe class="interactive__frame">
             Ваш браузер не поддерживает фреймы!
           </iframe>
-          <div class="interactive__theory-button" @click="isModalActive = true">
+          <div
+            class="interactive__theory-button"
+            @click="isTheoryActive = true"
+          >
             Теория
           </div>
-          <vs-dialog full-screen blur v-model="isModalActive">
+          <vs-dialog full-screen blur v-model="isTheoryActive">
             <div class="theory">
               <h1 class="theory__title">Основы HTML</h1>
               <div class="theory__content">
@@ -109,15 +130,11 @@
                 Obcaecati incidunt sequi iusto autem explicabo minima
                 repellendus. Distinctio, est, enim voluptatum obcaecati sequi
                 itaque natus eius possimus labore dolorum dolorem laudantium
-                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
-                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
-                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
-                dolorem, illum recusandae atque debitis ut, esse tenetur
-                praesentium quisquam a vitae inventore labore consectetur
-                aspernatur. Sapiente nobis consectetur, assumenda error
-                cupiditate vel doloremque accusamus delectus. Unde omnis
-                aspernatur amet ipsa? Beatae numquam tempora illum, ex, voluptas
-                impedit nulla eaque facilis, sequi repellendus repudiandae.
+                quaerat cum voluptas ab praesentium ducimus vero quo? Obcaecati
+                incidunt sequi iusto autem explicabo minima repellendus.
+                Distinctio, est, enim voluptatum obcaecati sequi itaque natus
+                eius possimus labore dolorum dolorem laudantium quaerat cum
+                voluptas ab praesentium ducimus vero quo?
               </div>
             </div>
           </vs-dialog>
@@ -148,7 +165,8 @@ export default {
       lesson: {},
       lessons: [],
       isOpen: false,
-      isModalActive: false
+      isTheoryActive: false,
+      isHintActive: false
     };
   },
   // mounted() {
@@ -180,8 +198,8 @@ export default {
       let container = this.$refs.interactiveContent,
         programmingBlock = this.$refs.interactiveProgramming,
         browserBlock = this.$refs.interactiveBrowser;
-      let offsetRight = container.clientWidth - e.clientX;
-      console.log("Client width", container.clientWidth);
+      let offsetRight = container.clientWidth - e.clientX + 50;
+      console.log("Ширина контейнера", container.clientWidth);
       programmingBlock.style.width = container.clientWidth - offsetRight + "px";
       browserBlock.style.width = offsetRight + "px";
     },
@@ -340,23 +358,24 @@ export default {
 }
 
 .interactive__lesson-instructions {
+  position: relative;
   width: 100%;
   height: 50%;
 }
 
-.dragHeight {
+.drag-height {
   width: 100%;
   height: 5px;
   border-top: 1px solid #d1d2d6;
   cursor: s-resize;
 }
 
-.dragWidth {
+.drag-width {
+  position: absolute;
   height: 100%;
   width: 5px;
   border-left: 1px solid #d1d2d6;
   cursor: w-resize;
-  background-color: green;
 }
 
 .interactive__instructions-content {
@@ -374,6 +393,65 @@ export default {
 
 .instructions__task-dash {
   margin-right: 10px;
+}
+
+.instructions__hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: calc(100% - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #1e272e;
+  border-top: 1px solid #d1d2d6;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.instructions__hint:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
+}
+
+.hint {
+  padding: 5%;
+}
+
+.hint__title {
+  font-size: 30px;
+  color: #1e272e;
+  font-weight: 700;
+}
+
+.hint__content {
+  font-size: 20px;
+  color: #1e272e;
+  font-weight: 300;
+}
+
+.instructions__button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 300;
+  color: white;
+  background-color: #1e272e;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.instructions__button:hover {
+  background-color: #424f59;
+  transition: 200ms ease-in-out;
 }
 
 .interactive__browser {
