@@ -1,20 +1,16 @@
 <template>
-  <div class="page">
+  <div class="profile-page">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  components: {}
-};
+export default {};
 </script>
 
 <style scoped>
-.page {
-  padding: 0.1px;
+.profile-page {
   width: 100%;
-  min-height: 100vh;
-  height: auto;
+  height: 100%;
 }
 </style>

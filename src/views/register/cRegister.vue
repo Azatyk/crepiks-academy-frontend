@@ -48,7 +48,7 @@
         </a-button>
         <div class="form__link-text">
           Есть аккаунт?
-          <router-link to="/login" class="form__link-register"
+          <router-link to="/auth/login" class="form__link-register"
             >Войдите</router-link
           >
         </div>
@@ -109,13 +109,15 @@ export default {
 }
 
 .form {
-  width: 25%;
+  min-width: 300px;
+  width: 500px;
+  height: 600px;
 }
 
 .register-form__heading {
   color: #34495e;
-  margin-bottom: 5%;
-  font-size: 2vw;
+  margin-bottom: 15px;
+  font-size: 35px;
   font-weight: 500;
 }
 
@@ -125,21 +127,56 @@ export default {
 
 .register-form__submit-button {
   margin-bottom: 3%;
-  height: 2.7vw;
+  height: 45px;
   width: 100%;
-  font-size: 1.1vw;
+  font-size: 20px;
   font-weight: 500;
 }
 
 .form__link-text {
-  font-size: 0.95vw;
+  font-size: 17px;
   color: #516f8c;
 }
 
 .form__link-register {
-  font-size: 0.95vw;
   color: #fc7979;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .form {
+    width: 80%;
+    height: 920px;
+  }
+
+  .register-form__heading {
+    margin-bottom: 3vw;
+    font-size: 6vw;
+  }
+
+  .register-form__input {
+    margin-bottom: 3vw;
+  }
+
+  .register-form__submit-button {
+    height: 8vw;
+    font-size: 3vw;
+  }
+
+  .form__link-text {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .form {
+    min-width: 0;
+    height: auto;
+  }
+
+  .register-form__heading {
+    font-size: 6vw;
+  }
 }
 </style>

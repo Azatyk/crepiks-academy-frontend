@@ -5,14 +5,9 @@
       <h3 class="course__heading">{{ title }}</h3>
       <div class="course__lessons-amount">{{ lessonsAmount }} уроков</div>
     </div>
-    <!-- <cButtonLink
-      :route="'/courses/' + id"
-      text="Перейти к курсу"
-      class="course__button"
-    /> -->
     <a-button
       type="primary"
-      @click="$router.push('/courses/' + id)"
+      @click="$router.push('/app/courses/' + id)"
       class="course__button"
       >Перейти к курсу</a-button
     >
@@ -50,15 +45,15 @@ export default {
 <style scoped>
 .course {
   margin-bottom: 5%;
-  width: 16vw;
-  height: 17vw;
+  width: 280px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: #f8f7fc;
-  box-shadow: 0 0 20px #00000026;
+  background-color: white;
+  box-shadow: 0 0 10px #0000000d;
 }
 
 .course:hover .main-content {
@@ -84,14 +79,14 @@ export default {
 .course__image {
   margin: auto;
   margin-bottom: 1vw;
-  width: 5vw;
-  height: 5vw;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
 }
 
 .course__heading {
   margin-bottom: 5%;
-  font-size: 1.3vw;
+  font-size: 22px;
   color: #516f8c;
   font-weight: 300;
   text-align: center;
@@ -99,7 +94,7 @@ export default {
 
 .course__lessons-amount {
   margin-bottom: 1vw;
-  font-size: 1vw;
+  font-size: 17px;
   color: #516f8c;
   font-weight: 400;
   text-align: center;
@@ -107,62 +102,87 @@ export default {
 
 .course__button {
   padding: 0 7%;
-  height: 2vw;
-  font-size: 0.8vw;
+  height: 35px;
+  font-size: 15px;
   opacity: 0;
   transition: 300ms ease-in-out;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
   .course {
-    width: 33vw;
-    height: 34vw;
+    width: 210px;
+    height: 220px;
   }
 
   .course__image {
-    width: 12vw;
-    height: 12vw;
+    width: 70px;
+    height: 70px;
   }
 
   .course__heading {
-    margin-bottom: 0;
-    font-size: 2.7vw;
+    margin-bottom: 0px;
+    font-size: 18px;
   }
 
   .course__lessons-amount {
-    margin-bottom: 5%;
-    font-size: 2vw;
-  }
-
-  .main-content {
-    transform: translateY(-1px);
+    font-size: 13px;
   }
 
   .course__button {
-    padding: 0 7%;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .course {
+    width: 27vw;
+    height: 28vw;
+  }
+
+  .main-content {
+    transform: translateY(-8px);
+  }
+
+  .course__image {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .course__heading {
+    margin-bottom: 5px;
+    font-size: 2.5vw;
+  }
+
+  .course__lessons-amount {
+    font-size: 2vw;
+  }
+
+  .course__button {
     height: 4vw;
-    font-size: 1.8vw;
+    font-size: 1.6vw;
     opacity: 1;
   }
 }
 
 @media (max-width: 700px) {
   .course {
-    width: 80%;
-    height: 80vw;
+    width: 280px;
+    height: 290px;
   }
 
   .course__image {
-    width: 32vw;
-    height: 32vw;
+    width: 90px;
+    height: 90px;
   }
 
   .course__heading {
-    font-size: 6vw;
+    margin-bottom: 0;
+    font-size: 25px;
   }
 
   .course__lessons-amount {
-    font-size: 5vw;
+    font-size: 20px;
   }
 
   .course__button {

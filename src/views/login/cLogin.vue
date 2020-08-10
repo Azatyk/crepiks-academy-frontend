@@ -16,6 +16,7 @@
           v-model="password"
           id="password"
           class="auth-form__input"
+          type="password"
         />
         <a-button
           type="primary"
@@ -26,7 +27,9 @@
         </a-button>
         <div class="form__link-text">
           Нет аккаунта?
-          <router-link to="/register" class="form__link-register"
+          <router-link
+            to="/auth/register"
+            class="form__link-text form__link-register"
             >Зарегистрируйтесь</router-link
           >
         </div>
@@ -58,7 +61,7 @@ export default {
         const { email, password } = this;
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/"));
+          .then(() => this.$router.push("/app/courses"));
       }
     }
   }
@@ -75,13 +78,15 @@ export default {
 }
 
 .form {
-  width: 25%;
+  min-width: 300px;
+  width: 500px;
+  height: 380px;
 }
 
 .auth-form__heading {
   color: #34495e;
-  margin-bottom: 5%;
-  font-size: 2vw;
+  margin-bottom: 15px;
+  font-size: 35px;
   font-weight: 500;
 }
 
@@ -91,21 +96,56 @@ export default {
 
 .auth-form__submit-button {
   margin-bottom: 3%;
-  height: 2.7vw;
+  height: 45px;
   width: 100%;
-  font-size: 1.1vw;
+  font-size: 20px;
   font-weight: 500;
 }
 
 .form__link-text {
-  font-size: 0.95vw;
+  font-size: 17px;
   color: #516f8c;
 }
 
 .form__link-register {
-  font-size: 0.95vw;
   color: #fc7979;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .form {
+    width: 80%;
+    height: 60vw;
+  }
+
+  .auth-form__heading {
+    margin-bottom: 3vw;
+    font-size: 6vw;
+  }
+
+  .auth-form__input {
+    margin-bottom: 3vw;
+  }
+
+  .auth-form__submit-button {
+    height: 8vw;
+    font-size: 3vw;
+  }
+
+  .form__link-text {
+    font-size: 3vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .form {
+    min-width: 0;
+    height: auto;
+  }
+
+  .auth-form__heading {
+    font-size: 7vw;
+  }
 }
 </style>

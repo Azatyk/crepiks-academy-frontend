@@ -10,7 +10,7 @@
         <a-button
           type="primary"
           class="welcome__button"
-          @click="$router.push('/courses')"
+          @click="$router.push('/app/courses')"
           >Начать обучение</a-button
         >
       </div>

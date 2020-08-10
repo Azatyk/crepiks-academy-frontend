@@ -1,289 +1,542 @@
 <template>
-  <div class="lesson__page">
-    <div class="content">
-      <div class="lesson__title">
-        <span class="lesson__topic">Тема урока:</span> {{ lesson.title }}
-      </div>
-      <div class="lesson">
-        <video :src="lesson.video" controls class="lesson__player"></video>
-        <div class="lesson__tabs-container">
-          <a-tabs default-active-key="1" class="lesson__tabs">
-            <a-tab-pane key="1" tab="Описание" class="tab-text">
-              {{ lesson.description }}
-            </a-tab-pane>
-            <a-tab-pane key="2" tab="Ссылки и файлы" class="tab-text">
-              <a
-                :href="link"
-                class="lesson__link"
-                v-for="(link, index) in lesson.links"
-                :key="index"
-              >
-                {{ link }}
-              </a>
-            </a-tab-pane>
-          </a-tabs>
+  <div class="interactive__page">
+    <div class="interactive__navigation-menu" :class="{ navClosed: !isOpen }">
+      <div class="navigation">
+        <router-link to="/app/courses"
+          ><div class="navigation__logo">
+            Crepiks <span class="navigation__logo-thin">Academy</span>
+          </div></router-link
+        >
+        <div class="navigation__lessons">
+          <!-- <router-link v-for="(lesson, index) in lessons" :key="index">
+        </router-link> -->
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">1.</span>Основы HTML
+          </div>
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">2.</span>Как работает
+            интернет
+          </div>
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">3.</span>Стилезуем страницу
+          </div>
+          <div class="navigation__lesson">
+            <span class="navigation__lesson-number">4.</span>Делаем сайт
+            интерактивным
+          </div>
         </div>
       </div>
-      <div class="navigation">
-        <router-link
-          v-for="(lesson, index) in lessons"
-          :key="index"
-          :to="'/courses/' + id.courseId + '/lessons/' + lesson._id"
-          class="navigation-lesson__link"
-        >
-          <div class="navigation-lesson">
-            <div class="navigation-lesson__point"></div>
-            <h2 class="navigation-lesson__title">{{ lesson.title }}</h2>
+      <div class="interactive__navigation-target" @click="isOpen = !isOpen">
+        <a-icon type="up" class="interactive__navigation-icon" />
+      </div>
+    </div>
+    <div class="black__background" @click="isOpen = false"></div>
+    <div class="interactive__content" ref="interactiveContent">
+      <div class="interactive__programming" ref="interactiveProgramming">
+        <div class="interactive__lesson-editor" ref="lessonEditor">
+          <div class="interactive-block__heading interactive__code-heading">
+            Программный код
           </div>
-        </router-link>
+          <prism-editor
+            v-model="code"
+            :lineNumbers="true"
+            :code="firstCode"
+            language="js"
+            class="interactive__editor"
+          ></prism-editor>
+        </div>
+        <div class="interactive__lesson-instructions" ref="lessonInstructions">
+          <div
+            class="drag-height"
+            @mousedown="handleStartHeightResizing"
+            @mouseup="handleEndHeightResizing"
+          ></div>
+          <div
+            class="interactive-block__heading interactive__instructions-heading"
+          >
+            Задания
+          </div>
+          <div class="interactive__instructions-content">
+            <div class="instructions__task">
+              <span class="instructions__task-dash">—</span>Удалите
+              закомментированный код на 13 строке
+            </div>
+            <div class="instructions__task">
+              <span class="instructions__task-dash">—</span>На 15 строке
+              добавьте кнопку &lt;button&gt;Это кнопка&lt;/button&gt;
+            </div>
+            <div class="instructions__task">
+              <span class="instructions__task-dash">—</span>Оформите подписку на
+              Crepiks Academy!
+            </div>
+          </div>
+          <div class="instructions__hint" @click="isHintActive = true">
+            Подсказка
+          </div>
+          <vs-dialog blur v-model="isHintActive">
+            <div class="hint">
+              <h1 class="hint__title">Подсказка</h1>
+              <div class="hint__content">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati incidunt sequi iusto autem explicabo minima
+                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+                itaque natus eius possimus labore dolorum dolorem laudantium
+                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
+                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
+                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
+              </div>
+            </div>
+          </vs-dialog>
+          <div class="instructions__button">Выполнить</div>
+        </div>
+      </div>
+      <div class="interactive__browser" ref="interactiveBrowser">
+        <div
+          class="drag-width"
+          @mousedown="handleStartWidthResizing"
+          @mouseup="handleEndWidthResizing"
+        ></div>
+        <div class="interactive__browser-content">
+          <div class="interactive-block__heading interactive__browser-heading">
+            Браузер
+          </div>
+          <iframe class="interactive__frame">
+            Ваш браузер не поддерживает фреймы!
+          </iframe>
+          <div
+            class="interactive__theory-button"
+            @click="isTheoryActive = true"
+          >
+            Теория
+          </div>
+          <vs-dialog full-screen blur v-model="isTheoryActive">
+            <div class="theory">
+              <h1 class="theory__title">Основы HTML</h1>
+              <div class="theory__content">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati incidunt sequi iusto autem explicabo minima
+                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+                itaque natus eius possimus labore dolorum dolorem laudantium
+                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
+                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
+                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
+                dolorem, illum recusandae atque debitis ut, esse tenetur
+                praesentium quisquam a vitae inventore labore consectetur
+                aspernatur. Sapiente nobis consectetur, assumenda error
+                cupiditate vel doloremque accusamus delectus. Unde omnis
+                aspernatur amet ipsa? Beatae numquam tempora illum, ex, voluptas
+                impedit nulla eaque facilis, sequi repellendus repudiandae.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Obcaecati incidunt sequi iusto autem explicabo minima
+                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
+                itaque natus eius possimus labore dolorum dolorem laudantium
+                quaerat cum voluptas ab praesentium ducimus vero quo? Obcaecati
+                incidunt sequi iusto autem explicabo minima repellendus.
+                Distinctio, est, enim voluptatum obcaecati sequi itaque natus
+                eius possimus labore dolorum dolorem laudantium quaerat cum
+                voluptas ab praesentium ducimus vero quo?
+              </div>
+            </div>
+          </vs-dialog>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { Tabs } from "ant-design-vue";
-import { TabPane } from "ant-design-vue/lib/tabs/index";
+import dialog from "vuesax/dist/vsDialog";
+import "vuesax/dist/vuesax.css";
+import "prismjs";
+import "prismjs/themes/prism.css";
+import PrismEditor from "vue-prism-editor";
+import "vue-prism-editor/dist/VuePrismEditor.css";
 
 export default {
   components: {
-    "a-tabs": Tabs,
-    "a-tab-pane": TabPane
+    "vs-dialog": dialog,
+    PrismEditor
   },
+
   data() {
     return {
+      firstCode: "console.log('Hello, Crepiks!')",
+      code: null,
       lesson: {},
       lessons: [],
-      id: {
-        courseId: this.$route.params.courseId,
-        lessonId: this.$route.params.lessonId
-      }
+      isOpen: false,
+      isTheoryActive: false,
+      isHintActive: false
     };
   },
-  computed: mapGetters(["isLoggedIn"]),
-  mounted() {
-    this.$store
-      .dispatch("getLesson", this.id)
-      .then(res => (this.lesson = res.data));
-    this.$store
-      .dispatch("getLessons", this.id.courseId)
-      .then(res => (this.lessons = res.data));
-  },
-  watch: {
-    $route() {
-      this.id.courseId = this.$route.params.courseId;
-      this.id.lessonId = this.$route.params.lessonId;
-      this.$store
-        .dispatch("getLesson", this.id)
-        .then(res => (this.lesson = res.data));
-    }
-  },
+  // mounted() {
+  //   let container = this.$refs.interactiveProgramming,
+  //     codeEditorBlock = this.$refs.lessonEditor,
+  //     instructionsBlock = this.$refs.lessonInstructions;
+  //   let offsetBottom = 50;
+  //   codeEditorBlock.style.height = container.clientHeight - offsetBottom + "vh";
+  //   instructionsBlock.style.height = offsetBottom + "vh";
+  // },
   methods: {
-    getLessonNumber(index) {
-      if (String(index).length == 1) {
-        return "0" + index;
-      } else {
-        return index;
-      }
+    handleHeightResizing(e) {
+      let container = this.$refs.interactiveProgramming,
+        codeEditorBlock = this.$refs.lessonEditor,
+        instructionsBlock = this.$refs.lessonInstructions;
+      let offsetBottom = container.clientHeight - e.clientY;
+      codeEditorBlock.style.height =
+        container.clientHeight - offsetBottom + "px";
+      instructionsBlock.style.height = offsetBottom + "px";
+    },
+    handleStartHeightResizing() {
+      document.addEventListener("mousemove", this.handleHeightResizing);
+    },
+    handleEndHeightResizing() {
+      document.removeEventListener("mousemove", this.handleHeightResizing);
+    },
+
+    handleWidthResizing(e) {
+      let container = this.$refs.interactiveContent,
+        programmingBlock = this.$refs.interactiveProgramming,
+        browserBlock = this.$refs.interactiveBrowser;
+      let offsetRight = container.clientWidth - e.clientX + 50;
+      console.log("Ширина контейнера", container.clientWidth);
+      programmingBlock.style.width = container.clientWidth - offsetRight + "px";
+      browserBlock.style.width = offsetRight + "px";
+    },
+    handleStartWidthResizing() {
+      document.addEventListener("mousemove", this.handleWidthResizing);
+    },
+    handleEndWidthResizing() {
+      document.removeEventListener("mousemove", this.handleWidthResizing);
     }
   }
+  // mounted() {
+  //   this.$store
+  //     .dispatch("getLesson", this.id)
+  //     .then((res) => (this.lesson = res.data));
+  //   this.$store
+  //     .dispatch("getLessons", this.id.courseId)
+  //     .then((res) => (this.lessons = res.data));
+  // },
+  // methods: {
+  //   mounted() {
+  //     this.$store
+  //       .dispatch("getLesson", this.id)
+  //       .then((res) => (this.lesson = res.data));
+  //     this.$store
+  //       .dispatch("getLessons", this.id.courseId)
+  //       .then((res) => (this.lessons = res.data));
+  //   },
+  // },
 };
 </script>
 
 <style scoped>
-.lesson__page {
-  padding: 0.1px;
+.interactive__page {
+  width: 100%;
+  height: 100vh;
 }
 
-.content {
-  margin: auto;
-  margin-top: 15vh;
-  width: 85%;
-  max-width: 1440px;
+.interactive__navigation-menu {
+  position: fixed;
+  left: 0;
+  height: 100%;
+  width: 500px;
+  background-color: white;
+  z-index: 3;
+  transition: 200ms ease-in-out;
+}
+
+.navClosed {
+  left: -450px;
+  transition: 200ms ease-in-out;
+}
+
+.interactive__navigation-target {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #d1d2d6;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.interactive__navigation-target:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
+}
+
+.interactive__navigation-target:hover > .interactive__navigation-icon {
+  color: #1e272e !important;
+  transition: 200ms ease-in-out;
+}
+
+.interactive__navigation-icon {
+  font-size: 18px;
+  color: #747b80 !important;
+  transform: rotate(270deg);
+  transition: 200ms ease-in-out;
+}
+
+.navClosed .interactive__navigation-icon {
+  transform: rotate(90deg);
+  transition: 200ms ease-in-out;
+}
+
+.black__background {
+  position: absolute;
+  top: 0;
+  margin-left: 50px;
+  height: 100vh;
+  width: calc(100% - 50px);
+  background-color: #1e272e;
+  opacity: 0.2;
+  transition: 200ms ease-in-out;
+  z-index: 2;
+}
+
+.navClosed ~ .black__background {
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  z-index: -1;
+}
+
+.interactive__content {
+  margin-left: 50px;
+  height: 100vh;
+  width: calc(100% - 50px);
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+  filter: blur(3px);
+  transition: 200ms ease-in-out;
 }
 
-.lesson {
-  width: 70%;
+.navClosed ~ .interactive__content {
+  filter: none;
+  transition: 200ms ease-in-out;
+}
+
+.interactive-block__heading {
+  padding-left: 3%;
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  color: #1e272e;
+  display: flex;
+  align-items: center;
+}
+
+.interactive__code-heading {
+  border-bottom: 1px solid #d1d2d6;
+}
+
+.interactive__browser-heading {
+  border-bottom: 1px solid #d1d2d6;
+}
+
+.interactive__programming {
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
 }
 
-.lesson__title {
+.interactive__editor {
   width: 100%;
-  height: 3vw;
-  font-size: 1.2vw;
-  color: #516f8c;
-  text-align: left;
+  height: calc(100% - 50px);
 }
 
-.lesson__topic {
-  color: #fc7979;
+.interactive__lesson-editor {
+  width: 100%;
+  height: 50%;
 }
 
-.lesson__link {
-  margin-bottom: 0.5vw;
-  width: 10%;
-  display: block;
-  color: #516f8c;
+.interactive__lesson-instructions {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.drag-height {
+  width: 100%;
+  height: 5px;
+  border-top: 1px solid #d1d2d6;
+  cursor: s-resize;
+}
+
+.drag-width {
+  position: absolute;
+  height: 100%;
+  width: 5px;
+  border-left: 1px solid #d1d2d6;
+  cursor: w-resize;
+}
+
+.interactive__instructions-content {
+  box-sizing: border-box;
+  padding-left: 3%;
+  padding-top: 3%;
+  width: 100%;
+}
+
+.instructions__task {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #1e272e;
+}
+
+.instructions__task-dash {
+  margin-right: 10px;
+}
+
+.instructions__hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: calc(100% - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #1e272e;
+  border-top: 1px solid #d1d2d6;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.instructions__hint:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
+}
+
+.hint {
+  padding: 5%;
+}
+
+.hint__title {
+  font-size: 30px;
+  color: #1e272e;
+  font-weight: 700;
+}
+
+.hint__content {
+  font-size: 20px;
+  color: #1e272e;
   font-weight: 300;
 }
 
-.lesson__active-button {
+.instructions__button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 300;
   color: white;
-  background-color: #fc7979;
+  background-color: #1e272e;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
 }
 
-.lesson__player {
-  margin-bottom: 3%;
+.instructions__button:hover {
+  background-color: #424f59;
+  transition: 200ms ease-in-out;
+}
+
+.interactive__browser {
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.interactive__browser-content {
   width: 100%;
-  outline: none;
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.lesson__tabs-container {
-  margin-bottom: 5vw;
+.interactive__frame {
+  width: 100%;
+  height: calc(100% - 100px);
+  border: none;
 }
 
-.tab-text {
-  font-size: 1.3vw;
-  color: #516f8c;
+.interactive__theory-button {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #1e272e;
+  border-top: 1px solid #d1d2d6;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.theory {
+  padding: 5%;
+}
+
+.theory__title {
+  margin-bottom: 50px;
+  font-size: 50px;
+  color: #1e272e;
+  font-weight: 700;
+}
+
+.theory__content {
+  font-size: 30px;
+  color: #1e272e;
   font-weight: 300;
+}
+
+.interactive__theory-button:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
 }
 
 .navigation {
-  padding: 2.5% 1%;
-  padding-bottom: 1%;
-  padding-left: 2%;
-  width: 25%;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #dbdbdb;
-  border-radius: 10px;
+  padding: 50px 0 0 40px;
 }
 
-.navigation-lesson__link {
-  width: 100%;
-  text-decoration: none;
+.navigation__logo {
+  margin-bottom: 70px;
+  font-size: 30px;
+  color: #1e272e;
+  font-weight: bold;
 }
 
-.navigation-lesson {
-  margin: auto;
-  margin-bottom: 2vh;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.navigation__logo-thin {
+  font-weight: 300;
 }
 
-.navigation-lesson__point {
-  margin-right: 5%;
-  width: 13px;
-  height: 13px;
-  border: 1px solid #516f8c;
-  border-radius: 50%;
+.navigation__lesson {
+  margin-bottom: 15px;
+  font-size: 17px;
+  color: #1e272e;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
 }
 
-.router-link-active .navigation-lesson__point {
-  background-color: #fc7979;
-  border: 1px solid #fc7979;
+.navigation__lesson:hover {
+  color: #8e9599;
+  transition: 200ms ease-in-out;
 }
 
-.navigation-lesson__title {
-  margin-bottom: 0;
-  font-size: 1vw;
-  color: #516f8c;
-  font-weight: 500;
-}
-
-@media (max-width: 1024px) {
-  .content {
-    flex-direction: column;
-  }
-
-  .lesson__title {
-    height: 7vw;
-    font-size: 3.5vw;
-  }
-
-  .lesson {
-    width: 100%;
-  }
-
-  .lesson__player {
-    font-size: 3vw;
-  }
-
-  .lesson__tabs-container {
-    width: 100%;
-  }
-
-  .lesson__tabs {
-    font-size: 5vw !important;
-  }
-
-  .tab-text {
-    font-size: 3vw;
-  }
-
-  .navigation {
-    margin-bottom: 10%;
-    padding: 3% 5%;
-    padding-bottom: 1%;
-    width: 100%;
-  }
-
-  .navigation-lesson__point {
-    margin-right: 3%;
-    width: 22px;
-    height: 22px;
-  }
-
-  .navigation-lesson__title {
-    font-size: 3vw;
-  }
-}
-
-@media (max-width: 700px) {
-  .lesson__title {
-    height: 9vw;
-    font-size: 4.2vw;
-  }
-
-  .lesson__player {
-    border-radius: 5px;
-  }
-
-  .lesson__tabs-container {
-    margin-bottom: 10%;
-  }
-
-  .tab-text {
-    font-size: 4vw;
-  }
-
-  .navigation {
-    margin-bottom: 20%;
-    padding: 5% 5%;
-    padding-bottom: 1%;
-  }
-
-  .navigation-lesson__point {
-    width: 3vw;
-    height: 3vw;
-  }
-
-  .navigation-lesson__title {
-    font-size: 4vw;
-  }
+.navigation__lesson-number {
+  margin-right: 10px;
 }
 </style>

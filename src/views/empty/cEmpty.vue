@@ -60,6 +60,7 @@ export default {
 .empty__page {
   height: 100vh;
   width: 100%;
+  background-color: #dff9fb;
 }
 
 .content {
@@ -96,7 +97,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #f8f7fc;
-  box-shadow: 0 0 10px #0000004d;
+  box-shadow: 0 0 10px #0000001a;
   border-radius: 5px;
 }
 
@@ -210,7 +211,7 @@ export default {
 
   .form__description {
     width: 80%;
-    font-size: 4vw;
+    font-size: 4.2vw;
     text-align: center;
   }
 
