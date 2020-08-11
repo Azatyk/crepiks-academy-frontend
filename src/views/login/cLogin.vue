@@ -23,7 +23,7 @@
           @click="login"
           class="auth-form__submit-button"
         >
-          Войти
+          Вход
         </a-button>
         <div class="form__link-text">
           Нет аккаунта?
