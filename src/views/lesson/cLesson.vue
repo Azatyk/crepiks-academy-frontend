@@ -37,13 +37,11 @@
           <div class="interactive-block__heading interactive__code-heading">
             Программный код
           </div>
-          <prism-editor
-            v-model="code"
-            :lineNumbers="true"
-            :code="firstCode"
-            language="js"
-            class="interactive__editor"
-          ></prism-editor>
+          <codemirror
+            class="interactive__code-editor"
+            :code="code"
+            :options="cmOptions"
+          />
         </div>
         <div class="interactive__lesson-instructions" ref="lessonInstructions">
           <div
@@ -100,8 +98,8 @@
           <div class="interactive-block__heading interactive__browser-heading">
             Браузер
           </div>
-          <iframe class="interactive__frame">
-            Ваш браузер не поддерживает фреймы!
+          <iframe class="interactive__frame"
+            >`` Ваш браузер не поддерживает фреймы!
           </iframe>
           <div
             class="interactive__theory-button"
@@ -147,26 +145,33 @@
 <script>
 import dialog from "vuesax/dist/vsDialog";
 import "vuesax/dist/vuesax.css";
-import "prismjs";
-import "prismjs/themes/prism.css";
-import PrismEditor from "vue-prism-editor";
-import "vue-prism-editor/dist/VuePrismEditor.css";
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
 
 export default {
   components: {
     "vs-dialog": dialog,
-    PrismEditor
+    codemirror
   },
 
   data() {
     return {
       firstCode: "console.log('Hello, Crepiks!')",
-      code: null,
       lesson: {},
       lessons: [],
       isOpen: false,
       isTheoryActive: false,
-      isHintActive: false
+      isHintActive: false,
+      code: `function SomeFunc() {
+  return 'some returned phrase';
+}`,
+      cmOptions: {
+        tabSize: 4,
+        mode: "text/html",
+        theme: "base16-dark",
+        lineNumbers: true,
+        line: true
+      }
     };
   },
   // mounted() {
@@ -347,7 +352,8 @@ export default {
   flex-direction: column;
 }
 
-.interactive__editor {
+.interactive__code-editor {
+  padding: 0;
   width: 100%;
   height: calc(100% - 50px);
 }
