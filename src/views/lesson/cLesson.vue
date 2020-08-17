@@ -37,13 +37,14 @@
           <div class="interactive-block__heading interactive__code-heading">
             Программный код
           </div>
-          <prism-editor
+          <codemirror
+            class="interactive__code-editor"
+            :code="code"
             v-model="code"
-            :lineNumbers="true"
-            :code="firstCode"
-            language="js"
-            class="interactive__editor"
-          ></prism-editor>
+            :options="cmOptions"
+            viewportMargin="Infinity"
+            @changes="changeCode"
+          />
         </div>
         <div class="interactive__lesson-instructions" ref="lessonInstructions">
           <div
@@ -87,7 +88,7 @@
               </div>
             </div>
           </vs-dialog>
-          <div class="instructions__button">Выполнить</div>
+          <div class="instructions__button" @click="runCode">Выполнить</div>
         </div>
       </div>
       <div class="interactive__browser" ref="interactiveBrowser">
@@ -100,9 +101,7 @@
           <div class="interactive-block__heading interactive__browser-heading">
             Браузер
           </div>
-          <iframe class="interactive__frame">
-            Ваш браузер не поддерживает фреймы!
-          </iframe>
+          <div class="interactive__frame" ref="interactiveFrame"></div>
           <div
             class="interactive__theory-button"
             @click="isTheoryActive = true"
@@ -147,26 +146,42 @@
 <script>
 import dialog from "vuesax/dist/vsDialog";
 import "vuesax/dist/vuesax.css";
-import "prismjs";
-import "prismjs/themes/prism.css";
-import PrismEditor from "vue-prism-editor";
-import "vue-prism-editor/dist/VuePrismEditor.css";
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
+
+import "codemirror/mode/htmlmixed/htmlmixed.js";
+import "codemirror/theme/eclipse.css";
 
 export default {
   components: {
     "vs-dialog": dialog,
-    PrismEditor
+    codemirror
   },
 
   data() {
     return {
       firstCode: "console.log('Hello, Crepiks!')",
-      code: null,
       lesson: {},
       lessons: [],
       isOpen: false,
       isTheoryActive: false,
-      isHintActive: false
+      isHintActive: false,
+      code: `<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>`,
+      cmOptions: {
+        tabSize: 4,
+        mode: "text/html",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      }
     };
   },
   // mounted() {
@@ -208,6 +223,11 @@ export default {
     },
     handleEndWidthResizing() {
       document.removeEventListener("mousemove", this.handleWidthResizing);
+    },
+
+    runCode() {
+      let interactiveFrame = this.$refs.interactiveFrame;
+      interactiveFrame.innerHTML = this.code;
     }
   }
   // mounted() {
@@ -231,7 +251,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .interactive__page {
   width: 100%;
   height: 100vh;
@@ -347,7 +367,12 @@ export default {
   flex-direction: column;
 }
 
-.interactive__editor {
+.CodeMirror {
+  height: 100%;
+}
+
+.interactive__code-editor {
+  padding: 0;
   width: 100%;
   height: calc(100% - 50px);
 }
