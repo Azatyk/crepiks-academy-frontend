@@ -39,12 +39,34 @@
           </div>
           <codemirror
             class="interactive__code-editor"
-            :code="code"
-            v-model="code"
-            :options="cmOptions"
-            viewportMargin="Infinity"
-            @changes="changeCode"
+            :code="codeHTML"
+            v-model="codeHTML"
+            :options="htmlOptions"
+            v-if="isHTMLshowing"
           />
+          <codemirror
+            class="interactive__code-editor"
+            :code="codeCSS"
+            v-model="codeCSS"
+            :options="cssOptions"
+            v-else
+          />
+          <div class="interactive__files">
+            <div
+              class="interactive__html interactive__file-button"
+              @click="isHTMLshowing = true"
+              :class="{ 'interactive_active-button': isHTMLshowing }"
+            >
+              index.html
+            </div>
+            <div
+              class="interactive__css interactive__file-button"
+              @click="isHTMLshowing = false"
+              :class="{ 'interactive_active-button': !isHTMLshowing }"
+            >
+              style.css
+            </div>
+          </div>
         </div>
         <div class="interactive__lesson-instructions" ref="lessonInstructions">
           <div
@@ -164,9 +186,8 @@ export default {
       lesson: {},
       lessons: [],
       isOpen: false,
-      isTheoryActive: false,
-      isHintActive: false,
-      code: `<!DOCTYPE html>
+      isHTMLshowing: true,
+      codeHTML: `<!DOCTYPE html>
 <html>
   <head>
     <title></title>
@@ -175,13 +196,30 @@ export default {
     <h1>Hello, World!</h1>
   </body>
 </html>`,
-      cmOptions: {
+      codeCSS: `* {
+  margin: 0;
+  padding 0;
+}
+  
+body {
+  color: #000000;
+}`,
+      htmlOptions: {
         tabSize: 4,
         mode: "text/html",
         theme: "eclipse",
         lineNumbers: true,
         line: true
-      }
+      },
+      cssOptions: {
+        tabSize: 2,
+        mode: "text/css",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      },
+      isTheoryActive: false,
+      isHintActive: false
     };
   },
   // mounted() {
@@ -374,12 +412,48 @@ export default {
 .interactive__code-editor {
   padding: 0;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
 }
 
 .interactive__lesson-editor {
   width: 100%;
   height: 50%;
+}
+
+.interactive__files {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  border-top: 1px solid #d1d2d6;
+}
+
+.interactive__file-button {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 300;
+  color: #1e272e;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.interactive_active-button {
+  background-color: #f5f5f5;
+}
+
+.interactive__file-button:hover {
+  background-color: #f5f5f5;
+  transition: 200ms ease-in-out;
+}
+
+.interactive__html {
+  border-right: 1px solid #d1d2d6;
 }
 
 .interactive__lesson-instructions {
