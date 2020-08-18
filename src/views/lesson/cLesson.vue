@@ -123,7 +123,14 @@
           <div class="interactive-block__heading interactive__browser-heading">
             Браузер
           </div>
-          <div class="interactive__frame" ref="interactiveFrame"></div>
+          <!-- <div class="interactive__frame" ref="interactiveFrame"></div> -->
+          <iframe
+            src="/browser.html"
+            name="browser"
+            class="interactive__frame"
+            id="interactiveFrame"
+            noresize
+          ></iframe>
           <div
             class="interactive__theory-button"
             @click="isTheoryActive = true"
@@ -193,7 +200,7 @@ export default {
     <title></title>
   </head>
   <body>
-    <h1>Hello, World!</h1>
+    <button>Кнопка</button>
   </body>
 </html>`,
       codeCSS: `* {
@@ -202,7 +209,29 @@ export default {
 }
   
 body {
-  color: #000000;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 10px 20px;
+  width: 130px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffff;
+  cursor: pointer;
+  transition: 150ms ease-in-out;
+  outline: none;
+}
+
+button:hover {
+  opacity: 0.5;
+  transition: 150ms ease-in-out;
 }`,
       htmlOptions: {
         tabSize: 4,
@@ -221,6 +250,9 @@ body {
       isTheoryActive: false,
       isHintActive: false
     };
+  },
+  mounted() {
+    this.runCode();
   },
   // mounted() {
   //   let container = this.$refs.interactiveProgramming,
@@ -264,8 +296,20 @@ body {
     },
 
     runCode() {
-      let interactiveFrame = this.$refs.interactiveFrame;
-      interactiveFrame.innerHTML = this.code;
+      let interactiveFrame = document.getElementById("interactiveFrame");
+      let interactiveFrameBody;
+      if (interactiveFrame.contentDocument) {
+        interactiveFrameBody = interactiveFrame.contentDocument.getElementsByTagName(
+          "body"
+        )[0];
+      } else if (interactiveFrame.contentWindow) {
+        interactiveFrameBody = interactiveFrame.contentWindow.document.getElementsByTagName(
+          "body"
+        )[0];
+      }
+
+      interactiveFrameBody.innerHTML = `${this.codeHTML}
+      <style>${this.codeCSS}</style>`;
     }
   }
   // mounted() {
