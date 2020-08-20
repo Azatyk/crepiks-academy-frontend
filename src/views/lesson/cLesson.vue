@@ -27,7 +27,8 @@
         </div>
       </div>
       <div class="interactive__navigation-target" @click="isOpen = !isOpen">
-        <a-icon type="up" class="interactive__navigation-icon" />
+        <!-- <a-icon type="up" class="interactive__navigation-icon" /> -->
+        <i class="fas fa-chevron-up interactive__navigation-icon"></i>
       </div>
     </div>
     <div class="black__background" @click="isOpen = false"></div>
@@ -175,9 +176,9 @@
 <script>
 import dialog from "vuesax/dist/vsDialog";
 import "vuesax/dist/vuesax.css";
+
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
-
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/eclipse.css";
 

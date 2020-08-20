@@ -15,7 +15,8 @@
       </div>
       <div class="nav__logout-button" @click="logout">Выйти</div>
       <div class="navigation__target" @click="isOpen = !isOpen">
-        <a-icon type="up" class="navigation__icon" />
+        <!-- <a-icon type="up" class="navigation__icon" /> -->
+        <i class="fas fa-chevron-up navigation__icon"></i>
       </div>
     </div>
     <div class="content" @click="isOpen = false">

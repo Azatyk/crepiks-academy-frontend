@@ -2,14 +2,13 @@
   <header class="header">
     <div class="content">
       <cLogo class="header__logo" />
-      <a-button
-        type="primary"
+      <s-button
         v-show="pageType == 'common' || pageType == 'register'"
         @click="$router.push('/auth/login')"
         class="header__auth-button"
       >
         Вход
-      </a-button>
+      </s-button>
     </div>
   </header>
 </template>
@@ -17,7 +16,9 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import cLogo from "@/components/common/cLogo";
-import { Button } from "ant-design-vue";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   props: {
@@ -30,7 +31,7 @@ export default {
 
   components: {
     cLogo,
-    "a-button": Button
+    "s-button": Button
   },
   methods: mapMutations(["logout"]),
   computed: mapGetters(["isLoggedIn", "userData"])

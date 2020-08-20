@@ -18,13 +18,13 @@
           class="auth-form__input"
           type="password"
         />
-        <a-button
+        <s-button
           type="primary"
           @click="login"
           class="auth-form__submit-button"
         >
           Вход
-        </a-button>
+        </s-button>
         <div class="form__link-text">
           Нет аккаунта?
           <router-link
@@ -41,13 +41,15 @@
 <script>
 import cForm from "@/components/common/cForm";
 import cFormInput from "@/components/common/cFormInput";
-import { Button } from "ant-design-vue";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     cForm,
     cFormInput,
-    "a-button": Button
+    "s-button": Button
   },
   data() {
     return {

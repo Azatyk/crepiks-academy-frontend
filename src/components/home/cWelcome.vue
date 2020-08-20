@@ -7,11 +7,8 @@
           Приобрети навыки 21 века с помощью веселых и увлекательных
           итерактивных курсов
         </div>
-        <a-button
-          type="primary"
-          class="welcome__button"
-          @click="$router.push('/app/courses')"
-          >Начать обучение</a-button
+        <s-button class="welcome__button" @click="$router.push('/app/courses')"
+          >Начать обучение</s-button
         >
       </div>
       <img
@@ -24,11 +21,12 @@
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    "a-button": Button
+    "s-button": Button
   }
 };
 </script>

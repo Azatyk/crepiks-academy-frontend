@@ -10,19 +10,17 @@
       <div class="text-block" :class="{ changeMargin: reversed }">
         <h2 class="text-block__heading">{{ textHeading }}</h2>
         <div class="text-block__description">{{ textDescription }}</div>
-        <a-button
-          type="primary"
-          class="about__button"
-          @click="$router.push(route)"
-          >{{ buttonText }}</a-button
-        >
+        <s-button class="about__button" @click="$router.push(route)">{{
+          buttonText
+        }}</s-button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   props: {
@@ -56,7 +54,7 @@ export default {
     }
   },
   components: {
-    "a-button": Button
+    "s-button": Button
   }
 };
 </script>

@@ -39,13 +39,9 @@
           id="passwordCheck"
           class="register-form__input"
         />
-        <a-button
-          type="primary"
-          @click="register"
-          class="register-form__submit-button"
-        >
+        <s-button @click="register" class="register-form__submit-button">
           Регистрация
-        </a-button>
+        </s-button>
         <div class="form__link-text">
           Есть аккаунт?
           <router-link to="/auth/login" class="form__link-register"
@@ -60,14 +56,16 @@
 <script>
 import cForm from "@/components/common/cForm";
 import cFormInput from "@/components/common/cFormInput";
-import { Button } from "ant-design-vue";
 import { message } from "ant-design-vue";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     cForm,
     cFormInput,
-    "a-button": Button
+    "s-button": Button
   },
   data() {
     return {
