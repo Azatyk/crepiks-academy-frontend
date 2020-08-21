@@ -1,55 +1,49 @@
 <template>
-  <div class="login__page">
-    <div class="content">
-      <cForm @submit="login" class="form">
-        <h3 class="auth-form__heading">Войти</h3>
-        <cFormInput
-          icon="fas fa-envelope"
-          placeholder="Email"
-          v-model="email"
-          id="email"
-          class="auth-form__input"
-        />
-        <cFormInput
-          icon="fas fa-lock"
-          placeholder="Пароль"
-          v-model="password"
-          id="password"
-          class="auth-form__input"
-          type="password"
-        />
-        <s-button
-          type="primary"
-          @click="login"
-          class="auth-form__submit-button"
-        >
+  <c-form @submit="login">
+    <div class="form">
+      <h3 class="form__heading">Войти</h3>
+      <s-input
+        border
+        label-placeholder="Email"
+        v-model="email"
+        class="form__input"
+      >
+        <template v-if="!email" #message-danger> </template>
+      </s-input>
+      <s-input
+        border
+        label-placeholder="Password"
+        v-model="password"
+        class="form__input"
+        type="password"
+      />
+      <div class="form__functional">
+        <s-button @click="login" class="form__button">
           Вход
         </s-button>
-        <div class="form__link-text">
+        <div class="form__link-text form__link-container">
           Нет аккаунта?
-          <router-link
-            to="/auth/register"
-            class="form__link-text form__link-register"
+          <router-link to="/auth/register" class="form__link-text form__link"
             >Зарегистрируйтесь</router-link
           >
         </div>
-      </cForm>
+      </div>
     </div>
-  </div>
+  </c-form>
 </template>
 
 <script>
 import cForm from "@/components/common/cForm";
-import cFormInput from "@/components/common/cFormInput";
 
 import Button from "vuesax/dist/vsButton";
+import Input from "vuesax/dist/vsInput";
 import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    cForm,
-    cFormInput,
-    "s-button": Button
+    "c-form": cForm,
+    "s-button": Button,
+    "s-input": Input
   },
   data() {
     return {
@@ -61,93 +55,87 @@ export default {
     login() {
       if (this.email.trim() && this.password.trim()) {
         const { email, password } = this;
+        const loading = this.$vs.loading({ color: "#384a62" });
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/app/courses"));
+          .then(() => loading.close())
+          .then(() => this.$router.push("/app/courses", () => {}))
+          .catch(() => {
+            loading.close();
+            this.openNotification("top-center");
+          });
       }
+    },
+    openNotification(
+      position = null,
+      color = "danger",
+      title = "Неверные данные",
+      text = "Вы ввели неверный логин или пароль"
+    ) {
+      this.$vs.notification({
+        position,
+        color,
+        title,
+        text
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-.content {
-  height: 100vh;
-  width: 100%;
+.form {
+  padding-left: 60px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+}
+
+.form__heading {
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: 300;
+  color: white;
+}
+
+.form__input {
+  margin-bottom: 40px;
+  align-self: flex-start;
+  width: 80%;
+  font-size: 30px !important;
+  color: white;
+}
+
+.form__functional {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.form {
-  min-width: 300px;
-  width: 500px;
-  height: 380px;
+.form__button {
+  margin-left: 0;
+  width: 90px;
+  font-size: 15px;
 }
 
-.auth-form__heading {
-  color: #34495e;
-  margin-bottom: 15px;
-  font-size: 35px;
-  font-weight: 500;
-}
-
-.auth-form__input {
-  margin-bottom: 24px;
-}
-
-.auth-form__submit-button {
-  margin-bottom: 3%;
-  height: 45px;
-  width: 100%;
-  font-size: 20px;
-  font-weight: 500;
+.form__link-container {
+  margin-left: 10px;
 }
 
 .form__link-text {
-  font-size: 17px;
-  color: #516f8c;
+  font-size: 12px;
+  color: white;
 }
 
-.form__link-register {
-  color: #fc7979;
+.form__link {
+  margin-left: 5px;
   text-decoration: none;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .form {
-    width: 80%;
-    height: 60vw;
-  }
-
-  .auth-form__heading {
-    margin-bottom: 3vw;
-    font-size: 6vw;
-  }
-
-  .auth-form__input {
-    margin-bottom: 3vw;
-  }
-
-  .auth-form__submit-button {
-    height: 8vw;
-    font-size: 3vw;
-  }
-
-  .form__link-text {
-    font-size: 3vw;
-  }
-}
-
-@media (max-width: 700px) {
-  .form {
-    min-width: 0;
-    height: auto;
-  }
-
-  .auth-form__heading {
-    font-size: 7vw;
-  }
+  color: #6ddeca;
 }
 </style>

@@ -2,16 +2,6 @@ import axios from "axios";
 import config from "@/config/config";
 import store from "@/store";
 import router from "@/router";
-import { message } from "ant-design-vue";
-
-// function handleLoading() {
-//   const loading = this.$vs.loading()
-//   setTimeout(() => {
-//     loading.close()
-//   }, 3000)
-// }
-
-const key = "request";
 
 const request = axios.create({
   baseURL: config.apiBaseUrl,
@@ -21,20 +11,15 @@ const request = axios.create({
 request.interceptors.request.use(
   config => {
     config.headers["Authorization"] = store.getters.accessToken;
-    // handleLoading();
-    message.loading({ content: "Пожалуйста подождите...", key });
     return config;
   },
   err => {
-    message.error({ content: "Что-то пошло не так", key });
-    // handleLoading();
     return Promise.reject(err);
   }
 );
 
 request.interceptors.response.use(
   res => {
-    message.success({ content: "Данные загружены", key });
     return res;
   },
   err => {
@@ -42,7 +27,6 @@ request.interceptors.response.use(
       store.commit("logout");
       router.push("/");
     }
-    message.error({ content: err.response.data.message, key });
     return Promise.reject(err);
   }
 );

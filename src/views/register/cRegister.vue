@@ -1,71 +1,65 @@
 <template>
-  <div class="register__page">
-    <div class="content">
-      <cForm @submit="register" class="form">
-        <h3 class="register-form__heading">Регистрация</h3>
-        <cFormInput
-          icon="fas fa-address-card"
-          placeholder="Имя"
-          v-model="name"
-          id="name"
-          class="register-form__input"
-        />
-        <cFormInput
-          icon="fas fa-address-card"
-          placeholder="Фамилия"
-          v-model="surname"
-          id="surname"
-          class="register-form__input"
-        />
-        <cFormInput
-          type="email"
-          icon="fas fa-envelope"
-          placeholder="Email"
-          v-model="email"
-          id="email"
-          class="register-form__input"
-        />
-        <cFormInput
-          icon="fas fa-lock"
-          placeholder="Пароль"
-          v-model="password"
-          id="password"
-          class="register-form__input"
-        />
-        <cFormInput
-          icon="fas fa-unlock"
-          placeholder="Подтверждение пароля"
-          v-model="passwordCheck"
-          id="passwordCheck"
-          class="register-form__input"
-        />
-        <s-button @click="register" class="register-form__submit-button">
+  <c-form @submit="register">
+    <div class="form">
+      <h3 class="form__heading">Регистрация</h3>
+      <s-input
+        border
+        label-placeholder="Имя"
+        v-model="name"
+        class="form__input"
+      />
+      <s-input
+        border
+        label-placeholder="Фамилия"
+        v-model="surname"
+        class="form__input"
+      />
+      <s-input
+        border
+        type="email"
+        label-placeholder="Email"
+        v-model="email"
+        class="form__input"
+      />
+      <s-input
+        border
+        label-placeholder="Пароль"
+        v-model="password"
+        type="password"
+        class="form__input"
+      />
+      <s-input
+        border
+        label-placeholder="Подтверждение пароля"
+        v-model="passwordCheck"
+        type="password"
+        class="form__input"
+      />
+      <div class="form__functional">
+        <s-button @click="register" class="form__button">
           Регистрация
         </s-button>
-        <div class="form__link-text">
+        <div class="form__link-text form__link-container">
           Есть аккаунт?
-          <router-link to="/auth/login" class="form__link-register"
-            >Войдите</router-link
-          >
+          <router-link to="/auth/login" class="form__link">Войдите</router-link>
         </div>
-      </cForm>
+      </div>
     </div>
-  </div>
+  </c-form>
 </template>
 
 <script>
 import cForm from "@/components/common/cForm";
-import cFormInput from "@/components/common/cFormInput";
-import { message } from "ant-design-vue";
 
 import Button from "vuesax/dist/vsButton";
+import Input from "vuesax/dist/vsInput";
 import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    cForm,
-    cFormInput,
-    "s-button": Button
+    "c-form": cForm,
+    "s-button": Button,
+    "s-input": Input
   },
   data() {
     return {
@@ -86,95 +80,94 @@ export default {
           password: this.password
         };
 
+        const loading = this.$vs.loading({ color: "#384a62" });
         this.$store
           .dispatch("register", data)
-          .then(() => this.$router.push("/"));
+          .then(() => loading.close())
+          .then(() => this.$router.push("/"))
+          .catch(() => {
+            loading.close();
+            this.openNotification(
+              "top-center",
+              "danger",
+              "Такой пользователь уже существует",
+              "Эта почта уже используется другим пользователем, если это ваша почта, пожалуйста напишите нам"
+            );
+          });
       } else {
-        message.error("Пароли должны совпадать");
+        this.openNotification(
+          "top-center",
+          "danger",
+          "Пароли должны сопадать",
+          'Поле "Пароль" и поле "Подтверждение пароля" должны содержать одинаковые пароли'
+        );
       }
+    },
+    openNotification(position = null, color, title, text) {
+      this.$vs.notification({
+        color,
+        position,
+        title,
+        text
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-.content {
-  height: 100vh;
-  width: 100%;
+.form {
+  padding-left: 60px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+}
+
+.form__heading {
+  margin-bottom: 50px;
+  font-size: 30px;
+  font-weight: 300;
+  color: white;
+}
+
+.form__input {
+  margin-bottom: 40px;
+  align-self: flex-start;
+  width: 80%;
+  font-size: 30px !important;
+  color: white;
+}
+
+.form__functional {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.form {
-  min-width: 300px;
-  width: 500px;
-  height: 600px;
+.form__button {
+  margin-left: 0;
+  width: 130px;
+  font-size: 15px;
 }
 
-.register-form__heading {
-  color: #34495e;
-  margin-bottom: 15px;
-  font-size: 35px;
-  font-weight: 500;
-}
-
-.register-form__input {
-  margin-bottom: 24px;
-}
-
-.register-form__submit-button {
-  margin-bottom: 3%;
-  height: 45px;
-  width: 100%;
-  font-size: 20px;
-  font-weight: 500;
+.form__link-container {
+  margin-left: 10px;
 }
 
 .form__link-text {
-  font-size: 17px;
-  color: #516f8c;
+  font-size: 12px;
+  color: white;
 }
 
-.form__link-register {
-  color: #fc7979;
+.form__link {
+  margin-left: 5px;
   text-decoration: none;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .form {
-    width: 80%;
-    height: 920px;
-  }
-
-  .register-form__heading {
-    margin-bottom: 3vw;
-    font-size: 6vw;
-  }
-
-  .register-form__input {
-    margin-bottom: 3vw;
-  }
-
-  .register-form__submit-button {
-    height: 8vw;
-    font-size: 3vw;
-  }
-
-  .form__link-text {
-    font-size: 3vw;
-  }
-}
-
-@media (max-width: 700px) {
-  .form {
-    min-width: 0;
-    height: auto;
-  }
-
-  .register-form__heading {
-    font-size: 6vw;
-  }
+  color: #6ddeca;
 }
 </style>
