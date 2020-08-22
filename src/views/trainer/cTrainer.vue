@@ -2,14 +2,14 @@
   <div class="trainer-page">
     <div class="trainer__content">
       <div class="card-container">
-        <a-icon type="caret-left" class="trainer__navigation-button" />
+        <!-- <a-icon type="caret-left" class="trainer__navigation-button" /> -->
         <div class="card">
           <form>
             <div class="card__text">Создайте блок с классом "new-block"</div>
             <a-input size="large" class="card__input" />
           </form>
         </div>
-        <a-icon type="caret-right" class="trainer__navigation-button" />
+        <!-- <a-icon type="caret-right" class="trainer__navigation-button" /> -->
       </div>
       <a-progress
         :percent="20"
@@ -17,11 +17,11 @@
         strokeColor="#1e272e80"
       />
     </div>
-    <a-icon
+    <!-- <a-icon
       type="question-circle"
       class="trainer__question"
       @click="isModalActive = true"
-    />
+    /> -->
     <vs-dialog full-screen blur v-model="isModalActive">
       <div class="theory">
         <h1 class="theory__title">Что такое Git</h1>

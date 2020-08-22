@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-page" :class="{ navClosed: !isOpen }">
+  <!-- <div class="navigation-page" :class="{ navClosed: !isOpen }">
     <div class="navigation__nav">
       <router-link to="/"
         ><div class="nav__logo">
@@ -15,23 +15,115 @@
       </div>
       <div class="nav__logout-button" @click="logout">Выйти</div>
       <div class="navigation__target" @click="isOpen = !isOpen">
-        <!-- <a-icon type="up" class="navigation__icon" /> -->
         <i class="fas fa-chevron-up navigation__icon"></i>
       </div>
     </div>
     <div class="content" @click="isOpen = false">
       <router-view></router-view>
     </div>
+  </div> -->
+  <div class="app-page">
+    <s-sidebar
+      class="sidebar"
+      open
+      v-model="activeLink"
+      hover-expand
+      reduce
+      absolute
+    >
+      <template #logo>
+        <span class="sidebar__logo"
+          >Crepiks <span class="sidebar__logo-thin">Academy</span></span
+        >
+      </template>
+      <div
+        class="sidebar__link-container"
+        @click="$router.push('/app/courses', () => {})"
+      >
+        <s-sidebar-item id="home">
+          <template #icon>
+            <i class="fas fa-home"></i>
+          </template>
+          Главная
+        </s-sidebar-item>
+      </div>
+      <s-sidebar-group>
+        <template #header>
+          <vs-sidebar-item arrow>
+            <template #icon>
+              <i class="fas fa-laptop-code"></i>
+            </template>
+            Курсы
+          </vs-sidebar-item>
+        </template>
+        <div
+          class="sidebar__link-container"
+          @click="$router.push('/app/courses', () => {})"
+        >
+          <vs-sidebar-item id="HTML&CSS">
+            <template #icon>
+              <i class="fab fa-html5"></i>
+            </template>
+            Базовый HTML & CSS
+          </vs-sidebar-item>
+        </div>
+        <vs-sidebar-item id="Instagram">
+          <template #icon>
+            <i class="fab fa-js-square"></i>
+          </template>
+          Базовый JavaScript
+        </vs-sidebar-item>
+      </s-sidebar-group>
+      <template #footer>
+        <vs-row justify="space-between">
+          <vs-avatar badge-color="danger" badge-position="top-right">
+            <i class="fas fa-user"></i>
+            <template #badge>
+              2
+            </template>
+          </vs-avatar>
+          <vs-button @click="logout" icon color="danger"
+            ><i class="fas fa-sign-out-alt"></i
+          ></vs-button>
+        </vs-row>
+      </template>
+      <s-sidebar-item id="test">
+        <template #icon>
+          <i class="far fa-check-square"></i>
+        </template>
+        Тесты
+      </s-sidebar-item>
+      <div
+        class="sidebar__link-container"
+        @click="$router.push('/app/trainer', () => {})"
+      >
+        <s-sidebar-item id="trainer">
+          <template #icon>
+            <i class="fas fa-network-wired"></i>
+          </template>
+          тренажер
+        </s-sidebar-item>
+      </div>
+    </s-sidebar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import Sidebar from "vuesax/dist/vsSidebar";
+import SidebarItem from "vuesax/dist/vsSidebarItem";
+import SidebarGroup from "vuesax/dist/vsSidebarGroup";
 
 export default {
+  components: {
+    "s-sidebar": Sidebar,
+    "s-sidebar-item": SidebarItem,
+    "s-sidebar-group": SidebarGroup
+  },
   data() {
     return {
-      isOpen: false
+      activeLink: "home"
     };
   },
   methods: mapMutations(["logout"])
@@ -39,7 +131,32 @@ export default {
 </script>
 
 <style scoped>
-.navigation-page {
+.app-page {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+}
+
+.sidebar {
+  position: fixed !important;
+}
+
+.sidebar__logo {
+  font-size: 23px;
+  color: #384a62;
+  font-weight: bold;
+}
+
+.sidebar__logo-thin {
+  font-weight: 300;
+}
+
+.sidebar__link {
+  color: #384a62;
+  text-decoration: none;
+}
+
+/* .navigation-page {
   width: 100%;
   height: 100%;
   background-color: #dff9fb;
@@ -294,5 +411,5 @@ export default {
   .navigation__target {
     height: 50px;
   }
-}
+} */
 </style>
