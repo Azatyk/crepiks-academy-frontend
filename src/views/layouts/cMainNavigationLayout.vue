@@ -23,88 +23,94 @@
     </div>
   </div> -->
   <div class="app-page">
-    <s-sidebar
-      class="sidebar"
-      open
-      v-model="activeLink"
-      hover-expand
-      reduce
-      absolute
-    >
-      <template #logo>
-        <span class="sidebar__logo"
-          >Crepiks <span class="sidebar__logo-thin">Academy</span></span
-        >
-      </template>
-      <div
-        class="sidebar__link-container"
-        @click="$router.push('/app/courses', () => {})"
+    <div class="sidebar__container" @mouseenter="enter" @mouseleave="leave">
+      <s-sidebar
+        class="sidebar"
+        open
+        v-model="activeLink"
+        hover-expand
+        reduce
+        absolute
       >
-        <s-sidebar-item id="home">
-          <template #icon>
-            <i class="fas fa-home"></i>
-          </template>
-          Главная
-        </s-sidebar-item>
-      </div>
-      <s-sidebar-group>
-        <template #header>
-          <vs-sidebar-item arrow>
-            <template #icon>
-              <i class="fas fa-laptop-code"></i>
-            </template>
-            Курсы
-          </vs-sidebar-item>
+        <template #logo>
+          <span class="sidebar__logo-short">C</span
+          ><span
+            class="sidebar__logo-full-start"
+            :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
+            v-if="isSidebarOpen"
+            >repiks <span class="sidebar__logo-thin">Academy</span></span
+          >
         </template>
         <div
           class="sidebar__link-container"
           @click="$router.push('/app/courses', () => {})"
         >
-          <vs-sidebar-item id="HTML&CSS">
+          <s-sidebar-item id="home">
             <template #icon>
-              <i class="fab fa-html5"></i>
+              <i class="fas fa-home"></i>
             </template>
-            Базовый HTML & CSS
-          </vs-sidebar-item>
+            Главная
+          </s-sidebar-item>
         </div>
-        <vs-sidebar-item id="Instagram">
-          <template #icon>
-            <i class="fab fa-js-square"></i>
+        <s-sidebar-group>
+          <template #header>
+            <vs-sidebar-item arrow>
+              <template #icon>
+                <i class="fas fa-laptop-code"></i>
+              </template>
+              Курсы
+            </vs-sidebar-item>
           </template>
-          Базовый JavaScript
-        </vs-sidebar-item>
-      </s-sidebar-group>
-      <template #footer>
-        <vs-row justify="space-between">
-          <vs-avatar badge-color="danger" badge-position="top-right">
-            <i class="fas fa-user"></i>
-            <template #badge>
-              2
+          <div
+            class="sidebar__link-container"
+            @click="$router.push('/app/courses', () => {})"
+          >
+            <vs-sidebar-item id="HTML&CSS">
+              <template #icon>
+                <i class="fab fa-html5"></i>
+              </template>
+              Базовый HTML & CSS
+            </vs-sidebar-item>
+          </div>
+          <vs-sidebar-item id="Instagram">
+            <template #icon>
+              <i class="fab fa-js-square"></i>
             </template>
-          </vs-avatar>
-          <vs-button @click="logout" icon color="danger"
-            ><i class="fas fa-sign-out-alt"></i
-          ></vs-button>
-        </vs-row>
-      </template>
-      <s-sidebar-item id="test">
-        <template #icon>
-          <i class="far fa-check-square"></i>
+            Базовый JavaScript
+          </vs-sidebar-item>
+        </s-sidebar-group>
+        <template #footer>
+          <vs-row justify="space-between">
+            <vs-avatar badge-color="danger" badge-position="top-right">
+              <i class="fas fa-user"></i>
+              <template #badge>
+                2
+              </template>
+            </vs-avatar>
+            <vs-button @click="logout" icon color="danger"
+              ><i class="fas fa-sign-out-alt"></i
+            ></vs-button>
+          </vs-row>
         </template>
-        Тесты
-      </s-sidebar-item>
-      <div
-        class="sidebar__link-container"
-        @click="$router.push('/app/trainer', () => {})"
-      >
-        <s-sidebar-item id="trainer">
+        <s-sidebar-item id="test">
           <template #icon>
-            <i class="fas fa-network-wired"></i>
+            <i class="far fa-check-square"></i>
           </template>
-          тренажер
+          Тесты
         </s-sidebar-item>
-      </div>
-    </s-sidebar>
+        <div
+          class="sidebar__link-container"
+          @click="$router.push('/app/trainer', () => {})"
+        >
+          <s-sidebar-item id="trainer">
+            <template #icon>
+              <i class="fas fa-network-wired"></i>
+            </template>
+            тренажер
+          </s-sidebar-item>
+        </div>
+      </s-sidebar>
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -123,10 +129,19 @@ export default {
   },
   data() {
     return {
-      activeLink: "home"
+      activeLink: "home",
+      isSidebarOpen: null
     };
   },
-  methods: mapMutations(["logout"])
+  methods: {
+    ...mapMutations(["logout"]),
+    enter() {
+      this.isSidebarOpen = true;
+    },
+    leave() {
+      this.isSidebarOpen = false;
+    }
+  }
 };
 </script>
 
@@ -141,10 +156,23 @@ export default {
   position: fixed !important;
 }
 
-.sidebar__logo {
+.sidebar__logo-short {
   font-size: 23px;
   color: #384a62;
   font-weight: bold;
+}
+
+.sidebar__logo-full-start {
+  font-size: 23px;
+  color: #384a62;
+  font-weight: bold;
+  transform: scale(0%);
+  transition: 2s ease-in-out;
+}
+
+.sidebar__logo-full-end {
+  transform: scale(100%);
+  transition: 2s ease-in-out;
 }
 
 .sidebar__logo-thin {
