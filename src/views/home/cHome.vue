@@ -1,58 +1,85 @@
 <template>
-  <div class="home__content">
-    <cWelcome />
-    <cAbout
-      :image="loveDouble"
-      :reversed="false"
-      textHeading="Курсы сделанные с любовью"
-      textDescription="Структурированное обучение, десятки видеоуроков и интерактивных курсов сделанных для вас помогут вам в изучении программирования с нуля"
-      route="/app/courses"
-      buttonText="Подобрать курс"
-    />
-    <cAdvantages />
-    <cAbout
-      :image="meditation"
-      :reversed="true"
-      textHeading="Открой для себя новый мир"
-      textDescription="Мы не только обучим вас всем современным технологиям в мире IT, но и расскажем почему эта сфера так важна в нашем мире"
-      route="/app/courses"
-      buttonText="Перейти к курсам"
-    />
-    <cMailing />
+  <div class="home-page">
+    <div class="home__news">
+      <div class="home__news-text">
+        <div class="home__news-title">Новый курс "Базовый HTML & CSS"</div>
+        <div class="home__news-description">
+          Пройдите новый курс по базовой верстке и создайте свой собственный
+          одностраничный сайт!
+        </div>
+        <s-button
+          class="home__news-button"
+          @click="$router.push('/app/courses')"
+          >Попробовать</s-button
+        >
+      </div>
+      <i class="fas fa-money-check home__news-icon"></i>
+    </div>
   </div>
 </template>
 
 <script>
-import cWelcome from "@/components/home/cWelcome";
-import cAbout from "@/components/home/cAbout";
-import loveDouble from "@/assets/images/love.svg";
-
-import cAdvantages from "@/components/home/cAdvantages";
-
-import meditation from "@/assets/images/newWorld.svg";
-
-import cMailing from "@/components/home/cMailing";
+import Button from "vuesax/dist/vsButton";
 
 export default {
-  data() {
-    return {
-      loveDouble: loveDouble,
-      meditation: meditation
-    };
-  },
-
   components: {
-    cWelcome,
-    cAbout,
-    cAdvantages,
-    cMailing
+    "s-button": Button
   }
 };
 </script>
 
-<style scoped>
-.home__content {
-  padding: 0.1px;
+<style>
+.home-page {
   width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.home__news {
+  margin-top: 10vh;
+  width: 60%;
+  height: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f7f6;
+  border-radius: 30px;
+  box-shadow: 0 0 20px 0px #0000001a;
+}
+
+.home__news-text {
+  margin-right: 10%;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.home__news-title {
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #2e2e3d;
+}
+
+.home__news-description {
+  font-size: 20px;
+  color: #2e2e3d;
+}
+
+.home__news-button {
+  margin-left: 0;
+  margin-top: 25px;
+  height: 40px;
+  width: 35%;
+  font-size: 17px;
+}
+
+.home__news-icon {
+  font-size: 220px;
+  color: #2e2e3d;
 }
 </style>

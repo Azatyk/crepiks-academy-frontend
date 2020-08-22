@@ -1,10 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import cHome from "@/views/home/cHome";
+import cLanding from "@/views/landing/cLanding";
 
 import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
+
+import cHome from "@/views/home/cHome";
 
 import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
@@ -66,7 +68,7 @@ const routes = [
           {
             path: "",
             name: "home",
-            component: cHome,
+            component: cLanding,
             meta: {
               title: "Crepiks Academy - программируй вместе с нами",
               noAuthOnly: true
@@ -86,6 +88,15 @@ const routes = [
             path: "",
             component: cMainNavigationLayout,
             children: [
+              {
+                path: "home",
+                name: "home",
+                component: cHome,
+                meta: {
+                  title: "Главная",
+                  needAuth: true
+                }
+              },
               {
                 path: "courses",
                 name: "courses",

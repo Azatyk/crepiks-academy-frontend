@@ -31,19 +31,22 @@
         hover-expand
         reduce
         absolute
+        background="#f5f7f6"
       >
         <template #logo>
-          <span class="sidebar__logo-short">C</span
-          ><span
-            class="sidebar__logo-full-start"
-            :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
-            v-if="isSidebarOpen"
-            >repiks <span class="sidebar__logo-thin">Academy</span></span
+          <router-link to="/app/home" class="sidebar__link"
+            ><span class="sidebar__logo-short">C</span
+            ><span
+              class="sidebar__logo-full-start"
+              :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
+              v-if="isSidebarOpen"
+              >repiks <span class="sidebar__logo-thin">Academy</span></span
+            ></router-link
           >
         </template>
         <div
           class="sidebar__link-container"
-          @click="$router.push('/app/courses', () => {})"
+          @click="$router.push('/app/home', () => {})"
         >
           <s-sidebar-item id="home">
             <template #icon>
@@ -111,7 +114,9 @@
         </div>
       </s-sidebar>
     </div>
-    <router-view></router-view>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -147,13 +152,19 @@ export default {
 
 <style scoped>
 .app-page {
+  padding: 0.1px;
   width: 100%;
   min-height: 100vh;
   height: auto;
+  background-color: #eeeef6;
 }
 
 .sidebar {
   position: fixed !important;
+}
+
+.sidebar__link {
+  text-decoration: none;
 }
 
 .sidebar__logo-short {
@@ -182,6 +193,15 @@ export default {
 .sidebar__link {
   color: #384a62;
   text-decoration: none;
+}
+
+.content {
+  margin-left: 50px;
+  padding: 0.1px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  height: 100%;
+  width: calc(100% - 50px);
 }
 
 /* .navigation-page {
