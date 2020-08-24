@@ -59,17 +59,18 @@
             </vs-sidebar-item>
           </template>
 
-          <vs-sidebar-item id="HTML&CSS" to="/app/courses">
+          <!-- <vs-sidebar-item id="HTML&CSS" to="/app/courses">
             <template #icon>
               <i class="fab fa-html5"></i>
             </template>
             Базовый HTML & CSS
-          </vs-sidebar-item>
-          <vs-sidebar-item id="Instagram">
-            <template #icon>
-              <i class="fab fa-js-square"></i>
-            </template>
-            Базовый JavaScript
+          </vs-sidebar-item> -->
+          <vs-sidebar-item
+            v-for="(course, index) in courses"
+            :key="index"
+            :to="'/app/courses/' + course._id"
+          >
+            {{ course.title }}
           </vs-sidebar-item>
         </s-sidebar-group>
         <template #footer>
@@ -118,7 +119,8 @@ export default {
   data() {
     return {
       activeLink: "home",
-      isSidebarOpen: null
+      isSidebarOpen: null,
+      courses: {}
     };
   },
   methods: {
@@ -129,6 +131,9 @@ export default {
     leave() {
       this.isSidebarOpen = false;
     }
+  },
+  mounted() {
+    this.$store.dispatch("getCourses").then(res => (this.courses = res.data));
   }
 };
 </script>

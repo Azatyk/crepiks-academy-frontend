@@ -61,7 +61,7 @@ export default {
         this.$store
           .dispatch("login", { email, password })
           .then(() => loading.close())
-          .then(() => this.$router.push("/app/courses", () => {}))
+          .then(() => this.$router.push("/app/home", () => {}))
           .catch(() => {
             loading.close();
             this.openNotification("top-center");
