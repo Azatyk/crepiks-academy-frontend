@@ -21,7 +21,7 @@
     <div class="content" @click="isOpen = false">
       <router-view></router-view>
     </div>
-  </div> -->
+  </div>-->
   <div class="app-page">
     <div class="sidebar__container" @mouseenter="enter" @mouseleave="leave">
       <s-sidebar
@@ -34,26 +34,21 @@
         background="#f5f7f6"
       >
         <template #logo>
-          <router-link to="/app/home" class="sidebar__link"
-            ><span class="sidebar__logo-short">C</span
-            ><span
-              class="sidebar__logo-full-start"
-              :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
-              >repiks <span class="sidebar__logo-thin">Academy</span></span
-            ></router-link
+          <span class="sidebar__logo-short">C</span>
+          <span
+            class="sidebar__logo-full-start"
+            :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
           >
+            repiks
+            <span class="sidebar__logo-thin">Academy</span>
+          </span>
         </template>
-        <div
-          class="sidebar__link-container"
-          @click="$router.push('/app/home', () => {})"
-        >
-          <s-sidebar-item id="home">
-            <template #icon>
-              <i class="fas fa-home"></i>
-            </template>
-            Главная
-          </s-sidebar-item>
-        </div>
+        <s-sidebar-item id="home" to="/app/home">
+          <template #icon>
+            <i class="fas fa-home"></i>
+          </template>
+          Главная
+        </s-sidebar-item>
         <s-sidebar-group>
           <template #header>
             <vs-sidebar-item arrow>
@@ -63,17 +58,13 @@
               Курсы
             </vs-sidebar-item>
           </template>
-          <div
-            class="sidebar__link-container"
-            @click="$router.push('/app/courses', () => {})"
-          >
-            <vs-sidebar-item id="HTML&CSS">
-              <template #icon>
-                <i class="fab fa-html5"></i>
-              </template>
-              Базовый HTML & CSS
-            </vs-sidebar-item>
-          </div>
+
+          <vs-sidebar-item id="HTML&CSS" to="/app/courses">
+            <template #icon>
+              <i class="fab fa-html5"></i>
+            </template>
+            Базовый HTML & CSS
+          </vs-sidebar-item>
           <vs-sidebar-item id="Instagram">
             <template #icon>
               <i class="fab fa-js-square"></i>
@@ -85,13 +76,11 @@
           <vs-row justify="space-between">
             <vs-avatar badge-color="danger" badge-position="top-right">
               <i class="fas fa-user"></i>
-              <template #badge>
-                2
-              </template>
+              <template #badge>2</template>
             </vs-avatar>
-            <vs-button @click="logout" icon color="danger"
-              ><i class="fas fa-sign-out-alt"></i
-            ></vs-button>
+            <vs-button @click="logout" icon color="danger">
+              <i class="fas fa-sign-out-alt"></i>
+            </vs-button>
           </vs-row>
         </template>
         <s-sidebar-item id="test">
@@ -100,17 +89,12 @@
           </template>
           Тесты
         </s-sidebar-item>
-        <div
-          class="sidebar__link-container"
-          @click="$router.push('/app/trainer', () => {})"
-        >
-          <s-sidebar-item id="trainer">
-            <template #icon>
-              <i class="fas fa-network-wired"></i>
-            </template>
-            тренажер
-          </s-sidebar-item>
-        </div>
+        <s-sidebar-item id="trainer" to="/app/trainer">
+          <template #icon>
+            <i class="fas fa-network-wired"></i>
+          </template>
+          тренажер
+        </s-sidebar-item>
       </s-sidebar>
     </div>
     <div class="content">
