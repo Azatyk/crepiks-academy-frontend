@@ -1,29 +1,31 @@
 <template>
   <c-form @submit="login">
-    <div class="form">
-      <h3 class="form__heading">Войти</h3>
+    <div class="auth-form">
+      <h3 class="auth-form__heading">Войти</h3>
       <s-input
-        border
         label-placeholder="Email"
         v-model="email"
-        class="form__input"
+        class="auth-form__input"
+        state="primary"
       >
         <template v-if="!email" #message-danger> </template>
       </s-input>
       <s-input
-        border
         label-placeholder="Password"
         v-model="password"
-        class="form__input"
+        class="auth-form__input"
         type="password"
+        state="primary"
       />
-      <div class="form__functional">
-        <s-button @click="login" class="form__button">
+      <div class="auth-form__functional">
+        <s-button @click="login" class="auth-form__button">
           Вход
         </s-button>
-        <div class="form__link-text form__link-container">
+        <div class="auth-form__link-text auth-form__link-container">
           Нет аккаунта?
-          <router-link to="/auth/register" class="form__link-text form__link"
+          <router-link
+            to="/auth/register"
+            class="auth-form__link-text auth-form__link"
             >Зарегистрируйтесь</router-link
           >
         </div>
@@ -83,8 +85,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.form {
+<style>
+.auth-form {
   padding-left: 60px;
   box-sizing: border-box;
   height: 100%;
@@ -95,22 +97,26 @@ export default {
   align-items: flex-start;
 }
 
-.form__heading {
+.auth-form__heading {
   margin-bottom: 50px;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 300;
-  color: white;
+  color: #2e2e3d;
 }
 
-.form__input {
+.auth-form__input {
   margin-bottom: 40px;
   align-self: flex-start;
-  width: 80%;
-  font-size: 30px !important;
-  color: white;
+  width: 330px;
+  color: #2e2e3d;
 }
 
-.form__functional {
+.vs-input {
+  width: 330px;
+  font-size: 17px;
+}
+
+.auth-form__functional {
   margin-top: 20px;
   display: flex;
   flex-direction: row;
@@ -118,24 +124,24 @@ export default {
   align-items: center;
 }
 
-.form__button {
+.auth-form__button {
   margin-left: 0;
   width: 90px;
   font-size: 15px;
 }
 
-.form__link-container {
+.auth-form__link-container {
   margin-left: 10px;
 }
 
-.form__link-text {
-  font-size: 12px;
-  color: white;
+.auth-form__link-text {
+  font-size: 13px;
+  color: #2e2e3d;
 }
 
-.form__link {
+.auth-form__link {
   margin-left: 5px;
   text-decoration: none;
-  color: #6ddeca;
+  color: #5d33f6;
 }
 </style>

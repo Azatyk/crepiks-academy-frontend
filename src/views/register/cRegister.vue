@@ -1,47 +1,49 @@
 <template>
   <c-form @submit="register">
-    <div class="form">
-      <h3 class="form__heading">Регистрация</h3>
+    <div class="register-form">
+      <h3 class="register-form__heading">Регистрация</h3>
       <s-input
-        border
         label-placeholder="Имя"
         v-model="name"
-        class="form__input"
+        class="register-form__input"
+        state="primary"
       />
       <s-input
-        border
         label-placeholder="Фамилия"
         v-model="surname"
-        class="form__input"
+        class="register-form__input"
+        state="primary"
       />
       <s-input
-        border
         type="email"
         label-placeholder="Email"
         v-model="email"
-        class="form__input"
+        class="register-form__input"
+        state="primary"
       />
       <s-input
-        border
         label-placeholder="Пароль"
         v-model="password"
         type="password"
-        class="form__input"
+        class="register-form__input"
+        state="primary"
       />
       <s-input
-        border
         label-placeholder="Подтверждение пароля"
         v-model="passwordCheck"
         type="password"
-        class="form__input"
+        class="register-form__input"
+        state="primary"
       />
-      <div class="form__functional">
-        <s-button @click="register" class="form__button">
+      <div class="register-form__functional">
+        <s-button @click="register" class="register-form__button">
           Регистрация
         </s-button>
-        <div class="form__link-text form__link-container">
+        <div class="register-form__link-text register-form__link-container">
           Есть аккаунт?
-          <router-link to="/auth/login" class="form__link">Войдите</router-link>
+          <router-link to="/auth/login" class="register-form__link"
+            >Войдите</router-link
+          >
         </div>
       </div>
     </div>
@@ -116,7 +118,7 @@ export default {
 </script>
 
 <style scoped>
-.form {
+.register-form {
   padding-left: 60px;
   box-sizing: border-box;
   height: 100%;
@@ -127,22 +129,26 @@ export default {
   align-items: flex-start;
 }
 
-.form__heading {
+.register-form__heading {
   margin-bottom: 50px;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 300;
-  color: white;
+  color: #2e2e3d;
 }
 
-.form__input {
+.register-form__input {
   margin-bottom: 40px;
   align-self: flex-start;
-  width: 80%;
-  font-size: 30px !important;
-  color: white;
+  width: 330px;
+  color: #2e2e3d;
 }
 
-.form__functional {
+.vs-input {
+  width: 330px;
+  font-size: 17px;
+}
+
+.register-form__functional {
   margin-top: 20px;
   display: flex;
   flex-direction: row;
@@ -150,24 +156,24 @@ export default {
   align-items: center;
 }
 
-.form__button {
+.register-form__button {
   margin-left: 0;
   width: 130px;
   font-size: 15px;
 }
 
-.form__link-container {
+.register-form__link-container {
   margin-left: 10px;
 }
 
-.form__link-text {
-  font-size: 12px;
-  color: white;
+.register-form__link-text {
+  font-size: 15px;
+  color: #2e2e3d;
 }
 
-.form__link {
+.register-form__link {
   margin-left: 5px;
   text-decoration: none;
-  color: #6ddeca;
+  color: #5d33f6;
 }
 </style>

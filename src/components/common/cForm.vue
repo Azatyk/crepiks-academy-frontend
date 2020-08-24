@@ -24,7 +24,7 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #b35f6f;
+  background-color: #eeeef6;
 }
 
 .form {
@@ -34,9 +34,9 @@ export default {};
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 20px 0px #00000026;
-  background-color: #384a62;
-  border-radius: 10px;
+  box-shadow: 0px 10px 10px 0px #0000001a;
+  background-color: #f5f7f6;
+  border-radius: 30px;
 }
 
 .form__info-block {
@@ -45,8 +45,9 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #6ddeca;
-  border-radius: 10px 0px 0px 10px;
+  background-color: #5d33f6;
+  border-radius: 30px 0px 0px 30px;
+  box-shadow: 0px 10px 10px 0px #0000001a;
 }
 
 .form__image {

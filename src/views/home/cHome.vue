@@ -46,7 +46,7 @@ export default {
   align-items: center;
   background-color: #f5f7f6;
   border-radius: 30px;
-  box-shadow: 0 0 20px 0px #0000001a;
+  box-shadow: 10px 10px 7px 0px #0000001a;
 }
 
 .home__news-text {
