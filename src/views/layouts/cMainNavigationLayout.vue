@@ -51,27 +51,22 @@
         </s-sidebar-item>
         <s-sidebar-group>
           <template #header>
-            <vs-sidebar-item arrow>
+            <s-sidebar-item arrow>
               <template #icon>
                 <i class="fas fa-laptop-code"></i>
               </template>
               Курсы
-            </vs-sidebar-item>
+            </s-sidebar-item>
           </template>
-
-          <!-- <vs-sidebar-item id="HTML&CSS" to="/app/courses">
-            <template #icon>
-              <i class="fab fa-html5"></i>
-            </template>
-            Базовый HTML & CSS
-          </vs-sidebar-item> -->
-          <vs-sidebar-item
+          <s-sidebar-item
             v-for="(course, index) in courses"
             :key="index"
             :to="'/app/courses/' + course._id"
+            :id="course._id"
           >
+            <template #icon><i class="fas fa-file-code"></i></template>
             {{ course.title }}
-          </vs-sidebar-item>
+          </s-sidebar-item>
         </s-sidebar-group>
         <template #footer>
           <vs-row justify="space-between">

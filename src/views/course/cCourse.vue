@@ -61,6 +61,17 @@ export default {
         return index;
       }
     }
+  },
+  watch: {
+    $route() {
+      this.id = this.$route.params.id;
+      this.$store
+        .dispatch("getCourse", this.id)
+        .then(res => (this.course = res.data));
+      this.$store
+        .dispatch("getLessons", this.id)
+        .then(res => (this.lessons = res.data));
+    }
   }
 };
 </script>
