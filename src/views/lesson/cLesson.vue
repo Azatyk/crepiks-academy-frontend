@@ -2,7 +2,7 @@
   <div class="interactive__page">
     <div class="interactive__navigation-menu" :class="{ navClosed: !isOpen }">
       <div class="navigation">
-        <router-link to="/app/courses"
+        <router-link to="/app/home"
           ><div class="navigation__logo">
             Crepiks <span class="navigation__logo-thin">Academy</span>
           </div></router-link
@@ -27,7 +27,8 @@
         </div>
       </div>
       <div class="interactive__navigation-target" @click="isOpen = !isOpen">
-        <a-icon type="up" class="interactive__navigation-icon" />
+        <!-- <a-icon type="up" class="interactive__navigation-icon" /> -->
+        <i class="fas fa-chevron-up interactive__navigation-icon"></i>
       </div>
     </div>
     <div class="black__background" @click="isOpen = false"></div>
@@ -137,33 +138,130 @@
           >
             Теория
           </div>
-          <vs-dialog full-screen blur v-model="isTheoryActive">
+          <vs-dialog
+            overflow-hidden
+            auto-width
+            full-screen
+            v-model="isTheoryActive"
+          >
             <div class="theory">
-              <h1 class="theory__title">Основы HTML</h1>
-              <div class="theory__content">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati incidunt sequi iusto autem explicabo minima
-                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
-                itaque natus eius possimus labore dolorum dolorem laudantium
-                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
-                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
-                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
-                dolorem, illum recusandae atque debitis ut, esse tenetur
-                praesentium quisquam a vitae inventore labore consectetur
-                aspernatur. Sapiente nobis consectetur, assumenda error
-                cupiditate vel doloremque accusamus delectus. Unde omnis
-                aspernatur amet ipsa? Beatae numquam tempora illum, ex, voluptas
-                impedit nulla eaque facilis, sequi repellendus repudiandae.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati incidunt sequi iusto autem explicabo minima
-                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
-                itaque natus eius possimus labore dolorum dolorem laudantium
-                quaerat cum voluptas ab praesentium ducimus vero quo? Obcaecati
-                incidunt sequi iusto autem explicabo minima repellendus.
-                Distinctio, est, enim voluptatum obcaecati sequi itaque natus
-                eius possimus labore dolorum dolorem laudantium quaerat cum
-                voluptas ab praesentium ducimus vero quo?
-              </div>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
+              <p class="theory__paragraph">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente voluptatem commodi incidunt cupiditate asperiores
+                tempora debitis aspernatur laudantium numquam, magni, quo
+                laborum! Voluptatem adipisci tempore dolores facilis,
+                consequuntur dolorum atque. Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
+                autem impedit, recusandae porro officiis aperiam tempore in
+                molestias atque itaque, deleniti laborum nam exercitationem ex
+                aut cumque aliquid facere explicabo inventore id quibusdam
+                praesentium? Nisi impedit consequuntur consectetur laboriosam
+                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              </p>
             </div>
           </vs-dialog>
         </div>
@@ -175,9 +273,9 @@
 <script>
 import dialog from "vuesax/dist/vsDialog";
 import "vuesax/dist/vuesax.css";
+
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
-
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/eclipse.css";
 
@@ -629,8 +727,16 @@ button:hover {
   transition: 200ms ease-in-out;
 }
 
-.theory {
-  padding: 5%;
+.vs-dialog__content {
+  max-height: 100% !important;
+  height: 100%;
+}
+
+.theory__paragraph {
+  margin: 20px 0;
+  position: relative;
+  display: block;
+  font-size: 20px;
 }
 
 .theory__title {

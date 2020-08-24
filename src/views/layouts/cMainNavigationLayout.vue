@@ -1,24 +1,83 @@
 <template>
-  <div class="navigation-page" :class="{ navClosed: !isOpen }">
-    <div class="navigation__nav">
-      <router-link to="/"
-        ><div class="nav__logo">
-          Crepiks <span class="nav__logo-thin">Academy</span>
-        </div></router-link
+  <div class="app-page">
+    <div class="sidebar__container" @mouseenter="enter" @mouseleave="leave">
+      <s-sidebar
+        class="sidebar"
+        absolute
+        open
+        hover-expand
+        reduce
+        v-model="activeLink"
+        background="#f5f7f6"
       >
-      <div @click="isOpen = false" class="nav__bar">
-        <router-link to="/app/courses" class="nav__link nav__link-active"
-          >Курсы</router-link
-        >
-        <router-link to="/app/trainer" class="nav__link">Тренажер</router-link>
-        <router-link to="/app/empty" class="nav__link">Тесты</router-link>
-      </div>
-      <div class="nav__logout-button" @click="logout">Выйти</div>
-      <div class="navigation__target" @click="isOpen = !isOpen">
-        <a-icon type="up" class="navigation__icon" />
-      </div>
+        <template #logo>
+          <span class="sidebar__logo-short">C</span>
+          <span
+            class="sidebar__logo-full-start"
+            :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
+          >
+            repiks
+            <span class="sidebar__logo-thin">Academy</span>
+          </span>
+        </template>
+        <s-sidebar-item id="home" to="/app/home">
+          <template #icon>
+            <i class="fas fa-home"></i>
+          </template>
+          Главная
+        </s-sidebar-item>
+        <s-sidebar-group>
+          <template #header>
+            <s-sidebar-item arrow>
+              <template #icon>
+                <i class="fas fa-laptop-code"></i>
+              </template>
+              Курсы
+            </s-sidebar-item>
+          </template>
+          <s-sidebar-item
+            v-for="(course, index) in courses"
+            :key="index"
+            :to="'/app/courses/' + course._id"
+            :id="course._id"
+          >
+            <template #icon><i class="fas fa-file-code"></i></template>
+            {{ course.title }}
+          </s-sidebar-item>
+        </s-sidebar-group>
+        <template #footer>
+          <vs-row justify="space-between">
+            <vs-avatar
+              badge-color="danger"
+              badge-position="top-right"
+              @click="isProfileOpen = true"
+              class="sidebar__profile-button"
+            >
+              <i class="fas fa-user"></i>
+            </vs-avatar>
+            <vs-button @click="logout" icon color="danger">
+              <i class="fas fa-sign-out-alt sidebar__logout-button"></i>
+            </vs-button>
+          </vs-row>
+        </template>
+        <s-sidebar-item id="test">
+          <template #icon>
+            <i class="far fa-check-square"></i>
+          </template>
+          Тесты
+        </s-sidebar-item>
+        <s-sidebar-item id="trainer" to="/app/trainer">
+          <template #icon>
+            <i class="fas fa-network-wired"></i>
+          </template>
+          тренажер
+        </s-sidebar-item>
+      </s-sidebar>
     </div>
-    <div class="content" @click="isOpen = false">
+    <div class="content">
+      <vs-dialog v-model="isProfileOpen" width="800px">
+        Привет
+      </vs-dialog>
       <router-view></router-view>
     </div>
   </div>
@@ -26,19 +85,97 @@
 
 <script>
 import { mapMutations } from "vuex";
+import Sidebar from "vuesax/dist/vsSidebar";
+import SidebarItem from "vuesax/dist/vsSidebarItem";
+import SidebarGroup from "vuesax/dist/vsSidebarGroup";
 
 export default {
+  components: {
+    "s-sidebar": Sidebar,
+    "s-sidebar-item": SidebarItem,
+    "s-sidebar-group": SidebarGroup
+  },
   data() {
     return {
-      isOpen: false
+      activeLink: "home",
+      isSidebarOpen: null,
+      courses: {},
+      isProfileOpen: false
     };
   },
-  methods: mapMutations(["logout"])
+  methods: {
+    ...mapMutations(["logout"]),
+    enter() {
+      this.isSidebarOpen = true;
+    },
+    leave() {
+      this.isSidebarOpen = false;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getCourses").then(res => (this.courses = res.data));
+  }
 };
 </script>
 
 <style scoped>
-.navigation-page {
+.app-page {
+  padding: 0.1px;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  background-color: #eeeef6;
+}
+
+.sidebar {
+  position: fixed !important;
+}
+
+.sidebar__link {
+  text-decoration: none;
+}
+
+.sidebar__logo-short {
+  font-size: 23px;
+  color: #384a62;
+  font-weight: bold;
+}
+
+.sidebar__logo-full-start {
+  font-size: 0px;
+  color: #384a62;
+  font-weight: bold;
+  transition: 100ms ease-in-out;
+}
+
+.sidebar__logo-full-end {
+  font-size: 23px;
+  transition: 100ms ease-in-out;
+}
+
+.sidebar__logo-thin {
+  font-weight: 300;
+}
+
+.sidebar__link {
+  color: #384a62;
+  text-decoration: none;
+}
+
+.sidebar__profile-button {
+  cursor: pointer;
+}
+
+.content {
+  margin-left: 50px;
+  padding: 0.1px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  height: 100%;
+  width: calc(100% - 50px);
+}
+
+/* .navigation-page {
   width: 100%;
   height: 100%;
   background-color: #dff9fb;
@@ -293,5 +430,5 @@ export default {
   .navigation__target {
     height: 50px;
   }
-}
+} */
 </style>

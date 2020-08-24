@@ -15,9 +15,7 @@
           placeholder="Email"
           id="email"
         />
-        <a-button @click="save" type="primary" class="form__button"
-          >Подписаться</a-button
-        >
+        <s-button @click="save" class="form__button">Подписаться</s-button>
       </div>
     </form>
   </section>
@@ -25,12 +23,14 @@
 
 <script>
 import cInput from "@/components/common/cInput";
-import { Button } from "ant-design-vue";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     cInput,
-    "a-button": Button
+    "s-button": Button
   },
   data() {
     return {

@@ -25,12 +25,15 @@
         <router-link to="/empty" class="nav-bar__link">О платформе</router-link>
       </div>
       <div class="main-content__extra-info">
-        <a-button
+        <!-- <a-button
           type="primary"
           @click="$router.push('/courses')"
           class="extra-info__button"
           >Подобрать курс</a-button
-        >
+        > -->
+        <s-button @click="$router.push('/app/home')" class="extra-info__button">
+          Подобрать курс
+        </s-button>
         <div class="extra-info__email">
           <i class="fas fa-envelope email__icon"></i>
           <div class="email__text">
@@ -50,12 +53,14 @@
 
 <script>
 import cLogo from "@/components/common/cLogo";
-import { Button } from "ant-design-vue";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     cLogo,
-    "a-button": Button
+    "s-button": Button
   }
 };
 </script>
