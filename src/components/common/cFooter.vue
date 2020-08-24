@@ -31,10 +31,7 @@
           class="extra-info__button"
           >Подобрать курс</a-button
         > -->
-        <s-button
-          @click="$router.push('/app/courses')"
-          class="extra-info__button"
-        >
+        <s-button @click="$router.push('/app/home')" class="extra-info__button">
           Подобрать курс
         </s-button>
         <div class="extra-info__email">

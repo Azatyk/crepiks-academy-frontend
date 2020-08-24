@@ -7,7 +7,7 @@
           Приобрети навыки 21 века с помощью веселых и увлекательных
           итерактивных курсов
         </div>
-        <s-button class="welcome__button" @click="$router.push('/app/courses')"
+        <s-button class="welcome__button" @click="$router.push('/app/home')"
           >Начать обучение</s-button
         >
       </div>

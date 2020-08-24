@@ -1,27 +1,4 @@
 <template>
-  <!-- <div class="navigation-page" :class="{ navClosed: !isOpen }">
-    <div class="navigation__nav">
-      <router-link to="/"
-        ><div class="nav__logo">
-          Crepiks <span class="nav__logo-thin">Academy</span>
-        </div></router-link
-      >
-      <div @click="isOpen = false" class="nav__bar">
-        <router-link to="/app/courses" class="nav__link nav__link-active"
-          >Курсы</router-link
-        >
-        <router-link to="/app/trainer" class="nav__link">Тренажер</router-link>
-        <router-link to="/app/empty" class="nav__link">Тесты</router-link>
-      </div>
-      <div class="nav__logout-button" @click="logout">Выйти</div>
-      <div class="navigation__target" @click="isOpen = !isOpen">
-        <i class="fas fa-chevron-up navigation__icon"></i>
-      </div>
-    </div>
-    <div class="content" @click="isOpen = false">
-      <router-view></router-view>
-    </div>
-  </div>-->
   <div class="app-page">
     <div class="sidebar__container" @mouseenter="enter" @mouseleave="leave">
       <s-sidebar
@@ -70,12 +47,16 @@
         </s-sidebar-group>
         <template #footer>
           <vs-row justify="space-between">
-            <vs-avatar badge-color="danger" badge-position="top-right">
+            <vs-avatar
+              badge-color="danger"
+              badge-position="top-right"
+              @click="isProfileOpen = true"
+              class="sidebar__profile-button"
+            >
               <i class="fas fa-user"></i>
-              <template #badge>2</template>
             </vs-avatar>
             <vs-button @click="logout" icon color="danger">
-              <i class="fas fa-sign-out-alt"></i>
+              <i class="fas fa-sign-out-alt sidebar__logout-button"></i>
             </vs-button>
           </vs-row>
         </template>
@@ -94,6 +75,9 @@
       </s-sidebar>
     </div>
     <div class="content">
+      <vs-dialog v-model="isProfileOpen" width="800px">
+        Привет
+      </vs-dialog>
       <router-view></router-view>
     </div>
   </div>
@@ -115,7 +99,8 @@ export default {
     return {
       activeLink: "home",
       isSidebarOpen: null,
-      courses: {}
+      courses: {},
+      isProfileOpen: false
     };
   },
   methods: {
@@ -175,6 +160,10 @@ export default {
 .sidebar__link {
   color: #384a62;
   text-decoration: none;
+}
+
+.sidebar__profile-button {
+  cursor: pointer;
 }
 
 .content {
