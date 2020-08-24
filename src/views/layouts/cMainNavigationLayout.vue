@@ -26,11 +26,11 @@
     <div class="sidebar__container" @mouseenter="enter" @mouseleave="leave">
       <s-sidebar
         class="sidebar"
+        absolute
         open
-        v-model="activeLink"
         hover-expand
         reduce
-        absolute
+        v-model="activeLink"
         background="#f5f7f6"
       >
         <template #logo>
@@ -39,7 +39,6 @@
             ><span
               class="sidebar__logo-full-start"
               :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
-              v-if="isSidebarOpen"
               >repiks <span class="sidebar__logo-thin">Academy</span></span
             ></router-link
           >
@@ -174,16 +173,15 @@ export default {
 }
 
 .sidebar__logo-full-start {
-  font-size: 23px;
+  font-size: 0px;
   color: #384a62;
   font-weight: bold;
-  transform: scale(0%);
-  transition: 2s ease-in-out;
+  transition: 100ms ease-in-out;
 }
 
 .sidebar__logo-full-end {
-  transform: scale(100%);
-  transition: 2s ease-in-out;
+  font-size: 23px;
+  transition: 100ms ease-in-out;
 }
 
 .sidebar__logo-thin {
