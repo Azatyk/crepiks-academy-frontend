@@ -43,17 +43,13 @@
             </label>
           </div>
           <div class="profile__buttons">
-            <a-button
+            <s-button
               @click="changePassword"
-              type="primary"
               class="profile__button profile__save-button"
-              >Сохранить</a-button
+              >Сохранить</s-button
             >
-            <a-button
-              @click="$router.push('/profile')"
-              type="primary"
-              class="profile__button"
-              >Отмена</a-button
+            <s-button @click="$router.push('/profile')" class="profile__button"
+              >Отмена</s-button
             >
           </div>
         </form>
@@ -63,12 +59,14 @@
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
 import { mapGetters } from "vuex";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    "a-button": Button
+    "s-button": Button
   },
   data() {
     return {

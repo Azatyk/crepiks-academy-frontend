@@ -17,11 +17,10 @@
           <div class="lesson__number">{{ getLessonNumber(index + 1) }}</div>
           <h2 class="lesson__heading">{{ lesson.title }}</h2>
         </div>
-        <a-button
-          type="primary"
-          @click="$router.push('/app/empty')"
+        <s-button
+          @click="$router.push('/app/courses/' + id + '/lessons/' + lesson._id)"
           class="lesson__button"
-          >Перейти</a-button
+          >Перейти</s-button
         >
       </div>
     </div>
@@ -30,12 +29,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { Button } from "ant-design-vue";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    "a-button": Button
-    // @click="$router.push('/app/courses/' + id + '/lessons/' + lesson._id)"
+    "s-button": Button
   },
   data() {
     return {
@@ -60,6 +60,17 @@ export default {
       } else {
         return index;
       }
+    }
+  },
+  watch: {
+    $route() {
+      this.id = this.$route.params.id;
+      this.$store
+        .dispatch("getCourse", this.id)
+        .then(res => (this.course = res.data));
+      this.$store
+        .dispatch("getLessons", this.id)
+        .then(res => (this.lessons = res.data));
     }
   }
 };

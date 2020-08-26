@@ -110,13 +110,9 @@
           </div>
         </div>
         <div class="profile__logout-container">
-          <a-button
-            type="primary"
-            class="profile__logout-button"
-            @click="profileLogout"
-          >
+          <s-button class="profile__logout-button" @click="profileLogout">
             Выйти
-          </a-button>
+          </s-button>
         </div>
       </div>
     </div>
@@ -124,12 +120,14 @@
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
 import { mapGetters } from "vuex";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
-    "a-button": Button
+    "s-button": Button
   },
   methods: {
     profileLogout() {

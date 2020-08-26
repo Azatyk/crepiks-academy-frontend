@@ -19,23 +19,21 @@
                 class="profile__modal"
               >
                 <template slot="footer">
-                  <a-button
-                    type="primary"
+                  <s-button
                     key="cancel"
                     @click="handleCancel"
                     class="profile__modal-button"
                   >
                     Отмена
-                  </a-button>
-                  <a-button
-                    type="primary"
+                  </s-button>
+                  <s-button
                     key="save"
                     :loading="loading"
                     @click="submitImage"
                     class="profile__modal-button profile__save-button"
                   >
                     Сохранить
-                  </a-button>
+                  </s-button>
                 </template>
                 <input type="file" ref="file" id="file" class="input-file" />
                 <label for="file" class="input-file__label">
@@ -113,20 +111,18 @@
               </label>
             </div>
             <div class="profile__extra-buttons">
-              <a-button
-                type="primary"
+              <s-button
                 @click="changeData"
                 class="profile__extra-button profile__save-button"
               >
                 Сохранить
-              </a-button>
-              <a-button
-                type="primary"
+              </s-button>
+              <s-button
                 @click="$router.push('/profile')"
                 class="profile__extra-button"
               >
                 Отмена
-              </a-button>
+              </s-button>
             </div>
           </div>
           <div class="profile__links">
@@ -178,14 +174,16 @@
 </template>
 
 <script>
-import "vue2-datepicker/index.css";
-import { Button, message, Modal, DatePicker } from "ant-design-vue";
+import { message, Modal, DatePicker } from "ant-design-vue";
 import { mapGetters } from "vuex";
+
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     "a-date-picker": DatePicker,
-    "a-button": Button,
+    "s-button": Button,
     "a-modal": Modal
   },
   data() {

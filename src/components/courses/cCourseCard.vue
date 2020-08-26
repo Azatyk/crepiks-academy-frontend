@@ -5,17 +5,15 @@
       <h3 class="course__heading">{{ title }}</h3>
       <div class="course__lessons-amount">{{ lessonsAmount }} уроков</div>
     </div>
-    <a-button
-      type="primary"
-      @click="$router.push('/app/courses/' + id)"
-      class="course__button"
-      >Перейти к курсу</a-button
+    <s-button @click="$router.push('/app/courses/' + id)" class="course__button"
+      >Перейти к курсу</s-button
     >
   </div>
 </template>
 
 <script>
-import { Button } from "ant-design-vue";
+import Button from "vuesax/dist/vsButton";
+import "vuesax/dist/vuesax.css";
 
 export default {
   props: {
@@ -37,7 +35,7 @@ export default {
     }
   },
   components: {
-    "a-button": Button
+    "s-button": Button
   }
 };
 </script>
