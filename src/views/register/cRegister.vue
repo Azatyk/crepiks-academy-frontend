@@ -199,18 +199,18 @@ export default {
   }
 
   .vs-input {
-    padding-left: 20px !important;
+    padding-left: 12% !important;
     width: 100%;
     font-size: 50px;
     border-radius: 100px;
   }
 
   .vs-input:focus {
-    padding-left: 30px !important;
+    padding-left: 15% !important;
   }
 
   .vs-input__label {
-    padding-left: 20px;
+    padding-left: 7%;
     font-size: 50px;
   }
 
@@ -257,6 +257,35 @@ export default {
 
   .vs-input__label--placeholder {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .register-form__heading {
+    font-size: 10vw;
+  }
+
+  .vs-input {
+    font-size: 20px;
+  }
+
+  .vs-input__label {
+    font-size: 20px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 20px;
+  }
+
+  .register-form__button {
+    margin-bottom: 10%;
+    padding: 0;
+    width: 50%;
+    font-size: 5vw;
+  }
+
+  .register-form__link-text {
+    font-size: 4vw;
   }
 }
 </style>

@@ -231,4 +231,33 @@ export default {
     font-size: 30px;
   }
 }
+
+@media (max-width: 500px) {
+  .auth-form__heading {
+    font-size: 12vw;
+  }
+
+  .vs-input {
+    font-size: 20px;
+  }
+
+  .vs-input__label {
+    font-size: 20px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 20px;
+  }
+
+  .auth-form__button {
+    margin-bottom: 10%;
+    padding: 0;
+    width: 40%;
+    font-size: 5vw;
+  }
+
+  .auth-form__link-text {
+    font-size: 4vw;
+  }
+}
 </style>
