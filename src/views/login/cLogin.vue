@@ -116,6 +116,10 @@ export default {
   font-size: 1.3vw;
 }
 
+.vs-input__label {
+  font-size: 1.3vw;
+}
+
 .auth-form__functional {
   margin-top: 5%;
   width: 80%;
@@ -144,5 +148,63 @@ export default {
   margin-left: 5px;
   text-decoration: none;
   color: #5d33f6;
+}
+
+@media (max-width: 1024px) {
+  .auth-form {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-form__heading {
+    font-size: 130px;
+  }
+
+  .auth-form__input {
+    width: 80%;
+    align-self: center;
+  }
+
+  .vs-input {
+    width: 100%;
+    font-size: 50px;
+    border-radius: 100px;
+  }
+
+  .vs-input__label {
+    padding-left: 20px;
+    font-size: 50px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 50px;
+  }
+
+  .auth-form__functional {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .auth-form__button {
+    padding: 5px 0;
+    margin-bottom: 7%;
+    height: 100%;
+    width: 40%;
+    font-size: 5vw;
+    border-radius: 50px;
+  }
+
+  .auth-form__link-text {
+    margin-left: 0;
+    font-size: 3.5vw;
+  }
+
+  .auth-form__link {
+    margin-left: 10px;
+  }
 }
 </style>

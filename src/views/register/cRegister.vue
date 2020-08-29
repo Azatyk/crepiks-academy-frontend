@@ -177,4 +177,62 @@ export default {
   text-decoration: none;
   color: #5d33f6;
 }
+
+@media (max-width: 1024px) {
+  .register-form {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .register-form__heading {
+    font-size: 100px;
+  }
+
+  .register-form__input {
+    width: 80%;
+    align-self: center;
+  }
+
+  .vs-input {
+    width: 100%;
+    font-size: 50px;
+    border-radius: 100px;
+  }
+
+  .vs-input__label {
+    padding-left: 20px;
+    font-size: 50px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 50px;
+  }
+
+  .register-form__functional {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .register-form__button {
+    padding: 5px 0;
+    margin-bottom: 7%;
+    height: 100%;
+    width: 60%;
+    font-size: 5vw;
+    border-radius: 50px;
+  }
+
+  .register-form__link-text {
+    margin-left: 0;
+    font-size: 3.5vw;
+  }
+
+  .register-form__link {
+    margin-left: 10px;
+  }
+}
 </style>

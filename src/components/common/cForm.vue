@@ -53,4 +53,15 @@ export default {};
 .form__image {
   width: 70%;
 }
+
+@media (max-width: 1024px) {
+  .form {
+    width: 100%;
+    height: 100%;
+  }
+
+  .form__info-block {
+    display: none;
+  }
+}
 </style>
