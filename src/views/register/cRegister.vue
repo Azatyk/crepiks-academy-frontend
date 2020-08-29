@@ -186,10 +186,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 0;
   }
 
   .register-form__heading {
-    font-size: 100px;
+    font-size: 10vw;
   }
 
   .register-form__input {
@@ -198,9 +199,14 @@ export default {
   }
 
   .vs-input {
+    padding-left: 20px !important;
     width: 100%;
     font-size: 50px;
     border-radius: 100px;
+  }
+
+  .vs-input:focus {
+    padding-left: 30px !important;
   }
 
   .vs-input__label {
@@ -221,8 +227,8 @@ export default {
     padding: 5px 0;
     margin-bottom: 7%;
     height: 100%;
-    width: 60%;
-    font-size: 5vw;
+    width: 40%;
+    font-size: 4.5vw;
     border-radius: 50px;
   }
 
@@ -233,6 +239,24 @@ export default {
 
   .register-form__link {
     margin-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-form__input {
+    width: 70%;
+  }
+
+  .vs-input {
+    font-size: 30px;
+  }
+
+  .vs-inout__label {
+    font-size: 30px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 30px;
   }
 }
 </style>
