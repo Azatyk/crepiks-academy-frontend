@@ -87,7 +87,7 @@ export default {
 
 <style>
 .auth-form {
-  padding-left: 60px;
+  padding-left: 5%;
   box-sizing: border-box;
   height: 100%;
   width: 50%;
@@ -98,26 +98,27 @@ export default {
 }
 
 .auth-form__heading {
-  margin-bottom: 50px;
-  font-size: 40px;
+  margin-bottom: 10%;
+  font-size: 3vw;
   font-weight: 300;
   color: #2e2e3d;
 }
 
 .auth-form__input {
-  margin-bottom: 40px;
+  margin-bottom: 7%;
   align-self: flex-start;
-  width: 330px;
+  width: 80%;
   color: #2e2e3d;
 }
 
 .vs-input {
-  width: 330px;
-  font-size: 17px;
+  width: 100%;
+  font-size: 1.3vw;
 }
 
 .auth-form__functional {
-  margin-top: 20px;
+  margin-top: 5%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -126,16 +127,16 @@ export default {
 
 .auth-form__button {
   margin-left: 0;
-  width: 90px;
-  font-size: 15px;
+  width: 25%;
+  font-size: 1.2vw;
 }
 
 .auth-form__link-container {
-  margin-left: 10px;
+  margin-left: 2%;
 }
 
 .auth-form__link-text {
-  font-size: 13px;
+  font-size: 1vw;
   color: #2e2e3d;
 }
 

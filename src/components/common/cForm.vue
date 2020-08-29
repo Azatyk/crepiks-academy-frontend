@@ -28,8 +28,8 @@ export default {};
 }
 
 .form {
-  width: 1000px;
-  height: 700px;
+  width: 65%;
+  height: 85%;
   display: flex;
   flex-direction: row;
   justify-content: center;

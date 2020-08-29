@@ -119,7 +119,7 @@ export default {
 
 <style scoped>
 .register-form {
-  padding-left: 60px;
+  padding-left: 5%;
   box-sizing: border-box;
   height: 100%;
   width: 50%;
@@ -130,26 +130,27 @@ export default {
 }
 
 .register-form__heading {
-  margin-bottom: 50px;
-  font-size: 40px;
+  margin-bottom: 9%;
+  font-size: 3vw;
   font-weight: 300;
   color: #2e2e3d;
 }
 
 .register-form__input {
-  margin-bottom: 40px;
+  margin-bottom: 6%;
   align-self: flex-start;
-  width: 330px;
+  width: 80%;
   color: #2e2e3d;
 }
 
 .vs-input {
-  width: 330px;
-  font-size: 17px;
+  width: 100%;
+  font-size: 1.3vw;
 }
 
 .register-form__functional {
-  margin-top: 20px;
+  margin-top: 2%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -158,16 +159,16 @@ export default {
 
 .register-form__button {
   margin-left: 0;
-  width: 130px;
-  font-size: 15px;
+  width: 40%;
+  font-size: 1.2vw;
 }
 
 .register-form__link-container {
-  margin-left: 10px;
+  margin-left: 2%;
 }
 
 .register-form__link-text {
-  font-size: 15px;
+  font-size: 1vw;
   color: #2e2e3d;
 }
 
