@@ -1,14 +1,18 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import cHome from "@/views/home/cHome";
+import cLanding from "@/views/landing/cLanding";
 
-// import cRegister from "@/views/register/cRegister";
+import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
 
-import cCourses from "@/views/courses/cCourses";
+import cHome from "@/views/home/cHome";
+
+// import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
+
+import cTrainer from "@/views/trainer/cTrainer";
 
 import cEmpty from "@/views/empty/cEmpty";
 
@@ -37,15 +41,15 @@ const routes = [
         name: "auth",
         component: cAuthLayout,
         children: [
-          // {
-          //   path: "register",
-          //   name: "register",
-          //   component: cRegister,
-          //   meta: {
-          //     title: "Регистрация",
-          //     noAuthOnly: true
-          //   }
-          // },
+          {
+            path: "register",
+            name: "register",
+            component: cRegister,
+            meta: {
+              title: "Регистрация",
+              noAuthOnly: true
+            }
+          },
           {
             path: "login",
             name: "login",
@@ -64,7 +68,7 @@ const routes = [
           {
             path: "",
             name: "home",
-            component: cHome,
+            component: cLanding,
             meta: {
               title: "Crepiks Academy - программируй вместе с нами",
               noAuthOnly: true
@@ -85,20 +89,38 @@ const routes = [
             component: cMainNavigationLayout,
             children: [
               {
-                path: "courses",
-                name: "courses",
-                component: cCourses,
+                path: "home",
+                name: "home",
+                component: cHome,
                 meta: {
-                  title: "Курсы",
+                  title: "Главная",
                   needAuth: true
                 }
               },
+              // {
+              //   path: "courses",
+              //   name: "courses",
+              //   component: cCourses,
+              //   meta: {
+              //     title: "Курсы",
+              //     needAuth: true
+              //   }
+              // },
               {
                 path: "courses/:id",
                 name: "course",
                 component: cCourse,
                 meta: {
                   title: "Курс",
+                  needAuth: true
+                }
+              },
+              {
+                path: "trainer",
+                name: "trainer",
+                component: cTrainer,
+                meta: {
+                  title: "Тренажёр",
                   needAuth: true
                 }
               }
