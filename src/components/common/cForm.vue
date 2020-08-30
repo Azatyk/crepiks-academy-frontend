@@ -28,8 +28,8 @@ export default {};
 }
 
 .form {
-  width: 1000px;
-  height: 700px;
+  width: 65%;
+  height: 85%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -52,5 +52,16 @@ export default {};
 
 .form__image {
   width: 70%;
+}
+
+@media (max-width: 1024px) {
+  .form {
+    width: 100%;
+    height: 100%;
+  }
+
+  .form__info-block {
+    display: none;
+  }
 }
 </style>

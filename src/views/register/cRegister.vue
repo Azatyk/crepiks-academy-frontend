@@ -119,7 +119,7 @@ export default {
 
 <style scoped>
 .register-form {
-  padding-left: 60px;
+  padding-left: 5%;
   box-sizing: border-box;
   height: 100%;
   width: 50%;
@@ -130,26 +130,27 @@ export default {
 }
 
 .register-form__heading {
-  margin-bottom: 50px;
-  font-size: 40px;
+  margin-bottom: 9%;
+  font-size: 3vw;
   font-weight: 300;
   color: #2e2e3d;
 }
 
 .register-form__input {
-  margin-bottom: 40px;
+  margin-bottom: 6%;
   align-self: flex-start;
-  width: 330px;
+  width: 80%;
   color: #2e2e3d;
 }
 
 .vs-input {
-  width: 330px;
-  font-size: 17px;
+  width: 100%;
+  font-size: 1.3vw;
 }
 
 .register-form__functional {
-  margin-top: 20px;
+  margin-top: 2%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -158,16 +159,16 @@ export default {
 
 .register-form__button {
   margin-left: 0;
-  width: 130px;
-  font-size: 15px;
+  width: 40%;
+  font-size: 1.2vw;
 }
 
 .register-form__link-container {
-  margin-left: 10px;
+  margin-left: 2%;
 }
 
 .register-form__link-text {
-  font-size: 15px;
+  font-size: 1vw;
   color: #2e2e3d;
 }
 
@@ -175,5 +176,116 @@ export default {
   margin-left: 5px;
   text-decoration: none;
   color: #5d33f6;
+}
+
+@media (max-width: 1024px) {
+  .register-form {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+  }
+
+  .register-form__heading {
+    font-size: 10vw;
+  }
+
+  .register-form__input {
+    width: 80%;
+    align-self: center;
+  }
+
+  .vs-input {
+    padding-left: 12% !important;
+    width: 100%;
+    font-size: 50px;
+    border-radius: 100px;
+  }
+
+  .vs-input:focus {
+    padding-left: 15% !important;
+  }
+
+  .vs-input__label {
+    padding-left: 7%;
+    font-size: 50px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 50px;
+  }
+
+  .register-form__functional {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .register-form__button {
+    padding: 5px 0;
+    margin-bottom: 7%;
+    height: 100%;
+    width: 40%;
+    font-size: 4.5vw;
+    border-radius: 50px;
+  }
+
+  .register-form__link-text {
+    margin-left: 0;
+    font-size: 3.5vw;
+  }
+
+  .register-form__link {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-form__input {
+    width: 70%;
+  }
+
+  .vs-input {
+    font-size: 30px;
+  }
+
+  .vs-inout__label {
+    font-size: 30px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 500px) {
+  .register-form__heading {
+    font-size: 10vw;
+  }
+
+  .vs-input {
+    font-size: 20px;
+  }
+
+  .vs-input__label {
+    font-size: 20px;
+  }
+
+  .vs-input__label--placeholder {
+    font-size: 20px;
+  }
+
+  .register-form__button {
+    margin-bottom: 10%;
+    padding: 0;
+    width: 50%;
+    font-size: 5vw;
+  }
+
+  .register-form__link-text {
+    font-size: 4vw;
+  }
 }
 </style>
