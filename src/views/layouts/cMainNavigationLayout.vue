@@ -38,7 +38,7 @@
           <s-sidebar-item
             v-for="(course, index) in courses"
             :key="index"
-            :to="'/app/courses/' + course._id"
+            :to="'/app/courses/' + course.id"
             :id="course._id"
           >
             <template #icon><i class="fas fa-file-code"></i></template>
@@ -113,7 +113,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getCourses").then(res => (this.courses = res.data));
+    this.$store
+      .dispatch("getCourses")
+      .then(res => (this.courses = res.data.courses));
   }
 };
 </script>

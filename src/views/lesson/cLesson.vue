@@ -1,6 +1,9 @@
 <template>
   <div class="interactive__page">
-    <div class="interactive__navigation-menu" :class="{ navClosed: !isOpen }">
+    <div
+      class="interactive__navigation-menu"
+      :class="{ navClosed: !isNavigationMenuOpen }"
+    >
       <div class="navigation">
         <router-link to="/app/home"
           ><div class="navigation__logo">
@@ -8,30 +11,28 @@
           </div></router-link
         >
         <div class="navigation__lessons">
-          <!-- <router-link v-for="(lesson, index) in lessons" :key="index">
-        </router-link> -->
-          <div class="navigation__lesson">
-            <span class="navigation__lesson-number">1.</span>Основы HTML
-          </div>
-          <div class="navigation__lesson">
-            <span class="navigation__lesson-number">2.</span>Как работает
-            интернет
-          </div>
-          <div class="navigation__lesson">
-            <span class="navigation__lesson-number">3.</span>Стилезуем страницу
-          </div>
-          <div class="navigation__lesson">
-            <span class="navigation__lesson-number">4.</span>Делаем сайт
-            интерактивным
-          </div>
+          <router-link
+            v-for="(lesson, index) in lessons"
+            :key="index"
+            :to="
+              '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
+            "
+          >
+            <div class="navigation__lesson">
+              <span class="navigation__lesson-number">{{ lesson.id }}</span
+              >{{ lesson.title }}
+            </div>
+          </router-link>
         </div>
       </div>
-      <div class="interactive__navigation-target" @click="isOpen = !isOpen">
-        <!-- <a-icon type="up" class="interactive__navigation-icon" /> -->
+      <div
+        class="interactive__navigation-target"
+        @click="isNavigationMenuOpen = !isNavigationMenuOpen"
+      >
         <i class="fas fa-chevron-up interactive__navigation-icon"></i>
       </div>
     </div>
-    <div class="black__background" @click="isOpen = false"></div>
+    <div class="black__background" @click="isNavigationMenuOpen = false"></div>
     <div class="interactive__content" ref="interactiveContent">
       <div class="interactive__programming" ref="interactiveProgramming">
         <div class="interactive__lesson-editor" ref="lessonEditor">
@@ -40,14 +41,14 @@
           </div>
           <codemirror
             class="interactive__code-editor"
-            :code="codeHTML"
+            :code="lesson.htmlCode"
             v-model="codeHTML"
             :options="htmlOptions"
             v-if="isHTMLshowing"
           />
           <codemirror
             class="interactive__code-editor"
-            :code="codeCSS"
+            :code="lesson.cssCode"
             v-model="codeCSS"
             :options="cssOptions"
             v-else
@@ -82,16 +83,12 @@
           </div>
           <div class="interactive__instructions-content">
             <div class="instructions__task">
-              <span class="instructions__task-dash">—</span>Удалите
-              закомментированный код на 13 строке
-            </div>
-            <div class="instructions__task">
-              <span class="instructions__task-dash">—</span>На 15 строке
-              добавьте кнопку &lt;button&gt;Это кнопка&lt;/button&gt;
-            </div>
-            <div class="instructions__task">
-              <span class="instructions__task-dash">—</span>Оформите подписку на
-              Crepiks Academy!
+              <span
+                v-for="(task, index) in lesson.tasks"
+                :key="index"
+                class="instructions__task-dash"
+                >—</span
+              >task
             </div>
           </div>
           <div class="instructions__hint" @click="isHintActive = true">
@@ -124,7 +121,6 @@
           <div class="interactive-block__heading interactive__browser-heading">
             Браузер
           </div>
-          <!-- <div class="interactive__frame" ref="interactiveFrame"></div> -->
           <iframe
             src="/browser.html"
             name="browser"
@@ -145,122 +141,8 @@
             v-model="isTheoryActive"
           >
             <div class="theory">
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
-              </p>
-              <p class="theory__paragraph">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Sapiente voluptatem commodi incidunt cupiditate asperiores
-                tempora debitis aspernatur laudantium numquam, magni, quo
-                laborum! Voluptatem adipisci tempore dolores facilis,
-                consequuntur dolorum atque. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Fugiat veniam, voluptatem earum
-                autem impedit, recusandae porro officiis aperiam tempore in
-                molestias atque itaque, deleniti laborum nam exercitationem ex
-                aut cumque aliquid facere explicabo inventore id quibusdam
-                praesentium? Nisi impedit consequuntur consectetur laboriosam
-                assumenda! Aliquam optio commodi quaerat, quod magnam esse.
+              <p class="interactive__paragraph">
+                {{ lesson.theory }}
               </p>
             </div>
           </vs-dialog>
@@ -287,50 +169,12 @@ export default {
 
   data() {
     return {
-      firstCode: "console.log('Hello, Crepiks!')",
       lesson: {},
       lessons: [],
-      isOpen: false,
+      isNavigationMenuOpen: false,
       isHTMLshowing: true,
-      codeHTML: `<!DOCTYPE html>
-<html>
-  <head>
-    <title></title>
-  </head>
-  <body>
-    <button>Кнопка</button>
-  </body>
-</html>`,
-      codeCSS: `* {
-  margin: 0;
-  padding 0;
-}
-  
-body {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button {
-  padding: 10px 20px;
-  width: 130px;
-  height: 40px;
-  border: none;
-  text-align: center;
-  background-color: #000000;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 150ms ease-in-out;
-  outline: none;
-}
-
-button:hover {
-  opacity: 0.5;
-  transition: 150ms ease-in-out;
-}`,
+      isTheoryActive: false,
+      isHintActive: false,
       htmlOptions: {
         tabSize: 4,
         mode: "text/html",
@@ -345,12 +189,23 @@ button:hover {
         lineNumbers: true,
         line: true
       },
-      isTheoryActive: false,
-      isHintActive: false
+      codeHTML: null,
+      codeCSS: null
     };
   },
   mounted() {
     this.runCode();
+
+    let courseId = this.$route.params.courseId;
+    let lessonId = this.$route.params.lessonId;
+
+    this.$store
+      .dispatch("getLesson", { courseId, lessonId })
+      .then(res => (this.lesson = res.data.lesson));
+
+    this.$store
+      .dispatch("getLessons", courseId)
+      .then(res => (this.lessons = res.data.lessons));
   },
   // mounted() {
   //   let container = this.$refs.interactiveProgramming,
