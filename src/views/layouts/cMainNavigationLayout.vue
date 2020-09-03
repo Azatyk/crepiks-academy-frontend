@@ -99,7 +99,12 @@
             class="profile__input"
           />
         </div>
-        <div class="profile__change-password">Изменить пароль</div>
+        <div
+          class="profile__change-password"
+          @click="isChangePasswordOpen = true"
+        >
+          Изменить пароль
+        </div>
         <template #footer>
           <div class="profile__footer">
             <vs-button
@@ -110,6 +115,39 @@
               Сохранить
             </vs-button>
           </div>
+        </template>
+      </vs-dialog>
+      <vs-dialog
+        v-model="isChangePasswordOpen"
+        :loading="isChangePasswordLoading"
+      >
+        <template #header>
+          <h4 class="profile__heading change-password__heading">
+            Изменение пароля
+          </h4>
+        </template>
+        <div class="profile__inputs">
+          <s-input
+            label="Текущий пароль"
+            v-model="passwords.currentPassword"
+            class="profile__input"
+            type="password"
+          />
+          <s-input
+            label="Новый пароль"
+            v-model="passwords.newPassword"
+            class="profile__input"
+          />
+          <s-input
+            label="Подтверждение нового пароля"
+            v-model="passwords.newPasswordCheck"
+            class="profile__input"
+          />
+        </div>
+        <template #footer>
+          <vs-button block class="profile__save-button" @click="changePassword">
+            Сохранить
+          </vs-button>
         </template>
       </vs-dialog>
       <router-view></router-view>
@@ -143,6 +181,13 @@ export default {
         lastName: null,
         email: null
       },
+      isChangePasswordOpen: false,
+      isChangePasswordLoading: false,
+      passwords: {
+        currentPassword: null,
+        newPassword: null,
+        newPasswordCheck: null
+      },
       userId: null
     };
   },
@@ -174,6 +219,44 @@ export default {
             "Данные профиля удачно обновлены ;)"
           )
         );
+    },
+
+    changePassword() {
+      if (
+        this.passwords.newPassword.trim() !==
+        this.passwords.newPasswordCheck.trim()
+      ) {
+        console.log(
+          this.passwords.currentPassword.trim(),
+          this.passwords.newPassword.trim()
+        );
+        this.openNotification(
+          "top-center",
+          "danger",
+          "Пароли не совпадают",
+          "Пароли в поле 'Новый пароль' и в поле 'Подтверждение нового пароля' должны совпадать"
+        );
+      } else {
+        this.isChangePasswordLoading = true;
+
+        let updatedData = {
+          oldPassword: this.passwords.currentPassword,
+          newPassword: this.passwords.newPassword
+        };
+
+        let id = this.userId;
+        this.$store
+          .dispatch("changePassword", { id, updatedData })
+          .then(() => (this.isChangePasswordLoading = false))
+          .then(() => {
+            this.openNotification(
+              "top-center",
+              "success",
+              "Пароль изменен",
+              "Вы удачно изменили пароль, используйте его для входа"
+            );
+          });
+      }
     },
 
     openNotification(
@@ -262,6 +345,10 @@ export default {
   font-size: 2vw;
 }
 
+.change-password__heading {
+  margin-bottom: 15px;
+}
+
 .profile__inputs {
   display: flex;
   flex-direction: column;
@@ -274,8 +361,10 @@ export default {
 }
 
 .profile__change-password {
+  margin-left: 3px;
   color: #5d33f6;
-  font-size: 0.8vw;
+  font-size: 0.9vw;
+  cursor: pointer;
 }
 
 .profile__save-button {
