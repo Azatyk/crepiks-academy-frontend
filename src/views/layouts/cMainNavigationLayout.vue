@@ -75,8 +75,42 @@
       </s-sidebar>
     </div>
     <div class="content">
-      <vs-dialog v-model="isProfileOpen" width="800px">
-        Привет
+      <vs-dialog v-model="isProfileOpen" blur :loading="isProfileLoading">
+        <template #header>
+          <h4 class="profile__heading">
+            Профиль
+          </h4>
+        </template>
+        <div class="profile__inputs">
+          <s-input
+            label="Имя"
+            v-model="user.firstName"
+            class="profile__input"
+          />
+          <s-input
+            label="Фамилия"
+            v-model="user.lastName"
+            class="profile__input"
+          />
+          <s-input
+            label="Email"
+            v-model="user.email"
+            type="email"
+            class="profile__input"
+          />
+        </div>
+        <div class="profile__change-password">Изменить пароль</div>
+        <template #footer>
+          <div class="profile__footer">
+            <vs-button
+              block
+              class="profile__save-button"
+              @click="changeUserData"
+            >
+              Сохранить
+            </vs-button>
+          </div>
+        </template>
       </vs-dialog>
       <router-view></router-view>
     </div>
@@ -84,23 +118,32 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 import Sidebar from "vuesax/dist/vsSidebar";
 import SidebarItem from "vuesax/dist/vsSidebarItem";
 import SidebarGroup from "vuesax/dist/vsSidebarGroup";
+import Input from "vuesax/dist/vsInput";
 
 export default {
   components: {
     "s-sidebar": Sidebar,
     "s-sidebar-item": SidebarItem,
-    "s-sidebar-group": SidebarGroup
+    "s-sidebar-group": SidebarGroup,
+    "s-input": Input
   },
   data() {
     return {
       activeLink: "home",
       isSidebarOpen: null,
       courses: {},
-      isProfileOpen: false
+      isProfileOpen: false,
+      isProfileLoading: false,
+      user: {
+        firstName: null,
+        lastName: null,
+        email: null
+      },
+      userId: null
     };
   },
   methods: {
@@ -110,6 +153,53 @@ export default {
     },
     leave() {
       this.isSidebarOpen = false;
+    },
+    changeUserData() {
+      this.isProfileLoading = true;
+
+      let updatedData = {
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        email: this.user.email
+      };
+      let id = this.userId;
+      this.$store
+        .dispatch("changeUserData", { id, updatedData })
+        .then(() => (this.isProfileLoading = false))
+        .then(() =>
+          this.openNotification(
+            "top-center",
+            "success",
+            "Изменения сохранены",
+            "Данные профиля удачно обновлены ;)"
+          )
+        );
+    },
+
+    openNotification(
+      position = "top-center",
+      color = null,
+      title = "",
+      text = ""
+    ) {
+      this.$vs.notification({
+        position,
+        color,
+        title,
+        text
+      });
+    }
+  },
+  computed: {
+    ...mapGetters(["userData", "accessToken"])
+  },
+  watch: {
+    userData(updatedData) {
+      this.userId = updatedData.id;
+
+      this.$store
+        .dispatch("getUserData", this.userId)
+        .then(res => (this.user = res.data.user));
     }
   },
   mounted() {
@@ -168,6 +258,32 @@ export default {
   cursor: pointer;
 }
 
+.profile__heading {
+  font-size: 2vw;
+}
+
+.profile__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__input {
+  margin-left: 0;
+  margin: 5% 0;
+  width: 100%;
+}
+
+.profile__change-password {
+  color: #5d33f6;
+  font-size: 0.8vw;
+}
+
+.profile__save-button {
+  margin-left: 0;
+  margin-bottom: 5%;
+  font-size: 1vw;
+}
+
 .content {
   margin-left: 50px;
   padding: 0.1px;
@@ -176,261 +292,4 @@ export default {
   height: 100%;
   width: calc(100% - 50px);
 }
-
-/* .navigation-page {
-  width: 100%;
-  height: 100%;
-  background-color: #dff9fb;
-}
-
-.navigation__nav {
-  position: fixed;
-  left: 0;
-  padding: 30px 0 0 30px;
-  width: 300px;
-  min-height: 100vh;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: #1e272e;
-  transition: 200ms ease-in-out;
-  border-radius: 0;
-}
-
-.content {
-  padding: 0.1px;
-  margin-left: 300px;
-  width: calc(100% - 300px);
-  min-height: 100vh;
-  height: auto;
-  transition: 200ms ease-in-out;
-}
-
-.nav__logo {
-  margin-bottom: 20%;
-  color: #dff9fb;
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.nav__logo-thin {
-  font-weight: 300;
-}
-
-.nav__bar {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.nav__link {
-  margin-bottom: 15px;
-  font-size: 18px;
-  color: #acbebf;
-  transition: 200ms ease-in-out;
-}
-
-.nav__link:hover {
-  color: #dff9fb;
-  transition: 200ms ease-in-out;
-}
-
-.router-link-active {
-  color: #dff9fb;
-  transition: 200ms ease-in-out;
-}
-
-.navigation__icon {
-  display: none;
-}
-
-.nav__logout-button {
-  position: absolute;
-  bottom: 3%;
-  font-size: 18px;
-  color: #acbebf;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
-}
-
-.nav__logout-button:hover {
-  color: #fc7979;
-  transition: 200ms ease-in-out;
-}
-
-@media (max-width: 1400px) {
-  .navigation__nav {
-    left: 0px;
-    padding-top: 35px;
-    width: 250px;
-    border-radius: 0;
-  }
-
-  .navClosed > .navigation__nav {
-    left: -200px;
-  }
-
-  .nav__logo {
-    margin-bottom: 100px;
-    font-size: 20px;
-  }
-
-  .nav__link {
-    font-size: 17px;
-  }
-
-  .nav__logout-button {
-    font-size: 17px;
-  }
-
-  .content {
-    margin-left: 250px;
-    width: calc(100% - 250px);
-  }
-
-  .navClosed > .content {
-    margin-left: 50px;
-    width: calc(100% - 50px);
-  }
-
-  .navigation__target {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1e272e;
-    border-radius: 0;
-    transition: 200ms ease-in-out;
-    cursor: pointer;
-  }
-
-  .navigation__target:hover {
-    background-color: #242e36;
-    transition: 200ms ease-in-out;
-  }
-
-  .navigation__target:hover .navigation__icon {
-    color: #dff9fb;
-  }
-
-  .navigation__icon {
-    position: absolute;
-    display: block;
-    font-size: 18px;
-    color: #acbebf;
-    transform: rotate(270deg);
-    transition: 200ms ease-in-out;
-  }
-
-  .navClosed .navigation__icon {
-    transform: rotate(90deg);
-    transition: 200ms ease-in-out;
-  }
-}
-
-@media (max-width: 1024px) {
-  .navigation__nav {
-    bottom: 0;
-    padding: 0;
-    padding-left: 8%;
-    width: 100vw;
-    height: 500px;
-    min-height: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 30px 30px 0 0;
-    z-index: 5;
-  }
-
-  .navClosed > .navigation__nav {
-    left: 0;
-    right: 0;
-    bottom: -430px;
-  }
-
-  .navigation__target {
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    border-radius: 30px 30px 0 0;
-  }
-
-  .nav__logo {
-    margin-bottom: 50px;
-    font-size: 38px;
-  }
-
-  .nav__link {
-    width: auto;
-    font-size: 28px;
-  }
-
-  .nav__logout-button {
-    bottom: 5%;
-    font-size: 28px;
-    color: #fc7979;
-  }
-
-  .navigation__target:hover {
-    background-color: #1e272e;
-  }
-
-  .navigation__icon {
-    color: #dff9fb;
-    transform: rotate(180deg);
-    transition: 200ms ease-in-out;
-  }
-
-  .navClosed .navigation__icon {
-    transform: rotate(0deg);
-    transition: 200ms ease-in-out;
-  }
-
-  .content {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .navClosed > .content {
-    margin-left: 0;
-    width: 100%;
-  }
-}
-
-@media (max-width: 700px) {
-  .navigation__nav {
-    padding-left: 15%;
-  }
-
-  .nav__logo {
-    font-size: 28px;
-  }
-
-  .nav__link {
-    font-size: 20px;
-  }
-
-  .nav__logout-button {
-    font-size: 20px;
-  }
-
-  .navigation__nav {
-    height: 400px;
-  }
-
-  .navClosed > .navigation__nav {
-    bottom: -350px;
-  }
-
-  .navigation__target {
-    height: 50px;
-  }
-} */
 </style>

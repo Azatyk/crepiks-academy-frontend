@@ -20,7 +20,7 @@ export default {
           method: "POST"
         })
           .then(res => {
-            const token = res.data.accessToken;
+            const token = res.data.auth.accessToken;
             localStorage.setItem("token", token);
             commit("authSuccess", res.data);
             resolve(res);
@@ -55,14 +55,14 @@ export default {
   mutations: {
     authSuccess(state, data) {
       state.token = {
-        accessToken: data.accessToken,
-        accessTokenExpiredAt: data.accessTokenExpiredAt
+        accessToken: data.auth.accessToken,
+        accessTokenExpiredAt: data.auth.accessTokenExpiredAt
       };
       state.user = {
-        id: data.id,
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName
+        id: data.user.id,
+        email: data.user.email,
+        firstName: data.user.firstName,
+        lastName: data.user.lastName
       };
     },
     logout(state) {
@@ -76,6 +76,7 @@ export default {
   getters: {
     isLoggedIn: state => Boolean(state.token.accessToken),
     authStatus: state => state.status,
-    accessToken: state => state.token.accessToken
+    accessToken: state => state.token.accessToken,
+    userData: state => state.user
   }
 };
