@@ -27,6 +27,8 @@ import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
 import cAuthLayout from "@/views/layouts/cAuthLayout";
 import cProfileLayout from "@/views/layouts/cProfileLayout";
 
+import cTargetPage from "@/views/target-page/cTargetPage";
+
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -60,6 +62,15 @@ const routes = [
             }
           }
         ]
+      },
+      {
+        path: "target-page",
+        name: "target-page",
+        component: cTargetPage,
+        meta: {
+          title: "Не упусти шанс стать профессиональным разработчиком!",
+          noAuthOnly: true
+        }
       },
       {
         path: "",
@@ -205,7 +216,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.noAuthOnly)) {
     if (store.getters.isLoggedIn) {
       next({
-        path: "/app/courses",
+        path: "/app/home",
         query: { redirect: to.fullPath }
       });
     } else {

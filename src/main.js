@@ -9,7 +9,7 @@ Vue.config.productionTip = false;
 Vue.use(Vuesax, {
   colors: {
     primary: "#5d33f6",
-    success: "#6ddeca",
+    success: "#5d33f6",
     danger: "#f2135d",
     warning: "rgb(255, 130, 0)",
     dark: "#2e2e3d"
