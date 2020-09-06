@@ -113,11 +113,11 @@ export default {
 
 .vs-input {
   width: 100%;
-  font-size: 1.3vw;
+  font-size: 1vw;
 }
 
 .vs-input__label {
-  font-size: 1.3vw;
+  font-size: 0.9vw;
 }
 
 .auth-form__functional {
