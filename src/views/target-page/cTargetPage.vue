@@ -16,6 +16,7 @@
               placeholder="Select"
               v-model="value"
               class="header__select"
+              color="#0d0b6d"
             >
               <vs-option label="Русский" value="1">
                 Русский
@@ -49,11 +50,51 @@
         class="welcome__image"
       />
     </div>
+    <div class="target__what-for">
+      <h2 class="what-for__heading">Зачем мне это?</h2>
+      <div class="what-for__description">
+        Сегодня программисты (веб разработчики) являются одними из самых
+        востребованых специалистов во всем мире. Не верите? Взгляните на
+        несколько примеров вакансий на популярном сервисе поиска работы
+        <a href="https://hh.kz/" class="what-for__description-link"
+          >Head Hunter</a
+        >
+      </div>
+      <carousel class="what-for__carousel" autoplay>
+        <slide class="what-for__carousel-slide">
+          <img
+            src="@/assets/images/job1.jpg"
+            alt="Вакансия"
+            class="what-for__carousel-image"
+          />
+        </slide>
+        <slide class="what-for__carousel-slide">
+          <img
+            src="@/assets/images/job2.jpg"
+            alt="Вакансия"
+            class="what-for__carousel-image"
+          />
+        </slide>
+        <slide class="what-for__carousel-slide">
+          <img
+            src="@/assets/images/job3.jpg"
+            alt="Вакансия"
+            class="what-for__carousel-image"
+          />
+        </slide>
+      </carousel>
+    </div>
   </div>
 </template>
 
 <script>
+import { Carousel, Slide } from "vue-carousel";
+
 export default {
+  components: {
+    Carousel,
+    Slide
+  },
   data() {
     return {
       value: "1"
@@ -146,7 +187,7 @@ export default {
 .welcome__text {
   position: absolute;
   left: 7%;
-  bottom: 27%;
+  bottom: 23%;
   display: flex;
   flex-direction: column;
 }
@@ -154,6 +195,7 @@ export default {
 .welcome__heading {
   margin-bottom: 40px;
   font-size: 5.5vw;
+  line-height: 1.1;
   color: #0d0b6d;
   font-weight: bold;
 }
@@ -188,6 +230,7 @@ export default {
 .welcome__button:hover {
   color: #2522a0;
   background-color: #eeeef6;
+  transform: scale(1.05);
   transition: 150ms ease-in-out;
 }
 
@@ -197,5 +240,50 @@ export default {
   right: 0;
   height: 80%;
   width: auto;
+}
+
+.target__what-for {
+  padding-top: 5%;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eeeef6;
+  overflow-x: hidden;
+}
+
+.what-for__heading {
+  margin-bottom: 20px;
+  color: #2522a0;
+  font-size: 3.5vw;
+  font-weight: bold;
+}
+
+.what-for__description {
+  margin-bottom: 50px;
+  width: 40%;
+  color: #2522a0;
+  text-align: center;
+  opacity: 0.6;
+  font-size: 1.2vw;
+  font-weight: normal;
+}
+
+.what-for__description-link {
+  color: #5d33f6;
+  opacity: 0.8;
+  text-decoration: none;
+  transition: 150ms ease-in-out;
+}
+
+.what-for__description-link:hover {
+  opacity: 1;
+  transition: 150ms ease-in-out;
+}
+
+.what-for__carouse-image {
+  width: 100%;
 }
 </style>
