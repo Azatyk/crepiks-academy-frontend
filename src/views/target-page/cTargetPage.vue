@@ -7,7 +7,7 @@
         </div>
       </router-link>
       <nav class="header__navigation">
-        <div class="header__navigation-link">Чему я научусь</div>
+        <div class="header__navigation-link">Зачем мне это</div>
         <div class="header__navigation-link">Как это проходит</div>
         <div class="header__navigation-link">Как начать</div>
         <template>
@@ -75,13 +75,13 @@
             class="what-for__carousel-image"
           />
         </slide>
-        <slide class="what-for__carousel-slide">
+        <!-- <slide class="what-for__carousel-slide">
           <img
             src="@/assets/images/job3.jpg"
             alt="Вакансия"
             class="what-for__carousel-image"
           />
-        </slide>
+        </slide> -->
       </carousel>
     </div>
   </div>
