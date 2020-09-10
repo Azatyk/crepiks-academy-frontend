@@ -286,9 +286,10 @@ export default {
     }
   },
   mounted() {
-    this.$store
-      .dispatch("getCourses")
-      .then(res => (this.courses = res.data.courses));
+    this.$store.dispatch("getCourses").then(res => {
+      this.courses = res.data.courses;
+      console.log(this.courses);
+    });
   }
 };
 </script>
