@@ -30,7 +30,9 @@
             </vs-select>
           </div>
         </template>
-        <!-- <vs-button class="header__link-button">Вперед</vs-button> -->
+        <div class="header__button" @click="$router.push('/auth/login')">
+          Начать
+        </div>
       </nav>
     </header>
     <div class="target__welcome">
@@ -172,6 +174,24 @@ export default {
   font-size: 17px;
   font-weight: 400;
   cursor: pointer;
+}
+
+.header__button {
+  margin-left: 40px;
+  padding: 8px 30px;
+  font-size: 17px;
+  color: #eeeef6;
+  background-color: #2522a0;
+  border: 2px solid #2522a0;
+  border-radius: 15px;
+  transition: 170ms;
+  cursor: pointer;
+}
+
+.header__button:hover {
+  color: #2522a0;
+  background-color: #eeeef6;
+  border: 2px solid #2522a0;
 }
 
 .target__welcome {
