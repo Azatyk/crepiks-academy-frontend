@@ -181,7 +181,7 @@ export default {
   padding: 8px 30px;
   font-size: 17px;
   color: #eeeef6;
-  background-color: #2522a0;
+  background-color: #77778a;
   border: 2px solid #2522a0;
   border-radius: 15px;
   transition: 170ms;

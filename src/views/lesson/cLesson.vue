@@ -98,13 +98,10 @@
             <div class="hint">
               <h1 class="hint__title">Подсказка</h1>
               <div class="hint__content">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati incidunt sequi iusto autem explicabo minima
-                repellendus. Distinctio, est, enim voluptatum obcaecati sequi
-                itaque natus eius possimus labore dolorum dolorem laudantium
-                quaerat cum voluptas ab praesentium ducimus vero quo? Neque
-                voluptas accusantium dolore. Voluptatibus, maxime. Ad, labore
-                non. Cum dolor, ipsa eveniet adipisci iure alias error quia
+                {{ lesson.hint || "" }}
+              </div>
+              <div class="hint__button" @click="isHintActive = false">
+                Понятно
               </div>
             </div>
           </vs-dialog>
@@ -517,15 +514,39 @@ export default {
 }
 
 .hint__title {
-  font-size: 30px;
+  margin-bottom: 20px;
+  font-size: 40px;
   color: #1e272e;
   font-weight: 700;
 }
 
 .hint__content {
-  font-size: 20px;
+  margin-bottom: 25px;
+  font-size: 25px;
   color: #1e272e;
   font-weight: 300;
+}
+
+.hint__button {
+  margin-bottom: -20px;
+  height: 40px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
+  color: #eeeef6;
+  background-color: #2522a0;
+  border: 2px solid #2522a0;
+  border-radius: 15px;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.hint__button:hover {
+  color: #2522a0;
+  background-color: #eeeef6;
+  border: 2px solid #2522a0;
 }
 
 .instructions__button {
