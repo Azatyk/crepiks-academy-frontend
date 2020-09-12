@@ -1,5 +1,5 @@
 <template>
-  <div class="target__page">
+  <div class="landing__page">
     <header class="header">
       <router-link to="/" class="header__logo-link">
         <div class="header__logo">
@@ -35,7 +35,7 @@
         </div>
       </nav>
     </header>
-    <div class="target__welcome">
+    <div class="landing__welcome">
       <div class="welcome__text">
         <h1 class="welcome__heading">Не откладывай.<br />Программируй.</h1>
         <div class="welcome__description">
@@ -47,12 +47,12 @@
         </div>
       </div>
       <img
-        src="@/assets/images/targetWelcome.png"
+        src="@/assets/images/landingWelcome.png"
         alt="Programming"
         class="welcome__image"
       />
     </div>
-    <div class="target__what-for">
+    <div class="landing__what-for">
       <h2 class="what-for__heading">Зачем мне это?</h2>
       <div class="what-for__description">
         Сегодня программисты (веб разработчики) являются одними из самых
@@ -86,27 +86,55 @@
         </slide> -->
       </carousel>
     </div>
+    <div class="landing__how">
+      <h2 class="how__heading">Как это проходит?</h2>
+      <div class="how__cards">
+        <cHowCard
+          :path="firstStepImage"
+          heading="Авторизуйтесь"
+          description="Войдите в аккаунт или создайте новый аккаунт. Всего 2 минуты и вы в деле!"
+        />
+        <cHowCard
+          :path="secondStepImage"
+          heading="Пройдите курс"
+          description="Выберите подходящий для вас курс и пройдите веселые, интерактивные уроки"
+        />
+        <cHowCard
+          :path="thirdStepImage"
+          heading="Станьте программистом"
+          description="Используйте полученые навыки, чтобы получить работу востребованного разработчика"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
+import cHowCard from "@/components/landing/cHowCard";
+import firstImage from "@/assets/images/firstStep.svg";
+import secondImage from "@/assets/images/secondStep.svg";
+import thirdImage from "@/assets/images/thirdStep.svg";
 
 export default {
   components: {
     Carousel,
-    Slide
+    Slide,
+    cHowCard
   },
   data() {
     return {
-      value: "1"
+      value: "1",
+      firstStepImage: firstImage,
+      secondStepImage: secondImage,
+      thirdStepImage: thirdImage
     };
   }
 };
 </script>
 
 <style>
-.target__page {
+.landing__page {
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -181,7 +209,7 @@ export default {
   padding: 8px 30px;
   font-size: 17px;
   color: #eeeef6;
-  background-color: #77778a;
+  background-color: #2522a0;
   border: 2px solid #2522a0;
   border-radius: 15px;
   transition: 170ms;
@@ -194,7 +222,7 @@ export default {
   border: 2px solid #2522a0;
 }
 
-.target__welcome {
+.landing__welcome {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -262,7 +290,7 @@ export default {
   width: auto;
 }
 
-.target__what-for {
+.landing__what-for {
   padding-top: 5%;
   width: 100%;
   min-height: 500px;
@@ -305,5 +333,30 @@ export default {
 
 .what-for__carouse-image {
   width: 100%;
+}
+
+.landing__how {
+  margin-top: 200px;
+  padding-bottom: 170px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.how__heading {
+  margin-bottom: 60px;
+  font-size: 3.5vw;
+  color: #2522a0;
+}
+
+.how__cards {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
