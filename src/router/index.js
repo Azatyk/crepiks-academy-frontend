@@ -21,13 +21,11 @@ import cChangeProfile from "@/views/change-profile/cChangeProfile";
 import cChangePassword from "@/views/change-password/cChangePassword";
 
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-import cLandingLayout from "@/views/layouts/cLandingLayout";
+// import cLandingLayout from "@/views/layouts/cLandingLayout";
 import cAppLayout from "@/views/layouts/cAppLayout";
 import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
 import cAuthLayout from "@/views/layouts/cAuthLayout";
 import cProfileLayout from "@/views/layouts/cProfileLayout";
-
-import cTargetPage from "@/views/target-page/cTargetPage";
 
 import store from "@/store";
 
@@ -63,29 +61,29 @@ const routes = [
           }
         ]
       },
-      {
-        path: "target-page",
-        name: "target-page",
-        component: cTargetPage,
-        meta: {
-          title: "Не упусти шанс стать профессиональным разработчиком!",
-          noAuthOnly: true
-        }
-      },
+      // {
+      //   path: "",
+      //   component: cLandingLayout,
+      //   children: [
+      //     {
+      //       path: "",
+      //       name: "home",
+      //       component: cLanding,
+      //       meta: {
+      //         title: "Crepiks Academy - программируй вместе с нами",
+      //         noAuthOnly: true
+      //       }
+      //     }
+      //   ]
+      // },
       {
         path: "",
-        component: cLandingLayout,
-        children: [
-          {
-            path: "",
-            name: "home",
-            component: cLanding,
-            meta: {
-              title: "Crepiks Academy - программируй вместе с нами",
-              noAuthOnly: true
-            }
-          }
-        ]
+        name: "home",
+        component: cLanding,
+        meta: {
+          title: "Crepiks Academy - программируй вместе с нами",
+          noAuthOnly: true
+        }
       },
       {
         path: "app",
