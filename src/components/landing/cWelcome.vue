@@ -7,7 +7,7 @@
         востребованных профессий нашего века прямо сейчас!
       </div>
       <div class="welcome__button">
-        Не откладывать
+        Начать обучение
       </div>
     </div>
     <img
@@ -24,6 +24,7 @@ export default {};
 
 <style scoped>
 .landing__welcome {
+  margin-bottom: 10%;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -43,7 +44,7 @@ export default {};
 
 .welcome__heading {
   margin-bottom: 40px;
-  font-size: 5.5vw;
+  font-size: 5.3vw;
   line-height: 1.1;
   color: #0d0b6d;
   font-weight: bold;
@@ -51,7 +52,7 @@ export default {};
 
 .welcome__description {
   width: 37%;
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   line-height: 1.3;
   color: #0d0b6d;
   opacity: 0.7;
@@ -59,13 +60,13 @@ export default {};
 
 .welcome__button {
   margin-top: 50px;
-  padding: 15px 25px;
+  padding: 1% 1%;
   width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #eeeef6;
-  font-size: 1.4vw;
+  font-size: 1.6vw;
   font-weight: 500;
   text-align: center;
   background-color: #2522a0;
@@ -87,7 +88,7 @@ export default {};
   position: absolute;
   bottom: 5%;
   right: 0;
-  height: 80%;
-  width: auto;
+  /* height: 80%; */
+  width: 50%;
 }
 </style>

@@ -9,22 +9,16 @@
         >Head Hunter</a
       >
     </div>
-    <carousel class="what-for__carousel" autoplay>
-      <slide class="what-for__carousel-slide">
-        <img
-          src="@/assets/images/job1.jpg"
-          alt="Вакансия"
-          class="what-for__carousel-image"
-        />
-      </slide>
-      <slide class="what-for__carousel-slide">
-        <img
-          src="@/assets/images/job2.jpg"
-          alt="Вакансия"
-          class="what-for__carousel-image"
-        />
-      </slide>
-    </carousel>
+    <img
+      src="@/assets/images/job1.jpg"
+      alt="Вакансия"
+      class="what-for__carousel-image"
+    />
+    <img
+      src="@/assets/images/job2.jpg"
+      alt="Вакансия"
+      class="what-for__carousel-image"
+    />
   </div>
 </template>
 
@@ -34,7 +28,7 @@ export default {};
 
 <style scoped>
 .landing__what-for {
-  padding-top: 5%;
+  margin-bottom: 17%;
   width: 100%;
   min-height: 500px;
   display: flex;
@@ -48,7 +42,7 @@ export default {};
 .what-for__heading {
   margin-bottom: 20px;
   color: #2522a0;
-  font-size: 3.5vw;
+  font-size: 3.7vw;
   font-weight: bold;
 }
 
@@ -57,14 +51,13 @@ export default {};
   width: 40%;
   color: #2522a0;
   text-align: center;
-  opacity: 0.6;
-  font-size: 1.2vw;
+  opacity: 0.8;
+  font-size: 1.6vw;
   font-weight: normal;
 }
 
 .what-for__description-link {
-  color: #5d33f6;
-  opacity: 0.8;
+  color: #0d0b6d;
   text-decoration: none;
   transition: 150ms ease-in-out;
 }

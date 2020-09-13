@@ -24,9 +24,8 @@ export default {};
 
 <style scoped>
 .about-course {
-  padding-bottom: 150px;
   margin: auto;
-  margin-top: 150px;
+  margin-bottom: 18%;
   width: 100%;
   max-width: 1200px;
   height: auto;
@@ -47,20 +46,20 @@ export default {};
 
 .about-course__title {
   margin-bottom: 30px;
-  font-size: 3.5vw;
+  font-size: 3.7vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-course__description {
-  font-size: 1.5vw;
+  font-size: 1.7vw;
   color: #2522a0;
   font-weight: 300;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .about-course__image-container {
-  width: 48%;
+  width: 50%;
 }
 
 .about-course__image {

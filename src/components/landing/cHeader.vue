@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .header {
   position: absolute;
   left: 0;
@@ -100,7 +100,7 @@ export default {
 }
 
 .vs-select__input {
-  font-size: 15px;
+  font-size: 15px !important;
 }
 
 .vs-select__option {

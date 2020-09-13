@@ -44,8 +44,7 @@ export default {
 
 <style scoped>
 .landing__how {
-  margin-top: 200px;
-  padding-bottom: 170px;
+  margin-bottom: 20%;
   width: 100%;
   height: auto;
   display: flex;

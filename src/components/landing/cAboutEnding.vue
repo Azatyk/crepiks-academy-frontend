@@ -39,9 +39,8 @@ export default {
 <style scoped>
 .about-ending {
   padding: 0 2%;
-  padding-bottom: 150px;
   margin: auto;
-  margin-top: 150px;
+  margin-bottom: 15%;
   width: 100%;
   max-width: 1200px;
   height: auto;
@@ -106,15 +105,14 @@ export default {
 
 .about-ending__text-title {
   margin-bottom: 30px;
-  font-size: 3.5vw;
+  font-size: 3.7vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-ending__text-description {
-  font-size: 1.5vw;
+  font-size: 1.7vw;
   color: #2522a0;
   font-weight: 300;
-  opacity: 0.8;
 }
 </style>
