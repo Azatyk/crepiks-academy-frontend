@@ -8,7 +8,7 @@ import cLogin from "@/views/login/cLogin";
 
 import cHome from "@/views/home/cHome";
 
-// import cCourses from "@/views/courses/cCourses";
+import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
@@ -106,15 +106,15 @@ const routes = [
                   needAuth: true
                 }
               },
-              // {
-              //   path: "courses",
-              //   name: "courses",
-              //   component: cCourses,
-              //   meta: {
-              //     title: "Курсы",
-              //     needAuth: true
-              //   }
-              // },
+              {
+                path: "courses",
+                name: "courses",
+                component: cCourses,
+                meta: {
+                  title: "Курсы",
+                  needAuth: true
+                }
+              },
               {
                 path: "courses/:id",
                 name: "course",

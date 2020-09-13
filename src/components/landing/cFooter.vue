@@ -13,7 +13,7 @@
       <div class="footer__nav-link">Что я получу в конце</div>
     </div>
     <div class="footer__buttons">
-      <div class="footer__button">Навверх</div>
+      <div class="footer__button">На вверх</div>
       <div class="footer__button" @click="$router.push('/auth/login')">
         Начать обучение
       </div>

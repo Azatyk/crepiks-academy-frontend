@@ -8,8 +8,8 @@
     <nav class="header__navigation">
       <div class="header__navigation-link">Зачем мне это</div>
       <div class="header__navigation-link">Как это проходит</div>
-      <div class="header__navigation-link">Как проходит курс</div>
-      <div class="header__navigation-link">Что я получу в конце</div>
+      <div class="header__navigation-link">О курсе</div>
+      <div class="header__navigation-link">В конце курса</div>
       <template>
         <div class="center">
           <vs-select
@@ -31,7 +31,7 @@
         </div>
       </template>
       <div class="header__button" @click="$router.push('/auth/login')">
-        Начать
+        Войти
       </div>
     </nav>
   </header>
@@ -86,7 +86,7 @@ export default {
 }
 
 .header__navigation-link {
-  margin-right: 20px;
+  margin-right: 30px;
   color: #384a62;
   font-size: 17px;
   opacity: 0.6;

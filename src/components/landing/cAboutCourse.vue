@@ -26,8 +26,10 @@ export default {};
 .about-course {
   margin: auto;
   margin-bottom: 20%;
+  padding: 0 2%;
   width: 100%;
   max-width: 1200px;
+  box-sizing: border-box;
   height: auto;
   display: flex;
   flex-direction: row;

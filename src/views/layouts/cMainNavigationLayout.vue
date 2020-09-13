@@ -26,7 +26,7 @@
           </template>
           Главная
         </s-sidebar-item>
-        <s-sidebar-group>
+        <!-- <s-sidebar-group>
           <template #header>
             <s-sidebar-item arrow>
               <template #icon>
@@ -44,7 +44,13 @@
             <template #icon><i class="fas fa-file-code"></i></template>
             {{ course.title }}
           </s-sidebar-item>
-        </s-sidebar-group>
+        </s-sidebar-group> -->
+        <s-sidebar-item id="courses" to="/app/courses">
+          <template #icon>
+            <i class="fas fa-laptop-code"></i>
+          </template>
+          Курсы
+        </s-sidebar-item>
         <template #footer>
           <vs-row justify="space-between">
             <vs-avatar
@@ -159,14 +165,14 @@
 import { mapMutations, mapGetters } from "vuex";
 import Sidebar from "vuesax/dist/vsSidebar";
 import SidebarItem from "vuesax/dist/vsSidebarItem";
-import SidebarGroup from "vuesax/dist/vsSidebarGroup";
+// import SidebarGroup from "vuesax/dist/vsSidebarGroup";
 import Input from "vuesax/dist/vsInput";
 
 export default {
   components: {
     "s-sidebar": Sidebar,
     "s-sidebar-item": SidebarItem,
-    "s-sidebar-group": SidebarGroup,
+    // "s-sidebar-group": SidebarGroup,
     "s-input": Input
   },
   data() {
