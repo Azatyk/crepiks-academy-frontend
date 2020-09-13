@@ -1,153 +1,93 @@
 <template>
-  <section class="welcome__content">
-    <div class="welcome">
-      <div class="welcome__text-block">
-        <h1 class="text-block__heading">Учись программировать вместе с нами</h1>
-        <div class="text-block__description">
-          Приобрети навыки 21 века с помощью веселых и увлекательных
-          итерактивных курсов
-        </div>
-        <s-button class="welcome__button" @click="$router.push('/app/home')"
-          >Начать обучение</s-button
-        >
+  <div class="landing__welcome">
+    <div class="welcome__text">
+      <h1 class="welcome__heading">Не откладывай.<br />Программируй.</h1>
+      <div class="welcome__description">
+        Хватит откладывать на бесконечно завтрашний день. Освой одну из самых
+        востребованных профессий нашего века прямо сейчас!
       </div>
-      <img
-        src="@/assets/images/welcomeSitingMan.svg"
-        alt="Siting Man"
-        class="welcome__siting-man"
-      />
+      <div class="welcome__button">
+        Не откладывать
+      </div>
     </div>
-  </section>
+    <img
+      src="@/assets/images/landingWelcome.png"
+      alt="Programming"
+      class="welcome__image"
+    />
+  </div>
 </template>
 
 <script>
-import Button from "vuesax/dist/vsButton";
-import "vuesax/dist/vuesax.css";
-
-export default {
-  components: {
-    "s-button": Button
-  }
-};
+export default {};
 </script>
 
 <style scoped>
-.welcome__content {
+.landing__welcome {
   width: 100%;
   height: 100vh;
-}
-
-.welcome {
-  padding-bottom: 5vw;
-  padding: 0.1px;
-  margin: auto;
-  height: 100vh;
-  width: 85%;
-  max-width: 1440px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.welcome__text-block {
-  margin-top: 15%;
-  width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  background-color: #eeeef6;
 }
 
-.text-block__heading {
-  margin-bottom: 2%;
-  font-size: 3vw;
-  font-weight: 700;
-  line-height: 1.2;
-  color: #34495e;
+.welcome__text {
+  position: absolute;
+  left: 7%;
+  bottom: 23%;
+  display: flex;
+  flex-direction: column;
 }
 
-.text-block__description {
-  margin-bottom: 7%;
-  width: 60%;
-  font-size: 1.1vw;
-  color: #516f8c;
+.welcome__heading {
+  margin-bottom: 40px;
+  font-size: 5.5vw;
+  line-height: 1.1;
+  color: #0d0b6d;
+  font-weight: bold;
 }
 
-.welcome__siting-man {
-  margin-top: 20%;
-  width: 50%;
+.welcome__description {
+  width: 37%;
+  font-size: 1.5vw;
+  line-height: 1.3;
+  color: #0d0b6d;
+  opacity: 0.7;
 }
 
 .welcome__button {
-  padding: 0 5%;
-  height: 3vw;
-  font-size: 1.3vw;
+  margin-top: 50px;
+  padding: 15px 25px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eeeef6;
+  font-size: 1.4vw;
+  font-weight: 500;
+  text-align: center;
+  background-color: #2522a0;
+  border: 4px solid #2522a0;
+  border-radius: 30px;
+  overflow: hidden;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
 }
 
-@media (max-width: 1024px) {
-  .welcome {
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .welcome__text-block {
-    margin: 0;
-    width: 70%;
-    align-items: center;
-  }
-
-  .text-block__heading {
-    margin-bottom: 3%;
-    font-size: 5vw;
-    text-align: center;
-  }
-
-  .text-block__description {
-    width: 100%;
-    font-size: 2.5vw;
-    text-align: center;
-  }
-
-  .welcome__siting-man {
-    margin: 0;
-    width: 70%;
-  }
-
-  .welcome__button {
-    padding: 0 7%;
-    height: 7vw;
-    font-size: 3vw;
-    border-radius: 5px;
-  }
+.welcome__button:hover {
+  color: #2522a0;
+  background-color: #eeeef6;
+  transform: scale(1.05);
+  transition: 150ms ease-in-out;
 }
 
-@media (max-width: 700px) {
-  .welcome__content {
-    margin-top: 25%;
-    margin-bottom: 10%;
-    height: auto;
-  }
-
-  .welcome {
-    height: auto;
-  }
-
-  .welcome__siting-man {
-    width: 80%;
-  }
-
-  .welcome__text-block {
-    width: 100%;
-  }
-
-  .text-block__heading {
-    font-size: 7vw;
-  }
-
-  .text-block__description {
-    font-size: 3vw;
-  }
+.welcome__image {
+  position: absolute;
+  bottom: 5%;
+  right: 0;
+  height: 80%;
+  width: auto;
 }
 </style>
