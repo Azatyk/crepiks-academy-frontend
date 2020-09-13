@@ -1,6 +1,8 @@
 <template>
-  <div class="landing__what-for">
-    <h2 class="what-for__heading">Зачем мне это?</h2>
+  <div class="landing__what-for" v-prlx="{ speed: -0.3, fromBottom: false }">
+    <h2 class="what-for__heading">
+      Зачем мне это?
+    </h2>
     <div class="what-for__description">
       Сегодня программисты (веб разработчики) являются одними из самых
       востребованых специалистов во всем мире. Не верите? Взгляните на несколько
@@ -9,16 +11,26 @@
         >Head Hunter</a
       >
     </div>
-    <img
-      src="@/assets/images/job1.jpg"
-      alt="Вакансия"
-      class="what-for__carousel-image"
-    />
-    <img
-      src="@/assets/images/job2.jpg"
-      alt="Вакансия"
-      class="what-for__carousel-image"
-    />
+    <div
+      class="what-for__carousel"
+      v-prlx="{ direction: 'x', speed: -2.5, fromBottom: true }"
+    >
+      <img
+        src="@/assets/images/job1.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+      <img
+        src="@/assets/images/job2.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+      <img
+        src="@/assets/images/job3.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+    </div>
   </div>
 </template>
 
@@ -37,6 +49,7 @@ export default {};
   align-items: center;
   background-color: #eeeef6;
   overflow-x: hidden;
+  z-index: 3;
 }
 
 .what-for__heading {
@@ -44,6 +57,7 @@ export default {};
   color: #2522a0;
   font-size: 3.7vw;
   font-weight: bold;
+  z-index: 3;
 }
 
 .what-for__description {
@@ -67,7 +81,16 @@ export default {};
   transition: 150ms ease-in-out;
 }
 
-.what-for__carouse-image {
-  width: 100%;
+.what-for__carousel {
+  margin-left: 2400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+.what-for__carousel-image {
+  margin-right: 50px;
 }
 </style>

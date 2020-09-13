@@ -1,18 +1,23 @@
 <template>
   <div class="landing__how">
-    <h2 class="how__heading">Как это проходит?</h2>
+    <h2 class="how__heading" v-prlx="{ speed: -0.45, fromBottom: true }">
+      Как это проходит?
+    </h2>
     <div class="how__cards">
       <cHowCard
+        v-prlx="{ speed: -0.3, fromBottom: true }"
         :path="firstStepImage"
         heading="Авторизуйтесь"
         description="Войдите в аккаунт или создайте новый аккаунт. Всего 2 минуты и вы в деле!"
       />
       <cHowCard
+        v-prlx="{ speed: -0.4, fromBottom: true }"
         :path="secondStepImage"
         heading="Пройдите курс"
         description="Выберите подходящий для вас курс и пройдите веселые, интерактивные уроки"
       />
       <cHowCard
+        v-prlx="{ speed: -0.5, fromBottom: true }"
         :path="thirdStepImage"
         heading="Станьте программистом"
         description="Используйте полученые навыки, чтобы получить работу востребованного разработчика"
@@ -44,7 +49,7 @@ export default {
 
 <style scoped>
 .landing__how {
-  margin-bottom: 20%;
+  margin-bottom: 3%;
   width: 100%;
   height: auto;
   display: flex;

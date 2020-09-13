@@ -1,6 +1,6 @@
 <template>
   <div class="about-course">
-    <div class="about-course__text">
+    <div class="about-course__text" v-prlx="{ speed: -0.3 }">
       <div class="about-course__title">Как проходит курс?</div>
       <div class="about-course__description">
         Курс будет проходить на нашей онлайн интерактивной платформе. Что значит
@@ -8,7 +8,7 @@
         проверять вас будет не учитель, а специальные автоматические тесты
       </div>
     </div>
-    <div class="about-course__image-container">
+    <div class="about-course__image-container" v-prlx="{ speed: -0.6 }">
       <img
         class="about-course__image"
         src="@/assets/images/aboutCourseImage.jpg"
@@ -25,7 +25,7 @@ export default {};
 <style scoped>
 .about-course {
   margin: auto;
-  margin-bottom: 18%;
+  margin-bottom: 20%;
   width: 100%;
   max-width: 1200px;
   height: auto;
