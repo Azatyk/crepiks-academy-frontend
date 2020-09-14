@@ -39,7 +39,7 @@ export default {};
 .welcome__text {
   position: absolute;
   left: 7%;
-  bottom: 19%;
+  bottom: 17%;
   display: flex;
   flex-direction: column;
 }

@@ -1,15 +1,15 @@
 <template>
-  <header class="header">
+  <header class="header" id="header">
     <router-link to="/" class="header__logo-link">
       <div class="header__logo">
         Crepiks
       </div>
     </router-link>
     <nav class="header__navigation">
-      <div class="header__navigation-link">Зачем мне это</div>
-      <div class="header__navigation-link">Как это проходит</div>
-      <div class="header__navigation-link">О курсе</div>
-      <div class="header__navigation-link">В конце курса</div>
+      <a class="header__navigation-link" href="#whatfor">Зачем мне это</a>
+      <a class="header__navigation-link" href="#how">Как это проходит</a>
+      <a class="header__navigation-link" href="#aboutcourse">О курсе</a>
+      <a class="header__navigation-link" gref="#aboutending">В конце курса</a>
       <template>
         <div class="center">
           <vs-select
@@ -86,9 +86,11 @@ export default {
 }
 
 .header__navigation-link {
+  display: block;
+  font-size: 17px;
   margin-right: 30px;
   color: #384a62;
-  font-size: 17px;
+  text-decoration: none;
   opacity: 0.6;
   cursor: pointer;
   transition: 150ms ease-in-out;

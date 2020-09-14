@@ -1,5 +1,9 @@
 <template>
-  <div class="landing__what-for" v-prlx="{ speed: -0.3, fromBottom: false }">
+  <div
+    class="landing__what-for"
+    v-prlx="{ speed: -0.3, fromBottom: false }"
+    id="whatfor"
+  >
     <h2 class="what-for__heading">
       Зачем мне это?
     </h2>

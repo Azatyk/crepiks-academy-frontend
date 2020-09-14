@@ -1,5 +1,5 @@
 <template>
-  <div class="landing__how">
+  <div class="landing__how" id="how">
     <h2 class="how__heading" v-prlx="{ speed: -0.45, fromBottom: true }">
       Как это проходит?
     </h2>

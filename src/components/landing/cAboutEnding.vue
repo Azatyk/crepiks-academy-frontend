@@ -1,5 +1,5 @@
 <template>
-  <div class="about-ending">
+  <div class="about-ending" id="aboutending">
     <div
       class="about-ending__images-container"
       v-prlx="{ speed: -0.6, fromBottom: true }"

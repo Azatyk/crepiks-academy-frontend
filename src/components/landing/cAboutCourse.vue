@@ -1,5 +1,5 @@
 <template>
-  <div class="about-course">
+  <div class="about-course" id="aboutcourse">
     <div class="about-course__text" v-prlx="{ speed: -0.3 }">
       <div class="about-course__title">Как проходит курс?</div>
       <div class="about-course__description">

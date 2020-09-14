@@ -54,5 +54,6 @@ export default {
 html {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 </style>

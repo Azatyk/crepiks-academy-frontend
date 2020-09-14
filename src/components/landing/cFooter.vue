@@ -13,7 +13,9 @@
       <div class="footer__nav-link">Что я получу в конце</div>
     </div>
     <div class="footer__buttons">
-      <div class="footer__button">На вверх</div>
+      <a href="#header" class="footer__button-link"
+        ><div class="footer__button">На вверх</div></a
+      >
       <div class="footer__button" @click="$router.push('/auth/login')">
         Начать обучение
       </div>
@@ -100,6 +102,10 @@ export default {};
   border-radius: 15px;
   cursor: pointer;
   transition: 150ms ease-in-out;
+}
+
+.footer__button-link {
+  text-decoration: none;
 }
 
 .footer__button:hover {
