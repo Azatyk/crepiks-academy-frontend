@@ -4,8 +4,15 @@ import router from "./router";
 import store from "./store";
 import Vuesax from "vuesax";
 import VuePrlx from "vue-prlx";
+// import VueScroll from "vuescroll";
 
 Vue.use(VuePrlx);
+
+// Vue.use(VueScroll, {
+//   ops: {
+
+//   },
+// })
 
 Vue.config.productionTip = false;
 
