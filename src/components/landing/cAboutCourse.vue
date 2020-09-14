@@ -48,13 +48,13 @@ export default {};
 
 .about-course__title {
   margin-bottom: 30px;
-  font-size: 3.5vw;
+  font-size: 3.4vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-course__description {
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   color: #2522a0;
   font-weight: 300;
   opacity: 1;
@@ -67,5 +67,28 @@ export default {};
 .about-course__image {
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 1200px) {
+  .about-course {
+    justify-content: center;
+  }
+
+  .about-course__text {
+    margin-right: 50px;
+    width: 40%;
+  }
+
+  .about-course__title {
+    font-size: 3.6vw;
+  }
+
+  .about-course__description {
+    font-size: 1.9vw;
+  }
+
+  .about-course__image-container {
+    width: 45%;
+  }
 }
 </style>

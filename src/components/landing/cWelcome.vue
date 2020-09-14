@@ -6,7 +6,7 @@
         Хватит откладывать на бесконечно завтрашний день. Освой одну из самых
         востребованных профессий нашего века прямо сейчас!
       </div>
-      <div class="welcome__button">
+      <div class="welcome__button" @click="$router.push('/auth/login')">
         Начать обучение
       </div>
     </div>
@@ -39,14 +39,14 @@ export default {};
 .welcome__text {
   position: absolute;
   left: 7%;
-  bottom: 17%;
+  bottom: 20%;
   display: flex;
   flex-direction: column;
 }
 
 .welcome__heading {
   margin-bottom: 40px;
-  font-size: 5.2vw;
+  font-size: 4.5vw;
   line-height: 1.1;
   color: #0d0b6d;
   font-weight: bold;
@@ -54,7 +54,7 @@ export default {};
 
 .welcome__description {
   width: 37%;
-  font-size: 1.5vw;
+  font-size: 1.35vw;
   line-height: 1.3;
   color: #0d0b6d;
   opacity: 0.7;
@@ -62,13 +62,13 @@ export default {};
 
 .welcome__button {
   margin-top: 50px;
-  padding: 15px 30px;
+  padding: 12px 17px;
   width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #eeeef6;
-  font-size: 1.6vw;
+  font-size: 1.3vw;
   font-weight: 500;
   text-align: center;
   background-color: #2522a0;
@@ -95,7 +95,7 @@ export default {};
 
 @media (max-width: 1200px) {
   .welcome__text {
-    bottom: 15%;
+    bottom: 20%;
   }
 
   .welcome__heading {
@@ -104,8 +104,8 @@ export default {};
 
   .welcome__button {
     margin-top: 40px;
-    padding: 10px 10px;
-    width: 180px;
+    padding: 8px 7px;
+    width: 170px;
   }
 }
 </style>

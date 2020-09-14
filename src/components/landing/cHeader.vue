@@ -9,7 +9,7 @@
       <a class="header__navigation-link" href="#whatfor">Зачем мне это</a>
       <a class="header__navigation-link" href="#how">Как это проходит</a>
       <a class="header__navigation-link" href="#aboutcourse">О курсе</a>
-      <a class="header__navigation-link" gref="#aboutending">В конце курса</a>
+      <a class="header__navigation-link" href="#aboutending">В конце курса</a>
       <template>
         <div class="center">
           <vs-select
@@ -133,5 +133,20 @@ export default {
   color: #2522a0;
   background-color: #eeeef6;
   border: 2px solid #2522a0;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    padding: 0 5%;
+  }
+
+  .header__navigation-link {
+    margin-right: 20px;
+    font-size: 15px;
+  }
+
+  .header__button {
+    padding: 6px 30px;
+  }
 }
 </style>

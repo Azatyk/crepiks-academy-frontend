@@ -70,7 +70,7 @@ export default {};
   color: #2522a0;
   text-align: center;
   opacity: 0.8;
-  font-size: 1.6vw;
+  font-size: 1.4vw;
   font-weight: normal;
 }
 
@@ -96,5 +96,20 @@ export default {};
 
 .what-for__carousel-image {
   margin-right: 50px;
+}
+
+@media (max-width: 1200px) {
+  .what-for__heading {
+    font-size: 4vw;
+  }
+
+  .what-for__description {
+    font-size: 1.6vw;
+  }
+
+  .what-for__carousel-image {
+    width: 700px;
+    margin-right: 30px;
+  }
 }
 </style>

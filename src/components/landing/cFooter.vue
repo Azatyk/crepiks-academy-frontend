@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="footer__nav">
-      <div class="footer__nav-link">Зачем мне это</div>
-      <div class="footer__nav-link">Как это проходит</div>
-      <div class="footer__nav-link">Как проходит курс</div>
-      <div class="footer__nav-link">Что я получу в конце</div>
+      <a class="footer__nav-link" href="#whatfor">Зачем мне это</a>
+      <a class="footer__nav-link" href="#how">Как это проходит</a>
+      <a class="footer__nav-link" href="#aboutcourse">Как проходит курс</a>
+      <a class="footer__nav-link" href="#aboutending">Что я получу в конце</a>
     </div>
     <div class="footer__buttons">
       <a href="#header" class="footer__button-link"
@@ -74,6 +74,7 @@ export default {};
   font-size: 20px;
   color: #2522a0;
   font-weight: 300;
+  text-decoration: none;
   opacity: 0.8;
   cursor: pointer;
   transition: 150ms ease-in-out;
@@ -111,5 +112,19 @@ export default {};
 .footer__button:hover {
   color: #2522a0;
   background-color: #eeeef6;
+}
+
+@media (max-width: 1200px) {
+  .footer {
+    padding: 5% 5%;
+  }
+
+  .footer__nav {
+    justify-content: flex-start;
+  }
+
+  .footer__nav-link {
+    margin-bottom: 20px;
+  }
 }
 </style>

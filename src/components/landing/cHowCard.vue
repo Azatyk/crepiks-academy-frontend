@@ -69,4 +69,19 @@ export default {
   color: #2522a0;
   opacity: 0.7;
 }
+
+@media (max-width: 1200px) {
+  .card {
+    width: 250px;
+    height: 350px;
+  }
+
+  .card__heading {
+    font-size: 30px;
+  }
+
+  .card__description {
+    font-size: 20px;
+  }
+}
 </style>

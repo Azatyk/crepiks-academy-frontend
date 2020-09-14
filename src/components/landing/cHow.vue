@@ -64,11 +64,19 @@ export default {
 }
 
 .how__cards {
+  padding: 0 10%;
   width: 100%;
   max-width: 1200px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .how__heading {
+    margin-bottom: 30px;
+  }
 }
 </style>

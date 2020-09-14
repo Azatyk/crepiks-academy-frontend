@@ -107,14 +107,37 @@ export default {
 
 .about-ending__text-title {
   margin-bottom: 30px;
-  font-size: 3.2vw;
+  font-size: 3vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-ending__text-description {
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   color: #2522a0;
   font-weight: 300;
+}
+
+@media (max-width: 1200px) {
+  .about-ending {
+    justify-content: center;
+  }
+
+  .about-ending__text {
+    margin-left: 50px;
+    width: 40%;
+  }
+
+  .about-ending__text-title {
+    font-size: 3.6vw;
+  }
+
+  .about-ending__text-description {
+    font-size: 1.9vw;
+  }
+
+  .about-ending__images-container {
+    width: 45%;
+  }
 }
 </style>
