@@ -1,5 +1,9 @@
 <template>
   <div class="landing__page">
+    <vue-scroll-progress-bar
+      height="7px"
+      backgroundColor="linear-gradient(to right, #0d0b6d, #2522a0)"
+    />
     <cHeader />
     <cWelcome />
     <cWhatFor />
@@ -18,6 +22,7 @@ import cHow from "@/components/landing/cHow";
 import cAboutCourse from "@/components/landing/cAboutCourse";
 import cAboutEnding from "@/components/landing/cAboutEnding";
 import cFooter from "@/components/landing/cFooter";
+import { VueScrollProgressBar } from "@guillaumebriday/vue-scroll-progress-bar";
 
 export default {
   components: {
@@ -27,7 +32,8 @@ export default {
     cHow,
     cAboutCourse,
     cAboutEnding,
-    cFooter
+    cFooter,
+    VueScrollProgressBar
   }
 };
 </script>

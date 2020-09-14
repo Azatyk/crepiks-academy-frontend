@@ -48,13 +48,13 @@ export default {};
 
 .about-course__title {
   margin-bottom: 30px;
-  font-size: 3.7vw;
+  font-size: 3.5vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-course__description {
-  font-size: 1.7vw;
+  font-size: 1.5vw;
   color: #2522a0;
   font-weight: 300;
   opacity: 1;

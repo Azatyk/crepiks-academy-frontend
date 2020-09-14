@@ -39,14 +39,14 @@ export default {};
 .welcome__text {
   position: absolute;
   left: 7%;
-  bottom: 16%;
+  bottom: 19%;
   display: flex;
   flex-direction: column;
 }
 
 .welcome__heading {
   margin-bottom: 40px;
-  font-size: 5.3vw;
+  font-size: 5.2vw;
   line-height: 1.1;
   color: #0d0b6d;
   font-weight: bold;
@@ -54,7 +54,7 @@ export default {};
 
 .welcome__description {
   width: 37%;
-  font-size: 1.4vw;
+  font-size: 1.5vw;
   line-height: 1.3;
   color: #0d0b6d;
   opacity: 0.7;
@@ -62,7 +62,7 @@ export default {};
 
 .welcome__button {
   margin-top: 50px;
-  padding: 1% 1%;
+  padding: 15px 30px;
   width: 250px;
   display: flex;
   justify-content: center;
@@ -73,7 +73,7 @@ export default {};
   text-align: center;
   background-color: #2522a0;
   border: 4px solid #2522a0;
-  border-radius: 30px;
+  border-radius: 35px;
   overflow: hidden;
   transition: 150ms ease-in-out;
   cursor: pointer;
@@ -90,7 +90,6 @@ export default {};
   position: absolute;
   bottom: 0%;
   right: 0;
-  /* height: 80%; */
-  width: 45%;
+  height: 80%;
 }
 </style>

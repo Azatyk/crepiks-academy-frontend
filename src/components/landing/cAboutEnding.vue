@@ -18,7 +18,7 @@
         @mouseleave="isLandingHovered = false"
       />
     </div>
-    <div class="about-ending__text" v-prlx="{ speed: -0.4, fromBottom: true }">
+    <div class="about-ending__text" v-prlx="{ speed: -0.5, fromBottom: true }">
       <div class="about-ending__text-title">Что вы получите в конце?</div>
       <div class="about-ending__text-description">
         По окончанию курса вы получите базовые навыки веб-разработчика,
@@ -107,13 +107,13 @@ export default {
 
 .about-ending__text-title {
   margin-bottom: 30px;
-  font-size: 3.7vw;
+  font-size: 3.2vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-ending__text-description {
-  font-size: 1.7vw;
+  font-size: 1.5vw;
   color: #2522a0;
   font-weight: 300;
 }
