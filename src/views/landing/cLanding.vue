@@ -45,4 +45,14 @@ export default {
   min-height: 100vh;
   background-color: #eeeef6;
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 </style>
