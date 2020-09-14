@@ -92,4 +92,20 @@ export default {};
   right: 0;
   height: 80%;
 }
+
+@media (max-width: 1200px) {
+  .welcome__text {
+    bottom: 15%;
+  }
+
+  .welcome__heading {
+    margin-bottom: 20px;
+  }
+
+  .welcome__button {
+    margin-top: 40px;
+    padding: 10px 10px;
+    width: 180px;
+  }
+}
 </style>
