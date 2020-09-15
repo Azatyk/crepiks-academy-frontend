@@ -108,4 +108,42 @@ export default {};
     width: 170px;
   }
 }
+
+@media (max-width: 1024px) {
+  .landing__welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url(../../assets/images/landingWelcomeSmall.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: bottom 20% right 22%;
+  }
+
+  .welcome__text {
+    position: inherit;
+    margin-left: 8%;
+    margin-bottom: 13%;
+    width: auto;
+  }
+
+  .welcome__heading {
+    font-size: 7.5vw;
+  }
+
+  .welcome__description {
+    width: 60%;
+    font-size: 2.7vw;
+  }
+
+  .welcome__button {
+    padding: 1.5% 0.5%;
+    width: 30%;
+    font-size: 2.5vw;
+  }
+
+  .welcome__image {
+    display: none;
+  }
+}
 </style>

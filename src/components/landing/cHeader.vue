@@ -149,4 +149,31 @@ export default {
     padding: 6px 30px;
   }
 }
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 8%;
+  }
+
+  .header__logo {
+    font-size: 40px;
+  }
+
+  .header__navigation-link {
+    display: none;
+  }
+
+  .vs-select__input {
+    font-size: 20px !important;
+  }
+
+  .vs-select__option {
+    font-size: 20px !important;
+  }
+
+  .header__button {
+    padding: 10px 30px;
+    font-size: 20px;
+  }
+}
 </style>

@@ -112,4 +112,7 @@ export default {};
     margin-right: 30px;
   }
 }
+
+@media (max-width: 1024px) {
+}
 </style>
