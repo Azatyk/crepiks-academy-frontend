@@ -64,7 +64,7 @@ export default {
 }
 
 .how__cards {
-  padding: 0 10%;
+  padding: 0 2%;
   width: 100%;
   max-width: 1200px;
   box-sizing: border-box;
@@ -77,6 +77,10 @@ export default {
 @media (max-width: 1200px) {
   .how__heading {
     margin-bottom: 30px;
+  }
+
+  .how__cards {
+    padding: 0 10%;
   }
 }
 </style>
