@@ -17,7 +17,7 @@
     </div>
     <div
       class="what-for__carousel"
-      v-prlx="{ direction: 'x', speed: -2.5, fromBottom: true }"
+      v-prlx="{ direction: 'x', speed: -1.7, fromBottom: true }"
     >
       <img
         src="@/assets/images/job1.jpg"
@@ -30,7 +30,17 @@
         class="what-for__carousel-image"
       />
       <img
+        src="@/assets/images/job5.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+      <img
         src="@/assets/images/job3.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+      <img
+        src="@/assets/images/job4.jpg"
         alt="Вакансия"
         class="what-for__carousel-image"
       />
@@ -114,5 +124,21 @@ export default {};
 }
 
 @media (max-width: 1024px) {
+  .landing__what-for {
+    margin-top: 30%;
+  }
+
+  .what-for__heading {
+    font-size: 7vw;
+  }
+
+  .what-for__description {
+    width: 75%;
+    font-size: 3.4vw;
+  }
+
+  .what-for__carousel-image {
+    width: 450px;
+  }
 }
 </style>

@@ -5,19 +5,19 @@
     </h2>
     <div class="how__cards">
       <cHowCard
-        v-prlx="{ speed: -0.3, fromBottom: true }"
+        v-prlx="{ speed: -0.4, fromBottom: true }"
         :path="firstStepImage"
         heading="Авторизуйтесь"
         description="Войдите в аккаунт или создайте новый аккаунт. Всего 2 минуты и вы в деле!"
       />
       <cHowCard
-        v-prlx="{ speed: -0.4, fromBottom: true }"
+        v-prlx="{ speed: -0.5, fromBottom: true }"
         :path="secondStepImage"
         heading="Пройдите курс"
         description="Выберите подходящий для вас курс и пройдите веселые, интерактивные уроки"
       />
       <cHowCard
-        v-prlx="{ speed: -0.5, fromBottom: true }"
+        v-prlx="{ speed: -0.6, fromBottom: true }"
         :path="thirdStepImage"
         heading="Станьте программистом"
         description="Используйте полученные навыки, чтобы получить работу востребованного разработчика"
@@ -81,6 +81,23 @@ export default {
 
   .how__cards {
     padding: 0 10%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .landing__how {
+    margin-top: 30%;
+  }
+
+  .how__heading {
+    margin-bottom: 20px;
+    font-size: 7vw;
+  }
+
+  .how__cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 </style>
