@@ -75,6 +75,10 @@ export default {
 }
 
 @media (max-width: 1200px) {
+  .how {
+    margin-bottom: 0;
+  }
+
   .how__heading {
     margin-bottom: 30px;
   }

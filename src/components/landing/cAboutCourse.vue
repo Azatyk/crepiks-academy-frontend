@@ -91,4 +91,29 @@ export default {};
     width: 45%;
   }
 }
+
+@media (max-width: 1024px) {
+  .about-course {
+    margin-top: -10%;
+    flex-direction: column;
+  }
+
+  .about-course__text {
+    padding: 0 5%;
+    width: 85%;
+    box-sizing: border-box;
+  }
+
+  .about-course__title {
+    font-size: 7vw;
+  }
+
+  .about-course__description {
+    font-size: 3.5vw;
+  }
+
+  .about-course__image-container {
+    width: 80%;
+  }
+}
 </style>

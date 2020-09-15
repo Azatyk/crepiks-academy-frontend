@@ -140,4 +140,27 @@ export default {
     width: 45%;
   }
 }
+
+@media (max-width: 1024px) {
+  .about-ending {
+    margin-top: 300px;
+    flex-direction: column-reverse;
+  }
+
+  .about-ending__text {
+    width: 80%;
+  }
+
+  .about-ending__text-title {
+    font-size: 7vw;
+  }
+
+  .about-ending__text-description {
+    font-size: 3.5vw;
+  }
+
+  .about-ending__images-container {
+    width: 80%;
+  }
+}
 </style>
