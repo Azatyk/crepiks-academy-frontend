@@ -127,4 +127,48 @@ export default {};
     margin-bottom: 20px;
   }
 }
+
+@media (max-width: 1024px) {
+  .footer {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .footer__logo-social {
+    margin-bottom: 100px;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .footer__logo {
+    margin-bottom: 50px;
+    font-size: 60px;
+  }
+
+  .footer__nav {
+    margin-bottom: 100px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .footer__nav-link {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .footer__buttons {
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer__button {
+    margin-bottom: 30px;
+    padding: 15px 35px;
+    font-size: 23px;
+    border-radius: 30px;
+  }
+}
 </style>

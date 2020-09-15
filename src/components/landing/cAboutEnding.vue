@@ -1,9 +1,6 @@
 <template>
   <div class="about-ending" id="aboutending">
-    <div
-      class="about-ending__images-container"
-      v-prlx="{ speed: -0.6, fromBottom: true }"
-    >
+    <div class="about-ending__images-container" v-prlx="{ speed: -0.6 }">
       <img
         class="about-ending__image-sertificate"
         src="@/assets/images/endCertificate.jpg"
@@ -18,7 +15,7 @@
         @mouseleave="isLandingHovered = false"
       />
     </div>
-    <div class="about-ending__text" v-prlx="{ speed: -0.5, fromBottom: true }">
+    <div class="about-ending__text" v-prlx="{ speed: -0.3 }">
       <div class="about-ending__text-title">Что вы получите в конце?</div>
       <div class="about-ending__text-description">
         По окончанию курса вы получите базовые навыки веб-разработчика,
@@ -124,6 +121,7 @@ export default {
   }
 
   .about-ending__text {
+    margin-bottom: 50px;
     margin-left: 50px;
     width: 40%;
   }
@@ -144,6 +142,7 @@ export default {
 @media (max-width: 1024px) {
   .about-ending {
     margin-top: 300px;
+    margin-bottom: 200px;
     flex-direction: column-reverse;
   }
 
