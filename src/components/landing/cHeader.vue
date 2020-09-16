@@ -179,11 +179,11 @@ export default {
 
 @media (max-width: 650px) {
   .header {
-    padding: 0 4%;
+    padding: 0 5%;
   }
 
   .header__logo {
-    font-size: 30px;
+    font-size: 7vw;
   }
 
   .header__navigation {
@@ -191,21 +191,21 @@ export default {
   }
 
   .center {
-    width: 40% !important;
+    width: 45% !important;
   }
 
   .vs-select__input {
-    font-size: 15px !important;
+    font-size: 3.5vw !important;
   }
 
   .vs-select__option {
-    font-size: 15px !important;
+    font-size: 3.5vw !important;
   }
 
   .header__button {
     margin-left: 15px;
-    padding: 7px 20px;
-    font-size: 17px;
+    padding: 2.5% 7%;
+    font-size: 3.8vw;
   }
 }
 </style>

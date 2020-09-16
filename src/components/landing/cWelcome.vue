@@ -146,4 +146,32 @@ export default {};
     display: none;
   }
 }
+
+@media (max-width: 650px) {
+  .landing__welcome {
+    background-size: 65%;
+    background-position: bottom 15% right 30%;
+  }
+
+  .welcome__text {
+    margin-bottom: 50%;
+  }
+
+  .welcome__heading {
+    margin-bottom: 5%;
+    font-size: 10vw;
+  }
+
+  .welcome__description {
+    width: 80%;
+    font-size: 3.8vw;
+  }
+
+  .welcome__button {
+    margin-top: 8%;
+    padding: 1.5% 0;
+    width: 42%;
+    font-size: 3.7vw;
+  }
+}
 </style>

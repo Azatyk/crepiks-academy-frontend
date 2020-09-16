@@ -134,5 +134,9 @@ export default {
     width: 90%;
     height: 400px;
   }
+
+  .card__heading {
+    font-size: 20px;
+  }
 }
 </style>
