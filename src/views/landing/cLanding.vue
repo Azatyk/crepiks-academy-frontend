@@ -1,6 +1,7 @@
 <template>
-  <div class="landing__page">
+  <div class="landing__page" ref="body">
     <vue-scroll-progress-bar
+      v-if="!isMobile"
       height="7px"
       backgroundColor="linear-gradient(to right, #0d0b6d, #2522a0)"
     />
@@ -34,6 +35,16 @@ export default {
     cAboutEnding,
     cFooter,
     VueScrollProgressBar
+  },
+  data() {
+    return {
+      isMobile: false
+    };
+  },
+  mounted() {
+    if (this.$refs.body.clientWidth <= 650) {
+      this.isMobile = true;
+    }
   }
 };
 </script>

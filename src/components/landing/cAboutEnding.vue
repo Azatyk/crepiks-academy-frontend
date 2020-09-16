@@ -40,6 +40,7 @@ export default {
 .about-ending {
   padding: 0 2%;
   margin: auto;
+  margin-bottom: 10%;
   width: 100%;
   max-width: 1200px;
   height: auto;
