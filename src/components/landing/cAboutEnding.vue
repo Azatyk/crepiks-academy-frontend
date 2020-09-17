@@ -1,6 +1,6 @@
 <template>
   <div class="about-ending" id="aboutending">
-    <div class="about-ending__images-container" v-prlx="{ speed: -0.6 }">
+    <div class="about-ending__images-container" v-prlx.mobile="{ speed: -0.6 }">
       <img
         class="about-ending__image-sertificate"
         src="@/assets/images/endCertificate.jpg"
@@ -15,7 +15,7 @@
         @mouseleave="isLandingHovered = false"
       />
     </div>
-    <div class="about-ending__text" v-prlx="{ speed: -0.3 }">
+    <div class="about-ending__text" v-prlx.mobile="{ speed: -0.3 }">
       <div class="about-ending__text-title">Что вы получите в конце?</div>
       <div class="about-ending__text-description">
         По окончанию курса вы получите базовые навыки веб-разработчика,
@@ -161,6 +161,42 @@ export default {
 
   .about-ending__images-container {
     width: 80%;
+  }
+}
+
+@media (max-width: 650px) {
+  .about-ending {
+    margin-top: 200px;
+    padding: 0 5%;
+  }
+
+  .about-ending__text {
+    padding: 0 7%;
+    margin-left: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .about-ending__text-title {
+    margin-bottom: 20px;
+    font-size: 8vw;
+  }
+
+  .about-ending__text-description {
+    font-size: 4.5vw;
+  }
+
+  .about-endnig__images-container {
+    width: 100%;
+  }
+
+  .about-ending__image-sertificate {
+    margin-right: 0;
+    width: 60%;
+  }
+
+  .about-ending__image-landing {
+    width: 60%;
   }
 }
 </style>
