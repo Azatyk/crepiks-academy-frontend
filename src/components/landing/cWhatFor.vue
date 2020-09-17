@@ -1,7 +1,7 @@
 <template>
   <div
     class="landing__what-for"
-    v-prlx="{ speed: -0.3, fromBottom: false }"
+    v-prlx.mobile="{ speed: -0.3, fromBottom: false }"
     id="whatfor"
   >
     <h2 class="what-for__heading">
@@ -17,7 +17,7 @@
     </div>
     <div
       class="what-for__carousel"
-      v-prlx="{ direction: 'x', speed: -1.7, fromBottom: true }"
+      v-prlx.mobile="{ direction: 'x', speed: -1.7, fromBottom: true }"
     >
       <img
         src="@/assets/images/job1.jpg"
@@ -139,6 +139,25 @@ export default {};
 
   .what-for__carousel-image {
     width: 450px;
+  }
+}
+
+@media (max-width: 650px) {
+  .landing__what-for {
+    margin-top: 50%;
+  }
+
+  .what-for__heading {
+    font-size: 9vw;
+  }
+
+  .what-for__description {
+    width: 85%;
+    font-size: 4.5vw;
+  }
+
+  .what-for__carousel-image {
+    width: 300px;
   }
 }
 </style>

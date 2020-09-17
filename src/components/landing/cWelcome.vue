@@ -1,6 +1,6 @@
 <template>
   <div class="landing__welcome">
-    <div class="welcome__text" v-prlx="{ speed: -0.6 }">
+    <div class="welcome__text" v-prlx.mobile="{ speed: -0.6 }">
       <h1 class="welcome__heading">Не откладывай.<br />Программируй.</h1>
       <div class="welcome__description">
         Хватит откладывать на бесконечно завтрашний день. Освой одну из самых
@@ -11,7 +11,7 @@
       </div>
     </div>
     <img
-      v-prlx="{ speed: -0.2 }"
+      v-prlx.mobile="{ speed: -0.2 }"
       src="@/assets/images/landingWelcome.png"
       alt="Programming"
       class="welcome__image"
@@ -151,10 +151,6 @@ export default {};
   .landing__welcome {
     background-size: 65%;
     background-position: bottom 15% right 30%;
-  }
-
-  .welcome__text {
-    margin-bottom: 50%;
   }
 
   .welcome__heading {
