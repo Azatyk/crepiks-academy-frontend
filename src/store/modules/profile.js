@@ -1,19 +1,17 @@
 import { request } from "@/requests/request";
-import axios from "axios";
 
 export default {
   state: {
     userData: {}
   },
   actions: {
-    getUserData({ commit }) {
+    getUserData(ctx, id) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/profile",
+          url: "/users/" + id,
           method: "GET"
         })
           .then(res => {
-            commit("gettingSuccess", res.data);
             resolve(res);
           })
           .catch(err => {
@@ -21,15 +19,14 @@ export default {
           });
       });
     },
-    changeUserData({ commit }, profile) {
+    changeUserData(ctx, { id, updatedData }) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/profile",
-          data: profile,
+          url: "/users/" + id,
+          data: updatedData,
           method: "PATCH"
         })
           .then(res => {
-            commit("changingSuccess", profile);
             resolve(res);
           })
           .catch(err => {
@@ -37,33 +34,33 @@ export default {
           });
       });
     },
-    changeImage({ getters }, file) {
-      return new Promise((resolve, reject) => {
-        let image = new FormData();
-        image.append("image", file);
-        axios
-          .patch(
-            "https://api-crepiks.herokuapp.com/api/v1/profile/change-image",
-            image,
-            {
-              headers: {
-                Authorization: getters.accessToken,
-                "Content-Type": "multipart/form-data"
-              }
-            }
-          )
-          .then(res => {
-            resolve(res);
-          })
-          .catch(err => reject(err));
-      });
-    },
-    changePassword(ctx, { currentPassword, newPassword }) {
+    // changeImage(ctx, file) {
+    //   return new Promise((resolve, reject) => {
+    //     let image = new FormData();
+    //     image.append("image", file);
+    //     axios
+    //       .patch(
+    //         "https://api-crepiks.herokuapp.com/api/v1/profile/change-image",
+    //         image,
+    //         {
+    //           headers: {
+    //             Authorization: getters.accessToken,
+    //             "Content-Type": "multipart/form-data"
+    //           }
+    //         }
+    //       )
+    //       .then(res => {
+    //         resolve(res);
+    //       })
+    //       .catch(err => reject(err));
+    //   });
+    // },
+    changePassword(ctx, { id, oldPassword, newPassword }) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/profile/change-password",
+          url: "/users/" + id + "/password",
           data: {
-            currentPassword,
+            oldPassword,
             newPassword
           },
           method: "PATCH"
@@ -76,16 +73,5 @@ export default {
           });
       });
     }
-  },
-  mutations: {
-    gettingSuccess(state, data) {
-      state.userData = data;
-    },
-    changingSuccess(state, profile) {
-      state.userData = profile;
-    }
-  },
-  getters: {
-    userData: state => state.userData
   }
 };

@@ -3,7 +3,7 @@
     <form @submit.prevent="$emit('submit')" class="form">
       <div class="form__info-block">
         <img
-          src="@/assets/images/authImage.svg"
+          src="@/assets/images/loginImage.png"
           alt="Login"
           class="form__image"
         />
@@ -45,7 +45,7 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #5d33f6;
+  background-color: #2522a0;
   border-radius: 30px 0px 0px 30px;
   box-shadow: 0px 10px 10px 0px #0000001a;
 }
