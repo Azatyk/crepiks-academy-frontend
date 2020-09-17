@@ -7,17 +7,23 @@
       </div>
     </div>
     <div class="footer__nav">
-      <a class="footer__nav-link" href="#whatfor">Зачем мне это</a>
-      <a class="footer__nav-link" href="#how">Как это проходит</a>
-      <a class="footer__nav-link" href="#aboutcourse">Как проходит курс</a>
-      <a class="footer__nav-link" href="#aboutending">Что я получу в конце</a>
+      <a class="footer__nav-link" href="#whatfor">{{
+        $t("footerWhatForLinkText")
+      }}</a>
+      <a class="footer__nav-link" href="#how">{{ $t("footerHowLinkText") }}</a>
+      <a class="footer__nav-link" href="#aboutcourse">{{
+        $t("footerAboutCourseLinkText")
+      }}</a>
+      <a class="footer__nav-link" href="#aboutending">{{
+        $t("footerAboutEndingLinkText")
+      }}</a>
     </div>
     <div class="footer__buttons">
       <a href="#header" class="footer__button-link"
-        ><div class="footer__button">На вверх</div></a
+        ><div class="footer__button">{{ $t("footerUpButton") }}</div></a
       >
       <div class="footer__button" @click="$router.push('/auth/login')">
-        Начать обучение
+        {{ $t("footerStartLearningButton") }}
       </div>
     </div>
   </footer>
