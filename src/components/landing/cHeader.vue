@@ -6,32 +6,41 @@
       </div>
     </router-link>
     <nav class="header__navigation">
-      <a class="header__navigation-link" href="#whatfor">Зачем мне это</a>
-      <a class="header__navigation-link" href="#how">Как это проходит</a>
-      <a class="header__navigation-link" href="#aboutcourse">О курсе</a>
-      <a class="header__navigation-link" href="#aboutending">В конце курса</a>
+      <a class="header__navigation-link" href="#whatfor">{{
+        $t("headerWhatForLinkText")
+      }}</a>
+      <a class="header__navigation-link" href="#how">{{
+        $t("headerHowLinkText")
+      }}</a>
+      <a class="header__navigation-link" href="#aboutcourse">{{
+        $t("headerAboutCourseLinkText")
+      }}</a>
+      <a class="header__navigation-link" href="#aboutending">{{
+        $t("headerAboutEndingLinkText")
+      }}</a>
       <template>
         <div class="center">
           <vs-select
             placeholder="Select"
-            v-model="value"
+            v-model="language"
             class="header__select"
             color="#0d0b6d"
+            @change="setLocale"
           >
-            <vs-option label="Русский" value="1">
+            <vs-option label="Русский" value="ru">
               Русский
             </vs-option>
-            <vs-option label="Казакша" value="2">
+            <vs-option label="Казакша" value="kz">
               Казакша
             </vs-option>
-            <vs-option label="English" value="3">
+            <vs-option label="English" value="en">
               English
             </vs-option>
           </vs-select>
         </div>
       </template>
       <div class="header__button" @click="$router.push('/auth/login')">
-        Войти
+        {{ $t("headerLoginButtonText") }}
       </div>
     </nav>
   </header>
@@ -41,8 +50,13 @@
 export default {
   data() {
     return {
-      value: "1"
+      language: "ru"
     };
+  },
+  methods: {
+    setLocale() {
+      this.$i18n.locale = this.language;
+    }
   }
 };
 </script>

@@ -1,26 +1,26 @@
 <template>
   <div class="landing__how" id="how">
     <h2 class="how__heading" v-prlx.mobile="{ speed: -0.45, fromBottom: true }">
-      Как это проходит?
+      {{ $t("howTitle") }}
     </h2>
     <div class="how__cards">
       <cHowCard
         v-prlx.mobile="{ speed: -0.4, fromBottom: true }"
         :path="firstStepImage"
-        heading="Авторизуйтесь"
-        description="Войдите в аккаунт или создайте новый аккаунт. Всего 2 минуты и вы в деле!"
+        :heading="$t('howFirstCardTitle')"
+        :description="$t('howFirstCardDescription')"
       />
       <cHowCard
         v-prlx.mobile="{ speed: -0.5, fromBottom: true }"
         :path="secondStepImage"
-        heading="Пройдите курс"
-        description="Выберите подходящий для вас курс и пройдите веселые, интерактивные уроки"
+        :heading="$t('howSecondCardTitle')"
+        :description="$t('howSecondCardDescription')"
       />
       <cHowCard
         v-prlx.mobile="{ speed: -0.6, fromBottom: true }"
         :path="thirdStepImage"
-        heading="Станьте программистом"
-        description="Используйте полученные навыки, чтобы получить работу востребованного разработчика"
+        :heading="$t('howThirdCardTitle')"
+        :description="$t('howThirdCardDescription')"
       />
     </div>
   </div>

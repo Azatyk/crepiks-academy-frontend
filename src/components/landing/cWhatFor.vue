@@ -5,15 +5,10 @@
     id="whatfor"
   >
     <h2 class="what-for__heading">
-      Зачем мне это?
+      {{ $t("whatForTitle") }}
     </h2>
     <div class="what-for__description">
-      Сегодня программисты (веб разработчики) являются одними из самых
-      востребованых специалистов во всем мире. Не верите? Взгляните на несколько
-      примеров вакансий на популярном сервисе поиска работы
-      <a href="https://hh.kz/" class="what-for__description-link"
-        >Head Hunter</a
-      >
+      {{ $t("whatForDescription") }}
     </div>
     <div
       class="what-for__carousel"
@@ -57,6 +52,7 @@ export default {};
   margin-bottom: 17%;
   width: 100%;
   min-height: 500px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,7 +144,9 @@ export default {};
   }
 
   .what-for__heading {
+    width: 100%;
     font-size: 9vw;
+    text-align: center;
   }
 
   .what-for__description {

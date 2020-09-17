@@ -1,11 +1,9 @@
 <template>
   <div class="about-course" id="aboutcourse">
     <div class="about-course__text" v-prlx.mobile="{ speed: -0.3 }">
-      <div class="about-course__title">Как проходит курс?</div>
+      <div class="about-course__title">{{ $t("aboutCourseTitle") }}</div>
       <div class="about-course__description">
-        Курс будет проходить на нашей онлайн интерактивной платформе. Что значит
-        интерактивный? Это значит, что вы будете писать код прямо в браузере, а
-        проверять вас будет не учитель, а специальные автоматические тесты
+        {{ $t("aboutCourseDescription") }}
       </div>
     </div>
     <div class="about-course__image-container" v-prlx.mobile="{ speed: -0.6 }">

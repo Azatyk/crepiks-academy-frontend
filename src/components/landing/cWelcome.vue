@@ -1,13 +1,14 @@
 <template>
   <div class="landing__welcome">
     <div class="welcome__text" v-prlx.mobile="{ speed: -0.6 }">
-      <h1 class="welcome__heading">Не откладывай.<br />Программируй.</h1>
+      <h1 class="welcome__heading">
+        {{ $t("welcomeTitleFirst") }}<br />{{ $t("welcomeTitleSecond") }}
+      </h1>
       <div class="welcome__description">
-        Хватит откладывать на бесконечно завтрашний день. Освой одну из самых
-        востребованных профессий нашего века прямо сейчас!
+        {{ $t("welcomeDescriptionText") }}
       </div>
       <div class="welcome__button" @click="$router.push('/auth/login')">
-        Начать обучение
+        {{ $t("welcomeButtonText") }}
       </div>
     </div>
     <img
@@ -53,7 +54,7 @@ export default {};
 }
 
 .welcome__description {
-  width: 37%;
+  width: 40%;
   font-size: 1.35vw;
   line-height: 1.3;
   color: #0d0b6d;
@@ -62,8 +63,8 @@ export default {};
 
 .welcome__button {
   margin-top: 50px;
-  padding: 12px 17px;
-  width: 250px;
+  padding: 0.7% 0;
+  width: 16%;
   display: flex;
   justify-content: center;
   align-items: center;

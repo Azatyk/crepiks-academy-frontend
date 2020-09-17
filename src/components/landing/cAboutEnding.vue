@@ -16,11 +16,9 @@
       />
     </div>
     <div class="about-ending__text" v-prlx.mobile="{ speed: -0.3 }">
-      <div class="about-ending__text-title">Что вы получите в конце?</div>
+      <div class="about-ending__text-title">{{ $t("aboutEndingTitle") }}</div>
       <div class="about-ending__text-description">
-        По окончанию курса вы получите базовые навыки веб-разработчика,
-        сертификат об окончании обучения и напишите свой первый одностраничный
-        сайт!
+        {{ $t("aboutEndingDescription") }}
       </div>
     </div>
   </div>
@@ -174,6 +172,7 @@ export default {
     padding: 0 10%;
     margin-left: 0;
     margin-bottom: 20px;
+    box-sizing: border-box;
     width: 100%;
   }
 
