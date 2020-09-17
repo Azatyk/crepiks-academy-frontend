@@ -5,7 +5,7 @@
         <h1 class="intro__heading">{{ course.title }}</h1>
         <div class="intro__description">{{ course.description }}</div>
       </div>
-      <img :src="course.image" :alt="course.title" class="intro__image" />
+      <!-- <img :src="course.image" :alt="course.title" class="intro__image" /> -->
     </div>
     <div class="course__lessons">
       <div
@@ -18,7 +18,7 @@
           <h2 class="lesson__heading">{{ lesson.title }}</h2>
         </div>
         <s-button
-          @click="$router.push('/app/courses/' + id + '/lessons/' + lesson._id)"
+          @click="$router.push('/app/courses/' + id + '/lessons/' + lesson.id)"
           class="lesson__button"
           >Перейти</s-button
         >
@@ -48,9 +48,9 @@ export default {
   mounted() {
     this.$store
       .dispatch("getCourse", this.id)
-      .then(res => (this.course = res.data));
+      .then(res => (this.course = res.data.course));
     this.$store.dispatch("getLessons", this.id).then(res => {
-      this.lessons = res.data;
+      this.lessons = res.data.lessons;
     });
   },
   methods: {
@@ -67,10 +67,10 @@ export default {
       this.id = this.$route.params.id;
       this.$store
         .dispatch("getCourse", this.id)
-        .then(res => (this.course = res.data));
+        .then(res => (this.course = res.data.course));
       this.$store
         .dispatch("getLessons", this.id)
-        .then(res => (this.lessons = res.data));
+        .then(res => (this.lessons = res.data.lessons));
     }
   }
 };

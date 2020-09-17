@@ -8,7 +8,7 @@ import cLogin from "@/views/login/cLogin";
 
 import cHome from "@/views/home/cHome";
 
-// import cCourses from "@/views/courses/cCourses";
+import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
@@ -21,7 +21,7 @@ import cChangeProfile from "@/views/change-profile/cChangeProfile";
 import cChangePassword from "@/views/change-password/cChangePassword";
 
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-import cLandingLayout from "@/views/layouts/cLandingLayout";
+// import cLandingLayout from "@/views/layouts/cLandingLayout";
 import cAppLayout from "@/views/layouts/cAppLayout";
 import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
 import cAuthLayout from "@/views/layouts/cAuthLayout";
@@ -61,20 +61,29 @@ const routes = [
           }
         ]
       },
+      // {
+      //   path: "",
+      //   component: cLandingLayout,
+      //   children: [
+      //     {
+      //       path: "",
+      //       name: "home",
+      //       component: cLanding,
+      //       meta: {
+      //         title: "Crepiks Academy - программируй вместе с нами",
+      //         noAuthOnly: true
+      //       }
+      //     }
+      //   ]
+      // },
       {
         path: "",
-        component: cLandingLayout,
-        children: [
-          {
-            path: "",
-            name: "home",
-            component: cLanding,
-            meta: {
-              title: "Crepiks Academy - программируй вместе с нами",
-              noAuthOnly: true
-            }
-          }
-        ]
+        name: "home",
+        component: cLanding,
+        meta: {
+          title: "Crepiks Academy - программируй вместе с нами",
+          noAuthOnly: true
+        }
       },
       {
         path: "app",
@@ -97,15 +106,15 @@ const routes = [
                   needAuth: true
                 }
               },
-              // {
-              //   path: "courses",
-              //   name: "courses",
-              //   component: cCourses,
-              //   meta: {
-              //     title: "Курсы",
-              //     needAuth: true
-              //   }
-              // },
+              {
+                path: "courses",
+                name: "courses",
+                component: cCourses,
+                meta: {
+                  title: "Курсы",
+                  needAuth: true
+                }
+              },
               {
                 path: "courses/:id",
                 name: "course",
@@ -205,7 +214,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.noAuthOnly)) {
     if (store.getters.isLoggedIn) {
       next({
-        path: "/app/courses",
+        path: "/app/home",
         query: { redirect: to.fullPath }
       });
     } else {

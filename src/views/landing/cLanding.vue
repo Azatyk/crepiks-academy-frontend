@@ -1,58 +1,59 @@
 <template>
-  <div class="home__content">
+  <div class="landing__page" ref="body">
+    <vue-scroll-progress-bar
+      height="5px"
+      backgroundColor="linear-gradient(to right, #0d0b6d, #2522a0)"
+    />
+    <cHeader />
     <cWelcome />
-    <cAbout
-      :image="loveDouble"
-      :reversed="false"
-      textHeading="Курсы сделанные с любовью"
-      textDescription="Структурированное обучение, десятки видеоуроков и интерактивных курсов сделанных для вас помогут вам в изучении программирования с нуля"
-      route="/app/courses"
-      buttonText="Подобрать курс"
-    />
-    <cAdvantages />
-    <cAbout
-      :image="meditation"
-      :reversed="true"
-      textHeading="Открой для себя новый мир"
-      textDescription="Мы не только обучим вас всем современным технологиям в мире IT, но и расскажем почему эта сфера так важна в нашем мире"
-      route="/app/courses"
-      buttonText="Перейти к курсам"
-    />
-    <cMailing />
+    <cWhatFor />
+    <cHow />
+    <cAboutCourse />
+    <cAboutEnding />
+    <cFooter />
   </div>
 </template>
 
 <script>
+import cHeader from "@/components/landing/cHeader";
 import cWelcome from "@/components/landing/cWelcome";
-import cAbout from "@/components/landing/cAbout";
-import loveDouble from "@/assets/images/love.svg";
-
-import cAdvantages from "@/components/landing/cAdvantages";
-
-import meditation from "@/assets/images/newWorld.svg";
-
-import cMailing from "@/components/landing/cMailing";
+import cWhatFor from "@/components/landing/cWhatFor";
+import cHow from "@/components/landing/cHow";
+import cAboutCourse from "@/components/landing/cAboutCourse";
+import cAboutEnding from "@/components/landing/cAboutEnding";
+import cFooter from "@/components/landing/cFooter";
+import { VueScrollProgressBar } from "@guillaumebriday/vue-scroll-progress-bar";
 
 export default {
-  data() {
-    return {
-      loveDouble: loveDouble,
-      meditation: meditation
-    };
-  },
-
   components: {
+    cHeader,
     cWelcome,
-    cAbout,
-    cAdvantages,
-    cMailing
+    cWhatFor,
+    cHow,
+    cAboutCourse,
+    cAboutEnding,
+    cFooter,
+    VueScrollProgressBar
   }
 };
 </script>
 
-<style scoped>
-.home__content {
-  padding: 0.1px;
+<style>
+.landing__page {
   width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #eeeef6;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 </style>
