@@ -131,12 +131,17 @@ export default {
 
 @media (max-width: 650px) {
   .card {
+    margin-bottom: 20px;
     width: 90%;
-    height: 400px;
+    height: auto;
   }
 
   .card__heading {
-    font-size: 20px;
+    font-size: 25px;
+  }
+
+  .card__description {
+    font-size: 18px;
   }
 }
 </style>
