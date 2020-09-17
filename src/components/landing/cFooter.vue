@@ -171,4 +171,36 @@ export default {};
     border-radius: 30px;
   }
 }
+
+@media (max-width: 650px) {
+  .footer__logo-social {
+    margin-bottom: 50px;
+  }
+
+  .footer__logo {
+    font-size: 40px;
+  }
+
+  .footer__social {
+    font-size: 20px;
+  }
+
+  .footer__nav {
+    margin-bottom: 50px;
+  }
+
+  .footer__nav-link {
+    font-size: 20px;
+  }
+
+  .footer__buttons {
+    margin-bottom: 10%;
+  }
+
+  .footer__button {
+    margin-bottom: 20px;
+    padding: 8px 23px;
+    font-size: 17px;
+  }
+}
 </style>

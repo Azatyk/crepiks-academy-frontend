@@ -167,11 +167,11 @@ export default {
 @media (max-width: 650px) {
   .about-ending {
     margin-top: 200px;
-    padding: 0 5%;
+    padding: 0 8%;
   }
 
   .about-ending__text {
-    padding: 0 7%;
+    padding: 0 10%;
     margin-left: 0;
     margin-bottom: 20px;
     width: 100%;
