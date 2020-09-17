@@ -1,6 +1,6 @@
 <template>
-  <div class="about-course">
-    <div class="about-course__text" v-prlx="{ speed: -0.3 }">
+  <div class="about-course" id="aboutcourse">
+    <div class="about-course__text" v-prlx.mobile="{ speed: -0.3 }">
       <div class="about-course__title">Как проходит курс?</div>
       <div class="about-course__description">
         Курс будет проходить на нашей онлайн интерактивной платформе. Что значит
@@ -8,7 +8,7 @@
         проверять вас будет не учитель, а специальные автоматические тесты
       </div>
     </div>
-    <div class="about-course__image-container" v-prlx="{ speed: -0.6 }">
+    <div class="about-course__image-container" v-prlx.mobile="{ speed: -0.6 }">
       <img
         class="about-course__image"
         src="@/assets/images/aboutCourseImage.jpg"
@@ -48,13 +48,13 @@ export default {};
 
 .about-course__title {
   margin-bottom: 30px;
-  font-size: 3.5vw;
+  font-size: 3.4vw;
   color: #2522a0;
   font-weight: bold;
 }
 
 .about-course__description {
-  font-size: 1.5vw;
+  font-size: 1.4vw;
   color: #2522a0;
   font-weight: 300;
   opacity: 1;
@@ -67,5 +67,79 @@ export default {};
 .about-course__image {
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 1200px) {
+  .about-course {
+    justify-content: center;
+  }
+
+  .about-course__text {
+    margin-right: 50px;
+    width: 40%;
+  }
+
+  .about-course__title {
+    font-size: 3.6vw;
+  }
+
+  .about-course__description {
+    font-size: 1.9vw;
+  }
+
+  .about-course__image-container {
+    width: 45%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .about-course {
+    margin-top: -10%;
+    flex-direction: column;
+  }
+
+  .about-course__text {
+    padding: 0 5%;
+    width: 85%;
+    box-sizing: border-box;
+  }
+
+  .about-course__title {
+    font-size: 7vw;
+  }
+
+  .about-course__description {
+    font-size: 3.5vw;
+  }
+
+  .about-course__image-container {
+    width: 80%;
+  }
+}
+
+@media (max-width: 650px) {
+  .about-course {
+    margin: auto;
+  }
+
+  .about-course__text {
+    padding: 0 6%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .about-course__title {
+    margin-bottom: 20px;
+    font-size: 7.7vw;
+  }
+
+  .about-course__description {
+    font-size: 4.5vw;
+  }
+
+  .about-course__image-container {
+    width: 90%;
+  }
 }
 </style>

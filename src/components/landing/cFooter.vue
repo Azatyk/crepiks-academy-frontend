@@ -7,13 +7,15 @@
       </div>
     </div>
     <div class="footer__nav">
-      <div class="footer__nav-link">Зачем мне это</div>
-      <div class="footer__nav-link">Как это проходит</div>
-      <div class="footer__nav-link">Как проходит курс</div>
-      <div class="footer__nav-link">Что я получу в конце</div>
+      <a class="footer__nav-link" href="#whatfor">Зачем мне это</a>
+      <a class="footer__nav-link" href="#how">Как это проходит</a>
+      <a class="footer__nav-link" href="#aboutcourse">Как проходит курс</a>
+      <a class="footer__nav-link" href="#aboutending">Что я получу в конце</a>
     </div>
     <div class="footer__buttons">
-      <div class="footer__button">На вверх</div>
+      <a href="#header" class="footer__button-link"
+        ><div class="footer__button">На вверх</div></a
+      >
       <div class="footer__button" @click="$router.push('/auth/login')">
         Начать обучение
       </div>
@@ -72,6 +74,7 @@ export default {};
   font-size: 20px;
   color: #2522a0;
   font-weight: 300;
+  text-decoration: none;
   opacity: 0.8;
   cursor: pointer;
   transition: 150ms ease-in-out;
@@ -102,8 +105,102 @@ export default {};
   transition: 150ms ease-in-out;
 }
 
+.footer__button-link {
+  text-decoration: none;
+}
+
 .footer__button:hover {
   color: #2522a0;
   background-color: #eeeef6;
+}
+
+@media (max-width: 1200px) {
+  .footer {
+    padding: 5% 5%;
+  }
+
+  .footer__nav {
+    justify-content: flex-start;
+  }
+
+  .footer__nav-link {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .footer__logo-social {
+    margin-bottom: 100px;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .footer__logo {
+    margin-bottom: 50px;
+    font-size: 60px;
+  }
+
+  .footer__nav {
+    margin-bottom: 100px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .footer__nav-link {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  .footer__buttons {
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer__button {
+    margin-bottom: 30px;
+    padding: 15px 35px;
+    font-size: 23px;
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  .footer__logo-social {
+    margin-bottom: 50px;
+  }
+
+  .footer__logo {
+    font-size: 40px;
+  }
+
+  .footer__social {
+    font-size: 20px;
+  }
+
+  .footer__nav {
+    margin-bottom: 50px;
+  }
+
+  .footer__nav-link {
+    font-size: 20px;
+  }
+
+  .footer__buttons {
+    margin-bottom: 10%;
+  }
+
+  .footer__button {
+    margin-bottom: 20px;
+    padding: 8px 23px;
+    font-size: 17px;
+  }
 }
 </style>

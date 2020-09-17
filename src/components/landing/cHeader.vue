@@ -1,15 +1,15 @@
 <template>
-  <header class="header">
+  <header class="header" id="header">
     <router-link to="/" class="header__logo-link">
       <div class="header__logo">
         Crepiks
       </div>
     </router-link>
     <nav class="header__navigation">
-      <div class="header__navigation-link">Зачем мне это</div>
-      <div class="header__navigation-link">Как это проходит</div>
-      <div class="header__navigation-link">О курсе</div>
-      <div class="header__navigation-link">В конце курса</div>
+      <a class="header__navigation-link" href="#whatfor">Зачем мне это</a>
+      <a class="header__navigation-link" href="#how">Как это проходит</a>
+      <a class="header__navigation-link" href="#aboutcourse">О курсе</a>
+      <a class="header__navigation-link" href="#aboutending">В конце курса</a>
       <template>
         <div class="center">
           <vs-select
@@ -86,9 +86,11 @@ export default {
 }
 
 .header__navigation-link {
+  display: block;
+  font-size: 17px;
   margin-right: 30px;
   color: #384a62;
-  font-size: 17px;
+  text-decoration: none;
   opacity: 0.6;
   cursor: pointer;
   transition: 150ms ease-in-out;
@@ -131,5 +133,79 @@ export default {
   color: #2522a0;
   background-color: #eeeef6;
   border: 2px solid #2522a0;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    padding: 0 5%;
+  }
+
+  .header__navigation-link {
+    margin-right: 20px;
+    font-size: 15px;
+  }
+
+  .header__button {
+    padding: 6px 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 8%;
+  }
+
+  .header__logo {
+    font-size: 40px;
+  }
+
+  .header__navigation-link {
+    display: none;
+  }
+
+  .vs-select__input {
+    font-size: 20px !important;
+  }
+
+  .vs-select__option {
+    font-size: 20px !important;
+  }
+
+  .header__button {
+    padding: 10px 30px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .header {
+    padding: 0 5%;
+  }
+
+  .header__logo {
+    font-size: 7vw;
+  }
+
+  .header__navigation {
+    justify-content: flex-end;
+  }
+
+  .center {
+    width: 45% !important;
+  }
+
+  .vs-select__input {
+    font-size: 3.5vw !important;
+  }
+
+  .vs-select__option {
+    font-size: 3.5vw !important;
+  }
+
+  .header__button {
+    margin-left: 15px;
+    padding: 2.5% 7%;
+    font-size: 3.8vw;
+  }
 }
 </style>

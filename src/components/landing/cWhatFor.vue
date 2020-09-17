@@ -1,5 +1,9 @@
 <template>
-  <div class="landing__what-for" v-prlx="{ speed: -0.3, fromBottom: false }">
+  <div
+    class="landing__what-for"
+    v-prlx.mobile="{ speed: -0.3, fromBottom: false }"
+    id="whatfor"
+  >
     <h2 class="what-for__heading">
       Зачем мне это?
     </h2>
@@ -13,7 +17,7 @@
     </div>
     <div
       class="what-for__carousel"
-      v-prlx="{ direction: 'x', speed: -2.5, fromBottom: true }"
+      v-prlx.mobile="{ direction: 'x', speed: -1.7, fromBottom: true }"
     >
       <img
         src="@/assets/images/job1.jpg"
@@ -26,7 +30,17 @@
         class="what-for__carousel-image"
       />
       <img
+        src="@/assets/images/job5.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+      <img
         src="@/assets/images/job3.jpg"
+        alt="Вакансия"
+        class="what-for__carousel-image"
+      />
+      <img
+        src="@/assets/images/job4.jpg"
         alt="Вакансия"
         class="what-for__carousel-image"
       />
@@ -66,7 +80,7 @@ export default {};
   color: #2522a0;
   text-align: center;
   opacity: 0.8;
-  font-size: 1.6vw;
+  font-size: 1.4vw;
   font-weight: normal;
 }
 
@@ -92,5 +106,58 @@ export default {};
 
 .what-for__carousel-image {
   margin-right: 50px;
+}
+
+@media (max-width: 1200px) {
+  .what-for__heading {
+    font-size: 4vw;
+  }
+
+  .what-for__description {
+    font-size: 1.6vw;
+  }
+
+  .what-for__carousel-image {
+    width: 700px;
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .landing__what-for {
+    margin-top: 30%;
+  }
+
+  .what-for__heading {
+    font-size: 7vw;
+  }
+
+  .what-for__description {
+    width: 75%;
+    font-size: 3.4vw;
+  }
+
+  .what-for__carousel-image {
+    width: 450px;
+  }
+}
+
+@media (max-width: 650px) {
+  .landing__what-for {
+    margin-top: 50%;
+  }
+
+  .what-for__heading {
+    font-size: 9vw;
+  }
+
+  .what-for__description {
+    width: 85%;
+    font-size: 4.5vw;
+  }
+
+  .what-for__carousel-image {
+    width: 300px;
+  }
 }
 </style>

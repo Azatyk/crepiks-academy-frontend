@@ -1,7 +1,7 @@
 <template>
-  <div class="landing__page">
+  <div class="landing__page" ref="body">
     <vue-scroll-progress-bar
-      height="7px"
+      height="5px"
       backgroundColor="linear-gradient(to right, #0d0b6d, #2522a0)"
     />
     <cHeader />
@@ -54,5 +54,6 @@ export default {
 html {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 </style>
