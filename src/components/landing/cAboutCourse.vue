@@ -1,6 +1,6 @@
 <template>
   <div class="about-course" id="aboutcourse">
-    <div class="about-course__text" v-prlx="{ speed: -0.3 }">
+    <div class="about-course__text" v-prlx.mobile="{ speed: -0.3 }">
       <div class="about-course__title">Как проходит курс?</div>
       <div class="about-course__description">
         Курс будет проходить на нашей онлайн интерактивной платформе. Что значит
@@ -8,7 +8,7 @@
         проверять вас будет не учитель, а специальные автоматические тесты
       </div>
     </div>
-    <div class="about-course__image-container" v-prlx="{ speed: -0.6 }">
+    <div class="about-course__image-container" v-prlx.mobile="{ speed: -0.6 }">
       <img
         class="about-course__image"
         src="@/assets/images/aboutCourseImage.jpg"
@@ -114,6 +114,32 @@ export default {};
 
   .about-course__image-container {
     width: 80%;
+  }
+}
+
+@media (max-width: 650px) {
+  .about-course {
+    margin: auto;
+  }
+
+  .about-course__text {
+    padding: 0 6%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .about-course__title {
+    margin-bottom: 20px;
+    font-size: 7.7vw;
+  }
+
+  .about-course__description {
+    font-size: 4.5vw;
+  }
+
+  .about-course__image-container {
+    width: 90%;
   }
 }
 </style>
