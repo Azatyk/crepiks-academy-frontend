@@ -1,35 +1,35 @@
 <template>
   <c-form @submit="register">
     <div class="register-form">
-      <h3 class="register-form__heading">Регистрация</h3>
+      <h3 class="register-form__heading">{{ $t("authRegisterTitle") }}</h3>
       <s-input
-        label-placeholder="Имя"
+        :label-placeholder="$t('authInputFirstName')"
         v-model="name"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        label-placeholder="Фамилия"
+        :label-placeholder="$t('authInputLastName')"
         v-model="surname"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        type="email"
-        label-placeholder="Email"
+        :label-placeholder="$t('authInputEmail')"
         v-model="email"
+        type="email"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        label-placeholder="Пароль"
+        :label-placeholder="$t('authInputPassword')"
         v-model="password"
         type="password"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        label-placeholder="Подтверждение пароля"
+        :label-placeholder="$t('authInputCheckPassword')"
         v-model="passwordCheck"
         type="password"
         class="register-form__input"
@@ -37,13 +37,13 @@
       />
       <div class="register-form__functional">
         <s-button @click="register" class="register-form__button">
-          Регистрация
+          {{ $t("authRegisterButtonText") }}
         </s-button>
         <div class="register-form__link-text register-form__link-container">
-          Есть аккаунт?
-          <router-link to="/auth/login" class="register-form__link"
-            >Войдите</router-link
-          >
+          {{ $t("authRegisterHaveAccountText") }}
+          <router-link to="/auth/login" class="register-form__link">{{
+            $t("authRegisterLoginText")
+          }}</router-link>
         </div>
       </div>
     </div>

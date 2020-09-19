@@ -42,7 +42,20 @@ export const i18n = new VueI18n({
       footerAboutCourseLinkText: "О курсе",
       footerAboutEndingLinkText: "В конце курса",
       footerUpButton: "Наверх",
-      footerStartLearningButton: "Начать обучение"
+      footerStartLearningButton: "Начать обучение",
+      authLoginTitle: "Войти",
+      authLoginButtonText: "Вход",
+      authLoginNoAccountText: "Нет аккаунта?",
+      authLoginRegisterText: "Зарегестрируйтесь",
+      authRegisterTitle: "Регистрация",
+      authInputEmail: "Почта",
+      authInputPassword: "Пароль",
+      authInputFirstName: "Имя",
+      authInputLastName: "Фамилия",
+      authInputCheckPassword: "Подтверждение пароля",
+      authRegisterButtonText: "Регистрация",
+      authRegisterHaveAccountText: "Есть аккаунт?",
+      authRegisterLoginText: "Войдите"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -79,7 +92,20 @@ export const i18n = new VueI18n({
       footerAboutCourseLinkText: "Курс қалай өтеді",
       footerAboutEndingLinkText: "Соңында не аласыз",
       footerUpButton: "Жоғарыға",
-      footerStartLearningButton: "Оқуды бастау"
+      footerStartLearningButton: "Оқуды бастау",
+      authLoginTitle: "Кіру",
+      authLoginButtonText: "Кіру",
+      authLoginNoAccountText: "Есептік жазбаңыз жоқ па?",
+      authLoginRegisterText: "Тіркеліңіз",
+      authRegisterTitle: "Тіркелу",
+      authInputEmail: "Пошта",
+      authInputPassword: "Пароль",
+      authInputFirstName: "Аты",
+      authInputLastName: "Тегі",
+      authInputCheckPassword: "Құпия сөзді растау",
+      authRegisterButtonText: "Тіркелу",
+      authRegisterHaveAccountText: "Есептік жазба бар ма?",
+      authRegisterLoginText: "Кіріңіз"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -116,7 +142,20 @@ export const i18n = new VueI18n({
       footerAboutCourseLinkText: "About course",
       footerAboutEndingLinkText: "In the end",
       footerUpButton: "Go to up",
-      footerStartLearningButton: "Start training"
+      footerStartLearningButton: "Start training",
+      authLoginTitle: "Login",
+      authLoginButtonText: "Log in",
+      authLoginNoAccountText: "No account?",
+      authLoginRegisterText: "Create it",
+      authRegisterTitle: "Registration",
+      authInputEmail: "Email",
+      authInputPassword: "Password",
+      authInputFirstName: "First name",
+      authInputLastName: "Last name",
+      authInputCheckPassword: "Confirm password",
+      authRegisterButtonText: "Create account",
+      authRegisterHaveAccountText: "Have an account?",
+      authRegisterLoginText: "Sign in"
     }
   }
 });

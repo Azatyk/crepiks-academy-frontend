@@ -1,9 +1,9 @@
 <template>
   <c-form @submit="login">
     <div class="auth-form">
-      <h3 class="auth-form__heading">Войти</h3>
+      <h3 class="auth-form__heading">{{ $t("authLoginTitle") }}</h3>
       <s-input
-        label-placeholder="Email"
+        :label-placeholder="$t('authInputEmail')"
         v-model="email"
         class="auth-form__input"
         state="primary"
@@ -11,7 +11,7 @@
         <template v-if="!email" #message-danger> </template>
       </s-input>
       <s-input
-        label-placeholder="Password"
+        :label-placeholder="$t('authInputPassword')"
         v-model="password"
         class="auth-form__input"
         type="password"
@@ -19,14 +19,14 @@
       />
       <div class="auth-form__functional">
         <s-button @click="login" class="auth-form__button">
-          Вход
+          {{ $t("authLoginButtonText") }}
         </s-button>
         <div class="auth-form__link-text auth-form__link-container">
-          Нет аккаунта?
+          {{ $t("authLoginNoAccountText") }}
           <router-link
             to="/auth/register"
             class="auth-form__link-text auth-form__link"
-            >Зарегистрируйтесь</router-link
+            >{{ $t("authLoginRegisterText") }}</router-link
           >
         </div>
       </div>
