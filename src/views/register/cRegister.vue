@@ -36,9 +36,9 @@
         state="primary"
       />
       <div class="register-form__functional">
-        <s-button @click="register" class="register-form__button">
+        <button type="submit" class="register-form__button">
           {{ $t("authRegisterButtonText") }}
-        </s-button>
+        </button>
         <div class="register-form__link-text register-form__link-container">
           {{ $t("authRegisterHaveAccountText") }}
           <router-link to="/auth/login" class="register-form__link">{{
@@ -53,14 +53,12 @@
 <script>
 import cForm from "@/components/common/cForm";
 
-import Button from "vuesax/dist/vsButton";
 import Input from "vuesax/dist/vsInput";
 import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     "c-form": cForm,
-    "s-button": Button,
     "s-input": Input
   },
   data() {
@@ -150,7 +148,7 @@ export default {
 
 .register-form__functional {
   margin-top: 2%;
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -158,9 +156,19 @@ export default {
 }
 
 .register-form__button {
-  margin-left: 0;
-  width: 40%;
+  padding: 7px 23px;
+  color: white;
   font-size: 1.2vw;
+  border: 2px solid #5d33f6;
+  border-radius: 15px;
+  background-color: #5d33f6;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.register-form__button:hover {
+  background-color: white;
+  color: #5d33f6;
 }
 
 .register-form__link-container {
