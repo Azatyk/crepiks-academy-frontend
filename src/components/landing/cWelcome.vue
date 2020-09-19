@@ -7,7 +7,7 @@
       <div class="welcome__description">
         {{ $t("welcomeDescriptionText") }}
       </div>
-      <div class="welcome__button" @click="$router.push('/auth/login')">
+      <div class="welcome__button" @click="$router.push('/app/courses')">
         {{ $t("welcomeButtonText") }}
       </div>
     </div>
@@ -41,6 +41,7 @@ export default {};
   position: absolute;
   left: 7%;
   bottom: 20%;
+  width: 70%;
   display: flex;
   flex-direction: column;
 }
@@ -64,7 +65,7 @@ export default {};
 .welcome__button {
   margin-top: 50px;
   padding: 0.7% 0;
-  width: 16%;
+  width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;

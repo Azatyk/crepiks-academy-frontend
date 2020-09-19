@@ -37,7 +37,7 @@
             <vs-avatar
               badge-color="danger"
               badge-position="top-right"
-              @click="isProfileOpen = true"
+              @click="openProfile"
               class="sidebar__profile-button"
             >
               <i class="fas fa-user"></i>
@@ -63,9 +63,20 @@
     </div>
     <div class="content">
       <div class="content__header">
-        <div class="content__header-user" @click="isProfileOpen = true">
+        <div
+          class="content__header-user"
+          @click="openProfile"
+          v-if="isLoggedIn"
+        >
           <i class="far fa-user-circle content__user-icon"></i>
           <div class="content__user-name">Кажимухан Азат</div>
+        </div>
+        <div
+          class="content__header-button"
+          v-else
+          @click="$router.push('/auth/login')"
+        >
+          {{ $t("headerLoginButtonText") }}
         </div>
         <template>
           <vs-select
@@ -89,7 +100,7 @@
       </div>
       <vs-dialog v-model="isProfileOpen" blur :loading="isProfileLoading">
         <template #header>
-          <h4 class="profile__heading">
+          <h4 class="dialog__heading">
             {{ $t("profileTitle") }}
           </h4>
         </template>
@@ -130,11 +141,43 @@
         </template>
       </vs-dialog>
       <vs-dialog
+        blur
+        width="400px"
+        not-center
+        class="no-account"
+        v-model="isCreateProfileDialogOpen"
+      >
+        <template #header>
+          <div class="dialog__heading no-account__heading">
+            {{ $t("noAccountHeading") }}
+          </div>
+        </template>
+        <div class="no-account__description">
+          {{ $t("noAccountDescription") }}
+        </div>
+        <template #footer>
+          <div class="no-account__buttons">
+            <div
+              @click="$router.push('/auth/login')"
+              class="no-account__button"
+            >
+              {{ $t("noAccountPushButtonText") }}
+            </div>
+            <div
+              @click="isCreateProfileDialogOpen = false"
+              class="no-account__button no-account__button-undesirable"
+            >
+              {{ $t("noAccountCancelButtonText") }}
+            </div>
+          </div>
+        </template>
+      </vs-dialog>
+      <vs-dialog
         v-model="isChangePasswordOpen"
         :loading="isChangePasswordLoading"
       >
         <template #header>
-          <h4 class="profile__heading change-password__heading">
+          <h4 class="dialog__heading change-password__heading">
             {{ $t("changePasswordTitle") }}
           </h4>
         </template>
@@ -185,6 +228,7 @@ export default {
       isSidebarOpen: null,
       courses: {},
       isProfileOpen: false,
+      isCreateProfileDialogOpen: false,
       isProfileLoading: false,
       user: {
         firstName: null,
@@ -286,10 +330,18 @@ export default {
     setLocale() {
       this.changeLanguage(this.language);
       this.$i18n.locale = this.language;
+    },
+
+    openProfile() {
+      if (this.isLoggedIn) {
+        this.isProfileOpen = true;
+      } else {
+        this.isCreateProfileDialogOpen = true;
+      }
     }
   },
   computed: {
-    ...mapGetters(["userData", "accessToken", "currentLanguage"])
+    ...mapGetters(["userData", "accessToken", "currentLanguage", "isLoggedIn"])
   },
   watch: {
     userData(updatedData) {
@@ -357,7 +409,7 @@ export default {
   cursor: pointer;
 }
 
-.profile__heading {
+.dialog__heading {
   font-size: 2vw;
 }
 
@@ -387,6 +439,51 @@ export default {
   margin-left: 0;
   margin-bottom: 5%;
   font-size: 1vw;
+}
+
+.no-account__heading {
+  margin-top: 10px;
+  font-size: 33px;
+}
+
+.no-account__description {
+  margin-bottom: 20px;
+  font-size: 19px;
+  color: #384a62;
+}
+
+.no-account__buttons {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.no-account__button {
+  padding: 6px 15px;
+  font-size: 18px;
+  color: white;
+  border: 2px solid #5d33f6;
+  border-radius: 15px;
+  background-color: #5d33f6;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.no-account__button:hover {
+  color: #5d33f6;
+  background-color: white;
+}
+
+.no-account__button-undesirable {
+  margin-left: 15px;
+  color: #5d33f6;
+  background-color: white;
+}
+
+.no-account__button-undesirable:hover {
+  opacity: 0.7;
 }
 
 .content {
@@ -425,6 +522,22 @@ export default {
 .content__user-name {
   font-size: 20px;
   color: #5d33f6;
+}
+
+.content__header-button {
+  padding: 7px 20px;
+  color: white;
+  font-size: 17px;
+  border: 2px solid #5d33f6;
+  border-radius: 15px;
+  background-color: #5d33f6;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.content__header-button:hover {
+  color: #5d33f6;
+  background-color: white;
 }
 
 .vs-select__input {

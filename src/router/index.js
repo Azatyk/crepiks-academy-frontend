@@ -16,16 +16,10 @@ import cTrainer from "@/views/trainer/cTrainer";
 
 import cEmpty from "@/views/empty/cEmpty";
 
-import cProfile from "@/views/profile/cProfile";
-import cChangeProfile from "@/views/change-profile/cChangeProfile";
-import cChangePassword from "@/views/change-password/cChangePassword";
-
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-// import cLandingLayout from "@/views/layouts/cLandingLayout";
 import cAppLayout from "@/views/layouts/cAppLayout";
 import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
 import cAuthLayout from "@/views/layouts/cAuthLayout";
-import cProfileLayout from "@/views/layouts/cProfileLayout";
 
 import store from "@/store";
 
@@ -61,21 +55,6 @@ const routes = [
           }
         ]
       },
-      // {
-      //   path: "",
-      //   component: cLandingLayout,
-      //   children: [
-      //     {
-      //       path: "",
-      //       name: "home",
-      //       component: cLanding,
-      //       meta: {
-      //         title: "Crepiks Academy - программируй вместе с нами",
-      //         noAuthOnly: true
-      //       }
-      //     }
-      //   ]
-      // },
       {
         path: "",
         name: "home",
@@ -89,9 +68,6 @@ const routes = [
         path: "app",
         component: cAppLayout,
         name: "app",
-        meta: {
-          needAuth: true
-        },
         children: [
           {
             path: "",
@@ -102,8 +78,7 @@ const routes = [
                 name: "home",
                 component: cHome,
                 meta: {
-                  title: "Главная",
-                  needAuth: true
+                  title: "Главная"
                 }
               },
               {
@@ -111,8 +86,7 @@ const routes = [
                 name: "courses",
                 component: cCourses,
                 meta: {
-                  title: "Курсы",
-                  needAuth: true
+                  title: "Курсы"
                 }
               },
               {
@@ -120,8 +94,7 @@ const routes = [
                 name: "course",
                 component: cCourse,
                 meta: {
-                  title: "Курс",
-                  needAuth: true
+                  title: "Курс"
                 }
               },
               {
@@ -129,41 +102,7 @@ const routes = [
                 name: "trainer",
                 component: cTrainer,
                 meta: {
-                  title: "Тренажёр",
-                  needAuth: true
-                }
-              }
-            ]
-          },
-          {
-            path: "",
-            component: cProfileLayout,
-            children: [
-              {
-                path: "profile",
-                name: "profile",
-                component: cProfile,
-                meta: {
-                  title: "Ваш профиль",
-                  needAuth: true
-                }
-              },
-              {
-                path: "profile/change",
-                name: "change",
-                component: cChangeProfile,
-                meta: {
-                  title: "Изменение профиля",
-                  needAuth: true
-                }
-              },
-              {
-                path: "profile/change-password",
-                name: "change-password",
-                component: cChangePassword,
-                meta: {
-                  title: "Изменение пароля",
-                  needAuth: true
+                  title: "Тренажёр"
                 }
               }
             ]

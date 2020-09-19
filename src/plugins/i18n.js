@@ -18,7 +18,7 @@ export const i18n = new VueI18n({
       welcomeTitleSecond: "Программируй.",
       welcomeDescriptionText:
         "Хватит откладывать на бесконечно завтрашний день. Освой одну из самых востребованных профессий нашего века прямо сейчас!",
-      welcomeButtonText: "Начать обучение",
+      welcomeButtonText: "Перейти к курсам",
 
       whatForTitle: "Зачем мне это?",
       whatForDescription:
@@ -79,7 +79,13 @@ export const i18n = new VueI18n({
       changePasswordCurrentPassword: "Текущий пароль",
       changePasswordNewPassword: "Новый пароль",
       changePasswordConfirmPassword: "Подтверждение нового пароля",
-      changePasswordSaveButton: "Изменить пароль"
+      changePasswordSaveButton: "Изменить пароль",
+
+      noAccountHeading: "Создайте аккаунт",
+      noAccountDescription:
+        "Для того чтобы воспользоваться полным функционалом Crepiks Academy вы должны войти в аккаунт или создать его, если у вас его нету",
+      noAccountPushButtonText: "Войти в аккаунт",
+      noAccountCancelButtonText: "Позже"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -92,7 +98,7 @@ export const i18n = new VueI18n({
       welcomeTitleSecond: "Бағдарлама.",
       welcomeDescriptionText:
         "Шексіз ертеңгі күнге қалдыруды тоқтатыңыз. 21 ғасырдың ең жоғары сұранысқа ие мамандықтардың бірін дәл қазір меңгеріңіз!",
-      welcomeButtonText: "Оқуды бастау",
+      welcomeButtonText: "Курстарға барыңыз",
 
       whatForTitle: "Бұл маған не үшін қажет?",
       whatForDescription:
@@ -153,7 +159,13 @@ export const i18n = new VueI18n({
       changePasswordCurrentPassword: "Қазіргі құпия сөз",
       changePasswordNewPassword: "Жаңа құпия сөз",
       changePasswordConfirmPassword: "Жаңа құпия сөзді растау",
-      changePasswordSaveButton: "Құпия сөзді өзгерту"
+      changePasswordSaveButton: "Құпия сөзді өзгерту",
+
+      noAccountHeading: "Тіркелгі жасаңыз",
+      noAccountDescription:
+        "Crepiks Academy-дің толық функционалдығын пайдалану үшін, сіз тіркелгіге кіруіңіз керек немесе егер сізде тіркелгі жоқ болса, оны жасауыңыз керек",
+      noAccountPushButtonText: "Тіркеліңге кіру",
+      noAccountCancelButtonText: "Кейінірек"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -166,7 +178,7 @@ export const i18n = new VueI18n({
       welcomeTitleSecond: "Start coding.",
       welcomeDescriptionText:
         "Stop postponing indefinitely the next day. Learn one of the most popular professions of our century right now!",
-      welcomeButtonText: "Start training",
+      welcomeButtonText: "Go to the courses",
 
       whatForTitle: "Why do I need this?",
       whatForDescription:
@@ -227,7 +239,13 @@ export const i18n = new VueI18n({
       changePasswordCurrentPassword: "Current password",
       changePasswordNewPassword: "New password",
       changePasswordConfirmPassword: "Confirm new password",
-      changePasswordSaveButton: "Change password"
+      changePasswordSaveButton: "Change password",
+
+      noAccountHeading: "Create an account",
+      noAccountDescription:
+        "To use the full functionality of Crepiks Academy, you must log in to your account or create one if you don't have it yet",
+      noAccountPushButtonText: "Log in to your account",
+      noAccountCancelButtonText: "Later"
     }
   }
 });
