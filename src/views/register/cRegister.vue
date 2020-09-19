@@ -29,7 +29,7 @@
         state="primary"
       />
       <s-input
-        :label-placeholder="$t('authInputCheckPassword')"
+        :label-placeholder="$t('authInputConfirmPassword')"
         v-model="passwordCheck"
         type="password"
         class="register-form__input"

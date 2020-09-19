@@ -24,32 +24,13 @@
           <template #icon>
             <i class="fas fa-home"></i>
           </template>
-          Главная
+          {{ $t("appNavigationHome") }}
         </s-sidebar-item>
-        <!-- <s-sidebar-group>
-          <template #header>
-            <s-sidebar-item arrow>
-              <template #icon>
-                <i class="fas fa-laptop-code"></i>
-              </template>
-              Курсы
-            </s-sidebar-item>
-          </template>
-          <s-sidebar-item
-            v-for="(course, index) in courses"
-            :key="index"
-            :to="'/app/courses/' + course.id"
-            :id="course._id"
-          >
-            <template #icon><i class="fas fa-file-code"></i></template>
-            {{ course.title }}
-          </s-sidebar-item>
-        </s-sidebar-group> -->
         <s-sidebar-item id="courses" to="/app/courses">
           <template #icon>
             <i class="fas fa-laptop-code"></i>
           </template>
-          Курсы
+          {{ $t("appNavigationCourses") }}
         </s-sidebar-item>
         <template #footer>
           <vs-row justify="space-between">
@@ -70,36 +51,61 @@
           <template #icon>
             <i class="far fa-check-square"></i>
           </template>
-          Тесты
+          {{ $t("appNavigationTests") }}
         </s-sidebar-item>
         <s-sidebar-item id="trainer" to="/app/trainer">
           <template #icon>
             <i class="fas fa-network-wired"></i>
           </template>
-          тренажер
+          {{ $t("appNavigationTrainer") }}
         </s-sidebar-item>
       </s-sidebar>
     </div>
     <div class="content">
+      <div class="content__header">
+        <div class="content__header-user" @click="isProfileOpen = true">
+          <i class="far fa-user-circle content__user-icon"></i>
+          <div class="content__user-name">Кажимухан Азат</div>
+        </div>
+        <template>
+          <vs-select
+            placeholder="Select"
+            v-model="language"
+            class="form__select"
+            color="#0d0b6d"
+            @change="setLocale"
+          >
+            <vs-option label="Русский" value="ru">
+              Русский
+            </vs-option>
+            <vs-option label="Казакша" value="kz">
+              Казакша
+            </vs-option>
+            <vs-option label="English" value="en">
+              English
+            </vs-option>
+          </vs-select>
+        </template>
+      </div>
       <vs-dialog v-model="isProfileOpen" blur :loading="isProfileLoading">
         <template #header>
           <h4 class="profile__heading">
-            Профиль
+            {{ $t("profileTitle") }}
           </h4>
         </template>
         <div class="profile__inputs">
           <s-input
-            label="Имя"
+            :label="$t('profileFirstName')"
             v-model="user.firstName"
             class="profile__input"
           />
           <s-input
-            label="Фамилия"
+            :label="$t('profileLastName')"
             v-model="user.lastName"
             class="profile__input"
           />
           <s-input
-            label="Email"
+            :label="$t('profileEmail')"
             v-model="user.email"
             type="email"
             class="profile__input"
@@ -109,7 +115,7 @@
           class="profile__change-password"
           @click="isChangePasswordOpen = true"
         >
-          Изменить пароль
+          {{ $t("profileChangePasswordText") }}
         </div>
         <template #footer>
           <div class="profile__footer">
@@ -118,7 +124,7 @@
               class="profile__save-button"
               @click="changeUserData"
             >
-              Сохранить
+              {{ $t("profileSaveButtonText") }}
             </vs-button>
           </div>
         </template>
@@ -129,30 +135,30 @@
       >
         <template #header>
           <h4 class="profile__heading change-password__heading">
-            Изменение пароля
+            {{ $t("changePasswordTitle") }}
           </h4>
         </template>
         <div class="profile__inputs">
           <s-input
-            label="Текущий пароль"
+            :label="$t('changePasswordCurrentPassword')"
             v-model="passwords.currentPassword"
             class="profile__input"
             type="password"
           />
           <s-input
-            label="Новый пароль"
+            :label="$t('changePasswordNewPassword')"
             v-model="passwords.newPassword"
             class="profile__input"
           />
           <s-input
-            label="Подтверждение нового пароля"
+            :label="$t('changePasswordConfirmPassword')"
             v-model="passwords.newPasswordCheck"
             class="profile__input"
           />
         </div>
         <template #footer>
           <vs-button block class="profile__save-button" @click="changePassword">
-            Сохранить
+            {{ $t("changePasswordSaveButton") }}
           </vs-button>
         </template>
       </vs-dialog>
@@ -165,14 +171,12 @@
 import { mapMutations, mapGetters } from "vuex";
 import Sidebar from "vuesax/dist/vsSidebar";
 import SidebarItem from "vuesax/dist/vsSidebarItem";
-// import SidebarGroup from "vuesax/dist/vsSidebarGroup";
 import Input from "vuesax/dist/vsInput";
 
 export default {
   components: {
     "s-sidebar": Sidebar,
     "s-sidebar-item": SidebarItem,
-    // "s-sidebar-group": SidebarGroup,
     "s-input": Input
   },
   data() {
@@ -194,11 +198,12 @@ export default {
         newPassword: null,
         newPasswordCheck: null
       },
-      userId: null
+      userId: null,
+      language: "ru"
     };
   },
   methods: {
-    ...mapMutations(["logout"]),
+    ...mapMutations(["logout", "changeLanguage"]),
     enter() {
       this.isSidebarOpen = true;
     },
@@ -277,10 +282,14 @@ export default {
         title,
         text
       });
+    },
+    setLocale() {
+      this.changeLanguage(this.language);
+      this.$i18n.locale = this.language;
     }
   },
   computed: {
-    ...mapGetters(["userData", "accessToken"])
+    ...mapGetters(["userData", "accessToken", "currentLanguage"])
   },
   watch: {
     userData(updatedData) {
@@ -294,8 +303,8 @@ export default {
   mounted() {
     this.$store.dispatch("getCourses").then(res => {
       this.courses = res.data.courses;
-      console.log(this.courses);
     });
+    this.language = this.currentLanguage;
   }
 };
 </script>
@@ -387,5 +396,42 @@ export default {
   min-height: 100vh;
   height: 100%;
   width: calc(100% - 50px);
+}
+
+.content__header {
+  margin: auto;
+  margin-top: 30px;
+  width: 60%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content__header-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.content__user-icon {
+  margin-right: 15px;
+  font-size: 25px;
+  color: #5d33f6;
+}
+
+.content__user-name {
+  font-size: 20px;
+  color: #5d33f6;
+}
+
+.vs-select__input {
+  font-size: 15px !important;
+}
+
+.vs-select__option {
+  font-size: 15px;
 }
 </style>
