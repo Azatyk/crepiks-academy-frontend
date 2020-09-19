@@ -47,16 +47,24 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   data() {
     return {
       language: "ru"
     };
   },
+  mounted() {
+    this.language = this.currentLanguage();
+  },
   methods: {
     setLocale() {
+      this.changeLanguage(this.language);
       this.$i18n.locale = this.language;
-    }
+    },
+    ...mapGetters(["currentLanguage"]),
+    ...mapMutations(["changeLanguage"])
   }
 };
 </script>
