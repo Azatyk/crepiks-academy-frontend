@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 
 export default {
-  computed: mapGetters(["isLoggedIn"]),
-  mounted() {
-    if (this.isLoggedIn) {
-      // this.$store.dispatch("getUserData");
-    }
-  }
+  // computed: mapGetters(["isLoggedIn"]),
+  // mounted() {
+  //   if (this.isLoggedIn) {
+  //     this.$store.dispatch("getUserData");
+  //   }
+  // },
   // watch: {
   //   isLoggedIn() {
   //     if (this.isLoggedIn) {

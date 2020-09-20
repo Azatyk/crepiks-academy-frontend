@@ -343,16 +343,19 @@ export default {
   computed: {
     ...mapGetters(["userData", "accessToken", "currentLanguage", "isLoggedIn"])
   },
-  watch: {
-    userData(updatedData) {
-      this.userId = updatedData.id;
+  // watch: {
+  //   userData(updatedData) {
+  //     this.userId = updatedData.id;
 
-      this.$store
-        .dispatch("getUserData", this.userId)
-        .then(res => (this.user = res.data.user));
-    }
-  },
+  //     this.$store
+  //       .dispatch("getUserData", this.userId)
+  //       .then((res) => (this.user = res.data.user));
+  //   },
+  // },
   mounted() {
+    this.user = this.userData;
+    this.userId = this.user.id;
+
     this.$store.dispatch("getCourses").then(res => {
       this.courses = res.data.courses;
     });

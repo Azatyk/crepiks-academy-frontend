@@ -7,9 +7,9 @@
       <div class="news__description">
         {{ $t("newsDescription") }}
       </div>
-      <nuxt-link to="/courses/1" class="news__button">{{
+      <router-link to="/app/courses/1" class="news__button">{{
         $t("newsButton")
-      }}</nuxt-link>
+      }}</router-link>
     </div>
     <img
       src="@/assets/images/homeCupOfCoffee.png"
@@ -59,7 +59,8 @@ export default {};
 
   &__title {
     margin-bottom: 10px;
-    font-size: 40px;
+    width: 110%;
+    font-size: 38px;
     font-weight: bold;
     color: #2e2e3d;
   }
@@ -75,6 +76,7 @@ export default {};
     padding: 8px 23px;
     font-size: 20px;
     color: $color-4;
+    text-decoration: none;
     border: 3px solid $color-2;
     border-radius: 20px;
     background-color: $color-2;

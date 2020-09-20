@@ -87,7 +87,7 @@ export const i18n = new VueI18n({
       noAccountPushButtonText: "Войти в аккаунт",
       noAccountCancelButtonText: "Позже",
 
-      newsTitle: "Научись создавать сайты за чашку кофе!",
+      newsTitle: "Научись создавать сайты по цене чашки кофе!",
       newsDescription:
         "Получи доступ к курсу базовой верстки и за 2 недели создай свой собственный одностраничный сайт по цене чашки кофе",
       newsButton: "Попробовать"
@@ -172,7 +172,7 @@ export const i18n = new VueI18n({
       noAccountPushButtonText: "Тіркеліңге кіру",
       noAccountCancelButtonText: "Кейінірек",
 
-      newsTitle: "Бір кесе кофе үшін веб-сайттар құруды үйреніңіз!",
+      newsTitle: "Бір кесе кофенің бағасы бойынша сайттар құруды үйрен!",
       newsDescription:
         "Базалық беттеу курсына қолжетімділік ал және 2 апта ішінде өз бір беттік сайтыңды бір кесе кофе бағасымен жаса",
       newsButton: "Көру"
@@ -257,7 +257,8 @@ export const i18n = new VueI18n({
       noAccountPushButtonText: "Log in to your account",
       noAccountCancelButtonText: "Later",
 
-      newsTitle: "Learn how to create websites over a Cup of coffee!",
+      newsTitle:
+        "Learn how to create websites for the price of a Cup of coffee!",
       newsDescription:
         "Get access to the basic markup course and create your own one-page website for the price of a Cup of coffee in 2 weeks",
       newsButton: "Try it"

@@ -6,7 +6,7 @@ export default {
     token: {
       accessToken: localStorage.getItem("token") || ""
     },
-    user: {}
+    userData: JSON.parse(localStorage.getItem("user")) || {}
   },
   actions: {
     login({ commit }, { email, password }) {
@@ -21,7 +21,9 @@ export default {
         })
           .then(res => {
             const token = res.data.auth.accessToken;
+            const user = res.data.user;
             localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
             commit("authSuccess", res.data);
             resolve(res);
           })
@@ -58,17 +60,11 @@ export default {
         accessToken: data.auth.accessToken,
         accessTokenExpiredAt: data.auth.accessTokenExpiredAt
       };
-      state.user = {
-        id: data.user.id,
-        email: data.user.email,
-        firstName: data.user.firstName,
-        lastName: data.user.lastName
-      };
+      state.userData = data.user;
     },
     logout(state) {
-      state.status = "";
       state.token = {};
-      state.user = null;
+      state.userData = null;
       window.localStorage.removeItem("token");
       router.push("/");
     }
@@ -77,6 +73,6 @@ export default {
     isLoggedIn: state => Boolean(state.token.accessToken),
     authStatus: state => state.status,
     accessToken: state => state.token.accessToken,
-    userData: state => state.user
+    userData: state => state.userData
   }
 };

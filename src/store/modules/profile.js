@@ -5,13 +5,14 @@ export default {
     userData: {}
   },
   actions: {
-    getUserData(ctx, id) {
+    getUserData({ commit }, id) {
       return new Promise((resolve, reject) => {
         request({
           url: "/users/" + id,
           method: "GET"
         })
           .then(res => {
+            commit("saveUserData", res);
             resolve(res);
           })
           .catch(err => {
@@ -72,6 +73,11 @@ export default {
             reject(err);
           });
       });
+    }
+  },
+  mutations: {
+    getUserData(state, res) {
+      state.userData = res.user;
     }
   }
 };
