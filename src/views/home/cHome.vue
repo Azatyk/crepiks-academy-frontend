@@ -1,18 +1,21 @@
 <template>
   <div class="home-page">
-    <cNews class="home__news" />
-    <cSoon class="home__soon" />
+    <cCourseInfo class="home__news" />
+    <cTrainerInfo class="home__soon" />
+    <cTestInfo class="home__test" />
   </div>
 </template>
 
 <script>
-import cNews from "@/components/home/cNews.vue";
-import cSoon from "@/components/home/cSoon.vue";
+import cCourseInfo from "@/components/home/cCourseInfo.vue";
+import cTrainerInfo from "@/components/home/cTrainerInfo.vue";
+import cTestInfo from "@/components/home/cTestInfo.vue";
 
 export default {
   components: {
-    cNews,
-    cSoon
+    cCourseInfo,
+    cTrainerInfo,
+    cTestInfo
   }
 };
 </script>

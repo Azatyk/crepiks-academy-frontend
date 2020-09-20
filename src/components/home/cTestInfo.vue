@@ -1,29 +1,27 @@
 <template>
-  <div class="trainer">
-    <div class="trainer__text">
-      <div class="trainer__text-title">{{ $t("soonTitle") }}</div>
-      <div class="trainer__text-description">
-        {{ $t("soonDescription") }}
+  <div class="test">
+    <div class="test__text">
+      <div class="test__text-title">Узнай свой уровень программирования!</div>
+      <div class="test__text-description">
+        Совсем скоро вы сможете воспользоваться интерактивными тестами
       </div>
-      <router-link to="/app/trainer" class="trainer__button">{{
-        $t("soonButtonText")
-      }}</router-link>
+      <router-link to="/app/tests" class="test__button">Подробнее</router-link>
     </div>
-    <div class="trainer__images">
+    <div class="test__images">
       <img
-        src="@/assets/images/homeTrainer1.png"
-        alt="Trainer"
-        class="trainer__image-main"
+        src="@/assets/images/homeTest1.png"
+        alt="Test"
+        class="test__image-main"
       />
       <img
-        src="@/assets/images/homeTrainer2.png"
-        alt="Trainer"
-        class="trainer__image-left"
+        src="@/assets/images/homeTest3.png"
+        alt="Test"
+        class="test__image-left"
       />
       <img
-        src="@/assets/images/homeTrainer3.png"
-        alt="Trainer"
-        class="trainer__image-right"
+        src="@/assets/images/homeTest2.png"
+        alt="Test"
+        class="test__image-right"
       />
     </div>
   </div>
@@ -36,7 +34,7 @@ export default {};
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.trainer {
+.test {
   padding: 0 3%;
   width: 47%;
   height: 250px;
@@ -56,17 +54,17 @@ export default {};
   }
 
   &:hover {
-    .trainer__image {
+    .test__image {
       &-main {
-        transform: translateX(-5px) translateY(-5px) rotate(-5deg);
+        transform: translateX(-10px) translateY(-15px) rotate(-13deg);
       }
 
       &-left {
-        transform: translateX(-10px) translateY(-10px) rotate(-10deg);
+        transform: translateX(-5px) translateY(-10px) rotate(-20deg);
       }
 
       &-right {
-        transform: translateX(-10px) translateY(-10px) rotate(100deg);
+        transform: translateX(-10px) translateY(-10px) rotate(0deg);
       }
     }
   }
@@ -121,29 +119,31 @@ export default {};
   &__image {
     &-main {
       position: absolute;
-      top: 26%;
-      right: 5%;
-      width: 130px;
+      top: 22%;
+      right: 14%;
+      width: 110px;
       height: auto;
+      transform: rotate(-10deg);
       transition: 150ms ease-in-out;
     }
 
     &-left {
       position: absolute;
-      right: 115%;
+      right: 125%;
       bottom: 13%;
       width: 40px;
       height: auto;
+      transform: rotate(-15deg);
       transition: 150ms ease-in-out;
     }
 
     &-right {
       position: absolute;
-      right: 5%;
-      top: 10%;
-      width: 30px;
+      right: -3%;
+      top: 15%;
+      width: 6px;
       height: auto;
-      transform: rotate(90deg);
+      transform: rotate(5deg);
       transition: 150ms ease-in-out;
     }
   }
