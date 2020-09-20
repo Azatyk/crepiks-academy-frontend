@@ -22,13 +22,13 @@
         </template>
         <s-sidebar-item id="home" to="/app/home">
           <template #icon>
-            <i class="fas fa-home"></i>
+            <i class="bx bx-home"></i>
           </template>
           {{ $t("appNavigationHome") }}
         </s-sidebar-item>
         <s-sidebar-item id="courses" to="/app/courses">
           <template #icon>
-            <i class="fas fa-laptop-code"></i>
+            <i class="bx bx-code-block"></i>
           </template>
           {{ $t("appNavigationCourses") }}
         </s-sidebar-item>
@@ -40,22 +40,22 @@
               @click="openProfile"
               class="sidebar__profile-button"
             >
-              <i class="fas fa-user"></i>
+              <i class="bx bxs-user"></i>
             </vs-avatar>
             <vs-button @click="logout" icon color="danger">
-              <i class="fas fa-sign-out-alt sidebar__logout-button"></i>
+              <i class="bx bx-log-out bx-rotate-180"></i>
             </vs-button>
           </vs-row>
         </template>
         <s-sidebar-item id="test">
           <template #icon>
-            <i class="far fa-check-square"></i>
+            <i class="bx bx-task"></i>
           </template>
           {{ $t("appNavigationTests") }}
         </s-sidebar-item>
         <s-sidebar-item id="trainer" to="/app/trainer">
           <template #icon>
-            <i class="fas fa-network-wired"></i>
+            <i class="bx bx-timer"></i>
           </template>
           {{ $t("appNavigationTrainer") }}
         </s-sidebar-item>
@@ -68,8 +68,10 @@
           @click="openProfile"
           v-if="isLoggedIn"
         >
-          <i class="far fa-user-circle content__user-icon"></i>
-          <div class="content__user-name">Кажимухан Азат</div>
+          <i class="bx bx-user-circle content__user-icon"></i>
+          <div class="content__user-name">
+            {{ user.lastName }} {{ user.firstName }}
+          </div>
         </div>
         <div
           class="content__header-button"
@@ -343,15 +345,6 @@ export default {
   computed: {
     ...mapGetters(["userData", "accessToken", "currentLanguage", "isLoggedIn"])
   },
-  // watch: {
-  //   userData(updatedData) {
-  //     this.userId = updatedData.id;
-
-  //     this.$store
-  //       .dispatch("getUserData", this.userId)
-  //       .then((res) => (this.user = res.data.user));
-  //   },
-  // },
   mounted() {
     this.user = this.userData;
     this.userId = this.user.id;
@@ -364,13 +357,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .app-page {
   padding: 0.1px;
   width: 100%;
   min-height: 100vh;
   height: auto;
-  background-color: #eeeef6;
+  background-color: $color-3;
 }
 
 .sidebar {
@@ -516,18 +511,25 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition: 150ms ease-in-out;
+  opacity: 0.8;
   cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
 }
 
 .content__user-icon {
   margin-right: 15px;
   font-size: 25px;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 .content__user-name {
   font-size: 20px;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 .content__header-button {
