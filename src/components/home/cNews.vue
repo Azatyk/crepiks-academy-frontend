@@ -1,0 +1,92 @@
+<template>
+  <div class="news">
+    <div class="news__text">
+      <div class="news__title">
+        Научись создавать сайты<br />
+        за чашку кофе!
+      </div>
+      <div class="news__description">
+        Получи доступ к курсу базовой верстке и за 2 недели создай свой
+        собственный одностраничный сайт по цене чашки кофе
+      </div>
+      <nuxt-link to="/courses/1" class="news__button">Попробовать</nuxt-link>
+    </div>
+    <img
+      src="@/assets/images/homeCupOfCoffee.png"
+      alt="Coffee"
+      class="news__image"
+    />
+  </div>
+</template>
+
+<script>
+export default {};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
+.news {
+  margin-top: 10vh;
+  width: 60%;
+  height: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-6;
+  border-radius: 30px;
+  box-shadow: 7px 7px 7px 0px #0000001a;
+  transition: 200ms ease-in-out;
+
+  &:hover {
+    transform: translateX(-15px) translateY(-15px);
+    box-shadow: 20px 20px 7px 0px #0000001a;
+  }
+
+  &__text {
+    margin-right: 10%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #2e2e3d;
+  }
+
+  &__description {
+    font-size: 20px;
+    color: #2e2e3d;
+  }
+
+  &__button {
+    margin-left: 0;
+    margin-top: 25px;
+    padding: 8px 23px;
+    font-size: 20px;
+    color: $color-4;
+    border: 3px solid $color-2;
+    border-radius: 20px;
+    background-color: $color-2;
+    transition: 150ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+      color: $color-2;
+      background-color: $color-6;
+    }
+  }
+
+  &__image {
+    width: 30%;
+    height: auto;
+  }
+}
+</style>
