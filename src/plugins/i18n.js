@@ -85,7 +85,12 @@ export const i18n = new VueI18n({
       noAccountDescription:
         "Для того чтобы воспользоваться полным функционалом Crepiks Academy вы должны войти в аккаунт или создать его, если у вас его нету",
       noAccountPushButtonText: "Войти в аккаунт",
-      noAccountCancelButtonText: "Позже"
+      noAccountCancelButtonText: "Позже",
+
+      newsTitle: "Научись создавать сайты за чашку кофе!",
+      newsDescription:
+        "Получи доступ к курсу базовой верстки и за 2 недели создай свой собственный одностраничный сайт по цене чашки кофе",
+      newsButton: "Попробовать"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -165,7 +170,12 @@ export const i18n = new VueI18n({
       noAccountDescription:
         "Crepiks Academy-дің толық функционалдығын пайдалану үшін, сіз тіркелгіге кіруіңіз керек немесе егер сізде тіркелгі жоқ болса, оны жасауыңыз керек",
       noAccountPushButtonText: "Тіркеліңге кіру",
-      noAccountCancelButtonText: "Кейінірек"
+      noAccountCancelButtonText: "Кейінірек",
+
+      newsTitle: "Бір кесе кофе үшін веб-сайттар құруды үйреніңіз!",
+      newsDescription:
+        "Базалық беттеу курсына қолжетімділік ал және 2 апта ішінде өз бір беттік сайтыңды бір кесе кофе бағасымен жаса",
+      newsButton: "Көру"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -245,7 +255,12 @@ export const i18n = new VueI18n({
       noAccountDescription:
         "To use the full functionality of Crepiks Academy, you must log in to your account or create one if you don't have it yet",
       noAccountPushButtonText: "Log in to your account",
-      noAccountCancelButtonText: "Later"
+      noAccountCancelButtonText: "Later",
+
+      newsTitle: "Learn how to create websites over a Cup of coffee!",
+      newsDescription:
+        "Get access to the basic markup course and create your own one-page website for the price of a Cup of coffee in 2 weeks",
+      newsButton: "Try it"
     }
   }
 });

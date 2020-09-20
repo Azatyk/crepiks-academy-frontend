@@ -2,14 +2,14 @@
   <div class="news">
     <div class="news__text">
       <div class="news__title">
-        Научись создавать сайты<br />
-        за чашку кофе!
+        {{ $t("newsTitle") }}
       </div>
       <div class="news__description">
-        Получи доступ к курсу базовой верстке и за 2 недели создай свой
-        собственный одностраничный сайт по цене чашки кофе
+        {{ $t("newsDescription") }}
       </div>
-      <nuxt-link to="/courses/1" class="news__button">Попробовать</nuxt-link>
+      <nuxt-link to="/courses/1" class="news__button">{{
+        $t("newsButton")
+      }}</nuxt-link>
     </div>
     <img
       src="@/assets/images/homeCupOfCoffee.png"
@@ -44,9 +44,13 @@ export default {};
     box-shadow: 20px 20px 7px 0px #0000001a;
   }
 
+  &:hover .news__image {
+    transform: translateX(-10px) translateY(-10px);
+  }
+
   &__text {
     margin-right: 10%;
-    width: 45%;
+    width: 47%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -87,6 +91,7 @@ export default {};
   &__image {
     width: 30%;
     height: auto;
+    transition: 150ms ease-in-out;
   }
 }
 </style>
