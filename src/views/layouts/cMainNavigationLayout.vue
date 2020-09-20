@@ -501,8 +501,11 @@ export default {
 .content__header {
   margin: auto;
   margin-top: 30px;
-  width: 60%;
+  padding: 0 2%;
+  width: 100%;
+  max-width: 1200px;
   height: auto;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

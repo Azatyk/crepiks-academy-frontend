@@ -27,8 +27,8 @@ export default {};
 @import "@/assets/styles/variables.scss";
 
 .news {
-  margin-top: 10vh;
-  width: 60%;
+  margin-bottom: 5vh;
+  width: 100%;
   height: 350px;
   display: flex;
   flex-direction: row;
@@ -45,7 +45,7 @@ export default {};
   }
 
   &:hover .news__image {
-    transform: translateX(-10px) translateY(-10px);
+    transform: translateX(-10px) translateY(-10px) rotate(-3deg);
   }
 
   &__text {
@@ -62,16 +62,15 @@ export default {};
     width: 110%;
     font-size: 38px;
     font-weight: bold;
-    color: #2e2e3d;
+    color: $color-5;
   }
 
   &__description {
     font-size: 20px;
-    color: #2e2e3d;
+    color: $color-5;
   }
 
   &__button {
-    margin-left: 0;
     margin-top: 25px;
     padding: 8px 23px;
     font-size: 20px;
