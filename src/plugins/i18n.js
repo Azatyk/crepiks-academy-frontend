@@ -90,7 +90,12 @@ export const i18n = new VueI18n({
       newsTitle: "Научись создавать сайты по цене чашки кофе!",
       newsDescription:
         "Получи доступ к курсу базовой верстки и за 2 недели создай свой собственный одностраничный сайт по цене чашки кофе",
-      newsButton: "Попробовать"
+      newsButtonText: "Попробовать",
+
+      soonTitle: "Время тренироваться!",
+      soonDescription:
+        "Совсем скоро у вас появится возможность прокачать свои навыки программирования в тренажёре",
+      soonButtonText: "Подробнее"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -175,7 +180,12 @@ export const i18n = new VueI18n({
       newsTitle: "Бір кесе кофенің бағасы бойынша сайттар құруды үйрен!",
       newsDescription:
         "Базалық беттеу курсына қолжетімділік ал және 2 апта ішінде өз бір беттік сайтыңды бір кесе кофе бағасымен жаса",
-      newsButton: "Көру"
+      newsButtonText: "Көру",
+
+      soonTitle: "Жаттығу уақыты келді!",
+      soonDescription:
+        "Жақында сіз тренажерде бағдарламалау дағдыларын жетілдіруге мүмкіндік аласыз",
+      soonButtonText: "Толығырақ"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -261,7 +271,12 @@ export const i18n = new VueI18n({
         "Learn how to create websites for the price of a Cup of coffee!",
       newsDescription:
         "Get access to the basic markup course and create your own one-page website for the price of a Cup of coffee in 2 weeks",
-      newsButton: "Try it"
+      newsButton: "Try it",
+
+      soonTitle: "Time to train!",
+      soonDescription:
+        "Very soon you will have the opportunity to improve your programming skills in the simulator",
+      soonButtonText: "More"
     }
   }
 });

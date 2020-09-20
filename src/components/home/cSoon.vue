@@ -1,14 +1,13 @@
 <template>
   <div class="trainer">
     <div class="trainer__text">
-      <div class="trainer__text-title">Время тренироваться!</div>
+      <div class="trainer__text-title">{{ $t("soonTitle") }}</div>
       <div class="trainer__text-description">
-        Совсем скоро у вас появиться возможность прокачать свои навыки
-        программирования в тренажере
+        {{ $t("soonDescription") }}
       </div>
-      <router-link to="/app/trainer" class="trainer__button"
-        >Подробнее</router-link
-      >
+      <router-link to="/app/trainer" class="trainer__button">{{
+        $t("soonButtonText")
+      }}</router-link>
     </div>
     <div class="trainer__images">
       <img
@@ -88,6 +87,7 @@ export default {};
     }
 
     &-description {
+      width: 95%;
       font-size: 0.85vw;
       color: $color-5;
     }

@@ -8,7 +8,7 @@
         {{ $t("newsDescription") }}
       </div>
       <router-link to="/app/courses/1" class="news__button">{{
-        $t("newsButton")
+        $t("newsButtonText")
       }}</router-link>
     </div>
     <img
