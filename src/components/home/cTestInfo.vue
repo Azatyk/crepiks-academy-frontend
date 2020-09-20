@@ -1,11 +1,13 @@
 <template>
   <div class="test">
     <div class="test__text">
-      <div class="test__text-title">Узнай свой уровень программирования!</div>
+      <div class="test__text-title">{{ $t("testInfoTitle") }}</div>
       <div class="test__text-description">
-        Совсем скоро вы сможете воспользоваться интерактивными тестами
+        {{ $t("testInfoDescription") }}
       </div>
-      <router-link to="/app/tests" class="test__button">Подробнее</router-link>
+      <router-link to="/app/tests" class="test__button">{{
+        $t("testInfoButtonText")
+      }}</router-link>
     </div>
     <div class="test__images">
       <img

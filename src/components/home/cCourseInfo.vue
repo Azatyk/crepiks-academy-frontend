@@ -2,13 +2,13 @@
   <div class="news">
     <div class="news__text">
       <div class="news__title">
-        {{ $t("newsTitle") }}
+        {{ $t("courseInfoTitle") }}
       </div>
       <div class="news__description">
-        {{ $t("newsDescription") }}
+        {{ $t("courseInfoDescription") }}
       </div>
       <router-link to="/app/courses/1" class="news__button">{{
-        $t("newsButtonText")
+        $t("courseInfoButtonText")
       }}</router-link>
     </div>
     <img

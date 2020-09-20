@@ -1,12 +1,12 @@
 <template>
   <div class="trainer">
     <div class="trainer__text">
-      <div class="trainer__text-title">{{ $t("soonTitle") }}</div>
+      <div class="trainer__text-title">{{ $t("trainerInfoTitle") }}</div>
       <div class="trainer__text-description">
-        {{ $t("soonDescription") }}
+        {{ $t("trainerInfoDescription") }}
       </div>
       <router-link to="/app/trainer" class="trainer__button">{{
-        $t("soonButtonText")
+        $t("trainerInfoButtonText")
       }}</router-link>
     </div>
     <div class="trainer__images">

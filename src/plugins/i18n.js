@@ -87,15 +87,20 @@ export const i18n = new VueI18n({
       noAccountPushButtonText: "Войти в аккаунт",
       noAccountCancelButtonText: "Позже",
 
-      newsTitle: "Научись создавать сайты по цене чашки кофе!",
-      newsDescription:
+      courseInfoTitle: "Научись создавать сайты по цене чашки кофе!",
+      courseInfoDescription:
         "Получи доступ к курсу базовой верстки и за 2 недели создай свой собственный одностраничный сайт по цене чашки кофе",
-      newsButtonText: "Попробовать",
+      courseInfoButtonText: "Попробовать",
 
-      soonTitle: "Время тренироваться!",
-      soonDescription:
+      trainerInfoTitle: "Время тренироваться!",
+      trainerInfoDescription:
         "Совсем скоро у вас появится возможность прокачать свои навыки программирования в тренажёре",
-      soonButtonText: "Подробнее"
+      trainerInfoButtonText: "Подробнее",
+
+      testInfoTitle: "Узнай свой уровень программирования!",
+      testInfoDescription:
+        "Совсем скоро вы сможете воспользоваться интерактивными тестами",
+      testInfoButtonText: "Подробнее"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -177,15 +182,20 @@ export const i18n = new VueI18n({
       noAccountPushButtonText: "Тіркеліңге кіру",
       noAccountCancelButtonText: "Кейінірек",
 
-      newsTitle: "Бір кесе кофенің бағасы бойынша сайттар құруды үйрен!",
-      newsDescription:
+      courseInfoTitle: "Бір кесе кофенің бағасы бойынша сайттар құруды үйрен!",
+      courseInfoDescription:
         "Базалық беттеу курсына қолжетімділік ал және 2 апта ішінде өз бір беттік сайтыңды бір кесе кофе бағасымен жаса",
-      newsButtonText: "Көру",
+      courseInfoButtonText: "Көру",
 
-      soonTitle: "Жаттығу уақыты келді!",
-      soonDescription:
+      trainerInfoTitle: "Жаттығу уақыты келді!",
+      trainerInfoDescription:
         "Жақында сіз тренажерде бағдарламалау дағдыларын жетілдіруге мүмкіндік аласыз",
-      soonButtonText: "Толығырақ"
+      trainerInfoButtonText: "Толығырақ",
+
+      testInfoTitle: "Бағдарламалау деңгейіңізді біліңіз!",
+      testInfoDescription:
+        "Жақын арада сіз интерактивті тесттерді пайдалана аласыз",
+      testInfoButtonText: "Толығырақ"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -267,16 +277,21 @@ export const i18n = new VueI18n({
       noAccountPushButtonText: "Log in to your account",
       noAccountCancelButtonText: "Later",
 
-      newsTitle:
+      courseInfoTitle:
         "Learn how to create websites for the price of a Cup of coffee!",
-      newsDescription:
+      courseInfoDescription:
         "Get access to the basic markup course and create your own one-page website for the price of a Cup of coffee in 2 weeks",
-      newsButton: "Try it",
+      courseInfoButton: "Try it",
 
-      soonTitle: "Time to train!",
-      soonDescription:
+      trainerInfoTitle: "Time to train!",
+      trainerInfoDescription:
         "Very soon you will have the opportunity to improve your programming skills in the simulator",
-      soonButtonText: "More"
+      trainerInfoButtonText: "More",
+
+      testInfoTitle: "Find out your level of programming!",
+      testInfoDescription:
+        "Very soon you will be able to use interactive tests to find out your level of programming",
+      testInfoButtonText: "More"
     }
   }
 });
