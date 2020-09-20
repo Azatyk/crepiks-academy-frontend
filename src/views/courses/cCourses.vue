@@ -20,10 +20,10 @@
         v-for="(course, index) in courses"
         :key="index"
         :image="course.preview"
-        :title="course.title"
-        :description="course.description"
-        :lessonsAmount="course.lessons.length"
-        :id="course._id"
+        :title="course.titleRu"
+        :description="course.descriptionRu"
+        :lessonsAmount="course.length"
+        :id="course.id"
       />
     </div>
   </div>
@@ -38,11 +38,13 @@ export default {
   },
   data() {
     return {
-      courses: {}
+      courses: []
     };
   },
-  mounted() {
-    this.$store.dispatch("getCourses").then(res => (this.courses = res.data));
+  async mounted() {
+    await this.$store
+      .dispatch("getCourses")
+      .then(res => (this.courses = res.data.courses));
   }
 };
 </script>

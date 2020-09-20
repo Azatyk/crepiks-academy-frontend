@@ -26,7 +26,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .card {
   width: 300px;
   height: 400px;
@@ -59,13 +61,13 @@ export default {
   margin-bottom: 15px;
   font-size: 33px;
   font-weight: 500;
-  color: #2522a0;
+  color: $color-2;
 }
 
 .card__description {
   width: 100%;
   font-size: 22px;
-  color: #2522a0;
+  color: $color-2;
   opacity: 0.7;
 }
 

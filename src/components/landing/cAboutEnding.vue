@@ -34,7 +34,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .about-ending {
   padding: 0 2%;
   margin: auto;
@@ -104,13 +106,13 @@ export default {
 .about-ending__text-title {
   margin-bottom: 30px;
   font-size: 3vw;
-  color: #2522a0;
+  color: $color-2;
   font-weight: bold;
 }
 
 .about-ending__text-description {
   font-size: 1.4vw;
-  color: #2522a0;
+  color: $color-2;
   font-weight: 300;
 }
 

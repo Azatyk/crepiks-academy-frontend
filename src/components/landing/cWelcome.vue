@@ -24,7 +24,9 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .landing__welcome {
   padding-bottom: 10%;
   width: 100%;
@@ -33,7 +35,7 @@ export default {};
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #eeeef6;
+  background-color: $color-3;
   z-index: 0;
 }
 
@@ -44,13 +46,14 @@ export default {};
   width: 70%;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 .welcome__heading {
   margin-bottom: 40px;
   font-size: 4.5vw;
   line-height: 1.1;
-  color: #0d0b6d;
+  color: $color-1;
   font-weight: bold;
 }
 
@@ -58,7 +61,7 @@ export default {};
   width: 40%;
   font-size: 1.35vw;
   line-height: 1.3;
-  color: #0d0b6d;
+  color: $color-1;
   opacity: 0.7;
 }
 
@@ -69,12 +72,12 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #eeeef6;
+  color: $color-3;
   font-size: 1.3vw;
   font-weight: 500;
   text-align: center;
-  background-color: #2522a0;
-  border: 4px solid #2522a0;
+  background-color: $color-2;
+  border: 4px solid $color-2;
   border-radius: 35px;
   overflow: hidden;
   transition: 150ms ease-in-out;
@@ -82,8 +85,8 @@ export default {};
 }
 
 .welcome__button:hover {
-  color: #2522a0;
-  background-color: #eeeef6;
+  color: $color-2;
+  background-color: $color-3;
   transform: scale(1.05);
   transition: 150ms ease-in-out;
 }

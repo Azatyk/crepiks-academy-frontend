@@ -45,11 +45,11 @@ export default {
     };
   },
   computed: mapGetters(["isLoggedIn"]),
-  mounted() {
-    this.$store
+  async mounted() {
+    await this.$store
       .dispatch("getCourse", this.id)
       .then(res => (this.course = res.data.course));
-    this.$store.dispatch("getLessons", this.id).then(res => {
+    await this.$store.dispatch("getLessons", this.id).then(res => {
       this.lessons = res.data.lessons;
     });
   },
