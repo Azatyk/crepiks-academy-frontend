@@ -56,15 +56,15 @@ export default {
     //       .catch(err => reject(err));
     //   });
     // },
-    changePassword(ctx, { id, oldPassword, newPassword }) {
+    changePassword(ctx, { id, passwords }) {
       return new Promise((resolve, reject) => {
         request({
           url: "/users/" + id + "/password",
           data: {
-            oldPassword,
-            newPassword
+            oldPassword: passwords.oldPassword,
+            newPassword: passwords.newPassword
           },
-          method: "PATCH"
+          method: "POST"
         })
           .then(res => {
             resolve(res);

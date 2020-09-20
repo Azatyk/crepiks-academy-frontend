@@ -194,11 +194,13 @@
             :label="$t('changePasswordNewPassword')"
             v-model="passwords.newPassword"
             class="profile__input"
+            type="password"
           />
           <s-input
             :label="$t('changePasswordConfirmPassword')"
             v-model="passwords.newPasswordCheck"
             class="profile__input"
+            type="password"
           />
         </div>
         <template #footer>
@@ -283,10 +285,6 @@ export default {
         this.passwords.newPassword.trim() !==
         this.passwords.newPasswordCheck.trim()
       ) {
-        console.log(
-          this.passwords.currentPassword.trim(),
-          this.passwords.newPassword.trim()
-        );
         this.openNotification(
           "top-center",
           "danger",
@@ -296,14 +294,14 @@ export default {
       } else {
         this.isChangePasswordLoading = true;
 
-        let updatedData = {
+        let passwords = {
           oldPassword: this.passwords.currentPassword,
           newPassword: this.passwords.newPassword
         };
 
         let id = this.userId;
         this.$store
-          .dispatch("changePassword", { id, updatedData })
+          .dispatch("changePassword", { id, passwords })
           .then(() => (this.isChangePasswordLoading = false))
           .then(() => {
             this.openNotification(
@@ -311,6 +309,15 @@ export default {
               "success",
               "Пароль изменен",
               "Вы удачно изменили пароль, используйте его для входа"
+            );
+          })
+          .catch(() => {
+            this.isChangePasswordLoading = false;
+            this.openNotification(
+              "top-center",
+              "danger",
+              "Неверный пароль",
+              "Вы неверно ввели текущий пароль, попробуйте снова"
             );
           });
       }
