@@ -58,15 +58,15 @@ export default {};
   &:hover {
     .test__image {
       &-main {
-        transform: translateX(-10px) translateY(-15px) rotate(-13deg);
+        transform: translateX(-10px) translateY(-15px) rotate(-5deg);
       }
 
       &-left {
-        transform: translateX(-5px) translateY(-10px) rotate(-20deg);
+        transform: translateX(-5px) translateY(-10px) rotate(-25deg);
       }
 
       &-right {
-        transform: translateX(-10px) translateY(-10px) rotate(0deg);
+        transform: translateX(-10px) translateY(-10px) rotate(-5deg);
       }
     }
   }

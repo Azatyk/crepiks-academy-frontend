@@ -69,7 +69,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
 .header {
@@ -123,14 +123,6 @@ export default {
 .header__navigation-link:hover {
   opacity: 1;
   transition: 150ms ease-in-out;
-}
-
-.vs-select__input {
-  font-size: 15px !important;
-}
-
-.vs-select__option {
-  font-size: 15px;
 }
 
 .header__link-button {
@@ -187,14 +179,6 @@ export default {
     display: none;
   }
 
-  .vs-select__input {
-    font-size: 20px !important;
-  }
-
-  .vs-select__option {
-    font-size: 20px !important;
-  }
-
   .header__button {
     padding: 10px 30px;
     font-size: 20px;
@@ -212,18 +196,6 @@ export default {
 
   .header__navigation {
     justify-content: flex-end;
-  }
-
-  .center {
-    width: 45% !important;
-  }
-
-  .vs-select__input {
-    font-size: 3.5vw !important;
-  }
-
-  .vs-select__option {
-    font-size: 3.5vw !important;
   }
 
   .header__button {

@@ -27,7 +27,7 @@ export default {};
 @import "@/assets/styles/variables.scss";
 
 .news {
-  margin-bottom: 5vh;
+  margin: 5vh 0;
   width: 100%;
   height: 350px;
   display: flex;

@@ -285,7 +285,7 @@ export const i18n = new VueI18n({
         "Learn how to create websites for the price of a Cup of coffee!",
       courseInfoDescription:
         "Get access to the basic markup course and create your own one-page website for the price of a Cup of coffee in 2 weeks",
-      courseInfoButton: "Try it",
+      courseInfoButtonText: "Try it",
 
       trainerInfoTitle: "Time to train!",
       trainerInfoDescription:

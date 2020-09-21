@@ -1,0 +1,163 @@
+<template>
+  <div class="sidebar__container" @mouseenter="enter" @mouseleave="leave">
+    <vs-sidebar
+      class="sidebar"
+      absolute
+      open
+      hover-expand
+      reduce
+      v-model="activeLink"
+      background="#f5f7f6"
+    >
+      <template #logo>
+        <span class="sidebar__logo-short">C</span>
+        <span
+          class="sidebar__logo-full-start"
+          :class="{ 'sidebar__logo-full-end': isSidebarOpen }"
+        >
+          repiks
+          <span class="sidebar__logo-thin">Academy</span>
+        </span>
+      </template>
+      <vs-sidebar-item id="home" to="/app/home">
+        <template #icon>
+          <i class="bx bx-home"></i>
+        </template>
+        {{ $t("appNavigationHome") }}
+      </vs-sidebar-item>
+      <vs-sidebar-item id="courses" to="/app/courses">
+        <template #icon>
+          <i class="bx bx-code-block"></i>
+        </template>
+        {{ $t("appNavigationCourses") }}
+      </vs-sidebar-item>
+      <template #footer>
+        <vs-row justify="space-between">
+          <vs-avatar
+            badge-color="danger"
+            badge-position="top-right"
+            @click="openProfile"
+            class="sidebar__profile-button"
+          >
+            <i class="bx bxs-user"></i>
+          </vs-avatar>
+          <vs-button @click="logout" icon color="danger">
+            <i class="bx bx-log-out bx-rotate-180"></i>
+          </vs-button>
+        </vs-row>
+      </template>
+      <vs-sidebar-item id="test">
+        <template #icon>
+          <i class="bx bx-task"></i>
+        </template>
+        {{ $t("appNavigationTests") }}
+      </vs-sidebar-item>
+      <vs-sidebar-item id="trainer" to="/app/trainer">
+        <template #icon>
+          <i class="bx bx-timer"></i>
+        </template>
+        {{ $t("appNavigationTrainer") }}
+      </vs-sidebar-item>
+    </vs-sidebar>
+    <cProfile
+      :is-profile-open="isProfileOpen"
+      @close-profile="isProfileOpen = false"
+      @open-change-password-open="isChangePasswordOpen = true"
+    />
+    <cChangePassword
+      :is-change-password-open="isChangePasswordOpen"
+      @close-change-password="isChangePasswordOpen = false"
+    />
+    <cCreateAccountDialog
+      :is-create-account-dialog-open="isCreateProfileDialogOpen"
+      @close-create-account-dialog="isCreateProfileDialogOpen = false"
+    />
+  </div>
+</template>
+
+<script>
+import cProfile from "@/components/mainLayout/cProfile";
+import cChangePassword from "@/components/mainLayout/cChangePassword";
+import cCreateAccountDialog from "@/components/mainLayout/cCreateAccountDialog";
+import { mapGetters, mapMutations } from "vuex";
+
+export default {
+  components: {
+    cProfile,
+    cChangePassword,
+    cCreateAccountDialog
+  },
+
+  data() {
+    return {
+      activeLink: "home",
+      isSidebarOpen: false, // для корректной работа логотипа
+      isProfileOpen: false,
+      isChangePasswordOpen: false,
+      isCreateProfileDialogOpen: false
+    };
+  },
+
+  methods: {
+    ...mapMutations(["logout"]),
+
+    enter() {
+      this.isSidebarOpen = true;
+    },
+
+    leave() {
+      this.isSidebarOpen = false;
+    },
+
+    openProfile() {
+      if (this.isLoggedIn) {
+        this.isProfileOpen = true;
+      } else {
+        this.isCreateProfileDialogOpen = true;
+      }
+    }
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn"])
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
+.sidebar {
+  position: fixed !important;
+}
+
+.sidebar__logo-short {
+  font-size: 23px;
+  color: $color-1;
+  font-weight: bold;
+}
+
+.sidebar__logo-full-start {
+  font-size: 0px;
+  color: $color-1;
+  font-weight: bold;
+  transition: 100ms ease-in-out;
+}
+
+.sidebar__logo-full-end {
+  font-size: 23px;
+  transition: 100ms ease-in-out;
+}
+
+.sidebar__logo-thin {
+  font-weight: 300;
+}
+
+.sidebar__link {
+  color: $color-1;
+  text-decoration: none;
+}
+
+.sidebar__profile-button {
+  cursor: pointer;
+}
+</style>

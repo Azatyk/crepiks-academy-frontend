@@ -57,7 +57,7 @@ const routes = [
       },
       {
         path: "",
-        name: "home",
+        name: "landing",
         component: cLanding,
         meta: {
           title: "Crepiks Academy - программируй вместе с нами",
@@ -67,7 +67,6 @@ const routes = [
       {
         path: "app",
         component: cAppLayout,
-        name: "app",
         children: [
           {
             path: "",
