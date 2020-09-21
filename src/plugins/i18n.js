@@ -100,7 +100,9 @@ export const i18n = new VueI18n({
       testInfoTitle: "Узнай свой уровень программирования!",
       testInfoDescription:
         "Совсем скоро вы сможете воспользоваться интерактивными тестами",
-      testInfoButtonText: "Подробнее"
+      testInfoButtonText: "Подробнее",
+
+      courseCardButtonText: "Перейти к курсу"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -195,7 +197,9 @@ export const i18n = new VueI18n({
       testInfoTitle: "Бағдарламалау деңгейіңізді біліңіз!",
       testInfoDescription:
         "Жақын арада сіз интерактивті тесттерді пайдалана аласыз",
-      testInfoButtonText: "Толығырақ"
+      testInfoButtonText: "Толығырақ",
+
+      courseCardButtonText: "Курсқа өту"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -291,7 +295,9 @@ export const i18n = new VueI18n({
       testInfoTitle: "Find out your level of programming!",
       testInfoDescription:
         "Very soon you will be able to use interactive tests to find out your level of programming",
-      testInfoButtonText: "More"
+      testInfoButtonText: "More",
+
+      courseCardButtonText: "Go to the course"
     }
   }
 });

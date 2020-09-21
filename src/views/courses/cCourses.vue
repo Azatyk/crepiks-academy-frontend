@@ -19,10 +19,10 @@
         class="course"
         v-for="(course, index) in courses"
         :key="index"
-        :image="course.preview"
-        :title="course.titleRu"
-        :description="course.descriptionRu"
-        :lessonsAmount="course.length"
+        :image="course.iconPath"
+        :title="course.title.ru"
+        :description="course.description.ru"
+        :lessonsAmount="course.duration"
         :id="course.id"
       />
     </div>
@@ -49,7 +49,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .courses-page {
   margin: auto;
   margin-top: 50px;
@@ -75,14 +77,14 @@ export default {
   margin-bottom: 3%;
   width: 90%;
   font-size: 45px;
-  color: #34495e;
+  color: $color-1;
   font-weight: 800;
 }
 
 .intro__description {
   width: 80%;
   font-size: 22px;
-  color: #516f8c;
+  color: $color-2;
   font-weight: 400;
 }
 

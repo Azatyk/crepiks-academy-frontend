@@ -81,14 +81,14 @@ export default {};
 
     &-title {
       margin-bottom: 10px;
-      font-size: 1.5vw;
+      font-size: 27px;
       color: $color-5;
       font-weight: bold;
     }
 
     &-description {
       width: 95%;
-      font-size: 0.85vw;
+      font-size: 16px;
       color: $color-5;
     }
   }
@@ -147,6 +147,72 @@ export default {};
       height: auto;
       transform: rotate(5deg);
       transition: 150ms ease-in-out;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    & {
+      margin-bottom: 5vh;
+      width: 100%;
+      height: 300px;
+
+      &:hover {
+        .test__image {
+          &-main {
+            transform: translateX(-15px) translateY(-15px) rotate(-5deg);
+          }
+
+          &-left {
+            transform: translateX(-20px) translateY(-15px) rotate(-30deg);
+          }
+
+          &-right {
+            transform: translateX(-20px) translateY(-15px) rotate(-5deg);
+          }
+        }
+      }
+
+      &__text {
+        margin-left: 3%;
+        width: 50%;
+
+        &-title {
+          font-size: 38px;
+        }
+
+        &-description {
+          font-size: 20px;
+        }
+      }
+
+      &__button {
+        padding: 9px 23px;
+        font-size: 20px;
+        border-radius: 20px;
+      }
+
+      &__images {
+        width: 40%;
+        height: 100%;
+      }
+
+      &__image {
+        &-main {
+          top: 15%;
+          right: 21%;
+          width: 170px;
+        }
+
+        &-left {
+          right: 70%;
+          width: 50px;
+        }
+
+        &-right {
+          right: 7%;
+          width: 8px;
+        }
+      }
     }
   }
 }

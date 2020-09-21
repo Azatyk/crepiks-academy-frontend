@@ -94,5 +94,9 @@ export default {};
     height: auto;
     transition: 150ms ease-in-out;
   }
+
+  // @media(max-width: 1200px) {
+
+  // }
 }
 </style>

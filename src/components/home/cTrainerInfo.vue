@@ -82,14 +82,14 @@ export default {};
 
     &-title {
       margin-bottom: 10px;
-      font-size: 1.5vw;
+      font-size: 27px;
       color: $color-5;
       font-weight: bold;
     }
 
     &-description {
       width: 95%;
-      font-size: 0.85vw;
+      font-size: 16px;
       color: $color-5;
     }
   }
@@ -146,6 +146,74 @@ export default {};
       height: auto;
       transform: rotate(90deg);
       transition: 150ms ease-in-out;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    & {
+      margin-right: 0;
+      margin-bottom: 5vh;
+      width: 100%;
+      height: 300px;
+
+      &:hover {
+        .trainer__image {
+          &-main {
+            transform: translateX(-10px) translateY(-10px) rotate(-5deg);
+          }
+
+          &-left {
+            transform: translateX(-20px) translateY(-20px) rotate(-10deg);
+          }
+
+          &-right {
+            transform: translateX(-20px) translateY(-20px) rotate(120deg);
+          }
+        }
+      }
+
+      &__text {
+        margin-left: 3%;
+        width: 50%;
+
+        &-title {
+          font-size: 38px;
+        }
+
+        &-description {
+          font-size: 20px;
+        }
+      }
+
+      &__button {
+        padding: 8px 23px;
+        font-size: 20px;
+        border-radius: 20px;
+      }
+
+      &__images {
+        width: 40%;
+        height: 100%;
+      }
+
+      &__image {
+        &-main {
+          top: 15%;
+          right: 20%;
+          width: 190px;
+        }
+
+        &-left {
+          right: 60%;
+          width: 60px;
+        }
+
+        &-right {
+          right: 10%;
+          width: 40px;
+          transform: rotate(110deg);
+        }
+      }
     }
   }
 }
