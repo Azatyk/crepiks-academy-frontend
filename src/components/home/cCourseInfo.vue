@@ -36,12 +36,12 @@ export default {};
   align-items: center;
   background-color: $color-6;
   border-radius: 30px;
-  box-shadow: 7px 7px 7px 0px #0000001a;
+  box-shadow: 7px 7px 7px 0px $color-7;
   transition: 200ms ease-in-out;
 
   &:hover {
     transform: translateX(-15px) translateY(-15px);
-    box-shadow: 20px 20px 7px 0px #0000001a;
+    box-shadow: 20px 20px 7px 0px $color-7;
   }
 
   &:hover .news__image {

@@ -27,7 +27,6 @@ export default {
   &-page {
     padding: 0 2%;
     margin: auto;
-    margin-top: 10vh;
     width: 100%;
     max-width: 1200px;
     box-sizing: border-box;
