@@ -118,5 +118,25 @@ export default {
       background-color: $color-3;
     }
   }
+
+  @media (max-width: 1200px) {
+    & {
+      padding: 0 5%;
+    }
+  }
+
+  @media (max-width: 650px) {
+    & {
+      &__user {
+        &-icon {
+          margin-right: 8px;
+        }
+
+        &-name {
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }
 </style>

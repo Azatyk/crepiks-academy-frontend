@@ -35,5 +35,11 @@ export default {
     flex-wrap: wrap;
     justify-content: flex-start;
   }
+
+  @media (max-width: 1200px) {
+    &-page {
+      padding: 0 5%;
+    }
+  }
 }
 </style>

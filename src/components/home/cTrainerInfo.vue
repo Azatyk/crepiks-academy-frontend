@@ -216,5 +216,122 @@ export default {};
       }
     }
   }
+
+  @media (max-width: 1024px) {
+    & {
+      padding: 3% 4%;
+      height: auto;
+    }
+
+    &__text {
+      width: 60%;
+      &-title {
+        font-size: 4vw;
+      }
+
+      &-description {
+        font-size: 2vw;
+      }
+    }
+
+    &__button {
+      padding: 6px 20px;
+      font-size: 2vw;
+    }
+
+    &__image {
+      &-main {
+        top: 10%;
+        right: 25%;
+        width: 160px;
+      }
+
+      &-left {
+        bottom: 5%;
+        right: 85%;
+      }
+
+      &-right {
+        top: 10%;
+        right: 5%;
+        transform: rotate(150deg);
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    & {
+      padding: 5% 5%;
+      width: auto;
+      flex-direction: column-reverse;
+
+      &:hover {
+        transform: none;
+        box-shadow: 7px 7px 7px 0px #0000001a;
+
+        .trainer__image {
+          &-main {
+            transform: none;
+          }
+
+          &-left {
+            transform: none;
+          }
+
+          &-right {
+            transform: none;
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &__images {
+        margin-bottom: 30px;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &__image {
+        &-main {
+          position: relative;
+          top: 0;
+          right: 0;
+          margin-right: 30px;
+        }
+
+        &-left {
+          right: 75%;
+        }
+
+        &-right {
+          top: 35%;
+          right: 5%;
+          transform: rotate(180deg);
+        }
+      }
+
+      &__text {
+        margin: 0;
+        width: 100%;
+
+        &-title {
+          width: 100%;
+          font-size: 5.5vw;
+        }
+
+        &-description {
+          width: 95%;
+          font-size: 3.5vw;
+        }
+      }
+
+      &__button {
+        font-size: 3.3vw;
+      }
+    }
+  }
 }
 </style>

@@ -68,17 +68,38 @@ export default {
   }
 }
 
+@media (max-width: 1024px) {
+  .vs-select__input {
+    font-size: 16px !important;
+  }
+
+  .vs-select__option {
+    font-size: 16px !important;
+  }
+}
+
 @media (max-width: 650px) {
   .center {
     width: 45% !important;
   }
 
+  .vs-select-content {
+    width: 40% !important;
+  }
+
+  .vs-select {
+    height: 35px !important;
+    min-height: 35px !important;
+  }
+
   .vs-select__input {
-    font-size: 3.5vw !important;
+    height: 35px !important;
+    min-height: 35px !important;
+    font-size: 14px !important;
   }
 
   .vs-select__option {
-    font-size: 3.5vw !important;
+    font-size: 14px !important;
   }
 }
 </style>
