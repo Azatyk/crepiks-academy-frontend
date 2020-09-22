@@ -102,7 +102,15 @@ export const i18n = new VueI18n({
         "Совсем скоро вы сможете воспользоваться интерактивными тестами",
       testInfoButtonText: "Подробнее",
 
-      courseCardButtonText: "Перейти к курсу"
+      courseCardButtonText: "Перейти к курсу",
+      courseCardHoverText: "Наведите курсор",
+      courseCardComplexityText: "Сложность",
+      courseCardDurationText: "Длительность",
+      courseCardPriceText: "Стоимость",
+
+      coursesWelcomeTitle: "Подбери идеальный курс для себя!",
+      coursesWelcomeDescription:
+        "Приобрети навыки востребованного разработчика с помощью веселых интерактивных курсов. Попробуй востребованную новинку этого месяца - курс «Базовый HTML & CSS» и создай свой первый одностраничный сайт за 2 недели"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -199,7 +207,15 @@ export const i18n = new VueI18n({
         "Жақын арада сіз интерактивті тесттерді пайдалана аласыз",
       testInfoButtonText: "Толығырақ",
 
-      courseCardButtonText: "Курсқа өту"
+      courseCardButtonText: "Курсқа өту",
+      courseCardHoverText: "Меңзерді апарыңыз",
+      courseCardComplexityText: "Күрделілігі",
+      courseCardDurationText: "Ұзақтығы",
+      courseCardPriceText: "Құны",
+
+      coursesWelcomeTitle: "Өзіңіз үшін керемет курсты таңдаңыз!",
+      coursesWelcomeDescription:
+        "Қызықты интерактивті курстар арқылы сұранысқа ие әзірлеуші дағдыларын игеріңіз. Осы айда сұранысқа ие жаңа өнімді - «базалық HTML & CSS» курсын байқап көр және 2 апта ішінде өзіңіздің бірінші бір беттік сайтыңызды құр"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -297,7 +313,15 @@ export const i18n = new VueI18n({
         "Very soon you will be able to use interactive tests to find out your level of programming",
       testInfoButtonText: "More",
 
-      courseCardButtonText: "Go to the course"
+      courseCardButtonText: "Go to the course",
+      courseCardHoverText: "Move the cursor",
+      courseCardComplexityText: "Complexity",
+      courseCardDurationText: "Duration",
+      courseCardPriceText: "Price",
+
+      coursesWelcomeTitle: "Choose the perfect course for yourself!",
+      coursesWelcomeDescription:
+        "Learn the skills of a sought-after developer with fun interactive courses. Try this month's popular novelty - the course «Basic HTML & CSS» and create your first one-page website in 2 weeks"
     }
   }
 });

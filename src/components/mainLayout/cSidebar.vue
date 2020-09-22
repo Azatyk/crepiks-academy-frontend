@@ -19,13 +19,13 @@
           <span class="sidebar__logo-thin">Academy</span>
         </span>
       </template>
-      <vs-sidebar-item id="home" to="/app/home">
+      <vs-sidebar-item id="/app/home" to="/app/home">
         <template #icon>
           <i class="bx bx-home"></i>
         </template>
         {{ $t("appNavigationHome") }}
       </vs-sidebar-item>
-      <vs-sidebar-item id="courses" to="/app/courses">
+      <vs-sidebar-item id="/app/courses" to="/app/courses">
         <template #icon>
           <i class="bx bx-code-block"></i>
         </template>
@@ -46,13 +46,13 @@
           </vs-button>
         </vs-row>
       </template>
-      <vs-sidebar-item id="test">
+      <vs-sidebar-item id="/app/test">
         <template #icon>
           <i class="bx bx-task"></i>
         </template>
         {{ $t("appNavigationTests") }}
       </vs-sidebar-item>
-      <vs-sidebar-item id="trainer" to="/app/trainer">
+      <vs-sidebar-item id="/app/trainer" to="/app/trainer">
         <template #icon>
           <i class="bx bx-timer"></i>
         </template>
@@ -109,6 +109,10 @@ export default {
         this.isProfileOpen = true;
       }
     }
+  },
+
+  mounted() {
+    this.activeLink = this.$route.fullPath;
   },
 
   methods: {

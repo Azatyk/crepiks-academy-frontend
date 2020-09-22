@@ -124,8 +124,10 @@ export default {
     }
   },
   mounted() {
-    this.user = this.userData;
-    this.userId = this.user.id;
+    if (this.userData) {
+      this.user = this.userData;
+      this.userId = this.user.id;
+    }
   }
 };
 </script>

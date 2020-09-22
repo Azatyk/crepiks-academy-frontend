@@ -1,11 +1,9 @@
 <template>
   <div class="welcome">
     <div class="welcome__text">
-      <h1 class="welcome__text-title">Подбери идеальный курс для себя</h1>
+      <h1 class="welcome__text-title">{{ $t("coursesWelcomeTitle") }}</h1>
       <div class="welcome__text-description">
-        Приобрети навыки 21 века с помощью веселых и увлекательных интерактивных
-        курсов. Начни курс веб разработки и познай основы создания сайтов за 2
-        недели!
+        {{ $t("coursesWelcomeDescription") }}
       </div>
     </div>
     <div class="welcome__images">
@@ -78,13 +76,13 @@ export default {};
 
     &-title {
       margin-bottom: 20px;
-      font-size: 2.5vw;
+      font-size: 2.8vw;
       font-weight: bold;
       color: $color-5;
     }
 
     &-description {
-      font-size: 1.1vw;
+      font-size: 1.2vw;
       color: $color-5;
     }
   }

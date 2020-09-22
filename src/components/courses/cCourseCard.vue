@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-visible">
-      <div class="card-visible__hover-it">Наведите курсор</div>
+      <div class="card-visible__hover-it">{{ $t("courseCardHoverText") }}</div>
       <div class="card-visible__text">
         <h3 class="card-visible__text-title">{{ title }}</h3>
         <div class="card-visible__text-description">{{ description }}</div>
@@ -14,28 +14,34 @@
       <div class="card-hidden__property">
         <div class="card-hidden__property-name">
           <i class="bx bx-line-chart card-hidden__property-icon"></i>
-          <div class="card-hidden__property-text">Сложность:</div>
+          <div class="card-hidden__property-text">
+            {{ $t("courseCardComplexityText") }}:
+          </div>
         </div>
         <div class="card-hidden__property-data">Простой</div>
       </div>
       <div class="card-hidden__property">
         <div class="card-hidden__property-name">
           <i class="bx bx-time card-hidden__property-icon"></i>
-          <div class="card-hidden__property-text">Длительность:</div>
+          <div class="card-hidden__property-text">
+            {{ $t("courseCardDurationText") }}:
+          </div>
         </div>
         <div class="card-hidden__property-data">20 часов</div>
       </div>
       <div class="card-hidden__property">
         <div class="card-hidden__property-name">
           <i class="bx bx-money card-hidden__property-icon"></i>
-          <div class="card-hidden__property-text">Стоимость:</div>
+          <div class="card-hidden__property-text">
+            {{ $t("courseCardPriceText") }}:
+          </div>
         </div>
         <div class="card-hidden__property-data">1500 тг</div>
       </div>
       <div class="card-hidden__button-container">
-        <router-link :to="'/app/courses/' + id" class="card-hidden__button"
-          >Перейти к курсу</router-link
-        >
+        <router-link :to="'/app/courses/' + id" class="card-hidden__button">{{
+          $t("courseCardButtonText")
+        }}</router-link>
       </div>
     </div>
   </div>
