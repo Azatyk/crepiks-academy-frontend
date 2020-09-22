@@ -29,13 +29,9 @@
       />
     </div>
     <template #footer>
-      <vs-button
-        block
-        class="change-password__save-button"
-        @click="changePassword"
-      >
+      <div class="change-password__save-button" @click="changePassword">
         {{ $t("changePasswordSaveButton") }}
-      </vs-button>
+      </div>
     </template>
   </vs-dialog>
 </template>
@@ -159,8 +155,25 @@ export default {
 
   &__save-button {
     margin-left: 0;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1vw;
+    color: $color-3;
+    border: 2px solid $color-2;
+    border-radius: 15px;
+    background-color: $color-2;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+      color: $color-2;
+      background-color: $color-3;
+    }
   }
 }
 

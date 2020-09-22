@@ -215,8 +215,10 @@ export default {
     }
 
     &__button-container {
+      padding-left: 5%;
       width: 50%;
       height: 35%;
+      box-sizing: border-box;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -228,7 +230,7 @@ export default {
       font-size: 20px;
       text-decoration: none;
       border: 2px solid $color-3;
-      border-radius: 20px;
+      border-radius: 15px;
       background-color: $color-3;
       transition: 150ms ease-in-out;
       cursor: pointer;

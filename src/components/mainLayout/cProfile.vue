@@ -6,9 +6,11 @@
       </h4>
     </template>
     <div class="profile__inputs">
-      <vs-input
+      <cInput
         :label="$t('profileFirstName')"
-        v-model="user.firstName"
+        type="text"
+        :value="user.firstName"
+        @update-input-data="changeInputData($event.target.value)"
         class="profile__input"
       />
       <vs-input
@@ -31,9 +33,9 @@
     </div>
     <template #footer>
       <div class="profile__footer">
-        <vs-button block class="profile__save-button" @click="changeUserData">
+        <div class="profile__save-button" @click="changeUserData">
           {{ $t("profileSaveButtonText") }}
-        </vs-button>
+        </div>
       </div>
     </template>
   </vs-dialog>
@@ -41,7 +43,13 @@
 
 <script>
 import { mapGetters } from "vuex";
+import cInput from "@/components/common/cInput";
+
 export default {
+  components: {
+    cInput
+  },
+
   props: {
     isProfileOpen: {
       type: Boolean,
@@ -75,6 +83,10 @@ export default {
     ...mapGetters(["userData"])
   },
   methods: {
+    changeInputData(value) {
+      this.user.firstName = value;
+    },
+
     changeUserData() {
       this.isProfileLoading = true;
 
@@ -118,7 +130,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .profile {
@@ -132,7 +144,7 @@ export default {
   }
 
   &__input {
-    margin-left: 0;
+    margin: auto;
     margin: 5% 0;
     width: 100%;
   }
@@ -146,16 +158,41 @@ export default {
 
   &__save-button {
     margin-left: 0;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1vw;
+    color: $color-3;
+    border: 2px solid $color-2;
+    border-radius: 15px;
+    background-color: $color-2;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+      color: $color-2;
+      background-color: $color-3;
+    }
   }
 }
 
-.vs-select__input {
-  font-size: 15px !important;
-}
+@media (max-width: 1200px) {
+  .profile {
+    &__heading {
+      font-size: 3vw;
+    }
 
-.vs-select__option {
-  font-size: 15px;
+    &__change-password {
+      font-size: 1.2vw;
+    }
+
+    &__save-button {
+      font-size: 1.5vw;
+    }
+  }
 }
 </style>
