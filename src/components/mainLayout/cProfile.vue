@@ -27,7 +27,7 @@
     </div>
     <div
       class="profile__change-password"
-      @click="$emit('open-change-password-open')"
+      @click="$emit('open-change-password')"
     >
       {{ $t("profileChangePasswordText") }}
     </div>

@@ -33,7 +33,7 @@
         <div class="card-hidden__property-data">1500 тг</div>
       </div>
       <div class="card-hidden__button-container">
-        <router-link to="/app/home" class="card-hidden__button"
+        <router-link :to="'/app/courses/' + id" class="card-hidden__button"
           >Перейти к курсу</router-link
         >
       </div>

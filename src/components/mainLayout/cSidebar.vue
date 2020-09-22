@@ -61,8 +61,8 @@
     </vs-sidebar>
     <cProfile
       :is-profile-open="isProfileOpen"
-      @close-profile="isProfileOpen = false"
-      @open-change-password-open="isChangePasswordOpen = true"
+      @close-profile="closeProfile"
+      @open-change-password="isChangePasswordOpen = true"
     />
     <cChangePassword
       :is-change-password-open="isChangePasswordOpen"
@@ -82,6 +82,11 @@ import cCreateAccountDialog from "@/components/mainLayout/cCreateAccountDialog";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
+  props: {
+    isProfileOpenFromMainLayout: {
+      type: Boolean
+    }
+  },
   components: {
     cProfile,
     cChangePassword,
@@ -96,6 +101,14 @@ export default {
       isChangePasswordOpen: false,
       isCreateProfileDialogOpen: false
     };
+  },
+
+  watch: {
+    isProfileOpenFromMainLayout() {
+      if (this.isProfileOpenFromMainLayout) {
+        this.isProfileOpen = true;
+      }
+    }
   },
 
   methods: {
@@ -115,6 +128,11 @@ export default {
       } else {
         this.isCreateProfileDialogOpen = true;
       }
+    },
+
+    closeProfile() {
+      this.isProfileOpen = false;
+      this.$emit("close-profile");
     }
   },
   computed: {

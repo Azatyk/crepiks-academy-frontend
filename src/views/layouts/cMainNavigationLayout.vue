@@ -1,8 +1,11 @@
 <template>
   <div class="app__page">
-    <cSidebar />
+    <cSidebar
+      :isProfileOpenFromMainLayout="isProfileOpen"
+      @close-profile="isProfileOpen = false"
+    />
     <div class="app__content">
-      <cHeader />
+      <cHeader @open-profile="isProfileOpen = true" />
       <router-view></router-view>
     </div>
   </div>
@@ -16,6 +19,11 @@ export default {
   components: {
     cSidebar,
     cHeader
+  },
+  data() {
+    return {
+      isProfileOpen: false
+    };
   }
 };
 </script>

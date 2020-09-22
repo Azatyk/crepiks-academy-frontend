@@ -45,13 +45,13 @@ export default {
     };
   },
   computed: mapGetters(["isLoggedIn"]),
-  async mounted() {
-    await this.$store
+  mounted() {
+    this.$store
       .dispatch("getCourse", this.id)
       .then(res => (this.course = res.data.course));
-    await this.$store.dispatch("getLessons", this.id).then(res => {
-      this.lessons = res.data.lessons;
-    });
+    this.$store
+      .dispatch("getLessons", this.id)
+      .then(res => (this.lessons = res.data.lessons));
   },
   methods: {
     getLessonNumber(index) {

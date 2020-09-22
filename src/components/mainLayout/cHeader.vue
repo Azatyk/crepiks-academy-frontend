@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header__user" v-if="isLoggedIn">
+    <div class="header__user" v-if="isLoggedIn" @click="$emit('open-profile')">
       <i class="bx bx-user-circle header__user-icon"></i>
       <div class="header__user-name">
         {{ user.lastName }} {{ user.firstName }}
