@@ -1,9 +1,9 @@
 <template>
   <c-form @submit="login">
     <div class="auth-form">
-      <h3 class="auth-form__heading">Войти</h3>
+      <h3 class="auth-form__heading">{{ $t("authLoginTitle") }}</h3>
       <s-input
-        label-placeholder="Email"
+        :label-placeholder="$t('authInputEmail')"
         v-model="email"
         class="auth-form__input"
         state="primary"
@@ -11,24 +11,24 @@
         <template v-if="!email" #message-danger> </template>
       </s-input>
       <s-input
-        label-placeholder="Password"
+        :label-placeholder="$t('authInputPassword')"
         v-model="password"
         class="auth-form__input"
         type="password"
         state="primary"
       />
       <div class="auth-form__functional">
-        <s-button @click="login" class="auth-form__button">
-          Вход
-        </s-button>
-        <div class="auth-form__link-text auth-form__link-container">
-          Нет аккаунта?
+        <button type="submit" class="auth-form__button">
+          {{ $t("authLoginButtonText") }}
+        </button>
+        <!-- <div class="auth-form__link-text auth-form__link-container">
+          {{ $t("authLoginNoAccountText") }}
           <router-link
             to="/auth/register"
             class="auth-form__link-text auth-form__link"
-            >Зарегистрируйтесь</router-link
+            >{{ $t("authLoginRegisterText") }}</router-link
           >
-        </div>
+        </div> -->
       </div>
     </div>
   </c-form>
@@ -37,14 +37,12 @@
 <script>
 import cForm from "@/components/common/cForm";
 
-import Button from "vuesax/dist/vsButton";
 import Input from "vuesax/dist/vsInput";
 import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     "c-form": cForm,
-    "s-button": Button,
     "s-input": Input
   },
   data() {
@@ -85,7 +83,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" styles>
+@import "@/assets/styles/variables.scss";
+
 .auth-form {
   padding-left: 5%;
   box-sizing: border-box;
@@ -122,7 +122,7 @@ export default {
 
 .auth-form__functional {
   margin-top: 5%;
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -130,9 +130,19 @@ export default {
 }
 
 .auth-form__button {
-  margin-left: 0;
-  width: 25%;
+  padding: 7px 23px;
+  color: white;
   font-size: 1.2vw;
+  border: 2px solid $color-2;
+  border-radius: 15px;
+  background-color: $color-2;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.auth-form__button:hover {
+  background-color: white;
+  color: $color-2;
 }
 
 .auth-form__link-container {
@@ -141,13 +151,13 @@ export default {
 
 .auth-form__link-text {
   font-size: 1vw;
-  color: #2e2e3d;
+  color: $color-5;
 }
 
 .auth-form__link {
   margin-left: 5px;
   text-decoration: none;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 @media (max-width: 1024px) {
@@ -250,9 +260,8 @@ export default {
   }
 
   .auth-form__button {
+    padding: 7px 20px;
     margin-bottom: 10%;
-    padding: 0;
-    width: 40%;
     font-size: 5vw;
   }
 

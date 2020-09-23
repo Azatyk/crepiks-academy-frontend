@@ -47,7 +47,9 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .landing__what-for {
   margin-bottom: 17%;
   width: 100%;
@@ -57,14 +59,14 @@ export default {};
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #eeeef6;
+  background-color: $color-3;
   overflow-x: hidden;
   z-index: 3;
 }
 
 .what-for__heading {
   margin-bottom: 20px;
-  color: #2522a0;
+  color: $color-2;
   font-size: 3.7vw;
   font-weight: bold;
   z-index: 3;
@@ -73,7 +75,7 @@ export default {};
 .what-for__description {
   margin-bottom: 50px;
   width: 40%;
-  color: #2522a0;
+  color: $color-2;
   text-align: center;
   opacity: 0.8;
   font-size: 1.4vw;
@@ -81,7 +83,7 @@ export default {};
 }
 
 .what-for__description-link {
-  color: #0d0b6d;
+  color: $color-1;
   text-decoration: none;
   transition: 150ms ease-in-out;
 }

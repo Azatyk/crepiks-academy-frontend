@@ -47,21 +47,31 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   data() {
     return {
       language: "ru"
     };
   },
+  mounted() {
+    this.language = this.currentLanguage();
+  },
   methods: {
     setLocale() {
+      this.changeLanguage(this.language);
       this.$i18n.locale = this.language;
-    }
+    },
+    ...mapGetters(["currentLanguage"]),
+    ...mapMutations(["changeLanguage"])
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .header {
   position: absolute;
   left: 0;
@@ -81,7 +91,7 @@ export default {
 .header__logo {
   font-size: 35px;
   font-weight: bold;
-  color: #0d0b6d;
+  color: $color-1;
 }
 
 .header__logo-link {
@@ -89,7 +99,7 @@ export default {
 }
 
 .header__logo-main {
-  color: #5d33f6;
+  color: $color-2;
   font-weight: 900;
 }
 
@@ -103,7 +113,7 @@ export default {
   display: block;
   font-size: 17px;
   margin-right: 30px;
-  color: #384a62;
+  color: $color-5;
   text-decoration: none;
   opacity: 0.6;
   cursor: pointer;
@@ -113,14 +123,6 @@ export default {
 .header__navigation-link:hover {
   opacity: 1;
   transition: 150ms ease-in-out;
-}
-
-.vs-select__input {
-  font-size: 15px !important;
-}
-
-.vs-select__option {
-  font-size: 15px;
 }
 
 .header__link-button {
@@ -135,18 +137,18 @@ export default {
   margin-left: 20px;
   padding: 8px 30px;
   font-size: 17px;
-  color: #eeeef6;
-  background-color: #2522a0;
-  border: 2px solid #2522a0;
+  color: $color-4;
+  background-color: $color-2;
+  border: 2px solid $color-2;
   border-radius: 15px;
   transition: 170ms;
   cursor: pointer;
 }
 
 .header__button:hover {
-  color: #2522a0;
-  background-color: #eeeef6;
-  border: 2px solid #2522a0;
+  color: $color-2;
+  background-color: $color-3;
+  border: 2px solid $color-2;
 }
 
 @media (max-width: 1200px) {
@@ -177,14 +179,6 @@ export default {
     display: none;
   }
 
-  .vs-select__input {
-    font-size: 20px !important;
-  }
-
-  .vs-select__option {
-    font-size: 20px !important;
-  }
-
   .header__button {
     padding: 10px 30px;
     font-size: 20px;
@@ -202,18 +196,6 @@ export default {
 
   .header__navigation {
     justify-content: flex-end;
-  }
-
-  .center {
-    width: 45% !important;
-  }
-
-  .vs-select__input {
-    font-size: 3.5vw !important;
-  }
-
-  .vs-select__option {
-    font-size: 3.5vw !important;
   }
 
   .header__button {

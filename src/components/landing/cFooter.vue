@@ -22,7 +22,7 @@
       <a href="#header" class="footer__button-link"
         ><div class="footer__button">{{ $t("footerUpButton") }}</div></a
       >
-      <div class="footer__button" @click="$router.push('/auth/login')">
+      <div class="footer__button" @click="$router.push('/app/courses')">
         {{ $t("footerStartLearningButton") }}
       </div>
     </div>
@@ -33,7 +33,9 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .footer {
   margin: auto;
   padding: 5% 2%;
@@ -58,12 +60,12 @@ export default {};
 .footer__logo {
   font-size: 35px;
   font-weight: bold;
-  color: #0d0b6d;
+  color: $color-1;
 }
 
 .footer__social {
   font-size: 25px;
-  color: #2522a0;
+  color: $color-2;
   font-weight: 400;
 }
 
@@ -78,7 +80,7 @@ export default {};
 
 .footer__nav-link {
   font-size: 20px;
-  color: #2522a0;
+  color: $color-2;
   font-weight: 300;
   text-decoration: none;
   opacity: 0.8;
@@ -103,9 +105,9 @@ export default {};
   margin-bottom: 20px;
   padding: 10px 25px;
   font-size: 20px;
-  color: #eeeef6;
-  background-color: #2522a0;
-  border: 2px solid #2522a0;
+  color: $color-4;
+  background-color: $color-2;
+  border: 2px solid $color-2;
   border-radius: 15px;
   cursor: pointer;
   transition: 150ms ease-in-out;
@@ -116,8 +118,8 @@ export default {};
 }
 
 .footer__button:hover {
-  color: #2522a0;
-  background-color: #eeeef6;
+  color: $color-2;
+  background-color: $color-3;
 }
 
 @media (max-width: 1200px) {

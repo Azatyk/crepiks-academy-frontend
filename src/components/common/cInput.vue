@@ -1,54 +1,78 @@
 <template>
-  <input
-    :type="type"
-    class="input"
-    :placeholder="placeholder"
-    @input="$emit('input', $event.target.value)"
-  />
+  <div class="input">
+    <input
+      id="input"
+      :type="type"
+      class="input__field"
+      v-model="inputDataLocal"
+      @input="$emit('update-input-data', inputDataLocal)"
+    />
+    <label for="input" class="input__label">{{ label }}</label>
+  </div>
 </template>
 
 <script>
 export default {
-  model: {
-    prop: "value",
-    event: "input"
-  },
   props: {
     type: {
       type: String,
-      required: false,
       default: "text"
     },
-    placeholder: {
+    label: {
       type: String,
-      required: false,
-      default: "Write anything..."
+      default: "Email"
+    },
+    value: {
+      requered: false
     }
+  },
+  data() {
+    return {
+      inputDataLocal: null
+    };
+  },
+  mounted() {
+    this.inputDataLocal = this.value;
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .input {
-  padding: 0vw 0.5vw;
-  height: 2vw;
-  width: 15vw;
-  box-sizing: border-box;
-  color: #516f8c;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0px #d4d4d4;
-  outline: none;
-}
+  position: relative;
 
-input::-webkit-input-placeholder {
-  color: #516f8c;
-}
-input::-moz-placeholder {
-  color: #516f8c;
-}
+  &__field {
+    padding: 0 15px;
+    width: 100%;
+    height: 35px;
+    box-sizing: border-box;
+    font-size: 17px;
+    border: none;
+    border-radius: 12px;
+    background-color: $color-3;
 
-.input:focus {
-  border: 1px solid #fc7979;
+    &:focus ~ .input__label {
+      bottom: 38px;
+      font-size: 14px;
+      opacity: 1;
+    }
+
+    &:valid ~ .input__label {
+      bottom: 38px;
+      font-size: 14px;
+      opacity: 1;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: 15px;
+    bottom: 7px;
+    font-size: 17px;
+    opacity: 0.7;
+    transition: 150ms ease-in-out;
+  }
 }
 </style>

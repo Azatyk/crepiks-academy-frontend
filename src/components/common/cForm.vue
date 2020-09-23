@@ -8,13 +8,53 @@
           class="form__image"
         />
       </div>
+      <template>
+        <vs-select
+          placeholder="Select"
+          v-model="language"
+          class="form__select"
+          color="#0d0b6d"
+          @change="setLocale"
+        >
+          <vs-option label="Русский" value="ru">
+            Русский
+          </vs-option>
+          <vs-option label="Казакша" value="kz">
+            Казакша
+          </vs-option>
+          <vs-option label="English" value="en">
+            English
+          </vs-option>
+        </vs-select>
+      </template>
       <slot></slot>
     </form>
   </div>
 </template>
 
 <script>
-export default {};
+import { mapGetters, mapMutations } from "vuex";
+
+export default {
+  data() {
+    return {
+      language: "ru"
+    };
+  },
+  mounted() {
+    this.language = this.currentLanguage;
+  },
+  methods: {
+    setLocale() {
+      this.changeLanguage(this.language);
+      this.$i18n.locale = this.language;
+    },
+    ...mapMutations(["changeLanguage"])
+  },
+  computed: {
+    ...mapGetters(["currentLanguage"])
+  }
+};
 </script>
 
 <style scoped>
@@ -28,6 +68,7 @@ export default {};
 }
 
 .form {
+  position: relative;
   width: 65%;
   height: 85%;
   display: flex;
@@ -37,6 +78,12 @@ export default {};
   box-shadow: 0px 10px 10px 0px #0000001a;
   background-color: #f5f7f6;
   border-radius: 30px;
+}
+
+.form__select {
+  position: absolute;
+  right: 5%;
+  top: 5%;
 }
 
 .form__info-block {

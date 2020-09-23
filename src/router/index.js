@@ -1,9 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import cSoon from "@/views/soon/cSoon";
+
 import cLanding from "@/views/landing/cLanding";
 
-import cRegister from "@/views/register/cRegister";
+// import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
 
 import cHome from "@/views/home/cHome";
@@ -12,20 +14,14 @@ import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
-import cTrainer from "@/views/trainer/cTrainer";
+// import cTrainer from "@/views/trainer/cTrainer";
 
 import cEmpty from "@/views/empty/cEmpty";
 
-import cProfile from "@/views/profile/cProfile";
-import cChangeProfile from "@/views/change-profile/cChangeProfile";
-import cChangePassword from "@/views/change-password/cChangePassword";
-
 import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-// import cLandingLayout from "@/views/layouts/cLandingLayout";
 import cAppLayout from "@/views/layouts/cAppLayout";
 import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
 import cAuthLayout from "@/views/layouts/cAuthLayout";
-import cProfileLayout from "@/views/layouts/cProfileLayout";
 
 import store from "@/store";
 
@@ -41,15 +37,15 @@ const routes = [
         name: "auth",
         component: cAuthLayout,
         children: [
-          {
-            path: "register",
-            name: "register",
-            component: cRegister,
-            meta: {
-              title: "Регистрация",
-              noAuthOnly: true
-            }
-          },
+          // {
+          //   path: "register",
+          //   name: "register",
+          //   component: cRegister,
+          //   meta: {
+          //     title: "Регистрация",
+          //     noAuthOnly: true
+          //   }
+          // },
           {
             path: "login",
             name: "login",
@@ -61,24 +57,9 @@ const routes = [
           }
         ]
       },
-      // {
-      //   path: "",
-      //   component: cLandingLayout,
-      //   children: [
-      //     {
-      //       path: "",
-      //       name: "home",
-      //       component: cLanding,
-      //       meta: {
-      //         title: "Crepiks Academy - программируй вместе с нами",
-      //         noAuthOnly: true
-      //       }
-      //     }
-      //   ]
-      // },
       {
         path: "",
-        name: "home",
+        name: "landing",
         component: cLanding,
         meta: {
           title: "Crepiks Academy - программируй вместе с нами",
@@ -88,10 +69,6 @@ const routes = [
       {
         path: "app",
         component: cAppLayout,
-        name: "app",
-        meta: {
-          needAuth: true
-        },
         children: [
           {
             path: "",
@@ -102,8 +79,15 @@ const routes = [
                 name: "home",
                 component: cHome,
                 meta: {
-                  title: "Главная",
-                  needAuth: true
+                  title: "Главная"
+                }
+              },
+              {
+                path: "soon",
+                name: "soon",
+                component: cSoon,
+                meta: {
+                  title: "Скоро"
                 }
               },
               {
@@ -111,8 +95,7 @@ const routes = [
                 name: "courses",
                 component: cCourses,
                 meta: {
-                  title: "Курсы",
-                  needAuth: true
+                  title: "Курсы"
                 }
               },
               {
@@ -120,52 +103,17 @@ const routes = [
                 name: "course",
                 component: cCourse,
                 meta: {
-                  title: "Курс",
-                  needAuth: true
-                }
-              },
-              {
-                path: "trainer",
-                name: "trainer",
-                component: cTrainer,
-                meta: {
-                  title: "Тренажёр",
-                  needAuth: true
+                  title: "Курс"
                 }
               }
-            ]
-          },
-          {
-            path: "",
-            component: cProfileLayout,
-            children: [
-              {
-                path: "profile",
-                name: "profile",
-                component: cProfile,
-                meta: {
-                  title: "Ваш профиль",
-                  needAuth: true
-                }
-              },
-              {
-                path: "profile/change",
-                name: "change",
-                component: cChangeProfile,
-                meta: {
-                  title: "Изменение профиля",
-                  needAuth: true
-                }
-              },
-              {
-                path: "profile/change-password",
-                name: "change-password",
-                component: cChangePassword,
-                meta: {
-                  title: "Изменение пароля",
-                  needAuth: true
-                }
-              }
+              // {
+              //   path: "trainer",
+              //   name: "trainer",
+              //   component: cTrainer,
+              //   meta: {
+              //     title: "Тренажёр",
+              //   },
+              // },
             ]
           },
           {
@@ -198,6 +146,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
   document.title = to.meta.title;
   if (to.matched.some(record => record.meta.needAuth)) {
     if (!store.getters.isLoggedIn) {

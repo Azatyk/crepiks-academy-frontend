@@ -1,49 +1,49 @@
 <template>
   <c-form @submit="register">
     <div class="register-form">
-      <h3 class="register-form__heading">Регистрация</h3>
+      <h3 class="register-form__heading">{{ $t("authRegisterTitle") }}</h3>
       <s-input
-        label-placeholder="Имя"
+        :label-placeholder="$t('authInputFirstName')"
         v-model="name"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        label-placeholder="Фамилия"
+        :label-placeholder="$t('authInputLastName')"
         v-model="surname"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        type="email"
-        label-placeholder="Email"
+        :label-placeholder="$t('authInputEmail')"
         v-model="email"
+        type="email"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        label-placeholder="Пароль"
+        :label-placeholder="$t('authInputPassword')"
         v-model="password"
         type="password"
         class="register-form__input"
         state="primary"
       />
       <s-input
-        label-placeholder="Подтверждение пароля"
+        :label-placeholder="$t('authInputConfirmPassword')"
         v-model="passwordCheck"
         type="password"
         class="register-form__input"
         state="primary"
       />
       <div class="register-form__functional">
-        <s-button @click="register" class="register-form__button">
-          Регистрация
-        </s-button>
+        <button type="submit" class="register-form__button">
+          {{ $t("authRegisterButtonText") }}
+        </button>
         <div class="register-form__link-text register-form__link-container">
-          Есть аккаунт?
-          <router-link to="/auth/login" class="register-form__link"
-            >Войдите</router-link
-          >
+          {{ $t("authRegisterHaveAccountText") }}
+          <router-link to="/auth/login" class="register-form__link">{{
+            $t("authRegisterLoginText")
+          }}</router-link>
         </div>
       </div>
     </div>
@@ -53,14 +53,12 @@
 <script>
 import cForm from "@/components/common/cForm";
 
-import Button from "vuesax/dist/vsButton";
 import Input from "vuesax/dist/vsInput";
 import "vuesax/dist/vuesax.css";
 
 export default {
   components: {
     "c-form": cForm,
-    "s-button": Button,
     "s-input": Input
   },
   data() {
@@ -150,7 +148,7 @@ export default {
 
 .register-form__functional {
   margin-top: 2%;
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -158,9 +156,19 @@ export default {
 }
 
 .register-form__button {
-  margin-left: 0;
-  width: 40%;
+  padding: 7px 23px;
+  color: white;
   font-size: 1.2vw;
+  border: 2px solid #5d33f6;
+  border-radius: 15px;
+  background-color: #5d33f6;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.register-form__button:hover {
+  background-color: white;
+  color: #5d33f6;
 }
 
 .register-form__link-container {
