@@ -3,13 +3,13 @@
     <div class="about-ending__images-container" v-prlx.mobile="{ speed: -0.6 }">
       <img
         class="about-ending__image-sertificate"
-        src="@/assets/images/endCertificate.jpg"
+        src="@/assets/images/endCertificate.png"
         alt="Certificate"
         :class="{ 'about-ending__image-sertificate-hover': isLandingHovered }"
       />
       <img
         class="about-ending__image-landing"
-        src="@/assets/images/endLanding.jpg"
+        src="@/assets/images/endLanding.png"
         alt="Landing"
         @mouseenter="isLandingHovered = true"
         @mouseleave="isLandingHovered = false"
