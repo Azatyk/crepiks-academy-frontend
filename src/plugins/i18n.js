@@ -158,7 +158,11 @@ export const i18n = new VueI18n({
 
       secondCourseCardTitle: "Базовый JavaScript",
       secondCourseCardDescription:
-        "На этом курсе вы изучите один из самых важных и популярных языков программирования - JavaScript"
+        "На этом курсе вы изучите один из самых важных и популярных языков программирования - JavaScript",
+
+      soonTitle: "Мы работаем",
+      soonDescription:
+        "Ещё пару бессоных ночей наших программистов и эта страница будет готова! Мы работаем для вас"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -168,7 +172,7 @@ export const i18n = new VueI18n({
       headerLoginButtonText: "Кіру",
 
       welcomeTitleFirst: "Кешіктірме.",
-      welcomeTitleSecond: "Бағдарлама.",
+      welcomeTitleSecond: "Бағдарламала.",
       welcomeDescriptionText:
         "Шексіз ертеңгі күнге қалдыруды тоқтатыңыз. 21 ғасырдың ең жоғары сұранысқа ие мамандықтардың бірін дәл қазір меңгеріңіз!",
       welcomeButtonText: "Курстарға барыңыз",
@@ -311,7 +315,11 @@ export const i18n = new VueI18n({
 
       secondCourseCardTitle: "Негізгі JavaScript",
       secondCourseCardDescription:
-        "Бұл курста сіз ең маңызды және танымал бағдарламалау тілдерінің бірін - JavaScript-ті үйренесіз"
+        "Бұл курста сіз ең маңызды және танымал бағдарламалау тілдерінің бірін - JavaScript-ті үйренесіз",
+
+      soonTitle: "Біз жұмыс істейміз",
+      soonDescription:
+        "Біздің бағдарламашыларымыздың бірнеше ұйқысыз түндері және бұл бет дайын болады! Біз сіздер үшін жұмыс істейміз"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -465,7 +473,11 @@ export const i18n = new VueI18n({
 
       secondCourseCardTitle: "Basic JavaScript",
       secondCourseCardDescription:
-        "In this course, you will learn one of the most important and popular programming languages - JavaScript"
+        "In this course, you will learn one of the most important and popular programming languages - JavaScript",
+
+      soonTitle: "We are working",
+      soonDescription:
+        "A couple more sleepless nights of our programmers and this page will be ready! We work for you"
     }
   }
 });

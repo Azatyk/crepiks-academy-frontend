@@ -104,5 +104,11 @@ export default {
     height: auto;
     box-sizing: border-box;
   }
+
+  @media (max-width: 1200px) {
+    &__page {
+      padding: 0 5%;
+    }
+  }
 }
 </style>

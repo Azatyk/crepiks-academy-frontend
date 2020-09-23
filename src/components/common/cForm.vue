@@ -86,14 +86,6 @@ export default {
   top: 5%;
 }
 
-.vs-select__input {
-  font-size: 15px !important;
-}
-
-.vs-select__option {
-  font-size: 15px;
-}
-
 .form__info-block {
   height: 100%;
   width: 50%;
@@ -117,14 +109,6 @@ export default {
 
   .form__info-block {
     display: none;
-  }
-
-  .vs-select__input {
-    font-size: 20px !important;
-  }
-
-  .vs-select__option {
-    font-size: 20px !important;
   }
 }
 </style>

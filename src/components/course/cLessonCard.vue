@@ -11,7 +11,7 @@
       <div class="lesson__content-number">{{ getLessonIndex(index) }}</div>
       <div class="lesson__content-title">{{ title }}</div>
     </div>
-    <router-link to="/app/courses" class="lesson__button">{{
+    <router-link to="/app/soon" class="lesson__button">{{
       $t("lessonCardButtonText")
     }}</router-link>
   </div>
@@ -137,6 +137,46 @@ export default {
 
     &:hover {
       transform: translateY(-5px);
+    }
+  }
+
+  @media (max-width: 650px) {
+    & {
+      height: 60px;
+
+      &:hover:before {
+        clip-path: circle(0% at 100% 0%);
+      }
+
+      &:hover {
+        transform: none;
+        box-shadow: 7px 7px 7px 0px $color-7;
+
+        .lesson__button {
+          border: 3px solid $color-2;
+          background-color: $color-2;
+        }
+      }
+
+      &__content {
+        &-number {
+          height: 40px;
+          width: 40px;
+          font-size: 20px;
+        }
+
+        &-title {
+          margin-left: 10px;
+          font-size: 18px;
+        }
+      }
+
+      &__button {
+        padding: 5px 15px;
+        width: 57px;
+        font-size: 15px;
+        display: none;
+      }
     }
   }
 }

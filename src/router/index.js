@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import cSoon from "@/views/soon/cSoon";
+
 import cLanding from "@/views/landing/cLanding";
 
 // import cRegister from "@/views/register/cRegister";
@@ -12,7 +14,7 @@ import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
-import cTrainer from "@/views/trainer/cTrainer";
+// import cTrainer from "@/views/trainer/cTrainer";
 
 import cEmpty from "@/views/empty/cEmpty";
 
@@ -81,6 +83,14 @@ const routes = [
                 }
               },
               {
+                path: "soon",
+                name: "soon",
+                component: cSoon,
+                meta: {
+                  title: "Скоро"
+                }
+              },
+              {
                 path: "courses",
                 name: "courses",
                 component: cCourses,
@@ -95,15 +105,15 @@ const routes = [
                 meta: {
                   title: "Курс"
                 }
-              },
-              {
-                path: "trainer",
-                name: "trainer",
-                component: cTrainer,
-                meta: {
-                  title: "Тренажёр"
-                }
               }
+              // {
+              //   path: "trainer",
+              //   name: "trainer",
+              //   component: cTrainer,
+              //   meta: {
+              //     title: "Тренажёр",
+              //   },
+              // },
             ]
           },
           {

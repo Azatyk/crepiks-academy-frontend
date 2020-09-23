@@ -83,7 +83,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" styles>
+@import "@/assets/styles/variables.scss";
+
 .auth-form {
   padding-left: 5%;
   box-sizing: border-box;
@@ -131,16 +133,16 @@ export default {
   padding: 7px 23px;
   color: white;
   font-size: 1.2vw;
-  border: 2px solid #5d33f6;
+  border: 2px solid $color-2;
   border-radius: 15px;
-  background-color: #5d33f6;
+  background-color: $color-2;
   transition: 150ms ease-in-out;
   cursor: pointer;
 }
 
 .auth-form__button:hover {
   background-color: white;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 .auth-form__link-container {
@@ -149,13 +151,13 @@ export default {
 
 .auth-form__link-text {
   font-size: 1vw;
-  color: #2e2e3d;
+  color: $color-5;
 }
 
 .auth-form__link {
   margin-left: 5px;
   text-decoration: none;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 @media (max-width: 1024px) {
@@ -258,9 +260,8 @@ export default {
   }
 
   .auth-form__button {
+    padding: 7px 20px;
     margin-bottom: 10%;
-    padding: 0;
-    width: 40%;
     font-size: 5vw;
   }
 

@@ -56,4 +56,10 @@ html {
   scrollbar-width: none;
   scroll-behavior: smooth;
 }
+
+@media (max-width: 650px) {
+  .vs-select-content {
+    width: 70%;
+  }
+}
 </style>

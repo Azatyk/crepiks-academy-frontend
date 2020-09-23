@@ -83,8 +83,12 @@ export default {
     width: 45% !important;
   }
 
+  .select-local {
+    width: 40%;
+  }
+
   .vs-select-content {
-    width: 40% !important;
+    width: 100% !important;
   }
 
   .vs-select {

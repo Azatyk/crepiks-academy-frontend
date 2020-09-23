@@ -13,7 +13,7 @@
       <div class="about__text-description">
         {{ $t("firstCourseDescription") }}
       </div>
-      <router-link :to="'/app/courses/' + course.id" class="about__button">{{
+      <router-link to="/app/soon" class="about__button">{{
         $t("firstCourseButtonText")
       }}</router-link>
     </div>
@@ -106,6 +106,60 @@ export default {
   &__image {
     height: 80%;
     transition: 150ms ease-in-out;
+  }
+
+  @media (max-width: 1024px) {
+    & {
+      padding: 3% 3%;
+      height: auto;
+      box-sizing: border-box;
+
+      &__text {
+        &-title {
+          font-size: 33px;
+        }
+
+        &-description {
+          font-size: 18px;
+        }
+      }
+
+      &__button {
+        font-size: 18px;
+      }
+
+      &__image {
+        width: 40%;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 650px) {
+      & {
+        padding: 5% 8%;
+        width: auto;
+        flex-direction: column-reverse;
+
+        &__text {
+          margin: 0;
+          margin-top: 40px;
+          width: 100%;
+
+          &-title {
+            width: 100%;
+            font-size: 6.5vw;
+          }
+
+          &-description {
+            font-size: 4vw;
+          }
+        }
+
+        &__image {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 </style>

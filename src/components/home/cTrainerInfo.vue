@@ -5,7 +5,7 @@
       <div class="trainer__text-description">
         {{ $t("trainerInfoDescription") }}
       </div>
-      <router-link to="/app/trainer" class="trainer__button">{{
+      <router-link to="/app/soon" class="trainer__button">{{
         $t("trainerInfoButtonText")
       }}</router-link>
     </div>

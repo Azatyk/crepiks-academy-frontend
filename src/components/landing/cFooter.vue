@@ -22,7 +22,7 @@
       <a href="#header" class="footer__button-link"
         ><div class="footer__button">{{ $t("footerUpButton") }}</div></a
       >
-      <div class="footer__button" @click="$router.push('/auth/login')">
+      <div class="footer__button" @click="$router.push('/app/courses')">
         {{ $t("footerStartLearningButton") }}
       </div>
     </div>

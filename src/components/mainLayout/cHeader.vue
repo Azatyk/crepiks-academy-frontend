@@ -10,23 +10,25 @@
       {{ $t("headerLoginButtonText") }}
     </div>
     <template>
-      <vs-select
-        placeholder="Select"
-        v-model="language"
-        class="form__select"
-        color="#0d0b6d"
-        @change="setLocale"
-      >
-        <vs-option label="Русский" value="ru">
-          Русский
-        </vs-option>
-        <vs-option label="Казакша" value="kz">
-          Казакша
-        </vs-option>
-        <vs-option label="English" value="en">
-          English
-        </vs-option>
-      </vs-select>
+      <div class="select-local">
+        <vs-select
+          placeholder="Select"
+          v-model="language"
+          class="form__select"
+          color="#0d0b6d"
+          @change="setLocale"
+        >
+          <vs-option label="Русский" value="ru">
+            Русский
+          </vs-option>
+          <vs-option label="Казакша" value="kz">
+            Казакша
+          </vs-option>
+          <vs-option label="English" value="en">
+            English
+          </vs-option>
+        </vs-select>
+      </div>
     </template>
   </div>
 </template>

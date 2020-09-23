@@ -128,7 +128,9 @@ export default {
     }
   },
   mounted() {
-    this.userId = this.userData.id;
+    if (this.userData) {
+      this.userId = this.userData.id;
+    }
   }
 };
 </script>
