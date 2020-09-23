@@ -146,6 +146,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
   document.title = to.meta.title;
   if (to.matched.some(record => record.meta.needAuth)) {
     if (!store.getters.isLoggedIn) {
