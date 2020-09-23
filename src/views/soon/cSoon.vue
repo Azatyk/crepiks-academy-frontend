@@ -20,10 +20,9 @@ export default {};
 .soon {
   padding: 0 2%;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 70px;
   width: 100%;
   max-width: 1200px;
-  height: 80vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -55,7 +54,7 @@ export default {};
   }
 
   &__image {
-    width: 70%;
+    width: 50%;
     height: auto;
   }
 
