@@ -6,11 +6,9 @@
       </h4>
     </template>
     <div class="profile__inputs">
-      <cInput
+      <vs-input
         :label="$t('profileFirstName')"
-        type="text"
         :value="user.firstName"
-        @update-input-data="changeInputData($event.target.value)"
         class="profile__input"
       />
       <vs-input
@@ -43,13 +41,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import cInput from "@/components/common/cInput";
 
 export default {
-  components: {
-    cInput
-  },
-
   props: {
     isProfileOpen: {
       type: Boolean,
