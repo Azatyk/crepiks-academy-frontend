@@ -18,7 +18,9 @@
             {{ $t("courseCardComplexityText") }}:
           </div>
         </div>
-        <div class="card-hidden__property-data">Простой</div>
+        <div class="card-hidden__property-data">
+          {{ $t("courseCardComplexityDataText") }}
+        </div>
       </div>
       <div class="card-hidden__property">
         <div class="card-hidden__property-name">
@@ -27,7 +29,9 @@
             {{ $t("courseCardDurationText") }}:
           </div>
         </div>
-        <div class="card-hidden__property-data">20 часов</div>
+        <div class="card-hidden__property-data">
+          {{ $t("courseCardDurationDataText") }}
+        </div>
       </div>
       <div class="card-hidden__property">
         <div class="card-hidden__property-name">
@@ -36,7 +40,9 @@
             {{ $t("courseCardPriceText") }}:
           </div>
         </div>
-        <div class="card-hidden__property-data">1500 тг</div>
+        <div class="card-hidden__property-data">
+          {{ $t("courseCardPriceDataText") }}
+        </div>
       </div>
       <div class="card-hidden__button-container">
         <router-link :to="'/app/courses/' + id" class="card-hidden__button">{{
@@ -245,6 +251,120 @@ export default {
         transform: scale(1.05);
         color: $color-3;
         background-color: $color-1;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    & {
+      margin-bottom: 50px;
+      width: 100%;
+      height: 250px;
+
+      &-visible {
+        &__text {
+          &-title {
+            font-size: 3.7vw;
+          }
+
+          &-description {
+            font-size: 2.2vw;
+          }
+        }
+
+        &__image-container {
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &__image {
+          width: 90%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    & {
+      width: 100%;
+      height: 450px;
+      flex-direction: column-reverse;
+
+      &-visible {
+        padding: 5% 5%;
+        width: 100%;
+        height: 100%;
+        flex-direction: column-reverse;
+
+        &__hover-it {
+          top: 5%;
+          font-size: 13px;
+        }
+
+        &__text {
+          padding: 0 1%;
+          margin-top: 0;
+          width: 100%;
+          height: 30%;
+          box-sizing: border-box;
+
+          &-title {
+            font-size: 5.5vw;
+          }
+
+          &-description {
+            width: 95%;
+            font-size: 3.4vw;
+          }
+        }
+
+        &__image-container {
+          margin-top: 40px;
+          width: 100%;
+          height: 60%;
+        }
+
+        &__image {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      &-hidden {
+        padding: 5% 5%;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        &__property {
+          margin-left: 10%;
+          margin-bottom: 10%;
+          width: 100%;
+          height: auto;
+
+          &-text {
+            font-size: 18px;
+          }
+
+          &-data {
+            font-size: 18px;
+          }
+        }
+
+        &__button-container {
+          padding: 0;
+          width: 100%;
+          height: auto;
+        }
+
+        &__button {
+          margin-left: 10%;
+          font-size: 17px;
+        }
       }
     }
   }

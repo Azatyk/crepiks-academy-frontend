@@ -61,5 +61,11 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
   }
+
+  @media (max-width: 1200px) {
+    &__page {
+      padding: 0 5%;
+    }
+  }
 }
 </style>

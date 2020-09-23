@@ -1,13 +1,27 @@
 <template>
   <div class="about">
-    <div class="about__text">
+    <!-- <div class="about__text">
       <div class="about__text-title">{{ course.title.ru }}</div>
       <div class="about__text-description">{{ course.description.ru }}</div>
       <router-link :to="'/app/courses/' + course.id" class="about__button"
         >Начать обучение</router-link
       >
     </div>
-    <img :src="course.iconPath" :alt="course.title.ru" class="about__image" />
+    <img :src="course.iconPath" :alt="course.title.ru" class="about__image" /> -->
+    <div class="about__text">
+      <div class="about__text-title">{{ $t("firstCourseTitle") }}</div>
+      <div class="about__text-description">
+        {{ $t("firstCourseDescription") }}
+      </div>
+      <router-link :to="'/app/courses/' + course.id" class="about__button">{{
+        $t("firstCourseButtonText")
+      }}</router-link>
+    </div>
+    <img
+      src="@/assets/images/firstCoursePreview.png"
+      alt="Basic HTML & CSS"
+      class="about__image"
+    />
   </div>
 </template>
 
@@ -49,8 +63,8 @@ export default {
 
   &__text {
     margin-left: 4%;
-    margin-right: 13%;
-    width: 40%;
+    margin-right: 5%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

@@ -1,18 +1,31 @@
 <template>
-  <div class="lesson">
+  <!-- <div class="lesson">
     <div class="lesson__content">
       <div class="lesson__content-number">{{ getLessonIndex(index) }}</div>
       <div class="lesson__content-title">{{ lesson.title.ru }}</div>
     </div>
     <router-link to="/app/courses" class="lesson__button">К уроку</router-link>
+  </div> -->
+  <div class="lesson">
+    <div class="lesson__content">
+      <div class="lesson__content-number">{{ getLessonIndex(index) }}</div>
+      <div class="lesson__content-title">{{ title }}</div>
+    </div>
+    <router-link to="/app/courses" class="lesson__button">{{
+      $t("lessonCardButtonText")
+    }}</router-link>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    lesson: {
-      type: Object,
+    // lesson: {
+    //   type: Object,
+    //   required: true
+    // },
+    title: {
+      type: String,
       required: true
     },
     index: {
@@ -22,8 +35,9 @@ export default {
   },
   methods: {
     getLessonIndex(index) {
+      index++;
       if (String(index).length == 1) {
-        return "0" + (index + 1);
+        return "0" + index;
       } else {
         return index;
       }
@@ -37,6 +51,7 @@ export default {
 
 .lesson {
   position: relative;
+  margin-bottom: 30px;
   padding: 0 2%;
   width: 100%;
   height: 90px;
@@ -63,7 +78,7 @@ export default {
   }
 
   &:hover:before {
-    clip-path: circle(25% at 100% 0%);
+    clip-path: circle(30% at 100% 0%);
   }
 
   &:hover {

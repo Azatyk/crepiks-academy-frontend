@@ -82,7 +82,7 @@ export default {};
     }
 
     &-description {
-      font-size: 1.2vw;
+      font-size: 1vw;
       color: $color-5;
     }
   }
@@ -118,6 +118,116 @@ export default {};
       width: 70px;
       height: auto;
       transition: 200ms ease-in-out;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    & {
+      padding: 5% 2%;
+      height: auto;
+
+      &__text {
+        width: 50%;
+
+        &-title {
+          font-size: 4.3vw;
+        }
+
+        &-description {
+          font-size: 2vw;
+        }
+      }
+
+      &__images {
+        height: 200px;
+
+        &-main {
+          right: 10%;
+          bottom: 10%;
+          width: 200px;
+        }
+
+        &-left {
+          width: 50px;
+        }
+
+        &-right {
+          right: -15%;
+          width: 50px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 650px) {
+    & {
+      padding: 5% 5%;
+      padding-bottom: 8%;
+      height: auto;
+      width: auto;
+      flex-direction: column-reverse;
+
+      &:hover {
+        transform: none;
+        box-shadow: 7px 7px 7px 0px $color-7;
+
+        .welcome__images {
+          &-main {
+            transform: none;
+          }
+
+          &-left {
+            transform: none;
+          }
+
+          &-right {
+            transform: none;
+          }
+        }
+      }
+
+      &__images {
+        height: auto;
+        margin: 10% 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-main {
+          position: relative;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 160px;
+        }
+
+        &-left {
+          bottom: 20%;
+          right: 80%;
+        }
+
+        &-right {
+          bottom: 20%;
+          right: 2%;
+          width: 40px;
+        }
+      }
+
+      &__text {
+        margin: 0;
+        width: 100%;
+
+        &-title {
+          font-size: 6vw;
+        }
+
+        &-description {
+          width: 100%;
+          font-size: 3.1vw;
+        }
+      }
     }
   }
 }
