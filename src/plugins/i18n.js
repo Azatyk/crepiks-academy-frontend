@@ -103,6 +103,7 @@ export const i18n = new VueI18n({
       testInfoButtonText: "Подробнее",
 
       courseCardButtonText: "Перейти к курсу",
+      courseCardSoonText: "Скоро появиться",
       courseCardHoverText: "Наведите курсор",
       courseCardComplexityText: "Сложность",
       courseCardDurationText: "Длительность",
@@ -149,7 +150,15 @@ export const i18n = new VueI18n({
       firstCourseLessonText26: "Позиционирование",
       firstCourseLessonText27: "Основные стили",
       firstCourseLessonText28: "Анимируем элемент",
-      firstCourseLessonText29: "Сдача проекта"
+      firstCourseLessonText29: "Сдача проекта",
+
+      firstCourseCardTitle: "Базовый HTML & CSS",
+      firstCourseCardDescription:
+        "На этом курсе вы познаете азы веб-разработки и создадите собственный одностраничный сайт",
+
+      secondCourseCardTitle: "Базовый JavaScript",
+      secondCourseCardDescription:
+        "На этом курсе вы изучите один из самых важных и популярных языков программирования - JavaScript"
     },
     kz: {
       headerWhatForLinkText: "Бұл маған не үшін қажет",
@@ -247,6 +256,7 @@ export const i18n = new VueI18n({
       testInfoButtonText: "Толығырақ",
 
       courseCardButtonText: "Курсқа өту",
+      courseCardSoonText: "Жақында",
       courseCardHoverText: "Меңзерді апарыңыз",
       courseCardComplexityText: "Күрделілігі",
       courseCardDurationText: "Ұзақтығы",
@@ -293,7 +303,15 @@ export const i18n = new VueI18n({
       firstCourseLessonText26: "Жайғасым",
       firstCourseLessonText27: "Негізгі стильдер",
       firstCourseLessonText28: "Элементтерді анимациялау",
-      firstCourseLessonText29: "Жобаны тапсыру"
+      firstCourseLessonText29: "Жобаны тапсыру",
+
+      firstCourseCardTitle: "Негізгі HTML & CSS",
+      firstCourseCardDescription:
+        "Бұл курста сіз веб-дамудың негіздерін білесіз және өзіңіздің жеке веб-сайтыңызды жасайсыз",
+
+      secondCourseCardTitle: "Негізгі JavaScript",
+      secondCourseCardDescription:
+        "Бұл курста сіз ең маңызды және танымал бағдарламалау тілдерінің бірін - JavaScript-ті үйренесіз"
     },
     en: {
       headerWhatForLinkText: "Why do I need this",
@@ -392,6 +410,7 @@ export const i18n = new VueI18n({
       testInfoButtonText: "More",
 
       courseCardButtonText: "Go to the course",
+      courseCardSoonText: "Soon appear",
       courseCardHoverText: "Move the cursor",
       courseCardComplexityText: "Complexity",
       courseCardDurationText: "Duration",
@@ -438,7 +457,15 @@ export const i18n = new VueI18n({
       firstCourseLessonText26: "Positioning",
       firstCourseLessonText27: "The main styles",
       firstCourseLessonText28: "Animating elements",
-      firstCourseLessonText29: "Delivery of the project"
+      firstCourseLessonText29: "Delivery of the project",
+
+      firstCourseCardTitle: "Basic HTML & CSS",
+      firstCourseCardDescription:
+        "In this course, you will learn the basics of web development and create your own one-page website",
+
+      secondCourseCardTitle: "Basic JavaScript",
+      secondCourseCardDescription:
+        "In this course, you will learn one of the most important and popular programming languages - JavaScript"
     }
   }
 });

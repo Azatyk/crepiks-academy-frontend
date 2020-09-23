@@ -44,10 +44,15 @@
           {{ $t("courseCardPriceDataText") }}
         </div>
       </div>
-      <div class="card-hidden__button-container">
+      <div class="card-hidden__button-container" v-if="!isSoon">
         <router-link :to="'/app/courses/' + id" class="card-hidden__button">{{
           $t("courseCardButtonText")
         }}</router-link>
+      </div>
+      <div class="card-hidden__button-container" v-else>
+        <div class="card-hidden__button card-hidden__button-soon">
+          {{ $t("courseCardSoonText") }}
+        </div>
       </div>
     </div>
   </div>
@@ -75,6 +80,10 @@ export default {
     id: {
       type: Number,
       required: true
+    },
+    isSoon: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -251,6 +260,16 @@ export default {
         transform: scale(1.05);
         color: $color-3;
         background-color: $color-1;
+      }
+
+      &-soon {
+        color: $color-3;
+        background-color: $color-1;
+        cursor: default;
+
+        &:hover {
+          transform: none;
+        }
       }
     }
   }

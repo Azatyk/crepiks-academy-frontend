@@ -2,7 +2,7 @@
   <div class="courses__page">
     <cWelcome />
     <div class="courses__cards">
-      <cCourseCard
+      <!-- <cCourseCard
         class="card"
         v-for="(course, index) in courses"
         :key="index"
@@ -11,6 +11,21 @@
         :description="course.description.ru"
         :lessonsAmount="course.duration"
         :id="course.id"
+      /> -->
+      <cCourseCard
+        class="card"
+        :title="$t('firstCourseCardTitle')"
+        :description="$t('firstCourseCardDescription')"
+        :image="firstCourseImage"
+        :id="1"
+      />
+      <cCourseCard
+        class="card"
+        :title="$t('secondCourseCardTitle')"
+        :description="$t('firstCourseCardDescription')"
+        :image="secondCourseImage"
+        :isSoon="true"
+        :id="1"
       />
     </div>
   </div>
@@ -19,6 +34,8 @@
 <script>
 import cWelcome from "@/components/courses/cWelcome";
 import cCourseCard from "@/components/courses/cCourseCard";
+import firstImage from "@/assets/images/firstCoursePreview.png";
+import secondImage from "@/assets/images/secondCoursePreview.png";
 
 export default {
   components: {
@@ -27,6 +44,8 @@ export default {
   },
   data() {
     return {
+      firstCourseImage: firstImage,
+      secondCourseImage: secondImage,
       courses: []
     };
   },

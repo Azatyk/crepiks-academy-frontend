@@ -60,15 +60,18 @@
       </vs-sidebar-item>
     </vs-sidebar>
     <cProfile
+      v-show="!isMobile"
       :is-profile-open="isProfileOpen"
       @close-profile="closeProfile"
       @open-change-password="isChangePasswordOpen = true"
     />
     <cChangePassword
+      v-show="!isMobile"
       :is-change-password-open="isChangePasswordOpen"
       @close-change-password="isChangePasswordOpen = false"
     />
     <cCreateAccountDialog
+      v-show="!isMobile"
       :is-create-account-dialog-open="isCreateProfileDialogOpen"
       @close-create-account-dialog="isCreateProfileDialogOpen = false"
     />
@@ -99,7 +102,8 @@ export default {
       isSidebarOpen: false, // для корректной работа логотипа
       isProfileOpen: false,
       isChangePasswordOpen: false,
-      isCreateProfileDialogOpen: false
+      isCreateProfileDialogOpen: false,
+      isMobile: false
     };
   },
 
@@ -113,6 +117,9 @@ export default {
 
   mounted() {
     this.activeLink = this.$route.fullPath;
+    if (document.body.clientWidth <= 1200) {
+      this.isMobile = true;
+    }
   },
 
   methods: {

@@ -21,14 +21,14 @@
         <button type="submit" class="auth-form__button">
           {{ $t("authLoginButtonText") }}
         </button>
-        <div class="auth-form__link-text auth-form__link-container">
+        <!-- <div class="auth-form__link-text auth-form__link-container">
           {{ $t("authLoginNoAccountText") }}
           <router-link
             to="/auth/register"
             class="auth-form__link-text auth-form__link"
             >{{ $t("authLoginRegisterText") }}</router-link
           >
-        </div>
+        </div> -->
       </div>
     </div>
   </c-form>
