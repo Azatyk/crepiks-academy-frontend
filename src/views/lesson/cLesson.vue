@@ -29,7 +29,8 @@
         class="interactive__navigation-target"
         @click="isNavigationMenuOpen = !isNavigationMenuOpen"
       >
-        <i class="fas fa-chevron-up interactive__navigation-icon"></i>
+        <i class="bx bx-chevron-right interactive__navigation-icon"></i>
+        interactive__navigation-icon
       </div>
     </div>
     <div class="black__background" @click="isNavigationMenuOpen = false"></div>

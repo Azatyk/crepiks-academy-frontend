@@ -1,85 +1,45 @@
 <template>
   <div class="home-page">
-    <div class="home__news">
-      <div class="home__news-text">
-        <div class="home__news-title">Новый курс "Базовый HTML & CSS"</div>
-        <div class="home__news-description">
-          Пройдите новый курс по базовой верстке и создайте свой собственный
-          одностраничный сайт!
-        </div>
-        <s-button
-          class="home__news-button"
-          @click="$router.push('/app/courses')"
-          >Попробовать</s-button
-        >
-      </div>
-      <i class="fas fa-money-check home__news-icon"></i>
-    </div>
+    <cCourseInfo class="home__news" />
+    <cTrainerInfo class="home__soon" />
+    <cTestInfo class="home__test" />
   </div>
 </template>
 
 <script>
-import Button from "vuesax/dist/vsButton";
+import cCourseInfo from "@/components/home/cCourseInfo.vue";
+import cTrainerInfo from "@/components/home/cTrainerInfo.vue";
+import cTestInfo from "@/components/home/cTestInfo.vue";
 
 export default {
   components: {
-    "s-button": Button
+    cCourseInfo,
+    cTrainerInfo,
+    cTestInfo
   }
 };
 </script>
 
-<style>
-.home-page {
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-}
+<style lang="scss">
+@import "@/assets/styles/variables.scss";
 
-.home__news {
-  margin-top: 10vh;
-  width: 60%;
-  height: 350px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5f7f6;
-  border-radius: 30px;
-  box-shadow: 10px 10px 7px 0px #0000001a;
-}
+.home {
+  &-page {
+    padding: 0 2%;
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 
-.home__news-text {
-  margin-right: 10%;
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.home__news-title {
-  margin-bottom: 10px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #2e2e3d;
-}
-
-.home__news-description {
-  font-size: 20px;
-  color: #2e2e3d;
-}
-
-.home__news-button {
-  margin-left: 0;
-  margin-top: 25px;
-  height: 40px;
-  width: 35%;
-  font-size: 17px;
-}
-
-.home__news-icon {
-  font-size: 220px;
-  color: #2e2e3d;
+  @media (max-width: 1200px) {
+    &-page {
+      padding: 0 5%;
+    }
+  }
 }
 </style>

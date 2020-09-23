@@ -20,7 +20,9 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .about-course {
   margin: auto;
   margin-bottom: 20%;
@@ -47,13 +49,13 @@ export default {};
 .about-course__title {
   margin-bottom: 30px;
   font-size: 3.4vw;
-  color: #2522a0;
+  color: $color-2;
   font-weight: bold;
 }
 
 .about-course__description {
   font-size: 1.4vw;
-  color: #2522a0;
+  color: $color-2;
   font-weight: 300;
   opacity: 1;
 }

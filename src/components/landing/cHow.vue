@@ -47,7 +47,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
 .landing__how {
   margin-bottom: 3%;
   width: 100%;
@@ -60,7 +62,7 @@ export default {
 .how__heading {
   margin-bottom: 60px;
   font-size: 3.5vw;
-  color: #2522a0;
+  color: $color-2;
 }
 
 .how__cards {
