@@ -19,7 +19,7 @@
     />
     <div class="editor__buttons">
       <div
-        class="editor__button editor__button-html"
+        class="editor__button"
         @click="isHTMLshowing = true"
         :class="{ 'editor__button-active': isHTMLshowing }"
       >
@@ -98,8 +98,11 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .editor {
+  margin: 0 1%;
   width: 100%;
-  height: 50%;
+  height: 60%;
+  border-radius: 10px;
+  background-color: $color-6;
 
   &__heading {
     padding-left: 3%;
@@ -110,26 +113,27 @@ export default {
     color: $color-5;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid $color-9;
   }
 
   &__editor {
     padding: 0;
     width: 100%;
-    height: calc(100% - 100px);
+    height: calc(100% - 130px);
   }
 
   &__buttons {
-    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    width: 95%;
     height: 50px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     box-sizing: border-box;
-    border-top: 1px solid $color-9;
   }
 
   &__button {
-    width: 50%;
+    width: 48%;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -138,19 +142,17 @@ export default {
     font-size: 18px;
     font-weight: 300;
     color: $color-5;
+    border-radius: 10px;
+    background-color: $color-3;
     transition: 200ms ease-in-out;
     cursor: pointer;
 
     &:hover {
-      background-color: $color-3;
+      background-color: $color-4;
     }
 
     &-active {
-      background-color: $color-3;
-    }
-
-    &-html {
-      border-right: 1px solid $color-9;
+      background-color: $color-4;
     }
   }
 }

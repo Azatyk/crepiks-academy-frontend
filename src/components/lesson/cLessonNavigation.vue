@@ -76,7 +76,8 @@ export default {
   left: 0;
   height: 100%;
   width: 500px;
-  background-color: white;
+  border-radius: 0 10px 10px 0;
+  background-color: $color-6;
   z-index: 5;
   transition: 200ms ease-in-out;
 
@@ -108,7 +109,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: 1px solid $color-9;
+    border-radius: 10px;
+    background-color: $color-6;
     transition: 200ms ease-in-out;
     cursor: pointer;
 
@@ -122,7 +124,7 @@ export default {
     }
 
     &-icon {
-      font-size: 18px;
+      font-size: 30px;
       color: $color-5;
       transform: rotate(180deg);
       transition: 200ms ease-in-out;
@@ -158,32 +160,5 @@ export default {
       transform: rotate(0deg);
     }
   }
-}
-
-.navClosed {
-  left: -450px;
-  transition: 200ms ease-in-out;
-}
-
-.interactive__navigation-target:hover > .interactive__navigation-icon {
-  color: #1e272e !important;
-  transition: 200ms ease-in-out;
-}
-
-.black__background {
-  position: absolute;
-  top: 0;
-  margin-left: 50px;
-  height: 100vh;
-  width: calc(100% - 50px);
-  background-color: #1e272e;
-  opacity: 0.2;
-  transition: 200ms ease-in-out;
-  z-index: 2;
-}
-
-.navClosed ~ .interactive__content {
-  filter: none;
-  transition: 200ms ease-in-out;
 }
 </style>
