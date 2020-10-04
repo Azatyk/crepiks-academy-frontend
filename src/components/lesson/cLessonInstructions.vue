@@ -5,13 +5,16 @@
       Задания
     </div>
     <div class="instructions__content">
-      <div class="instructions__task">
-        <span
-          v-for="(task, index) in lesson.tasks"
-          :key="index"
-          class="instructions__task-dash"
-          >—</span
-        >task
+      <div class="instructions__tasks-description">
+        {{ lesson.description.ru }}
+      </div>
+      <div
+        class="instructions__task"
+        v-for="(task, index) in lesson.tasks"
+        :key="index"
+      >
+        <span class="instructions__task-dash">—</span>
+        <span class="instructions__task-text">{{ task.description.ru }}</span>
       </div>
     </div>
     <div class="instructions__hint" @click="isHintActive = true">
@@ -21,11 +24,14 @@
       <div class="instructions__hint-dialog">
         <h1 class="instructions__hint-title">Подсказка</h1>
         <div class="instructions__hint-text">
-          {{ lesson.hint || "" }}
+          {{ lesson.hint.ru }}
         </div>
-        <div class="hint__dialog-button" @click="isHintActive = false">
+        <button
+          class="instructions__hint__dialog-button"
+          @click="isHintActive = false"
+        >
           Понятно
-        </div>
+        </button>
       </div>
     </vs-dialog>
     <div
@@ -90,14 +96,18 @@ export default {
 
   &__content {
     box-sizing: border-box;
-    padding-left: 3%;
-    padding-top: 3%;
+    padding: 3%;
     width: 100%;
+  }
+
+  &__tasks-description {
+    margin-bottom: 20px;
+    font-size: 18px;
   }
 
   &__task {
     margin-bottom: 10px;
-    font-size: 15px;
+    font-size: 18px;
     color: #1e272e;
 
     &-dash {
@@ -129,6 +139,7 @@ export default {
 
     &-dialog {
       padding: 5%;
+      padding-bottom: 3%;
     }
 
     &-title {
@@ -148,14 +159,15 @@ export default {
     &__dialog-button {
       padding: 8px 22px;
       color: $color-4;
-      font-size: 30px;
-      border: 2px solid $color-1;
-      border-radius: 30px;
-      background-color: $color-1;
+      font-size: 25px;
+      border: 2px solid $color-2;
+      border-radius: 15px;
+      background-color: $color-2;
       transition: 150ms ease-in-out;
       cursor: pointer;
 
       &:hover {
+        transform: scale(1.05);
         color: $color-1;
         background-color: $color-4;
       }

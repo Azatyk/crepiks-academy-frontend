@@ -5,19 +5,21 @@
     </div>
     <codemirror
       class="editor__editor"
-      :code="lesson.htmlCode"
+      :class="{ 'editor__editor-full': !codeCSS }"
+      :code="codeHTML"
       v-model="codeHTML"
       :options="htmlOptions"
       v-if="isHTMLshowing"
     />
     <codemirror
       class="editor__editor"
-      :code="lesson.cssCode"
+      :code="codeCSS"
       v-model="codeCSS"
       :options="cssOptions"
+      v-show="codeCSS"
       v-else
     />
-    <div class="editor__buttons">
+    <div class="editor__buttons" v-if="codeCSS">
       <div
         class="editor__button editor__button-html"
         @click="isHTMLshowing = true"
@@ -69,9 +71,15 @@ export default {
         lineNumbers: true,
         line: true
       },
-      codeHTML: null,
-      codeCSS: null
+      codeHTML: "",
+      codeCSS: ""
     };
+  },
+  watch: {
+    lesson() {
+      if (this.lesson.htmlCode) this.codeHTML = this.lesson.htmlCode;
+      if (this.lesson.cssCode) this.codeCSS = this.lesson.cssCode;
+    }
   },
   methods: {
     runCode() {
@@ -117,6 +125,10 @@ export default {
     padding: 0;
     width: 100%;
     height: calc(100% - 100px);
+
+    &-full {
+      height: calc(100% - 50px);
+    }
   }
 
   &__buttons {
