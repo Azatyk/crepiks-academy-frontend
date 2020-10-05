@@ -56,7 +56,7 @@ export default {
   },
   watch: {
     lesson() {
-      this.isTheoryOnly = Boolean(this.lesson.description.ru);
+      this.isTheoryOnly = Boolean(!this.lesson.description.ru);
     }
   },
   methods: {
