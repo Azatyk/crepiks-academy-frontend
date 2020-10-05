@@ -6,34 +6,32 @@
         Браузер
       </div>
       <div class="browser__content">
-      <iframe
-        src="/browser.html"
-        name="browser"
-        class="browser__frame"
-        id="interactiveFrame"
-        noresize
-      ></iframe>
-      <div class="browser__theory-button" @click="isTheoryActive = true">
-        Теория
-      </div>
-      <vs-dialog
-        scroll
-        overflow-hidden
-        :not-close="isTheoryOnly"
-        :prevent-close="isTheoryOnly"
-        full-screen
-        v-model="isTheoryActive"
-      >
-        <div class="browser__theory">
-          <div class="browser__theory-text">
-            <h1 class="browser__theory-title">{{ lesson.title.ru }}</h1>
-            <p class="browser__theory-description">{{ lesson.theory.ru }}</p>
-            <button
-              class="browser__theory-text-button"
-              @click="handleTheoryButton"
-            >
-              {{ lesson.nextButtonText.ru || "Перейти к заданию" }}
-            </button>
+        <iframe
+          src="/browser.html"
+          name="browser"
+          class="browser__frame"
+          id="interactiveFrame"
+          noresize
+        ></iframe>
+        <vs-dialog
+          scroll
+          overflow-hidden
+          :not-close="isTheoryOnly"
+          :prevent-close="isTheoryOnly"
+          full-screen
+          v-model="isTheoryActive"
+        >
+          <div class="browser__theory">
+            <div class="browser__theory-text">
+              <h1 class="browser__theory-title">{{ lesson.title.ru }}</h1>
+              <p class="browser__theory-description">{{ lesson.theory.ru }}</p>
+              <button
+                class="browser__theory-text-button"
+                @click="handleTheoryButton"
+              >
+                {{ lesson.nextButtonText.ru || "Перейти к заданию" }}
+              </button>
+            </div>
           </div>
         </vs-dialog>
       </div>
@@ -177,6 +175,7 @@ export default {
       padding: 7px 24px;
       color: $color-4;
       font-size: 23px;
+      border: 2px solid $color-2;
       border-radius: 10px;
       background-color: $color-2;
       transition: 150ms ease-in-out;

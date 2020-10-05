@@ -80,7 +80,7 @@ export default {
   left: 0;
   height: 100%;
   width: 500px;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 30px 30px 0;
   background-color: $color-6;
   z-index: 5;
   transition: 200ms ease-in-out;
@@ -113,7 +113,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 0 30px 30px 0;
     background-color: $color-6;
     transition: 200ms ease-in-out;
     cursor: pointer;
@@ -158,6 +158,7 @@ export default {
 
   &__closed {
     left: -450px;
+    border-radius: 0 30px 30px 0;
     transition: 200ms ease-in-out;
 
     .navigation__button-icon {

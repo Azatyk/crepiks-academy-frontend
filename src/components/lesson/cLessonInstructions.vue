@@ -1,25 +1,33 @@
 <template>
-<div class="instructions__container">
-  <div class="instructions" ref="lessonInstructions">
-    <div class="instructions__heading">
-      Задания
-    </div>
-    <div class="instructions__content">
-      <div class="instructions__tasks-description">
-        {{ lesson.description.ru }}
+  <div class="instructions__container">
+    <div class="instructions" ref="lessonInstructions">
+      <div class="instructions__heading">
+        Задания
       </div>
-      <div
-        class="instructions__task"
-        v-for="(task, index) in lesson.tasks"
-        :key="index"
+      <div class="instructions__content">
+        <div class="instructions__tasks-description">
+          {{ lesson.description.ru }}
+        </div>
+        <div
+          class="instructions__task"
+          v-for="(task, index) in lesson.tasks"
+          :key="index"
+        >
+          <span class="instructions__task-dash">—</span>
+          <span class="instructions__task-text">{{ task.description.ru }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="instructions__buttons">
+      <button class="instructions__buttons-hint" @click="isHintActive = true">
+        Подсказка
+      </button>
+      <button
+        class="instructions__buttons-run"
+        @click="$emit('run-code-button-clicked')"
       >
-        <span class="instructions__task-dash">—</span>
-        <span class="instructions__task-text">{{ task.description.ru }}</span>
-      </div>
-    </div>
-    <div class="instructions__hint" @click="isHintActive = true">
-      <div class="instructions__hint-button">Подсказка</div>
-    </div>
+        Выполнить
+      </button>
     </div>
     <vs-dialog blur v-model="isHintActive">
       <div class="instructions__hint-dialog">
@@ -34,7 +42,7 @@
           Понятно
         </button>
       </div>
-    </div>
+    </vs-dialog>
   </div>
 </template>
 
@@ -140,6 +148,7 @@ export default {
       align-items: center;
       font-size: 18px;
       color: $color-5;
+      border: none;
       border-radius: 10px;
       background-color: $color-6;
       transition: 200ms ease-in-out;
@@ -195,14 +204,14 @@ export default {
     &__dialog-button {
       padding: 8px 22px;
       color: $color-4;
-      font-size: 30px;
-      border-radius: 30px;
-      background-color: $color-1;
+      font-size: 25px;
+      border: 2px solid $color-2;
+      border-radius: 15px;
+      background-color: $color-2;
       transition: 150ms ease-in-out;
       cursor: pointer;
 
       &:hover {
-        transform: scale(1.05);
         color: $color-1;
         background-color: $color-4;
       }
