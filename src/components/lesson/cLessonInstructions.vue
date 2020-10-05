@@ -1,6 +1,6 @@
 <template>
+<div class="instructions__container">
   <div class="instructions" ref="lessonInstructions">
-    <div class="drag-height"></div>
     <div class="instructions__heading">
       Задания
     </div>
@@ -20,6 +20,7 @@
     <div class="instructions__hint" @click="isHintActive = true">
       <div class="instructions__hint-button">Подсказка</div>
     </div>
+    </div>
     <vs-dialog blur v-model="isHintActive">
       <div class="instructions__hint-dialog">
         <h1 class="instructions__hint-title">Подсказка</h1>
@@ -33,12 +34,6 @@
           Понятно
         </button>
       </div>
-    </vs-dialog>
-    <div
-      class="instructions__run-button"
-      @click="$emit('run-code-button-clicked')"
-    >
-      Выполнить
     </div>
   </div>
 </template>
@@ -79,8 +74,19 @@ export default {
 
 .instructions {
   position: relative;
+  margin: 0 1%;
   width: 100%;
-  height: 50%;
+  height: 80%;
+  border-radius: 10px;
+  background-color: $color-6;
+
+  &__container {
+    width: 100%;
+    height: 38%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   &__heading {
     padding-left: 3%;
@@ -91,13 +97,15 @@ export default {
     align-items: center;
     color: #1e272e;
     font-size: 20px;
-    border-bottom: 1px solid $color-9;
   }
 
   &__content {
     box-sizing: border-box;
     padding: 3%;
     width: 100%;
+    height: calc(100% - 50px);
+    border-radius: 10px;
+    background-color: $color-4;
   }
 
   &__tasks-description {
@@ -115,28 +123,56 @@ export default {
     }
   }
 
-  &__hint {
-    &-button {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 50px;
-      width: calc(100% - 160px);
+  &__buttons {
+    margin: 0 1%;
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &-hint {
+      height: 100%;
+      width: 76%;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 18px;
       color: $color-5;
-      border-top: 1px solid $color-9;
+      border-radius: 10px;
+      background-color: $color-6;
       transition: 200ms ease-in-out;
       cursor: pointer;
 
       &:hover {
-        background-color: $color-3;
-        transition: 200ms ease-in-out;
+        background-color: $color-4;
       }
     }
 
+    &-run {
+      height: 100%;
+      width: 21%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      font-size: 18px;
+      color: $color-4;
+      border: 3px solid $color-2;
+      border-radius: 10px;
+      background-color: $color-2;
+      transition: 200ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-2;
+        background-color: $color-4;
+      }
+    }
+  }
+
+  &__hint {
     &-dialog {
       padding: 5%;
       padding-bottom: 3%;
@@ -159,10 +195,9 @@ export default {
     &__dialog-button {
       padding: 8px 22px;
       color: $color-4;
-      font-size: 25px;
-      border: 2px solid $color-2;
-      border-radius: 15px;
-      background-color: $color-2;
+      font-size: 30px;
+      border-radius: 30px;
+      background-color: $color-1;
       transition: 150ms ease-in-out;
       cursor: pointer;
 
@@ -173,33 +208,12 @@ export default {
       }
     }
   }
-
-  &__run-button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 50px;
-    width: 160px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 300;
-    color: $color-4;
-    background-color: $color-1;
-    transition: 200ms ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
 }
 
-.drag-height {
-  width: 100%;
-  height: 5px;
-  border-top: 1px solid $color-9;
-  cursor: s-resize;
-}
+// .drag-height {
+//   width: 100%;
+//   height: 5px;
+//   border-top: 1px solid $color-9;
+//   cursor: s-resize;
+// }
 </style>

@@ -150,6 +150,7 @@ export default {
   &__page {
     width: 100%;
     height: 100vh;
+    background-color: $color-6;
   }
 
   &__content {
@@ -159,14 +160,17 @@ export default {
     display: flex;
     flex-direction: row;
     /* filter: blur(3px); */
+    background-color: $color-3-dark;
     transition: 200ms ease-in-out;
   }
 
   &__programming {
-    width: 50%;
-    height: 100%;
+    margin: 3vh 1%;
+    width: 48%;
+    height: 94vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   &__blur-background {
