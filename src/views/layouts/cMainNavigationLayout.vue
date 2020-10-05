@@ -58,6 +58,15 @@ export default {
   font-size: 15px;
 }
 
+.vs-dialog__content {
+  padding: 0;
+  margin: 2% 0;
+  box-sizing: border-box;
+  max-height: 100% !important;
+  height: 96%;
+  overflow: hidden;
+}
+
 @media (max-width: 1200px) {
   .vs-select__input {
     font-size: 20px !important;

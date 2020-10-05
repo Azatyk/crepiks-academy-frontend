@@ -59,6 +59,10 @@ export default {
     }
   },
   watch: {
+    $route() {
+      this.$emit("change-route");
+      this.changeNavigationPosition();
+    },
     isOpen() {
       if (!this.isOpen) {
         this.isNavigationMenuOpen = false;

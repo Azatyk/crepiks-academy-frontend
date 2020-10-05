@@ -6,26 +6,34 @@
         Браузер
       </div>
       <div class="browser__content">
-        <iframe
-          src="/browser.html"
-          name="browser"
-          class="browser__frame"
-          id="interactiveFrame"
-          noresize
-        ></iframe>
-        <vs-dialog
-          overflow-hidden
-          auto-width
-          full-screen
-          blur
-          v-model="isTheoryActive"
-        >
-          <div class="browser__theory">
-            <div class="browser__theory-text">
-              <h1 class="browser__theory-title">{{ lesson.title.ru }}</h1>
-              <p class="browser__theory-description">{{ lesson.theory.ru }}</p>
-              <button class="browser__theory-text-button">Круто!</button>
-            </div>
+      <iframe
+        src="/browser.html"
+        name="browser"
+        class="browser__frame"
+        id="interactiveFrame"
+        noresize
+      ></iframe>
+      <div class="browser__theory-button" @click="isTheoryActive = true">
+        Теория
+      </div>
+      <vs-dialog
+        scroll
+        overflow-hidden
+        :not-close="isTheoryOnly"
+        :prevent-close="isTheoryOnly"
+        full-screen
+        v-model="isTheoryActive"
+      >
+        <div class="browser__theory">
+          <div class="browser__theory-text">
+            <h1 class="browser__theory-title">{{ lesson.title.ru }}</h1>
+            <p class="browser__theory-description">{{ lesson.theory.ru }}</p>
+            <button
+              class="browser__theory-text-button"
+              @click="handleTheoryButton"
+            >
+              {{ lesson.nextButtonText.ru || "Перейти к заданию" }}
+            </button>
           </div>
         </vs-dialog>
       </div>
@@ -46,8 +54,27 @@ export default {
   },
   data() {
     return {
-      isTheoryActive: false
+      isTheoryActive: true,
+      isTheoryOnly: true
     };
+  },
+  watch: {
+    lesson() {
+      this.isTheoryOnly = Boolean(!this.lesson.description.ru);
+    }
+  },
+  methods: {
+    handleTheoryButton() {
+      if (this.isTheoryOnly) {
+        let courseId = this.$route.params.courseId;
+        let nextLessonId = Number(this.$route.params.lessonId) + 1;
+        this.$router.push(
+          "/app/courses/" + courseId + "/lessons/" + nextLessonId
+        );
+      } else {
+        this.isTheoryActive = false;
+      }
+    }
   }
   // methods: {
   //   handleWidthResizing(e) {
@@ -146,6 +173,7 @@ export default {
     }
 
     &-text-button {
+      margin-bottom: 40px;
       padding: 7px 24px;
       color: $color-4;
       font-size: 23px;

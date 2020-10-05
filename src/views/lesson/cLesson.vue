@@ -5,6 +5,7 @@
       :isOpen="isNavigationOpen"
       @open-navigation="isNavigationOpen = true"
       @close-navigation="isNavigationOpen = false"
+      @change-route="getLesson"
     />
     <div
       class="lesson__blur-background"
@@ -50,12 +51,28 @@ export default {
           ru: "",
           kz: "",
           en: ""
+        },
+        description: {
+          ru: "",
+          kz: "",
+          en: ""
+        },
+        hint: {
+          ru: "",
+          kz: "",
+          en: ""
+        },
+        nextButtonText: {
+          ru: "",
+          kz: "",
+          en: ""
         }
       },
       lessons: [],
       isNavigationOpen: false
     };
   },
+
   mounted() {
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
@@ -65,14 +82,34 @@ export default {
       .then(res => (this.lesson = res.data.lesson));
 
     this.$store
-      .dispatch("getLessons", lessonId)
+      .dispatch("getLessons", courseId)
       .then(res => (this.lessons = res.data.lessons));
   },
+
   methods: {
     runCodeChildMethod() {
       for (let child of this.$children) {
         if (child.$options._componentTag == "cCodeEditor") {
           child.runCode();
+        }
+      }
+    },
+
+    getLesson() {
+      let courseId = this.$route.params.courseId;
+      let lessonId = this.$route.params.lessonId;
+
+      this.$store
+        .dispatch("getLesson", { courseId, lessonId })
+        .then(res => (this.lesson = res.data.lesson));
+
+      this.$store
+        .dispatch("getLessons", courseId)
+        .then(res => (this.lessons = res.data.lessons));
+
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          child.isTheoryActive = true;
         }
       }
     }

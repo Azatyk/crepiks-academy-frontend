@@ -1,41 +1,38 @@
 <template>
-  <div class="instructions__container">
-    <div class="instructions" ref="lessonInstructions">
-      <!-- <div class="drag-height"></div> -->
-      <div class="instructions__heading">
-        Задания
-      </div>
-      <div class="instructions__content">
-        <div class="instructions__task">
-          <span
-            v-for="(task, index) in lesson.tasks"
-            :key="index"
-            class="instructions__task-dash"
-            >—</span
-          >task
-        </div>
-      </div>
-      <vs-dialog blur v-model="isHintActive">
-        <div class="instructions__hint-dialog">
-          <h1 class="instructions__hint-title">Подсказка</h1>
-          <div class="instructions__hint-text">
-            {{ lesson.hint || "" }}
-          </div>
-          <div class="hint__dialog-button" @click="isHintActive = false">
-            Понятно
-          </div>
-        </div>
-      </vs-dialog>
+<div class="instructions__container">
+  <div class="instructions" ref="lessonInstructions">
+    <div class="instructions__heading">
+      Задания
     </div>
-    <div class="instructions__buttons">
-      <div class="instructions__buttons-hint" @click="isHintActive = true">
-        Подсказка
+    <div class="instructions__content">
+      <div class="instructions__tasks-description">
+        {{ lesson.description.ru }}
       </div>
       <div
-        class="instructions__buttons-run"
-        @click="$emit('run-code-button-clicked')"
+        class="instructions__task"
+        v-for="(task, index) in lesson.tasks"
+        :key="index"
       >
-        Выполнить
+        <span class="instructions__task-dash">—</span>
+        <span class="instructions__task-text">{{ task.description.ru }}</span>
+      </div>
+    </div>
+    <div class="instructions__hint" @click="isHintActive = true">
+      <div class="instructions__hint-button">Подсказка</div>
+    </div>
+    </div>
+    <vs-dialog blur v-model="isHintActive">
+      <div class="instructions__hint-dialog">
+        <h1 class="instructions__hint-title">Подсказка</h1>
+        <div class="instructions__hint-text">
+          {{ lesson.hint.ru }}
+        </div>
+        <button
+          class="instructions__hint__dialog-button"
+          @click="isHintActive = false"
+        >
+          Понятно
+        </button>
       </div>
     </div>
   </div>
@@ -104,17 +101,21 @@ export default {
 
   &__content {
     box-sizing: border-box;
-    padding-left: 3%;
-    padding-top: 3%;
+    padding: 3%;
     width: 100%;
     height: calc(100% - 50px);
     border-radius: 10px;
     background-color: $color-4;
   }
 
+  &__tasks-description {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
   &__task {
     margin-bottom: 10px;
-    font-size: 15px;
+    font-size: 18px;
     color: #1e272e;
 
     &-dash {
@@ -174,6 +175,7 @@ export default {
   &__hint {
     &-dialog {
       padding: 5%;
+      padding-bottom: 3%;
     }
 
     &-title {
@@ -200,6 +202,7 @@ export default {
       cursor: pointer;
 
       &:hover {
+        transform: scale(1.05);
         color: $color-1;
         background-color: $color-4;
       }
