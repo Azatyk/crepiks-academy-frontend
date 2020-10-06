@@ -5,9 +5,10 @@
         Задания
       </div>
       <div class="instructions__content">
-        <div class="instructions__tasks-description">
-          {{ lesson.description.ru }}
-        </div>
+        <div
+          class="instructions__tasks-description"
+          v-html="lesson.description.ru"
+        ></div>
         <div
           class="instructions__task"
           v-for="(task, index) in lesson.tasks"
@@ -32,9 +33,7 @@
     <vs-dialog blur v-model="isHintActive">
       <div class="instructions__hint-dialog">
         <h1 class="instructions__hint-title">Подсказка</h1>
-        <div class="instructions__hint-text">
-          {{ lesson.hint.ru }}
-        </div>
+        <div class="instructions__hint-text" v-html="lesson.hint.ru"></div>
         <button
           class="instructions__hint__dialog-button"
           @click="isHintActive = false"
@@ -114,6 +113,7 @@ export default {
     height: calc(100% - 50px);
     border-radius: 10px;
     background-color: $color-4;
+    overflow: scroll;
   }
 
   &__tasks-description {

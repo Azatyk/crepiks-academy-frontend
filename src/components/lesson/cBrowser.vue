@@ -15,16 +15,63 @@
         ></iframe>
         <vs-dialog
           scroll
+          blur
           overflow-hidden
           :not-close="isTheoryOnly"
           :prevent-close="isTheoryOnly"
           full-screen
           v-model="isTheoryActive"
         >
+          <div class="browser__theory-navigation browser-navigation">
+            <div
+              @click="isTheoryNavigationOpen = !isTheoryNavigationOpen"
+              class="browser-navigation__button"
+            >
+              <i
+                v-if="!isTheoryNavigationOpen"
+                class="bx bx-menu browser-navigation__icon"
+              ></i>
+              <i v-else class="bx bx-x browser-navigation__icon"></i>
+            </div>
+            <div
+              class="browser-navigation__content"
+              :class="{
+                'browser-navigation__content-close': !isTheoryNavigationOpen
+              }"
+            >
+              <router-link to="/app/home" class="browser-navigation__logo"
+                >Crepiks
+                <div class="browser-navigation__logo-thin">
+                  Academy
+                </div></router-link
+              >
+              <div class="browser-navigation__lessons">
+                <router-link
+                  v-for="(lesson, index) in lessons"
+                  :key="index"
+                  :to="
+                    '/app/courses/' +
+                      $route.params.courseId +
+                      '/lessons/' +
+                      lesson.id
+                  "
+                  class="browser-navigation__lesson"
+                >
+                  <div class="browser-navigation__lesson-number">
+                    {{ lesson.id }}
+                  </div>
+                  {{ lesson.title.ru }}
+                </router-link>
+              </div>
+            </div>
+          </div>
           <div class="browser__theory">
             <div class="browser__theory-text">
               <h1 class="browser__theory-title">{{ lesson.title.ru }}</h1>
-              <p class="browser__theory-description">{{ lesson.theory.ru }}</p>
+              <p
+                class="browser__theory-description"
+                v-html="lesson.theory.ru"
+              ></p>
               <button
                 class="browser__theory-text-button"
                 @click="handleTheoryButton"
@@ -48,12 +95,17 @@ export default {
     lesson: {
       type: Object,
       required: true
+    },
+    lessons: {
+      type: Array,
+      required: true
     }
   },
   data() {
     return {
       isTheoryActive: true,
-      isTheoryOnly: true
+      isTheoryOnly: true,
+      isTheoryNavigationOpen: false
     };
   },
   watch: {
@@ -74,23 +126,6 @@ export default {
       }
     }
   }
-  // methods: {
-  //   handleWidthResizing(e) {
-  //     let container = this.$refs.interactiveContent,
-  //       programmingBlock = this.$refs.interactiveProgramming,
-  //       browserBlock = this.$refs.interactiveBrowser;
-  //     let offsetRight = container.clientWidth - e.clientX + 50;
-  //     console.log("Ширина контейнера", container.clientWidth);
-  //     programmingBlock.style.width = container.clientWidth - offsetRight + "px";
-  //     browserBlock.style.width = offsetRight + "px";
-  //   },
-  //   handleStartWidthResizing() {
-  //     document.addEventListener("mousemove", this.handleWidthResizing);
-  //   },
-  //   handleEndWidthResizing() {
-  //     document.removeEventListener("mousemove", this.handleWidthResizing);
-  //   },
-  // },
 };
 </script>
 
@@ -140,6 +175,128 @@ export default {
     width: 100%;
     height: calc(100% - 100px);
     border: none;
+  }
+
+  &-navigation {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &__button {
+      position: absolute;
+      left: 2vw;
+      top: 0.5vw;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      box-shadow: 7px 7px 7px 0px $color-7;
+      background-color: $color-6;
+      transition: 150ms ease-in-out;
+      cursor: pointer;
+      z-index: 3;
+
+      &:hover {
+        transform: translateX(2px) translateY(2px);
+        box-shadow: 4px 4px 7px 0px $color-7;
+      }
+    }
+
+    &__icon {
+      font-size: 20px;
+      color: $color-5;
+    }
+
+    &__content {
+      position: fixed;
+      padding: 5% 2%;
+      left: 2vw;
+      width: 22vw;
+      height: 90vh;
+      box-sizing: border-box;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      transition: 200ms ease-in-out;
+      border-radius: 30px;
+      background-color: $color-6;
+      box-shadow: 7px 7px 7px 0px $color-7;
+
+      &-close {
+        display: none;
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    &__logo {
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: row;
+      color: $color-1;
+      font-size: 30px;
+      font-weight: 500;
+      text-decoration: none;
+
+      &-thin {
+        margin-left: 5px;
+        font-weight: 300;
+      }
+    }
+
+    &__lessons {
+      margin-left: -10px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: hidden;
+    }
+
+    &__lesson {
+      margin-bottom: 10px;
+      padding: 0 5%;
+      padding-left: 10px;
+      height: 50px;
+      width: 95%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      border-radius: 30px;
+      color: $color-5;
+      font-size: 18px;
+      text-decoration: none;
+      transition: 150ms ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 4px 4px 7px 0px $color-7;
+        background-color: $color-4;
+        transform: translateX(-2px) translateY(-2px);
+      }
+
+      &-number {
+        margin-right: 15px;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        background-color: $color-4;
+        box-shadow: 4px 4px 7px 0px $color-7;
+      }
+    }
   }
 
   &__theory {
