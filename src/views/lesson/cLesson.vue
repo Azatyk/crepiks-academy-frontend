@@ -20,7 +20,7 @@
           @run-code-button-clicked="runCodeChildMethod"
         />
       </div>
-      <cBrowser :lesson="lesson" />
+      <cBrowser :lesson="lesson" :lessons="lessons" />
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
 
     this.$store
       .dispatch("getLessons", courseId)
-      .then(res => (this.lessons = res.data.lessons));
+      .then(res => (this.lessons = res.data.course.lessons));
   },
 
   methods: {
@@ -105,7 +105,7 @@ export default {
 
       this.$store
         .dispatch("getLessons", courseId)
-        .then(res => (this.lessons = res.data.lessons));
+        .then(res => (this.lessons = res.data.course.lessons));
 
       for (let child of this.$children) {
         if (child.$options._componentTag == "cBrowser") {

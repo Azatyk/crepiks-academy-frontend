@@ -48,7 +48,7 @@ export default {
       .then(res => (this.course = res.data.course));
     this.$store
       .dispatch("getLessons", this.id)
-      .then(res => (this.lessons = res.data.lessons));
+      .then(res => (this.lessons = res.data.course.lessons));
   },
   watch: {
     $route() {

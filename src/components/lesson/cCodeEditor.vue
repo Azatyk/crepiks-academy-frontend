@@ -77,8 +77,8 @@ export default {
   },
   watch: {
     lesson() {
-      if (this.lesson.htmlCode) this.codeHTML = this.lesson.htmlCode;
-      if (this.lesson.cssCode) this.codeCSS = this.lesson.cssCode;
+      this.codeHTML = this.lesson.htmlCode;
+      this.codeCSS = this.lesson.cssCode;
     }
   },
   methods: {

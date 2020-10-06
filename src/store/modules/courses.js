@@ -31,7 +31,7 @@ export default {
     getLessons(ctx, id) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/courses/" + id + "/lessons",
+          url: "/courses/" + id,
           method: "GET"
         })
           .then(res => {
