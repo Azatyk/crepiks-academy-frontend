@@ -14,7 +14,11 @@
     ></div>
     <div class="lesson__content" ref="interactiveContent">
       <div class="lesson__programming" ref="interactiveProgramming">
-        <cCodeEditor :lesson="lesson" />
+        <cCodeEditor
+          :lesson="lesson"
+          :frameCode="frameCode"
+          @get-frame-code="getBrowserFrameCode"
+        />
         <cLessonInstructions
           :lesson="lesson"
           @run-code-button-clicked="runCodeChildMethod"
@@ -69,7 +73,8 @@ export default {
         }
       },
       lessons: [],
-      isNavigationOpen: false
+      isNavigationOpen: false,
+      frameCode: ""
     };
   },
 
@@ -110,6 +115,14 @@ export default {
       for (let child of this.$children) {
         if (child.$options._componentTag == "cBrowser") {
           child.isTheoryActive = true;
+        }
+      }
+    },
+
+    getBrowserFrameCode() {
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          this.frameCode = child.getFrameCode();
         }
       }
     }

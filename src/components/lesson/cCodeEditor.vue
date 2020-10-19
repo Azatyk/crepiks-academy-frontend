@@ -35,6 +35,7 @@
         style.css
       </div>
     </div>
+    <div class="editor__check-block" ref="codeCheckBlock"></div>
   </div>
 </template>
 
@@ -49,7 +50,8 @@ export default {
     lesson: {
       type: Object,
       required: true
-    }
+    },
+    frameCode: {}
   },
   components: {
     codemirror
@@ -94,9 +96,19 @@ export default {
           "body"
         )[0];
       }
-
       interactiveFrameBody.innerHTML = `${this.codeHTML}
       <style>${this.codeCSS}</style>`;
+
+      // проводим код через функцию тест
+      this.$emit("get-frame-code"); // получаем верстку из iframe
+      const codeCheckBlock = this.$refs.codeCheckBlock;
+      codeCheckBlock.appendChild(this.frameCode);
+      console.log(codeCheckBlock);
+      let testFunction = new Function(
+        "htmlCode",
+        this.lesson.tasks[0].testFunction
+      );
+      testFunction(this.frameCode);
     }
   }
 };
@@ -166,6 +178,10 @@ export default {
     &-active {
       background-color: $color-4;
     }
+  }
+
+  &__check-block {
+    display: none;
   }
 }
 

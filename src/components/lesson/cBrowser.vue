@@ -124,6 +124,11 @@ export default {
       } else {
         this.isTheoryActive = false;
       }
+    },
+
+    getFrameCode() {
+      const frame = document.getElementsByClassName("browser__frame")[0];
+      return frame;
     }
   }
 };
