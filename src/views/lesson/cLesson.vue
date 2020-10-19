@@ -74,7 +74,7 @@ export default {
       },
       lessons: [],
       isNavigationOpen: false,
-      frameCode: ""
+      frameCode: {}
     };
   },
 

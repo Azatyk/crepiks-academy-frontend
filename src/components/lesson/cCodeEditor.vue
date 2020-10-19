@@ -35,7 +35,11 @@
         style.css
       </div>
     </div>
-    <div class="editor__check-block" ref="codeCheckBlock"></div>
+    <div
+      class="editor__check-block"
+      id="editor__check-block"
+      ref="codeCheckBlock"
+    ></div>
   </div>
 </template>
 
@@ -51,7 +55,9 @@ export default {
       type: Object,
       required: true
     },
-    frameCode: {}
+    frameCode: {
+      required: false
+    }
   },
   components: {
     codemirror
@@ -84,26 +90,23 @@ export default {
     }
   },
   methods: {
-    runCode() {
+    async runCode() {
       let interactiveFrame = document.getElementById("interactiveFrame");
-      let interactiveFrameBody;
+      let interactiveFrameDocument;
       if (interactiveFrame.contentDocument) {
-        interactiveFrameBody = interactiveFrame.contentDocument.getElementsByTagName(
-          "body"
-        )[0];
+        interactiveFrameDocument = interactiveFrame.contentDocument;
       } else if (interactiveFrame.contentWindow) {
-        interactiveFrameBody = interactiveFrame.contentWindow.document.getElementsByTagName(
-          "body"
-        )[0];
+        interactiveFrameDocument = interactiveFrame.contentWindow.document;
       }
-      interactiveFrameBody.innerHTML = `${this.codeHTML}
+      interactiveFrameDocument.innerHTML = `${this.codeHTML}
       <style>${this.codeCSS}</style>`;
+      console.log(interactiveFrameDocument);
 
       // проводим код через функцию тест
-      this.$emit("get-frame-code"); // получаем верстку из iframe
-      const codeCheckBlock = this.$refs.codeCheckBlock;
+      await this.$emit("get-frame-code"); // получаем верстку из iframe
+      const codeCheckBlock = document.getElementById("editor__check-block");
+      console.log(this.frameCode);
       codeCheckBlock.appendChild(this.frameCode);
-      console.log(codeCheckBlock);
       let testFunction = new Function(
         "htmlCode",
         this.lesson.tasks[0].testFunction
