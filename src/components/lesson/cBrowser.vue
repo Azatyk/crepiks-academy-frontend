@@ -128,7 +128,11 @@ export default {
 
     getFrameCode() {
       const frame = document.getElementsByClassName("browser__frame")[0];
-      return frame;
+      if (frame.contentDocument) {
+        return frame.contentDocument.body.innerHTML;
+      } else if (frame.contentWindow) {
+        return frame.contentWindow.body.innerHTML;
+      }
     }
   }
 };

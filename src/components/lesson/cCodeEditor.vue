@@ -92,21 +92,23 @@ export default {
   methods: {
     async runCode() {
       let interactiveFrame = document.getElementById("interactiveFrame");
-      let interactiveFrameDocument;
+      let interactiveFrameBody;
       if (interactiveFrame.contentDocument) {
-        interactiveFrameDocument = interactiveFrame.contentDocument;
+        interactiveFrameBody = interactiveFrame.contentDocument.getElementsByTagName(
+          "body"
+        )[0];
       } else if (interactiveFrame.contentWindow) {
-        interactiveFrameDocument = interactiveFrame.contentWindow.document;
+        interactiveFrameBody = interactiveFrame.contentWindow.getElementsByTagName(
+          "body"
+        )[0];
       }
-      interactiveFrameDocument.innerHTML = `${this.codeHTML}
+      interactiveFrameBody.innerHTML = `${this.codeHTML}
       <style>${this.codeCSS}</style>`;
-      console.log(interactiveFrameDocument);
 
       // проводим код через функцию тест
       await this.$emit("get-frame-code"); // получаем верстку из iframe
       const codeCheckBlock = document.getElementById("editor__check-block");
-      console.log(this.frameCode);
-      codeCheckBlock.appendChild(this.frameCode);
+      codeCheckBlock.innerHTML = this.frameCode;
       let testFunction = new Function(
         "htmlCode",
         this.lesson.tasks[0].testFunction
