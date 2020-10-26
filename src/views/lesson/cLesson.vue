@@ -17,7 +17,7 @@
         <cCodeEditor
           :lesson="lesson"
           :frameCode="frameCode"
-          @get-frame-code="getBrowserFrameCode"
+          @run-code-in-test-block="runCodeInTestBlock"
         />
         <cLessonInstructions
           :lesson="lesson"
@@ -25,6 +25,11 @@
         />
       </div>
       <cBrowser :lesson="lesson" :lessons="lessons" />
+      <cLessonTestBlock
+        class="lesson__test-block"
+        :frameCode="frameCode"
+        @get-frame-code="getBrowserFrameCode"
+      />
     </div>
   </div>
 </template>
@@ -35,12 +40,15 @@ import cCodeEditor from "@/components/lesson/cCodeEditor";
 import cLessonInstructions from "@/components/lesson/cLessonInstructions";
 import cBrowser from "@/components/lesson/cBrowser";
 
+import cLessonTestBlock from "@/components/lesson/cLessonTestBlock";
+
 export default {
   components: {
     cLessonNavigation,
     cCodeEditor,
     cLessonInstructions,
-    cBrowser
+    cBrowser,
+    cLessonTestBlock
   },
 
   data() {
@@ -125,6 +133,14 @@ export default {
           this.frameCode = child.getFrameCode();
         }
       }
+    },
+
+    runCodeInTestBlock(testFunction, codeHTML, codeCSS) {
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cLessonTestBlock") {
+          this.frameCode = child.runCode(testFunction, codeHTML, codeCSS);
+        }
+      }
     }
   }
   // mounted() {
@@ -199,6 +215,10 @@ export default {
       opacity: 0.2;
       z-index: 2;
     }
+  }
+
+  &__test-block {
+    display: none;
   }
 }
 </style>

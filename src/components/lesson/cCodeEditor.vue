@@ -90,30 +90,14 @@ export default {
     }
   },
   methods: {
-    async runCode() {
-      let interactiveFrame = document.getElementById("interactiveFrame");
-      let interactiveFrameBody;
-      if (interactiveFrame.contentDocument) {
-        interactiveFrameBody = interactiveFrame.contentDocument.getElementsByTagName(
-          "body"
-        )[0];
-      } else if (interactiveFrame.contentWindow) {
-        interactiveFrameBody = interactiveFrame.contentWindow.getElementsByTagName(
-          "body"
-        )[0];
-      }
-      interactiveFrameBody.innerHTML = `${this.codeHTML}
-      <style>${this.codeCSS}</style>`;
-
-      // проводим код через функцию тест
-      await this.$emit("get-frame-code"); // получаем верстку из iframe
-      const codeCheckBlock = document.getElementById("editor__check-block");
-      codeCheckBlock.innerHTML = this.frameCode;
-      let testFunction = new Function(
-        "htmlCode",
-        this.lesson.tasks[0].testFunction
+    runCode() {
+      const testFunction = this.lesson.tasks[0].testFunction;
+      this.$emit(
+        "run-code-in-test-block",
+        testFunction,
+        this.codeHTML,
+        this.codeCSS
       );
-      testFunction(this.frameCode);
     }
   }
 };
