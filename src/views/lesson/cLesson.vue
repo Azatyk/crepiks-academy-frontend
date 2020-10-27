@@ -14,22 +14,13 @@
     ></div>
     <div class="lesson__content" ref="interactiveContent">
       <div class="lesson__programming" ref="interactiveProgramming">
-        <cCodeEditor
-          :lesson="lesson"
-          :frameCode="frameCode"
-          @run-code-in-test-block="runCodeInTestBlock"
-        />
+        <cCodeEditor :lesson="lesson" />
         <cLessonInstructions
           :lesson="lesson"
-          @run-code-button-clicked="runCodeChildMethod"
+          @run-code-button-clicked="getWrittenCode"
         />
       </div>
-      <cBrowser :lesson="lesson" :lessons="lessons" />
-      <cLessonTestBlock
-        class="lesson__test-block"
-        :frameCode="frameCode"
-        @get-frame-code="getBrowserFrameCode"
-      />
+      <cBrowser :lesson="lesson" :lessons="lessons" :code="code" />
     </div>
   </div>
 </template>
@@ -40,15 +31,12 @@ import cCodeEditor from "@/components/lesson/cCodeEditor";
 import cLessonInstructions from "@/components/lesson/cLessonInstructions";
 import cBrowser from "@/components/lesson/cBrowser";
 
-import cLessonTestBlock from "@/components/lesson/cLessonTestBlock";
-
 export default {
   components: {
     cLessonNavigation,
     cCodeEditor,
     cLessonInstructions,
-    cBrowser,
-    cLessonTestBlock
+    cBrowser
   },
 
   data() {
@@ -82,7 +70,11 @@ export default {
       },
       lessons: [],
       isNavigationOpen: false,
-      frameCode: {}
+      frameCode: {},
+      code: {
+        htmlCode: null,
+        cssCode: null
+      }
     };
   },
 
@@ -127,18 +119,17 @@ export default {
       }
     },
 
-    getBrowserFrameCode() {
+    getWrittenCode() {
       for (let child of this.$children) {
-        if (child.$options._componentTag == "cBrowser") {
-          this.frameCode = child.getFrameCode();
+        if (child.$options._componentTag == "cCodeEditor") {
+          this.code.htmlCode = child.codeHTML;
+          this.code.cssCode = child.codeCSS;
         }
       }
-    },
 
-    runCodeInTestBlock(testFunction, codeHTML, codeCSS) {
       for (let child of this.$children) {
-        if (child.$options._componentTag == "cLessonTestBlock") {
-          this.frameCode = child.runCode(testFunction, codeHTML, codeCSS);
+        if (child.$options._componentTag == "cBrowser") {
+          child.runCode();
         }
       }
     }

@@ -88,17 +88,6 @@ export default {
       this.codeHTML = this.lesson.htmlCode;
       this.codeCSS = this.lesson.cssCode;
     }
-  },
-  methods: {
-    runCode() {
-      const testFunction = this.lesson.tasks[0].testFunction;
-      this.$emit(
-        "run-code-in-test-block",
-        testFunction,
-        this.codeHTML,
-        this.codeCSS
-      );
-    }
   }
 };
 </script>
