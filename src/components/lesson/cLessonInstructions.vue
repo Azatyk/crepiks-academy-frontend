@@ -25,9 +25,14 @@
       </button>
       <button
         class="instructions__buttons-run"
-        @click="$emit('run-code-button-clicked')"
+        :class="{ 'instructions__buttons-next': isNextButton }"
+        @click="
+          isNextButton
+            ? $router.push(`courses/${courseId}/lessons/${lessonId + 1}`)
+            : $emit('run-code-button-clicked')
+        "
       >
-        Выполнить
+        {{ isNextButton ? "Далее" : "Выполнить" }}
       </button>
     </div>
     <vs-dialog blur v-model="isHintActive">
@@ -51,28 +56,20 @@ export default {
     lesson: {
       type: Object,
       required: true
+    },
+    isNextButton: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {
     return {
-      isHintActive: false
+      isHintActive: false,
+      courseId: this.$route.params.courseId,
+      lessonId: this.$route.params.lessonId
     };
   }
-  // handleHeightResizing(e) {
-  //   let container = this.$refs.interactiveProgramming,
-  //     codeEditorBlock = this.$refs.lessonEditor,
-  //     instructionsBlock = this.$refs.lessonInstructions;
-  //   let offsetBottom = container.clientHeight - e.clientY;
-  //   codeEditorBlock.style.height =
-  //     container.clientHeight - offsetBottom + "px";
-  //   instructionsBlock.style.height = offsetBottom + "px";
-  // },
-  // handleStartHeightResizing() {
-  //   document.addEventListener("mousemove", this.handleHeightResizing);
-  // },
-  // handleEndHeightResizing() {
-  //   document.removeEventListener("mousemove", this.handleHeightResizing);
-  // },
 };
 </script>
 
@@ -177,6 +174,10 @@ export default {
       &:hover {
         color: $color-2;
         background-color: $color-4;
+      }
+
+      &-next {
+        background-color: #2ecc71;
       }
     }
   }

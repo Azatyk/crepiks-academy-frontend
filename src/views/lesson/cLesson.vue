@@ -17,10 +17,17 @@
         <cCodeEditor :lesson="lesson" />
         <cLessonInstructions
           :lesson="lesson"
+          :isNextButton="isLessonDone"
           @run-code-button-clicked="getWrittenCode"
         />
       </div>
-      <cBrowser :lesson="lesson" :lessons="lessons" :code="code" />
+      <cBrowser
+        :lesson="lesson"
+        :lessons="lessons"
+        :code="code"
+        @lesson-done="isLessonDone = true"
+        @lesson-not-done="isLessonDone = false"
+      />
     </div>
   </div>
 </template>
@@ -74,7 +81,8 @@ export default {
       code: {
         htmlCode: null,
         cssCode: null
-      }
+      },
+      isLessonDone: false
     };
   },
 

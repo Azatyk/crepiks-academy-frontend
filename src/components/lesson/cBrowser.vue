@@ -118,11 +118,22 @@ export default {
       this.isTheoryOnly = Boolean(!this.lesson.description.ru);
     }
   },
+
+  mounted() {
+    this.$emit("lesson-not-done");
+  },
+
   methods: {
     handleTheoryButton() {
       if (this.isTheoryOnly) {
         let courseId = this.$route.params.courseId;
-        let nextLessonId = Number(this.$route.params.lessonId) + 1;
+        let currentLessonId = Number(this.$route.params.lessonId);
+        let nextLessonId;
+        this.lessons.forEach(lesson => {
+          if (lesson.id == currentLessonId) {
+            nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+          }
+        });
         this.$router.push(
           "/app/courses/" + courseId + "/lessons/" + nextLessonId
         );
@@ -143,7 +154,32 @@ export default {
         "iframe",
         this.lesson.tasks[0].testFunction
       );
-      testFunction(iframe);
+      let testAnswer = testFunction(iframe);
+
+      if (testAnswer.isDone) this.$emit("lesson-done");
+
+      this.openNotification(
+        "top-center",
+        testAnswer.isDone ? "success" : "danger",
+        testAnswer.messageHeading,
+        testAnswer.messageContent
+      );
+    },
+
+    openNotification(
+      position = "top-center",
+      color = null,
+      title = "",
+      text = "",
+      duration = 5000
+    ) {
+      this.$vs.notification({
+        duration,
+        position,
+        color,
+        title,
+        text
+      });
     }
   }
 };
