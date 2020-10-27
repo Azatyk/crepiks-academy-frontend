@@ -10,7 +10,8 @@
           src="/browser.html"
           name="browser"
           class="browser__frame"
-          id="interactiveFrame"
+          ref="browserFrame"
+          id="browserFrame"
           noresize
         ></iframe>
         <vs-dialog
@@ -99,6 +100,10 @@ export default {
     lessons: {
       type: Array,
       required: true
+    },
+    code: {
+      type: Object,
+      required: false
     }
   },
   data() {
@@ -126,13 +131,19 @@ export default {
       }
     },
 
-    getFrameCode() {
-      const frame = document.getElementsByClassName("browser__frame")[0];
-      if (frame.contentDocument) {
-        return frame.contentDocument.body.innerHTML;
-      } else if (frame.contentWindow) {
-        return frame.contentWindow.body.innerHTML;
-      }
+    runCode() {
+      let iframe =
+        this.$refs.browserFrame.contentDocument ||
+        this.$refs.browserFrame.contentWindow.document;
+
+      iframe.body.innerHTML = this.code.htmlCode;
+      iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`;
+
+      let testFunction = new Function(
+        "iframe",
+        this.lesson.tasks[0].testFunction
+      );
+      testFunction(iframe);
     }
   }
 };
@@ -182,7 +193,8 @@ export default {
 
   &__frame {
     width: 100%;
-    height: calc(100% - 100px);
+    height: 100%;
+    border-radius: 10px;
     border: none;
   }
 
