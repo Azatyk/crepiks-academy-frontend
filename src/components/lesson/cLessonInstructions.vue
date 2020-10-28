@@ -28,7 +28,7 @@
         :class="{ 'instructions__buttons-next': isNextButton }"
         @click="
           isNextButton
-            ? $router.push(`courses/${courseId}/lessons/${lessonId + 1}`)
+            ? nextLessonButtonHandler()
             : $emit('run-code-button-clicked')
         "
       >
@@ -57,6 +57,10 @@ export default {
       type: Object,
       required: true
     },
+    lessons: {
+      type: Array,
+      required: true
+    },
     isNextButton: {
       type: Boolean,
       required: false,
@@ -65,10 +69,24 @@ export default {
   },
   data() {
     return {
-      isHintActive: false,
-      courseId: this.$route.params.courseId,
-      lessonId: this.$route.params.lessonId
+      isHintActive: false
     };
+  },
+  methods: {
+    nextLessonButtonHandler() {
+      let currentLessonId = Number(this.$route.params.lessonId); // сначала мы определяем какой будет роут следующего урока
+      let courseId = Number(this.$route.params.courseId);
+      let nextLessonId;
+
+      this.lessons.forEach(lesson => {
+        if (lesson.id == currentLessonId)
+          nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+      });
+
+      console.log(nextLessonId);
+      console.log(courseId);
+      this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
+    }
   }
 };
 </script>

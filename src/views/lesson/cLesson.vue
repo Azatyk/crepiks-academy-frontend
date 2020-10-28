@@ -17,6 +17,7 @@
         <cCodeEditor :lesson="lesson" />
         <cLessonInstructions
           :lesson="lesson"
+          :lessons="lessons"
           :isNextButton="isLessonDone"
           @run-code-button-clicked="getWrittenCode"
         />

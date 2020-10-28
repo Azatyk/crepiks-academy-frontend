@@ -154,6 +154,7 @@ export default {
         "iframe",
         this.lesson.tasks[0].testFunction
       );
+
       let testAnswer = testFunction(iframe);
 
       if (testAnswer.isDone) this.$emit("lesson-done");
