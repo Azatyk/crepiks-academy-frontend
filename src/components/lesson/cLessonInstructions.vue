@@ -83,8 +83,6 @@ export default {
           nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
       });
 
-      console.log(nextLessonId);
-      console.log(courseId);
       this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
     }
   }

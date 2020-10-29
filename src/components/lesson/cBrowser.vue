@@ -126,6 +126,7 @@ export default {
   methods: {
     handleTheoryButton() {
       if (this.isTheoryOnly) {
+        // Прибегаю к там махинациям, чтобы находить id следующего урока, конечно если это урок без практики, а иначе кнопка просто открывает теорию, а эта функциональность перекладывается на кнопку в компоненте cLessonInstructions
         let courseId = this.$route.params.courseId;
         let currentLessonId = Number(this.$route.params.lessonId);
         let nextLessonId;
@@ -145,26 +146,41 @@ export default {
     runCode() {
       let iframe =
         this.$refs.browserFrame.contentDocument ||
-        this.$refs.browserFrame.contentWindow.document;
+        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
       iframe.body.innerHTML = this.code.htmlCode;
-      iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`;
+      iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
 
-      let testFunction = new Function(
-        "iframe",
-        this.lesson.tasks[0].testFunction
-      );
+      let isAllTasksDone; // Переменная говорит сама за себя, она нужно чтобы знать какое уведомление показывать пользователю и когда вызывать emit для смены кнопки
 
-      let testAnswer = testFunction(iframe);
+      this.lesson.tasks.forEach(task => {
+        let testFunction = new Function("iframe", task.testFunction);
+        let testFunctionAnswer = testFunction(iframe);
+        if (testFunctionAnswer.isDone) {
+          isAllTasksDone = true;
+        } else {
+          isAllTasksDone = false;
+          this.openNotification(
+            "top-center",
+            "danger",
+            testFunctionAnswer.messageHeading,
+            testFunctionAnswer.messageContent
+          );
+          return; // в forEach нельзя использовать breakи поэтому я использую return как continue. Так же можно было использовать throw error как break
+        }
+      });
 
-      if (testAnswer.isDone) this.$emit("lesson-done");
-
-      this.openNotification(
-        "top-center",
-        testAnswer.isDone ? "success" : "danger",
-        testAnswer.messageHeading,
-        testAnswer.messageContent
-      );
+      if (isAllTasksDone) {
+        this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
+        this.openNotification(
+          "top-center",
+          "success",
+          "Good",
+          "Nice work"
+          // testAnswer.messageHeading,
+          // testAnswer.messageContent
+        );
+      }
     },
 
     openNotification(
