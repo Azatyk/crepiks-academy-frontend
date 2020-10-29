@@ -120,7 +120,17 @@ export default {
   },
 
   mounted() {
+    console.log("mounted");
+
     this.$emit("lesson-not-done");
+    if (this.code.htmlCode) {
+      let iframe =
+        this.$refs.browserFrame.contentDocument ||
+        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
+
+      iframe.body.innerHTML = this.code.htmlCode;
+      iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
+    }
   },
 
   methods: {
@@ -149,7 +159,12 @@ export default {
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
       iframe.body.innerHTML = this.code.htmlCode;
-      iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
+      // let linkTag = iframe.querySelector("link");
+      // let headTag = iframe.querySelector("head");
+      // if (headTag && headTag.contains(linkTag)) {
+      if (iframe.querySelector("link")) {
+        iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
+      }
 
       let globalTestFunctionAnswer = {
         isDone: false,
