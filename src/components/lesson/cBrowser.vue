@@ -151,15 +151,19 @@ export default {
       iframe.body.innerHTML = this.code.htmlCode;
       iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
 
-      let isAllTasksDone; // Переменная говорит сама за себя, она нужно чтобы знать какое уведомление показывать пользователю и когда вызывать emit для смены кнопки
+      let globalTestFunctionAnswer = {
+        isDone: false,
+        messageHeading: "",
+        messageContent: ""
+      }; // Переменная говорит сама за себя, она нужно чтобы знать какое уведомление показывать пользователю и когда вызывать emit для смены кнопки
 
       this.lesson.tasks.forEach(task => {
         let testFunction = new Function("iframe", task.testFunction);
         let testFunctionAnswer = testFunction(iframe);
         if (testFunctionAnswer.isDone) {
-          isAllTasksDone = true;
+          globalTestFunctionAnswer = testFunctionAnswer;
         } else {
-          isAllTasksDone = false;
+          globalTestFunctionAnswer.isDone = false;
           this.openNotification(
             "top-center",
             "danger",
@@ -170,15 +174,13 @@ export default {
         }
       });
 
-      if (isAllTasksDone) {
+      if (globalTestFunctionAnswer.isDone) {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
         this.openNotification(
           "top-center",
           "success",
-          "Good",
-          "Nice work"
-          // testAnswer.messageHeading,
-          // testAnswer.messageContent
+          globalTestFunctionAnswer.messageHeading,
+          globalTestFunctionAnswer.messageContent
         );
       }
     },
