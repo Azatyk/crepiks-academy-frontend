@@ -120,16 +120,10 @@ export default {
   watch: {
     lesson() {
       this.isTheoryOnly = Boolean(!this.lesson.description.ru);
-    },
-    htmlCode() {
-      var iframe =
-        this.$refs.browserFrame.contentDocument ||
-        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
-
-      console.log(iframe.body);
-
-      this.$nextTick(this.runCode(iframe));
     }
+    // htmlCode() {
+    //   this.runCode();
+    // },
   },
 
   async mounted() {
@@ -157,15 +151,15 @@ export default {
     },
 
     handleRunButton() {
+      this.runCode();
+      this.checkLessonTasks();
+    },
+
+    runCode() {
       var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      this.runCode(iframe);
-      this.checkLessonTasks(iframe);
-    },
-
-    runCode(iframe) {
       console.log(iframe.body);
       iframe.body.innerHTML = this.htmlCode;
       if (iframe.querySelector("link")) {
@@ -173,7 +167,11 @@ export default {
       }
     },
 
-    checkLessonTasks(iframe) {
+    checkLessonTasks() {
+      var iframe =
+        this.$refs.browserFrame.contentDocument ||
+        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
+
       let globalTestFunctionAnswer = {
         isDone: false,
         messageHeading: "",
