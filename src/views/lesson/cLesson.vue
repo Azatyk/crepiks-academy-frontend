@@ -25,7 +25,8 @@
       <cBrowser
         :lesson="lesson"
         :lessons="lessons"
-        :code="code"
+        :htmlCode="code.htmlCode"
+        :cssCode="code.cssCode"
         @lesson-done="isLessonDone = true"
         @lesson-not-done="isLessonDone = false"
       />
@@ -87,17 +88,24 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
 
-    this.$store
+    await this.$store
       .dispatch("getLesson", { courseId, lessonId })
       .then(res => (this.lesson = res.data.lesson));
 
     this.$store
       .dispatch("getLessons", courseId)
       .then(res => (this.lessons = res.data.course.lessons));
+
+    for (let child of this.$children) {
+      if (child.$options._componentTag == "cCodeEditor") {
+        this.code.htmlCode = child.codeHTML;
+        this.code.cssCode = child.codeCSS;
+      }
+    }
   },
 
   methods: {
@@ -138,7 +146,7 @@ export default {
 
       for (let child of this.$children) {
         if (child.$options._componentTag == "cBrowser") {
-          child.runCode();
+          child.handleRunButton();
         }
       }
     }

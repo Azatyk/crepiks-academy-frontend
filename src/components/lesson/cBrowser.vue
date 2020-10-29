@@ -101,9 +101,13 @@ export default {
       type: Array,
       required: true
     },
-    code: {
-      type: Object,
-      required: false
+    htmlCode: {
+      type: String,
+      default: ""
+    },
+    cssCode: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -116,21 +120,20 @@ export default {
   watch: {
     lesson() {
       this.isTheoryOnly = Boolean(!this.lesson.description.ru);
-    }
-  },
-
-  mounted() {
-    console.log("mounted");
-
-    this.$emit("lesson-not-done");
-    if (this.code.htmlCode) {
-      let iframe =
+    },
+    htmlCode() {
+      var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      iframe.body.innerHTML = this.code.htmlCode;
-      iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
+      console.log(iframe.body);
+
+      this.$nextTick(this.runCode(iframe));
     }
+  },
+
+  async mounted() {
+    this.$emit("lesson-not-done");
   },
 
   methods: {
@@ -153,19 +156,24 @@ export default {
       }
     },
 
-    runCode() {
-      let iframe =
+    handleRunButton() {
+      var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      iframe.body.innerHTML = this.code.htmlCode;
-      // let linkTag = iframe.querySelector("link");
-      // let headTag = iframe.querySelector("head");
-      // if (headTag && headTag.contains(linkTag)) {
-      if (iframe.querySelector("link")) {
-        iframe.head.innerHTML = `<style>${this.code.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
-      }
+      this.runCode(iframe);
+      this.checkLessonTasks(iframe);
+    },
 
+    runCode(iframe) {
+      console.log(iframe.body);
+      iframe.body.innerHTML = this.htmlCode;
+      if (iframe.querySelector("link")) {
+        iframe.head.innerHTML = `<style>${this.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
+      }
+    },
+
+    checkLessonTasks(iframe) {
       let globalTestFunctionAnswer = {
         isDone: false,
         messageHeading: "",
