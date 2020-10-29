@@ -66,7 +66,11 @@
               </div>
             </div>
           </div>
-          <div class="browser__theory">
+          <div
+            class="browser__theory"
+            :class="{ 'browser__theory-blur': isTheoryNavigationOpen }"
+            @click="isTheoryNavigationOpen = false"
+          >
             <div class="browser__theory-text">
               <h1 class="browser__theory-title">{{ lesson.title.ru }}</h1>
               <p
@@ -280,6 +284,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    z-index: 3;
 
     &__button {
       position: absolute;
@@ -312,7 +317,7 @@ export default {
       position: fixed;
       padding: 5% 2%;
       left: 2vw;
-      width: 22vw;
+      width: 350px;
       height: 90vh;
       box-sizing: border-box;
       position: fixed;
@@ -324,15 +329,16 @@ export default {
       border-radius: 30px;
       background-color: $color-6;
       box-shadow: 7px 7px 7px 0px $color-7;
+      transform-origin: 8% 4%;
+      transition: 200ms ease-in-out;
 
       &-close {
-        display: none;
-        width: 10px;
-        height: 10px;
+        transform: scale(0);
       }
     }
 
     &__logo {
+      margin-top: 20px;
       margin-bottom: 30px;
       display: flex;
       flex-direction: row;
@@ -371,7 +377,7 @@ export default {
       align-items: center;
       border-radius: 30px;
       color: $color-5;
-      font-size: 18px;
+      font-size: 19px;
       text-decoration: none;
       transition: 150ms ease-in-out;
       cursor: pointer;
@@ -406,6 +412,11 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-content: flex-start;
+    transition: 150ms ease-in-out;
+
+    &-blur {
+      filter: blur(3px);
+    }
 
     &-title {
       margin-bottom: 40px !important;
