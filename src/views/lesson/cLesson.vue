@@ -191,9 +191,8 @@ export default {
   }
 
   &__content {
-    margin-left: 50px;
+    padding-left: 50px;
     height: 100vh;
-    width: calc(100% - 50px);
     display: flex;
     flex-direction: row;
     /* filter: blur(3px); */

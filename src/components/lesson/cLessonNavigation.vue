@@ -19,7 +19,7 @@
           class="navigation__lesson-link"
         >
           <div class="navigation__lesson">
-            <span class="navigation__lesson-number">{{ lesson.id }}</span
+            <span class="navigation__lesson-number">{{ index + 1 }}</span
             >{{ lesson.title.ru }}
           </div>
         </router-link>
@@ -79,7 +79,7 @@ export default {
   position: fixed;
   left: 0;
   height: 100%;
-  width: 500px;
+  width: 430px;
   border-radius: 0 30px 30px 0;
   background-color: $color-6;
   z-index: 5;
@@ -90,9 +90,9 @@ export default {
   }
 
   &__logo {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     color: $color-1;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: bold;
 
     &-thin {
@@ -137,18 +137,35 @@ export default {
   }
 
   &__lesson {
-    margin-bottom: 15px;
-    font-size: 17px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
     color: $color-5;
     transition: 200ms ease-in-out;
     cursor: pointer;
 
     &:hover {
       opacity: 0.6;
+
+      .navigation__lesson-number {
+        transform: translateX(2px) translateY(2px);
+        box-shadow: 2px 2px 7px 0px $color-7;
+      }
     }
 
     &-number {
-      margin-right: 10px;
+      margin-right: 15px;
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $color-4;
+      border-radius: 10px;
+      box-shadow: 4px 4px 7px 0px $color-7;
+      transition: 150ms ease-in-out;
     }
 
     &-link {
@@ -157,7 +174,7 @@ export default {
   }
 
   &__closed {
-    left: -450px;
+    left: -380px;
     border-radius: 0 30px 30px 0;
     transition: 200ms ease-in-out;
 

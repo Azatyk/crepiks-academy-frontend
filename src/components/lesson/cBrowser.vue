@@ -59,7 +59,7 @@
                   class="browser-navigation__lesson"
                 >
                   <div class="browser-navigation__lesson-number">
-                    {{ lesson.id }}
+                    {{ index + 1 }}
                   </div>
                   {{ lesson.title.ru }}
                 </router-link>
