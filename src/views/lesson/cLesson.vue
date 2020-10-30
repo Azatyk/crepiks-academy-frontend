@@ -14,7 +14,11 @@
     ></div>
     <div class="lesson__content" ref="interactiveContent">
       <div class="lesson__programming" ref="interactiveProgramming">
-        <cCodeEditor :lesson="lesson" />
+        <cCodeEditor
+          :lesson="lesson"
+          @change-html-code="code.htmlCode = $event"
+          @change-css-code="code.cssCode = $event"
+        />
         <cLessonInstructions
           :lesson="lesson"
           :lessons="lessons"
@@ -106,17 +110,17 @@ export default {
         this.code.cssCode = child.codeCSS;
       }
     }
+
+    this.getWrittenCode();
   },
 
-  methods: {
-    runCodeChildMethod() {
-      for (let child of this.$children) {
-        if (child.$options._componentTag == "cCodeEditor") {
-          child.runCode();
-        }
-      }
-    },
+  // async beforeRouteLeave() {
+  //   console.log('wtf')
+  //   await this.getLesson();
+  //   this.getWrittenCode();
+  // },
 
+  methods: {
     getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
@@ -138,45 +142,12 @@ export default {
 
     getWrittenCode() {
       for (let child of this.$children) {
-        if (child.$options._componentTag == "cCodeEditor") {
-          this.code.htmlCode = child.codeHTML;
-          this.code.cssCode = child.codeCSS;
-        }
-      }
-
-      for (let child of this.$children) {
         if (child.$options._componentTag == "cBrowser") {
           child.handleRunButton();
         }
       }
     }
   }
-  // mounted() {
-  //   let container = this.$refs.interactiveProgramming,
-  //     codeEditorBlock = this.$refs.lessonEditor,
-  //     instructionsBlock = this.$refs.lessonInstructions;
-  //   let offsetBottom = 50;
-  //   codeEditorBlock.style.height = container.clientHeight - offsetBottom + "vh";
-  //   instructionsBlock.style.height = offsetBottom + "vh";
-  // },
-  // mounted() {
-  //   this.$store
-  //     .dispatch("getLesson", this.id)
-  //     .then((res) => (this.lesson = res.data));
-  //   this.$store
-  //     .dispatch("getLessons", this.id.courseId)
-  //     .then((res) => (this.lessons = res.data));
-  // },
-  // methods: {
-  //   mounted() {
-  //     this.$store
-  //       .dispatch("getLesson", this.id)
-  //       .then((res) => (this.lesson = res.data));
-  //     this.$store
-  //       .dispatch("getLessons", this.id.courseId)
-  //       .then((res) => (this.lessons = res.data));
-  //   },
-  // },
 };
 </script>
 

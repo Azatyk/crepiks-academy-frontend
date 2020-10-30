@@ -137,7 +137,6 @@ export default {
   methods: {
     handleTheoryButton() {
       if (this.isTheoryOnly) {
-        // Прибегаю к там махинациям, чтобы находить id следующего урока, конечно если это урок без практики, а иначе кнопка просто открывает теорию, а эта функциональность перекладывается на кнопку в компоненте cLessonInstructions
         let courseId = this.$route.params.courseId;
         let currentLessonId = Number(this.$route.params.lessonId);
         let nextLessonId;
@@ -155,27 +154,22 @@ export default {
     },
 
     handleRunButton() {
-      this.runCode();
-      this.checkLessonTasks();
-    },
-
-    runCode() {
       var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      console.log(iframe.body);
+      this.runCode(iframe);
+      this.checkLessonTasks(iframe);
+    },
+
+    runCode(iframe) {
       iframe.body.innerHTML = this.htmlCode;
       if (iframe.querySelector("link")) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
       }
     },
 
-    checkLessonTasks() {
-      var iframe =
-        this.$refs.browserFrame.contentDocument ||
-        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
-
+    checkLessonTasks(iframe) {
       let globalTestFunctionAnswer = {
         isDone: false,
         messageHeading: "",
