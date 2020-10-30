@@ -383,9 +383,12 @@ export default {
       cursor: pointer;
 
       &:hover {
-        box-shadow: 4px 4px 7px 0px $color-7;
-        background-color: $color-4;
-        transform: translateX(-2px) translateY(-2px);
+        opacity: 0.7;
+
+        .browser-navigation__lesson-number {
+          transform: translateY(2px) translateX(2px);
+          box-shadow: 2px 2px 7px 0px $color-7;
+        }
       }
 
       &-number {
@@ -398,6 +401,7 @@ export default {
         border-radius: 10px;
         background-color: $color-4;
         box-shadow: 4px 4px 7px 0px $color-7;
+        transition: 150ms ease-in-out;
       }
     }
   }
