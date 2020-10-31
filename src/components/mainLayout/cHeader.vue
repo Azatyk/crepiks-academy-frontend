@@ -21,8 +21,8 @@
           <vs-option label="Русский" value="ru">
             Русский
           </vs-option>
-          <vs-option label="Казакша" value="kz">
-            Казакша
+          <vs-option label="Қазақша" value="kz">
+            Қазақша
           </vs-option>
           <vs-option label="English" value="en">
             English

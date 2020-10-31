@@ -84,6 +84,13 @@ export default {
       });
 
       this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
+
+      // Отображаем код в браузере при переходе на следующий урок
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          child.runCode();
+        }
+      }
     }
   }
 };
@@ -191,9 +198,15 @@ export default {
         color: $color-2;
         background-color: $color-4;
       }
+    }
 
-      &-next {
-        background-color: #2ecc71;
+    &-next {
+      background-color: #2ecc71;
+      border: 3px solid #2ecc71;
+
+      &:hover {
+        color: #2ecc71;
+        background-color: $color-4;
       }
     }
   }

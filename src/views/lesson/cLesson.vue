@@ -5,7 +5,7 @@
       :isOpen="isNavigationOpen"
       @open-navigation="isNavigationOpen = true"
       @close-navigation="isNavigationOpen = false"
-      @change-route="getLesson"
+      @change-route="handleChangeRoute"
     />
     <div
       class="lesson__blur-background"
@@ -14,7 +14,11 @@
     ></div>
     <div class="lesson__content" ref="interactiveContent">
       <div class="lesson__programming" ref="interactiveProgramming">
-        <cCodeEditor :lesson="lesson" />
+        <cCodeEditor
+          :lesson="lesson"
+          @change-html-code="code.htmlCode = $event"
+          @change-css-code="code.cssCode = $event"
+        />
         <cLessonInstructions
           :lesson="lesson"
           :lessons="lessons"
@@ -88,6 +92,12 @@ export default {
     };
   },
 
+  watch: {
+    $route() {
+      this.getLesson();
+    }
+  },
+
   async mounted() {
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
@@ -106,24 +116,27 @@ export default {
         this.code.cssCode = child.codeCSS;
       }
     }
+
+    for (let child of this.$children) {
+      // Отображаем код в браузере при первом создании урока
+      if (child.$options._componentTag == "cBrowser") {
+        child.runCode();
+      }
+    }
   },
 
   methods: {
-    runCodeChildMethod() {
-      for (let child of this.$children) {
-        if (child.$options._componentTag == "cCodeEditor") {
-          child.runCode();
-        }
-      }
+    handleChangeRoute() {
+      this.getLesson();
     },
 
     getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
 
-      this.$store
-        .dispatch("getLesson", { courseId, lessonId })
-        .then(res => (this.lesson = res.data.lesson));
+      this.$store.dispatch("getLesson", { courseId, lessonId }).then(res => {
+        this.lesson = res.data.lesson;
+      });
 
       this.$store
         .dispatch("getLessons", courseId)
@@ -138,45 +151,12 @@ export default {
 
     getWrittenCode() {
       for (let child of this.$children) {
-        if (child.$options._componentTag == "cCodeEditor") {
-          this.code.htmlCode = child.codeHTML;
-          this.code.cssCode = child.codeCSS;
-        }
-      }
-
-      for (let child of this.$children) {
         if (child.$options._componentTag == "cBrowser") {
           child.handleRunButton();
         }
       }
     }
   }
-  // mounted() {
-  //   let container = this.$refs.interactiveProgramming,
-  //     codeEditorBlock = this.$refs.lessonEditor,
-  //     instructionsBlock = this.$refs.lessonInstructions;
-  //   let offsetBottom = 50;
-  //   codeEditorBlock.style.height = container.clientHeight - offsetBottom + "vh";
-  //   instructionsBlock.style.height = offsetBottom + "vh";
-  // },
-  // mounted() {
-  //   this.$store
-  //     .dispatch("getLesson", this.id)
-  //     .then((res) => (this.lesson = res.data));
-  //   this.$store
-  //     .dispatch("getLessons", this.id.courseId)
-  //     .then((res) => (this.lessons = res.data));
-  // },
-  // methods: {
-  //   mounted() {
-  //     this.$store
-  //       .dispatch("getLesson", this.id)
-  //       .then((res) => (this.lesson = res.data));
-  //     this.$store
-  //       .dispatch("getLessons", this.id.courseId)
-  //       .then((res) => (this.lessons = res.data));
-  //   },
-  // },
 };
 </script>
 

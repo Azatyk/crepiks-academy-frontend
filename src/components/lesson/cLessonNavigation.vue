@@ -10,19 +10,17 @@
         </div></router-link
       >
       <div class="navigation__lessons">
-        <router-link
+        <div
           v-for="(lesson, index) in lessons"
           :key="index"
-          :to="
-            '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
-          "
           class="navigation__lesson-link"
+          @click="changeRouteByNavigationMenu(lesson)"
         >
           <div class="navigation__lesson">
             <span class="navigation__lesson-number">{{ index + 1 }}</span
             >{{ lesson.title.ru }}
           </div>
-        </router-link>
+        </div>
       </div>
     </div>
     <div class="navigation__button" @click="changeNavigationPosition">
@@ -56,13 +54,19 @@ export default {
       } else {
         this.$emit("close-navigation");
       }
-    }
-  },
-  watch: {
-    $route() {
+    },
+
+    changeRouteByNavigationMenu(lesson) {
+      this.$router.push(
+        `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
+      );
+
       this.$emit("change-route");
       this.changeNavigationPosition();
-    },
+    }
+  },
+
+  watch: {
     isOpen() {
       if (!this.isOpen) {
         this.isNavigationMenuOpen = false;

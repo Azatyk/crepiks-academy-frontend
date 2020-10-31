@@ -47,22 +47,17 @@
                 </div></router-link
               >
               <div class="browser-navigation__lessons">
-                <router-link
+                <div
                   v-for="(lesson, index) in lessons"
                   :key="index"
-                  :to="
-                    '/app/courses/' +
-                      $route.params.courseId +
-                      '/lessons/' +
-                      lesson.id
-                  "
                   class="browser-navigation__lesson"
+                  @click="changeRouteByNavigationMenu(lesson)"
                 >
                   <div class="browser-navigation__lesson-number">
                     {{ index + 1 }}
                   </div>
                   {{ lesson.title.ru }}
-                </router-link>
+                </div>
               </div>
             </div>
           </div>
@@ -81,7 +76,11 @@
                 class="browser__theory-text-button"
                 @click="handleTheoryButton"
               >
-                {{ lesson.nextButtonText.ru || "Перейти к заданию" }}
+                {{
+                  isTheoryOnly
+                    ? lesson.nextButtonText.ru || "Далее"
+                    : lesson.nextButtonText.ru || "Перейти к заданию"
+                }}
               </button>
             </div>
           </div>
@@ -125,9 +124,6 @@ export default {
     lesson() {
       this.isTheoryOnly = Boolean(!this.lesson.description.ru);
     }
-    // htmlCode() {
-    //   this.runCode();
-    // },
   },
 
   async mounted() {
@@ -137,26 +133,43 @@ export default {
   methods: {
     handleTheoryButton() {
       if (this.isTheoryOnly) {
-        // Прибегаю к там махинациям, чтобы находить id следующего урока, конечно если это урок без практики, а иначе кнопка просто открывает теорию, а эта функциональность перекладывается на кнопку в компоненте cLessonInstructions
         let courseId = this.$route.params.courseId;
         let currentLessonId = Number(this.$route.params.lessonId);
         let nextLessonId;
+
         this.lessons.forEach(lesson => {
           if (lesson.id == currentLessonId) {
             nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
           }
         });
+
         this.$router.push(
           "/app/courses/" + courseId + "/lessons/" + nextLessonId
         );
+
+        // Отображаем код в браузере при переходе на следующий урок
+        this.runCode();
       } else {
         this.isTheoryActive = false;
       }
     },
 
-    handleRunButton() {
+    changeRouteByNavigationMenu(lesson) {
+      this.$router.push(
+        `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
+      );
+
+      // Отображаем код в браузере при переходе на какой либо урок
       this.runCode();
-      this.checkLessonTasks();
+    },
+
+    handleRunButton() {
+      var iframe =
+        this.$refs.browserFrame.contentDocument ||
+        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
+
+      this.runCode(iframe);
+      this.checkLessonTasks(iframe);
     },
 
     runCode() {
@@ -164,18 +177,13 @@ export default {
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      console.log(iframe.body);
       iframe.body.innerHTML = this.htmlCode;
       if (iframe.querySelector("link")) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
       }
     },
 
-    checkLessonTasks() {
-      var iframe =
-        this.$refs.browserFrame.contentDocument ||
-        this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
-
+    checkLessonTasks(iframe) {
       let globalTestFunctionAnswer = {
         isDone: false,
         messageHeading: "",
@@ -185,6 +193,7 @@ export default {
       this.lesson.tasks.forEach(task => {
         let testFunction = new Function("iframe", task.testFunction);
         let testFunctionAnswer = testFunction(iframe);
+
         if (testFunctionAnswer.isDone) {
           globalTestFunctionAnswer = testFunctionAnswer;
         } else {
@@ -203,9 +212,9 @@ export default {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
         this.openNotification(
           "top-center",
-          "success",
-          globalTestFunctionAnswer.messageHeading,
-          globalTestFunctionAnswer.messageContent
+          "#2ecc71",
+          "Отличная работа!",
+          "Задание успешно выполнено, а значит пора идти дальше"
         );
       }
     },

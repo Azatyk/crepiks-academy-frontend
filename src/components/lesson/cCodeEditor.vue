@@ -10,6 +10,7 @@
       v-model="codeHTML"
       :options="htmlOptions"
       v-if="isHTMLshowing"
+      @input="$emit('change-html-code', codeHTML)"
     />
     <codemirror
       class="editor__editor"
@@ -18,6 +19,7 @@
       :options="cssOptions"
       v-show="codeCSS"
       v-else
+      @input="$emit('change-css-code', codeCSS)"
     />
     <div class="editor__buttons" v-if="codeCSS">
       <div
