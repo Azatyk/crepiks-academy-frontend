@@ -47,22 +47,17 @@
                 </div></router-link
               >
               <div class="browser-navigation__lessons">
-                <router-link
+                <div
                   v-for="(lesson, index) in lessons"
                   :key="index"
-                  :to="
-                    '/app/courses/' +
-                      $route.params.courseId +
-                      '/lessons/' +
-                      lesson.id
-                  "
                   class="browser-navigation__lesson"
+                  @click="changeRouteByNavigationMenu(lesson)"
                 >
                   <div class="browser-navigation__lesson-number">
                     {{ index + 1 }}
                   </div>
                   {{ lesson.title.ru }}
-                </router-link>
+                </div>
               </div>
             </div>
           </div>
@@ -129,9 +124,6 @@ export default {
     lesson() {
       this.isTheoryOnly = Boolean(!this.lesson.description.ru);
     }
-    // htmlCode() {
-    //   this.runCode();
-    // },
   },
 
   async mounted() {
@@ -144,17 +136,31 @@ export default {
         let courseId = this.$route.params.courseId;
         let currentLessonId = Number(this.$route.params.lessonId);
         let nextLessonId;
+
         this.lessons.forEach(lesson => {
           if (lesson.id == currentLessonId) {
             nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
           }
         });
+
         this.$router.push(
           "/app/courses/" + courseId + "/lessons/" + nextLessonId
         );
+
+        // Отображаем код в браузере при переходе на следующий урок
+        this.runCode();
       } else {
         this.isTheoryActive = false;
       }
+    },
+
+    changeRouteByNavigationMenu(lesson) {
+      this.$router.push(
+        `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
+      );
+
+      // Отображаем код в браузере при переходе на какой либо урок
+      this.runCode();
     },
 
     handleRunButton() {
@@ -187,6 +193,7 @@ export default {
       this.lesson.tasks.forEach(task => {
         let testFunction = new Function("iframe", task.testFunction);
         let testFunctionAnswer = testFunction(iframe);
+
         if (testFunctionAnswer.isDone) {
           globalTestFunctionAnswer = testFunctionAnswer;
         } else {

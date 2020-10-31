@@ -84,6 +84,13 @@ export default {
       });
 
       this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
+
+      // Отображаем код в браузере при переходе на следующий урок
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          child.runCode();
+        }
+      }
     }
   }
 };
