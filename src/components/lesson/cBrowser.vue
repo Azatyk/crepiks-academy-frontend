@@ -190,8 +190,11 @@ export default {
         messageContent: ""
       }; // Переменная говорит сама за себя, она нужно чтобы знать какое уведомление показывать пользователю и когда вызывать emit для смены кнопки
 
-      this.lesson.tasks.forEach(task => {
-        let testFunction = new Function("iframe", task.testFunction);
+      for (let i = 0; i < this.lesson.tasks.length; i++) {
+        let testFunction = new Function(
+          "iframe",
+          this.lesson.tasks[i].testFunction
+        );
         let testFunctionAnswer = testFunction(iframe);
 
         if (testFunctionAnswer.isDone) {
@@ -204,9 +207,10 @@ export default {
             testFunctionAnswer.messageHeading,
             testFunctionAnswer.messageContent
           );
-          return; // в forEach нельзя использовать breakи поэтому я использую return как continue. Так же можно было использовать throw error как break
+
+          break;
         }
-      });
+      }
 
       if (globalTestFunctionAnswer.isDone) {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
