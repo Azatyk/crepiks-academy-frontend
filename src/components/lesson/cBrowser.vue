@@ -171,7 +171,6 @@ export default {
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      console.log("smth");
       iframe.body.innerHTML = this.htmlCode;
       if (iframe.querySelector("link")) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
@@ -206,9 +205,9 @@ export default {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
         this.openNotification(
           "top-center",
-          "success",
-          globalTestFunctionAnswer.messageHeading,
-          globalTestFunctionAnswer.messageContent
+          "#2ecc71",
+          "Отличная работа!",
+          "Задание успешно выполнено, а значит пора идти дальше"
         );
       }
     },

@@ -191,9 +191,15 @@ export default {
         color: $color-2;
         background-color: $color-4;
       }
+    }
 
-      &-next {
-        background-color: #2ecc71;
+    &-next {
+      background-color: #2ecc71;
+      border: 3px solid #2ecc71;
+
+      &:hover {
+        color: #2ecc71;
+        background-color: $color-4;
       }
     }
   }

@@ -118,12 +118,6 @@ export default {
     }
   },
 
-  // async beforeRouteLeave() {
-  //   console.log('wtf')
-  //   await this.getLesson();
-  //   this.getWrittenCode();
-  // },
-
   methods: {
     getLesson() {
       let courseId = this.$route.params.courseId;
