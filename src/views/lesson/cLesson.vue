@@ -111,7 +111,11 @@ export default {
       }
     }
 
-    this.getWrittenCode();
+    for (let child of this.$children) {
+      if (child.$options._componentTag == "cBrowser") {
+        child.runCode();
+      }
+    }
   },
 
   // async beforeRouteLeave() {
