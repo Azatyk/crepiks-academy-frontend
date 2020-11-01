@@ -374,7 +374,7 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      overflow: hidden;
+      overflow: scroll;
     }
 
     &__lesson {

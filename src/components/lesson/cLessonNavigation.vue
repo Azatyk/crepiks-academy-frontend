@@ -90,7 +90,16 @@ export default {
   transition: 200ms ease-in-out;
 
   &__content {
-    padding: 50px 0 0 40px;
+    padding: 50px 0 100px 40px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  &__lessons {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
   }
 
   &__logo {
