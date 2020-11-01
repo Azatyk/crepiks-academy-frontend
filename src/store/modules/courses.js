@@ -31,7 +31,7 @@ export default {
     getLessons(ctx, id) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/courses/" + id + "/lessons",
+          url: "/courses/" + id,
           method: "GET"
         })
           .then(res => {
@@ -45,7 +45,7 @@ export default {
     getLesson(ctx, data) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/courses/" + data.courseId + "/lessons/" + data.lessonId,
+          url: "/lessons/" + data.lessonId,
           method: "GET"
         })
           .then(res => {

@@ -7,7 +7,11 @@
         <div class="card-visible__text-description">{{ description }}</div>
       </div>
       <div class="card-visible__image-container">
-        <img class="card-visible__image" :src="image" :alt="title" />
+        <img
+          class="card-visible__image"
+          src="@/assets/images/firstCoursePreview.png"
+          :alt="title"
+        />
       </div>
     </div>
     <div class="card-hidden">

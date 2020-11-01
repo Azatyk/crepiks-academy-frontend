@@ -8,7 +8,7 @@
     <div class="profile__inputs">
       <vs-input
         :label="$t('profileFirstName')"
-        :value="user.firstName"
+        v-model="user.firstName"
         class="profile__input"
       />
       <vs-input
@@ -76,10 +76,6 @@ export default {
     ...mapGetters(["userData"])
   },
   methods: {
-    changeInputData(value) {
-      this.user.firstName = value;
-    },
-
     changeUserData() {
       this.isProfileLoading = true;
 
@@ -88,6 +84,7 @@ export default {
         lastName: this.user.lastName,
         email: this.user.email
       };
+
       let id = this.userId;
       this.$store
         .dispatch("changeUserData", { id, updatedData })

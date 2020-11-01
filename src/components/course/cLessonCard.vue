@@ -1,34 +1,29 @@
 <template>
-  <!-- <div class="lesson">
+  <div class="lesson">
     <div class="lesson__content">
       <div class="lesson__content-number">{{ getLessonIndex(index) }}</div>
       <div class="lesson__content-title">{{ lesson.title.ru }}</div>
     </div>
-    <router-link to="/app/courses" class="lesson__button">К уроку</router-link>
-  </div> -->
-  <div class="lesson">
-    <div class="lesson__content">
-      <div class="lesson__content-number">{{ getLessonIndex(index) }}</div>
-      <div class="lesson__content-title">{{ title }}</div>
-    </div>
-    <router-link to="/app/soon" class="lesson__button">{{
-      $t("lessonCardButtonText")
-    }}</router-link>
+    <router-link
+      :to="'/app/courses/' + courseId + '/lessons/' + lesson.id"
+      class="lesson__button"
+      >К уроку</router-link
+    >
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    // lesson: {
-    //   type: Object,
-    //   required: true
-    // },
-    title: {
-      type: String,
+    lesson: {
+      type: Object,
       required: true
     },
     index: {
+      type: Number,
+      required: true
+    },
+    courseId: {
       type: Number,
       required: true
     }

@@ -1,668 +1,211 @@
 <template>
-  <div class="interactive__page">
+  <div class="lesson__page">
+    <cLessonNavigation
+      :lessons="lessons"
+      :isOpen="isNavigationOpen"
+      @open-navigation="isNavigationOpen = true"
+      @close-navigation="isNavigationOpen = false"
+      @change-route="handleChangeRoute"
+    />
     <div
-      class="interactive__navigation-menu"
-      :class="{ navClosed: !isNavigationMenuOpen }"
-    >
-      <div class="navigation">
-        <router-link to="/app/home"
-          ><div class="navigation__logo">
-            Crepiks <span class="navigation__logo-thin">Academy</span>
-          </div></router-link
-        >
-        <div class="navigation__lessons">
-          <router-link
-            v-for="(lesson, index) in lessons"
-            :key="index"
-            :to="
-              '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
-            "
-          >
-            <div class="navigation__lesson">
-              <span class="navigation__lesson-number">{{ lesson.id }}</span
-              >{{ lesson.title }}
-            </div>
-          </router-link>
-        </div>
+      class="lesson__blur-background"
+      :class="{ 'lesson__blur-background-active': isNavigationOpen }"
+      @click="isNavigationOpen = false"
+    ></div>
+    <div class="lesson__content" ref="interactiveContent">
+      <div class="lesson__programming" ref="interactiveProgramming">
+        <cCodeEditor
+          :lesson="lesson"
+          @change-html-code="code.htmlCode = $event"
+          @change-css-code="code.cssCode = $event"
+        />
+        <cLessonInstructions
+          :lesson="lesson"
+          :lessons="lessons"
+          :isNextButton="isLessonDone"
+          @run-code-button-clicked="getWrittenCode"
+        />
       </div>
-      <div
-        class="interactive__navigation-target"
-        @click="isNavigationMenuOpen = !isNavigationMenuOpen"
-      >
-        <i class="bx bx-chevron-right interactive__navigation-icon"></i>
-        interactive__navigation-icon
-      </div>
-    </div>
-    <div class="black__background" @click="isNavigationMenuOpen = false"></div>
-    <div class="interactive__content" ref="interactiveContent">
-      <div class="interactive__programming" ref="interactiveProgramming">
-        <div class="interactive__lesson-editor" ref="lessonEditor">
-          <div class="interactive-block__heading interactive__code-heading">
-            Программный код
-          </div>
-          <codemirror
-            class="interactive__code-editor"
-            :code="lesson.htmlCode"
-            v-model="codeHTML"
-            :options="htmlOptions"
-            v-if="isHTMLshowing"
-          />
-          <codemirror
-            class="interactive__code-editor"
-            :code="lesson.cssCode"
-            v-model="codeCSS"
-            :options="cssOptions"
-            v-else
-          />
-          <div class="interactive__files">
-            <div
-              class="interactive__html interactive__file-button"
-              @click="isHTMLshowing = true"
-              :class="{ 'interactive_active-button': isHTMLshowing }"
-            >
-              index.html
-            </div>
-            <div
-              class="interactive__css interactive__file-button"
-              @click="isHTMLshowing = false"
-              :class="{ 'interactive_active-button': !isHTMLshowing }"
-            >
-              style.css
-            </div>
-          </div>
-        </div>
-        <div class="interactive__lesson-instructions" ref="lessonInstructions">
-          <div
-            class="drag-height"
-            @mousedown="handleStartHeightResizing"
-            @mouseup="handleEndHeightResizing"
-          ></div>
-          <div
-            class="interactive-block__heading interactive__instructions-heading"
-          >
-            Задания
-          </div>
-          <div class="interactive__instructions-content">
-            <div class="instructions__task">
-              <span
-                v-for="(task, index) in lesson.tasks"
-                :key="index"
-                class="instructions__task-dash"
-                >—</span
-              >task
-            </div>
-          </div>
-          <div class="instructions__hint" @click="isHintActive = true">
-            Подсказка
-          </div>
-          <vs-dialog blur v-model="isHintActive">
-            <div class="hint">
-              <h1 class="hint__title">Подсказка</h1>
-              <div class="hint__content">
-                {{ lesson.hint || "" }}
-              </div>
-              <div class="hint__button" @click="isHintActive = false">
-                Понятно
-              </div>
-            </div>
-          </vs-dialog>
-          <div class="instructions__button" @click="runCode">Выполнить</div>
-        </div>
-      </div>
-      <div class="interactive__browser" ref="interactiveBrowser">
-        <div
-          class="drag-width"
-          @mousedown="handleStartWidthResizing"
-          @mouseup="handleEndWidthResizing"
-        ></div>
-        <div class="interactive__browser-content">
-          <div class="interactive-block__heading interactive__browser-heading">
-            Браузер
-          </div>
-          <iframe
-            src="/browser.html"
-            name="browser"
-            class="interactive__frame"
-            id="interactiveFrame"
-            noresize
-          ></iframe>
-          <div
-            class="interactive__theory-button"
-            @click="isTheoryActive = true"
-          >
-            Теория
-          </div>
-          <vs-dialog
-            overflow-hidden
-            auto-width
-            full-screen
-            v-model="isTheoryActive"
-          >
-            <div class="theory">
-              <p class="interactive__paragraph">
-                {{ lesson.theory }}
-              </p>
-            </div>
-          </vs-dialog>
-        </div>
-      </div>
+      <cBrowser
+        :lesson="lesson"
+        :lessons="lessons"
+        :htmlCode="code.htmlCode"
+        :cssCode="code.cssCode"
+        @lesson-done="isLessonDone = true"
+        @lesson-not-done="isLessonDone = false"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import dialog from "vuesax/dist/vsDialog";
-import "vuesax/dist/vuesax.css";
-
-import { codemirror } from "vue-codemirror";
-import "codemirror/lib/codemirror.css";
-import "codemirror/mode/htmlmixed/htmlmixed.js";
-import "codemirror/theme/eclipse.css";
+import cLessonNavigation from "@/components/lesson/cLessonNavigation";
+import cCodeEditor from "@/components/lesson/cCodeEditor";
+import cLessonInstructions from "@/components/lesson/cLessonInstructions";
+import cBrowser from "@/components/lesson/cBrowser";
 
 export default {
   components: {
-    "vs-dialog": dialog,
-    codemirror
+    cLessonNavigation,
+    cCodeEditor,
+    cLessonInstructions,
+    cBrowser
   },
 
   data() {
     return {
-      lesson: {},
+      lesson: {
+        title: {
+          ru: "",
+          kz: "",
+          en: ""
+        },
+        theory: {
+          ru: "",
+          kz: "",
+          en: ""
+        },
+        description: {
+          ru: "",
+          kz: "",
+          en: ""
+        },
+        hint: {
+          ru: "",
+          kz: "",
+          en: ""
+        },
+        nextButtonText: {
+          ru: "",
+          kz: "",
+          en: ""
+        }
+      },
       lessons: [],
-      isNavigationMenuOpen: false,
-      isHTMLshowing: true,
-      isTheoryActive: false,
-      isHintActive: false,
-      htmlOptions: {
-        tabSize: 4,
-        mode: "text/html",
-        theme: "eclipse",
-        lineNumbers: true,
-        line: true
+      isNavigationOpen: false,
+      frameCode: {},
+      code: {
+        htmlCode: null,
+        cssCode: null
       },
-      cssOptions: {
-        tabSize: 2,
-        mode: "text/css",
-        theme: "eclipse",
-        lineNumbers: true,
-        line: true
-      },
-      codeHTML: null,
-      codeCSS: null
+      isLessonDone: false
     };
   },
-  mounted() {
-    this.runCode();
 
+  watch: {
+    $route() {
+      this.getLesson();
+    }
+  },
+
+  async mounted() {
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
 
-    this.$store
+    await this.$store
       .dispatch("getLesson", { courseId, lessonId })
       .then(res => (this.lesson = res.data.lesson));
 
     this.$store
       .dispatch("getLessons", courseId)
-      .then(res => (this.lessons = res.data.lessons));
-  },
-  // mounted() {
-  //   let container = this.$refs.interactiveProgramming,
-  //     codeEditorBlock = this.$refs.lessonEditor,
-  //     instructionsBlock = this.$refs.lessonInstructions;
-  //   let offsetBottom = 50;
-  //   codeEditorBlock.style.height = container.clientHeight - offsetBottom + "vh";
-  //   instructionsBlock.style.height = offsetBottom + "vh";
-  // },
-  methods: {
-    handleHeightResizing(e) {
-      let container = this.$refs.interactiveProgramming,
-        codeEditorBlock = this.$refs.lessonEditor,
-        instructionsBlock = this.$refs.lessonInstructions;
-      let offsetBottom = container.clientHeight - e.clientY;
-      codeEditorBlock.style.height =
-        container.clientHeight - offsetBottom + "px";
-      instructionsBlock.style.height = offsetBottom + "px";
-    },
-    handleStartHeightResizing() {
-      document.addEventListener("mousemove", this.handleHeightResizing);
-    },
-    handleEndHeightResizing() {
-      document.removeEventListener("mousemove", this.handleHeightResizing);
-    },
+      .then(res => (this.lessons = res.data.course.lessons));
 
-    handleWidthResizing(e) {
-      let container = this.$refs.interactiveContent,
-        programmingBlock = this.$refs.interactiveProgramming,
-        browserBlock = this.$refs.interactiveBrowser;
-      let offsetRight = container.clientWidth - e.clientX + 50;
-      console.log("Ширина контейнера", container.clientWidth);
-      programmingBlock.style.width = container.clientWidth - offsetRight + "px";
-      browserBlock.style.width = offsetRight + "px";
-    },
-    handleStartWidthResizing() {
-      document.addEventListener("mousemove", this.handleWidthResizing);
-    },
-    handleEndWidthResizing() {
-      document.removeEventListener("mousemove", this.handleWidthResizing);
-    },
-
-    runCode() {
-      let interactiveFrame = document.getElementById("interactiveFrame");
-      let interactiveFrameBody;
-      if (interactiveFrame.contentDocument) {
-        interactiveFrameBody = interactiveFrame.contentDocument.getElementsByTagName(
-          "body"
-        )[0];
-      } else if (interactiveFrame.contentWindow) {
-        interactiveFrameBody = interactiveFrame.contentWindow.document.getElementsByTagName(
-          "body"
-        )[0];
+    for (let child of this.$children) {
+      if (child.$options._componentTag == "cCodeEditor") {
+        this.code.htmlCode = child.codeHTML;
+        this.code.cssCode = child.codeCSS;
       }
+    }
 
-      interactiveFrameBody.innerHTML = `${this.codeHTML}
-      <style>${this.codeCSS}</style>`;
+    for (let child of this.$children) {
+      // Отображаем код в браузере при первом создании урока
+      if (child.$options._componentTag == "cBrowser") {
+        child.runCode();
+      }
+    }
+  },
+
+  methods: {
+    handleChangeRoute() {
+      this.getLesson();
+    },
+
+    getLesson() {
+      let courseId = this.$route.params.courseId;
+      let lessonId = this.$route.params.lessonId;
+
+      this.$store.dispatch("getLesson", { courseId, lessonId }).then(res => {
+        this.lesson = res.data.lesson;
+      });
+
+      this.$store
+        .dispatch("getLessons", courseId)
+        .then(res => (this.lessons = res.data.course.lessons));
+
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          child.isTheoryActive = true;
+        }
+      }
+    },
+
+    getWrittenCode() {
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          child.handleRunButton();
+        }
+      }
     }
   }
-  // mounted() {
-  //   this.$store
-  //     .dispatch("getLesson", this.id)
-  //     .then((res) => (this.lesson = res.data));
-  //   this.$store
-  //     .dispatch("getLessons", this.id.courseId)
-  //     .then((res) => (this.lessons = res.data));
-  // },
-  // methods: {
-  //   mounted() {
-  //     this.$store
-  //       .dispatch("getLesson", this.id)
-  //       .then((res) => (this.lesson = res.data));
-  //     this.$store
-  //       .dispatch("getLessons", this.id.courseId)
-  //       .then((res) => (this.lessons = res.data));
-  //   },
-  // },
 };
 </script>
 
-<style>
-.interactive__page {
-  width: 100%;
-  height: 100vh;
-}
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
 
-.interactive__navigation-menu {
-  position: fixed;
-  left: 0;
-  height: 100%;
-  width: 500px;
-  background-color: white;
-  z-index: 3;
-  transition: 200ms ease-in-out;
-}
+.lesson {
+  &__page {
+    width: 100%;
+    height: 100vh;
+    background-color: $color-6;
+  }
 
-.navClosed {
-  left: -450px;
-  transition: 200ms ease-in-out;
-}
+  &__content {
+    padding-left: 50px;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    /* filter: blur(3px); */
+    background-color: $color-3-dark;
+    transition: 200ms ease-in-out;
+  }
 
-.interactive__navigation-target {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid #d1d2d6;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
-}
+  &__programming {
+    margin: 3vh 1%;
+    width: 48%;
+    height: 94vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-.interactive__navigation-target:hover {
-  background-color: #f5f5f5;
-  transition: 200ms ease-in-out;
-}
+  &__blur-background {
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    background-color: $color-5;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+    z-index: -1;
 
-.interactive__navigation-target:hover > .interactive__navigation-icon {
-  color: #1e272e !important;
-  transition: 200ms ease-in-out;
-}
+    &-active {
+      opacity: 0.2;
+      z-index: 2;
+    }
+  }
 
-.interactive__navigation-icon {
-  font-size: 18px;
-  color: #747b80 !important;
-  transform: rotate(270deg);
-  transition: 200ms ease-in-out;
-}
-
-.navClosed .interactive__navigation-icon {
-  transform: rotate(90deg);
-  transition: 200ms ease-in-out;
-}
-
-.black__background {
-  position: absolute;
-  top: 0;
-  margin-left: 50px;
-  height: 100vh;
-  width: calc(100% - 50px);
-  background-color: #1e272e;
-  opacity: 0.2;
-  transition: 200ms ease-in-out;
-  z-index: 2;
-}
-
-.navClosed ~ .black__background {
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  z-index: -1;
-}
-
-.interactive__content {
-  margin-left: 50px;
-  height: 100vh;
-  width: calc(100% - 50px);
-  display: flex;
-  flex-direction: row;
-  filter: blur(3px);
-  transition: 200ms ease-in-out;
-}
-
-.navClosed ~ .interactive__content {
-  filter: none;
-  transition: 200ms ease-in-out;
-}
-
-.interactive-block__heading {
-  padding-left: 3%;
-  box-sizing: border-box;
-  width: 100%;
-  height: 50px;
-  font-size: 20px;
-  color: #1e272e;
-  display: flex;
-  align-items: center;
-}
-
-.interactive__code-heading {
-  border-bottom: 1px solid #d1d2d6;
-}
-
-.interactive__browser-heading {
-  border-bottom: 1px solid #d1d2d6;
-}
-
-.interactive__programming {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.CodeMirror {
-  height: 100%;
-}
-
-.interactive__code-editor {
-  padding: 0;
-  width: 100%;
-  height: calc(100% - 100px);
-}
-
-.interactive__lesson-editor {
-  width: 100%;
-  height: 50%;
-}
-
-.interactive__files {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  border-top: 1px solid #d1d2d6;
-}
-
-.interactive__file-button {
-  width: 50%;
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 300;
-  color: #1e272e;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
-}
-
-.interactive_active-button {
-  background-color: #f5f5f5;
-}
-
-.interactive__file-button:hover {
-  background-color: #f5f5f5;
-  transition: 200ms ease-in-out;
-}
-
-.interactive__html {
-  border-right: 1px solid #d1d2d6;
-}
-
-.interactive__lesson-instructions {
-  position: relative;
-  width: 100%;
-  height: 50%;
-}
-
-.drag-height {
-  width: 100%;
-  height: 5px;
-  border-top: 1px solid #d1d2d6;
-  cursor: s-resize;
-}
-
-.drag-width {
-  position: absolute;
-  height: 100%;
-  width: 5px;
-  border-left: 1px solid #d1d2d6;
-  cursor: w-resize;
-}
-
-.interactive__instructions-content {
-  box-sizing: border-box;
-  padding-left: 3%;
-  padding-top: 3%;
-  width: 100%;
-}
-
-.instructions__task {
-  margin-bottom: 10px;
-  font-size: 15px;
-  color: #1e272e;
-}
-
-.instructions__task-dash {
-  margin-right: 10px;
-}
-
-.instructions__hint {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 50px;
-  width: calc(100% - 160px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  color: #1e272e;
-  border-top: 1px solid #d1d2d6;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
-}
-
-.instructions__hint:hover {
-  background-color: #f5f5f5;
-  transition: 200ms ease-in-out;
-}
-
-.hint {
-  padding: 5%;
-}
-
-.hint__title {
-  margin-bottom: 20px;
-  font-size: 40px;
-  color: #1e272e;
-  font-weight: 700;
-}
-
-.hint__content {
-  margin-bottom: 25px;
-  font-size: 25px;
-  color: #1e272e;
-  font-weight: 300;
-}
-
-.hint__button {
-  margin-bottom: -20px;
-  height: 40px;
-  width: 140px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 23px;
-  color: #eeeef6;
-  background-color: #2522a0;
-  border: 2px solid #2522a0;
-  border-radius: 15px;
-  transition: 150ms ease-in-out;
-  cursor: pointer;
-}
-
-.hint__button:hover {
-  color: #2522a0;
-  background-color: #eeeef6;
-  border: 2px solid #2522a0;
-}
-
-.instructions__button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 50px;
-  width: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 300;
-  color: white;
-  background-color: #1e272e;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
-}
-
-.instructions__button:hover {
-  background-color: #424f59;
-  transition: 200ms ease-in-out;
-}
-
-.interactive__browser {
-  width: 50%;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-}
-
-.interactive__browser-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.interactive__frame {
-  width: 100%;
-  height: calc(100% - 100px);
-  border: none;
-}
-
-.interactive__theory-button {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  color: #1e272e;
-  border-top: 1px solid #d1d2d6;
-  cursor: pointer;
-  transition: 200ms ease-in-out;
-}
-
-.vs-dialog__content {
-  max-height: 100% !important;
-  height: 100%;
-}
-
-.theory__paragraph {
-  margin: 20px 0;
-  position: relative;
-  display: block;
-  font-size: 20px;
-}
-
-.theory__title {
-  margin-bottom: 50px;
-  font-size: 50px;
-  color: #1e272e;
-  font-weight: 700;
-}
-
-.theory__content {
-  font-size: 30px;
-  color: #1e272e;
-  font-weight: 300;
-}
-
-.interactive__theory-button:hover {
-  background-color: #f5f5f5;
-  transition: 200ms ease-in-out;
-}
-
-.navigation {
-  padding: 50px 0 0 40px;
-}
-
-.navigation__logo {
-  margin-bottom: 70px;
-  font-size: 30px;
-  color: #1e272e;
-  font-weight: bold;
-}
-
-.navigation__logo-thin {
-  font-weight: 300;
-}
-
-.navigation__lesson {
-  margin-bottom: 15px;
-  font-size: 17px;
-  color: #1e272e;
-  transition: 200ms ease-in-out;
-  cursor: pointer;
-}
-
-.navigation__lesson:hover {
-  color: #8e9599;
-  transition: 200ms ease-in-out;
-}
-
-.navigation__lesson-number {
-  margin-right: 10px;
+  &__test-block {
+    display: none;
+  }
 }
 </style>
