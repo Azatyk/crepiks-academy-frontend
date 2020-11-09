@@ -163,12 +163,12 @@ export default {
       this.runCode();
     },
 
-    handleRunButton() {
+    async handleRunButton() {
       var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      this.runCode(iframe);
+      await this.runCode(iframe);
       this.checkLessonTasks(iframe);
     },
 
@@ -178,7 +178,11 @@ export default {
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
       iframe.body.innerHTML = this.htmlCode;
-      if (iframe.querySelector("link")) {
+      if (
+        iframe.querySelector("link") &&
+        iframe.querySelector("link").getAttribute("rel") == "stylesheet" &&
+        iframe.querySelector("link").getAttribute("href") == "style.css"
+      ) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
       }
     },
@@ -195,6 +199,7 @@ export default {
           "iframe",
           this.lesson.tasks[i].testFunction
         );
+
         let testFunctionAnswer = testFunction(iframe);
 
         if (testFunctionAnswer.isDone) {
