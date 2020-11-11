@@ -75,6 +75,7 @@
               <button
                 class="browser__theory-text-button"
                 @click="handleTheoryButton"
+                v-show="lesson.theory.ru"
               >
                 {{
                   isTheoryOnly

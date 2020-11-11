@@ -43,15 +43,21 @@ export default {
   },
   computed: mapGetters(["isLoggedIn"]),
   mounted() {
+    const loading = this.$vs.loading();
+
     this.$store
       .dispatch("getCourse", this.id)
       .then(res => (this.course = res.data.course));
     this.$store
       .dispatch("getLessons", this.id)
       .then(res => (this.lessons = res.data.course.lessons));
+
+    loading.close();
   },
   watch: {
     $route() {
+      const loading = this.$vs.loading();
+
       this.id = this.$route.params.id;
       this.$store
         .dispatch("getCourse", this.id)
@@ -59,6 +65,8 @@ export default {
       this.$store
         .dispatch("getLessons", this.id)
         .then(res => (this.lessons = res.data.lessons));
+
+      loading.close();
     }
   }
 };

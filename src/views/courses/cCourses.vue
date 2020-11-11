@@ -35,9 +35,13 @@ export default {
     };
   },
   async mounted() {
+    const loading = this.$vs.loading();
+
     await this.$store
       .dispatch("getCourses")
       .then(res => (this.courses = res.data.courses));
+
+    loading.close();
   }
 };
 </script>

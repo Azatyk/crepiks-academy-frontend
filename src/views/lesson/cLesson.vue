@@ -92,13 +92,19 @@ export default {
 
   watch: {
     async $route() {
+      const loading = this.$vs.loading();
+
       this.isLessonDone = false;
       await this.getLesson();
       this.updateLessonFrame();
+
+      loading.close();
     }
   },
 
   async mounted() {
+    const loading = this.$vs.loading();
+
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
 
@@ -106,7 +112,7 @@ export default {
       .dispatch("getLesson", { courseId, lessonId })
       .then(res => (this.lesson = res.data.lesson));
 
-    this.$store
+    await this.$store
       .dispatch("getLessons", courseId)
       .then(res => (this.lessons = res.data.course.lessons));
 
@@ -123,6 +129,8 @@ export default {
         child.runCode();
       }
     }
+
+    loading.close();
   },
 
   methods: {
