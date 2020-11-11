@@ -21,12 +21,12 @@
           <vs-option label="Русский" value="ru">
             Русский
           </vs-option>
-          <vs-option label="Қазақша" value="kz">
+          <!-- <vs-option label="Қазақша" value="kz">
             Қазақша
           </vs-option>
           <vs-option label="English" value="en">
             English
-          </vs-option>
+          </vs-option> -->
         </vs-select>
       </div>
     </template>
