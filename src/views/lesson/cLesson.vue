@@ -16,8 +16,8 @@
       <div class="lesson__programming" ref="interactiveProgramming">
         <cCodeEditor
           :lesson="lesson"
-          @change-html-code="code.htmlCode = $event"
-          @change-css-code="code.cssCode = $event"
+          @change-html-code="lesson.htmlCode = $event"
+          @change-css-code="lesson.cssCode = $event"
         />
         <cLessonInstructions
           :lesson="lesson"
@@ -29,8 +29,8 @@
       <cBrowser
         :lesson="lesson"
         :lessons="lessons"
-        :htmlCode="code.htmlCode"
-        :cssCode="code.cssCode"
+        :htmlCode="lesson.htmlCode"
+        :cssCode="lesson.cssCode"
         @lesson-done="isLessonDone = true"
         @lesson-not-done="isLessonDone = false"
       />
@@ -79,26 +79,32 @@ export default {
           ru: "",
           kz: "",
           en: ""
-        }
+        },
+        htmlCode: null,
+        cssCode: null
       },
       lessons: [],
       isNavigationOpen: false,
       frameCode: {},
-      code: {
-        htmlCode: null,
-        cssCode: null
-      },
       isLessonDone: false
     };
   },
 
   watch: {
-    $route() {
-      this.getLesson();
+    async $route() {
+      const loading = this.$vs.loading();
+
+      this.isLessonDone = false;
+      await this.getLesson();
+      this.updateLessonFrame();
+
+      loading.close();
     }
   },
 
   async mounted() {
+    const loading = this.$vs.loading();
+
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
 
@@ -106,14 +112,14 @@ export default {
       .dispatch("getLesson", { courseId, lessonId })
       .then(res => (this.lesson = res.data.lesson));
 
-    this.$store
+    await this.$store
       .dispatch("getLessons", courseId)
       .then(res => (this.lessons = res.data.course.lessons));
 
     for (let child of this.$children) {
       if (child.$options._componentTag == "cCodeEditor") {
-        this.code.htmlCode = child.codeHTML;
-        this.code.cssCode = child.codeCSS;
+        this.lesson.htmlCode = child.codeHTML;
+        this.lesson.cssCode = child.codeCSS;
       }
     }
 
@@ -123,6 +129,8 @@ export default {
         child.runCode();
       }
     }
+
+    loading.close();
   },
 
   methods: {
@@ -130,13 +138,15 @@ export default {
       this.getLesson();
     },
 
-    getLesson() {
+    async getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
 
-      this.$store.dispatch("getLesson", { courseId, lessonId }).then(res => {
-        this.lesson = res.data.lesson;
-      });
+      await this.$store
+        .dispatch("getLesson", { courseId, lessonId })
+        .then(res => {
+          this.lesson = res.data.lesson;
+        });
 
       this.$store
         .dispatch("getLessons", courseId)
@@ -147,12 +157,31 @@ export default {
           child.isTheoryActive = true;
         }
       }
+
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cCodeEditor") {
+          child.codeHTML = this.lesson.htmlCode;
+          child.codeCSS = this.lesson.cssCode;
+        }
+      }
     },
 
     getWrittenCode() {
       for (let child of this.$children) {
         if (child.$options._componentTag == "cBrowser") {
           child.handleRunButton();
+        }
+      }
+    },
+
+    updateLessonFrame() {
+      let newRoute = this.$route.path;
+
+      if (newRoute.includes("/lessons/")) {
+        for (let child of this.$children) {
+          if (child.$options._componentTag == "cBrowser") {
+            child.runCode();
+          }
         }
       }
     }

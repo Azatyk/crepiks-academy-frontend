@@ -75,6 +75,7 @@
               <button
                 class="browser__theory-text-button"
                 @click="handleTheoryButton"
+                v-show="lesson.theory.ru"
               >
                 {{
                   isTheoryOnly
@@ -148,7 +149,6 @@ export default {
         );
 
         // Отображаем код в браузере при переходе на следующий урок
-        this.runCode();
       } else {
         this.isTheoryActive = false;
       }
@@ -159,16 +159,15 @@ export default {
         `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
       );
 
-      // Отображаем код в браузере при переходе на какой либо урок
-      this.runCode();
+      this.isTheoryNavigationOpen = false;
     },
 
-    handleRunButton() {
+    async handleRunButton() {
       var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      this.runCode(iframe);
+      await this.runCode(iframe);
       this.checkLessonTasks(iframe);
     },
 
@@ -177,8 +176,15 @@ export default {
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
+      iframe.head.innerHTML = "";
+
       iframe.body.innerHTML = this.htmlCode;
-      if (iframe.querySelector("link")) {
+      // console.log(this.htmlCode);
+      if (
+        iframe.querySelector("link") &&
+        iframe.querySelector("link").getAttribute("rel") == "stylesheet" &&
+        iframe.querySelector("link").getAttribute("href") == "style.css"
+      ) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`; // Закидываем код, заметь, что стили задаются через html тег style, к сожалению пока что это единственное решение
       }
     },
@@ -195,6 +201,7 @@ export default {
           "iframe",
           this.lesson.tasks[i].testFunction
         );
+
         let testFunctionAnswer = testFunction(iframe);
 
         if (testFunctionAnswer.isDone) {
@@ -374,7 +381,7 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      overflow: hidden;
+      overflow: scroll;
     }
 
     &__lesson {

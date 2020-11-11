@@ -122,7 +122,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
 .profile {
@@ -131,6 +131,7 @@ export default {
   }
 
   &__inputs {
+    padding: 0 3%;
     display: flex;
     flex-direction: column;
   }
@@ -142,7 +143,7 @@ export default {
   }
 
   &__change-password {
-    margin-left: 3px;
+    margin-left: 4%;
     color: $color-2;
     font-size: 0.9vw;
     cursor: pointer;

@@ -145,6 +145,7 @@ export default {
   }
 
   &__inputs {
+    padding: 0 3%;
     display: flex;
     flex-direction: column;
   }
