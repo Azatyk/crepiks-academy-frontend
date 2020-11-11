@@ -148,7 +148,6 @@ export default {
         );
 
         // Отображаем код в браузере при переходе на следующий урок
-        this.runCode();
       } else {
         this.isTheoryActive = false;
       }
@@ -159,8 +158,7 @@ export default {
         `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
       );
 
-      // Отображаем код в браузере при переходе на какой либо урок
-      this.runCode();
+      this.isTheoryNavigationOpen = false;
     },
 
     async handleRunButton() {
@@ -177,7 +175,10 @@ export default {
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
+      iframe.head.innerHTML = "";
+
       iframe.body.innerHTML = this.htmlCode;
+      // console.log(this.htmlCode);
       if (
         iframe.querySelector("link") &&
         iframe.querySelector("link").getAttribute("rel") == "stylesheet" &&
