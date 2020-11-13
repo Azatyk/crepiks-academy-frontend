@@ -104,6 +104,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     lesson: {
@@ -148,6 +150,8 @@ export default {
     this.$emit("lesson-not-done");
   },
 
+  computed: mapGetters(["userData"]),
+
   methods: {
     handleTheoryButton() {
       if (this.isTheoryOnly) {
@@ -160,6 +164,8 @@ export default {
             nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
           }
         });
+
+        this.addCompletedLesson();
 
         this.$router.push(
           "/app/courses/" + courseId + "/lessons/" + nextLessonId
@@ -236,6 +242,16 @@ export default {
           "Отличная работа!",
           "Задание успешно выполнено, а значит пора идти дальше"
         );
+      }
+
+      this.addCompletedLesson();
+    },
+
+    addCompletedLesson() {
+      if (!this.isLessonCompleted(this.lesson.id)) {
+        let userId = this.userData.id;
+        let lessonId = this.lesson.id;
+        this.$store.dispatch("addCompletedLesson", { userId, lessonId });
       }
     },
 
