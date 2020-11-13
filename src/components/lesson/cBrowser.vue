@@ -247,11 +247,12 @@ export default {
       this.addCompletedLesson();
     },
 
-    addCompletedLesson() {
+    async addCompletedLesson() {
       if (!this.isLessonCompleted(this.lesson.id)) {
         let userId = this.userData.id;
         let lessonId = this.lesson.id;
-        this.$store.dispatch("addCompletedLesson", { userId, lessonId });
+        await this.$store.dispatch("addCompletedLesson", { userId, lessonId });
+        this.$emit("update-completed-lessons");
       }
     },
 

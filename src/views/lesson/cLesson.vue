@@ -35,6 +35,7 @@
         :cssCode="lesson.cssCode"
         @lesson-done="isLessonDone = true"
         @lesson-not-done="isLessonDone = false"
+        @update-completed-lessons="getCompletedLessons()"
       />
     </div>
   </div>
@@ -174,6 +175,12 @@ export default {
           child.codeCSS = this.lesson.cssCode;
         }
       }
+    },
+
+    async getCompletedLessons() {
+      await this.$store
+        .dispatch("getCompletedLessons", this.userData.id)
+        .then(res => (this.completedLessons = res.data.completedLessons));
     },
 
     getWrittenCode() {
