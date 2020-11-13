@@ -55,6 +55,20 @@ export default {
             reject(err);
           });
       });
+    },
+    getCompletedLessons(ctx, userId) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/users/" + userId + "/completed-lessons",
+          method: "GET"
+        })
+          .then(res => {
+            resolve(res);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
     }
   }
 };

@@ -2,7 +2,12 @@
   <div class="lesson">
     <div class="lesson__content">
       <div class="lesson__content-number">{{ getLessonIndex(index) }}</div>
-      <div class="lesson__content-title">{{ lesson.title.ru }}</div>
+      <div class="lesson__content-title">
+        {{ lesson.title.ru
+        }}<span v-if="isCompleted" class="lesson__content-completed"
+          >Пройден</span
+        >
+      </div>
     </div>
     <router-link
       :to="'/app/courses/' + courseId + '/lessons/' + lesson.id"
@@ -26,6 +31,11 @@ export default {
     courseId: {
       type: Number,
       required: true
+    },
+    isCompleted: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   methods: {
@@ -114,6 +124,12 @@ export default {
       color: $color-5;
       font-size: 25px;
       font-weight: bold;
+    }
+
+    &-completed {
+      margin-left: 30px;
+      font-size: 15px;
+      color: #2ecc71;
     }
   }
 

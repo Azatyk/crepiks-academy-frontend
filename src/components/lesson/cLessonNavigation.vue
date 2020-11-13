@@ -10,17 +10,24 @@
         </div></router-link
       >
       <div class="navigation__lessons">
-        <div
+        <router-link
           v-for="(lesson, index) in lessons"
           :key="index"
           class="navigation__lesson-link"
-          @click="changeRouteByNavigationMenu(lesson)"
+          :to="`/app/courses/${$route.params.courseId}/lessons/${lesson.id}`"
         >
           <div class="navigation__lesson">
-            <span class="navigation__lesson-number">{{ index + 1 }}</span
+            <span
+              class="navigation__lesson-number"
+              :class="{
+                'navigation__lesson-number-completed': isLessonCompleted(
+                  lesson.id
+                )
+              }"
+              >{{ index + 1 }}</span
             >{{ lesson.title.ru }}
           </div>
-        </div>
+        </router-link>
       </div>
     </div>
     <div class="navigation__button" @click="changeNavigationPosition">
@@ -36,6 +43,10 @@ export default {
       type: Array,
       required: true
     },
+    completedLessons: {
+      type: Array,
+      required: true
+    },
     isOpen: {
       type: Boolean,
       required: false
@@ -46,6 +57,20 @@ export default {
       isNavigationMenuOpen: false
     };
   },
+
+  watch: {
+    isOpen() {
+      if (!this.isOpen) {
+        this.isNavigationMenuOpen = false;
+      }
+    },
+
+    $route() {
+      this.$emit("change-route");
+      this.changeNavigationPosition();
+    }
+  },
+
   methods: {
     changeNavigationPosition() {
       this.isNavigationMenuOpen = !this.isNavigationMenuOpen;
@@ -56,20 +81,11 @@ export default {
       }
     },
 
-    changeRouteByNavigationMenu(lesson) {
-      this.$router.push(
-        `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
-      );
-
-      this.$emit("change-route");
-      this.changeNavigationPosition();
-    }
-  },
-
-  watch: {
-    isOpen() {
-      if (!this.isOpen) {
-        this.isNavigationMenuOpen = false;
+    isLessonCompleted(lessonId) {
+      for (let i = 0; i < this.completedLessons.length; i++) {
+        if (this.completedLessons[i].id == lessonId) {
+          return true;
+        }
       }
     }
   }
@@ -179,6 +195,11 @@ export default {
       border-radius: 10px;
       box-shadow: 4px 4px 7px 0px $color-7;
       transition: 150ms ease-in-out;
+
+      &-completed {
+        color: $color-6;
+        background-color: #2ecc71;
+      }
     }
 
     &-link {
@@ -195,5 +216,10 @@ export default {
       transform: rotate(0deg);
     }
   }
+}
+
+.router-link-active .navigation__lesson-number {
+  color: $color-6;
+  background-color: #f1c40f;
 }
 </style>

@@ -2,6 +2,7 @@
   <div class="lesson__page">
     <cLessonNavigation
       :lessons="lessons"
+      :completedLessons="completedLessons"
       :isOpen="isNavigationOpen"
       @open-navigation="isNavigationOpen = true"
       @close-navigation="isNavigationOpen = false"
@@ -29,6 +30,7 @@
       <cBrowser
         :lesson="lesson"
         :lessons="lessons"
+        :completedLessons="completedLessons"
         :htmlCode="lesson.htmlCode"
         :cssCode="lesson.cssCode"
         @lesson-done="isLessonDone = true"
@@ -39,6 +41,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import cLessonNavigation from "@/components/lesson/cLessonNavigation";
 import cCodeEditor from "@/components/lesson/cCodeEditor";
 import cLessonInstructions from "@/components/lesson/cLessonInstructions";
@@ -84,6 +87,7 @@ export default {
         cssCode: null
       },
       lessons: [],
+      completedLessons: [],
       isNavigationOpen: false,
       frameCode: {},
       isLessonDone: false
@@ -102,11 +106,17 @@ export default {
     }
   },
 
+  computed: mapGetters(["userData"]),
+
   async mounted() {
     const loading = this.$vs.loading();
 
     let courseId = this.$route.params.courseId;
     let lessonId = this.$route.params.lessonId;
+
+    await this.$store
+      .dispatch("getCompletedLessons", this.userData.id)
+      .then(res => (this.completedLessons = res.data.completedLessons));
 
     await this.$store
       .dispatch("getLesson", { courseId, lessonId })
