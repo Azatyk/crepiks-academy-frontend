@@ -4,11 +4,15 @@
     :class="{ navigation__closed: !isNavigationMenuOpen }"
   >
     <div class="navigation__content">
-      <router-link to="/app/home" class="navigation__logo-link"
-        ><div class="navigation__logo">
+      <div class="navigation__logo-link">
+        <div class="navigation__logo">
           Crepiks <span class="navigation__logo-thin">Academy</span>
-        </div></router-link
-      >
+        </div>
+      </div>
+      <div class="navigation__back" @click="$router.push('/app/home')">
+        <i class="bx bx-arrow-back navigation__back-icon"></i>
+        На главную
+      </div>
       <div class="navigation__lessons">
         <router-link
           v-for="(lesson, index) in lessons"
@@ -119,7 +123,7 @@ export default {
   }
 
   &__logo {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     color: $color-1;
     font-size: 35px;
     font-weight: bold;
@@ -130,6 +134,24 @@ export default {
 
     &-link {
       text-decoration: none;
+    }
+  }
+
+  &__back {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    color: $color-1;
+    font-size: 20px;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &-icon {
+      margin-right: 10px;
     }
   }
 

@@ -40,12 +40,19 @@
                 'browser-navigation__content-close': !isTheoryNavigationOpen
               }"
             >
-              <router-link to="/app/home" class="browser-navigation__logo"
-                >Crepiks
+              <div class="browser-navigation__logo">
+                Crepiks
                 <div class="browser-navigation__logo-thin">
                   Academy
-                </div></router-link
+                </div>
+              </div>
+              <div
+                @click="$router.push('/app/home')"
+                class="browser-navigation__back"
               >
+                <i class="bx bx-arrow-back browser-navigation__back-icon"></i>
+                На главную
+              </div>
               <div class="browser-navigation__lessons">
                 <router-link
                   v-for="(lesson, index) in lessons"
@@ -240,7 +247,7 @@ export default {
           "top-center",
           "#2ecc71",
           "Отличная работа!",
-          "Задание успешно выполнено, а значит пора идти дальше"
+          "Задание успешно выполнено, а значит, пора идти дальше"
         );
       }
 
@@ -393,7 +400,7 @@ export default {
 
     &__logo {
       margin-top: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: row;
       color: $color-1;
@@ -404,6 +411,24 @@ export default {
       &-thin {
         margin-left: 5px;
         font-weight: 300;
+      }
+    }
+
+    &__back {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      color: $color-2;
+      font-size: 20px;
+      cursor: pointer;
+      transition: 200ms ease-in-out;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &-icon {
+        margin-right: 5px;
       }
     }
 
