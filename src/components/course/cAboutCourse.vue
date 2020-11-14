@@ -14,10 +14,11 @@
         {{ $t("firstCourseDescription") }}
       </div>
       <div class="about__buttons">
-        <div class="about__button" @click="isCertificateOpen = true">
+        <div class="about__button" @click="handleCertificateButton">
           Получить сертификат
         </div>
         <a
+          v-if="isLessonsCompleted"
           class="about__button about__button-download"
           :href="`https://api.crepiks.com/${certificatePath}`"
           download
@@ -56,6 +57,9 @@ export default {
 
   data() {
     return {
+      lessons: [],
+      completedLessons: [],
+      isLessonsCompleted: false,
       isCertificateOpen: false,
       certificatePath: ""
     };
@@ -64,9 +68,63 @@ export default {
   mounted() {
     this.$store.dispatch("getCertificate", this.userData.id).then(res => {
       this.certificatePath = res.data.certificates[0].fileUrl;
-      console.log(res.data);
-      console.log(this.certificatePath);
     });
+  },
+
+  methods: {
+    async handleCertificateButton() {
+      await this.checkCompletedLessons();
+      if (this.isLessonsCompleted) {
+        this.isCertificateOpen = true;
+      } else {
+        this.openNotNotification();
+      }
+    },
+
+    async checkCompletedLessons() {
+      const loading = this.$vs.loading();
+
+      let courseId = this.$route.params.id;
+
+      await this.$store
+        .dispatch("getLessons", courseId)
+        .then(res => (this.lessons = res.data.course.lessons));
+
+      await this.$store
+        .dispatch("getCompletedLessons", this.userData.id)
+        .then(res => (this.completedLessons = res.data.completedLessons));
+
+      if (this.lessons.length == this.completedLessons.length) {
+        this.isLessonsCompleted = true;
+      }
+
+      loading.close();
+    },
+
+    openNotNotification() {
+      this.openNotification(
+        "top-center",
+        "danger",
+        "Пройдите курс",
+        "Для получения сертификата вам нужно пройти весь курс"
+      );
+    },
+
+    openNotification(
+      position = "top-center",
+      color = null,
+      title = "",
+      text = "",
+      duration = 5000
+    ) {
+      this.$vs.notification({
+        duration,
+        position,
+        color,
+        title,
+        text
+      });
+    }
   }
 };
 </script>

@@ -29,7 +29,6 @@ export default {
       required: true
     },
     courseId: {
-      type: Number,
       required: true
     },
     isCompleted: {
