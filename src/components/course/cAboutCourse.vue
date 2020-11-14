@@ -13,9 +13,25 @@
       <div class="about__text-description">
         {{ $t("firstCourseDescription") }}
       </div>
-      <router-link to="/app/soon" class="about__button">{{
-        $t("firstCourseButtonText")
-      }}</router-link>
+      <div class="about__buttons">
+        <div class="about__button" @click="isCertificateOpen = true">
+          Получить сертификат
+        </div>
+        <a
+          class="about__button about__button-download"
+          :href="`https://api.crepiks.com/${certificatePath}`"
+          download
+        >
+          <i class="bx bx-download about__button-icon"></i>
+        </a>
+      </div>
+      <vs-dialog class="about__dialog" not-padding v-model="isCertificateOpen">
+        <img
+          :src="`https://api.crepiks.com/${certificatePath}`"
+          alt="Сертификат"
+          class="about__dialog-image"
+        />
+      </vs-dialog>
     </div>
     <img
       src="@/assets/images/firstCoursePreview.png"
@@ -26,12 +42,31 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     course: {
       type: Object,
       required: true
     }
+  },
+
+  computed: mapGetters(["userData"]),
+
+  data() {
+    return {
+      isCertificateOpen: false,
+      certificatePath: ""
+    };
+  },
+
+  mounted() {
+    this.$store.dispatch("getCertificate", this.userData.id).then(res => {
+      this.certificatePath = res.data.certificates[0].fileUrl;
+      console.log(res.data);
+      console.log(this.certificatePath);
+    });
   }
 };
 </script>
@@ -84,9 +119,15 @@ export default {
     }
   }
 
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
   &__button {
     margin-top: 25px;
     padding: 8px 23px;
+    display: inline-block;
     font-size: 20px;
     color: $color-4;
     text-decoration: none;
@@ -101,11 +142,23 @@ export default {
       color: $color-2;
       background-color: $color-6;
     }
+
+    &-download {
+      margin-left: 15px;
+    }
   }
 
   &__image {
     height: 80%;
     transition: 150ms ease-in-out;
+  }
+
+  &__dialog {
+    &-image {
+      position: relative;
+      width: 800px;
+      display: block;
+    }
   }
 
   @media (max-width: 1024px) {

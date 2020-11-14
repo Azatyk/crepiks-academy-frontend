@@ -83,6 +83,17 @@ export default {
           .then(res => resolve(res))
           .catch(err => reject(err));
       });
+    },
+
+    getCertificate(ctx, userId) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/users/" + userId + "/certificates",
+          method: "GET"
+        })
+          .then(res => resolve(res))
+          .catch(err => reject(err));
+      });
     }
   }
 };
