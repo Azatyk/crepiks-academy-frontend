@@ -55,6 +55,45 @@ export default {
             reject(err);
           });
       });
+    },
+    getCompletedLessons(ctx, userId) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/users/" + userId + "/completed-lessons",
+          method: "GET"
+        })
+          .then(res => {
+            resolve(res);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+
+    addCompletedLesson(ctx, { userId, lessonId }) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/users/" + userId + "/completed-lessons",
+          data: {
+            lessonId: lessonId
+          },
+          method: "POST"
+        })
+          .then(res => resolve(res))
+          .catch(err => reject(err));
+      });
+    },
+
+    getCertificate(ctx, userId) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/users/" + userId + "/certificates",
+          method: "GET"
+        })
+          .then(res => resolve(res))
+          .catch(err => reject(err));
+      });
     }
   }
 };

@@ -47,17 +47,26 @@
                 </div></router-link
               >
               <div class="browser-navigation__lessons">
-                <div
+                <router-link
                   v-for="(lesson, index) in lessons"
                   :key="index"
                   class="browser-navigation__lesson"
-                  @click="changeRouteByNavigationMenu(lesson)"
+                  :to="
+                    `/app/courses/${$route.params.courseId}/lessons/${lesson.id}`
+                  "
                 >
-                  <div class="browser-navigation__lesson-number">
+                  <div
+                    class="browser-navigation__lesson-number"
+                    :class="{
+                      'browser-navigation__lesson-number-completed': isLessonCompleted(
+                        lesson.id
+                      )
+                    }"
+                  >
                     {{ index + 1 }}
                   </div>
                   {{ lesson.title.ru }}
-                </div>
+                </router-link>
               </div>
             </div>
           </div>
@@ -95,6 +104,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     lesson: {
@@ -102,6 +113,10 @@ export default {
       required: true
     },
     lessons: {
+      type: Array,
+      required: true
+    },
+    completedLessons: {
       type: Array,
       required: true
     },
@@ -124,12 +139,18 @@ export default {
   watch: {
     lesson() {
       this.isTheoryOnly = Boolean(!this.lesson.description.ru);
+    },
+
+    $route() {
+      this.isTheoryNavigationOpen = false;
     }
   },
 
   async mounted() {
     this.$emit("lesson-not-done");
   },
+
+  computed: mapGetters(["userData"]),
 
   methods: {
     handleTheoryButton() {
@@ -144,6 +165,8 @@ export default {
           }
         });
 
+        this.addCompletedLesson();
+
         this.$router.push(
           "/app/courses/" + courseId + "/lessons/" + nextLessonId
         );
@@ -152,14 +175,6 @@ export default {
       } else {
         this.isTheoryActive = false;
       }
-    },
-
-    changeRouteByNavigationMenu(lesson) {
-      this.$router.push(
-        `/app/courses/${this.$route.params.courseId}/lessons/${lesson.id}`
-      );
-
-      this.isTheoryNavigationOpen = false;
     },
 
     async handleRunButton() {
@@ -228,6 +243,17 @@ export default {
           "Задание успешно выполнено, а значит пора идти дальше"
         );
       }
+
+      this.addCompletedLesson();
+    },
+
+    async addCompletedLesson() {
+      if (!this.isLessonCompleted(this.lesson.id)) {
+        let userId = this.userData.id;
+        let lessonId = this.lesson.id;
+        await this.$store.dispatch("addCompletedLesson", { userId, lessonId });
+        this.$emit("update-completed-lessons");
+      }
     },
 
     openNotification(
@@ -244,6 +270,14 @@ export default {
         title,
         text
       });
+    },
+
+    isLessonCompleted(lessonId) {
+      for (let i = 0; i < this.completedLessons.length; i++) {
+        if (this.completedLessons[i].id == lessonId) {
+          return true;
+        }
+      }
     }
   }
 };
@@ -422,6 +456,11 @@ export default {
         background-color: $color-4;
         box-shadow: 4px 4px 7px 0px $color-7;
         transition: 150ms ease-in-out;
+
+        &-completed {
+          color: $color-4;
+          background-color: #2ecc71;
+        }
       }
     }
   }
@@ -509,6 +548,10 @@ export default {
   }
 }
 
+.router-link-active .browser-navigation__lesson-number {
+  color: $color-4;
+  background-color: #f1c40f;
+}
 // .drag-width {
 //   width: 5px;
 //   height: 100%;

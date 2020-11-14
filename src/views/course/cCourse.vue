@@ -8,6 +8,7 @@
         :lesson="lesson"
         :index="index"
         :courseId="course.id"
+        :isCompleted="isLessonCompleted(lesson.id)"
       />
     </div>
   </div>
@@ -38,13 +39,17 @@ export default {
           kz: null
         }
       },
-      lessons: []
+      lessons: [],
+      completedLessons: []
     };
   },
-  computed: mapGetters(["isLoggedIn"]),
+  computed: mapGetters(["userData"]),
   mounted() {
     const loading = this.$vs.loading();
 
+    this.$store
+      .dispatch("getCompletedLessons", this.userData.id)
+      .then(res => (this.completedLessons = res.data.completedLessons));
     this.$store
       .dispatch("getCourse", this.id)
       .then(res => (this.course = res.data.course));
@@ -58,7 +63,6 @@ export default {
     $route() {
       const loading = this.$vs.loading();
 
-      this.id = this.$route.params.id;
       this.$store
         .dispatch("getCourse", this.id)
         .then(res => (this.course = res.data.course));
@@ -67,6 +71,15 @@ export default {
         .then(res => (this.lessons = res.data.lessons));
 
       loading.close();
+    }
+  },
+  methods: {
+    isLessonCompleted(lessonId) {
+      for (let i = 0; i < this.completedLessons.length; i++) {
+        if (this.completedLessons[i].id == lessonId) {
+          return true;
+        }
+      }
     }
   }
 };
