@@ -94,7 +94,9 @@
                 v-show="lesson.theory.ru"
               >
                 {{
-                  isTheoryOnly
+                  isLessonLast
+                    ? "Завершить курс"
+                    : isTheoryOnly
                     ? lesson.nextButtonText.ru || "Далее"
                     : lesson.nextButtonText.ru || "Перейти к заданию"
                 }}
@@ -117,6 +119,10 @@ export default {
   props: {
     lesson: {
       type: Object,
+      required: true
+    },
+    isLessonLast: {
+      type: Boolean,
       required: true
     },
     lessons: {
@@ -161,26 +167,31 @@ export default {
 
   methods: {
     handleTheoryButton() {
-      if (this.isTheoryOnly) {
-        let courseId = this.$route.params.courseId;
-        let currentLessonId = Number(this.$route.params.lessonId);
-        let nextLessonId;
-
-        this.lessons.forEach(lesson => {
-          if (lesson.id == currentLessonId) {
-            nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
-          }
-        });
-
+      if (this.isLessonLast) {
         this.addCompletedLesson();
-
-        this.$router.push(
-          "/app/courses/" + courseId + "/lessons/" + nextLessonId
-        );
-
-        // Отображаем код в браузере при переходе на следующий урок
+        this.$router.push("/app/courses/" + this.$route.params.courseId);
       } else {
-        this.isTheoryActive = false;
+        if (this.isTheoryOnly) {
+          let courseId = this.$route.params.courseId;
+          let currentLessonId = Number(this.$route.params.lessonId);
+          let nextLessonId;
+
+          this.lessons.forEach(lesson => {
+            if (lesson.id == currentLessonId) {
+              nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+            }
+          });
+
+          this.addCompletedLesson();
+
+          this.$router.push(
+            "/app/courses/" + courseId + "/lessons/" + nextLessonId
+          );
+
+          // Отображаем код в браузере при переходе на следующий урок
+        } else {
+          this.isTheoryActive = false;
+        }
       }
     },
 

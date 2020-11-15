@@ -30,6 +30,7 @@
       <cBrowser
         :lesson="lesson"
         :lessons="lessons"
+        :is-lesson-last="isLessonLast"
         :completedLessons="completedLessons"
         :htmlCode="lesson.htmlCode"
         :cssCode="lesson.cssCode"
@@ -91,7 +92,8 @@ export default {
       completedLessons: [],
       isNavigationOpen: false,
       frameCode: {},
-      isLessonDone: false
+      isLessonDone: false,
+      isLessonLast: false
     };
   },
 
@@ -102,6 +104,7 @@ export default {
       this.isLessonDone = false;
       await this.getLesson();
       this.updateLessonFrame();
+      this.CheckIsLessonLast();
 
       loading.close();
     }
@@ -141,6 +144,8 @@ export default {
       }
     }
 
+    this.CheckIsLessonLast();
+
     loading.close();
   },
 
@@ -174,6 +179,12 @@ export default {
           child.codeHTML = this.lesson.htmlCode;
           child.codeCSS = this.lesson.cssCode;
         }
+      }
+    },
+
+    CheckIsLessonLast() {
+      if (this.lesson.id == this.lessons[this.lessons.length - 1].id) {
+        this.isLessonLast = true;
       }
     },
 
