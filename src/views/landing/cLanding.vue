@@ -46,6 +46,14 @@ export default {
   background-color: #eeeef6;
 }
 
+html::-webkit-scrollbar {
+  width: 0;
+}
+
+html {
+  -ms-overflow-style: none;
+}
+
 @media (max-width: 650px) {
   .vs-select-content {
     width: 70%;

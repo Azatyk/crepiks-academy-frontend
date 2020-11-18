@@ -133,7 +133,8 @@ export default {
     height: calc(100% - 50px);
     border-radius: 10px;
     background-color: $color-4;
-    overflow: scroll;
+    overflow: auto;
+    box-sizing: border-box;
   }
 
   &__tasks-description {

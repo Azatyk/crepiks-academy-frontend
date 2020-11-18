@@ -114,7 +114,8 @@ export default {
   &__lessons {
     height: calc(100% - 50px);
     width: calc(100% - 50px);
-    overflow: scroll;
+    overflow: auto;
+    box-sizing: border-box;
   }
 
   &__logo {
