@@ -67,11 +67,6 @@ export default {
       if (!this.isOpen) {
         this.isNavigationMenuOpen = false;
       }
-    },
-
-    $route() {
-      this.$emit("change-route");
-      this.changeNavigationPosition();
     }
   },
 

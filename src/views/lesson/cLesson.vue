@@ -6,7 +6,6 @@
       :isOpen="isNavigationOpen"
       @open-navigation="isNavigationOpen = true"
       @close-navigation="isNavigationOpen = false"
-      @change-route="handleChangeRoute"
     />
     <div
       class="lesson__blur-background"
@@ -106,6 +105,8 @@ export default {
       this.updateLessonFrame();
       this.CheckIsLessonLast();
 
+      this.isNavigationOpen = false;
+
       loading.close();
     }
   },
@@ -150,10 +151,6 @@ export default {
   },
 
   methods: {
-    handleChangeRoute() {
-      this.getLesson();
-    },
-
     async getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
