@@ -79,6 +79,7 @@
           </div>
           <div
             class="browser__theory"
+            ref="theory"
             :class="{ 'browser__theory-blur': isTheoryNavigationOpen }"
             @click="isTheoryNavigationOpen = false"
           >
@@ -156,6 +157,8 @@ export default {
 
     $route() {
       this.isTheoryNavigationOpen = false;
+      let theoryElement = this.$refs.theory;
+      theoryElement.scrollIntoView();
     }
   },
 
