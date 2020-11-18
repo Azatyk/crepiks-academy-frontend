@@ -222,6 +222,8 @@ export default {
     width: 100%;
     height: 100vh;
     background-color: $color-6;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   &__content {

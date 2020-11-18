@@ -108,13 +108,14 @@ export default {
     padding: 50px 0 100px 40px;
     height: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: hidden !important;
   }
 
   &__lessons {
-    height: 100%;
-    width: 100%;
-    overflow: scroll;
+    height: calc(100% - 50px);
+    width: calc(100% - 50px);
+    overflow: auto;
+    box-sizing: border-box;
   }
 
   &__logo {
