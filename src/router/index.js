@@ -69,6 +69,9 @@ const routes = [
       {
         path: "app",
         component: cAppLayout,
+        meta: {
+          needAuth: true
+        },
         children: [
           {
             path: "",
