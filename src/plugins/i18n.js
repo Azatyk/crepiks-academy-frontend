@@ -109,7 +109,7 @@ export const i18n = new VueI18n({
       courseCardDurationText: "Длительность",
       courseCardPriceText: "Стоимость",
       courseCardComplexityDataText: "Простой",
-      courseCardDurationDataText: "20 часов",
+      courseCardDurationDataText: "10 часов",
       courseCardPriceDataText: "2000 тг",
 
       coursesWelcomeTitle: "Подбери идеальный курс для себя!",
