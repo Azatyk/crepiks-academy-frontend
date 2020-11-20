@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import cSoon from "@/views/soon/cSoon";
+import cHowPay from "@/views/how-pay/cHowPay";
 
 import cLanding from "@/views/landing/cLanding";
 
@@ -91,6 +92,14 @@ const routes = [
                 component: cSoon,
                 meta: {
                   title: "Скоро"
+                }
+              },
+              {
+                path: "how-get",
+                name: "how-pay",
+                component: cHowPay,
+                meta: {
+                  title: "Как получить курс?"
                 }
               },
               {

@@ -58,6 +58,12 @@
         </template>
         {{ $t("appNavigationTrainer") }}
       </vs-sidebar-item>
+      <vs-sidebar-item id="/app/how-get" to="/app/how-get">
+        <template #icon>
+          <i class="bx bx-target-lock"></i>
+        </template>
+        Как получить курс?
+      </vs-sidebar-item>
     </vs-sidebar>
     <cProfile
       v-show="!isMobile"

@@ -33,7 +33,7 @@ export default {
 
 .app {
   &__page {
-    padding: 0.1px 0 80px;
+    padding: 0.1px 0 0;
     width: 100%;
     min-height: 100vh;
     height: auto;

@@ -60,7 +60,6 @@ export default {
   }
 
   &__cards {
-    margin-top: 10vh;
     width: 100%;
     height: auto;
     display: flex;

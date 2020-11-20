@@ -82,7 +82,7 @@ export default {};
     }
 
     &-description {
-      font-size: 1vw;
+      font-size: 1.3vw;
       color: $color-5;
     }
   }
