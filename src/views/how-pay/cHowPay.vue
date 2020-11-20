@@ -58,8 +58,8 @@
           </p>
         </div>
         <img
-          class="pay__slide-image"
-          src="@/assets/images/howPaySlide1.png"
+          class="pay__slide-image pay__slide-image-big"
+          src="@/assets/images/howPaySlide3.png"
           alt="Оплата через Kaspi"
         />
       </div>
@@ -71,7 +71,11 @@
             Используйте любой удобный для вас способ общения:
           </p>
           <div class="pay__slide-links">
-            <a href="#" class="pay__slide-link pay__slide-link-whatsapp">
+            <a
+              href="https://wa.me/77072050716"
+              class="pay__slide-link pay__slide-link-whatsapp"
+              target="_blank"
+            >
               <img
                 src="@/assets/icons/whatsapp.png"
                 alt="WhatsApp"
@@ -79,7 +83,11 @@
               />
               WhatsApp
             </a>
-            <a href="#" class="pay__slide-link pay__slide-link-telegram">
+            <a
+              href="https://t.me/The_Fratres"
+              class="pay__slide-link pay__slide-link-telegram"
+              target="_blank"
+            >
               <img
                 src="@/assets/icons/telegram.png"
                 alt="Telegram"
@@ -87,7 +95,11 @@
               />
               Telegram
             </a>
-            <a href="#" class="pay__slide-link pay__slide-link-instagram">
+            <a
+              href="https://www.instagram.com/crepiks_academy/"
+              class="pay__slide-link pay__slide-link-instagram"
+              target="_blank"
+            >
               <img
                 src="@/assets/icons/instagram.png"
                 alt="Instagram"
@@ -95,15 +107,22 @@
               />
               Instagram
             </a>
-            <a href="#" class="pay__slide-link pay__slide-link-email">
+            <a
+              href="mailto:crepiks.academy@mail.ru"
+              class="pay__slide-link pay__slide-link-email"
+              target="_blank"
+            >
               <img
                 src="@/assets/icons/email.png"
-                alt="Instagram"
+                alt="Почта"
                 class="pay__slide-link-icon"
               />
               Почта
             </a>
-            <a href="#" class="pay__slide-link pay__slide-link-number">
+            <a
+              href="tel:87072050716"
+              class="pay__slide-link pay__slide-link-number"
+            >
               8 (707) 205 07 16
             </a>
           </div>
@@ -122,7 +141,7 @@
         </div>
         <img
           class="pay__slide-image"
-          src="@/assets/images/howPaySlide1.png"
+          src="@/assets/images/howPaySlide4.png"
           alt="Оплата через Kaspi"
         />
       </div>
@@ -231,8 +250,8 @@ export default {
     align-items: center;
 
     &-text {
-      padding-top: 40px;
-      width: 65%;
+      padding-top: 50px;
+      width: 63%;
       height: 100%;
       box-sizing: border-box;
       display: flex;
@@ -255,6 +274,10 @@ export default {
 
     &-image {
       width: 25%;
+
+      &-big {
+        width: 35%;
+      }
     }
 
     &-links {
