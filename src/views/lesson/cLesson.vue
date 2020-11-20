@@ -105,6 +105,12 @@ export default {
       this.updateLessonFrame();
       this.CheckIsLessonLast();
 
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "cBrowser") {
+          child.scrollTheoryTop();
+        }
+      }
+
       this.isNavigationOpen = false;
 
       loading.close();
