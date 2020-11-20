@@ -255,6 +255,7 @@ export default {
 
       if (globalTestFunctionAnswer.isDone) {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
+        this.addCompletedLesson();
         this.openNotification(
           "top-center",
           "#2ecc71",
@@ -262,8 +263,6 @@ export default {
           "Задание успешно выполнено, а значит, пора идти дальше"
         );
       }
-
-      this.addCompletedLesson();
     },
 
     async addCompletedLesson() {
