@@ -157,8 +157,6 @@ export default {
 
     $route() {
       this.isTheoryNavigationOpen = false;
-      let theoryElement = this.$refs.theory;
-      theoryElement.scrollIntoView();
     }
   },
 
@@ -299,6 +297,11 @@ export default {
           return true;
         }
       }
+    },
+
+    scrollTheoryTop() {
+      let theoryElement = this.$refs.theory;
+      theoryElement.scrollIntoView();
     }
   }
 };
