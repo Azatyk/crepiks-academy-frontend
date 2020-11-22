@@ -1,131 +1,172 @@
 <template>
-  <div class="landing__page" ref="body">
-    <!-- <vue-scroll-progress-bar
-      height="5px"
-      backgroundColor="linear-gradient(to right, #0d0b6d, #2522a0)"
-    /> -->
-    <cFirstSlide class="hide" :class="{ show: currentPage === 1 }" />
-    <cSecondSlide class="hide" :class="{ show: currentPage === 2 }" />
-    <cThirdSlide class="hide" :class="{ show: currentPage === 3 }" />
-    <!-- <cWelcome />
-    <cWhatFor />
-    <cHow />
-    <cAboutCourse />
-    <cAboutEnding />
-    <cFooter /> -->
+  <div
+    ref="slider"
+    class="slider"
+    :class="{
+      'slider-first': activeSlide == 1,
+      'slider-second': activeSlide == 2,
+      'slider-third': activeSlide == 3
+    }"
+  >
+    <transition name="slide">
+      <div class="slide" v-if="activeSlide == 1">
+        <h1 class="slide__heading">Я первый слайд</h1>
+      </div>
+    </transition>
+    <transition name="slide">
+      <div class="slide" v-if="activeSlide == 2">
+        <h1 class="slide__heading">Я второй слайд</h1>
+      </div>
+    </transition>
+    <transition name="slide">
+      <div class="slide" v-if="activeSlide == 3">
+        <h1 class="slide__heading">Я третий слайд</h1>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
-import cFirstSlide from "@/components/newLanding/firstSlide/cFirstSlide";
-import cSecondSlide from "@/components/newLanding/secondSlide/cSecondSlide";
-import cThirdSlide from "@/components/newLanding/thirdSlide/cThirdSlide";
-// import cWelcome from "@/components/landing/cWelcome";
-// import cWhatFor from "@/components/landing/cWhatFor";
-// import cHow from "@/components/landing/cHow";
-// import cAboutCourse from "@/components/landing/cAboutCourse";
-// import cAboutEnding from "@/components/landing/cAboutEnding";
-// import cFooter from "@/components/landing/cFooter";
-// import { VueScrollProgressBar } from "@guillaumebriday/vue-scroll-progress-bar";
-
 export default {
-  data: function() {
+  data() {
     return {
-      direction: null,
-      startY: 0,
-      currentPage: 1
+      activeSlide: 1
     };
   },
-  components: {
-    cFirstSlide,
-    cSecondSlide,
-    cThirdSlide
-    // cWelcome,
-    // cWhatFor,
-    // cHow,
-    // cAboutCourse,
-    // cAboutEnding,
-    // cFooter,
-    // VueScrollProgressBar
+
+  mounted() {
+    // немного кросс-браузерности
+    this.addMouseEventListener();
   },
+
   methods: {
-    handleScroll: function() {
-      // var scrollY = window.scrollY;
-      // var scrolledscrollDifference = scrollY - this.startY;
-      var winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      var height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      var scrolled = (winScroll / height) * 100;
-      // console.log(scrolled)
-      // if (scrollY > this.startY) {
-      //   this.direction = 'Now going down...';
-      //   if (this.currentPage === 3) {
-      //     this.currentPage === 3
-      //   } else {
-      //     this.currentPage++;
-      //   }
-      //   // console.log(this.currentPage)
-      // } else if (scrollY < this.startY) {
-      //   this.direction = 'Now going up!';
-      //   if (this.currentPage === 1) {
-      //     this.currentPage === 1
-      //   } else {
-      //     this.currentPage--;
-      //   }
-      //   // console.log(this.currentPage)
-      // }
-      // this.startY = scrollY;
-      if (scrolled >= 0 && scrolled < 33) {
-        this.currentPage = 1;
-      } else if (scrolled >= 33 && scrolled < 66) {
-        this.currentPage = 2;
-      } else if (scrolled >= 66 && scrolled <= 100) {
-        this.currentPage = 3;
+    addMouseEventListener() {
+      let slider = this.$refs.slider;
+      if (slider.addEventListener) {
+        if ("onwheel" in document) {
+          // IE9+, FF17+, Ch31+
+          slider.addEventListener("wheel", this.handleScroll);
+        } else if ("onmousewheel" in document) {
+          // устаревший вариант события
+          slider.addEventListener("mousewheel", this.handleScroll);
+        } else {
+          // Firefox < 17
+          slider.addEventListener("MozMousePixelScroll", this.handleScroll);
+        }
+      } else {
+        // IE8-
+        slider.attachEvent("onmousewheel", this.handleScroll);
       }
+    },
+
+    removeMouseEventListener() {
+      let slider = this.$refs.slider;
+      if (slider.addEventListener) {
+        if ("onwheel" in document) {
+          // IE9+, FF17+, Ch31+
+          slider.removeEventListener("wheel", this.handleScroll);
+        } else if ("onmousewheel" in document) {
+          // устаревший вариант события
+          slider.removeEventListener("mousewheel", this.handleScroll);
+        } else {
+          // Firefox < 17
+          slider.removeEventListener("MozMousePixelScroll", this.handleScroll);
+        }
+      } else {
+        // IE8-
+        slider.removeEventListener("onmousewheel", this.handleScroll);
+      }
+    },
+
+    handleScroll(e) {
+      e = e || window.event;
+
+      // wheelDelta не даёт возможность узнать количество пикселей
+      var delta = e.deltaY || e.detail || e.wheelDelta;
+
+      if (delta > 0) {
+        if (this.activeSlide != 3) {
+          this.activeSlide++;
+        }
+      } else {
+        if (this.activeSlide != 1) {
+          this.activeSlide--;
+        }
+      }
+
+      e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+
+      this.removeMouseEventListener();
+
+      setTimeout(() => {
+        this.addMouseEventListener();
+      }, 1000);
     }
-  },
-  mounted: function() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  destroyed: function() {
-    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
 
-<style>
-.landing__page {
-  overflow: hidden;
-  height: 105vh;
+<style scoped lang="scss">
+::-webkit-scrollbar {
+  width: 0 !important;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-/* .landing__page {
+.slider {
+  position: fixed;
+  height: 100vh;
   width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  background-color: #eeeef6;
-}
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 1000ms ease-in-out;
+  overflow: hidden;
 
-html::-webkit-scrollbar {
-  width: 0;
-}
-
-html {
-  -ms-overflow-style: none;
-}
-
-@media (max-width: 650px) {
-  .vs-select-content {
-    width: 70%;
+  &-first {
+    background-color: #3d3d3d;
   }
-} */
+
+  &-second {
+    background-color: #8dbac0;
+  }
+
+  &-third {
+    background-color: #ed8f60;
+  }
+}
+
+.slide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__heading {
+    color: white;
+  }
+
+  &-enter-active,
+  &-leave-active {
+    transition: 1000ms ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &-enter {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
 </style>
