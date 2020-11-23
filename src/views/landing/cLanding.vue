@@ -13,27 +13,57 @@
     <div class="slider__dots">
       <div
         class="slider__dots-dot"
-        :class="{ 'slider__dots-active': activeSlide == 1 }"
+        :class="{
+          'slider__dots-active': activeSlide == 1,
+          'slider__dots-second': activeSlide == 2,
+          'slider__dots-third': activeSlide == 3,
+          'slider__dots-fourth': activeSlide == 4,
+          'slider__dots-fifth': activeSlide == 5
+        }"
         @click="activeSlide = 1"
       ></div>
       <div
         class="slider__dots-dot"
-        :class="{ 'slider__dots-active': activeSlide == 2 }"
+        :class="{
+          'slider__dots-active': activeSlide == 2,
+          'slider__dots-second': activeSlide == 2,
+          'slider__dots-third': activeSlide == 3,
+          'slider__dots-fourth': activeSlide == 4,
+          'slider__dots-fifth': activeSlide == 5
+        }"
         @click="activeSlide = 2"
       ></div>
       <div
         class="slider__dots-dot"
-        :class="{ 'slider__dots-active': activeSlide == 3 }"
+        :class="{
+          'slider__dots-active': activeSlide == 3,
+          'slider__dots-second': activeSlide == 2,
+          'slider__dots-third': activeSlide == 3,
+          'slider__dots-fourth': activeSlide == 4,
+          'slider__dots-fifth': activeSlide == 5
+        }"
         @click="activeSlide = 3"
       ></div>
       <div
         class="slider__dots-dot"
-        :class="{ 'slider__dots-active': activeSlide == 4 }"
+        :class="{
+          'slider__dots-active': activeSlide == 4,
+          'slider__dots-second': activeSlide == 2,
+          'slider__dots-third': activeSlide == 3,
+          'slider__dots-fourth': activeSlide == 4,
+          'slider__dots-fifth': activeSlide == 5
+        }"
         @click="activeSlide = 4"
       ></div>
       <div
         class="slider__dots-dot"
-        :class="{ 'slider__dots-active': activeSlide == 5 }"
+        :class="{
+          'slider__dots-active': activeSlide == 5,
+          'slider__dots-second': activeSlide == 2,
+          'slider__dots-third': activeSlide == 3,
+          'slider__dots-fourth': activeSlide == 4,
+          'slider__dots-fifth': activeSlide == 5
+        }"
         @click="activeSlide = 5"
       ></div>
     </div>
@@ -57,7 +87,24 @@
     </transition>
     <transition name="slide">
       <div class="slide" v-if="activeSlide == 2">
-        <h1 class="slide__heading">Я второй слайд</h1>
+        <div class="slide-text">
+          <h2 class="slide-text__heading">
+            Учитесь без ограничений.
+          </h2>
+          <p class="slide-text__paragraph">
+            День? Ночь? Улица? Дом? Без разницы, ведь тут вы можете обучаться в
+            удобное для вас время в удобном для вас месте и в удобном для вас
+            темпе.
+          </p>
+          <button class="slide-text__button slide-text__button-second">
+            Попробовать
+          </button>
+        </div>
+        <img
+          class="slide__image"
+          src="@/assets/images/landingSlide3.png"
+          alt="Интерактивность"
+        />
       </div>
     </transition>
     <transition name="slide">
@@ -71,7 +118,9 @@
             программирует, программируйте сами! На интерактивных курсах вы
             можете практиковаться и писать код прямо на платформе.
           </p>
-          <button class="slide-text__button">Попробовать</button>
+          <button class="slide-text__button slide-text__button-third">
+            Попробовать
+          </button>
         </div>
         <img
           class="slide__image"
@@ -82,12 +131,46 @@
     </transition>
     <transition name="slide">
       <div class="slide" v-if="activeSlide == 4">
-        <h1 class="slide__heading">Я четвертый слайд</h1>
+        <div class="slide-text">
+          <h2 class="slide-text__heading">
+            Вам понадобятся две чашки кофе.
+          </h2>
+          <p class="slide-text__paragraph">
+            Нет, это не шутка. Курсы на Crepiks Academy стоят не дороже двух
+            чашек кофе или трех поездок на такси. Почему так? Дело в том что, мы
+            хотим стремимся сделать обучение программирование доступными
+            каждому.
+          </p>
+          <button class="slide-text__button slide-text__button-fourth">
+            Попробовать
+          </button>
+        </div>
+        <img
+          class="slide__image"
+          src="@/assets/images/landingSlide3.png"
+          alt="Интерактивность"
+        />
       </div>
     </transition>
     <transition name="slide">
       <div class="slide" v-if="activeSlide == 5">
-        <h1 class="slide__heading">Я пятый слайд</h1>
+        <div class="slide-text">
+          <h2 class="slide-text__heading">
+            Не верите нам? Послушайте их.
+          </h2>
+          <p class="slide-text__paragraph">
+            Если у вас остались сомнения, то взгляните на отзывы тех, кто уже
+            прошел курс и во всю используют свои знания в жизни.
+          </p>
+          <button class="slide-text__button slide-text__button-fifth">
+            Попробовать
+          </button>
+        </div>
+        <img
+          class="slide__image"
+          src="@/assets/images/landingSlide3.png"
+          alt="Интерактивность"
+        />
       </div>
     </transition>
   </div>
@@ -224,6 +307,24 @@ export default {
       border: 5px solid #252528;
       background: transparent;
     }
+
+    &-second {
+      background-color: white;
+
+      & ~ .slider__dots-active {
+        border-color: white;
+        background: transparent;
+      }
+    }
+
+    &-fifth {
+      background-color: white;
+
+      & ~ .slider__dots-active {
+        border-color: white;
+        background: transparent;
+      }
+    }
   }
 
   &-first {
@@ -231,7 +332,7 @@ export default {
   }
 
   &-second {
-    background-color: #3d3d3d;
+    background-color: #141414;
   }
 
   &-third {
@@ -239,11 +340,15 @@ export default {
   }
 
   &-fourth {
-    background-color: #8dbac0;
+    background: linear-gradient(180deg, #8dbac0, #8dbac0);
   }
 
   &-fifth {
-    background-color: #553e8d;
+    background: radial-gradient(
+      circle farthest-corner at 30% 40%,
+      #553e8d,
+      #302153
+    );
   }
 }
 
@@ -286,7 +391,6 @@ export default {
 
     &__button {
       padding: 8px 25px;
-      color: #d75900;
       font-size: 1.3rem;
       font-weight: 500;
       border: 2px solid white;
@@ -298,6 +402,22 @@ export default {
       &:hover {
         color: white;
         background: transparent;
+      }
+
+      &-second {
+        color: #141414;
+      }
+
+      &-third {
+        color: #d75900;
+      }
+
+      &-fourth {
+        color: #8dbac0;
+      }
+
+      &-fifth {
+        color: #553e8d;
       }
     }
   }
