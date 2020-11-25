@@ -362,10 +362,12 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
+  padding: 0 5%;
   margin: auto;
   width: 100%;
   max-width: 1200px;
   height: 100vh;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
