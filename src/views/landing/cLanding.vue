@@ -71,7 +71,12 @@
       <div class="slide first-slide" v-if="activeSlide == 1">
         <header class="first-slide__header">
           <h2 class="first-slide__header-logo">Crepiks</h2>
-          <button class="first-slide__header-button">Войти</button>
+          <button
+            class="first-slide__header-button"
+            @click="$router.push('/app/home')"
+          >
+            Войти
+          </button>
         </header>
         <div class="first-slide__welcome">
           <div class="first-slide__welcome-heading">
@@ -123,7 +128,7 @@
           </button>
         </div>
         <img
-          class="slide__image"
+          class="slide__image slide__image-third"
           src="@/assets/images/landingSlide3.png"
           alt="Интерактивность"
         />
@@ -138,16 +143,15 @@
           <p class="slide-text__paragraph">
             Нет, это не шутка. Курсы на Crepiks Academy стоят не дороже двух
             чашек кофе или трех поездок на такси. Почему так? Дело в том что, мы
-            хотим стремимся сделать обучение программирование доступными
-            каждому.
+            стремимся сделать обучение программирование доступными каждому.
           </p>
           <button class="slide-text__button slide-text__button-fourth">
             Попробовать
           </button>
         </div>
         <img
-          class="slide__image"
-          src="@/assets/images/landingSlide3.png"
+          class="slide__image slide__image-fourth"
+          src="@/assets/images/landingSlide4.png"
           alt="Интерактивность"
         />
       </div>
@@ -364,15 +368,17 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   &-text {
+    margin-right: 70px;
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    z-index: 3;
 
     &__heading {
       margin-bottom: 20px;
@@ -423,7 +429,20 @@ export default {
   }
 
   &__image {
-    height: 700px;
+    position: absolute;
+    right: 0;
+    width: 50%;
+
+    &-third {
+      right: 5%;
+      height: 700px;
+      width: auto;
+      transform: rotate(5deg);
+    }
+
+    &-fourth {
+      width: 70%;
+    }
   }
 
   &__heading {
