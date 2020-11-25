@@ -1,24 +1,11 @@
 <template>
-  <div
-    ref="slider"
-    class="slider"
-    :class="{
-      'slider-first': activeSlide == 1,
-      'slider-second': activeSlide == 2,
-      'slider-third': activeSlide == 3,
-      'slider-fourth': activeSlide == 4,
-      'slider-fifth': activeSlide == 5
-    }"
-  >
+  <div ref="slider" class="slider">
     <div class="slider__dots">
       <div
         class="slider__dots-dot"
         :class="{
-          'slider__dots-active': activeSlide == 1,
-          'slider__dots-second': activeSlide == 2,
-          'slider__dots-third': activeSlide == 3,
-          'slider__dots-fourth': activeSlide == 4,
-          'slider__dots-fifth': activeSlide == 5
+          'slider__dots-first': activeSlide == 1,
+          'slider__dots-active': activeSlide == 1
         }"
         @click="activeSlide = 1"
       ></div>
@@ -26,10 +13,7 @@
         class="slider__dots-dot"
         :class="{
           'slider__dots-active': activeSlide == 2,
-          'slider__dots-second': activeSlide == 2,
-          'slider__dots-third': activeSlide == 3,
-          'slider__dots-fourth': activeSlide == 4,
-          'slider__dots-fifth': activeSlide == 5
+          'slider__dots-first': activeSlide == 1
         }"
         @click="activeSlide = 2"
       ></div>
@@ -37,10 +21,7 @@
         class="slider__dots-dot"
         :class="{
           'slider__dots-active': activeSlide == 3,
-          'slider__dots-second': activeSlide == 2,
-          'slider__dots-third': activeSlide == 3,
-          'slider__dots-fourth': activeSlide == 4,
-          'slider__dots-fifth': activeSlide == 5
+          'slider__dots-first': activeSlide == 1
         }"
         @click="activeSlide = 3"
       ></div>
@@ -48,10 +29,7 @@
         class="slider__dots-dot"
         :class="{
           'slider__dots-active': activeSlide == 4,
-          'slider__dots-second': activeSlide == 2,
-          'slider__dots-third': activeSlide == 3,
-          'slider__dots-fourth': activeSlide == 4,
-          'slider__dots-fifth': activeSlide == 5
+          'slider__dots-first': activeSlide == 1
         }"
         @click="activeSlide = 4"
       ></div>
@@ -59,16 +37,17 @@
         class="slider__dots-dot"
         :class="{
           'slider__dots-active': activeSlide == 5,
-          'slider__dots-second': activeSlide == 2,
-          'slider__dots-third': activeSlide == 3,
-          'slider__dots-fourth': activeSlide == 4,
-          'slider__dots-fifth': activeSlide == 5
+          'slider__dots-first': activeSlide == 1
         }"
         @click="activeSlide = 5"
       ></div>
     </div>
     <transition name="slide">
-      <div class="slide first-slide" v-if="activeSlide == 1">
+      <div
+        class="slide first-slide"
+        :class="{ 'slide-first': activeSlide == 1 }"
+        v-if="activeSlide == 1"
+      >
         <header class="first-slide__header">
           <h2 class="first-slide__header-logo">Crepiks</h2>
           <button
@@ -91,7 +70,11 @@
       </div>
     </transition>
     <transition name="slide">
-      <div class="slide" v-if="activeSlide == 2">
+      <div
+        class="slide"
+        :class="{ 'slide-second': activeSlide == 2 }"
+        v-if="activeSlide == 2"
+      >
         <div class="slide-text">
           <h2 class="slide-text__heading">
             Учитесь без ограничений.
@@ -113,7 +96,11 @@
       </div>
     </transition>
     <transition name="slide">
-      <div class="slide" v-if="activeSlide == 3">
+      <div
+        class="slide"
+        :class="{ 'slide-third': activeSlide == 3 }"
+        v-if="activeSlide == 3"
+      >
         <div class="slide-text">
           <h2 class="slide-text__heading">
             Пишите код на интерактивных курсах.
@@ -135,7 +122,11 @@
       </div>
     </transition>
     <transition name="slide">
-      <div class="slide" v-if="activeSlide == 4">
+      <div
+        class="slide"
+        :class="{ 'slide-fourth': activeSlide == 4 }"
+        v-if="activeSlide == 4"
+      >
         <div class="slide-text">
           <h2 class="slide-text__heading">
             Вам понадобятся две чашки кофе.
@@ -157,7 +148,11 @@
       </div>
     </transition>
     <transition name="slide">
-      <div class="slide" v-if="activeSlide == 5">
+      <div
+        class="slide"
+        :class="{ 'slide-fifth': activeSlide == 5 }"
+        v-if="activeSlide == 5"
+      >
         <div class="slide-text">
           <h2 class="slide-text__heading">
             Не верите нам? Послушайте их.
@@ -295,7 +290,7 @@ export default {
       height: 13px;
       box-sizing: border-box;
       border-radius: 50%;
-      background-color: #252528;
+      background-color: white;
       transition: 300ms ease-in-out;
       cursor: pointer;
 
@@ -308,28 +303,32 @@ export default {
       width: 17px;
       height: 17px;
       box-sizing: border-box;
-      border: 5px solid #252528;
-      background: transparent;
+      border: 5px solid white;
+      background: transparent !important;
     }
 
-    &-second {
-      background-color: white;
-
-      & ~ .slider__dots-active {
-        border-color: white;
-        background: transparent;
-      }
-    }
-
-    &-fifth {
-      background-color: white;
-
-      & ~ .slider__dots-active {
-        border-color: white;
-        background: transparent;
-      }
+    &-first {
+      background-color: #252528;
+      border-color: #252528;
     }
   }
+}
+
+.slide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0 5%;
+  margin: auto;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   &-first {
     background-color: white;
@@ -354,28 +353,10 @@ export default {
       #302153
     );
   }
-}
-
-.slide {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  padding: 0 5%;
-  margin: auto;
-  width: 100%;
-  max-width: 1200px;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
 
   &-text {
-    margin-right: 70px;
-    width: 50%;
+    margin-right: 450px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -385,7 +366,7 @@ export default {
     &__heading {
       margin-bottom: 20px;
       color: white;
-      font-size: 3.3rem;
+      font-size: 50px;
       font-weight: 500;
     }
 
@@ -432,7 +413,6 @@ export default {
 
   &__image {
     position: absolute;
-    right: 0;
     width: 50%;
 
     &-second {
@@ -440,14 +420,16 @@ export default {
     }
 
     &-third {
-      right: 5%;
+      left: 60%;
       height: 700px;
       width: auto;
       transform: rotate(5deg);
     }
 
     &-fourth {
-      width: 70%;
+      width: 800px;
+      right: auto;
+      left: 37%;
     }
   }
 
@@ -464,12 +446,12 @@ export default {
 
   &-enter {
     opacity: 0;
-    transform: translateY(100px);
+    // transform: translateY(100px);
   }
 
   &-leave-to {
     opacity: 0;
-    transform: translateY(-100px);
+    // transform: translateY(-100px);
   }
 }
 
