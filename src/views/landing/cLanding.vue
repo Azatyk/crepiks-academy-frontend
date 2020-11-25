@@ -106,8 +106,8 @@
           </button>
         </div>
         <img
-          class="slide__image"
-          src="@/assets/images/landingSlide3.png"
+          class="slide__image slide__image-second"
+          src="@/assets/images/landingSlide2.jpg"
           alt="Интерактивность"
         />
       </div>
@@ -336,7 +336,7 @@ export default {
   }
 
   &-second {
-    background-color: #141414;
+    background: #050505;
   }
 
   &-third {
@@ -433,6 +433,10 @@ export default {
     right: 0;
     width: 50%;
 
+    &-second {
+      width: 100%;
+    }
+
     &-third {
       right: 5%;
       height: 700px;
@@ -451,19 +455,19 @@ export default {
 
   &-enter-active,
   &-leave-active {
-    transition: 1000ms ease-in-out;
+    transition: 800ms ease-in-out;
     opacity: 1;
     transform: translateY(0);
   }
 
   &-enter {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(100px);
   }
 
   &-leave-to {
     opacity: 0;
-    transform: translateY(-50px);
+    transform: translateY(-100px);
   }
 }
 
