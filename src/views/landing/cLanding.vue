@@ -75,7 +75,7 @@
         :class="{ 'slide-second': activeSlide == 2 }"
         v-if="activeSlide == 2"
       >
-        <div class="slide-text">
+        <div class="slide-text slide-text-second">
           <h2 class="slide-text__heading">
             Учитесь без ограничений.
           </h2>
@@ -355,13 +355,17 @@ export default {
   }
 
   &-text {
-    margin-right: 450px;
+    margin-right: 480px;
     width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     z-index: 3;
+
+    &-second {
+      margin-bottom: 50px;
+    }
 
     &__heading {
       margin-bottom: 20px;
@@ -373,14 +377,14 @@ export default {
     &__paragraph {
       margin-bottom: 40px;
       color: #fffc;
-      font-size: 1.3rem;
+      font-size: 23px;
       font-weight: 300;
       line-height: 150%;
     }
 
     &__button {
       padding: 8px 25px;
-      font-size: 1.3rem;
+      font-size: 20px;
       font-weight: 500;
       border: 2px solid white;
       border-radius: 5px;
@@ -429,7 +433,7 @@ export default {
     &-fourth {
       width: 800px;
       right: auto;
-      left: 37%;
+      left: 38%;
     }
   }
 
@@ -536,6 +540,119 @@ export default {
       &:hover {
         color: #4316f3;
         background-color: transparent;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .slide {
+    &__image {
+      &-fourth {
+        left: 36%;
+        width: 700px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .first-slide {
+    &__header {
+      padding: 0 5%;
+      height: 130px;
+
+      &-logo {
+        font-size: 40px;
+      }
+
+      &-button {
+        font-size: 23px;
+      }
+    }
+
+    &__welcome {
+      &-heading {
+        font-size: 70px;
+      }
+
+      &-paragraph {
+        width: 650px;
+        font-size: 30px;
+      }
+
+      &-button {
+        padding: 12px 30px;
+        font-size: 30px;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .slider {
+    &__dots {
+      height: 160px;
+
+      &-dot {
+        width: 23px;
+        height: 23px;
+      }
+
+      &-active {
+        width: 30px;
+        height: 30px;
+        border-width: 8px;
+      }
+    }
+  }
+
+  .slide {
+    flex-direction: column;
+
+    &-text {
+      margin-bottom: 500px;
+      margin-right: 0;
+      width: 700px;
+
+      &-second {
+        margin-bottom: 300px;
+        margin-right: 100px;
+      }
+
+      &__heading {
+        font-size: 70px;
+      }
+
+      &__paragraph {
+        font-size: 30px;
+      }
+
+      &__button {
+        padding: 10px 30px;
+        font-size: 30px;
+      }
+    }
+
+    &__image {
+      &-second {
+        right: 0;
+        width: auto;
+        height: 100%;
+      }
+
+      &-third {
+        left: 10%;
+        right: 0;
+        top: 45%;
+        margin: auto;
+        transform: rotate(15deg);
+      }
+
+      &-fourth {
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin: auto;
       }
     }
   }
