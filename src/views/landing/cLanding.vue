@@ -67,6 +67,11 @@
           </p>
           <button class="first-slide__welcome-button">Начать обучение</button>
         </div>
+        <img
+          class="first-slide__welcome-image"
+          src="@/assets/images/landingSlide1.png"
+          alt="Crepiks Academy"
+        />
       </div>
     </transition>
     <transition name="slide">
@@ -465,7 +470,7 @@ export default {
   height: 100%;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   background: transparent;
@@ -507,10 +512,12 @@ export default {
   }
 
   &__welcome {
+    margin-right: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    z-index: 2;
 
     &-heading {
       margin-bottom: 20px;
@@ -524,7 +531,6 @@ export default {
       width: 500px;
       color: #252528;
       font-size: 20px;
-      text-align: center;
     }
 
     &-button {
@@ -542,6 +548,15 @@ export default {
         background-color: transparent;
       }
     }
+  }
+
+  &__welcome-image {
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    right: 0;
+    height: 600px;
+    margin: auto;
   }
 }
 
