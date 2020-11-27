@@ -211,6 +211,8 @@ export default {
         // IE8-
         slider.attachEvent("onmousewheel", this.handleScroll);
       }
+
+      window.addEventListener("keydown", this.handleKeyPress);
     },
 
     removeMouseEventListener() {
@@ -230,6 +232,8 @@ export default {
         // IE8-
         slider.removeEventListener("onmousewheel", this.handleScroll);
       }
+
+      window.removeEventListener("keydown", this.handleKeyPress);
     },
 
     handleScroll(e) {
@@ -249,6 +253,26 @@ export default {
       }
 
       e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+
+      this.removeMouseEventListener();
+
+      setTimeout(() => {
+        this.addMouseEventListener();
+      }, 1300);
+    },
+
+    handleKeyPress(e) {
+      console.log("handle key press");
+
+      if (e.code == "ArrowUp") {
+        if (this.activeSlide != 1) {
+          this.activeSlide--;
+        }
+      } else if (e.code == "ArrowDown") {
+        if (this.activeSlide != 5) {
+          this.activeSlide++;
+        }
+      }
 
       this.removeMouseEventListener();
 
@@ -521,7 +545,8 @@ export default {
 
     &-heading {
       margin-bottom: 20px;
-      color: #252528;
+      color: #3d3d3d;
+      line-height: 100%;
       font-size: 60px;
       font-weight: 700;
     }
@@ -530,7 +555,8 @@ export default {
       margin-bottom: 40px;
       width: 500px;
       color: #252528;
-      font-size: 20px;
+      font-size: 21px;
+      line-height: 130%;
     }
 
     &-button {
