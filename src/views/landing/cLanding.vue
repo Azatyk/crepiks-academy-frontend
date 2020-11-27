@@ -512,7 +512,7 @@ export default {
   }
 
   &__welcome {
-    margin-right: 400px;
+    margin-right: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -548,15 +548,15 @@ export default {
         background-color: transparent;
       }
     }
-  }
 
-  &__welcome-image {
-    position: absolute;
-    bottom: 0;
-    left: 40%;
-    right: 0;
-    height: 600px;
-    margin: auto;
+    &-image {
+      position: absolute;
+      bottom: 0;
+      left: 40%;
+      right: 0;
+      height: 600px;
+      margin: auto;
+    }
   }
 }
 
@@ -587,6 +587,11 @@ export default {
     }
 
     &__welcome {
+      margin-right: 0;
+      margin-bottom: 52%;
+      align-items: center;
+      text-align: center;
+
       &-heading {
         font-size: 70px;
       }
@@ -600,6 +605,12 @@ export default {
         padding: 12px 30px;
         font-size: 30px;
         border-radius: 10px;
+      }
+
+      &-image {
+        left: 0;
+        bottom: -50px;
+        height: 50%;
       }
     }
   }
