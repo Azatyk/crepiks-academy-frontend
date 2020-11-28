@@ -180,7 +180,7 @@
           <img
             v-if="activeReview == 1"
             class="slide__image slide__image-fifth"
-            src="@/assets/images/landingSlide5.png"
+            src="@/assets/images/reviewAyana.png"
             alt="Интерактивность"
           />
         </transition>
@@ -188,7 +188,7 @@
           <img
             v-if="activeReview == 2"
             class="slide__image slide__image-fifth"
-            src="@/assets/images/reviewAyana.png"
+            src="@/assets/images/reviewArsen.png"
             alt="Интерактивность"
           />
         </transition>
@@ -196,7 +196,7 @@
           <img
             v-if="activeReview == 3"
             class="slide__image slide__image-fifth"
-            src="@/assets/images/reviewArsen.png"
+            src="@/assets/images/landingSlide5.png"
             alt="Интерактивность"
           />
         </transition>
@@ -303,10 +303,14 @@ export default {
       if (e.code == "ArrowLeft") {
         if (this.activeReview != 1) {
           this.activeReview--;
+        } else {
+          this.activeReview = this.activeReview + 2;
         }
       } else if (e.code == "ArrowRight") {
         if (this.activeReview != 3) {
           this.activeReview++;
+        } else {
+          this.activeReview = this.activeReview - 2;
         }
       }
 
@@ -319,7 +323,7 @@ export default {
 
     nextReview() {
       if (this.activeReview == 3) {
-        this.activeReview == 3;
+        this.activeReview = this.activeReview - 2;
       } else {
         this.activeReview++;
       }
@@ -327,7 +331,7 @@ export default {
 
     previousReview() {
       if (this.activeReview == 1) {
-        this.activeReview == 1;
+        this.activeReview = this.activeReview + 2;
       } else {
         this.activeReview--;
       }
