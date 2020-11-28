@@ -170,11 +170,66 @@
             Попробовать
           </button>
         </div>
-        <img
-          class="slide__image"
-          src="@/assets/images/landingSlide3.png"
+        <div class="slide__bilboard">
+          <div class="slide__bilboard-content" v-if="activeReview == 1">
+            <img
+              class="slide__bilboard-image"
+              src="@/assets/images/review_1.jpg"
+              alt=""
+            />
+            <div class="slide__bilboard-text">
+              <h2 class="slide__bilboard-title">Кашкунова Аяна</h2>
+              <p class="slide__bilboard-review">
+                Не особо любила программирование, но мои друзья прошли курс и я
+                тоже попробовала (раньше курсы не брала, но в целом совсем не
+                дорого). Курс небольшой, зато подача информации мне очень
+                понравилась и я реально писала код и это было круто. Теперь
+                думаю продолжать изучение в этой сфере.
+              </p>
+            </div>
+          </div>
+          <div class="slide__bilboard-content" v-if="activeReview == 2">
+            <img
+              class="slide__bilboard-image"
+              src="@/assets/images/review_2.jpeg"
+              alt=""
+            />
+            <div class="slide__bilboard-text">
+              <h2 class="slide__bilboard-title">Салиев Арсен</h2>
+              <p class="slide__bilboard-review">
+                Хай всем, я студент колледжа ТИМК. Недавно прошёл курс по
+                основам верстки. Курс был интересен. Понравилось стиль автора,
+                то, как он хотел донести информацию простым языком и то, что
+                после теории сразу практика. Иронично, но я каждый день пью кофе
+                по той же цене)
+              </p>
+            </div>
+          </div>
+          <div class="slide__bilboard-content" v-if="activeReview == 3">
+            <img
+              class="slide__bilboard-image"
+              src="@/assets/images/review_3.jpeg"
+              alt=""
+            />
+            <div class="slide__bilboard-text">
+              <h2 class="slide__bilboard-title">Машанло Камилла</h2>
+              <p class="slide__bilboard-review">
+                Выбрала онлайн платформу Crepiks Academy из-за того, что они
+                предлагали курс, необходимый мне, по доступной цене. Курс
+                оказался простым и благодаря практике и легкой подаче,
+                информация усваивалась быстро. Благодаря курсу начала
+                преуспевать на занятиях по информатике в школе.
+              </p>
+            </div>
+          </div>
+          <button @click="previousReview()">L</button>
+          <button @click="nextReview()">R</button>
+        </div>
+        <!-- <img
+          class="slide__image slide__image-fifth"
+          src=""
           alt="Интерактивность"
-        />
+        /> -->
       </div>
     </transition>
   </div>
@@ -184,7 +239,8 @@
 export default {
   data() {
     return {
-      activeSlide: 1
+      activeSlide: 1,
+      activeReview: 1
     };
   },
 
@@ -279,6 +335,22 @@ export default {
       setTimeout(() => {
         this.addMouseEventListener();
       }, 1300);
+    },
+
+    nextReview() {
+      if (this.activeReview == 3) {
+        this.activeReview = this.activeReview - 2;
+      } else {
+        this.activeReview++;
+      }
+    },
+
+    previousReview() {
+      if (this.activeReview == 1) {
+        this.activeReview = this.activeReview + 2;
+      } else {
+        this.activeReview--;
+      }
     }
   }
 };
@@ -485,6 +557,46 @@ export default {
   &-leave-to {
     opacity: 0;
     // transform: translateY(-100px);
+  }
+
+  &__bilboard {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    right: 100px;
+    border: 1px solid #ffffff;
+
+    &-content {
+      width: 500px;
+      height: 250px;
+      margin-right: auto;
+      margin-left: auto;
+      background-color: #ffffff;
+      border: 1px solid #ffffff;
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    &-image {
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+    }
+
+    &-text {
+      color: #000000;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    &-title {
+    }
+
+    &-review {
+      margin-top: 15px;
+    }
   }
 }
 
