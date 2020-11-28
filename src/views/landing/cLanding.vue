@@ -139,7 +139,7 @@
           <p class="slide-text__paragraph">
             Нет, это не шутка. Курсы на Crepiks Academy стоят не дороже двух
             чашек кофе или трех поездок на такси. Почему так? Дело в том что, мы
-            стремимся сделать обучение программирование доступными каждому.
+            стремимся сделать обучение программирование доступным каждому.
           </p>
           <button class="slide-text__button slide-text__button-fourth">
             Попробовать
@@ -164,16 +164,25 @@
           </h2>
           <p class="slide-text__paragraph">
             Если у вас остались сомнения, то взгляните на отзывы тех, кто уже
-            прошел курс и во всю используют свои знания в жизни.
+            прошел курс и во всю используют свои знания в жизни. (Используете
+            кнопки снизу или стрелки на клавиатуре)
           </p>
-          <button class="slide-text__button slide-text__button-fifth">
-            Попробовать
-          </button>
-          <div class="slide-text__buttons-wrapper">
-            <button class="arrow__button" @click="previousReview()">
-              &larr;
+          <div class="slide-text__buttons">
+            <button class="slide-text__button slide-text__button-fifth">
+              Попробовать
             </button>
-            <button class="arrow__button" @click="nextReview()">&rarr;</button>
+            <button
+              class="slide-text__button slide-text__button-arrow"
+              @click="previousReview()"
+            >
+              &#8592;
+            </button>
+            <button
+              class="slide-text__button slide-text__button-arrow"
+              @click="nextReview()"
+            >
+              &#8594;
+            </button>
           </div>
         </div>
         <transition name="slide">
@@ -470,7 +479,15 @@ export default {
       line-height: 150%;
     }
 
+    &-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: center;
+    }
+
     &__button {
+      margin-right: 25px;
       padding: 8px 25px;
       font-size: 20px;
       font-weight: 500;
@@ -483,6 +500,16 @@ export default {
       &:hover {
         color: white;
         background: transparent;
+      }
+
+      &-arrow {
+        margin-right: 5px;
+        color: white;
+        background-color: transparent;
+
+        &:hover {
+          opacity: 0.6;
+        }
       }
 
       &-second {
@@ -500,12 +527,6 @@ export default {
       &-fifth {
         color: #553e8d;
       }
-    }
-
-    &__buttons-wrapper {
-      width: 100px;
-      display: flex;
-      justify-content: space-between;
     }
   }
 
@@ -656,13 +677,6 @@ export default {
       margin: auto;
     }
   }
-}
-
-.arrow__button {
-  background-color: transparent;
-  color: #ffffff;
-  border: 0;
-  font-size: 40px;
 }
 
 @media (max-width: 1200px) {
