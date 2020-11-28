@@ -318,7 +318,7 @@ export default {
 
       setTimeout(() => {
         this.addMouseEventListener();
-      }, 1300);
+      }, 0);
     },
 
     nextReview() {
