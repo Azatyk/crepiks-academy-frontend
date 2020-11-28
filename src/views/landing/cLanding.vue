@@ -316,9 +316,7 @@ export default {
 
       this.removeMouseEventListener();
 
-      setTimeout(() => {
-        this.addMouseEventListener();
-      }, 0);
+      this.addMouseEventListener();
     },
 
     nextReview() {
