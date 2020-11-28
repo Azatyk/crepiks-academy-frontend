@@ -435,7 +435,7 @@ export default {
   }
 
   &-fourth {
-    background: linear-gradient(180deg, #8dbac0, #8dbac0);
+    background: linear-gradient(180deg, #8dbac0, #64cbd9) !important;
   }
 
   &-fifth {
@@ -686,6 +686,10 @@ export default {
         left: 36%;
         width: 700px;
       }
+
+      &-fifth {
+        left: 33%;
+      }
     }
   }
 }
@@ -764,6 +768,11 @@ export default {
         margin-right: 100px;
       }
 
+      &__fifth {
+        max-width: 100%;
+        width: 700px;
+      }
+
       &__heading {
         font-size: 70px;
       }
@@ -797,6 +806,14 @@ export default {
         left: 0;
         right: 0;
         top: 50%;
+        margin: auto;
+      }
+
+      &-fifth {
+        left: 0;
+        right: 5%;
+        bottom: -150px;
+        height: 800px;
         margin: auto;
       }
     }
@@ -853,11 +870,15 @@ export default {
 
   .slide {
     &-text {
-      margin-bottom: 350px;
+      margin-bottom: 330px;
       width: 600px;
 
       &-second {
         margin-right: 0;
+      }
+
+      &__fifth {
+        margin-bottom: 450px;
       }
 
       &__heading {
@@ -880,6 +901,12 @@ export default {
 
       &-fourth {
         width: 600px;
+      }
+
+      &-fifth {
+        left: -15%;
+        height: auto;
+        width: 120%;
       }
     }
   }
@@ -945,6 +972,10 @@ export default {
         margin-bottom: 200px;
       }
 
+      &__fifth {
+        margin-bottom: 320px;
+      }
+
       &__heading {
         margin-bottom: 10px;
         font-size: 33px;
@@ -971,6 +1002,13 @@ export default {
         right: 0%;
         top: 45%;
         width: 500px;
+      }
+
+      &-fifth {
+        left: -18%;
+        bottom: -50px;
+        height: auto;
+        width: 130%;
       }
     }
   }
