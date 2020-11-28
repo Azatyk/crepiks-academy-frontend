@@ -169,12 +169,37 @@
           <button class="slide-text__button slide-text__button-fifth">
             Попробовать
           </button>
+          <div class="slide-text__buttons-wrapper">
+            <button class="arrow__button" @click="previousReview()">
+              &larr;
+            </button>
+            <button class="arrow__button" @click="nextReview()">&rarr;</button>
+          </div>
         </div>
-        <img
-          class="slide__image slide__image-fifth"
-          src="@/assets/images/landingSlide5.png"
-          alt="Интерактивность"
-        />
+        <transition name="slide">
+          <img
+            v-if="activeReview == 1"
+            class="slide__image slide__image-fifth"
+            src="@/assets/images/reviewAyana.png"
+            alt="Интерактивность"
+          />
+        </transition>
+        <transition name="slide">
+          <img
+            v-if="activeReview == 2"
+            class="slide__image slide__image-fifth"
+            src="@/assets/images/reviewArsen.png"
+            alt="Интерактивность"
+          />
+        </transition>
+        <transition name="slide">
+          <img
+            v-if="activeReview == 3"
+            class="slide__image slide__image-fifth"
+            src="@/assets/images/landingSlide5.png"
+            alt="Интерактивность"
+          />
+        </transition>
       </div>
     </transition>
   </div>
@@ -184,7 +209,8 @@
 export default {
   data() {
     return {
-      activeSlide: 1
+      activeSlide: 1,
+      activeReview: 1
     };
   },
 
@@ -274,11 +300,39 @@ export default {
         }
       }
 
+      if (e.code == "ArrowLeft") {
+        if (this.activeReview != 1) {
+          this.activeReview--;
+        } else {
+          this.activeReview = this.activeReview + 2;
+        }
+      } else if (e.code == "ArrowRight") {
+        if (this.activeReview != 3) {
+          this.activeReview++;
+        } else {
+          this.activeReview = this.activeReview - 2;
+        }
+      }
+
       this.removeMouseEventListener();
 
-      setTimeout(() => {
-        this.addMouseEventListener();
-      }, 1300);
+      this.addMouseEventListener();
+    },
+
+    nextReview() {
+      if (this.activeReview == 3) {
+        this.activeReview = this.activeReview - 2;
+      } else {
+        this.activeReview++;
+      }
+    },
+
+    previousReview() {
+      if (this.activeReview == 1) {
+        this.activeReview = this.activeReview + 2;
+      } else {
+        this.activeReview--;
+      }
     }
   }
 };
@@ -447,6 +501,12 @@ export default {
         color: #553e8d;
       }
     }
+
+    &__buttons-wrapper {
+      width: 100px;
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__image {
@@ -596,6 +656,13 @@ export default {
       margin: auto;
     }
   }
+}
+
+.arrow__button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 0;
+  font-size: 40px;
 }
 
 @media (max-width: 1200px) {
