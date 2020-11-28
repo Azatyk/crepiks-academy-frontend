@@ -158,7 +158,7 @@
         :class="{ 'slide-fifth': activeSlide == 5 }"
         v-if="activeSlide == 5"
       >
-        <div class="slide-text">
+        <div class="slide-text slide-text__fifth">
           <h2 class="slide-text__heading">
             Не верите нам? Послушайте их.
           </h2>
@@ -171,8 +171,8 @@
           </button>
         </div>
         <img
-          class="slide__image"
-          src="@/assets/images/landingSlide3.png"
+          class="slide__image slide__image-fifth"
+          src="@/assets/images/landingSlide5.png"
           alt="Интерактивность"
         />
       </div>
@@ -396,6 +396,11 @@ export default {
       margin-bottom: 50px;
     }
 
+    &__fifth {
+      margin-right: 650px;
+      max-width: 500px;
+    }
+
     &__heading {
       margin-bottom: 20px;
       color: white;
@@ -463,6 +468,13 @@ export default {
       width: 800px;
       right: auto;
       left: 38%;
+    }
+
+    &-fifth {
+      bottom: 0;
+      left: 40%;
+      height: 700px;
+      width: auto;
     }
   }
 
