@@ -248,6 +248,34 @@ export default {
       }
 
       window.addEventListener("keydown", this.handleKeyPress);
+
+      var initialPoint;
+      var finalPoint;
+      document.addEventListener(
+        "touchstart",
+        function(event) {
+          initialPoint = event.changedTouches[0];
+        },
+        false
+      );
+      document.addEventListener(
+        "touchend",
+        event => {
+          finalPoint = event.changedTouches[0];
+          if (finalPoint.pageY !== initialPoint.pageY) {
+            if (finalPoint.pageY < initialPoint.pageY + 10) {
+              if (this.activeSlide != 5) {
+                this.activeSlide++;
+              }
+            } else if (finalPoint.pageY > initialPoint.pageY + 10) {
+              if (this.activeSlide != 1) {
+                this.activeSlide--;
+              }
+            }
+          }
+        },
+        false
+      );
     },
 
     removeMouseEventListener() {
@@ -297,8 +325,6 @@ export default {
     },
 
     handleKeyPress(e) {
-      console.log("handle key press");
-
       if (e.code == "ArrowUp") {
         if (this.activeSlide != 1) {
           this.activeSlide--;
