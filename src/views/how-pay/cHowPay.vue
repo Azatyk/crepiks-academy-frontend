@@ -72,7 +72,7 @@
           </p>
           <div class="pay__slide-links">
             <a
-              href="https://wa.me/77072050716"
+              href="https://wa.me/77078139703"
               class="pay__slide-link pay__slide-link-whatsapp"
               target="_blank"
             >
