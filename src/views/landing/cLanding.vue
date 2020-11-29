@@ -65,7 +65,12 @@
             Ни один курс не сделает из вас программиста, пока вы сами этого не
             захотите. Самое время начать, а Crepiks Academy вам с этим поможет.
           </p>
-          <button class="first-slide__welcome-button">Начать обучение</button>
+          <button
+            @click="$router.push('/app/home')"
+            class="first-slide__welcome-button"
+          >
+            Начать обучение
+          </button>
         </div>
         <img
           class="first-slide__welcome-image"
@@ -89,7 +94,10 @@
             удобное для вас время в удобном для вас месте и в удобном для вас
             темпе.
           </p>
-          <button class="slide-text__button slide-text__button-second">
+          <button
+            @click="$router.push('/app/home')"
+            class="slide-text__button slide-text__button-second"
+          >
             Попробовать
           </button>
         </div>
@@ -115,7 +123,10 @@
             программирует, программируйте сами! На интерактивных курсах вы
             можете практиковаться и писать код прямо на платформе.
           </p>
-          <button class="slide-text__button slide-text__button-third">
+          <button
+            @click="$router.push('/app/home')"
+            class="slide-text__button slide-text__button-third"
+          >
             Попробовать
           </button>
         </div>
@@ -141,7 +152,10 @@
             чашек кофе или трех поездок на такси. Почему так? Дело в том что, мы
             стремимся сделать обучение программирование доступным каждому.
           </p>
-          <button class="slide-text__button slide-text__button-fourth">
+          <button
+            @click="$router.push('/app/home')"
+            class="slide-text__button slide-text__button-fourth"
+          >
             Попробовать
           </button>
         </div>
@@ -168,7 +182,10 @@
             кнопки снизу или стрелки на клавиатуре)
           </p>
           <div class="slide-text__buttons">
-            <button class="slide-text__button slide-text__button-fifth">
+            <button
+              @click="$router.push('/app/home')"
+              class="slide-text__button slide-text__button-fifth"
+            >
               Попробовать
             </button>
             <button
