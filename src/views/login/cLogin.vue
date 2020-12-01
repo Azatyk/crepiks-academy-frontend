@@ -21,14 +21,14 @@
         <button type="submit" class="auth-form__button">
           {{ $t("authLoginButtonText") }}
         </button>
-        <!-- <div class="auth-form__link-text auth-form__link-container">
+        <div class="auth-form__link-text auth-form__link-container">
           {{ $t("authLoginNoAccountText") }}
           <router-link
             to="/auth/register"
             class="auth-form__link-text auth-form__link"
             >{{ $t("authLoginRegisterText") }}</router-link
           >
-        </div> -->
+        </div>
       </div>
     </div>
   </c-form>
@@ -146,7 +146,7 @@ export default {
 }
 
 .auth-form__link-container {
-  margin-left: 2%;
+  margin-left: 3%;
 }
 
 .auth-form__link-text {
