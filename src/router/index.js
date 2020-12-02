@@ -134,7 +134,8 @@ const routes = [
             component: cLesson,
             meta: {
               title: "Урок",
-              needAuth: true
+              needAuth: true,
+              shouldHaveCourse: true
             }
           },
           {
@@ -180,6 +181,27 @@ router.beforeEach((to, from, next) => {
       });
     } else {
       next();
+    }
+  } else {
+    next();
+  }
+
+  if (to.name == "lesson") {
+    var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
+    var isPurchasedCourse;
+
+    purchasedCourses.forEach(course => {
+      if (course.id == Number(to.params.courseId)) {
+        next();
+        isPurchasedCourse = true;
+      } else {
+        isPurchasedCourse = false;
+      }
+    });
+    if (isPurchasedCourse == false) {
+      next({
+        path: "/app/how-get"
+      });
     }
   } else {
     next();
