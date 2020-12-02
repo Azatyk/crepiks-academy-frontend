@@ -250,7 +250,6 @@ export default {
 
   beforeRouteLeave(to, from, next) {
     window.removeEventListener("keydown", this.handleKeyPress);
-    console.log("removed");
     next();
   },
 

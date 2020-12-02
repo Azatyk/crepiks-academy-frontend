@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    register() {
+    async register() {
       if (this.password.trim() == this.passwordCheck.trim()) {
         let data = {
           firstName: this.name,
@@ -81,7 +81,7 @@ export default {
         };
 
         const loading = this.$vs.loading({ color: "#384a62" });
-        this.$store
+        await this.$store
           .dispatch("register", data)
           .then(() => loading.close())
           .then(() => this.$router.push("/app/home"))
