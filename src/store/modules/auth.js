@@ -33,20 +33,20 @@ export default {
           });
       });
     },
-    register({ dispatch }, user) {
+    register({ commit }, user) {
       return new Promise((resolve, reject) => {
-        let loginData = {
-          email: user.email,
-          password: user.password
-        };
         request({
           url: "auth/register",
           data: user,
           method: "POST"
         })
           .then(res => {
+            const token = res.data.auth.accessToken;
+            const user = res.data.user;
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+            commit("authSuccess", res.data);
             resolve(res);
-            dispatch("login", loginData);
           })
           .catch(err => {
             reject(err);
