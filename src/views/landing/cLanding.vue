@@ -50,12 +50,20 @@
       >
         <header class="first-slide__header">
           <h2 class="first-slide__header-logo">Crepiks</h2>
-          <button
-            class="first-slide__header-button"
-            @click="$router.push('/app/home')"
-          >
-            Войти
-          </button>
+          <div class="first-slide__header-buttons">
+            <button
+              class="first-slide__header-button first-slide__header-login"
+              @click="$router.push('/auth/login')"
+            >
+              Войти
+            </button>
+            <button
+              class="first-slide__header-button first-slide__header-register"
+              @click="$router.push('/auth/register')"
+            >
+              Регистрация
+            </button>
+          </div>
         </header>
         <div class="first-slide__welcome">
           <div class="first-slide__welcome-heading">
@@ -91,7 +99,7 @@
           </h2>
           <p class="slide-text__paragraph">
             День? Ночь? Улица? Дом? Без разницы, ведь тут вы можете обучаться в
-            удобное для вас время в удобном для вас месте и в удобном для вас
+            удобное для вас время, в удобном для вас месте и в удобном для вас
             темпе.
           </p>
           <button
@@ -150,7 +158,7 @@
           <p class="slide-text__paragraph">
             Нет, это не шутка. Курсы на Crepiks Academy стоят не дороже двух
             чашек кофе или трех поездок на такси. Почему так? Дело в том что, мы
-            стремимся сделать обучение программирование доступным каждому.
+            стремимся сделать обучение программированию доступным каждому.
           </p>
           <button
             @click="$router.push('/app/home')"
@@ -238,6 +246,11 @@ export default {
       activeSlide: 1,
       activeReview: 1
     };
+  },
+
+  beforeRouteLeave(to, from, next) {
+    window.removeEventListener("keydown", this.handleKeyPress);
+    next();
   },
 
   mounted() {
@@ -653,16 +666,32 @@ export default {
       font-weight: 700;
     }
 
+    &-buttons {
+      height: 100%;
+      width: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
     &-button {
       padding: 8px 25px;
       box-sizing: border-box;
       color: #545fd9;
       font-size: 17px;
-      border: 2px solid #545fd9;
+      border: none;
       border-radius: 5px;
       outline: none;
       background-color: transparent;
       transition: 200ms ease-in-out;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &-register {
+      border: 2px solid #545fd9;
 
       &:hover {
         color: white;

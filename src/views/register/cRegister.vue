@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    register() {
+    async register() {
       if (this.password.trim() == this.passwordCheck.trim()) {
         let data = {
           firstName: this.name,
@@ -81,17 +81,17 @@ export default {
         };
 
         const loading = this.$vs.loading({ color: "#384a62" });
-        this.$store
+        await this.$store
           .dispatch("register", data)
           .then(() => loading.close())
-          .then(() => this.$router.push("/"))
+          .then(() => this.$router.push("/app/home"))
           .catch(() => {
             loading.close();
             this.openNotification(
               "top-center",
               "danger",
-              "Такой пользователь уже существует",
-              "Эта почта уже используется другим пользователем, если это ваша почта, пожалуйста напишите нам"
+              "Что-то пошло не так",
+              "Проверьте ваше подключение к интернету и повторите еще раз"
             );
           });
       } else {
@@ -115,7 +115,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import "@/assets/styles/variables.scss";
+
 .register-form {
   padding-left: 5%;
   box-sizing: border-box;
@@ -159,20 +161,20 @@ export default {
   padding: 7px 23px;
   color: white;
   font-size: 1.2vw;
-  border: 2px solid #5d33f6;
+  border: 2px solid $color-2;
   border-radius: 15px;
-  background-color: #5d33f6;
+  background-color: $color-2;
   transition: 150ms ease-in-out;
   cursor: pointer;
 }
 
 .register-form__button:hover {
   background-color: white;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 .register-form__link-container {
-  margin-left: 2%;
+  margin-left: 3%;
 }
 
 .register-form__link-text {
@@ -183,7 +185,7 @@ export default {
 .register-form__link {
   margin-left: 5px;
   text-decoration: none;
-  color: #5d33f6;
+  color: $color-2;
 }
 
 @media (max-width: 1024px) {

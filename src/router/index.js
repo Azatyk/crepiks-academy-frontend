@@ -6,7 +6,7 @@ import cHowPay from "@/views/how-pay/cHowPay";
 
 import cLanding from "@/views/landing/cLanding";
 
-// import cRegister from "@/views/register/cRegister";
+import cRegister from "@/views/register/cRegister";
 import cLogin from "@/views/login/cLogin";
 
 import cHome from "@/views/home/cHome";
@@ -38,15 +38,15 @@ const routes = [
         name: "auth",
         component: cAuthLayout,
         children: [
-          // {
-          //   path: "register",
-          //   name: "register",
-          //   component: cRegister,
-          //   meta: {
-          //     title: "Регистрация",
-          //     noAuthOnly: true
-          //   }
-          // },
+          {
+            path: "register",
+            name: "register",
+            component: cRegister,
+            meta: {
+              title: "Регистрация",
+              noAuthOnly: true
+            }
+          },
           {
             path: "login",
             name: "login",
@@ -134,7 +134,8 @@ const routes = [
             component: cLesson,
             meta: {
               title: "Урок",
-              needAuth: true
+              needAuth: true,
+              shouldHaveCourse: true
             }
           },
           {
@@ -180,6 +181,27 @@ router.beforeEach((to, from, next) => {
       });
     } else {
       next();
+    }
+  } else {
+    next();
+  }
+
+  if (to.name == "lesson") {
+    var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
+    var isPurchasedCourse;
+
+    purchasedCourses.forEach(course => {
+      if (course.id == Number(to.params.courseId)) {
+        next();
+        isPurchasedCourse = true;
+      } else {
+        isPurchasedCourse = false;
+      }
+    });
+    if (isPurchasedCourse == false) {
+      next({
+        path: "/app/how-get"
+      });
     }
   } else {
     next();
