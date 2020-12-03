@@ -67,6 +67,7 @@ export default {
 
   mounted() {
     this.$store.dispatch("getCertificate", this.userData.id).then(res => {
+      console.log(res.data);
       this.certificatePath = res.data.certificates[0].fileUrl;
     });
   },
