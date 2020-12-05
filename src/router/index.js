@@ -188,11 +188,10 @@ router.beforeEach((to, from, next) => {
 
   if (to.name == "lesson") {
     var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
-    var isPurchasedCourse;
+    var isPurchasedCourse = false;
 
     purchasedCourses.forEach(course => {
       if (course.id == Number(to.params.courseId)) {
-        next();
         isPurchasedCourse = true;
       } else {
         isPurchasedCourse = false;
@@ -202,6 +201,8 @@ router.beforeEach((to, from, next) => {
       next({
         path: "/app/how-get"
       });
+    } else {
+      next();
     }
   } else {
     next();
