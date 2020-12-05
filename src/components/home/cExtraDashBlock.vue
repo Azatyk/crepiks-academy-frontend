@@ -1,42 +1,57 @@
 <template>
-  <div class="test">
-    <div class="test__text">
-      <div class="test__text-title">{{ $t("testInfoTitle") }}</div>
+  <div class="extra-block">
+    <div class="extra-block__text">
+      <div class="extra-block__text-title">{{ text.title }}</div>
       <div class="test__text-description">
-        {{ $t("testInfoDescription") }}
+        {{ text.description }}
       </div>
-      <router-link to="/app/soon" class="test__button">{{
-        $t("testInfoButtonText")
-      }}</router-link>
+      <div class="extra-block__buttons">
+        <div
+          @click="
+            !text.buttonPath
+              ? $emit('button-clicked')
+              : $router.push(`${text.buttonPath}`)
+          "
+          class="extra-block__button"
+        >
+          {{ text.buttonText || "Подробнее" }}
+        </div>
+        <div
+          v-if="text.secondButtonText"
+          @click="
+            !text.secondButtonPath
+              ? $emit('button-clicked')
+              : $router.push(`${text.buttonPath}`)
+          "
+          class="extra-block__button"
+        >
+          {{ text.secondButtonText || "Подробнее" }}
+        </div>
+      </div>
     </div>
-    <div class="test__images">
-      <img
-        src="@/assets/images/homeTest1.png"
-        alt="Test"
-        class="test__image-main"
-      />
-      <img
-        src="@/assets/images/homeTest3.png"
-        alt="Test"
-        class="test__image-left"
-      />
-      <img
-        src="@/assets/images/homeTest2.png"
-        alt="Test"
-        class="test__image-right"
-      />
-    </div>
+    <img :src="imagePath" :alt="text.title" class="extra-block__image" />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    text: {
+      type: Object,
+      required: true
+    },
+    imagePath: {
+      type: String,
+      required: false
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.test {
+.extra-block {
   padding: 0 3%;
   width: 47%;
   height: 250px;
@@ -55,25 +70,9 @@ export default {};
     box-shadow: 20px 20px 7px 0px #0000001a;
   }
 
-  &:hover {
-    .test__image {
-      &-main {
-        transform: translateX(-10px) translateY(-15px) rotate(-5deg);
-      }
-
-      &-left {
-        transform: translateX(-5px) translateY(-10px) rotate(-25deg);
-      }
-
-      &-right {
-        transform: translateX(-10px) translateY(-10px) rotate(-5deg);
-      }
-    }
-  }
-
   &__text {
     margin-right: 10%;
-    width: 75%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,7 +92,13 @@ export default {};
     }
   }
 
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
   &__button {
+    margin-right: 10px;
     margin-top: 20px;
     padding: 7px 20px;
     font-size: 17px;
@@ -112,42 +117,9 @@ export default {};
     }
   }
 
-  &__images {
-    position: relative;
-    width: 25%;
-    height: 100%;
-  }
-
   &__image {
-    &-main {
-      position: absolute;
-      top: 22%;
-      right: 14%;
-      width: 110px;
-      height: auto;
-      transform: rotate(-10deg);
-      transition: 150ms ease-in-out;
-    }
-
-    &-left {
-      position: absolute;
-      right: 125%;
-      bottom: 13%;
-      width: 40px;
-      height: auto;
-      transform: rotate(-15deg);
-      transition: 150ms ease-in-out;
-    }
-
-    &-right {
-      position: absolute;
-      right: -3%;
-      top: 15%;
-      width: 6px;
-      height: auto;
-      transform: rotate(5deg);
-      transition: 150ms ease-in-out;
-    }
+    width: auto;
+    height: 80%;
   }
 
   @media (max-width: 1200px) {
@@ -190,29 +162,6 @@ export default {};
         font-size: 20px;
         border-radius: 20px;
       }
-
-      &__images {
-        width: 40%;
-        height: 100%;
-      }
-
-      &__image {
-        &-main {
-          top: 15%;
-          right: 21%;
-          width: 170px;
-        }
-
-        &-left {
-          right: 70%;
-          width: 50px;
-        }
-
-        &-right {
-          right: 7%;
-          width: 8px;
-        }
-      }
     }
   }
 
@@ -238,21 +187,8 @@ export default {};
     }
 
     &__image {
-      &-main {
-        top: 10%;
-        width: 120px;
-      }
-
-      &-left {
-        right: 80%;
-        width: 40px;
-      }
-
-      &-right {
-        right: 3%;
-        top: 25%;
-        width: 7px;
-      }
+      height: 300px;
+      width: auto;
     }
   }
 
@@ -285,31 +221,6 @@ export default {};
         }
       }
 
-      &__images {
-        margin-bottom: 30px;
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      &__image {
-        &-main {
-          position: relative;
-          top: 0;
-          left: 0;
-        }
-
-        &-left {
-          top: 50%;
-        }
-
-        &-right {
-          right: 15%;
-        }
-      }
-
       &__text {
         margin: 0;
         width: 100%;
@@ -327,6 +238,12 @@ export default {};
 
       &__button {
         font-size: 3.3vw;
+      }
+
+      &__image {
+        margin-bottom: 30px;
+        width: 60%;
+        height: auto;
       }
     }
   }
