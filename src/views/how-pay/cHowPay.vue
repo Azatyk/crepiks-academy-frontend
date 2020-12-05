@@ -84,7 +84,7 @@
               WhatsApp
             </a>
             <a
-              href="https://t.me/The_Fratres"
+              href="https://t.me/CrepiksAcademyBot"
               class="pay__slide-link pay__slide-link-telegram"
               target="_blank"
             >
@@ -120,10 +120,22 @@
               Почта
             </a>
             <a
-              href="tel:87072050716"
+              href="https://vk.com/public200320088"
+              class="pay__slide-link pay__slide-link-vkontakte"
+              target="_blank"
+            >
+              <img
+                src="@/assets/icons/vkontakte.png"
+                alt="Telegram"
+                class="pay__slide-link-icon"
+              />
+              Вконтакте
+            </a>
+            <a
+              href="tel:87078139703"
               class="pay__slide-link pay__slide-link-number"
             >
-              8 (707) 205 07 16
+              8 (707) 813 97 03
             </a>
           </div>
           <!-- <p class="pay__slide-paragraph">
@@ -290,7 +302,7 @@ export default {
     &-link {
       margin-right: 20px;
       margin-bottom: 10px;
-      padding: 10px 30px;
+      padding: 10px 20px;
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -320,6 +332,10 @@ export default {
 
       &-telegram {
         background-color: #3d8fc7;
+      }
+
+      &-vkontakte {
+        background-color: #5282b9;
       }
 
       &-instagram {

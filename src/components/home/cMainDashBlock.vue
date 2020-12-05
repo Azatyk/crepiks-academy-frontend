@@ -1,32 +1,42 @@
 <template>
-  <div class="news">
-    <div class="news__text">
-      <div class="news__title">
-        {{ $t("courseInfoTitle") }}
+  <div class="main-block">
+    <div class="main-block__text">
+      <div class="main-block__title">
+        {{ text.title }}
       </div>
-      <div class="news__description">
-        {{ $t("courseInfoDescription") }}
+      <div class="main-block__description">
+        {{ text.description }}
       </div>
-      <router-link to="/app/courses/1" class="news__button">{{
-        $t("courseInfoButtonText")
-      }}</router-link>
+      <div
+        @click="$router.push(`${text.buttonPath}`)"
+        class="main-block__button"
+      >
+        {{ text.buttonText || "Подробнее" }}
+      </div>
     </div>
-    <img
-      src="@/assets/images/homeCupOfCoffee.png"
-      alt="Coffee"
-      class="news__image"
-    />
+    <img :src="imagePath" :alt="text.title" class="main-block__image" />
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    text: {
+      type: Object,
+      required: true
+    },
+    imagePath: {
+      type: String,
+      required: false
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.news {
+.main-block {
   margin: 5vh 0;
   width: 100%;
   height: 350px;
@@ -44,13 +54,9 @@ export default {};
     box-shadow: 20px 20px 7px 0px $color-7;
   }
 
-  &:hover .news__image {
-    transform: translateX(-10px) translateY(-10px) rotate(-3deg);
-  }
-
   &__text {
     margin-right: 10%;
-    width: 47%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -90,9 +96,8 @@ export default {};
   }
 
   &__image {
-    width: 30%;
-    height: auto;
-    transition: 150ms ease-in-out;
+    height: 80%;
+    width: auto;
   }
 
   @media (max-width: 1024px) {
@@ -113,6 +118,11 @@ export default {};
       padding: 6px 20px;
       font-size: 2vw;
     }
+
+    &__image {
+      height: 230px;
+      width: auto;
+    }
   }
 
   @media (max-width: 650px) {
@@ -132,9 +142,10 @@ export default {};
       }
 
       &__image {
-        margin-right: 20px;
+        margin: auto;
         margin-bottom: 30px;
-        width: 80%;
+        width: 70%;
+        height: auto;
       }
 
       &__text {
