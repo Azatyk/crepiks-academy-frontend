@@ -26,9 +26,9 @@
         <div class="pay__slide-text">
           <h1 class="pay__slide-heading">Свяжитесь с нами</h1>
           <p class="pay__slide-paragraph">
-            Первым делом свяжитесь с нами любым удобным способом: Вконтакте,
-            WhatsApp, Telegram, Instagram, Почта или СМС и мы ответим вам в
-            течении нескольких часов.
+            Первым делом выберите курс и свяжитесь с нами любым удобным
+            способом: Вконтакте, WhatsApp, Telegram, Instagram, Почта или СМС и
+            мы ответим вам в ближайшее время.
           </p>
           <!-- <p class="pay__slide-paragraph">
             Не желаете писать первым? Не проблема, просто оставьте ссылку на ваш
@@ -68,7 +68,7 @@
         <div class="pay__slide-text">
           <h1 class="pay__slide-heading">Контакты</h1>
           <p class="pay__slide-paragraph">
-            Используйте любой удобный для вас способ общения:
+            Используйте любой удобный для вас способ связи:
           </p>
           <div class="pay__slide-links">
             <a

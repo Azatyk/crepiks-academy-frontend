@@ -26,7 +26,7 @@
           <router-link
             to="/auth/register"
             class="auth-form__link-text auth-form__link"
-            >{{ $t("authLoginRegisterText") }}</router-link
+            >Зарегистрируйтесь</router-link
           >
         </div>
       </div>
