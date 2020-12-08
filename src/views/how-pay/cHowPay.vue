@@ -15,11 +15,13 @@
             Нажимайте на кнопку «‎Далее» и узнайте как получить курс!
           </p>
         </div>
-        <img
-          class="pay__slide-image"
-          src="@/assets/images/howPaySlide1.png"
-          alt="Оплата через Kaspi"
-        />
+        <div class="pay__slide-image-wrapper">
+          <img
+            class="pay__slide-image"
+            src="@/assets/images/howPaySlide1.png"
+            alt="Оплата через Kaspi"
+          />
+        </div>
       </div>
 
       <div class="pay__slide" v-if="activeSlide == 2">
@@ -35,33 +37,37 @@
             аккаунт в социальной сети или мобильный номер и мы с вами свяжемся.
           </p> -->
         </div>
-        <img
-          class="pay__slide-image"
-          src="@/assets/images/howPaySlide2.png"
-          alt="Оплата через Kaspi"
-        />
+        <div class="pay__slide-image-wrapper">
+          <img
+            class="pay__slide-image"
+            src="@/assets/images/howPaySlide2.png"
+            alt="Оплата через Kaspi"
+          />
+        </div>
       </div>
 
       <div class="pay__slide" v-if="activeSlide == 3">
         <div class="pay__slide-text">
           <h1 class="pay__slide-heading">Проверьте и оплатите</h1>
-          <p class="pay__slide-paragraph">
+          <p class="pay__slide-paragraph pay__slide-paragraph-big">
             Вы отправите нам свою почту (которую используете для входа), а мы
             откроем вам доступ к курсу.
           </p>
-          <p class="pay__slide-paragraph">
+          <p class="pay__slide-paragraph pay__slide-paragraph-big">
             Убедитесь, что курс активен, проверьте, что все работает и только
             потом можете оплачивать. Вот и всё.
           </p>
-          <p class="pay__slide-paragraph">
+          <p class="pay__slide-paragraph pay__slide-paragraph-big">
             А теперь выберите курс и напишите нам!
           </p>
         </div>
-        <img
-          class="pay__slide-image pay__slide-image-big"
-          src="@/assets/images/howPaySlide3.png"
-          alt="Оплата через Kaspi"
-        />
+        <div class="pay__slide-image-wrapper pay__slide-image-wrapper-big">
+          <img
+            class="pay__slide-image"
+            src="@/assets/images/howPaySlide3.png"
+            alt="Оплата через Kaspi"
+          />
+        </div>
       </div>
 
       <div class="pay__slide" v-if="activeSlide == 4">
@@ -151,11 +157,13 @@
             <div class="pay__slide-submit-button">Отправить</div>
           </div> -->
         </div>
-        <img
-          class="pay__slide-image"
-          src="@/assets/images/howPaySlide4.png"
-          alt="Оплата через Kaspi"
-        />
+        <div class="pay__slide-image-wrapper">
+          <img
+            class="pay__slide-image"
+            src="@/assets/images/howPaySlide4.png"
+            alt="Оплата через Kaspi"
+          />
+        </div>
       </div>
 
       <div class="pay__slider-buttons">
@@ -284,12 +292,19 @@ export default {
       font-size: 25px;
     }
 
-    &-image {
+    &-image-wrapper {
       width: 25%;
+      height: 100%;
+      display: flex;
+      align-items: center;
 
       &-big {
         width: 35%;
       }
+    }
+
+    &-image {
+      width: 100%;
     }
 
     &-links {
@@ -382,6 +397,141 @@ export default {
 
       &:hover {
         opacity: 0.8;
+      }
+    }
+  }
+}
+
+@media (max-width: 975px) {
+  .pay {
+    &__slider {
+      &-button {
+        font-size: 18px;
+        padding: 7px 21px;
+      }
+    }
+    &__slide {
+      flex-direction: column-reverse;
+
+      &-image-wrapper {
+        width: auto;
+        height: 50%;
+      }
+
+      &-image {
+        height: 100%;
+        width: auto;
+      }
+
+      &-text {
+        height: 50%;
+        width: 100%;
+        padding-top: 25px;
+      }
+
+      &-heading {
+        font-size: 4.2vw;
+        margin-bottom: 20px;
+      }
+
+      &-paragraph {
+        font-size: 2.2vw;
+      }
+
+      &-link {
+        padding: 6px 12px;
+        font-size: 12px;
+
+        &-icon {
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .pay {
+    &__slide {
+      &-image-wrapper {
+        height: 40%;
+        margin-top: 20px;
+      }
+
+      &-text {
+        height: 60%;
+      }
+
+      &-heading {
+        font-size: 5vw;
+        margin-bottom: 15px;
+      }
+
+      &-paragraph {
+        font-size: 3vw;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .pay {
+    &__slider {
+      width: 98%;
+      margin-top: 2vh;
+      height: 85vh;
+
+      &-button {
+        font-size: 16px;
+        padding: 6px 18px;
+      }
+    }
+
+    &__slide {
+      &-heading {
+        font-size: 29px;
+      }
+
+      &-paragraph {
+        font-size: 17px;
+
+        &-big {
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  .pay {
+    &__slider {
+      height: 80vh;
+      &-button {
+        font-size: 15px;
+        padding: 5px 16px;
+      }
+    }
+
+    &__slide {
+      &-link {
+        padding: 5px 10px;
+        font-size: 11px;
+        margin-right: 12px;
+        margin-bottom: 7px;
+
+        &-icon {
+          height: 16px;
+        }
+      }
+
+      &-heading {
+        font-size: 5.8vw;
+      }
+
+      &-paragraph {
+        font-size: 3.8vw;
       }
     }
   }
