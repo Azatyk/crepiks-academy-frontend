@@ -115,7 +115,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .register-form {
@@ -141,6 +141,11 @@ export default {
   align-self: flex-start;
   width: 80%;
   color: #2e2e3d;
+}
+
+.vs-input__label--placeholder {
+  font-size: 17px !important;
+  padding-left: 10px !important;
 }
 
 .vs-input {
@@ -289,7 +294,6 @@ export default {
 
   .register-form__button {
     margin-bottom: 10%;
-    padding: 0;
     width: 50%;
     font-size: 5vw;
   }
