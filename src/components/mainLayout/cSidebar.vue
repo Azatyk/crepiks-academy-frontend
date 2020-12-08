@@ -46,18 +46,18 @@
           </vs-button>
         </vs-row>
       </template>
-      <vs-sidebar-item id="/app/test" to="/app/soon">
+      <!-- <vs-sidebar-item id="/app/test" to="/app/soon">
         <template #icon>
           <i class="bx bx-task"></i>
         </template>
         {{ $t("appNavigationTests") }}
-      </vs-sidebar-item>
-      <vs-sidebar-item id="/app/trainer" to="/app/soon">
+      </vs-sidebar-item> -->
+      <!-- <vs-sidebar-item id="/app/trainer" to="/app/soon">
         <template #icon>
           <i class="bx bx-timer"></i>
         </template>
         {{ $t("appNavigationTrainer") }}
-      </vs-sidebar-item>
+      </vs-sidebar-item> -->
       <vs-sidebar-item id="/app/how-get" to="/app/how-get">
         <template #icon>
           <i class="bx bx-target-lock"></i>
