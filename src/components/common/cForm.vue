@@ -8,7 +8,7 @@
           class="form__image"
         />
       </div>
-      <template>
+      <!-- <template>
         <vs-select
           placeholder="Select"
           v-model="language"
@@ -19,14 +19,14 @@
           <vs-option label="Русский" value="ru">
             Русский
           </vs-option>
-          <!-- <vs-option label="Қазақша" value="kz">
+          <vs-option label="Қазақша" value="kz">
             Қазақша
           </vs-option>
           <vs-option label="English" value="en">
             English
-          </vs-option> -->
+          </vs-option>
         </vs-select>
-      </template>
+      </template> -->
       <slot></slot>
     </form>
   </div>
@@ -101,10 +101,11 @@ export default {
   width: 70%;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 950px) {
   .form {
     width: 100%;
     height: 100%;
+    border-radius: 0;
   }
 
   .form__info-block {

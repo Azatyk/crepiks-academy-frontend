@@ -1,33 +1,35 @@
 <template>
   <c-form @submit="login">
     <div class="auth-form">
-      <h3 class="auth-form__heading">{{ $t("authLoginTitle") }}</h3>
-      <s-input
-        :label-placeholder="$t('authInputEmail')"
-        v-model="email"
-        class="auth-form__input"
-        state="primary"
-      >
-        <template v-if="!email" #message-danger> </template>
-      </s-input>
-      <s-input
-        :label-placeholder="$t('authInputPassword')"
-        v-model="password"
-        class="auth-form__input"
-        type="password"
-        state="primary"
-      />
-      <div class="auth-form__functional">
-        <button type="submit" class="auth-form__button">
-          {{ $t("authLoginButtonText") }}
-        </button>
-        <div class="auth-form__link-text auth-form__link-container">
-          {{ $t("authLoginNoAccountText") }}
-          <router-link
-            to="/auth/register"
-            class="auth-form__link-text auth-form__link"
-            >Зарегистрируйтесь</router-link
-          >
+      <div class="auth-form__inner">
+        <h3 class="auth-form__heading">{{ $t("authLoginTitle") }}</h3>
+        <s-input
+          :label-placeholder="$t('authInputEmail')"
+          v-model="email"
+          class="auth-form__input"
+          state="primary"
+        >
+          <template v-if="!email" #message-danger> </template>
+        </s-input>
+        <s-input
+          :label-placeholder="$t('authInputPassword')"
+          v-model="password"
+          class="auth-form__input"
+          type="password"
+          state="primary"
+        />
+        <div class="auth-form__functional">
+          <button type="submit" class="auth-form__button">
+            {{ $t("authLoginButtonText") }}
+          </button>
+          <div class="auth-form__link-text auth-form__link-container">
+            {{ $t("authLoginNoAccountText") }}
+            <router-link
+              to="/auth/register"
+              class="auth-form__link-text auth-form__link"
+              >Зарегистрируйтесь</router-link
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -87,10 +89,14 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .auth-form {
-  padding-left: 5%;
-  box-sizing: border-box;
-  height: 100%;
+  height: fit-content;
   width: 50%;
+}
+
+.auth-form__inner {
+  padding-left: 10%;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,113 +166,50 @@ export default {
   color: $color-2;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 950px) {
   .auth-form {
-    padding: 0;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0;
+  }
+
+  .auth-form__inner {
+    padding-left: 0;
+    width: 280px;
+    align-items: center;
   }
 
   .auth-form__heading {
-    font-size: 10vw;
+    font-size: 30px;
   }
 
   .auth-form__input {
-    width: 80%;
+    width: 100%;
     align-self: center;
+    margin-bottom: 8%;
   }
 
   .vs-input {
-    padding-left: 20px !important;
+    padding-left: 7% !important;
+    height: 40px;
     width: 100%;
-    font-size: 50px;
+    font-size: 17px;
     border-radius: 100px;
   }
 
-  .vs-input:focus {
-    padding-left: 30px !important;
-  }
-
-  .vs-input__label {
-    padding-left: 20px;
-    font-size: 50px;
-  }
-
-  .vs-input__label--placeholder {
-    font-size: 50px;
-  }
-
   .auth-form__functional {
-    display: flex;
     flex-direction: column;
   }
 
   .auth-form__button {
-    padding: 5px 0;
-    margin-bottom: 7%;
-    height: 100%;
-    width: 30%;
-    font-size: 4.5vw;
-    border-radius: 50px;
+    font-size: 20px;
   }
 
   .auth-form__link-text {
-    margin-left: 0;
-    font-size: 3.5vw;
-  }
-
-  .auth-form__link {
-    margin-left: 10px;
-  }
-}
-
-@media (max-width: 768px) {
-  .auth-form__input {
-    width: 70%;
-  }
-
-  .vs-input {
-    font-size: 30px;
-  }
-
-  .vs-inout__label {
-    font-size: 30px;
-  }
-
-  .vs-input__label--placeholder {
-    font-size: 30px;
-  }
-}
-
-@media (max-width: 500px) {
-  .auth-form__heading {
-    font-size: 12vw;
-  }
-
-  .vs-input {
-    font-size: 20px;
-  }
-
-  .vs-input__label {
-    font-size: 20px;
-  }
-
-  .vs-input__label--placeholder {
-    font-size: 20px;
-  }
-
-  .auth-form__button {
-    padding: 7px 20px;
-    margin-bottom: 10%;
-    font-size: 5vw;
-  }
-
-  .auth-form__link-text {
-    font-size: 4vw;
+    margin-top: 20px;
+    font-size: 15px;
   }
 }
 </style>
