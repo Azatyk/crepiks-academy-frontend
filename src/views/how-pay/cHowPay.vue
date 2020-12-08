@@ -49,15 +49,15 @@
       <div class="pay__slide" v-if="activeSlide == 3">
         <div class="pay__slide-text">
           <h1 class="pay__slide-heading">Проверьте и оплатите</h1>
-          <p class="pay__slide-paragraph">
+          <p class="pay__slide-paragraph pay__slide-paragraph-big">
             Вы отправите нам свою почту (которую используете для входа), а мы
             откроем вам доступ к курсу.
           </p>
-          <p class="pay__slide-paragraph">
+          <p class="pay__slide-paragraph pay__slide-paragraph-big">
             Убедитесь, что курс активен, проверьте, что все работает и только
             потом можете оплачивать. Вот и всё.
           </p>
-          <p class="pay__slide-paragraph">
+          <p class="pay__slide-paragraph pay__slide-paragraph-big">
             А теперь выберите курс и напишите нам!
           </p>
         </div>
@@ -494,6 +494,11 @@ export default {
 
       &-paragraph {
         font-size: 17px;
+
+        &-big {
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
       }
     }
   }
