@@ -1,0 +1,184 @@
+<template>
+  <div class="sidebar">
+    <div class="content-half">
+      <logo class="sidebar-logo" />
+      <div class="dividing-line"></div>
+      <div class="navigation-links">
+        <router-link class="link link-active" to="/app/courses">
+          <i class="bx bx-window-alt link-icon"></i>
+          <span class="link-text">Курсы</span>
+        </router-link>
+        <router-link class="link" to="/app/sandbox">
+          <i class="bx bx-dice-5 link-icon"></i>
+          <span class="link-text">Песочница</span>
+        </router-link>
+        <router-link class="link" to="/app/plans">
+          <i class="bx bx-receipt link-icon"></i>
+          <span class="link-text">Подписка</span>
+        </router-link>
+      </div>
+    </div>
+    <div class="content-half">
+      <div class="navigation-links-extra">
+        <div class="link">
+          <i class="bx bx-help-circle link-icon"></i>
+          <span class="link-text">Помощь</span>
+        </div>
+        <div class="link">
+          <i class="bx bx-log-out-circle link-icon"></i>
+          <span class="link-text">Выход</span>
+        </div>
+      </div>
+      <div class="subscription">
+        <div class="subscription-light-circle"></div>
+        <div class="subscription-dark-circle"></div>
+        <span class="subscription-text"
+          >Получи полный доступ с
+          <span class="subscription-text-important">Pro</span> подпиской!</span
+        >
+        <i class="bx bx-right-arrow-alt subscription-icon"></i>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import logo from "@/components/common/crepiks-logo";
+
+export default {
+  components: {
+    logo
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 45px 50px;
+  padding-right: 0;
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: $white;
+
+  &-logo {
+    margin-bottom: 40px;
+    width: 130px;
+  }
+}
+
+.content-half {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dividing-line {
+  margin-bottom: 40px;
+  height: 2px;
+  width: 200px;
+  background-color: #f3f3f3;
+}
+
+.navigation-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: $dark;
+  text-decoration: none;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &-active {
+    color: $primary;
+    opacity: 0.9;
+  }
+
+  &-icon {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+
+  &-text {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+.subscription {
+  position: relative;
+  padding: 5%;
+  width: 200px;
+  height: 120px;
+  box-sizing: border-box;
+  background-color: #16a085;
+  border-radius: 20px;
+  overflow: hidden;
+
+  &-light-circle {
+    position: absolute;
+    top: -80%;
+    left: 15%;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #17e0b9;
+    //   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+  }
+
+  &-dark-circle {
+    position: absolute;
+    top: -70%;
+    left: 50%;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #1abc9c;
+    //   box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
+  }
+
+  &-text {
+    position: absolute;
+    left: 10%;
+    bottom: 15%;
+    width: 70%;
+    color: $white;
+    font-size: 17px;
+    font-weight: 500;
+
+    &-important {
+      font-weight: 700;
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    right: 7%;
+    bottom: 10%;
+    color: $white;
+    font-size: 30px;
+  }
+}
+</style>

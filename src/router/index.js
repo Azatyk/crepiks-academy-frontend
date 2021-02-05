@@ -15,13 +15,10 @@ import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
-// import cTrainer from "@/views/trainer/cTrainer";
-
 import cEmpty from "@/views/empty/cEmpty";
 
-import emptyLayout from "@/views/layouts/crepiks-empty-layout.vue";
-import cAppLayout from "@/views/layouts/cAppLayout";
-import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
+import emptyLayout from "@/views/layouts/crepiks-empty-layout";
+import appLayout from "@/views/layouts/crepiks-app-layout";
 
 import store from "@/store";
 
@@ -59,88 +56,74 @@ const routes = [
           title: "Crepiks — курсы программирования",
           noAuthOnly: true
         }
-      },
-
+      }
+    ]
+  },
+  {
+    path: "/app",
+    component: appLayout,
+    meta: {
+      needAuth: true
+    },
+    children: [
       {
-        path: "app",
-        component: cAppLayout,
+        path: "home",
+        name: "home",
+        component: cHome,
         meta: {
-          needAuth: true
-        },
-        children: [
-          {
-            path: "",
-            component: cMainNavigationLayout,
-            children: [
-              {
-                path: "home",
-                name: "home",
-                component: cHome,
-                meta: {
-                  title: "Главная"
-                }
-              },
-              {
-                path: "soon",
-                name: "soon",
-                component: cSoon,
-                meta: {
-                  title: "Скоро"
-                }
-              },
-              {
-                path: "how-get",
-                name: "how-pay",
-                component: cHowPay,
-                meta: {
-                  title: "Как получить курс?"
-                }
-              },
-              {
-                path: "courses",
-                name: "courses",
-                component: cCourses,
-                meta: {
-                  title: "Курсы"
-                }
-              },
-              {
-                path: "courses/:id",
-                name: "course",
-                component: cCourse,
-                meta: {
-                  title: "Курс"
-                }
-              }
-              // {
-              //   path: "trainer",
-              //   name: "trainer",
-              //   component: cTrainer,
-              //   meta: {
-              //     title: "Тренажёр",
-              //   },
-              // },
-            ]
-          },
-          {
-            path: "courses/:courseId/lessons/:lessonId",
-            name: "lesson",
-            component: cLesson,
-            meta: {
-              title: "Урок",
-              needAuth: true,
-              shouldHaveCourse: true
-            }
-          },
-          {
-            path: "empty",
-            name: "empty",
-            component: cEmpty,
-            meta: {
-              title: "Crepiks Academy - программируй вместе с нами"
-            }
-          }
-        ]
+          title: "Главная"
+        }
+      },
+      {
+        path: "soon",
+        name: "soon",
+        component: cSoon,
+        meta: {
+          title: "Скоро"
+        }
+      },
+      {
+        path: "how-get",
+        name: "how-pay",
+        component: cHowPay,
+        meta: {
+          title: "Как получить курс?"
+        }
+      },
+      {
+        path: "courses",
+        name: "courses",
+        component: cCourses,
+        meta: {
+          title: "Курсы"
+        }
+      },
+      {
+        path: "courses/:id",
+        name: "course",
+        component: cCourse,
+        meta: {
+          title: "Курс"
+        }
+      },
+      // страницы уроков надо будет вынести в отдельный layout
+      {
+        path: "courses/:courseId/lessons/:lessonId",
+        name: "lesson",
+        component: cLesson,
+        meta: {
+          title: "Урок",
+          needAuth: true,
+          shouldHaveCourse: true
+        }
+      },
+      {
+        path: "empty",
+        name: "empty",
+        component: cEmpty,
+        meta: {
+          title: "Crepiks Academy - программируй вместе с нами"
+        }
       }
     ]
   }
