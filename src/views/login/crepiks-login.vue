@@ -1,26 +1,34 @@
 <template>
   <div class="login-page">
-    <cForm class="form-container">
-      <cInput
-        class="form-input"
-        title="Почта"
-        type="email"
-        placeholder="Введите вашу почту"
-      />
-      <cInput
-        class="form-input"
-        title="Пароль"
-        type="password"
-        placeholder="Введите ваш пароль"
-      />
-      <cButton class="form-button" text="Войти" />
-      <p class="form-text">
-        <span class="form-text-info">Все ещё нет аккаунта?</span>
-        <router-link class="form-text form-text-link" to="/auth/register"
-          >Создайте его!</router-link
-        >
-      </p>
-    </cForm>
+    <div class="login-content">
+      <router-link to="/" class="login-back">
+        <i class="bx bx-arrow-back login-back-icon"></i>
+        На главную
+      </router-link>
+      <cForm @submit="login" class="form-container">
+        <cInput
+          class="form-input"
+          title="Почта"
+          type="email"
+          placeholder="Введите вашу почту"
+          v-model="email"
+        />
+        <cInput
+          class="form-input"
+          title="Пароль"
+          type="password"
+          placeholder="Введите ваш пароль"
+          v-model="password"
+        />
+        <cButton class="form-button" text="Войти" />
+        <p class="form-text">
+          <span class="form-text-info">Все ещё нет аккаунта?</span>
+          <router-link class="form-text form-text-link" to="/auth/register"
+            >Создайте его!</router-link
+          >
+        </p>
+      </cForm>
+    </div>
   </div>
 </template>
 
@@ -34,6 +42,28 @@ export default {
     cForm,
     cInput,
     cButton
+  },
+
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+
+  methods: {
+    login() {
+      if (this.email.trim() && this.password.trim()) {
+        const email = this.email.trim();
+        const password = this.password.trim();
+        this.$store
+          .dispatch("login", { email, password })
+          .then(() => this.$router.push("/app/home"))
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    }
   }
 };
 </script>
@@ -42,14 +72,36 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .login-page {
-  padding: 0.1px;
   width: 100%;
   height: 100vh;
   background-color: $background;
 }
 
+.login-content {
+  padding: 0.1px 3%;
+  margin: auto;
+  width: 100%;
+  max-width: 1140px;
+  height: 100%;
+}
+
+.login-back {
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  color: $primary;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+
+  &-icon {
+    margin-right: 5px;
+    font-size: 20px;
+  }
+}
+
 .form-container {
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 .form-input {

@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
     <logo class="logo" />
-    <form @submit.prevent="$eimt('submit')" class="form">
+    <form @submit.prevent="$emit('submit')" class="form">
       <h2 class="subtitle">С возвращением</h2>
       <h1 class="title">Войдите в аккаунт</h1>
       <slot></slot>

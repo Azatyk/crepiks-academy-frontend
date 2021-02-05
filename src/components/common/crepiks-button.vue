@@ -23,6 +23,7 @@ export default {
   font-weight: 500;
   border: 1px solid $primary;
   border-radius: 10px;
+  outline: none;
   background-color: $primary;
   cursor: pointer;
   transition: 200ms ease-in-out;

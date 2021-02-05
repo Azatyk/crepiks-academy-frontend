@@ -5,7 +5,8 @@
       :type="type"
       class="input"
       :placeholder="placeholder"
-      @input="$emit('input', inputData)"
+      :value="inputData"
+      @input="updateValue($event.target.value)"
     />
   </div>
 </template>
@@ -22,6 +23,9 @@ export default {
     },
     placeholder: {
       type: String
+    },
+    value: {
+      type: String
     }
   },
 
@@ -29,6 +33,12 @@ export default {
     return {
       inputData: null
     };
+  },
+
+  methods: {
+    updateValue(value) {
+      this.$emit("input", value);
+    }
   }
 };
 </script>
