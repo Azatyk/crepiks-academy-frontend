@@ -4,11 +4,13 @@
       <cInput
         class="form-input"
         title="Почта"
+        type="email"
         placeholder="Введите вашу почту"
       />
       <cInput
         class="form-input"
         title="Пароль"
+        type="password"
         placeholder="Введите ваш пароль"
       />
       <cButton class="form-button" text="Войти" />
