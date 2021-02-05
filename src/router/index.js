@@ -4,10 +4,10 @@ import VueRouter from "vue-router";
 import cSoon from "@/views/soon/cSoon";
 import cHowPay from "@/views/how-pay/cHowPay";
 
-import cLanding from "@/views/landing/cLanding";
+import landing from "@/views/landing/crepiks-landing";
 
-import cRegister from "@/views/register/cRegister";
-import cLogin from "@/views/login/cLogin";
+import register from "@/views/register/crepiks-register";
+import login from "@/views/login/crepiks-login";
 
 import cHome from "@/views/home/cHome";
 
@@ -19,10 +19,9 @@ import cLesson from "@/views/lesson/cLesson";
 
 import cEmpty from "@/views/empty/cEmpty";
 
-import cDefaultLayout from "@/views/layouts/cDefaultLayout";
+import emptyLayout from "@/views/layouts/crepiks-empty-layout.vue";
 import cAppLayout from "@/views/layouts/cAppLayout";
 import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
-import cAuthLayout from "@/views/layouts/cAuthLayout";
 
 import store from "@/store";
 
@@ -31,42 +30,37 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: cDefaultLayout,
+    component: emptyLayout,
     children: [
       {
-        path: "auth",
-        name: "auth",
-        component: cAuthLayout,
-        children: [
-          {
-            path: "register",
-            name: "register",
-            component: cRegister,
-            meta: {
-              title: "Регистрация",
-              noAuthOnly: true
-            }
-          },
-          {
-            path: "login",
-            name: "login",
-            component: cLogin,
-            meta: {
-              title: "Вход",
-              noAuthOnly: true
-            }
-          }
-        ]
-      },
-      {
-        path: "",
-        name: "landing",
-        component: cLanding,
+        path: "auth/register",
+        name: "register",
+        component: register,
         meta: {
-          title: "Crepiks Academy - программируй вместе с нами",
+          title: "Регистрация",
           noAuthOnly: true
         }
       },
+      {
+        path: "auth/login",
+        name: "login",
+        component: login,
+        meta: {
+          title: "Вход",
+          noAuthOnly: true
+        }
+      },
+
+      {
+        path: "",
+        name: "landing",
+        component: landing,
+        meta: {
+          title: "Crepiks — курсы программирования",
+          noAuthOnly: true
+        }
+      },
+
       {
         path: "app",
         component: cAppLayout,
