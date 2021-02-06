@@ -1,21 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import cSoon from "@/views/soon/cSoon";
-import cHowPay from "@/views/how-pay/cHowPay";
-
 import landing from "@/views/landing/crepiks-landing";
 
 import register from "@/views/register/crepiks-register";
 import login from "@/views/login/crepiks-login";
 
-import cHome from "@/views/home/cHome";
-
 import cCourses from "@/views/courses/cCourses";
 import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
-
-import cEmpty from "@/views/empty/cEmpty";
 
 import emptyLayout from "@/views/layouts/crepiks-empty-layout";
 import appLayout from "@/views/layouts/crepiks-app-layout";
@@ -67,30 +60,6 @@ const routes = [
     },
     children: [
       {
-        path: "home",
-        name: "home",
-        component: cHome,
-        meta: {
-          title: "Главная"
-        }
-      },
-      {
-        path: "soon",
-        name: "soon",
-        component: cSoon,
-        meta: {
-          title: "Скоро"
-        }
-      },
-      {
-        path: "how-get",
-        name: "how-pay",
-        component: cHowPay,
-        meta: {
-          title: "Как получить курс?"
-        }
-      },
-      {
         path: "courses",
         name: "courses",
         component: cCourses,
@@ -115,14 +84,6 @@ const routes = [
           title: "Урок",
           needAuth: true,
           shouldHaveCourse: true
-        }
-      },
-      {
-        path: "empty",
-        name: "empty",
-        component: cEmpty,
-        meta: {
-          title: "Crepiks Academy - программируй вместе с нами"
         }
       }
     ]

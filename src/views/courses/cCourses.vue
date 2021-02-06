@@ -1,47 +1,25 @@
 <template>
-  <div class="courses__page">
-    <cWelcome />
-    <div class="courses__cards">
-      <cCourseCard
-        class="card"
-        v-for="(course, index) in courses"
-        :key="index"
-        :image="course.iconPath"
-        :title="course.title.ru"
-        :description="course.description.ru"
-        :lessonsAmount="course.duration"
-        :id="course.id"
+  <div class="courses-page">
+    <div class="search-input">
+      <input
+        type="text"
+        class="input"
+        placeholder="Чему хотите научиться?"
+        disabled
       />
+      <div class="button-container">
+        <cButton text="Найти" size="small" :isDisabled="true" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import cWelcome from "@/components/courses/cWelcome";
-import cCourseCard from "@/components/courses/cCourseCard";
-import firstImage from "@/assets/images/firstCoursePreview.png";
-import secondImage from "@/assets/images/secondCoursePreview.png";
+import cButton from "@/components/common/crepiks-button";
 
 export default {
   components: {
-    cWelcome,
-    cCourseCard
-  },
-  data() {
-    return {
-      firstCourseImage: firstImage,
-      secondCourseImage: secondImage,
-      courses: []
-    };
-  },
-  async mounted() {
-    const loading = this.$vs.loading();
-
-    await this.$store
-      .dispatch("getCourses")
-      .then(res => (this.courses = res.data.courses));
-
-    loading.close();
+    cButton
   }
 };
 </script>
@@ -49,30 +27,42 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.courses {
-  &__page {
-    padding: 0 2%;
-    margin: auto;
-    width: 100%;
-    max-width: 1200px;
-    height: auto;
-    box-sizing: border-box;
-  }
+.courses-page {
+  padding-top: 50px;
+  padding-left: 50px;
+}
 
-  &__cards {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+.search-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  @media (max-width: 1200px) {
-    &__page {
-      padding: 0 5%;
-    }
+.input {
+  padding: 0 15px;
+  height: 40px;
+  width: 300px;
+  box-sizing: border-box;
+  color: $dark;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+  background-color: #f0eff4;
+  opacity: 0.6;
+  transition: 200ms ease-in-out;
+
+  &:focus {
+    padding-left: 20px;
   }
+}
+
+.button-container {
+  padding: 0 5px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 10px 10px 0;
+  background-color: #f0eff4;
 }
 </style>
