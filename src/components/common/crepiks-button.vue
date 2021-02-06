@@ -1,5 +1,16 @@
 <template>
-  <button class="button" :class="type">{{ text }}</button>
+  <button
+    class="button"
+    :disabled="isDisabled"
+    :class="{
+      unsolid: type == 'unsolid',
+      small: size == 'small',
+      disabled: isDisabled
+    }"
+    @click="$emit('click')"
+  >
+    {{ text }}
+  </button>
 </template>
 
 <script>
@@ -11,6 +22,13 @@ export default {
     type: {
       type: String,
       default: "solid"
+    },
+    size: {
+      type: String
+    },
+    isDisabled: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -40,5 +58,19 @@ export default {
 .unsolid {
   background-color: transparent;
   color: $primary;
+}
+
+.small {
+  padding: 6px 17px;
+  font-size: 13px;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: default;
+
+  &:hover {
+    opacity: 0.6;
+  }
 }
 </style>
