@@ -44,16 +44,17 @@ export default {
   }
 
   &-text {
-    width: 40%;
+    width: 38%;
     padding: 50px 40px;
     background-color: $white;
     border-radius: 20px;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.02);
   }
 
   &-heading {
     font-weight: 400;
     font-size: 35px;
-    width: 95%;
+    width: 97%;
 
     &-green {
       color: $primary;

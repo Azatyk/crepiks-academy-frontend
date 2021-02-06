@@ -6,6 +6,7 @@
     <cExplanation />
     <cPractice />
     <cOffer />
+    <cQuestions />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import cDescription from "@/components/landing/crepiks-description.vue";
 import cExplanation from "@/components/landing/crepiks-explanation.vue";
 import cPractice from "@/components/landing/crepiks-practice.vue";
 import cOffer from "@/components/landing/crepiks-offer.vue";
+import cQuestions from "@/components/landing/crepiks-questions.vue";
 
 export default {
   components: {
@@ -24,7 +26,8 @@ export default {
     cDescription,
     cExplanation,
     cPractice,
-    cOffer
+    cOffer,
+    cQuestions
   }
 };
 </script>
