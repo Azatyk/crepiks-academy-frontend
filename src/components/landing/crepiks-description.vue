@@ -21,10 +21,9 @@ export default {};
 @import "@/assets/styles/variables.scss";
 .description {
   width: 100%;
-  height: 85vh;
+  height: 58vh;
   box-sizing: border-box;
   padding: 0 12%;
-  background-color: $background;
   text-align: center;
 
   &-content {
@@ -37,7 +36,7 @@ export default {};
     width: 80%;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 27vh;
+    margin-top: 29vh;
     font-weight: 400;
     font-size: 35px;
     color: $dark;

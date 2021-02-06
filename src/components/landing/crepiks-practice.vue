@@ -117,7 +117,7 @@ export default {};
     }
 
     &-button {
-      font-size: 15px;
+      font-size: 17px;
       color: $primary;
       background-color: transparent;
       height: fit-content;
@@ -126,6 +126,7 @@ export default {};
       position: absolute;
       right: 0;
       bottom: 0;
+      font-weight: 500;
     }
   }
 }

@@ -35,4 +35,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "@/assets/styles/variables.scss";
+.landing {
+  background-color: $background;
+}
+</style>

@@ -71,8 +71,10 @@ export default {
     color: $dark;
     border-radius: 50%;
     background-color: $white;
-    font-size: 27px;
-    padding: 0 10px;
+    font-weight: 700;
+    margin: auto;
+    font-size: 20px;
+    padding: 3px 9px;
   }
 
   &-paragraph {

@@ -70,6 +70,10 @@ export default {
       color: $dark;
     }
 
+    &-item:hover {
+      opacity: 0.8;
+    }
+
     &-icon {
       width: 35px;
       height: 35px;
@@ -78,7 +82,7 @@ export default {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      margin-right: 10px;
+      margin-right: 7px;
     }
   }
 }

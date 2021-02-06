@@ -25,7 +25,6 @@ export default {
   box-sizing: border-box;
   padding: 0 12%;
   padding-top: 5vh;
-  background-color: $background;
 
   &-content {
     max-width: 1440px;

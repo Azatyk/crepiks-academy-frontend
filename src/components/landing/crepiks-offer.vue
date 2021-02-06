@@ -35,7 +35,7 @@ export default {
   background-image: url(../../assets/images/offer-image-landing.svg);
   background-repeat: no-repeat;
   background-position: bottom 35% right 25%;
-  background-size: 48%;
+  background-size: 52%;
 
   &-content {
     max-width: 1440px;
@@ -45,14 +45,14 @@ export default {
 
   &-text {
     width: 38%;
-    padding: 50px 40px;
+    padding: 45px 40px;
     background-color: $white;
     border-radius: 20px;
-    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.02);
+    box-shadow: 50px 50px 100px rgba(0, 0, 0, 0.02);
   }
 
   &-heading {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 35px;
     width: 97%;
 
@@ -63,12 +63,13 @@ export default {
 
   &-paragraph {
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
     color: $dark;
+    opacity: 0.8;
   }
 
   &-button {
-    margin-top: 20px;
+    margin-top: 32px;
   }
 }
 </style>

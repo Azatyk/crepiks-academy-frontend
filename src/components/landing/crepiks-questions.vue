@@ -41,6 +41,7 @@ export default {
 
   &-button {
     margin-left: 50px;
+    margin-bottom: -5px;
   }
 }
 </style>

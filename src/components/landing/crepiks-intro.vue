@@ -32,7 +32,7 @@ export default {
   height: 80vh;
   box-sizing: border-box;
   padding: 0 12%;
-  background-color: $background;
+  padding-top: 12vh;
   background-image: url(../../assets/images/intro-image-landing.svg);
   background-repeat: no-repeat;
   background-position: bottom right 24%;
@@ -47,7 +47,6 @@ export default {
   &-text {
     width: 520px;
     text-align: left;
-    padding-top: 12vh;
   }
 
   &-heading {
@@ -68,7 +67,7 @@ export default {
   }
 
   &-button {
-    margin-top: 50px;
+    margin-top: 40px;
   }
 }
 </style>

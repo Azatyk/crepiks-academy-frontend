@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import cExplanationCard from "@/components/crepiks-explanation/crepiks-explanation-card.vue";
+import cExplanationCard from "@/components/explanation/crepiks-explanation-card.vue";
 export default {
   components: {
     cExplanationCard
