@@ -24,7 +24,7 @@
           <i class="bx bx-help-circle link-icon"></i>
           <span class="link-text">Помощь</span>
         </div>
-        <div class="link">
+        <div class="link link-exit" @click="logout">
           <i class="bx bx-log-out-circle link-icon"></i>
           <span class="link-text">Выход</span>
         </div>
@@ -44,11 +44,14 @@
 
 <script>
 import logo from "@/components/common/crepiks-logo";
+import { mapMutations } from "vuex";
 
 export default {
   components: {
     logo
-  }
+  },
+
+  methods: mapMutations(["logout"])
 };
 </script>
 
@@ -113,6 +116,10 @@ export default {
   &-active {
     color: $primary;
     opacity: 0.9;
+  }
+
+  &-exit:hover {
+    color: #e74c3c;
   }
 
   &-icon {

@@ -84,7 +84,7 @@ export default {
 
         this.$store
           .dispatch("register", user)
-          .then(() => this.$router.push("/app/home"))
+          .then(() => this.$router.push("/app/courses"))
           .catch(err => console.log(err));
       }
     }

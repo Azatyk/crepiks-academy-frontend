@@ -32,7 +32,8 @@
           class="course-card-block"
           :image="thirdCourseImage"
           title="Базовый JavaScript"
-          description="Сделайте свой сайт интерактивным, добавьте анимацию и изучи один из самых популярных языков программирования JavaScript"
+          description="Сделайте свой сайт интерактивным и изучи один из самых популярных языков программирования JavaScript"
+          :isSoon="true"
         />
       </div>
     </div>
@@ -125,6 +126,7 @@ export default {
   height: 140px;
   border: 2px solid $primary;
   border-radius: 10px;
+  z-index: 0;
 
   &-label {
     position: absolute;

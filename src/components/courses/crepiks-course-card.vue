@@ -4,10 +4,11 @@
     <div class="card-text">
       <h2 class="card-text-title">{{ title }}</h2>
       <p class="card-text-description">{{ description }}</p>
-      <div class="card-link">
+      <div class="card-link" v-if="!isSoon">
         <span class="card-link-text">Узнать про курс</span>
         <i class="bx bx-right-arrow-alt card-link-icon"></i>
       </div>
+      <div class="card-link card-link-soon" v-else>Скоро</div>
     </div>
   </div>
 </template>
@@ -23,6 +24,10 @@ export default {
     },
     description: {
       type: String
+    },
+    isSoon: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -35,6 +40,7 @@ export default {
   width: 400px;
   display: flex;
   flex-direction: row;
+  z-index: 2;
 }
 
 .card-image {
@@ -84,6 +90,15 @@ export default {
 
   &-icon {
     font-size: 18px;
+  }
+
+  &-soon {
+    opacity: 0.6;
+    cursor: default;
+
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }
 </style>

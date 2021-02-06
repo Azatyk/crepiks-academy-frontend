@@ -58,7 +58,7 @@ export default {
         const password = this.password.trim();
         this.$store
           .dispatch("login", { email, password })
-          .then(() => this.$router.push("/app/home"))
+          .then(() => this.$router.push("/app/courses"))
           .catch(err => {
             console.log(err);
           });

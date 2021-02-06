@@ -10,7 +10,11 @@
           Вы освоите основы создания веб сайтов с помощью языка разметки HTML и
           таблицы каскадных стилей CSS
         </p>
-        <cButton class="intro-button" text="Начать учиться" />
+        <cButton
+          @click="$router.push('/auth/register')"
+          lass="intro-button"
+          text="Начать учиться"
+        />
       </div>
     </div>
   </div>
