@@ -1,17 +1,17 @@
 <template>
   <div class="header">
-    <div class="header-logo">
-      <img class="header-logo-img" src="@/assets/images/logo.svg" alt="" />
-    </div>
+    <logo class="header-logo" />
     <cButton text="Войти" type="unsolid" />
   </div>
 </template>
 
 <script>
 import cButton from "@/components/common/crepiks-button.vue";
+import Logo from "@/components/common/crepiks-logo.vue";
 export default {
   components: {
-    cButton
+    cButton,
+    Logo
   }
 };
 </script>
