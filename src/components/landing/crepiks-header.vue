@@ -1,7 +1,9 @@
 <template>
   <div class="header">
-    <logo class="header-logo" />
-    <cButton text="Войти" type="unsolid" />
+    <div class="header-content">
+      <logo class="header-logo" />
+      <cButton text="Войти" type="unsolid" />
+    </div>
   </div>
 </template>
 
@@ -24,9 +26,15 @@ export default {
   padding: 0 12%;
   padding-top: 5vh;
   background-color: $background;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+  &-content {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &-logo {
     width: 150px;

@@ -1,24 +1,28 @@
 <template>
   <div class="practice">
-    <h2 class="practice-heading">Чего ждать? Попробуем что-нибудь написать.</h2>
-    <p class="practice-paragraph">
-      Перепешите или скопируйте этот код
-      <span class="practice-paragraph-bold"
-        >&#60;h1&#62;Hello world!&#60;/h1&#62;</span
-      >
-      и нажмите "Проверить". В мини браузере увидите результат выполнения кода,
-      а автоматический тест оповестит вас о решении задания.
-    </p>
-    <div class="practice-editor">
-      <div class="practice-editor-title">
-        <div class="practice-editor-heading">Редактор кода</div>
-        <div class="practice-editor-heading">Мини браузер</div>
-      </div>
-      <div class="practice-editor-content">
-        <div class="practice-editor-container">
-          <button class="practice-editor-button">Проверить</button>
+    <div class="practice-content">
+      <h2 class="practice-heading">
+        Чего ждать? Попробуем что-нибудь написать.
+      </h2>
+      <p class="practice-paragraph">
+        Перепешите или скопируйте этот код
+        <span class="practice-paragraph-bold"
+          >&#60;h1&#62;Hello world!&#60;/h1&#62;</span
+        >
+        и нажмите "Проверить". В мини браузере увидите результат выполнения
+        кода, а автоматический тест оповестит вас о решении задания.
+      </p>
+      <div class="practice-editor">
+        <div class="practice-editor-title">
+          <div class="practice-editor-heading">Редактор кода</div>
+          <div class="practice-editor-heading">Мини браузер</div>
         </div>
-        <div class="practice-editor-container"></div>
+        <div class="practice-editor-content">
+          <div class="practice-editor-container">
+            <button class="practice-editor-button">Проверить</button>
+          </div>
+          <div class="practice-editor-container"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,6 +41,12 @@ export default {};
   box-sizing: border-box;
   background-color: $background;
   text-align: left;
+
+  &-content {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
   &-heading {
     color: $dark;
@@ -60,7 +70,7 @@ export default {};
     width: 100%;
     margin-top: 5vh;
     border-radius: 15px;
-    box-shadow: 0 0px 10px 0px #d6d6d6;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.02);
 
     &-title {
       width: 100%;
@@ -69,7 +79,7 @@ export default {};
 
     &-heading {
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 400;
       width: 50%;
       padding: 20px 20px;
       border: 1px solid #d1d2d6;

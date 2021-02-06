@@ -1,23 +1,25 @@
 <template>
   <div class="explanation">
-    <h2 class="explanation-heading">Как проходит обучение?</h2>
-    <p class="explanation-paragraph">
-      Учитесь с помощью интерактивных курсов. Что это такое? Все просто, вы
-      заходите на курс и проходите уроки с простой теорией и забавной практикой.
-      Учитесь когда угодно и где угодно.
-    </p>
-    <div class="explanation-container">
-      <cExplanationCard
-        number="1"
-        heading="Теория"
-        paragraph="Теория - это небольшой текст с иллюстрациями и иногда с тестами в каждом уроке. Читайте теорию, делайте конспекты и если что-нибудь забудете - теория всегда доступна."
-      />
-      <cExplanationCard
-        class="explanation-card"
-        number="2"
-        heading="Практика"
-        paragraph="Сразу после теории у вас будет возможность попрактиковаться и написать реальный код, выполняя небольшие задания. Вам не нужно ничего скачивать - все, что нужно для практики уже на платформе."
-      />
+    <div class="explanation-content">
+      <h2 class="explanation-heading">Как проходит обучение?</h2>
+      <p class="explanation-paragraph">
+        Учитесь с помощью интерактивных курсов. Что это такое? Все просто, вы
+        заходите на курс и проходите уроки с простой теорией и забавной
+        практикой. Учитесь когда угодно и где угодно.
+      </p>
+      <div class="explanation-container">
+        <cExplanationCard
+          number="1"
+          heading="Теория"
+          paragraph="Теория - это небольшой текст с иллюстрациями и иногда с тестами в каждом уроке. Читайте теорию, делайте конспекты и если что-нибудь забудете - теория всегда доступна."
+        />
+        <cExplanationCard
+          class="explanation-card"
+          number="2"
+          heading="Практика"
+          paragraph="Сразу после теории у вас будет возможность попрактиковаться и написать реальный код, выполняя небольшие задания. Вам не нужно ничего скачивать - все, что нужно для практики уже на платформе."
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +43,12 @@ export default {
   padding: 0 12%;
   background-color: $dark;
   color: $white;
+
+  &-content {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
   &-heading {
     width: 100%;

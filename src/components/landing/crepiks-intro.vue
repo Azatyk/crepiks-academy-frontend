@@ -1,15 +1,17 @@
 <template>
   <div class="intro">
-    <div class="intro-text">
-      <h2 class="intro-heading">
-        Попробуйте курс базовой верстки сайтов
-        <span class="intro-heading-free">бесплатно</span>
-      </h2>
-      <p class="intro-paragraph">
-        Вы освоите основы создания веб сайтов с помощью языка разметки HTML и
-        таблицы каскадных стилей CSS
-      </p>
-      <cButton class="intro-button" text="Начать учиться" />
+    <div class="intro-content">
+      <div class="intro-text">
+        <h2 class="intro-heading">
+          Попробуйте курс базовой верстки сайтов
+          <span class="intro-heading-free">бесплатно</span>
+        </h2>
+        <p class="intro-paragraph">
+          Вы освоите основы создания веб сайтов с помощью языка разметки HTML и
+          таблицы каскадных стилей CSS
+        </p>
+        <cButton class="intro-button" text="Начать учиться" />
+      </div>
     </div>
   </div>
 </template>
@@ -35,6 +37,12 @@ export default {
   background-repeat: no-repeat;
   background-position: bottom right 24%;
   background-size: 50%;
+
+  &-content {
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
   &-text {
     width: 520px;

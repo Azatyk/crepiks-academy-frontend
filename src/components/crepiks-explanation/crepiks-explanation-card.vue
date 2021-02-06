@@ -81,7 +81,7 @@ export default {
     margin-top: 15px;
     font-weight: 300;
     opacity: 60%;
-    line-height: 25px;
+    line-height: 28px;
   }
 }
 </style>
