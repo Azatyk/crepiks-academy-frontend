@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import cExplanationCard from "@/components/new-landing/crepiks-explanation-card.vue";
+import cExplanationCard from "@/components/crepiks-explanation/crepiks-explanation-card.vue";
 export default {
   components: {
     cExplanationCard
@@ -47,17 +47,18 @@ export default {
     text-align: center;
     font-weight: 400;
     font-size: 35px;
-    padding-top: 7vh;
+    padding-top: 12vh;
   }
 
   &-paragraph {
-    width: 80%;
+    width: 78%;
     text-align: center;
     font-size: 20px;
     padding-top: 4vh;
     margin-right: auto;
     margin-left: auto;
     font-weight: lighter;
+    line-height: 27px;
   }
 
   &-container {

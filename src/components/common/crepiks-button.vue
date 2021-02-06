@@ -1,5 +1,5 @@
 <template>
-  <button class="button">{{ text }}</button>
+  <button class="button" :class="type">{{ text }}</button>
 </template>
 
 <script>
@@ -7,6 +7,10 @@ export default {
   props: {
     text: {
       type: String
+    },
+    type: {
+      type: String,
+      default: "solid"
     }
   }
 };
@@ -31,5 +35,10 @@ export default {
   &:hover {
     opacity: 0.7;
   }
+}
+
+.unsolid {
+  background-color: transparent;
+  color: $primary;
 }
 </style>

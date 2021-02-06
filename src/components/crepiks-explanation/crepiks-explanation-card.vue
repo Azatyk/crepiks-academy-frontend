@@ -42,7 +42,7 @@ export default {
     width: 50%;
 
     &-container {
-      width: 90%;
+      width: 100%;
       height: 320px;
       background-color: $white;
       border-radius: 15px;
@@ -62,7 +62,7 @@ export default {
   &-heading {
     width: 100%;
     font-weight: 400;
-    font-size: 27px;
+    font-size: 30px;
     margin-left: 15px;
   }
 
@@ -72,13 +72,16 @@ export default {
     border-radius: 50%;
     background-color: $white;
     font-size: 27px;
-    padding: 0 8px;
+    padding: 0 10px;
   }
 
   &-paragraph {
     width: 100%;
     font-size: 20px;
     margin-top: 15px;
+    font-weight: 300;
+    opacity: 60%;
+    line-height: 25px;
   }
 }
 </style>

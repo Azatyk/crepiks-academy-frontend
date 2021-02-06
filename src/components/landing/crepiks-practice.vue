@@ -40,7 +40,7 @@ export default {};
 
   &-heading {
     color: $dark;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 35px;
   }
 
@@ -49,6 +49,7 @@ export default {};
     color: $dark;
     padding-top: 15px;
     font-size: 20px;
+    font-weight: 300;
 
     &-bold {
       font-weight: 700;
@@ -57,7 +58,9 @@ export default {};
 
   &-editor {
     width: 100%;
-    padding-top: 10vh;
+    margin-top: 5vh;
+    border-radius: 15px;
+    box-shadow: 0 0px 10px 0px #d6d6d6;
 
     &-title {
       width: 100%;
@@ -69,34 +72,42 @@ export default {};
       font-weight: 700;
       width: 50%;
       padding: 20px 20px;
-      border: 2px solid $background;
+      border: 1px solid #d1d2d6;
+      border-top: 0;
+      border-left: 0;
       background-color: $white;
       border-radius: 15px 0 0 0;
     }
 
     &-heading:last-child {
       border-radius: 0 15px 0 0;
+      border-right: 0;
     }
 
     &-content {
       width: 100%;
-      height: 50vh;
+      height: 60vh;
       display: flex;
     }
 
     &-container {
       width: 50%;
       background-color: $white;
-      border: 2px solid $background;
+      border: 1px solid #d1d2d6;
+      border-left: 0;
+      border-top: 0;
+      border-bottom: 0;
       border-radius: 0 0 0 15px;
       position: relative;
     }
 
     &-container:last-child {
       border-radius: 0 0 15px 0;
+      border-right: 0;
     }
 
     &-button {
+      font-size: 15px;
       color: $primary;
       background-color: transparent;
       height: fit-content;

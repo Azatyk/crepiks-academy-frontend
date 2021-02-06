@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import cButton from "@/components/common/crepiks-button-rounded.vue";
+import cButton from "@/components/common/crepiks-button.vue";
 export default {
   components: {
     cButton
@@ -27,7 +27,7 @@ export default {
 @import "@/assets/styles/variables.scss";
 .intro {
   width: 100%;
-  height: 86vh;
+  height: 80vh;
   box-sizing: border-box;
   padding: 0 12%;
   background-color: $background;
@@ -37,7 +37,7 @@ export default {
   background-size: 50%;
 
   &-text {
-    width: 50%;
+    width: 520px;
     text-align: left;
     padding-top: 12vh;
   }

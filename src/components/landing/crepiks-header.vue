@@ -3,12 +3,17 @@
     <div class="header-logo">
       <img class="header-logo-img" src="@/assets/images/logo.svg" alt="" />
     </div>
-    <button class="header-button">Войти</button>
+    <cButton text="Войти" type="unsolid" />
   </div>
 </template>
 
 <script>
-export default {};
+import cButton from "@/components/common/crepiks-button.vue";
+export default {
+  components: {
+    cButton
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -29,15 +34,6 @@ export default {};
     &-img {
       width: 100%;
     }
-  }
-
-  &-button {
-    height: fit-content;
-    background-color: transparent;
-    color: $primary;
-    border: 1px solid $primary;
-    border-radius: 15px;
-    padding: 5px 20px;
   }
 }
 </style>
