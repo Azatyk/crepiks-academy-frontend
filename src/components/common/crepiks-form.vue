@@ -2,8 +2,8 @@
   <div class="form-container">
     <logo class="logo" />
     <form @submit.prevent="$emit('submit')" class="form">
-      <h2 class="subtitle">С возвращением</h2>
-      <h1 class="title">Войдите в аккаунт</h1>
+      <h2 class="subtitle">{{ subtitle }}</h2>
+      <h1 class="title">{{ title }}</h1>
       <slot></slot>
     </form>
   </div>
@@ -15,6 +15,15 @@ import logo from "@/components/common/crepiks-logo.vue";
 export default {
   components: {
     logo
+  },
+
+  props: {
+    subtitle: {
+      type: String
+    },
+    title: {
+      type: String
+    }
   }
 };
 </script>

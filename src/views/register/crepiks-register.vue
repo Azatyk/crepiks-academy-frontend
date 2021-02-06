@@ -5,7 +5,12 @@
         <i class="bx bx-arrow-back register-back-icon"></i>
         На главную
       </router-link>
-      <cForm @submit="register" class="form-container">
+      <cForm
+        @submit="register"
+        class="form-container"
+        subtitle="Добро пожаловать"
+        title="Создайте аккаунт"
+      >
         <cInput
           class="form-input"
           title="Имя"

@@ -5,7 +5,12 @@
         <i class="bx bx-arrow-back login-back-icon"></i>
         На главную
       </router-link>
-      <cForm @submit="login" class="form-container">
+      <cForm
+        @submit="login"
+        class="form-container"
+        subtitle="С возвращением"
+        title="Войдите в аккаунт"
+      >
         <cInput
           class="form-input"
           title="Почта"
