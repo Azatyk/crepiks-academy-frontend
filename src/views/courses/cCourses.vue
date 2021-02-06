@@ -13,6 +13,9 @@
         </div>
       </div>
       <div class="courses-list">
+        <div class="free-block">
+          <div class="free-block-label">Бесплатно</div>
+        </div>
         <courseCard
           class="course-card-block"
           :image="firstCourseImage"
@@ -108,9 +111,33 @@ export default {
 }
 
 .courses-list {
+  position: relative;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
+}
+
+.free-block {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 440px;
+  height: 140px;
+  border: 2px solid $primary;
+  border-radius: 10px;
+
+  &-label {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    width: 90px;
+    display: block;
+    color: $primary;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    background-color: $background;
+  }
 }
 
 .course-card-block {
