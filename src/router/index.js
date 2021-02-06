@@ -114,7 +114,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.noAuthOnly)) {
     if (store.getters.isLoggedIn) {
       next({
-        path: "/app/home",
+        path: "/app/courses",
         query: { redirect: to.fullPath }
       });
     } else {

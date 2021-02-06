@@ -1,14 +1,36 @@
 <template>
   <div class="courses-page">
-    <div class="search-input">
-      <input
-        type="text"
-        class="input"
-        placeholder="Чему хотите научиться?"
-        disabled
-      />
-      <div class="button-container">
-        <cButton text="Найти" size="small" :isDisabled="true" />
+    <div class="courses-half">
+      <div class="search-input">
+        <input
+          type="text"
+          class="input"
+          placeholder="Чему хотите научиться?"
+          disabled
+        />
+        <div class="button-container">
+          <cButton text="Найти" size="small" :isDisabled="true" />
+        </div>
+      </div>
+      <div class="courses-list">
+        <courseCard
+          class="course-card-block"
+          :image="firstCourseImage"
+          title="Базовая верстка сайтов"
+          description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
+        />
+        <courseCard
+          class="course-card-block"
+          :image="secondCourseImage"
+          title="Продвинутая верстка сайтов"
+          description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
+        />
+        <courseCard
+          class="course-card-block"
+          :image="thirdCourseImage"
+          title="Базовый JavaScript"
+          description="Сделайте свой сайт интерактивным, добавьте анимацию и изучи один из самых популярных языков программирования JavaScript"
+        />
       </div>
     </div>
   </div>
@@ -16,10 +38,24 @@
 
 <script>
 import cButton from "@/components/common/crepiks-button";
+import courseCard from "@/components/courses/crepiks-course-card";
+
+import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
+import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
+import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
 
 export default {
   components: {
-    cButton
+    cButton,
+    courseCard
+  },
+
+  data() {
+    return {
+      firstCourseImage: firstCourseImage,
+      secondCourseImage: secondCourseImage,
+      thirdCourseImage: thirdCourseImage
+    };
   }
 };
 </script>
@@ -30,6 +66,11 @@ export default {
 .courses-page {
   padding-top: 50px;
   padding-left: 50px;
+}
+
+.courses-half {
+  display: flex;
+  flex-direction: column;
 }
 
 .search-input {
@@ -64,5 +105,15 @@ export default {
   align-items: center;
   border-radius: 0 10px 10px 0;
   background-color: #f0eff4;
+}
+
+.courses-list {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-card-block {
+  margin-bottom: 50px;
 }
 </style>
