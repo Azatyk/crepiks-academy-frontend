@@ -50,7 +50,7 @@ export default {};
 
   &-heading {
     color: $dark;
-    font-weight: 600;
+    font-weight: 400;
     font-size: 35px;
   }
 
@@ -60,9 +60,10 @@ export default {};
     padding-top: 15px;
     font-size: 20px;
     font-weight: 300;
+    opacity: 0.9;
 
     &-bold {
-      font-weight: 700;
+      font-weight: 400;
     }
   }
 
