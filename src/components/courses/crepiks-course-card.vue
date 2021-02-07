@@ -4,9 +4,19 @@
     <div class="card-text">
       <h2 class="card-text-title">{{ title }}</h2>
       <p class="card-text-description">{{ description }}</p>
-      <div class="card-link" v-if="!isSoon">
+      <div
+        class="card-link"
+        v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"
+        @click="$emit('linkClick')"
+      >
         <span class="card-link-text">Узнать про курс</span>
         <i class="bx bx-right-arrow-alt card-link-icon"></i>
+      </div>
+      <div
+        class="card-link card-link-soon"
+        v-else-if="$route.fullPath == '/app/courses/' + id"
+      >
+        Вы просматриваете курс
       </div>
       <div class="card-link card-link-soon" v-else>Скоро</div>
     </div>
@@ -28,6 +38,9 @@ export default {
     isSoon: {
       type: Boolean,
       default: false
+    },
+    id: {
+      type: Number
     }
   }
 };

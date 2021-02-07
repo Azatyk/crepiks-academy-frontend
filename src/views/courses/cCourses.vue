@@ -18,26 +18,34 @@
         </div>
         <courseCard
           class="course-card-block"
+          @linkClick="openCourseBlock"
           :image="firstCourseImage"
+          :id="1"
           title="Базовая верстка сайтов"
           description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
         />
         <courseCard
           class="course-card-block"
           :image="secondCourseImage"
+          :id="2"
           title="Продвинутая верстка сайтов"
           description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
         />
         <courseCard
           class="course-card-block"
           :image="thirdCourseImage"
+          :id="3"
           title="Базовый JavaScript"
           description="Сделайте свой сайт интерактивным и изучите один из самых популярных языков программирования JavaScript"
           :isSoon="true"
         />
       </div>
     </div>
-    <course />
+    <course
+      :isCourseOpen="isCourseBlockOpen"
+      @open-course-block="isCourseBlockOpen = true"
+      @close-course-block="closeCourseBlock"
+    />
   </div>
 </template>
 
@@ -62,8 +70,21 @@ export default {
     return {
       firstCourseImage: firstCourseImage,
       secondCourseImage: secondCourseImage,
-      thirdCourseImage: thirdCourseImage
+      thirdCourseImage: thirdCourseImage,
+      isCourseBlockOpen: false
     };
+  },
+
+  methods: {
+    openCourseBlock() {
+      this.isCourseBlockOpen = true;
+      this.$router.push("/app/courses/1");
+    },
+
+    closeCourseBlock() {
+      this.isCourseBlockOpen = false;
+      this.$router.push("/app/courses");
+    }
   }
 };
 </script>
