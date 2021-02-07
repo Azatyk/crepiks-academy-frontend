@@ -12,7 +12,7 @@
           <i class="bx bx-dice-5 link-icon"></i>
           <span class="link-text">Песочница</span>
         </router-link>
-        <router-link class="link" to="/app/plans">
+        <router-link class="link" to="/app/subscription">
           <i class="bx bx-receipt link-icon"></i>
           <span class="link-text">Подписка</span>
         </router-link>

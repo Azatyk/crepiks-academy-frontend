@@ -7,6 +7,7 @@ import register from "@/views/register/crepiks-register";
 import login from "@/views/login/crepiks-login";
 
 import courses from "@/views/courses/crepiks-courses";
+import subscription from "@/views/subscription/crepiks-subscription";
 import lesson from "@/views/lesson/crepiks-lesson";
 
 import emptyLayout from "@/views/layouts/crepiks-empty-layout";
@@ -81,6 +82,14 @@ const routes = [
         component: courses,
         meta: {
           title: "Курсы"
+        }
+      },
+      {
+        path: "subscription",
+        name: "subscription",
+        component: subscription,
+        meta: {
+          title: "Получите доступ ко всем курсам"
         }
       }
     ]
