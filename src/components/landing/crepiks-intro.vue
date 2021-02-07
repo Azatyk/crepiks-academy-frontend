@@ -79,6 +79,28 @@ export default {
   .intro {
     padding: 0 5%;
     padding-top: 12vh;
+    height: 90vh;
+    background-position: bottom right 5%;
+
+    background-size: 500px;
+  }
+}
+
+@media (max-width: 550px) {
+  .intro {
+    &-text {
+      width: 100%;
+    }
+
+    &-heading {
+      width: 100%;
+      font-size: 25px;
+    }
+
+    &-paragraph {
+      width: 100%;
+      font-size: 17px;
+    }
   }
 }
 </style>

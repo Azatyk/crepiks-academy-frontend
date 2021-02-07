@@ -57,4 +57,18 @@ export default {};
     padding: 0 5%;
   }
 }
+
+@media (max-width: 550px) {
+  .description {
+    &-heading {
+      width: 100%;
+      font-size: 25px;
+    }
+
+    &-paragraph {
+      width: 100%;
+      font-size: 17px;
+    }
+  }
+}
 </style>

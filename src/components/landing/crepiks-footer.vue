@@ -92,4 +92,22 @@ export default {
     padding: 10vh 5%;
   }
 }
+
+@media (max-width: 550px) {
+  .footer {
+    padding-right: 10%;
+    &-content {
+      align-items: flex-start;
+    }
+    &-socials {
+      flex-direction: column;
+      align-items: flex-start;
+
+      &-item {
+        margin-left: 0;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
 </style>

@@ -147,6 +147,40 @@ export default {};
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 720px) {
+  .practice {
+    &-editor {
+      flex-direction: column;
+
+      &-block {
+        width: 100%;
+        height: 50vh;
+        border-right: 0;
+        border-bottom: 1px solid #d1d2d6;
+        border-radius: 15px 15px 0 0;
+      }
+
+      &-block:last-child {
+        border-radius: 0 0 15px 15px;
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .practice {
+    padding: 10vh 5%;
+
+    &-heading {
+      width: 100%;
+      font-size: 25px;
+    }
+
+    &-paragraph {
+      width: 90%;
+      font-size: 17px;
+    }
+  }
 }
 </style>

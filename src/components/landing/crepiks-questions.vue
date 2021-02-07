@@ -50,4 +50,12 @@ export default {
     padding: 10vh 5%;
   }
 }
+
+@media (max-width: 720px) {
+  .questions {
+    &-heading {
+      font-size: 25px;
+    }
+  }
+}
 </style>

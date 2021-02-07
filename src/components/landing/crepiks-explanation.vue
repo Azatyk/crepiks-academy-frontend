@@ -83,4 +83,18 @@ export default {
     padding: 0 5%;
   }
 }
+
+@media (max-width: 550px) {
+  .explanation {
+    &-heading {
+      width: 100%;
+      font-size: 25px;
+    }
+
+    &-paragraph {
+      width: 90%;
+      font-size: 17px;
+    }
+  }
+}
 </style>

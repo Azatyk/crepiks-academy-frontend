@@ -106,4 +106,18 @@ export default {
     }
   }
 }
+
+@media (max-width: 550px) {
+  .card {
+    &-heading {
+      width: 100%;
+      font-size: 25px;
+    }
+
+    &-paragraph {
+      width: 90%;
+      font-size: 17px;
+    }
+  }
+}
 </style>

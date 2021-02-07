@@ -50,6 +50,7 @@ export default {
   &-text {
     width: 38%;
     padding: 45px 40px;
+    box-sizing: border-box;
     background-color: $white;
     border-radius: 20px;
     box-shadow: 50px 50px 100px rgba(0, 0, 0, 0.02);
@@ -80,6 +81,28 @@ export default {
 @media (max-width: 1000px) {
   .offer {
     padding: 18vh 5%;
+  }
+}
+
+@media (max-width: 720px) {
+  .offer {
+    height: 110vh;
+    padding: 12vh 5%;
+    background-position: bottom 20% right 20%;
+    background-size: 80%;
+
+    &-text {
+      width: 100%;
+    }
+
+    &-heading {
+      font-size: 25px;
+      width: 100%;
+    }
+
+    &-paragraph {
+      font-size: 16px;
+    }
   }
 }
 </style>
