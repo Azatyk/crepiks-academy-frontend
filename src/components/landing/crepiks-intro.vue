@@ -12,7 +12,7 @@
         </p>
         <cButton
           @click="$router.push('/auth/register')"
-          lass="intro-button"
+          class="intro-button"
           text="Начать учиться"
         />
       </div>
