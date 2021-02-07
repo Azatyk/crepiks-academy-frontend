@@ -2,13 +2,13 @@
   <div class="lesson">
     <div class="lesson-screens">
       <div
-        class="lesson-screen lesson-screen-first"
-        @click="isCodeEditorScreen = !isCodeEditorScreen"
+        class="code-editor-screen lesson-screen-first"
         :class="{ 'first-active': isCodeEditorScreen }"
-      ></div>
+      >
+        <filesNavigation />
+      </div>
       <div
         class="lesson-screen lesson-screen-second"
-        @click="isCodeEditorScreen = !isCodeEditorScreen"
         :class="{ 'first-active': isCodeEditorScreen }"
       ></div>
     </div>
@@ -17,10 +17,12 @@
 </template>
 
 <script>
+import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 
 export default {
   components: {
+    filesNavigation,
     lessonFooter
   },
 
@@ -79,5 +81,13 @@ export default {
 
 .first-active {
   transform: translateX(0);
+}
+
+.code-editor-screen {
+  width: 100vw;
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: row;
+  background-color: $white;
 }
 </style>
