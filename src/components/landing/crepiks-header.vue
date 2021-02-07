@@ -47,4 +47,11 @@ export default {
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .header {
+    padding: 0 5%;
+    padding-top: 5vh;
+  }
+}
 </style>

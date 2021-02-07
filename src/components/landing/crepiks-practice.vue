@@ -12,7 +12,7 @@
         и нажмите "Проверить". В мини браузере увидите результат выполнения
         кода, а автоматический тест оповестит вас о решении задания.
       </p>
-      <div class="practice-editor">
+      <!-- <div class="practice-editor">
         <div class="practice-editor-title">
           <div class="practice-editor-heading">Редактор кода</div>
           <div class="practice-editor-heading">Мини браузер</div>
@@ -22,6 +22,20 @@
             <button class="practice-editor-button">Проверить</button>
           </div>
           <div class="practice-editor-container"></div>
+        </div>
+      </div> -->
+      <div class="practice-editor">
+        <div class="practice-editor-block">
+          <div class="practice-editor-title">Редактор кода</div>
+          <div class="practice-editor-content">
+            <button class="practice-editor-button">Проверить</button>
+          </div>
+        </div>
+        <div class="practice-editor-block">
+          <div class="practice-editor-title practice-editor-heading">
+            Мини браузер
+          </div>
+          <div class="practice-editor-content"></div>
         </div>
       </div>
     </div>
@@ -71,50 +85,45 @@ export default {};
     width: 100%;
     margin-top: 5vh;
     border-radius: 15px;
+    display: flex;
     box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.02);
 
-    &-title {
-      width: 100%;
-      display: flex;
-    }
-
-    &-heading {
-      font-size: 14px;
-      font-weight: 400;
+    &-block {
       width: 50%;
-      padding: 20px 20px;
+      height: 70vh;
+      background-color: $white;
+      border-radius: 15px 0 0 15px;
       border: 1px solid #d1d2d6;
       border-top: 0;
       border-left: 0;
-      background-color: $white;
+      border-bottom: 0;
+      position: relative;
+    }
+
+    &-block:last-child {
+      border-radius: 0 15px 15px 0;
+      border-right: 0;
+    }
+
+    &-title {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 20px 20px;
+      box-sizing: border-box;
+      border: 1px solid #d1d2d6;
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
       border-radius: 15px 0 0 0;
     }
 
-    &-heading:last-child {
+    &-heading {
       border-radius: 0 15px 0 0;
-      border-right: 0;
     }
 
     &-content {
       width: 100%;
-      height: 60vh;
-      display: flex;
-    }
-
-    &-container {
-      width: 50%;
-      background-color: $white;
-      border: 1px solid #d1d2d6;
-      border-left: 0;
-      border-top: 0;
-      border-bottom: 0;
-      border-radius: 0 0 0 15px;
-      position: relative;
-    }
-
-    &-container:last-child {
-      border-radius: 0 0 15px 0;
-      border-right: 0;
     }
 
     &-button {
@@ -130,5 +139,14 @@ export default {};
       font-weight: 500;
     }
   }
+}
+
+@media (max-width: 1000px) {
+  .practice {
+    padding: 15vh 5%;
+  }
+}
+
+@media (max-width: 800px) {
 }
 </style>

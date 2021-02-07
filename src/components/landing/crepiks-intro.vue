@@ -74,4 +74,11 @@ export default {
     margin-top: 40px;
   }
 }
+
+@media (max-width: 1000px) {
+  .intro {
+    padding: 0 5%;
+    padding-top: 12vh;
+  }
+}
 </style>

@@ -77,4 +77,10 @@ export default {
     margin-top: 10vh;
   }
 }
+
+@media (max-width: 1000px) {
+  .explanation {
+    padding: 0 5%;
+  }
+}
 </style>

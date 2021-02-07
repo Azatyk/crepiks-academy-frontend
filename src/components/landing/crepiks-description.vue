@@ -51,4 +51,10 @@ export default {};
     color: $light-dark;
   }
 }
+
+@media (max-width: 1000px) {
+  .description {
+    padding: 0 5%;
+  }
+}
 </style>

@@ -76,4 +76,10 @@ export default {
     margin-top: 32px;
   }
 }
+
+@media (max-width: 1000px) {
+  .offer {
+    padding: 18vh 5%;
+  }
+}
 </style>

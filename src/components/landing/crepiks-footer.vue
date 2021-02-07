@@ -86,4 +86,10 @@ export default {
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .footer {
+    padding: 10vh 5%;
+  }
+}
 </style>

@@ -44,4 +44,10 @@ export default {
     margin-bottom: -5px;
   }
 }
+
+@media (max-width: 1000px) {
+  .questions {
+    padding: 10vh 5%;
+  }
+}
 </style>

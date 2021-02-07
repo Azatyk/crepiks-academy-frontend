@@ -39,7 +39,7 @@ export default {
   text-align: left;
 
   &-image {
-    width: 50%;
+    width: 540px;
 
     &-container {
       width: 100%;
@@ -84,6 +84,26 @@ export default {
     font-weight: 300;
     opacity: 60%;
     line-height: 28px;
+  }
+}
+
+@media (max-width: 800px) {
+  .card {
+    flex-direction: column;
+    align-items: center;
+
+    &-image {
+      width: 100%;
+
+      &-container {
+        height: 320px;
+      }
+    }
+
+    &-text {
+      width: 100%;
+      padding-left: 0;
+    }
   }
 }
 </style>
