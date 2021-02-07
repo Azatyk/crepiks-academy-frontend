@@ -41,6 +41,13 @@
         />
       </div>
     </div>
+    <div class="empty-half">
+      <img
+        class="empty-half-image"
+        src="@/assets/images/empty-course-image.png"
+        alt="Выберите курс"
+      />
+    </div>
     <course
       :isCourseOpen="isCourseBlockOpen"
       @open-course-block="isCourseBlockOpen = true"
@@ -96,11 +103,26 @@ export default {
   position: relative;
   padding-top: 50px;
   padding-left: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .courses-half {
   display: flex;
   flex-direction: column;
+}
+
+.empty-half {
+  width: 60%;
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-image {
+    width: 65%;
+  }
 }
 
 .search-input {
