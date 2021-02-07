@@ -7,7 +7,6 @@ import register from "@/views/register/crepiks-register";
 import login from "@/views/login/crepiks-login";
 
 import cCourses from "@/views/courses/cCourses";
-import cCourse from "@/views/course/cCourse";
 import cLesson from "@/views/lesson/cLesson";
 
 import emptyLayout from "@/views/layouts/crepiks-empty-layout";
@@ -70,9 +69,9 @@ const routes = [
       {
         path: "courses/:id",
         name: "course",
-        component: cCourse,
+        component: cCourses,
         meta: {
-          title: "Курс"
+          title: "Курсы"
         }
       },
       // страницы уроков надо будет вынести в отдельный layout

@@ -1,6 +1,6 @@
 <template>
-  <div class="course">
-    <i class="bx bx-x course-close"></i>
+  <div class="course" :class="{ 'course-open': isCourseOpen }">
+    <i class="bx bx-x course-close" @click="$emit('close-course-block')"></i>
     <div class="course-content">
       <div class="main-info">
         <img
@@ -105,6 +105,19 @@ import cButton from "@/components/common/crepiks-button";
 export default {
   components: {
     cButton
+  },
+
+  props: {
+    isCourseOpen: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  mounted() {
+    if (this.$route.fullPath == "/app/courses/1") {
+      this.$emit("open-course-block");
+    }
   }
 };
 </script>
@@ -114,7 +127,7 @@ export default {
 
 .course {
   position: fixed;
-  right: 0;
+  right: -40%;
   top: 0;
   padding: 60px 50px;
   padding-bottom: 0;
@@ -125,7 +138,12 @@ export default {
   flex-direction: column;
   background-color: $white;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  transition: 400ms ease-in-out;
   z-index: 3;
+
+  &-open {
+    right: 0;
+  }
 
   &-close {
     color: $dark;
