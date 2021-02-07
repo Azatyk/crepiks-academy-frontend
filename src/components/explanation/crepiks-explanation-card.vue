@@ -23,7 +23,7 @@ export default {
       type: String
     },
     number: {
-      type: Number
+      type: String
     }
   }
 };
