@@ -6,8 +6,8 @@ import landing from "@/views/landing/crepiks-landing";
 import register from "@/views/register/crepiks-register";
 import login from "@/views/login/crepiks-login";
 
-import cCourses from "@/views/courses/cCourses";
-import cLesson from "@/views/lesson/cLesson";
+import courses from "@/views/courses/crepiks-courses";
+import lesson from "@/views/lesson/crepiks-lesson";
 
 import emptyLayout from "@/views/layouts/crepiks-empty-layout";
 import appLayout from "@/views/layouts/crepiks-app-layout";
@@ -39,7 +39,6 @@ const routes = [
           noAuthOnly: true
         }
       },
-
       {
         path: "",
         name: "landing",
@@ -47,6 +46,16 @@ const routes = [
         meta: {
           title: "Crepiks — курсы программирования",
           noAuthOnly: true
+        }
+      },
+      {
+        path: "app/courses/:courseId/lessons/:lessonId",
+        name: "lesson",
+        component: lesson,
+        meta: {
+          title: "Урок",
+          needAuth: true,
+          shouldHaveCourse: true
         }
       }
     ]
@@ -61,7 +70,7 @@ const routes = [
       {
         path: "courses",
         name: "courses",
-        component: cCourses,
+        component: courses,
         meta: {
           title: "Курсы"
         }
@@ -69,20 +78,9 @@ const routes = [
       {
         path: "courses/:id",
         name: "course",
-        component: cCourses,
+        component: courses,
         meta: {
           title: "Курсы"
-        }
-      },
-      // страницы уроков надо будет вынести в отдельный layout
-      {
-        path: "courses/:courseId/lessons/:lessonId",
-        name: "lesson",
-        component: cLesson,
-        meta: {
-          title: "Урок",
-          needAuth: true,
-          shouldHaveCourse: true
         }
       }
     ]
