@@ -122,7 +122,7 @@ export default {
     }
 
     &-paragraph {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 }

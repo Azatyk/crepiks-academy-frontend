@@ -149,6 +149,10 @@ export default {
         height: 210px;
       }
     }
+
+    &-number {
+      opacity: 0.9;
+    }
   }
 }
 </style>

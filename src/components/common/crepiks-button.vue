@@ -73,4 +73,10 @@ export default {
     opacity: 0.6;
   }
 }
+
+@media (max-width: 375px) {
+  .button {
+    padding: 8px 20px;
+  }
+}
 </style>

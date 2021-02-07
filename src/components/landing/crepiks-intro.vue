@@ -106,10 +106,11 @@ export default {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 414px) {
   .intro {
+    padding-top: 7vh;
     height: 600px;
-    background-position: bottom right 65%;
+    background-position: bottom 5% right 65%;
   }
 }
 </style>
