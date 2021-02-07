@@ -71,6 +71,7 @@ export default {
   justify-content: space-between;
   box-sizing: border-box;
   background-color: $white;
+  z-index: 3;
 
   &-logo {
     margin-bottom: 40px;
