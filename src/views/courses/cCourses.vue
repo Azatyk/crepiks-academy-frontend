@@ -32,11 +32,12 @@
           class="course-card-block"
           :image="thirdCourseImage"
           title="Базовый JavaScript"
-          description="Сделайте свой сайт интерактивным и изучи один из самых популярных языков программирования JavaScript"
+          description="Сделайте свой сайт интерактивным и изучите один из самых популярных языков программирования JavaScript"
           :isSoon="true"
         />
       </div>
     </div>
+    <course />
   </div>
 </template>
 
@@ -48,10 +49,13 @@ import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
 import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
 import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
 
+import course from "@/components/courses/crepiks-course";
+
 export default {
   components: {
     cButton,
-    courseCard
+    courseCard,
+    course
   },
 
   data() {
@@ -68,6 +72,7 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .courses-page {
+  position: relative;
   padding-top: 50px;
   padding-left: 50px;
 }

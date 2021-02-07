@@ -57,7 +57,7 @@ export default {
     margin-bottom: 5px;
     color: $dark;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   &-description {
