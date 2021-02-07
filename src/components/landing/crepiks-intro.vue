@@ -88,6 +88,8 @@ export default {
 
 @media (max-width: 550px) {
   .intro {
+    background-position: center bottom;
+
     &-text {
       width: 100%;
     }
@@ -101,6 +103,13 @@ export default {
       width: 100%;
       font-size: 17px;
     }
+  }
+}
+
+@media (max-width: 375px) {
+  .intro {
+    height: 600px;
+    background-position: bottom right 65%;
   }
 }
 </style>

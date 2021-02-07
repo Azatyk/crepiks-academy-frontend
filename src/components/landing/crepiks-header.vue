@@ -54,4 +54,12 @@ export default {
     padding-top: 5vh;
   }
 }
+
+@media (max-width: 550px) {
+  .header {
+    &-logo {
+      width: 110px;
+    }
+  }
+}
 </style>

@@ -60,9 +60,13 @@ export default {};
 
 @media (max-width: 550px) {
   .description {
+    height: 300px;
+    margin-bottom: 10vh;
+
     &-heading {
       width: 100%;
       font-size: 25px;
+      margin-top: 145px;
     }
 
     &-paragraph {

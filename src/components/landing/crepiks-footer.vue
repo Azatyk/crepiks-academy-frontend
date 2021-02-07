@@ -96,6 +96,7 @@ export default {
 @media (max-width: 550px) {
   .footer {
     padding-right: 10%;
+
     &-content {
       align-items: flex-start;
     }
@@ -106,6 +107,21 @@ export default {
       &-item {
         margin-left: 0;
         margin-bottom: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .footer {
+    &-socials {
+      &-text {
+        font-size: 14px;
+      }
+
+      &-icon {
+        width: 30px;
+        height: 30px;
       }
     }
   }

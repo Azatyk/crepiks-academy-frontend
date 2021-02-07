@@ -81,12 +81,16 @@ export default {
 @media (max-width: 1000px) {
   .offer {
     padding: 18vh 5%;
+
+    &-text {
+      width: 55%;
+    }
   }
 }
 
 @media (max-width: 720px) {
   .offer {
-    height: 110vh;
+    height: 130vh;
     padding: 12vh 5%;
     background-position: bottom 20% right 20%;
     background-size: 80%;
@@ -101,7 +105,24 @@ export default {
     }
 
     &-paragraph {
-      font-size: 16px;
+      font-size: 17px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .offer {
+    height: 110vh;
+    &-text {
+      padding: 35px 30px;
+    }
+
+    &-heading {
+      font-size: 22px;
+    }
+
+    &-paragraph {
+      font-size: 14px;
     }
   }
 }

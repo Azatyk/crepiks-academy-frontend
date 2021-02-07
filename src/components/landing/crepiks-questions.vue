@@ -58,4 +58,12 @@ export default {
     }
   }
 }
+
+@media (max-width: 450px) {
+  .questions {
+    &-heading {
+      font-size: 18px;
+    }
+  }
+}
 </style>

@@ -57,6 +57,7 @@ export default {
 
   &-title {
     display: flex;
+    align-items: center;
   }
 
   &-heading {
@@ -117,6 +118,36 @@ export default {
     &-paragraph {
       width: 90%;
       font-size: 17px;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .card {
+    &-image {
+      &-container {
+        height: 240px;
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .card {
+    &-heading {
+      width: 100%;
+      font-size: 22px;
+    }
+
+    &-paragraph {
+      width: 100%;
+      font-size: 14px;
+    }
+
+    &-image {
+      &-container {
+        height: 210px;
+      }
     }
   }
 }

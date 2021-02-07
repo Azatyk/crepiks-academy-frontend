@@ -183,4 +183,14 @@ export default {};
     }
   }
 }
+
+@media (max-width: 450px) {
+  .practice {
+    &-editor {
+      &-block {
+        height: 40vh;
+      }
+    }
+  }
+}
 </style>
