@@ -6,6 +6,9 @@
         :class="{ 'first-active': isCodeEditorScreen }"
       >
         <filesNavigation />
+        <div class="code-editor-screen-content">
+          <codeEditorHeader />
+        </div>
       </div>
       <div
         class="lesson-screen lesson-screen-second"
@@ -18,11 +21,13 @@
 
 <script>
 import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation";
+import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 
 export default {
   components: {
     filesNavigation,
+    codeEditorHeader,
     lessonFooter
   },
 
@@ -89,5 +94,12 @@ export default {
   display: flex;
   flex-direction: row;
   background-color: $white;
+
+  &-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

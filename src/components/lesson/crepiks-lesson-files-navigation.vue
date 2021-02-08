@@ -71,10 +71,6 @@ export default {
     cursor: pointer;
     transition: 200ms ease-in-out;
 
-    &:hover {
-      background-color: #f2f2f2;
-    }
-
     &-arrow {
       margin-right: 7px;
       color: $dark;
