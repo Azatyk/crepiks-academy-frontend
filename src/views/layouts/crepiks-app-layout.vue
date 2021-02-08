@@ -4,6 +4,7 @@
     <div class="app-page-content">
       <router-view></router-view>
     </div>
+    <Logo class="logo" />
     <div class="profile">
       <span class="profile-name">Кажимухан Азат</span>
       <i class="bx bx-user-circle profile-icon"></i>
@@ -13,10 +14,12 @@
 
 <script>
 import sidebar from "@/components/app-layout/crepiks-sidebar";
+import Logo from "@/components/common/crepiks-logo.vue";
 
 export default {
   components: {
-    sidebar
+    sidebar,
+    Logo
   }
 };
 </script>
@@ -59,6 +62,53 @@ export default {
     margin-right: 7px;
     font-size: 16px;
     font-weight: 500;
+  }
+}
+
+.logo {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .app-page {
+    &-content {
+      padding: 0 10%;
+      box-sizing: border-box;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  .profile {
+    right: 10%;
+    top: 55px;
+
+    &-name {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .app-page {
+    &-content {
+      padding: 0;
+    }
+  }
+
+  .profile {
+    right: 5%;
+    &-name {
+      display: none;
+    }
+  }
+
+  .logo {
+    display: block;
+    position: absolute;
+    left: 6%;
+    top: 50px;
+    width: 100px;
   }
 }
 </style>

@@ -193,4 +193,34 @@ export default {
 .course-card-block {
   margin-bottom: 50px;
 }
+
+@media (max-width: 1000px) {
+  .empty-half {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .courses-list {
+    padding-left: 5%;
+  }
+  .courses-page {
+    padding: 0 5%;
+    padding-top: 120px;
+  }
+  .free-block {
+    width: 100%;
+    left: 0;
+  }
+  .search-input {
+    width: 100%;
+  }
+  .input {
+    width: 100%;
+  }
+
+  .course-card-block {
+    width: 95%;
+  }
+}
 </style>

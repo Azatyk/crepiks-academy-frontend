@@ -260,4 +260,11 @@ export default {
     opacity: 0.6;
   }
 }
+
+@media (max-width: 750px) {
+  .course {
+    width: 100%;
+    right: -100%;
+  }
+}
 </style>

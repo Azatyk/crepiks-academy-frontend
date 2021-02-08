@@ -189,4 +189,57 @@ export default {
     font-size: 30px;
   }
 }
+
+@media (max-width: 1000px) {
+  .sidebar {
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    top: auto;
+    height: 50px;
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 50px 50px 100px rgba(0, 0, 0, 0.02);
+    background-color: $primary;
+
+    &-logo {
+      display: none;
+    }
+  }
+
+  .dividing-line {
+    display: none;
+  }
+
+  .navigation-links-extra {
+    display: none;
+  }
+
+  .subscription {
+    display: none;
+  }
+
+  .navigation-links {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .link {
+    width: auto;
+    margin-bottom: 0;
+    color: $white;
+  }
+}
+
+@media (max-width: 750px) {
+  .sidebar {
+    width: 100%;
+  }
+}
 </style>
