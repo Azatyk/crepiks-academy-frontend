@@ -235,7 +235,7 @@ export default {
 
 @media (max-width: 320px) {
   .free-block {
-    height: 120px;
+    height: 115px;
   }
 }
 </style>
