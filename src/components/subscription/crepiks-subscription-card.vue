@@ -20,11 +20,19 @@
         >
       </div>
     </div>
-    <img
-      src="@/assets/images/subscription-courses-image.png"
-      alt="Получите доступ ко всем курсам"
-      class="card-image"
-    />
+    <div class="card-images">
+      <img
+        class="html-css-basic"
+        src="@/assets/images/html-css-basic.svg"
+        alt=""
+      />
+      <img
+        class="html-css-upgrade"
+        src="@/assets/images/html-css-upgrade.svg"
+        alt=""
+      />
+      <img class="javascript" src="@/assets/images/javascript.svg" alt="" />
+    </div>
   </div>
 </template>
 
@@ -55,7 +63,7 @@ export default {
 
 .card-text {
   padding: 50px 0 50px 50px;
-  width: 80%;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -104,9 +112,29 @@ export default {
     }
   }
 
-  &-image {
-    height: 350px;
+  &-images {
+    height: 370px;
+    width: 40%;
+    position: relative;
   }
+}
+
+.html-css-basic {
+  position: absolute;
+  width: 200px;
+}
+
+.html-css-upgrade {
+  position: absolute;
+  width: 180px;
+  left: 30px;
+  top: 80px;
+}
+
+.javascript {
+  position: absolute;
+  width: 180px;
+  top: 160px;
 }
 
 @media (max-width: 800px) {
@@ -137,8 +165,8 @@ export default {
     font-size: 15px;
   }
 
-  .card-image {
-    height: 280px;
+  .card-images {
+    height: 320px;
   }
 }
 
@@ -146,12 +174,12 @@ export default {
   .subscription-card {
     width: 315px;
     padding-right: 0;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
   }
 
   .card-text {
-    padding: 30px 25px 00px 40px;
+    padding: 25px 25px 20px 30px;
     box-sizing: border-box;
     width: 100%;
 
@@ -171,24 +199,34 @@ export default {
     font-size: 11px;
   }
 
-  .card-image {
-    height: 250px;
-    width: 60%;
+  .card-images {
+    height: 110px;
+    width: 100%;
   }
 
   .card-button {
     font-size: 13px;
     padding: 8px 20px;
   }
-}
 
-@media (max-width: 374px) {
-  .card-image {
-    display: none;
+  .html-css-basic {
+    position: absolute;
+    width: 160px;
+    left: 0;
   }
 
-  .card-text {
-    padding: 25px 25px 20px 30px;
+  .html-css-upgrade {
+    position: absolute;
+    width: 140px;
+    left: 80px;
+    top: -20px;
+  }
+
+  .javascript {
+    position: absolute;
+    width: 150px;
+    left: 160px;
+    top: 0;
   }
 }
 </style>
