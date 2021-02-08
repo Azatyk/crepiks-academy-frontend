@@ -40,6 +40,7 @@
               isCssExist = false;
               isHtmlShowing = true;
             "
+            @switch-browser="isCodeEditorScreen = false"
           />
           <div
             class="code-editor-container"
@@ -79,19 +80,27 @@
       <div
         class="lesson-screen lesson-screen-second"
         :class="{ 'first-active': isCodeEditorScreen }"
-      ></div>
+      >
+        <browserHeader
+          @navigation-opened="isNavigationOpen = true"
+          @switch-editor="isCodeEditorScreen = true"
+        />
+      </div>
     </div>
     <lessonFooter @theory-opened="isTheoryOpen = true" />
   </div>
 </template>
 
 <script>
+import navigation from "@/components/lesson/crepiks-lesson-navigation";
+import theory from "@/components/lesson/crepiks-lesson-theory";
+
 import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation";
 import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
 import lessonTasks from "@/components/lesson/crepiks-lesson-tasks";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
-import navigation from "@/components/lesson/crepiks-lesson-navigation";
-import theory from "@/components/lesson/crepiks-lesson-theory";
+
+import browserHeader from "@/components/lesson/crepiks-browser-header";
 
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
@@ -106,6 +115,7 @@ export default {
     lessonFooter,
     navigation,
     theory,
+    browserHeader,
     codemirror
   },
 

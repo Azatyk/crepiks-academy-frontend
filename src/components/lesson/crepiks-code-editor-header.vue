@@ -26,7 +26,7 @@
         <span class="navigation-link-title">Список уроков</span>
         <i class="bx bx-list-ul navigation-link-icon"></i>
       </div>
-      <div class="browser-link">
+      <div class="browser-link" @click="$emit('switch-browser')">
         <span class="browser-link-title">К браузеру</span>
         <i class="bx bx-right-arrow-alt browser-link-icon"></i>
       </div>
