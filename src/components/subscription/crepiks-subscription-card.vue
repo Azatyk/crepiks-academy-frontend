@@ -155,14 +155,14 @@ export default {
     }
   }
 
-  .card-button-promocode {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  // .card-button-promocode {
+  //   flex-direction: column;
+  //   align-items: flex-start;
+  // }
 
   .card-promocode {
     margin-top: 20px;
-    font-size: 15px;
+    font-size: 11px;
   }
 
   .card-images {
@@ -195,7 +195,7 @@ export default {
   }
 
   .card-promocode {
-    margin-top: 10px;
+    margin-top: 0px;
     font-size: 11px;
   }
 
@@ -207,12 +207,13 @@ export default {
   .card-button {
     font-size: 13px;
     padding: 8px 20px;
+    margin-right: 10px;
   }
 
   .html-css-basic {
     position: absolute;
     width: 160px;
-    left: 0;
+    left: 10px;
   }
 
   .html-css-upgrade {
@@ -225,7 +226,7 @@ export default {
   .javascript {
     position: absolute;
     width: 150px;
-    left: 160px;
+    left: 150px;
     top: 0;
   }
 }

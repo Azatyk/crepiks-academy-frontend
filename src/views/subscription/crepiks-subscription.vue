@@ -68,13 +68,13 @@ export default {
     height: 400px;
 
     &-light-top {
-      top: -45%;
+      top: -50%;
       right: -10%;
       background-color: #25f9cf;
     }
 
     &-dark-top {
-      top: -35%;
+      top: -40%;
       right: -35%;
       background-color: #3ae8c5;
     }
