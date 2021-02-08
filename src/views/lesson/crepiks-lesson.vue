@@ -63,6 +63,7 @@
               >Все файлы закрыты</span
             >
           </div>
+          <lessonTasks />
         </div>
       </div>
       <div
@@ -77,6 +78,7 @@
 <script>
 import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation";
 import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
+import lessonTasks from "@/components/lesson/crepiks-lesson-tasks";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 
 import { codemirror } from "vue-codemirror";
@@ -88,6 +90,7 @@ export default {
   components: {
     filesNavigation,
     codeEditorHeader,
+    lessonTasks,
     lessonFooter,
     codemirror
   },
@@ -204,7 +207,7 @@ export default {
   background-color: $white;
 
   &-content {
-    width: 100%;
+    width: calc(100% - 240px);
     height: 100%;
     display: flex;
     flex-direction: column;
