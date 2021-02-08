@@ -61,4 +61,16 @@ export default {
     background-color: #3ae8c5;
   }
 }
+
+@media (max-width: 800px) {
+  .elipse {
+    &-light-bottom {
+      display: none;
+    }
+
+    &-dark-bottom {
+      display: none;
+    }
+  }
+}
 </style>

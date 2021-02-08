@@ -108,4 +108,87 @@ export default {
     height: 350px;
   }
 }
+
+@media (max-width: 800px) {
+  .subscription-card {
+    width: 500px;
+    height: fit-content;
+  }
+
+  .card-text {
+    padding: 30px 0 30px 30px;
+
+    &-title {
+      font-size: 25px;
+    }
+
+    &-description {
+      font-size: 15px;
+    }
+  }
+
+  .card-button-promocode {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-promocode {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  .card-image {
+    height: 280px;
+  }
+}
+
+@media (max-width: 530px) {
+  .subscription-card {
+    width: 315px;
+    padding-right: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-text {
+    padding: 30px 25px 00px 40px;
+    box-sizing: border-box;
+    width: 100%;
+
+    &-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    &-description {
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+  }
+
+  .card-promocode {
+    margin-top: 10px;
+    font-size: 11px;
+  }
+
+  .card-image {
+    height: 250px;
+    width: 60%;
+  }
+
+  .card-button {
+    font-size: 13px;
+    padding: 8px 20px;
+  }
+}
+
+@media (max-width: 374px) {
+  .card-image {
+    display: none;
+  }
+
+  .card-text {
+    padding: 25px 25px 20px 30px;
+  }
+}
 </style>
