@@ -261,10 +261,31 @@ export default {
   }
 }
 
+@media (max-width: 1024px) {
+  .course {
+    width: 60%;
+    right: -60%;
+
+    &-open {
+      right: 0;
+    }
+  }
+}
+
 @media (max-width: 750px) {
   .course {
     width: 100%;
     right: -100%;
+
+    &-open {
+      right: 0;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .course {
+    padding: 30px 30px;
   }
 }
 </style>

@@ -50,6 +50,7 @@ export default {
   border-radius: 20px;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
   z-index: 3;
+  background-color: $background;
 }
 
 .card-text {

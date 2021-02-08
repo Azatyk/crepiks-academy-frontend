@@ -190,14 +190,14 @@ export default {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .sidebar {
     justify-content: center;
     bottom: 0;
     left: 0;
     top: auto;
     height: 50px;
-    width: 80%;
+    width: 100%;
     left: 50%;
     transform: translateX(-50%);
     padding: 0;

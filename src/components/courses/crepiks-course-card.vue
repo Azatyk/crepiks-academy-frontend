@@ -114,4 +114,20 @@ export default {
     }
   }
 }
+
+@media (max-width: 460px) {
+  .card-text {
+    &-title {
+      font-size: 3.5vw;
+    }
+
+    &-description {
+      font-size: 3vw;
+    }
+  }
+
+  .card-link {
+    font-size: 3.5vw;
+  }
+}
 </style>

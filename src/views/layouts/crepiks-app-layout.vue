@@ -69,35 +69,18 @@ export default {
   display: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .app-page {
     &-content {
-      padding: 0 10%;
-      box-sizing: border-box;
       margin-left: 0;
+      padding: 0;
       width: 100%;
     }
   }
 
   .profile {
-    right: 10%;
-    top: 55px;
-
-    &-name {
-      display: none;
-    }
-  }
-}
-
-@media (max-width: 750px) {
-  .app-page {
-    &-content {
-      padding: 0;
-    }
-  }
-
-  .profile {
     right: 5%;
+
     &-name {
       display: none;
     }
@@ -106,9 +89,20 @@ export default {
   .logo {
     display: block;
     position: absolute;
-    left: 6%;
+    left: 5%;
     top: 50px;
     width: 100px;
+  }
+}
+
+@media (max-width: 414px) {
+  .profile {
+    top: 35px;
+    position: absolute;
+  }
+
+  .logo {
+    top: 30px;
   }
 }
 </style>
