@@ -10,11 +10,19 @@
         <i class="bx bxs-folder-open structure-folder-icon"></i>
         <span class="structure-folder-title">my-project</span>
       </div>
-      <div class="structure-file" v-if="isFolderOpen">
+      <div
+        class="structure-file"
+        v-if="isFolderOpen"
+        @click="$emit('index-opened')"
+      >
         <i class="bx bxs-file-html structure-file-icon"></i>
         <span class="structure-file-title">index.html</span>
       </div>
-      <div class="structure-file" v-if="isFolderOpen">
+      <div
+        class="structure-file"
+        v-if="isFolderOpen"
+        @click="$emit('styles-opened')"
+      >
         <i class="bx bxs-file-css structure-file-icon"></i>
         <span class="structure-file-title">styles.css</span>
       </div>
@@ -38,6 +46,7 @@ export default {
 .files-navigation {
   width: 240px;
   height: calc(100vh - 50px);
+  box-sizing: border-box;
   border-right: 1px solid #d1d2d6;
   background-color: $background;
 
@@ -92,7 +101,7 @@ export default {
 
     &-title {
       color: $dark;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 300;
     }
   }
@@ -121,7 +130,7 @@ export default {
 
     &-title {
       color: $dark;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 300;
     }
   }

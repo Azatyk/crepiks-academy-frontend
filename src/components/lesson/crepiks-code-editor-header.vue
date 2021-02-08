@@ -4,18 +4,21 @@
       <div
         class="file"
         :class="{ 'file-active': isHtmlShowing }"
-        @click="$emit('index-clicked')"
+        v-if="isHtmlExist"
       >
-        <span class="file-title">index.html</span>
-        <i class="bx bx-x file-icon"></i>
+        <span class="file-title" @click="$emit('index-clicked')"
+          >index.html</span
+        >
+        <i class="bx bx-x file-icon" @click="$emit('index-closed')"></i>
       </div>
       <div
         class="file"
         :class="{ 'file-active': !isHtmlShowing }"
-        @click="$emit('styles-clicked')"
+        v-if="isCssExist"
       >
-        <span class="file-title">styles.css</span
-        ><i class="bx bx-x file-icon"></i>
+        <span class="file-title" @click="$emit('styles-clicked')"
+          >styles.css</span
+        ><i class="bx bx-x file-icon" @click="$emit('styles-closed')"></i>
       </div>
     </div>
     <div class="links">
@@ -37,6 +40,20 @@ export default {
     isHtmlShowing: {
       type: Boolean,
       default: true
+    },
+    isHtmlExist: {
+      type: Boolean,
+      default: true
+    },
+    isCssExist: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  watch: {
+    isHtmlShowing() {
+      console.log(this.isHtmlShowing);
     }
   }
 };
@@ -83,7 +100,7 @@ export default {
 
   &-title {
     color: $dark;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     cursor: pointer;
     transition: 200ms ease-in-out;

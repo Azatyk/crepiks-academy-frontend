@@ -5,28 +5,63 @@
         class="code-editor-screen lesson-screen-first"
         :class="{ 'first-active': isCodeEditorScreen }"
       >
-        <filesNavigation />
+        <filesNavigation
+          @index-opened="
+            isHtmlExist = true;
+            isHtmlShowing = true;
+          "
+          @styles-opened="
+            isCssExist = true;
+            isHtmlShowing = false;
+          "
+        />
         <div class="code-editor-screen-content">
           <codeEditorHeader
             :isHtmlShowing="isHtmlShowing"
+            :isHtmlExist="isHtmlExist"
+            :isCssExist="isCssExist"
             @index-clicked="isHtmlShowing = true"
             @styles-clicked="isHtmlShowing = false"
+            @index-closed="
+              isHtmlExist = false;
+              isHtmlShowing = false;
+            "
+            @styles-closed="
+              isCssExist = false;
+              isHtmlShowing = true;
+            "
           />
-          <div class="code-editor-container">
+          <div
+            class="code-editor-container"
+            :class="{
+              'code-editor-container-center': !isHtmlExist && !isCssExist
+            }"
+          >
             <codemirror
               class="code-editor"
               :code="startHtmlCode"
               v-model="htmlCode"
               :options="htmlOptions"
-              v-if="isHtmlShowing"
+              v-if="isHtmlShowing && isHtmlExist"
             />
             <codemirror
               class="code-editor"
               :code="startCssCode"
               v-model="cssCode"
               :options="cssOptions"
-              v-else
+              v-if="!isHtmlShowing && isCssExist"
             />
+            <img
+              v-if="!isHtmlExist && !isCssExist"
+              src="@/assets/images/lesson-empty-image.svg"
+              alt="Откройте файл"
+              class="code-editor-container-empty-image"
+            />
+            <span
+              v-if="!isHtmlExist && !isCssExist"
+              class="code-editor-container-empty-title"
+              >Все файлы закрыты</span
+            >
           </div>
         </div>
       </div>
@@ -61,6 +96,8 @@ export default {
     return {
       isCodeEditorScreen: true,
       isHtmlShowing: true,
+      isHtmlExist: true,
+      isCssExist: true,
       startHtmlCode:
         "<!DOCTYPE html>\n" +
         '<html lang="en">\n' +
@@ -177,12 +214,31 @@ export default {
 .code-editor-container {
   width: 100%;
   height: calc(100vh - 100px);
+
+  &-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-empty-image {
+    margin-bottom: 40px;
+    width: 500px;
+  }
+
+  &-empty-title {
+    color: $dark;
+    font-size: 30px;
+    font-weight: 500;
+    opacity: 0.6;
+  }
 }
 </style>
 
 <style lang="scss">
 .CodeMirror {
-  width: 100%;
+  width: calc(100vw - 240px);
   height: calc(100vh - 100px);
   overflow: scroll;
   z-index: 1 !important;
