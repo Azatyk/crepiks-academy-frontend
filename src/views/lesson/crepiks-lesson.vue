@@ -7,7 +7,27 @@
       >
         <filesNavigation />
         <div class="code-editor-screen-content">
-          <codeEditorHeader />
+          <codeEditorHeader
+            :isHtmlShowing="isHtmlShowing"
+            @index-clicked="isHtmlShowing = true"
+            @styles-clicked="isHtmlShowing = false"
+          />
+          <div class="code-editor-container">
+            <codemirror
+              class="code-editor"
+              :code="startHtmlCode"
+              v-model="htmlCode"
+              :options="htmlOptions"
+              v-if="isHtmlShowing"
+            />
+            <codemirror
+              class="code-editor"
+              :code="startCssCode"
+              v-model="cssCode"
+              :options="cssOptions"
+              v-else
+            />
+          </div>
         </div>
       </div>
       <div
@@ -24,16 +44,67 @@ import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation
 import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/mode/htmlmixed/htmlmixed.js";
+import "codemirror/theme/eclipse.css";
+
 export default {
   components: {
     filesNavigation,
     codeEditorHeader,
-    lessonFooter
+    lessonFooter,
+    codemirror
   },
 
   data() {
     return {
-      isCodeEditorScreen: true
+      isCodeEditorScreen: true,
+      isHtmlShowing: true,
+      startHtmlCode:
+        "<!DOCTYPE html>\n" +
+        '<html lang="en">\n' +
+        "<head>\n" +
+        '    <meta charset="UTF-8">\n' +
+        '    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n' +
+        '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+        "    <title>My site</title>\n" +
+        "</head>\n" +
+        "<body>\n" +
+        "    <h1>Hello, World!</h1>\n" +
+        "</body>\n" +
+        "</html>\n",
+      htmlCode: "",
+      htmlOptions: {
+        tabSize: 4,
+        mode: "text/html",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      },
+      startCssCode:
+        "body {\n" +
+        "  width: 100%;\n" +
+        "  height: 100vh;\n" +
+        "  display: flex;\n" +
+        "  justify-content: center;\n" +
+        "  align-items: center;\n" +
+        "  background-color: #3498db;\n" +
+        "  color: white;\n" +
+        "}\n" +
+        "\n" +
+        "h1 {\n" +
+        "  font-size: 40px;\n" +
+        "  font-weight: bold;\n" +
+        "}\n",
+      cssCode: "",
+      cssOptions: {
+        tabSize: 2,
+        mode: "text/css",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      }
     };
   },
 
@@ -101,5 +172,19 @@ export default {
     display: flex;
     flex-direction: column;
   }
+}
+
+.code-editor-container {
+  width: 100%;
+  height: calc(100vh - 100px);
+}
+</style>
+
+<style lang="scss">
+.CodeMirror {
+  width: 100%;
+  height: calc(100vh - 100px);
+  overflow: scroll;
+  z-index: 1 !important;
 }
 </style>

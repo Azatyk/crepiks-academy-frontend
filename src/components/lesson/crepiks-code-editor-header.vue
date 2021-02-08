@@ -1,11 +1,19 @@
 <template>
   <div class="editor-header">
     <div class="files">
-      <div class="file file-active">
+      <div
+        class="file"
+        :class="{ 'file-active': isHtmlShowing }"
+        @click="$emit('index-clicked')"
+      >
         <span class="file-title">index.html</span>
         <i class="bx bx-x file-icon"></i>
       </div>
-      <div class="file">
+      <div
+        class="file"
+        :class="{ 'file-active': !isHtmlShowing }"
+        @click="$emit('styles-clicked')"
+      >
         <span class="file-title">styles.css</span
         ><i class="bx bx-x file-icon"></i>
       </div>
@@ -24,7 +32,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    isHtmlShowing: {
+      type: Boolean,
+      default: true
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
