@@ -232,4 +232,10 @@ export default {
     padding-bottom: 30px;
   }
 }
+
+@media (max-width: 320px) {
+  .free-block {
+    height: 120px;
+  }
+}
 </style>
