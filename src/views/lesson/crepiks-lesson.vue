@@ -4,6 +4,11 @@
       :isNavigationOpen="isNavigationOpen"
       @navigation-closed="isNavigationOpen = false"
     />
+    <theory
+      :isTheoryOpen="isTheoryOpen"
+      @theory-closed="isTheoryOpen = false"
+      @navigation-opened="isNavigationOpen = true"
+    />
     <div class="lesson-screens">
       <div
         class="code-editor-screen lesson-screen-first"
@@ -76,7 +81,7 @@
         :class="{ 'first-active': isCodeEditorScreen }"
       ></div>
     </div>
-    <lessonFooter />
+    <lessonFooter @theory-opened="isTheoryOpen = true" />
   </div>
 </template>
 
@@ -86,6 +91,7 @@ import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
 import lessonTasks from "@/components/lesson/crepiks-lesson-tasks";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 import navigation from "@/components/lesson/crepiks-lesson-navigation";
+import theory from "@/components/lesson/crepiks-lesson-theory";
 
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
@@ -99,12 +105,14 @@ export default {
     lessonTasks,
     lessonFooter,
     navigation,
+    theory,
     codemirror
   },
 
   data() {
     return {
       isNavigationOpen: false,
+      isTheoryOpen: false,
       isCodeEditorScreen: true,
       isHtmlShowing: true,
       isHtmlExist: true,

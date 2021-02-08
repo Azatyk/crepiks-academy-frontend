@@ -36,6 +36,7 @@ export default {
   width: 700px;
   height: 700px;
   border-radius: 50%;
+  z-index: 2;
 
   &-light-top {
     top: -75%;

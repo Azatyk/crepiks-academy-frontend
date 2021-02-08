@@ -15,7 +15,11 @@
           теперь вам откроется мир сеток, анимаций, форм и множества других
           особенностей стилизации сайтов.
         </p>
-        <cButton text="Перейти к курсу" class="main-info-button" />
+        <cButton
+          text="Перейти к курсу"
+          class="main-info-button"
+          @click="$router.push('/app/courses/1/lessons/1')"
+        />
       </div>
       <div class="course-lessons">
         <div class="course-lessons-labels">

@@ -179,7 +179,7 @@ export default {
   flex-direction: column;
   background-color: $white;
   transition: 300ms ease-in-out;
-  z-index: 1;
+  z-index: 4;
 
   &-open {
     left: 0;

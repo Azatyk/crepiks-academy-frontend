@@ -1,6 +1,8 @@
 <template>
   <div class="lesson-footer">
-    <button class="lesson-footer-theory">Теория</button>
+    <button class="lesson-footer-theory" @click="$emit('theory-opened')">
+      Теория
+    </button>
     <button class="lesson-footer-check">Проверить</button>
   </div>
 </template>
