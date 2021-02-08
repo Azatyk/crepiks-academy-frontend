@@ -64,6 +64,21 @@ export default {
 
 @media (max-width: 800px) {
   .elipse {
+    width: 400px;
+    height: 400px;
+
+    &-light-top {
+      top: -45%;
+      right: -10%;
+      background-color: #25f9cf;
+    }
+
+    &-dark-top {
+      top: -35%;
+      right: -35%;
+      background-color: #3ae8c5;
+    }
+
     &-light-bottom {
       display: none;
     }
