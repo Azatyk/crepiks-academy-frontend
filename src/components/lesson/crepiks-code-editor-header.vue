@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="links">
-      <div class="navigation-link">
+      <div class="navigation-link" @click="$emit('navigation-opened')">
         <span class="navigation-link-title">Список уроков</span>
         <i class="bx bx-list-ul navigation-link-icon"></i>
       </div>

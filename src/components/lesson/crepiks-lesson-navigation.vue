@@ -1,0 +1,297 @@
+<template>
+  <div
+    class="lesson-navigation"
+    :class="{ 'lesson-navigation-open': isNavigationOpen }"
+  >
+    <div class="navigation-header">
+      <router-link to="/app/courses" class="back-link">
+        <i class="bx bx-left-arrow-alt back-link-icon"></i>
+        <span class="back-link-title">В главное меню</span>
+      </router-link>
+      <i
+        class="bx bx-x navigation-header-close"
+        @click="$emit('navigation-closed')"
+      ></i>
+    </div>
+    <h2 class="navigation-title">Урок 3: Первый HTML</h2>
+    <div class="navigation-divide-line"></div>
+    <div class="navigation-lessons-list">
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">1.</span>
+          <span class="navigation-lesson-title">Здравствуйте</span>
+        </div>
+        <div
+          class="navigation-lesson-status navigation-lesson-status-completed"
+        >
+          {{ "Пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">2.</span>
+          <span class="navigation-lesson-title">Первый код</span>
+        </div>
+        <div
+          class="navigation-lesson-status navigation-lesson-status-completed"
+        >
+          {{ "Пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text navigation-lesson-text-current">
+          <span class="navigation-lesson-number">3.</span>
+          <span class="navigation-lesson-title">Первый HTML</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status-current">
+          {{ "Текущий урок" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">4.</span>
+          <span class="navigation-lesson-title">Первый CSS</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">5.</span>
+          <span class="navigation-lesson-title">Что такое HTML</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">6.</span>
+          <span class="navigation-lesson-title">Теги HTML</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">7.</span>
+          <span class="navigation-lesson-title">Заголовок</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">8.</span>
+          <span class="navigation-lesson-title">Параграф</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">9.</span>
+          <span class="navigation-lesson-title">Кнопка</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">10.</span>
+          <span class="navigation-lesson-title">Изображения</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">11.</span>
+          <span class="navigation-lesson-title">Атрибуты тегов</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">12.</span>
+          <span class="navigation-lesson-title">Ссылка</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+
+      <div class="navigation-lesson">
+        <div class="navigation-lesson-text">
+          <span class="navigation-lesson-number">13.</span>
+          <span class="navigation-lesson-title">Комментарии</span>
+        </div>
+        <div class="navigation-lesson-status navigation-lesson-status">
+          {{ "Не пройдено" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    isNavigationOpen: {
+      type: Boolean,
+      default: false
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
+.lesson-navigation {
+  position: fixed;
+  left: -500px;
+  top: 0;
+  padding: 30px 35px;
+  width: 500px;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  transition: 300ms ease-in-out;
+  z-index: 1;
+
+  &-open {
+    left: 0;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.navigation-header {
+  margin-bottom: 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &-close {
+    color: $dark;
+    font-size: 25px;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.back-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: $primary;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &-icon {
+    margin-right: 7px;
+    font-size: 22px;
+    opacity: 0.7;
+  }
+
+  &-title {
+    font-size: 16px;
+  }
+}
+
+.navigation {
+  &-title {
+    margin-bottom: 25px;
+    color: $dark;
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  &-divide-line {
+    width: 100%;
+    height: 2px;
+    background-color: #f3f3f3;
+  }
+
+  &-lessons-list {
+    padding: 25px 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-lesson {
+    margin-bottom: 23px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &-text {
+      display: flex;
+      flex-direction: row;
+      color: $dark;
+      font-size: 17px;
+      opacity: 0.6;
+
+      &-current {
+        opacity: 0.9;
+      }
+    }
+
+    &-number {
+      margin-right: 10px;
+    }
+
+    &-status {
+      font-size: 12px;
+      opacity: 0.6;
+
+      &-completed {
+        color: $primary;
+        opacity: 1;
+      }
+
+      &-current {
+        color: #3498db;
+        opacity: 1;
+      }
+    }
+  }
+}
+</style>
