@@ -25,6 +25,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
