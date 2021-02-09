@@ -85,6 +85,7 @@
           @navigation-opened="isNavigationOpen = true"
           @switch-editor="isCodeEditorScreen = true"
         />
+        <browser />
       </div>
     </div>
     <lessonFooter @theory-opened="isTheoryOpen = true" />
@@ -101,6 +102,7 @@ import lessonTasks from "@/components/lesson/crepiks-lesson-tasks";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 
 import browserHeader from "@/components/lesson/crepiks-browser-header";
+import browser from "@/components/lesson/crepiks-browser";
 
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
@@ -116,6 +118,7 @@ export default {
     navigation,
     theory,
     browserHeader,
+    browser,
     codemirror
   },
 
@@ -214,6 +217,8 @@ export default {
     }
 
     &-second {
+      display: flex;
+      flex-direction: column;
       transform: translateX(-100vw);
       background-color: rgba(0, 0, 0, 0.4);
       transition: 400ms ease-in-out;
