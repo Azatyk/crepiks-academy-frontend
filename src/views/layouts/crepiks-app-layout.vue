@@ -5,10 +5,10 @@
       <router-view></router-view>
     </div>
     <Logo class="logo" />
-    <div class="profile">
+    <router-link class="profile" to="/app/profile">
       <span class="profile-name">Кажимухан Азат</span>
       <i class="bx bx-user-circle profile-icon"></i>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -50,6 +50,7 @@ export default {
   cursor: pointer;
   transition: 200ms ease-in-out;
   z-index: 1;
+  text-decoration: none;
 
   &:hover {
     opacity: 1;
