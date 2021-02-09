@@ -31,7 +31,11 @@
         quisquam obcaecati quia quis libero repellendus et? Dolorem vel a illo
         praesentium. Unde recusandae quam labore eaque perspiciatis?
       </p>
-      <cButton text="Перейти к заданию" class="lesson-theory-button" />
+      <cButton
+        text="Перейти к заданию"
+        class="lesson-theory-button"
+        @click="$emit('theory-closed')"
+      />
     </div>
   </div>
 </template>
@@ -57,7 +61,7 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .lesson-theory {
-  position: absolute;
+  position: fixed;
   bottom: -99.5vh;
   left: 0;
   right: 0;

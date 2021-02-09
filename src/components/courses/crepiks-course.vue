@@ -15,7 +15,14 @@
         <cButton
           text="Перейти к курсу"
           class="main-info-button"
-          @click="$router.push('/app/courses/1/lessons/1')"
+          @click="
+            $router.push(
+              '/app/courses/' +
+                $route.params.id +
+                '/lessons/' +
+                course.lessons[0].id
+            )
+          "
         />
       </div>
       <div class="course-lessons">

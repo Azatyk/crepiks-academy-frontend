@@ -16,139 +16,22 @@
     <h2 class="navigation-title">Урок 3: Первый HTML</h2>
     <div class="navigation-divide-line"></div>
     <div class="navigation-lessons-list">
-      <div class="navigation-lesson">
+      <router-link
+        class="navigation-lesson"
+        v-for="(lesson, index) in lessons"
+        :key="lesson.id"
+        :to="'/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id"
+      >
         <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">1.</span>
-          <span class="navigation-lesson-title">Здравствуйте</span>
+          <span class="navigation-lesson-number">{{ index + 1 }}.</span>
+          <span class="navigation-lesson-title">{{ lesson.title.ru }}</span>
         </div>
         <div
           class="navigation-lesson-status navigation-lesson-status-completed"
         >
           {{ "Пройдено" }}
         </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">2.</span>
-          <span class="navigation-lesson-title">Первый код</span>
-        </div>
-        <div
-          class="navigation-lesson-status navigation-lesson-status-completed"
-        >
-          {{ "Пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text navigation-lesson-text-current">
-          <span class="navigation-lesson-number">3.</span>
-          <span class="navigation-lesson-title">Первый HTML</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status-current">
-          {{ "Текущий урок" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">4.</span>
-          <span class="navigation-lesson-title">Первый CSS</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">5.</span>
-          <span class="navigation-lesson-title">Что такое HTML</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">6.</span>
-          <span class="navigation-lesson-title">Теги HTML</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">7.</span>
-          <span class="navigation-lesson-title">Заголовок</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">8.</span>
-          <span class="navigation-lesson-title">Параграф</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">9.</span>
-          <span class="navigation-lesson-title">Кнопка</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">10.</span>
-          <span class="navigation-lesson-title">Изображения</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">11.</span>
-          <span class="navigation-lesson-title">Атрибуты тегов</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">12.</span>
-          <span class="navigation-lesson-title">Ссылка</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
-
-      <div class="navigation-lesson">
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">13.</span>
-          <span class="navigation-lesson-title">Комментарии</span>
-        </div>
-        <div class="navigation-lesson-status navigation-lesson-status">
-          {{ "Не пройдено" }}
-        </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -156,6 +39,9 @@
 <script>
 export default {
   props: {
+    lessons: {
+      type: Array
+    },
     isNavigationOpen: {
       type: Boolean,
       default: false
@@ -252,6 +138,7 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
   }
 
   &-lesson {
@@ -261,6 +148,13 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
 
     &-text {
       display: flex;

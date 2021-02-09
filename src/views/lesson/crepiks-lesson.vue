@@ -1,8 +1,13 @@
 <template>
-  <div class="lesson">
+  <div
+    class="lesson"
+    @keydown.right="isCodeEditorScreen = false"
+    @keydown.left="isCodeEditorScreen = true"
+  >
     <navigation
       :isNavigationOpen="isNavigationOpen"
       @navigation-closed="isNavigationOpen = false"
+      :lessons="lessons"
     />
     <theory
       :isTheoryOpen="isTheoryOpen"
@@ -109,6 +114,8 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/eclipse.css";
 
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     filesNavigation,
@@ -124,8 +131,18 @@ export default {
 
   data() {
     return {
+      lesson: {},
+      lessons: [
+        {
+          id: null,
+          title: {
+            ru: ""
+          }
+        }
+      ],
+      completedLessons: [],
       isNavigationOpen: false,
-      isTheoryOpen: false,
+      isTheoryOpen: true,
       isCodeEditorScreen: true,
       isHtmlShowing: true,
       isHtmlExist: true,
@@ -177,7 +194,7 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     document.addEventListener("keydown", function(event) {
       if (event.code == "ArrowRight") {
         this.isCodeEditorScreen = false;
@@ -185,7 +202,24 @@ export default {
         this.isCodeEditorScreen = true;
       }
     });
-  }
+
+    let courseId = this.$route.params.courseId;
+    let lessonId = this.$route.params.lessonId;
+
+    await this.$store
+      .dispatch("getLesson", { courseId, lessonId })
+      .then(res => (this.lesson = res.data.lesson));
+
+    await this.$store
+      .dispatch("getLessons", courseId)
+      .then(res => (this.lessons = res.data.course.lessons));
+
+    await this.$store
+      .dispatch("getCompletedLessons", this.userData.id)
+      .then(res => (this.completedLessons = res.data.completedLessons));
+  },
+
+  computed: mapGetters(["userData"])
 };
 </script>
 
