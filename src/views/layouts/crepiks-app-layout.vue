@@ -39,7 +39,7 @@ export default {
 }
 
 .profile {
-  position: fixed;
+  position: absolute;
   top: 50px;
   right: 5%;
   display: flex;
@@ -100,7 +100,6 @@ export default {
 @media (max-width: 414px) {
   .profile {
     top: 35px;
-    position: absolute;
   }
 
   .logo {
