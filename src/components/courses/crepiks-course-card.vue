@@ -9,7 +9,7 @@
         v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"
         @click="$emit('linkClick')"
       >
-        <span class="card-link-text">Узнать про курс</span>
+        <span class="card-link card-link-text">Узнать про курс</span>
         <i class="bx bx-right-arrow-alt card-link-icon"></i>
       </div>
       <div
@@ -112,6 +112,44 @@ export default {
     &:hover {
       opacity: 0.6;
     }
+  }
+}
+
+@media (max-width: 460px) {
+  .card-text {
+    &-title {
+      font-size: 3.5vw;
+    }
+
+    &-description {
+      font-size: 3vw;
+    }
+  }
+
+  .card-link {
+    font-size: 3.5vw;
+  }
+}
+
+@media (max-width: 320px) {
+  .card-text {
+    &-title {
+      font-size: 3.2vw;
+    }
+
+    &-description {
+      font-size: 2.8vw;
+      margin-bottom: 7px;
+    }
+  }
+
+  .card-link {
+    font-size: 3.1vw;
+  }
+
+  .card-image {
+    width: 80px;
+    height: 80px;
   }
 }
 </style>

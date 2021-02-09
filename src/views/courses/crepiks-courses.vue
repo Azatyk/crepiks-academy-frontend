@@ -193,4 +193,49 @@ export default {
 .course-card-block {
   margin-bottom: 50px;
 }
+
+@media (max-width: 1024px) {
+  .empty-half {
+    display: none;
+  }
+
+  .courses-list {
+    padding-left: 5%;
+  }
+
+  .courses-page {
+    padding: 0 5%;
+    padding-top: 120px;
+  }
+
+  .free-block {
+    width: 100%;
+    left: 0;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .course-card-block {
+    width: 95%;
+  }
+}
+
+@media (max-width: 414px) {
+  .courses-page {
+    padding-top: 90px;
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 320px) {
+  .free-block {
+    height: 115px;
+  }
+}
 </style>
