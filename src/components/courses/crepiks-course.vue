@@ -5,15 +5,12 @@
       <div class="main-info">
         <img
           class="main-info-image"
-          src="@/assets/images/basic-markup-image-big.png"
+          :src="course.iconPath"
           alt="Базовая верстка сайтов"
         />
-        <h2 class="main-info-title">Базовая верстка сайтов</h2>
+        <h2 class="main-info-title">{{ course.title.ru }}</h2>
         <p class="main-info-description">
-          На этом курсе вы гораздо подробнее изучите верстку сайтов. Если раньше
-          с помощью CSS вы могли лишь менять цвета, шрифты и размеры блоков, то
-          теперь вам откроется мир сеток, анимаций, форм и множества других
-          особенностей стилизации сайтов.
+          {{ course.description.ru }}
         </p>
         <cButton
           text="Перейти к курсу"
@@ -24,76 +21,19 @@
       <div class="course-lessons">
         <div class="course-lessons-labels">
           <div class="course-lessons-title">Уроки курса</div>
-          <div class="course-lessons-amount">32 урока</div>
+          <div class="course-lessons-amount">
+            {{ course.lessons.length }} урока
+          </div>
         </div>
         <div class="course-lessons-list">
-          <div class="lesson">
+          <div
+            class="lesson"
+            v-for="(lesson, index) in course.lessons"
+            :key="lesson.id"
+          >
             <div class="lesson-title">
-              <div class="lesson-title-number">1.</div>
-              <div class="lesson-title-text">Здравствуйте</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">2.</div>
-              <div class="lesson-title-text">Первый код</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">3.</div>
-              <div class="lesson-title-text">Первый HTML</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">4.</div>
-              <div class="lesson-title-text">Первый CSS</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">5.</div>
-              <div class="lesson-title-text">Что такое HTML</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">6.</div>
-              <div class="lesson-title-text">HTML теги</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">7.</div>
-              <div class="lesson-title-text">Здравствуйте</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">8.</div>
-              <div class="lesson-title-text">Заголовок</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">9.</div>
-              <div class="lesson-title-text">Параграф</div>
-            </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
-          <div class="lesson">
-            <div class="lesson-title">
-              <div class="lesson-title-number">10.</div>
-              <div class="lesson-title-text">Кнопка</div>
+              <div class="lesson-title-number">{{ index + 1 }}.</div>
+              <div class="lesson-title-text">{{ lesson.title.ru }}</div>
             </div>
             <div class="lesson-status">Не пройден</div>
           </div>
@@ -118,9 +58,45 @@ export default {
     }
   },
 
+  data() {
+    return {
+      course: {
+        title: {
+          ru: ""
+        },
+        description: {
+          ru: ""
+        },
+        iconPath: "",
+        lessons: [
+          {
+            id: null,
+            title: {
+              ru: ""
+            }
+          }
+        ]
+      }
+    };
+  },
+
   mounted() {
-    if (this.$route.fullPath == "/app/courses/1") {
+    if (
+      this.$route.fullPath == "/app/courses/1" ||
+      this.$route.fullPath == "/app/courses/1/"
+    ) {
       this.$emit("open-course-block");
+    }
+  },
+
+  watch: {
+    isCourseOpen() {
+      if (this.isCourseOpen) {
+        const id = this.$route.params.id;
+        this.$store.dispatch("getCourse", id).then(res => {
+          this.course = res.data.course;
+        });
+      }
     }
   }
 };
