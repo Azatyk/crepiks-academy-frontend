@@ -91,7 +91,7 @@ export default {
 }
 
 .login-back {
-  margin-top: 60px;
+  margin-top: 40px;
   margin-left: 30px;
   display: flex;
   align-items: center;

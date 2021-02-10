@@ -115,7 +115,7 @@ export default {
 }
 
 .register-back {
-  margin-top: 60px;
+  margin-top: 40px;
   display: flex;
   align-items: center;
   color: $primary;
@@ -123,6 +123,7 @@ export default {
   font-weight: 500;
   text-decoration: none;
   margin-left: 30px;
+  z-index: 10;
 
   &-icon {
     margin-right: 5px;
