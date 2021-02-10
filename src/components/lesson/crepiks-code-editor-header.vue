@@ -49,12 +49,6 @@ export default {
       type: Boolean,
       default: true
     }
-  },
-
-  watch: {
-    isHtmlShowing() {
-      console.log(this.isHtmlShowing);
-    }
   }
 };
 </script>

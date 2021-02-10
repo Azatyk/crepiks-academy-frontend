@@ -5,32 +5,8 @@
     >
     <i class="bx bx-x lesson-theory-close" @click="$emit('theory-closed')"></i>
     <div class="content">
-      <h1 class="lesson-theory-title">Первый HTML</h1>
-      <p class="lesson-theory-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero labore
-        nihil minima maiores temporibus in odio a, animi veniam repellat.
-        Expedita possimus explicabo consequatur temporibus, aliquam magnam
-        corporis omnis, iure nesciunt asperiores, suscipit est maiores earum
-        quaerat aspernatur tempora quas tempore sed neque? Quam quo, suscipit
-        expedita numquam harum nihil fugit dolorem facere minus reprehenderit
-        soluta iste odio itaque repellendus accusantium eum, maxime odit
-        asperiores laboriosam nostrum sint tempora beatae. Ab cum placeat
-        explicabo deserunt ut sequi, molestiae est asperiores pariatur porro
-        quisquam obcaecati quia quis libero repellendus et? Dolorem vel a illo
-        praesentium. Unde recusandae quam labore eaque perspiciatis?<br /><br />
-
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero labore
-        nihil minima maiores temporibus in odio a, animi veniam repellat.
-        Expedita possimus explicabo consequatur temporibus, aliquam magnam
-        corporis omnis, iure nesciunt asperiores, suscipit est maiores earum
-        quaerat aspernatur tempora quas tempore sed neque? Quam quo, suscipit
-        expedita numquam harum nihil fugit dolorem facere minus reprehenderit
-        soluta iste odio itaque repellendus accusantium eum, maxime odit
-        asperiores laboriosam nostrum sint tempora beatae. Ab cum placeat
-        explicabo deserunt ut sequi, molestiae est asperiores pariatur porro
-        quisquam obcaecati quia quis libero repellendus et? Dolorem vel a illo
-        praesentium. Unde recusandae quam labore eaque perspiciatis?
-      </p>
+      <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
+      <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
       <cButton
         text="Перейти к заданию"
         class="lesson-theory-button"
@@ -48,6 +24,9 @@ export default {
     isTheoryOpen: {
       type: Boolean,
       default: false
+    },
+    lesson: {
+      type: Object
     }
   },
 

@@ -12,6 +12,7 @@
     />
     <theory
       :isTheoryOpen="isTheoryOpen"
+      :lesson="lesson"
       @theory-closed="isTheoryOpen = false"
       @navigation-opened="isNavigationOpen = true"
     />
@@ -56,14 +57,14 @@
           >
             <codemirror
               class="code-editor"
-              :code="startHtmlCode"
+              :code="htmlCode"
               v-model="htmlCode"
               :options="htmlOptions"
               v-if="isHtmlShowing && isHtmlExist"
             />
             <codemirror
               class="code-editor"
-              :code="startCssCode"
+              :code="cssCode"
               v-model="cssCode"
               :options="cssOptions"
               v-if="!isHtmlShowing && isCssExist"
@@ -80,7 +81,7 @@
               >Все файлы закрыты</span
             >
           </div>
-          <lessonTasks />
+          <lessonTasks :lesson="lesson" :lessons="lessons" />
         </div>
       </div>
       <div
@@ -132,7 +133,24 @@ export default {
 
   data() {
     return {
-      lesson: {},
+      lesson: {
+        title: {
+          ru: ""
+        },
+        theory: {
+          ru: ""
+        },
+        description: {
+          ru: ""
+        },
+        tasks: [
+          {
+            description: {
+              ru: ""
+            }
+          }
+        ]
+      },
       lessons: [
         {
           id: null,
@@ -148,19 +166,6 @@ export default {
       isHtmlShowing: true,
       isHtmlExist: true,
       isCssExist: true,
-      startHtmlCode:
-        "<!DOCTYPE html>\n" +
-        '<html lang="en">\n' +
-        "<head>\n" +
-        '    <meta charset="UTF-8">\n' +
-        '    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n' +
-        '    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
-        "    <title>My site</title>\n" +
-        "</head>\n" +
-        "<body>\n" +
-        "    <h1>Hello, World!</h1>\n" +
-        "</body>\n" +
-        "</html>\n",
       htmlCode: "",
       htmlOptions: {
         tabSize: 4,
@@ -169,21 +174,6 @@ export default {
         lineNumbers: true,
         line: true
       },
-      startCssCode:
-        "body {\n" +
-        "  width: 100%;\n" +
-        "  height: 100vh;\n" +
-        "  display: flex;\n" +
-        "  justify-content: center;\n" +
-        "  align-items: center;\n" +
-        "  background-color: #3498db;\n" +
-        "  color: white;\n" +
-        "}\n" +
-        "\n" +
-        "h1 {\n" +
-        "  font-size: 40px;\n" +
-        "  font-weight: bold;\n" +
-        "}\n",
       cssCode: "",
       cssOptions: {
         tabSize: 2,
@@ -209,7 +199,11 @@ export default {
 
     await this.$store
       .dispatch("getLesson", { courseId, lessonId })
-      .then(res => (this.lesson = res.data.lesson));
+      .then(res => {
+        this.lesson = res.data.lesson;
+        this.htmlCode = this.lesson.htmlCode;
+        this.cssCode = this.lesson.cssCode;
+      });
 
     await this.$store
       .dispatch("getLessons", courseId)

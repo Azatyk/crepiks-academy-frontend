@@ -70,10 +70,6 @@ export default {
         }
       }
     }
-  },
-
-  mounted() {
-    console.log(this.$route.params.lessonId);
   }
 };
 </script>

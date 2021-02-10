@@ -85,6 +85,7 @@ export default {
       codeCSS: ""
     };
   },
+
   watch: {
     lesson() {
       this.codeHTML = this.lesson.htmlCode;

@@ -1,7 +1,9 @@
 <template>
   <div class="tasks" :class="{ 'tasks-closed': !isOpen }">
     <div class="tasks-header" @click="isOpen = !isOpen">
-      <h3 class="tasks-header-title">Урок 2: Первый HTML</h3>
+      <h3 class="tasks-header-title">
+        Урок {{ getLessonIndex() }}: {{ lesson.title.ru }}
+      </h3>
       <i
         class="bx bx-chevron-down tasks-header-icon"
         :class="{ 'tasks-header-icon-closed': !isOpen }"
@@ -11,20 +13,43 @@
       class="tasks-description"
       :class="{ 'tasks-description-hidden': !isOpen }"
     >
-      Ну вот и ваше первое задание, сейчас вы можете не понимать некоторые вещи,
-      но не беспокойтесь, ведь мы просто пробуем написания кода на практике, да?
-      На первой и 17 строке есть странные короткие символы, так вот, удалите их
-      и посмотрите, что из этого выйдет.
+      {{ lesson.description.ru }}
     </p>
+    <div
+      class="task"
+      :class="{ 'task-hidden': !isOpen }"
+      v-for="(task, index) in lesson.tasks"
+      :key="index"
+    >
+      <span class="task-dash">—</span>
+      <span class="task-text">{{ task.description.ru }}</span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    lesson: {
+      type: Object
+    },
+    lessons: {
+      type: Array
+    }
+  },
+
   data() {
     return {
       isOpen: true
     };
+  },
+
+  methods: {
+    getLessonIndex() {
+      for (let i = 0; i < this.lessons.length; i++) {
+        if (this.lessons[i].id == this.lesson.id) return i + 1;
+      }
+    }
   }
 };
 </script>
@@ -84,6 +109,7 @@ export default {
   }
 
   &-description {
+    margin: 8px 0;
     color: $dark;
     font-size: 18px;
     font-weight: 500;
@@ -94,6 +120,23 @@ export default {
     &-hidden {
       opacity: 0;
     }
+  }
+}
+
+.task {
+  margin-bottom: 8px;
+  color: $dark;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: 200ms ease-in-out;
+
+  &-dash {
+    margin-right: 10px;
+  }
+
+  &-hidden {
+    opacity: 0;
   }
 }
 </style>

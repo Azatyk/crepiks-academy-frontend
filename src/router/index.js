@@ -130,27 +130,27 @@ router.beforeEach((to, from, next) => {
     next();
   }
 
-  if (to.name == "lesson") {
-    var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
-    var isPurchasedCourse = false;
+  // if (to.name == "lesson") {
+  //   var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
+  //   var isPurchasedCourse = false;
 
-    purchasedCourses.forEach(course => {
-      if (course.id == Number(to.params.courseId)) {
-        isPurchasedCourse = true;
-      } else {
-        isPurchasedCourse = false;
-      }
-    });
-    if (isPurchasedCourse == false) {
-      next({
-        path: "/app/how-get"
-      });
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
+  //   purchasedCourses.forEach(course => {
+  //     if (course.id == Number(to.params.courseId)) {
+  //       isPurchasedCourse = true;
+  //     } else {
+  //       isPurchasedCourse = false;
+  //     }
+  //   });
+  //   if (isPurchasedCourse == false) {
+  //     next({
+  //       path: "/app/how-get"
+  //     });
+  //   } else {
+  //     next();
+  //   }
+  // } else {
+  //   next();
+  // }
 });
 
 export default router;
