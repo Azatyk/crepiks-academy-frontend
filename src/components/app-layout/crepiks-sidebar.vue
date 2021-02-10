@@ -114,7 +114,7 @@ export default {
     opacity: 0.9;
   }
 
-  &-active {
+  &.router-link-exact-active {
     color: $primary;
     opacity: 0.9;
   }
@@ -234,6 +234,11 @@ export default {
     width: auto;
     margin-bottom: 0;
     color: $white;
+
+    &.router-link-exact-active {
+      color: $white;
+      opacity: 1;
+    }
   }
 }
 
