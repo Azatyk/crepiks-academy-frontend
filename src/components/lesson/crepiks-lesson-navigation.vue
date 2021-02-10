@@ -13,7 +13,9 @@
         @click="$emit('navigation-closed')"
       ></i>
     </div>
-    <h2 class="navigation-title">Урок 3: Первый HTML</h2>
+    <h2 class="navigation-title">
+      Урок {{ getLessonIndex() + 1 }}: {{ lesson.title.ru }}
+    </h2>
     <div class="navigation-divide-line"></div>
     <div class="navigation-lessons-list">
       <router-link
@@ -53,6 +55,10 @@ export default {
     lessons: {
       type: Array
     },
+    lesson: {
+      type: Object
+    },
+
     completedLessons: {
       type: Array
     },
@@ -68,6 +74,12 @@ export default {
         if (this.completedLessons[i].id == lessonId) {
           return true;
         }
+      }
+    },
+
+    getLessonIndex() {
+      for (let i = 0; i < this.lessons.length; i++) {
+        if (this.lessons[i].id == this.lesson.id) return i;
       }
     }
   }

@@ -9,6 +9,7 @@
       @navigation-closed="isNavigationOpen = false"
       :lessons="lessons"
       :completedLessons="completedLessons"
+      :lesson="lesson"
     />
     <theory
       :isTheoryOpen="isTheoryOpen"
@@ -195,26 +196,45 @@ export default {
     });
 
     let courseId = this.$route.params.courseId;
-    let lessonId = this.$route.params.lessonId;
-
-    await this.$store
-      .dispatch("getLesson", { courseId, lessonId })
-      .then(res => {
-        this.lesson = res.data.lesson;
-        this.htmlCode = this.lesson.htmlCode;
-        this.cssCode = this.lesson.cssCode;
-      });
 
     await this.$store
       .dispatch("getLessons", courseId)
       .then(res => (this.lessons = res.data.course.lessons));
 
-    await this.$store
-      .dispatch("getCompletedLessons", this.userData.id)
-      .then(res => (this.completedLessons = res.data.completedLessons));
+    this.getLesson();
+    this.getCompletedLessons();
   },
 
-  computed: mapGetters(["userData"])
+  watch: {
+    async $route() {
+      this.isNavigationOpen = false;
+      this.isTheoryOpen = true;
+      this.getLesson();
+    }
+  },
+
+  computed: mapGetters(["userData"]),
+
+  methods: {
+    async getLesson() {
+      let courseId = this.$route.params.courseId;
+      let lessonId = this.$route.params.lessonId;
+
+      await this.$store
+        .dispatch("getLesson", { courseId, lessonId })
+        .then(res => {
+          this.lesson = res.data.lesson;
+          this.htmlCode = this.lesson.htmlCode;
+          this.cssCode = this.lesson.cssCode;
+        });
+    },
+
+    async getCompletedLessons() {
+      await this.$store
+        .dispatch("getCompletedLessons", this.userData.id)
+        .then(res => (this.completedLessons = res.data.completedLessons));
+    }
+  }
 };
 </script>
 
