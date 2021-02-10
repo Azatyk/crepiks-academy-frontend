@@ -1,24 +1,37 @@
 <template>
-  <div class="course-card">
-    <img class="card-image" :src="image" :alt="title" />
-    <div class="card-text">
-      <h2 class="card-text-title">{{ title }}</h2>
-      <p class="card-text-description">{{ description }}</p>
-      <div
-        class="card-link"
-        v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"
-        @click="$emit('linkClick')"
-      >
-        <span class="card-link card-link-text">Узнать про курс</span>
-        <i class="bx bx-right-arrow-alt card-link-icon"></i>
+  <div class="course-card-wrapper">
+    <div class="course-card">
+      <img class="card-image" :src="image" :alt="title" />
+      <div class="card-text">
+        <h2 class="card-text-title">{{ title }}</h2>
+        <p class="card-text-description">{{ description }}</p>
+        <div
+          class="card-link"
+          v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"
+          @click="$emit('linkClick')"
+        >
+          <span class="card-link card-link-text">{{ button }}</span>
+          <i class="bx bx-right-arrow-alt card-link-icon"></i>
+        </div>
+        <div
+          class="card-link card-link-soon"
+          v-else-if="$route.fullPath == '/app/courses/' + id"
+        >
+          Вы просматриваете курс
+        </div>
+        <div class="card-link card-link-soon" v-else>Скоро</div>
       </div>
-      <div
-        class="card-link card-link-soon"
-        v-else-if="$route.fullPath == '/app/courses/' + id"
-      >
-        Вы просматриваете курс
+    </div>
+    <div
+      class="course-progression"
+      :class="{ progression: progression == 'true' }"
+    >
+      <div class="course-progression-text">
+        Пройдено уроков {{ lessonsDone }} из {{ lessonsAll }}
       </div>
-      <div class="card-link card-link-soon" v-else>Скоро</div>
+      <div class="course-card-progression">
+        <div :style="fill" class="course-card-progression-fill"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -35,12 +48,30 @@ export default {
     description: {
       type: String
     },
+    button: {
+      type: String
+    },
     isSoon: {
       type: Boolean,
       default: false
     },
     id: {
       type: Number
+    },
+    progression: {
+      type: String,
+      default: "false"
+    },
+    lessonsAll: {
+      type: String
+    },
+    lessonsDone: {
+      type: String
+    }
+  },
+  computed: {
+    fill() {
+      return "width: " + (this.lessonsDone / this.lessonsAll) * 100 + "%";
     }
   }
 };
@@ -49,11 +80,43 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.course-card {
+.course-card-wrapper {
   width: 400px;
+  z-index: 2;
+}
+
+.course-card {
   display: flex;
   flex-direction: row;
-  z-index: 2;
+
+  &-progression {
+    width: 100%;
+    border-radius: 20px;
+    height: 7px;
+    background-color: #e5e5e8;
+    margin-top: 10px;
+
+    &-fill {
+      border-radius: 15px;
+      width: 0;
+      height: 100%;
+      background-color: $primary;
+    }
+  }
+}
+
+.course-progression {
+  display: none;
+  margin-top: 20px;
+
+  &-text {
+    font-size: 14px;
+    color: $light-dark;
+  }
+}
+
+.progression {
+  display: block;
 }
 
 .card-image {

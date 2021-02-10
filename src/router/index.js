@@ -13,6 +13,8 @@ import lesson from "@/views/lesson/crepiks-lesson";
 import emptyLayout from "@/views/layouts/crepiks-empty-layout";
 import appLayout from "@/views/layouts/crepiks-app-layout";
 
+import profile from "@/views/profile/crepiks-profile";
+
 import store from "@/store";
 
 Vue.use(VueRouter);
@@ -90,6 +92,14 @@ const routes = [
         component: subscription,
         meta: {
           title: "Получите доступ ко всем курсам"
+        }
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: profile,
+        meta: {
+          title: "Профиль пользователя"
         }
       }
     ]

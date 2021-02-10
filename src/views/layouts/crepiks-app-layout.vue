@@ -5,10 +5,10 @@
       <router-view></router-view>
     </div>
     <Logo class="logo" />
-    <div class="profile">
+    <router-link class="profile" to="/app/profile">
       <span class="profile-name">Кажимухан Азат</span>
       <i class="bx bx-user-circle profile-icon"></i>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
 }
 
 .profile {
-  position: fixed;
+  position: absolute;
   top: 50px;
   right: 5%;
   display: flex;
@@ -50,6 +50,7 @@ export default {
   cursor: pointer;
   transition: 200ms ease-in-out;
   z-index: 1;
+  text-decoration: none;
 
   &:hover {
     opacity: 1;
@@ -99,7 +100,6 @@ export default {
 @media (max-width: 414px) {
   .profile {
     top: 35px;
-    position: absolute;
   }
 
   .logo {
