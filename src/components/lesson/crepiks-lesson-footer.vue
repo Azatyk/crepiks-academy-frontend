@@ -3,7 +3,9 @@
     <button class="lesson-footer-theory" @click="$emit('theory-opened')">
       Теория
     </button>
-    <button class="lesson-footer-check">Проверить</button>
+    <button class="lesson-footer-check" @click="$emit('run-button-clicked')">
+      Проверить
+    </button>
   </div>
 </template>
 

@@ -93,10 +93,13 @@
           @navigation-opened="isNavigationOpen = true"
           @switch-editor="isCodeEditorScreen = true"
         />
-        <browser />
+        <browser :htmlCode="htmlCode" :cssCode="cssCode" />
       </div>
     </div>
-    <lessonFooter @theory-opened="isTheoryOpen = true" />
+    <lessonFooter
+      @theory-opened="isTheoryOpen = true"
+      @run-button-clicked="handleRunButton()"
+    />
   </div>
 </template>
 
@@ -233,6 +236,14 @@ export default {
       await this.$store
         .dispatch("getCompletedLessons", this.userData.id)
         .then(res => (this.completedLessons = res.data.completedLessons));
+    },
+
+    handleRunButton() {
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "browser") {
+          child.handleRunButton();
+        }
+      }
     }
   }
 };
