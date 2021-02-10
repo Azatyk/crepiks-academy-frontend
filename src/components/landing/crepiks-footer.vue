@@ -2,27 +2,7 @@
   <div class="footer">
     <div class="footer-content">
       <Logo class="footer-logo" />
-      <div class="footer-email">
-        crepiks.academy@mail.ru
-        <!-- <a href="" class="footer-socials-item">
-          <div class="footer-socials-icon">
-            <img src="@/assets/images/mail-icon.svg" alt="" />
-          </div>
-          <div class="footer-socials-text">Почта</div>
-        </a>
-        <a href="" class="footer-socials-item">
-          <div class="footer-socials-icon">
-            <img src="@/assets/images/instagram-icon.svg" alt="" />
-          </div>
-          <div class="footer-socials-text">Инстаграм</div>
-        </a>
-        <a href="" class="footer-socials-item">
-          <div class="footer-socials-icon">
-            <img src="@/assets/images/vk-icon.svg" alt="" />
-          </div>
-          <div class="footer-socials-text">Вконтакте</div>
-        </a> -->
-      </div>
+      <div class="footer-email">crepiks.academy@mail.ru</div>
     </div>
   </div>
 </template>
@@ -57,35 +37,6 @@ export default {
   &-logo {
     width: 110px;
   }
-
-  &-email {
-    // display: flex;
-    // align-items: center;
-    // color: $dark;
-
-    // &-item {
-    //   display: flex;
-    //   align-items: center;
-    //   margin-left: 20px;
-    //   text-decoration: none;
-    //   color: $dark;
-    // }
-
-    // &-item:hover {
-    //   opacity: 0.8;
-    // }
-
-    // &-icon {
-    //   width: 35px;
-    //   height: 35px;
-    //   background-color: $primary;
-    //   border-radius: 50%;
-    //   display: flex;
-    //   justify-content: space-evenly;
-    //   align-items: center;
-    //   margin-right: 7px;
-    // }
-  }
 }
 
 @media (max-width: 1000px) {
@@ -98,20 +49,11 @@ export default {
   .footer {
     padding-right: 10%;
 
-    // &-content {
-    //   align-items: flex-start;
-    // }
     &-email {
       flex-direction: column;
       align-items: flex-start;
       margin-top: 5px;
     }
-
-    //   &-item {
-    //     margin-left: 0;
-    //     margin-bottom: 15px;
-    //   }
-    // }
   }
 }
 
