@@ -1,19 +1,18 @@
 <template>
   <div class="questions">
     <div class="questions-content">
-      <h2 class="questions-heading">Остались вопросы?</h2>
-      <!-- <cButton text="Спросить" class="questions-button" /> -->
+      <div class="questions-text">
+        <h2 class="questions-heading">Остались вопросы?</h2>
+        <div class="questions-subheading">Напишите нам!</div>
+      </div>
       <div class="questions-links">
         <a
           href="https://wa.me/77078139703"
           class="questions-link questions-link-whatsapp"
           target="_blank"
         >
-          <img
-            src="@/assets/icons/whatsapp.png"
-            alt="WhatsApp"
-            class="questions-link-icon"
-          />
+          <i class="bx bxl-whatsapp questions-link-icon"></i>
+
           WhatsApp
         </a>
         <a
@@ -21,11 +20,7 @@
           class="questions-link questions-link-telegram"
           target="_blank"
         >
-          <img
-            src="@/assets/icons/telegram.png"
-            alt="Telegram"
-            class="questions-link-icon"
-          />
+          <i class="bx bxl-telegram questions-link-icon"></i>
           Telegram
         </a>
         <a
@@ -33,11 +28,7 @@
           class="questions-link questions-link-instagram"
           target="_blank"
         >
-          <img
-            src="@/assets/icons/instagram.png"
-            alt="Instagram"
-            class="questions-link-icon"
-          />
+          <i class="bx bxl-instagram questions-link-icon"></i>
           Instagram
         </a>
         <a
@@ -45,11 +36,7 @@
           class="questions-link questions-link-email"
           target="_blank"
         >
-          <img
-            src="@/assets/icons/email.png"
-            alt="Почта"
-            class="questions-link-icon"
-          />
+          <i class="bx bx-mail-send questions-link-icon"></i>
           Почта
         </a>
         <a
@@ -57,11 +44,7 @@
           class="questions-link questions-link-vkontakte"
           target="_blank"
         >
-          <img
-            src="@/assets/icons/vkontakte.png"
-            alt="Telegram"
-            class="questions-link-icon"
-          />
+          <i class="bx bxl-vk questions-link-icon"></i>
           Вконтакте
         </a>
         <a href="tel:87078139703" class="questions-link questions-link-number">
@@ -73,13 +56,7 @@
 </template>
 
 <script>
-// import cButton from "@/components/common/crepiks-button.vue";
-
-export default {
-  components: {
-    // cButton
-  }
-};
+export default {};
 </script>
 
 <style scoped lang="scss">
@@ -99,11 +76,22 @@ export default {
     width: 100%;
   }
 
+  &-text {
+    width: 400px;
+  }
+
   &-heading {
+    width: 400px;
     font-size: 35px;
     color: $dark;
     font-weight: 500;
-    width: 700px;
+  }
+
+  &-subheading {
+    font-size: 25px;
+    margin-top: 10px;
+    color: $primary;
+    opacity: 0.8;
   }
 
   &-button {
@@ -116,6 +104,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 600px;
   }
 
   &-link {
@@ -127,55 +116,66 @@ export default {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    color: $color-6;
+    color: $primary;
     font-size: 14px;
     font-weight: 400;
     text-decoration: none;
     border-radius: 10px;
     transition: 200ms ease-in-out;
     cursor: pointer;
+    background-color: transparent;
+    border: 1px solid $primary;
 
     &:hover {
       opacity: 0.5;
     }
 
     &-icon {
-      margin-right: 10px;
-      height: 20px;
-      width: auto;
+      font-size: 20px;
+      margin-right: 5px;
     }
 
-    &-whatsapp {
-      background-color: #00e752;
-    }
+    // &-whatsapp {
+    //   background-color: #00e752;
+    // }
 
-    &-telegram {
-      background-color: #3d8fc7;
-    }
+    // &-telegram {
+    //   background-color: #3d8fc7;
+    // }
 
-    &-vkontakte {
-      background-color: #5282b9;
-    }
+    // &-vkontakte {
+    //   background-color: #5282b9;
+    // }
 
-    &-instagram {
-      background-color: #fe1546;
-    }
+    // &-instagram {
+    //   background-color: #fe1546;
+    // }
 
-    &-email {
-      background-color: #105bf1;
-    }
+    // &-email {
+    //   background-color: #105bf1;
+    // }
 
-    &-number {
-      color: $color-2;
-      border: 2px solid $color-2;
-      background-color: $color-6;
-    }
+    // &-number {
+    //   color: $color-2;
+    //   border: 2px solid $color-2;
+    //   background-color: $color-6;
+    // }
   }
 }
 
 @media (max-width: 1024px) {
   .questions {
     padding: 10vh 5%;
+
+    &-text {
+      width: 100%;
+      display: flex;
+      width: 550px;
+    }
+
+    &-subheading {
+      width: 300px;
+    }
 
     &-content {
       flex-direction: column;
@@ -187,14 +187,23 @@ export default {
 
     &-links {
       margin-top: 30px;
+      width: 100%;
     }
   }
 }
 
 @media (max-width: 720px) {
   .questions {
+    &-text {
+      flex-direction: column;
+    }
+
     &-heading {
       font-size: 25px;
+    }
+
+    &-subheading {
+      font-size: 20px;
     }
   }
 }
@@ -203,6 +212,10 @@ export default {
   .questions {
     &-heading {
       font-size: 18px;
+    }
+
+    &-subheading {
+      font-size: 14px;
     }
   }
 }
