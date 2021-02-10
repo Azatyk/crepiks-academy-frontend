@@ -33,17 +33,27 @@
           </div>
         </div>
         <div class="course-lessons-list">
-          <div
+          <router-link
             class="lesson"
             v-for="(lesson, index) in course.lessons"
             :key="lesson.id"
+            :to="
+              '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
+            "
           >
             <div class="lesson-title">
               <div class="lesson-title-number">{{ index + 1 }}.</div>
               <div class="lesson-title-text">{{ lesson.title.ru }}</div>
             </div>
-            <div class="lesson-status">Не пройден</div>
-          </div>
+            <div
+              class="lesson-status"
+              :class="{
+                'lesson-status-completed': isLessonCompleted(lesson.id)
+              }"
+            >
+              {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -52,6 +62,8 @@
 
 <script>
 import cButton from "@/components/common/crepiks-button";
+
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -83,7 +95,8 @@ export default {
             }
           }
         ]
-      }
+      },
+      completedLessons: [{ id: null }]
     };
   },
 
@@ -97,12 +110,28 @@ export default {
   },
 
   watch: {
-    isCourseOpen() {
+    async isCourseOpen() {
       if (this.isCourseOpen) {
         const id = this.$route.params.id;
-        this.$store.dispatch("getCourse", id).then(res => {
+        await this.$store.dispatch("getCourse", id).then(res => {
           this.course = res.data.course;
         });
+
+        await this.$store
+          .dispatch("getCompletedLessons", this.userData.id)
+          .then(res => (this.completedLessons = res.data.completedLessons));
+      }
+    }
+  },
+
+  computed: mapGetters(["userData"]),
+
+  methods: {
+    isLessonCompleted(lessonId) {
+      for (let i = 0; i < this.completedLessons.length; i++) {
+        if (this.completedLessons[i].id == lessonId) {
+          return true;
+        }
       }
     }
   }
@@ -228,6 +257,13 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   &-title {
     display: flex;
@@ -245,6 +281,10 @@ export default {
     color: $dark;
     font-size: 12px;
     opacity: 0.6;
+
+    &-completed {
+      color: $primary;
+    }
   }
 }
 

@@ -27,9 +27,20 @@
           <span class="navigation-lesson-title">{{ lesson.title.ru }}</span>
         </div>
         <div
-          class="navigation-lesson-status navigation-lesson-status-completed"
+          class="navigation-lesson-status"
+          :class="{
+            'navigation-lesson-status-completed': isLessonCompleted(lesson.id),
+            'navigation-lesson-status-current':
+              $route.params.lessonId == lesson.id
+          }"
         >
-          {{ "Пройдено" }}
+          {{
+            $route.params.lessonId != lesson.id
+              ? isLessonCompleted(lesson.id)
+                ? "Пройдено"
+                : "Не пройдено"
+              : "Текущий урок"
+          }}
         </div>
       </router-link>
     </div>
@@ -42,10 +53,27 @@ export default {
     lessons: {
       type: Array
     },
+    completedLessons: {
+      type: Array
+    },
     isNavigationOpen: {
       type: Boolean,
       default: false
     }
+  },
+
+  methods: {
+    isLessonCompleted(lessonId) {
+      for (let i = 0; i < this.completedLessons.length; i++) {
+        if (this.completedLessons[i].id == lessonId) {
+          return true;
+        }
+      }
+    }
+  },
+
+  mounted() {
+    console.log(this.$route.params.lessonId);
   }
 };
 </script>
@@ -173,6 +201,7 @@ export default {
     }
 
     &-status {
+      color: $dark;
       font-size: 12px;
       opacity: 0.6;
 

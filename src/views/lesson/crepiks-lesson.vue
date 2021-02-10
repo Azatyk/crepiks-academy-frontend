@@ -8,6 +8,7 @@
       :isNavigationOpen="isNavigationOpen"
       @navigation-closed="isNavigationOpen = false"
       :lessons="lessons"
+      :completedLessons="completedLessons"
     />
     <theory
       :isTheoryOpen="isTheoryOpen"
