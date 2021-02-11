@@ -1,5 +1,12 @@
 <template>
   <div class="login-page">
+    <notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      status="error"
+    />
     <div class="login-content">
       <router-link to="/" class="login-back">
         <i class="bx bx-arrow-back login-back-icon"></i>
@@ -41,18 +48,23 @@
 import cForm from "@/components/common/crepiks-form.vue";
 import cInput from "@/components/common/crepiks-input.vue";
 import cButton from "@/components/common/crepiks-button.vue";
+import notification from "@/components/common/crepiks-notification";
 
 export default {
   components: {
     cForm,
     cInput,
-    cButton
+    cButton,
+    notification
   },
 
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: ""
     };
   },
 
@@ -64,9 +76,17 @@ export default {
         this.$store
           .dispatch("login", { email, password })
           .then(() => this.$router.push("/app/courses"))
-          .catch(err => {
-            console.log(err);
+          .catch(() => {
+            this.isNotificationOpen = true;
+            (this.notificationHeading = "Неверные данные"),
+              (this.notificationText =
+                "Неверная почта или пароль. Проверьте и попробуйте еще раз");
           });
+      } else {
+        this.isNotificationOpen = true;
+        this.notificationHeading = "Введите почту и пароль";
+        this.notificationText =
+          "Введите вашу почту и пароль. Не оставляйте поля пустыми";
       }
     }
   }

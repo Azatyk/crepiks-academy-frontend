@@ -1,5 +1,12 @@
 <template>
   <div class="register-page">
+    <notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      status="error"
+    />
     <div class="register-content">
       <router-link to="/" class="register-back">
         <i class="bx bx-arrow-back register-back-icon"></i>
@@ -55,12 +62,14 @@
 import cForm from "@/components/common/crepiks-form";
 import cInput from "@/components/common/crepiks-input";
 import cButton from "@/components/common/crepiks-button";
+import notification from "@/components/common/crepiks-notification";
 
 export default {
   components: {
     cForm,
     cInput,
-    cButton
+    cButton,
+    notification
   },
 
   data() {
@@ -68,7 +77,10 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      password: ""
+      password: "",
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: ""
     };
   },
 
@@ -90,7 +102,17 @@ export default {
         this.$store
           .dispatch("register", user)
           .then(() => this.$router.push("/app/courses"))
-          .catch(err => console.log(err));
+          .catch(() => {
+            this.isNotificationOpen = true;
+            (this.notificationHeading = "Что-то пошло нет так"),
+              (this.notificationText =
+                "Проверьте ваше подключение к интернету и попробуйте еще раз");
+          });
+      } else {
+        this.isNotificationOpen = true;
+        this.notificationHeading = "Заполните все поля";
+        this.notificationText =
+          "Мы не сможем создать вам аккаунт, если вы не расскажите о себе";
       }
     }
   }
