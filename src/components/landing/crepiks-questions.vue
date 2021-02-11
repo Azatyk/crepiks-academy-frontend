@@ -144,7 +144,6 @@ export default {};
     &-text {
       width: 100%;
       display: flex;
-      width: 550px;
     }
 
     &-subheading {
