@@ -29,15 +29,29 @@
           <span class="link-text">Выход</span>
         </div>
       </div>
-      <div class="subscription">
-        <div class="subscription-light-circle"></div>
-        <div class="subscription-dark-circle"></div>
+      <router-link
+        class="subscription"
+        to="/app/subscription"
+        @mouseover.native="hover = true"
+        @mouseleave.native="hover = false"
+      >
+        <div
+          class="subscription-light-circle"
+          :class="{ light_circle_active: hover }"
+        ></div>
+        <div
+          class="subscription-dark-circle"
+          :class="{ dark_circle_active: hover }"
+        ></div>
         <span class="subscription-text"
           >Получи полный доступ с
           <span class="subscription-text-important">Pro</span> подпиской!</span
         >
-        <i class="bx bx-right-arrow-alt subscription-icon"></i>
-      </div>
+        <i
+          class="bx bx-right-arrow-alt subscription-icon"
+          :class="{ arrow_icon: hover }"
+        ></i>
+      </router-link>
     </div>
   </div>
 </template>
@@ -47,6 +61,11 @@ import logo from "@/components/common/crepiks-logo";
 import { mapMutations } from "vuex";
 
 export default {
+  data() {
+    return {
+      hover: false
+    };
+  },
   components: {
     logo
   },
@@ -143,6 +162,7 @@ export default {
   background-color: #16a085;
   border-radius: 20px;
   overflow: hidden;
+  cursor: pointer;
 
   &-light-circle {
     position: absolute;
@@ -154,6 +174,7 @@ export default {
     background-color: #17e0b9;
     //   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     z-index: 2;
+    transition: 200ms ease-in-out;
   }
 
   &-dark-circle {
@@ -164,6 +185,7 @@ export default {
     height: 130px;
     border-radius: 50%;
     background-color: #1abc9c;
+    transition: 200ms ease-in-out;
     //   box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
   }
 
@@ -187,7 +209,22 @@ export default {
     bottom: 10%;
     color: $white;
     font-size: 30px;
+    transition: 200ms ease-in-out;
   }
+}
+
+.light_circle_active {
+  top: -90%;
+  left: 15%;
+}
+
+.dark_circle_active {
+  top: -80%;
+  left: 60%;
+}
+
+.arrow_icon {
+  right: 10%;
 }
 
 @media (max-width: 1024px) {
