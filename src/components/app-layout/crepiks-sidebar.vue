@@ -114,11 +114,6 @@ export default {
     opacity: 0.9;
   }
 
-  &-active {
-    color: $primary;
-    opacity: 0.9;
-  }
-
   &-exit:hover {
     color: #e74c3c;
   }
@@ -188,6 +183,11 @@ export default {
     color: $white;
     font-size: 30px;
   }
+}
+
+.router-link-active {
+  color: $primary;
+  opacity: 0.9;
 }
 
 @media (max-width: 1024px) {
