@@ -24,6 +24,10 @@ export default {
   padding: 10vh 12%;
   box-sizing: border-box;
 
+  &-email {
+    opacity: 0.8;
+  }
+
   &-content {
     max-width: 1440px;
     margin-right: auto;
