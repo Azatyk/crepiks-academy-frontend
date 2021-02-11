@@ -134,32 +134,6 @@ export default {};
       font-size: 20px;
       margin-right: 5px;
     }
-
-    // &-whatsapp {
-    //   background-color: #00e752;
-    // }
-
-    // &-telegram {
-    //   background-color: #3d8fc7;
-    // }
-
-    // &-vkontakte {
-    //   background-color: #5282b9;
-    // }
-
-    // &-instagram {
-    //   background-color: #fe1546;
-    // }
-
-    // &-email {
-    //   background-color: #105bf1;
-    // }
-
-    // &-number {
-    //   color: $color-2;
-    //   border: 2px solid $color-2;
-    //   background-color: $color-6;
-    // }
   }
 }
 

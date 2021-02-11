@@ -20,9 +20,53 @@
     </div>
     <div class="content-half">
       <div class="navigation-links-extra">
-        <div class="link">
+        <div
+          class="link"
+          @click="socials = true"
+          :class="{ link_inactive: socials }"
+        >
           <i class="bx bx-help-circle link-icon"></i>
           <span class="link-text">Помощь</span>
+        </div>
+        <div class="socials-links" :class="{ socials_links_active: socials }">
+          <a
+            href="https://wa.me/77078139703"
+            class="socials-link"
+            target="_blank"
+          >
+            <i class="bx bxl-whatsapp socials-link-icon"></i>
+          </a>
+          <a
+            href="https://t.me/CrepiksAcademyBot"
+            class="socials-link"
+            target="_blank"
+          >
+            <i class="bx bxl-telegram socials-link-icon"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/crepiks_academy/"
+            class="socials-link"
+            target="_blank"
+          >
+            <i class="bx bxl-instagram socials-link-icon"></i>
+          </a>
+          <a
+            href="mailto:crepiks.academy@mail.ru"
+            class="socials-link"
+            target="_blank"
+          >
+            <i class="bx bx-mail-send socials-link-icon"></i>
+          </a>
+          <a
+            href="https://vk.com/public200320088"
+            class="socials-link"
+            target="_blank"
+          >
+            <i class="bx bxl-vk socials-link-icon"></i>
+          </a>
+          <div @click="socials = false" class="socials-link socials-link-x">
+            <i class="bx bx-x socials-link-icon"></i>
+          </div>
         </div>
         <div class="link link-exit" @click="logout">
           <i class="bx bx-log-out-circle link-icon"></i>
@@ -63,7 +107,8 @@ import { mapMutations } from "vuex";
 export default {
   data() {
     return {
-      hover: false
+      hover: false,
+      socials: false
     };
   },
   components: {
@@ -115,6 +160,10 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  &-extra {
+    position: relative;
+  }
 }
 
 .link {
@@ -225,6 +274,62 @@ export default {
 
 .arrow_icon {
   right: 10%;
+}
+
+.socials {
+  &-links {
+    position: absolute;
+    top: 0;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    opacity: 0;
+    z-index: -1;
+    transition: 200ms ease-in-out;
+  }
+
+  &-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    color: $primary;
+    text-decoration: none;
+    transition: 200ms ease-in-out;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &-icon {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+
+    &-x {
+      color: $dark;
+    }
+  }
+}
+
+.socials_links_active {
+  opacity: 1;
+  z-index: 3;
+}
+
+.link_inactive {
+  opacity: 0;
+  z-index: -1;
+}
+
+.link_inactive:hover {
+  opacity: 0;
 }
 
 @media (max-width: 1024px) {
