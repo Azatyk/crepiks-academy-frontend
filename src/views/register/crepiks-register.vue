@@ -107,7 +107,7 @@ export default {
 }
 
 .register-content {
-  padding: 0.1px 3%;
+  padding: 0.1px 0;
   margin: auto;
   width: 100%;
   max-width: 1140px;
@@ -115,13 +115,15 @@ export default {
 }
 
 .register-back {
-  margin-top: 60px;
+  margin-top: 40px;
   display: flex;
   align-items: center;
   color: $primary;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
+  margin-left: 30px;
+  z-index: 10;
 
   &-icon {
     margin-right: 5px;
@@ -131,6 +133,7 @@ export default {
 
 .form-container {
   position: absolute;
+  width: 100%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -168,6 +171,23 @@ export default {
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+@media (max-width: 560px) {
+  .register-back {
+    margin-top: 30px;
+    font-size: 14px;
+  }
+
+  .form-input {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 374px) {
+  .form-text {
+    font-size: 12px;
   }
 }
 </style>

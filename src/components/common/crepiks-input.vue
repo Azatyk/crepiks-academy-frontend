@@ -80,4 +80,15 @@ export default {
     opacity: 0.9;
   }
 }
+
+@media (max-width: 560px) {
+  .input {
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+}
 </style>

@@ -71,4 +71,37 @@ export default {
   font-weight: 600;
   opacity: 0.8;
 }
+
+@media (max-width: 560px) {
+  .form {
+    width: 85%;
+    box-sizing: border-box;
+    padding: 35px 30px 55px;
+    border-radius: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .logo {
+    width: 130px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 374px) {
+  .logo {
+    display: none;
+  }
+
+  .form {
+    padding: 18px 25px 18px;
+  }
+}
 </style>

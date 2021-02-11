@@ -83,7 +83,7 @@ export default {
 }
 
 .login-content {
-  padding: 0.1px 3%;
+  padding: 0.1px 0;
   margin: auto;
   width: 100%;
   max-width: 1140px;
@@ -91,7 +91,8 @@ export default {
 }
 
 .login-back {
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-left: 30px;
   display: flex;
   align-items: center;
   color: $primary;
@@ -106,7 +107,11 @@ export default {
 }
 
 .form-container {
-  margin-top: 40px;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-input {
@@ -141,6 +146,18 @@ export default {
     &:hover {
       opacity: 1;
     }
+  }
+}
+
+@media (max-width: 560px) {
+  .form-input {
+    margin-bottom: 13px;
+  }
+}
+
+@media (max-width: 374px) {
+  .form-text {
+    font-size: 12px;
   }
 }
 </style>
