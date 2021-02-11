@@ -50,7 +50,6 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .subscription-card {
-  padding-right: 20px;
   width: 700px;
   box-sizing: border-box;
   display: flex;
@@ -62,7 +61,7 @@ export default {
 }
 
 .card-text {
-  padding: 50px 0 50px 50px;
+  padding: 50px 0 60px 50px;
   width: 60%;
   height: 100%;
   display: flex;
@@ -113,8 +112,6 @@ export default {
   }
 
   &-images {
-    height: 370px;
-    width: 40%;
     position: relative;
   }
 }
@@ -128,13 +125,13 @@ export default {
   position: absolute;
   width: 180px;
   left: 30px;
-  top: 80px;
+  top: 70px;
 }
 
 .javascript {
   position: absolute;
   width: 180px;
-  top: 160px;
+  top: 140px;
 }
 
 @media (max-width: 800px) {

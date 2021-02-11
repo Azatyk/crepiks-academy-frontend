@@ -186,7 +186,7 @@ export default {
     color: $primary;
     opacity: 0.9;
   }
-
+  
   &-exit:hover {
     color: #e74c3c;
   }
