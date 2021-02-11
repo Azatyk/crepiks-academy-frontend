@@ -57,7 +57,7 @@ export default {
   border-radius: 20px;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
   z-index: 3;
-  background-color: $background;
+  background-color: $white;
 }
 
 .card-text {
@@ -113,25 +113,33 @@ export default {
 
   &-images {
     position: relative;
+    width: 30%;
+    height: 100%;
   }
 }
 
 .html-css-basic {
   position: absolute;
-  width: 200px;
+  transform: rotate(-20deg);
+  top: 50px;
+  left: 50px;
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 
 .html-css-upgrade {
   position: absolute;
-  width: 180px;
-  left: 30px;
-  top: 70px;
+  left: 85px;
+  top: 135px;
+  transform: rotate(20deg);
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 
 .javascript {
   position: absolute;
-  width: 180px;
-  top: 140px;
+  top: 200px;
+  left: 50px;
+  transform: rotate(-20deg);
+  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 800px) {
