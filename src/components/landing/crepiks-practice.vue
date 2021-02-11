@@ -5,37 +5,42 @@
         Чего ждать? Попробуем что-нибудь написать.
       </h2>
       <p class="practice-paragraph">
-        Перепешите или скопируйте этот код
+        Перепешите или скопируйте этот код на 10 строку
         <span class="practice-paragraph-bold"
           >&#60;h1&#62;Hello world!&#60;/h1&#62;</span
         >
         и нажмите "Проверить". В мини браузере увидите результат выполнения
         кода, а автоматический тест оповестит вас о решении задания.
       </p>
-      <!-- <div class="practice-editor">
-        <div class="practice-editor-title">
-          <div class="practice-editor-heading">Редактор кода</div>
-          <div class="practice-editor-heading">Мини браузер</div>
-        </div>
-        <div class="practice-editor-content">
-          <div class="practice-editor-container">
-            <button class="practice-editor-button">Проверить</button>
-          </div>
-          <div class="practice-editor-container"></div>
-        </div>
-      </div> -->
       <div class="practice-editor">
         <div class="practice-editor-block">
           <div class="practice-editor-title">Редактор кода</div>
           <div class="practice-editor-content">
-            <button class="practice-editor-button">Проверить</button>
+            <codemirror
+              class="practive-editor-editor"
+              :code="htmlCode"
+              v-model="htmlCode"
+              :options="htmlOptions"
+            />
+            <button class="practice-editor-button" @click="handleRunButton">
+              Проверить
+            </button>
           </div>
         </div>
         <div class="practice-editor-block">
           <div class="practice-editor-title practice-editor-heading">
             Мини браузер
           </div>
-          <div class="practice-editor-content"></div>
+          <div class="practice-editor-content">
+            <iframe
+              src="/landingBrowser.html"
+              name="browser"
+              class="practice-editor-browser"
+              ref="browserFrame"
+              id="browserFrame"
+              noresize
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -43,7 +48,78 @@
 </template>
 
 <script>
-export default {};
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
+import "codemirror/mode/htmlmixed/htmlmixed.js";
+import "codemirror/theme/eclipse.css";
+
+export default {
+  components: {
+    codemirror
+  },
+
+  data() {
+    return {
+      htmlCode:
+        "<!DOCTYPE html>\n" +
+        '<html lang="en">\n' +
+        "<head>\n" +
+        '    <meta charset="UTF-8">\n' +
+        '    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n' +
+        '    <link rel="stylesheet" href="styles.css" />\n' +
+        "    <title>First site</title>\n" +
+        "</head>\n" +
+        "<body>\n" +
+        "    <!-- Код вставьте на 10 строку (строка ниже) -->\n" +
+        "    \n" +
+        "</body>\n" +
+        "</html>\n",
+      htmlOptions: {
+        tabSize: 4,
+        mode: "text/html",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      },
+      cssCode:
+        "body {" +
+        "  width: 100%;" +
+        "  height: 100vh;" +
+        "  display: flex;" +
+        "  justify-content: center;" +
+        "  align-items: center;" +
+        "  background-color: #55efc4;" +
+        "}" +
+        "" +
+        "h1 {" +
+        '  font-family: "Roboto", sans-serif;' +
+        "  font-size: 50px;" +
+        "  font-weight: bold;" +
+        "  color: 333;" +
+        "}"
+    };
+  },
+
+  methods: {
+    handleRunButton() {
+      var iframe =
+        this.$refs.browserFrame.contentDocument ||
+        this.$refs.browserFrame.contentWindow.document;
+
+      iframe.head.innerHTML = "";
+
+      iframe.body.innerHTML = this.htmlCode;
+
+      if (
+        iframe.querySelector("link") &&
+        iframe.querySelector("link").getAttribute("rel") == "stylesheet" &&
+        iframe.querySelector("link").getAttribute("href") == "styles.css"
+      ) {
+        iframe.head.innerHTML = `<style>${this.cssCode}</style>`;
+      }
+    }
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -107,6 +183,7 @@ export default {};
 
     &-title {
       width: 100%;
+      height: 50px;
       font-size: 14px;
       font-weight: 400;
       padding: 20px 20px;
@@ -126,6 +203,18 @@ export default {};
       width: 100%;
     }
 
+    &-editor {
+      width: 50%;
+      height: 100%;
+    }
+
+    &-browser {
+      width: 100%;
+      height: calc(70vh - 50px);
+      border: none;
+      border-radius: 0 0 15px 0;
+    }
+
     &-button {
       font-size: 17px;
       color: $primary;
@@ -137,6 +226,12 @@ export default {};
       right: 0;
       bottom: 0;
       font-weight: 500;
+      z-index: 2;
+      transition: 200ms ease-in-out;
+
+      &:hover {
+        opacity: 0.6;
+      }
     }
   }
 }
@@ -192,5 +287,15 @@ export default {};
       }
     }
   }
+}
+</style>
+
+<style lang="scss">
+.CodeMirror {
+  width: 38vw !important;
+  height: calc(70vh - 50px) !important;
+  border-radius: 0 0 0 15px;
+  overflow: scroll;
+  z-index: 1 !important;
 }
 </style>
