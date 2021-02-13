@@ -186,7 +186,7 @@ export default {
     color: $primary;
     opacity: 0.9;
   }
-  
+
   &-exit:hover {
     color: #e74c3c;
   }
@@ -263,17 +263,57 @@ export default {
 }
 
 .light_circle_active {
-  top: -90%;
-  left: 15%;
+  animation: hover-light-circle ease 0.75s;
 }
 
 .dark_circle_active {
-  top: -80%;
-  left: 60%;
+  animation: hover-dark-circle ease 1s;
 }
 
 .arrow_icon {
-  right: 10%;
+  animation: arrow ease 1s;
+}
+
+@keyframes hover-light-circle {
+  0% {
+    top: -80%;
+    left: 15%;
+  }
+  40% {
+    top: -90%;
+    left: 15%;
+  }
+  100% {
+    top: -80%;
+    left: 15%;
+  }
+}
+
+@keyframes hover-dark-circle {
+  20% {
+    top: -70%;
+    left: 50%;
+  }
+  40% {
+    top: -85%;
+    left: 50%;
+  }
+  100% {
+    top: -70%;
+    left: 50%;
+  }
+}
+
+@keyframes arrow {
+  20% {
+    right: 7%;
+  }
+  40% {
+    right: 15%;
+  }
+  100% {
+    right: 7%;
+  }
 }
 
 .socials {
