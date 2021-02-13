@@ -17,7 +17,7 @@
           <div class="practice-editor-title">Редактор кода</div>
           <div class="practice-editor-content">
             <codemirror
-              class="practive-editor-editor"
+              class="practice-editor-editor"
               :code="htmlCode"
               v-model="htmlCode"
               :options="htmlOptions"
@@ -65,7 +65,6 @@ export default {
         '<html lang="en">\n' +
         "<head>\n" +
         '    <meta charset="UTF-8">\n' +
-        '    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n' +
         '    <link rel="stylesheet" href="styles.css" />\n' +
         "    <title>First site</title>\n" +
         "</head>\n" +
@@ -88,7 +87,7 @@ export default {
         "  display: flex;" +
         "  justify-content: center;" +
         "  align-items: center;" +
-        "  background-color: #55efc4;" +
+        "  background-color: transparent;" +
         "}" +
         "" +
         "h1 {" +
@@ -183,7 +182,6 @@ export default {
 
     &-title {
       width: 100%;
-      height: 50px;
       font-size: 14px;
       font-weight: 400;
       padding: 20px 20px;
@@ -201,16 +199,16 @@ export default {
 
     &-content {
       width: 100%;
+      height: calc(100% - 57px);
     }
 
     &-editor {
-      width: 50%;
       height: 100%;
     }
 
     &-browser {
       width: 100%;
-      height: calc(70vh - 50px);
+      height: 100%;
       border: none;
       border-radius: 0 0 15px 0;
     }
@@ -259,6 +257,10 @@ export default {
         border-radius: 0 0 15px 15px;
         border-bottom: 0;
       }
+
+      &-browser {
+        border-radius: 0 0 15px 15px;
+      }
     }
   }
 }
@@ -278,24 +280,22 @@ export default {
     }
   }
 }
-
-@media (max-width: 450px) {
-  .practice {
-    &-editor {
-      &-block {
-        height: 40vh;
-      }
-    }
-  }
-}
 </style>
 
 <style lang="scss">
 .CodeMirror {
-  width: 38vw !important;
-  height: calc(70vh - 50px) !important;
+  height: 100% !important;
   border-radius: 0 0 0 15px;
-  overflow: scroll;
   z-index: 1 !important;
+  width: 100% !important;
+}
+
+.CodeMirror-scroll {
+  padding-bottom: 0 !important;
+  overflow: hidden !important;
+}
+
+.CodeMirror-gutters {
+  background-color: #ffffff;
 }
 </style>

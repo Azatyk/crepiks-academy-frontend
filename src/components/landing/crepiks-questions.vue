@@ -63,7 +63,7 @@ export default {};
 @import "@/assets/styles/variables.scss";
 .questions {
   background-color: $background;
-  padding: 10vh 12%;
+  padding: 11vh 12%;
   box-sizing: border-box;
 
   &-content {
@@ -100,7 +100,7 @@ export default {};
   }
 
   &-links {
-    margin-bottom: 10px;
+    margin-top: 5px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -144,7 +144,6 @@ export default {};
     &-text {
       width: 100%;
       display: flex;
-      width: 550px;
     }
 
     &-subheading {

@@ -277,17 +277,57 @@ export default {
 }
 
 .light_circle_active {
-  top: -90%;
-  left: 15%;
+  animation: hover-light-circle ease 0.7s;
 }
 
 .dark_circle_active {
-  top: -80%;
-  left: 60%;
+  animation: hover-dark-circle ease 0.7s;
 }
 
 .arrow_icon {
-  right: 10%;
+  animation: arrow ease 0.7s;
+}
+
+@keyframes hover-light-circle {
+  0% {
+    top: -80%;
+    left: 15%;
+  }
+  40% {
+    top: -85%;
+    left: 15%;
+  }
+  100% {
+    top: -80%;
+    left: 15%;
+  }
+}
+
+@keyframes hover-dark-circle {
+  20% {
+    top: -70%;
+    left: 50%;
+  }
+  60% {
+    top: -80%;
+    left: 50%;
+  }
+  120% {
+    top: -70%;
+    left: 50%;
+  }
+}
+
+@keyframes arrow {
+  10% {
+    right: 7%;
+  }
+  40% {
+    right: 10%;
+  }
+  100% {
+    right: 7%;
+  }
 }
 
 .socials {
