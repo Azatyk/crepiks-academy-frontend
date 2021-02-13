@@ -263,15 +263,15 @@ export default {
 }
 
 .light_circle_active {
-  animation: hover-light-circle ease 0.75s;
+  animation: hover-light-circle ease 0.7s;
 }
 
 .dark_circle_active {
-  animation: hover-dark-circle ease 1s;
+  animation: hover-dark-circle ease 0.7s;
 }
 
 .arrow_icon {
-  animation: arrow ease 1s;
+  animation: arrow ease 0.7s;
 }
 
 @keyframes hover-light-circle {
@@ -280,7 +280,7 @@ export default {
     left: 15%;
   }
   40% {
-    top: -90%;
+    top: -85%;
     left: 15%;
   }
   100% {
@@ -294,22 +294,22 @@ export default {
     top: -70%;
     left: 50%;
   }
-  40% {
-    top: -85%;
+  60% {
+    top: -80%;
     left: 50%;
   }
-  100% {
+  120% {
     top: -70%;
     left: 50%;
   }
 }
 
 @keyframes arrow {
-  20% {
+  10% {
     right: 7%;
   }
   40% {
-    right: 15%;
+    right: 10%;
   }
   100% {
     right: 7%;
