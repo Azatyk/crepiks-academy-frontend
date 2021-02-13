@@ -119,26 +119,32 @@ export default {
 }
 
 .html-css-basic {
+  width: 95px;
   position: absolute;
-  transform: rotate(-20deg);
+  transform: rotate(-18deg);
   top: 50px;
   left: 50px;
+  border-radius: 10px;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 
 .html-css-upgrade {
+  width: 95px;
   position: absolute;
   left: 85px;
-  top: 135px;
-  transform: rotate(20deg);
+  top: 130px;
+  transform: rotate(18deg);
+  border-radius: 10px;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 
 .javascript {
+  width: 95px;
   position: absolute;
-  top: 200px;
+  top: 195px;
   left: 50px;
-  transform: rotate(-20deg);
+  transform: rotate(-15deg);
+  border-radius: 10px;
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
 }
 
@@ -150,6 +156,7 @@ export default {
 
   .card-text {
     padding: 30px 0 30px 30px;
+    width: 70%;
 
     &-title {
       font-size: 25px;
@@ -160,18 +167,32 @@ export default {
     }
   }
 
-  // .card-button-promocode {
-  //   flex-direction: column;
-  //   align-items: flex-start;
-  // }
-
   .card-promocode {
-    margin-top: 20px;
     font-size: 11px;
   }
 
-  .card-images {
-    height: 320px;
+  .card-button {
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 7px;
+  }
+
+  .html-css-basic {
+    width: 75px;
+    top: 30px;
+    left: 20px;
+  }
+
+  .html-css-upgrade {
+    width: 75px;
+    top: 79px;
+    left: 45px;
+  }
+
+  .javascript {
+    width: 75px;
+    top: 135px;
+    left: 20px;
   }
 }
 
@@ -210,29 +231,21 @@ export default {
   }
 
   .card-button {
-    font-size: 13px;
-    padding: 8px 20px;
     margin-right: 10px;
   }
 
   .html-css-basic {
-    position: absolute;
-    width: 160px;
-    left: 10px;
+    left: 50px;
   }
 
   .html-css-upgrade {
-    position: absolute;
-    width: 140px;
-    left: 80px;
-    top: -20px;
+    left: 120px;
+    top: 20px;
   }
 
   .javascript {
-    position: absolute;
-    width: 150px;
-    left: 150px;
-    top: 0;
+    left: 190px;
+    top: 30px;
   }
 }
 </style>
