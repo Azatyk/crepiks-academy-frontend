@@ -3,7 +3,7 @@
     <div class="content-half">
       <logo class="sidebar-logo" />
       <div class="dividing-line"></div>
-      <div class="navigation-links">
+      <div class="navigation-links" @click="show = !show">
         <router-link class="link link-active" to="/app/courses">
           <i class="bx bx-window-alt link-icon"></i>
           <span class="link-text">Курсы</span>
@@ -18,85 +18,88 @@
         </router-link>
       </div>
     </div>
-    <div class="content-half">
-      <div class="navigation-links-extra">
-        <div
-          class="link"
-          @click="socials = true"
-          :class="{ link_inactive: socials }"
-        >
-          <i class="bx bx-help-circle link-icon"></i>
-          <span class="link-text">Помощь</span>
-        </div>
-        <div class="socials-links" :class="{ socials_links_active: socials }">
-          <a
-            href="https://wa.me/77078139703"
-            class="socials-link"
-            target="_blank"
+    <transition name="fade">
+      <div class="content-half" v-if="show">
+        <div class="navigation-links-extra">
+          <div
+            class="link"
+            @click="socials = true"
+            :class="{ link_inactive: socials }"
           >
-            <i class="bx bxl-whatsapp socials-link-icon"></i>
-          </a>
-          <a
-            href="https://t.me/CrepiksAcademyBot"
-            class="socials-link"
-            target="_blank"
-          >
-            <i class="bx bxl-telegram socials-link-icon"></i>
-          </a>
-          <a
-            href="https://www.instagram.com/crepiks_academy/"
-            class="socials-link"
-            target="_blank"
-          >
-            <i class="bx bxl-instagram socials-link-icon"></i>
-          </a>
-          <a
-            href="mailto:crepiks.academy@mail.ru"
-            class="socials-link"
-            target="_blank"
-          >
-            <i class="bx bx-mail-send socials-link-icon"></i>
-          </a>
-          <a
-            href="https://vk.com/public200320088"
-            class="socials-link"
-            target="_blank"
-          >
-            <i class="bx bxl-vk socials-link-icon"></i>
-          </a>
-          <div @click="socials = false" class="socials-link socials-link-x">
-            <i class="bx bx-x socials-link-icon"></i>
+            <i class="bx bx-help-circle link-icon"></i>
+            <span class="link-text">Помощь</span>
+          </div>
+          <div class="socials-links" :class="{ socials_links_active: socials }">
+            <a
+              href="https://wa.me/77078139703"
+              class="socials-link"
+              target="_blank"
+            >
+              <i class="bx bxl-whatsapp socials-link-icon"></i>
+            </a>
+            <a
+              href="https://t.me/CrepiksAcademyBot"
+              class="socials-link"
+              target="_blank"
+            >
+              <i class="bx bxl-telegram socials-link-icon"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/crepiks_academy/"
+              class="socials-link"
+              target="_blank"
+            >
+              <i class="bx bxl-instagram socials-link-icon"></i>
+            </a>
+            <a
+              href="mailto:crepiks.academy@mail.ru"
+              class="socials-link"
+              target="_blank"
+            >
+              <i class="bx bx-mail-send socials-link-icon"></i>
+            </a>
+            <a
+              href="https://vk.com/public200320088"
+              class="socials-link"
+              target="_blank"
+            >
+              <i class="bx bxl-vk socials-link-icon"></i>
+            </a>
+            <div @click="socials = false" class="socials-link socials-link-x">
+              <i class="bx bx-x socials-link-icon"></i>
+            </div>
+          </div>
+          <div class="link link-exit" @click="logout">
+            <i class="bx bx-log-out-circle link-icon"></i>
+            <span class="link-text">Выход</span>
           </div>
         </div>
-        <div class="link link-exit" @click="logout">
-          <i class="bx bx-log-out-circle link-icon"></i>
-          <span class="link-text">Выход</span>
-        </div>
-      </div>
-      <router-link
-        class="subscription"
-        to="/app/subscription"
-        @mouseover.native="hover = true"
-        @mouseleave.native="hover = false"
-      >
-        <div
-          class="subscription-light-circle"
-          :class="{ light_circle_active: hover }"
-        ></div>
-        <div
-          class="subscription-dark-circle"
-          :class="{ dark_circle_active: hover }"
-        ></div>
-        <span class="subscription-text"
-          >Получи полный доступ с
-          <span class="subscription-text-important">Pro</span> подпиской!</span
+        <router-link
+          class="subscription"
+          to="/app/subscription"
+          @mouseover.native="hover = true"
+          @mouseleave.native="hover = false"
         >
-        <i
-          class="bx bx-right-arrow-alt subscription-icon"
-          :class="{ arrow_icon: hover }"
-        ></i>
-      </router-link>
-    </div>
+          <div
+            class="subscription-light-circle"
+            :class="{ light_circle_active: hover }"
+          ></div>
+          <div
+            class="subscription-dark-circle"
+            :class="{ dark_circle_active: hover }"
+          ></div>
+          <span class="subscription-text"
+            >Получи полный доступ с
+            <span class="subscription-text-important">Pro</span>
+            подпиской!</span
+          >
+          <i
+            class="bx bx-right-arrow-alt subscription-icon"
+            :class="{ arrow_icon: hover }"
+          ></i>
+        </router-link>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -108,7 +111,8 @@ export default {
   data() {
     return {
       hover: false,
-      socials: false
+      socials: false,
+      show: true
     };
   },
   components: {
@@ -118,6 +122,16 @@ export default {
   methods: mapMutations(["logout"])
 };
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
@@ -186,7 +200,7 @@ export default {
     color: $primary;
     opacity: 0.9;
   }
-  
+
   &-exit:hover {
     color: #e74c3c;
   }
