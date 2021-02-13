@@ -5,10 +5,6 @@
       <router-view></router-view>
     </div>
     <Logo class="logo" />
-    <router-link class="profile" to="/app/profile">
-      <span class="profile-name">Кажимухан Азат</span>
-      <i class="bx bx-user-circle profile-icon"></i>
-    </router-link>
   </div>
 </template>
 
@@ -38,35 +34,6 @@ export default {
   }
 }
 
-.profile {
-  position: absolute;
-  top: 50px;
-  right: 5%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: $dark;
-  opacity: 0.6;
-  cursor: pointer;
-  transition: 200ms ease-in-out;
-  z-index: 1;
-  text-decoration: none;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  &-icon {
-    font-size: 25px;
-  }
-
-  &-name {
-    margin-right: 7px;
-    font-size: 16px;
-    font-weight: 500;
-  }
-}
-
 .logo {
   display: none;
 }
@@ -77,14 +44,6 @@ export default {
       margin-left: 0;
       padding: 0;
       width: 100%;
-    }
-  }
-
-  .profile {
-    right: 5%;
-
-    &-name {
-      display: none;
     }
   }
 

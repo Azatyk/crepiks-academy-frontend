@@ -1,5 +1,6 @@
 <template>
   <div class="courses-page">
+    <profileLink />
     <div class="courses-half">
       <div class="search-input">
         <input
@@ -68,11 +69,14 @@ import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
 
 import course from "@/components/courses/crepiks-course";
 
+import profileLink from "@/components/profile-link/crepiks-profile-link";
+
 export default {
   components: {
     cButton,
     courseCard,
-    course
+    course,
+    profileLink
   },
 
   data() {
