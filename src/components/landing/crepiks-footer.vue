@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="footer-content">
       <Logo class="footer-logo" />
-      <div class="footer-email">crepiks.academy@mail.ru</div>
+      <div class="footer-email">info@crepiks.com</div>
     </div>
   </div>
 </template>
