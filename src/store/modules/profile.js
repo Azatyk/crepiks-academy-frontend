@@ -1,9 +1,6 @@
 import { request } from "@/requests/request";
 
 export default {
-  state: {
-    userData: {}
-  },
   actions: {
     getUserData({ commit }, id) {
       return new Promise((resolve, reject) => {
@@ -20,7 +17,7 @@ export default {
           });
       });
     },
-    changeUserData(ctx, { id, updatedData }) {
+    changeUserData({ commit }, { id, updatedData }) {
       return new Promise((resolve, reject) => {
         request({
           url: "/users/" + id,
@@ -29,6 +26,7 @@ export default {
         })
           .then(res => {
             localStorage.setItem("user", JSON.stringify(res.data.user));
+            commit("updateUserData");
             resolve(res);
           })
           .catch(err => {
@@ -74,11 +72,6 @@ export default {
             reject(err);
           });
       });
-    }
-  },
-  mutations: {
-    getUserData(state, res) {
-      state.userData = res.user;
     }
   }
 };

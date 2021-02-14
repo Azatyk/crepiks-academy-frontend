@@ -29,7 +29,7 @@ export default {
       type: String
     },
     maxlength: {
-      type: String
+      type: Number
     }
   },
 
