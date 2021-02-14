@@ -21,7 +21,9 @@
           <div class="user-profile-button" @click="openProfileEdit = true">
             Редактировать профиль
           </div>
-          <div class="user-profile-button">Изменить пароль</div>
+          <div class="user-profile-button" @click="openChangePassword = true">
+            Изменить пароль
+          </div>
         </div>
         <div class="user-profile-subscription">Подписка не активна</div>
       </div>
@@ -57,11 +59,43 @@
     >
       <div class="right-block">
         <h2 class="right-block-heading">Редактировать профиль</h2>
-        <form action="" class="form">
-          <cInput class="form-input" title="Имя" />
-          <cInput class="form-input" title="Фамилия" />
-          <cButton class="form-button" text="Изменить" type="submit" />
-        </form>
+        <div class="right-block-container">
+          <cInput
+            class="right-block-input"
+            title="Имя"
+            v-model="user.firstName"
+          />
+          <cInput
+            class="right-block-input"
+            title="Фамилия"
+            v-model="user.lastName"
+          />
+          <cInput
+            class="right-block-input"
+            title="Почта"
+            type="email"
+            v-model="user.email"
+          />
+          <cButton
+            class="right-block-button"
+            text="Изменить"
+            @click="changeUserData"
+          />
+        </div>
+      </div>
+    </rightSideBlock>
+    <rightSideBlock
+      :isOpen="openChangePassword"
+      @close-block="openChangePassword = false"
+    >
+      <div class="right-block">
+        <h2 class="right-block-heading">Изменить пароль</h2>
+        <div class="right-block-container">
+          <cInput class="right-block-input" title="Старый пароль" />
+          <cInput class="right-block-input" title="Новый пароль" />
+          <cInput class="right-block-input" title="Повторите новый пароль" />
+          <cButton class="right-block-button" text="Изменить" />
+        </div>
       </div>
     </rightSideBlock>
   </div>
@@ -77,6 +111,8 @@ import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cInput from "@/components/common/crepiks-input";
 import cButton from "@/components/common/crepiks-button";
 
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     courseCard,
@@ -88,12 +124,64 @@ export default {
     return {
       firstCourseImage: firstCourseImage,
       secondCourseImage: secondCourseImage,
-      openProfileEdit: false
+      openProfileEdit: false,
+      openChangePassword: false,
+      user: {
+        firstName: null,
+        lastName: null,
+        email: null
+      },
+      userId: null
     };
   },
   methods: {
     closeEditBlock() {
       this.isCourseBlockOpen = false;
+    },
+    changeUserData() {
+      this.isProfileLoading = true;
+
+      let updatedData = {
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        email: this.user.email
+      };
+
+      let id = this.userId;
+      this.$store
+        .dispatch("changeUserData", { id, updatedData })
+        .then(() => (this.isProfileLoading = false));
+      // .then(() =>
+      //   this.openNotification(
+      //     "top-center",
+      //     "success",
+      //     "Изменения сохранены",
+      //     "Данные профиля удачно обновлены ;)"
+      //   )
+      // );
+    }
+
+    // openNotification(
+    //   position = "top-center",
+    //   color = null,
+    //   title = "",
+    //   text = ""
+    // ) {
+    //   this.$vs.notification({
+    //     position,
+    //     color,
+    //     title,
+    //     text
+    //   });
+    // }
+  },
+  computed: {
+    ...mapGetters(["userData"])
+  },
+  mounted() {
+    if (this.userData) {
+      this.user = this.userData;
+      this.userId = this.user.id;
     }
   }
 };
@@ -208,9 +296,7 @@ export default {
   &-heading {
     font-weight: 500;
   }
-}
 
-.form {
   &-input {
     margin-top: 30px;
   }
