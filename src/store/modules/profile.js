@@ -28,6 +28,7 @@ export default {
           method: "PATCH"
         })
           .then(res => {
+            localStorage.setItem("user", JSON.stringify(res.data.user));
             resolve(res);
           })
           .catch(err => {

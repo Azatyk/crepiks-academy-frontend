@@ -153,30 +153,9 @@ export default {
       let id = this.userId;
       this.$store
         .dispatch("changeUserData", { id, updatedData })
-        .then(() => (this.isProfileLoading = false));
-      // .then(() =>
-      //   this.openNotification(
-      //     "top-center",
-      //     "success",
-      //     "Изменения сохранены",
-      //     "Данные профиля удачно обновлены ;)"
-      //   )
-      // );
+        .then(() => (this.isProfileLoading = false))
+        .catch(err => console.log(err));
     }
-
-    // openNotification(
-    //   position = "top-center",
-    //   color = null,
-    //   title = "",
-    //   text = ""
-    // ) {
-    //   this.$vs.notification({
-    //     position,
-    //     color,
-    //     title,
-    //     text
-    //   });
-    // }
   },
   computed: {
     ...mapGetters(["userData"])
