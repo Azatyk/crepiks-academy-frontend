@@ -118,10 +118,15 @@ export default {
   },
 
   methods: mapMutations(["logout"]),
-  mounted() {
-    setInterval(() => {
-      this.hover = false;
-    }, 1000);
+
+  watch: {
+    hover() {
+      if (this.hover) {
+        setTimeout(() => {
+          this.hover = false;
+        }, 1000);
+      }
+    }
   }
 };
 </script>
