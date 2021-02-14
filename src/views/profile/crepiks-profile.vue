@@ -1,5 +1,12 @@
 <template>
   <div class="user-profile">
+    <notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      :status="notificationStatus"
+    />
     <div class="user-profile-info">
       <div class="user-profile-image">
         <img
@@ -67,12 +74,14 @@
             title="Имя"
             v-model="user.firstName"
             :value="user.firstName"
+            :maxlength="maxlength"
           />
           <cInput
             class="right-block-input"
             title="Фамилия"
             v-model="user.lastName"
             :value="user.lastName"
+            :maxlength="maxlength"
           />
           <cInput
             class="right-block-input"
@@ -80,7 +89,7 @@
             type="email"
             v-model="user.email"
             :value="user.email"
-            :maxlength="max"
+            :maxlength="maxlength"
           />
           <cButton
             class="right-block-button"
@@ -117,6 +126,8 @@ import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cInput from "@/components/common/crepiks-input";
 import cButton from "@/components/common/crepiks-button";
 
+import notification from "@/components/common/crepiks-notification";
+
 import { mapGetters } from "vuex";
 
 export default {
@@ -124,7 +135,8 @@ export default {
     courseCard,
     rightSideBlock,
     cInput,
-    cButton
+    cButton,
+    notification
   },
   data() {
     return {
@@ -132,7 +144,11 @@ export default {
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
-      max: 34,
+      maxlength: 34,
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
       user: {
         firstName: null,
         lastName: null,
@@ -143,6 +159,8 @@ export default {
   },
   methods: {
     changeUserData() {
+      this.openProfileEdit = false;
+
       let updatedData = {
         firstName: this.user.firstName,
         lastName: this.user.lastName,
@@ -153,7 +171,18 @@ export default {
       this.$store
         .dispatch("changeUserData", { id, updatedData })
         .then(() => (this.isProfileLoading = false))
-        .catch(err => console.log(err));
+        .then(() => {
+          this.isNotificationOpen = true;
+          this.notificationStatus = "success";
+          (this.notificationHeading = "Отлично"),
+            (this.notificationText = "Вы успешно редактировали профиль");
+        })
+        .catch(() => {
+          this.isNotificationOpen = true;
+          this.notificationStatus = "error";
+          (this.notificationHeading = "Ошибка"),
+            (this.notificationText = "Не удалось редактировать профиль");
+        });
     }
   },
   computed: {
@@ -224,9 +253,10 @@ export default {
   }
 
   &-text {
-    margin-top: 3px;
+    margin-top: 2px;
     font-size: 16px;
     font-weight: 500;
+    line-height: 22px;
   }
 
   &-buttons {
