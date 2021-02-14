@@ -60,7 +60,7 @@
       @close-block="openProfileEdit = false"
     >
       <div class="right-block">
-        <h2 class="right-block-heading">Редактировать профиль</h2>
+        <h2 class="right-block-heading">Редактирование профиля</h2>
         <div class="right-block-container">
           <cInput
             class="right-block-input"
@@ -94,7 +94,7 @@
       @close-block="openChangePassword = false"
     >
       <div class="right-block">
-        <h2 class="right-block-heading">Изменить пароль</h2>
+        <h2 class="right-block-heading">Изменение пароля</h2>
         <div class="right-block-container">
           <cInput class="right-block-input" title="Старый пароль" />
           <cInput class="right-block-input" title="Новый пароль" />
@@ -180,7 +180,7 @@ export default {
   box-sizing: border-box;
 
   &-info {
-    width: auto;
+    width: 300px;
     box-sizing: border-box;
 
     &-container {
@@ -189,8 +189,8 @@ export default {
   }
 
   &-image {
-    width: 220px;
-    height: 220px;
+    width: 300px;
+    height: 300px;
     background-color: #ffffff;
     border-radius: 10px;
     position: relative;
@@ -210,7 +210,7 @@ export default {
 
   &-container {
     display: flex;
-    align-items: center;
+    width: 100%;
     color: $dark;
     opacity: 0.6;
 
@@ -225,6 +225,7 @@ export default {
   }
 
   &-text {
+    margin-top: 3px;
     font-size: 16px;
     font-weight: 500;
   }
@@ -277,10 +278,11 @@ export default {
 
   &-heading {
     font-weight: 500;
+    font-size: 30px;
   }
 
   &-input {
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
   &-button {
@@ -292,7 +294,7 @@ export default {
   .user-profile {
     padding: 100px 5%;
     padding-top: 100px;
-    width: 750px;
+    width: 830px;
   }
 }
 
@@ -301,12 +303,18 @@ export default {
     flex-direction: column;
     width: 100%;
 
+    &-image {
+      width: 220px;
+      height: 220px;
+    }
+
     &-subscription {
       margin-top: 25px;
     }
 
     &-info {
       display: flex;
+      width: 100%;
 
       &-container {
         margin-left: 50px;
