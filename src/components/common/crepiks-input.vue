@@ -6,6 +6,7 @@
       class="input"
       :placeholder="placeholder"
       :value="value"
+      :maxlength="maxlength"
       @input="updateValue($event.target.value)"
     />
   </div>
@@ -25,6 +26,9 @@ export default {
       type: String
     },
     value: {
+      type: String
+    },
+    maxlength: {
       type: String
     }
   },
