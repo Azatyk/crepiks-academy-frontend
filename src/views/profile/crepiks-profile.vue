@@ -72,23 +72,20 @@
           <cInput
             class="right-block-input"
             title="Имя"
-            v-model="user.firstName"
-            :value="user.firstName"
+            v-model="updatedUser.firstName"
             :maxlength="maxlength"
           />
           <cInput
             class="right-block-input"
             title="Фамилия"
-            v-model="user.lastName"
-            :value="user.lastName"
+            v-model="updatedUser.lastName"
             :maxlength="maxlength"
           />
           <cInput
             class="right-block-input"
             title="Почта"
             type="email"
-            v-model="user.email"
-            :value="user.email"
+            v-model="updatedUser.email"
             :maxlength="maxlength"
           />
           <cButton
@@ -154,6 +151,11 @@ export default {
         lastName: null,
         email: null
       },
+      updatedUser: {
+        firstName: null,
+        lastName: null,
+        email: null
+      },
       userId: null
     };
   },
@@ -162,20 +164,19 @@ export default {
       this.openProfileEdit = false;
 
       let updatedData = {
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        email: this.user.email
+        firstName: this.updatedUser.firstName,
+        lastName: this.updatedUser.lastName,
+        email: this.updatedUser.email
       };
 
       let id = this.userId;
       this.$store
         .dispatch("changeUserData", { id, updatedData })
-        .then(() => (this.isProfileLoading = false))
         .then(() => {
           this.isNotificationOpen = true;
           this.notificationStatus = "success";
-          (this.notificationHeading = "Отлично"),
-            (this.notificationText = "Вы успешно редактировали профиль");
+          (this.notificationHeading = "Профиль сохранен"),
+            (this.notificationText = "Ваши данные изменены");
         })
         .catch(() => {
           this.isNotificationOpen = true;
@@ -191,7 +192,19 @@ export default {
   mounted() {
     if (this.userData) {
       this.user = this.userData;
+      this.updatedUser.firstName = this.userData.firstName;
+      this.updatedUser.lastName = this.userData.lastName;
+      this.updatedUser.email = this.userData.email;
       this.userId = this.user.id;
+    }
+  },
+
+  watch: {
+    userData() {
+      this.user = this.userData;
+      this.updatedUser.firstName = this.userData.firstName;
+      this.updatedUser.lastName = this.userData.lastName;
+      this.updatedUser.email = this.userData.email;
     }
   }
 };
