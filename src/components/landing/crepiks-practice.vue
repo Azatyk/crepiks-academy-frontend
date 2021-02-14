@@ -126,7 +126,7 @@ export default {
       } else {
         return {
           status: "error",
-          heading: "Что-то не так",
+          heading: "Задание не выполнено",
           text:
             'Убедитесь, что вы правильно скопировали или переписали код "Hello, World!" на 10 строку.'
         };

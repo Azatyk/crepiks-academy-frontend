@@ -2,14 +2,19 @@
   <div
     class="notification"
     :class="{
-      'notification-success': status == 'success',
-      'notification-warning': status == 'warning',
-      'notification-error': status == 'error',
       'notification-top': position == 'top',
       'notification-bottom': position == 'bottom',
       'notification-active': isActive
     }"
   >
+    <div
+      class="notification-mark"
+      :class="{
+        'notification-mark-success': status == 'success',
+        'notification-mark-warning': status == 'warning',
+        'notification-mark-error': status == 'error'
+      }"
+    ></div>
     <i
       class="notification-icon"
       :class="{
@@ -64,7 +69,7 @@ export default {
       if (this.isActive) {
         setTimeout(() => {
           this.$emit("close-notification");
-        }, 5000);
+        }, 7000);
       }
     }
   }
@@ -76,14 +81,15 @@ export default {
 
 .notification {
   position: fixed;
-  right: -510px;
+  right: -550px;
   padding: 20px 30px 20px 15px;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: row;
-  border: 1px solid $dark;
-  border-radius: 5px;
+  align-items: center;
+  border-radius: 10px;
   background-color: $white;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.15);
   transition: 350ms ease-in-out;
   z-index: 7;
 
@@ -99,21 +105,29 @@ export default {
     bottom: 20px;
   }
 
-  &-success {
-    border-color: $primary;
-  }
+  &-mark {
+    margin-right: 10px;
+    height: 70px;
+    width: 8px;
+    border-radius: 10px;
+    background-color: black;
 
-  &-warning {
-    border-color: #f1c40f;
-  }
+    &-success {
+      background-color: $primary;
+    }
 
-  &-error {
-    border-color: $error;
+    &-warning {
+      background-color: #f1c40f;
+    }
+
+    &-error {
+      background-color: $error;
+    }
   }
 
   &-icon {
     margin-right: 10px;
-    font-size: 23px;
+    font-size: 25px;
 
     &-success {
       color: $primary;
@@ -129,6 +143,7 @@ export default {
   }
 
   &-text {
+    margin-right: 10px;
     display: flex;
     flex-direction: column;
   }
@@ -148,11 +163,8 @@ export default {
   }
 
   &-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     color: $dark;
-    font-size: 18px;
+    font-size: 25px;
     opacity: 0.5;
     z-index: 5;
     cursor: pointer;
