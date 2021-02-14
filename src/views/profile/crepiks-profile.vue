@@ -278,7 +278,7 @@ export default {
 
   &-button {
     color: $primary;
-    font-size: 12px;
+    font-size: 15px;
     margin-top: 10px;
     cursor: pointer;
   }

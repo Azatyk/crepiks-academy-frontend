@@ -31,16 +31,14 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: $white;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   transition: 400ms ease-in-out;
   z-index: 3;
 
   &-open {
     right: 0;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   }
-}
 
-.side-block {
   &-close {
     color: $dark;
     font-size: 25px;
@@ -61,6 +59,7 @@ export default {
 
     &-open {
       right: 0;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     }
   }
 }
