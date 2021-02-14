@@ -103,10 +103,32 @@
       <div class="right-block">
         <h2 class="right-block-heading">Изменение пароля</h2>
         <div class="right-block-container">
-          <cInput class="right-block-input" title="Старый пароль" />
-          <cInput class="right-block-input" title="Новый пароль" />
-          <cInput class="right-block-input" title="Повторите новый пароль" />
-          <cButton class="right-block-button" text="Изменить" />
+          <cInput
+            class="right-block-input"
+            title="Старый пароль"
+            v-model="passwords.currentPassword"
+            placeholder="Введите старый пароль"
+            type="password"
+          />
+          <cInput
+            class="right-block-input"
+            title="Новый пароль"
+            v-model="passwords.newPassword"
+            placeholder="Введите новый пароль"
+            type="password"
+          />
+          <cInput
+            class="right-block-input"
+            title="Повторите новый пароль"
+            v-model="passwords.newPasswordCheck"
+            placeholder="Повторите новый пароль"
+            type="password"
+          />
+          <cButton
+            class="right-block-button"
+            text="Изменить"
+            @click="changePassword"
+          />
         </div>
       </div>
     </rightSideBlock>
@@ -156,6 +178,11 @@ export default {
         lastName: null,
         email: null
       },
+      passwords: {
+        currentPassword: null,
+        newPassword: null,
+        newPasswordCheck: null
+      },
       userId: null
     };
   },
@@ -184,6 +211,43 @@ export default {
           (this.notificationHeading = "Ошибка"),
             (this.notificationText = "Не удалось редактировать профиль");
         });
+    },
+
+    changePassword() {
+      if (
+        this.passwords.newPassword.trim() !==
+        this.passwords.newPasswordCheck.trim()
+      ) {
+        this.isNotificationOpen = true;
+        this.notificationStatus = "error";
+        (this.notificationHeading = "Ошибка"),
+          (this.notificationText = "Не удалось изменить пароль");
+      } else {
+        let passwords = {
+          oldPassword: this.passwords.currentPassword,
+          newPassword: this.passwords.newPassword
+        };
+
+        let id = this.userId;
+        this.$store
+          .dispatch("changePassword", { id, passwords })
+          .then(() => (this.isChangePasswordLoading = false))
+          .then(() => {
+            this.openChangePassword = false;
+            this.isNotificationOpen = true;
+            this.notificationStatus = "success";
+            (this.notificationHeading = "Пароль изменен"),
+              (this.notificationText =
+                "Вы удачно изменили пароль, используйте его для входа");
+          })
+          .catch(() => {
+            this.isNotificationOpen = true;
+            this.notificationStatus = "error";
+            (this.notificationHeading = "Неверный пароль"),
+              (this.notificationText =
+                "Вы неверно ввели текущий пароль, попробуйте снова");
+          });
+      }
     }
   },
   computed: {
@@ -205,6 +269,13 @@ export default {
       this.updatedUser.firstName = this.userData.firstName;
       this.updatedUser.lastName = this.userData.lastName;
       this.updatedUser.email = this.userData.email;
+    },
+    openChangePassword() {
+      if (this.openChangePassword) {
+        this.passwords.currentPassword = null;
+        this.passwords.newPassword = null;
+        this.passwords.newPasswordCheck = null;
+      }
     }
   }
 };
