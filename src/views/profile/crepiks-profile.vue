@@ -11,11 +11,13 @@
       <div class="user-profile-info-container">
         <div class="user-profile-container">
           <i class="bx bx-user-circle user-profile-icon"></i>
-          <span class="user-profile-text">Кажимухан Азат</span>
+          <span class="user-profile-text"
+            >{{ user.lastName }} {{ user.firstName }}</span
+          >
         </div>
         <div class="user-profile-container user-profile-container-email">
           <i class="bx bx-mail-send user-profile-icon"></i>
-          <span class="user-profile-text">azatuk2005@mail.ru</span>
+          <span class="user-profile-text">{{ user.email }}</span>
         </div>
         <div class="user-profile-buttons">
           <div class="user-profile-button" @click="openProfileEdit = true">
@@ -142,8 +144,6 @@ export default {
       this.isCourseBlockOpen = false;
     },
     changeUserData() {
-      this.isProfileLoading = true;
-
       let updatedData = {
         firstName: this.user.firstName,
         lastName: this.user.lastName,
