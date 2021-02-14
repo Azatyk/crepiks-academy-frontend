@@ -1,5 +1,6 @@
 <template>
   <div class="side-block" :class="{ 'side-block-open': isOpen }">
+    <i class="bx bx-x side-block-close" @click="$emit('close-block')"></i>
     <slot></slot>
   </div>
 </template>
@@ -36,6 +37,48 @@ export default {
 
   &-open {
     right: 0;
+  }
+}
+
+.side-block {
+  &-close {
+    color: $dark;
+    font-size: 25px;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .side-block {
+    width: 60%;
+    right: -60%;
+
+    &-open {
+      right: 0;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .side-block {
+    width: 100%;
+    right: -100%;
+
+    &-open {
+      right: 0;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .side-block {
+    padding: 30px 30px;
   }
 }
 </style>

@@ -18,7 +18,9 @@
           <span class="user-profile-text">azatuk2005@mail.ru</span>
         </div>
         <div class="user-profile-buttons">
-          <div class="user-profile-button">Редактировать профиль</div>
+          <div class="user-profile-button" @click="openProfileEdit = true">
+            Редактировать профиль
+          </div>
           <div class="user-profile-button">Изменить пароль</div>
         </div>
         <div class="user-profile-subscription">Подписка не активна</div>
@@ -49,6 +51,19 @@
         />
       </div>
     </div>
+    <rightSideBlock
+      :isOpen="openProfileEdit"
+      @close-block="openProfileEdit = false"
+    >
+      <div class="right-block">
+        <h2 class="right-block-heading">Редактировать профиль</h2>
+        <form action="" class="form">
+          <cInput class="form-input" title="Имя" />
+          <cInput class="form-input" title="Фамилия" />
+          <cButton class="form-button" text="Изменить" type="submit" />
+        </form>
+      </div>
+    </rightSideBlock>
   </div>
 </template>
 
@@ -58,15 +73,28 @@ import courseCard from "@/components/courses/crepiks-course-card";
 import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
 import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
 
+import rightSideBlock from "@/components/common/crepiks-right-side-block";
+import cInput from "@/components/common/crepiks-input";
+import cButton from "@/components/common/crepiks-button";
+
 export default {
   components: {
-    courseCard
+    courseCard,
+    rightSideBlock,
+    cInput,
+    cButton
   },
   data() {
     return {
       firstCourseImage: firstCourseImage,
-      secondCourseImage: secondCourseImage
+      secondCourseImage: secondCourseImage,
+      openProfileEdit: false
     };
+  },
+  methods: {
+    closeEditBlock() {
+      this.isCourseBlockOpen = false;
+    }
   }
 };
 </script>
@@ -170,6 +198,25 @@ export default {
     &-card:last-child {
       margin-top: 60px;
     }
+  }
+}
+
+.right-block {
+  padding: 30px 0;
+  box-sizing: border-box;
+
+  &-heading {
+    font-weight: 500;
+  }
+}
+
+.form {
+  &-input {
+    margin-top: 30px;
+  }
+
+  &-button {
+    margin-top: 40px;
   }
 }
 
