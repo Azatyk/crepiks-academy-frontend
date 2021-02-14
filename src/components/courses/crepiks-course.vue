@@ -1,6 +1,8 @@
 <template>
-  <rightSideBlock :isOpen="isCourseOpen">
-    <i class="bx bx-x course-close" @click="$emit('close-course-block')"></i>
+  <rightSideBlock
+    :isOpen="isCourseOpen"
+    @close-block="$emit('close-course-block')"
+  >
     <div class="course-content">
       <div class="main-info">
         <img
@@ -144,18 +146,6 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .course {
-  &-close {
-    color: $dark;
-    font-size: 25px;
-    opacity: 0.4;
-    cursor: pointer;
-    transition: 200ms ease-in-out;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-
   &-content {
     padding-bottom: 50px;
     width: 100%;
@@ -268,34 +258,6 @@ export default {
     &-completed {
       color: $primary;
     }
-  }
-}
-
-@media (max-width: 1024px) {
-  .course {
-    width: 60%;
-    right: -60%;
-
-    &-open {
-      right: 0;
-    }
-  }
-}
-
-@media (max-width: 750px) {
-  .course {
-    width: 100%;
-    right: -100%;
-
-    &-open {
-      right: 0;
-    }
-  }
-}
-
-@media (max-width: 414px) {
-  .course {
-    padding: 30px 30px;
   }
 }
 </style>
