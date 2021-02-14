@@ -320,7 +320,8 @@ export default {
 
   &-heading {
     font-weight: 500;
-    font-size: 30px;
+    font-size: 32px;
+    margin-bottom: 30px;
   }
 
   &-input {
@@ -332,11 +333,17 @@ export default {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1244px) {
   .user-profile {
     padding: 100px 5%;
     padding-top: 100px;
     width: 830px;
+  }
+
+  .right-block {
+    &-heading {
+      font-size: 27px;
+    }
   }
 }
 
@@ -375,6 +382,12 @@ export default {
       }
     }
   }
+
+  .right-block {
+    &-heading {
+      font-size: 24px;
+    }
+  }
 }
 
 @media (max-width: 525px) {
@@ -389,6 +402,12 @@ export default {
         padding-top: 30px;
         margin-left: 0;
       }
+    }
+  }
+
+  .right-block {
+    &-heading {
+      font-size: 20px;
     }
   }
 }
