@@ -85,6 +85,7 @@ export default {
   border-radius: 5px;
   background-color: $white;
   transition: 350ms ease-in-out;
+  z-index: 7;
 
   &-active {
     right: 20px;

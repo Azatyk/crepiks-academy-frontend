@@ -1,5 +1,12 @@
 <template>
   <div class="practice">
+    <notification
+      :heading="notificationHeading"
+      :text="notificationText"
+      :status="notificationStatus"
+      :isActive="isNotificationActive"
+      @close-notification="isNotificationActive = false"
+    />
     <div class="practice-content">
       <h2 class="practice-heading">
         Чего ждать? Попробуем что-нибудь написать.
@@ -7,7 +14,7 @@
       <p class="practice-paragraph">
         Перепешите или скопируйте этот код на 10 строку
         <span class="practice-paragraph-bold"
-          >&#60;h1&#62;Hello world!&#60;/h1&#62;</span
+          >&#60;h1&#62;Hello, World!&#60;/h1&#62;</span
         >
         и нажмите "Проверить". В мини браузере увидите результат выполнения
         кода, а автоматический тест оповестит вас о решении задания.
@@ -48,6 +55,8 @@
 </template>
 
 <script>
+import notification from "@/components/common/crepiks-notification";
+
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
@@ -55,11 +64,16 @@ import "codemirror/theme/eclipse.css";
 
 export default {
   components: {
+    notification,
     codemirror
   },
 
   data() {
     return {
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
+      isNotificationActive: false,
       htmlCode:
         "<!DOCTYPE html>\n" +
         '<html lang="en">\n' +
@@ -100,6 +114,25 @@ export default {
   },
 
   methods: {
+    testFunction(iframe) {
+      let heading = iframe.querySelector("h1");
+      if (heading && heading.innerHTML == "Hello, World!") {
+        return {
+          status: "success",
+          heading: "Отличная работа!",
+          text:
+            'В мини браузере вы можете увидеть надпись "Hello, World!". Это и есть результат выполнения вашего кода.'
+        };
+      } else {
+        return {
+          status: "error",
+          heading: "Что-то не так",
+          text:
+            'Убедитесь, что вы правильно скопировали или переписали код "Hello, World!" на 10 строку.'
+        };
+      }
+    },
+
     handleRunButton() {
       var iframe =
         this.$refs.browserFrame.contentDocument ||
@@ -116,6 +149,13 @@ export default {
       ) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`;
       }
+
+      const testResult = this.testFunction(iframe);
+
+      this.notificationStatus = testResult.status;
+      this.notificationHeading = testResult.heading;
+      this.notificationText = testResult.text;
+      this.isNotificationActive = true;
     }
   }
 };
