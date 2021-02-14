@@ -78,7 +78,6 @@
           class="subscription"
           to="/app/subscription"
           @mouseover.native="hover = true"
-          @mouseleave.native="hover = false"
         >
           <div
             class="subscription-light-circle"
@@ -118,7 +117,12 @@ export default {
     logo
   },
 
-  methods: mapMutations(["logout"])
+  methods: mapMutations(["logout"]),
+  mounted() {
+    setInterval(() => {
+      this.hover = false;
+    }, 1000);
+  }
 };
 </script>
 

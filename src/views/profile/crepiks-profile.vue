@@ -80,6 +80,7 @@
             type="email"
             v-model="user.email"
             :value="user.email"
+            :maxlength="max"
           />
           <cButton
             class="right-block-button"
@@ -131,6 +132,7 @@ export default {
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
+      max: 34,
       user: {
         firstName: null,
         lastName: null,
@@ -140,9 +142,6 @@ export default {
     };
   },
   methods: {
-    closeEditBlock() {
-      this.isCourseBlockOpen = false;
-    },
     changeUserData() {
       let updatedData = {
         firstName: this.user.firstName,
