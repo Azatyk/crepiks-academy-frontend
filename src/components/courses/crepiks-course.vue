@@ -1,5 +1,5 @@
 <template>
-  <div class="course" :class="{ 'course-open': isCourseOpen }">
+  <rightSideBlock :isOpen="isCourseOpen">
     <i class="bx bx-x course-close" @click="$emit('close-course-block')"></i>
     <div class="course-content">
       <div class="main-info">
@@ -57,16 +57,18 @@
         </div>
       </div>
     </div>
-  </div>
+  </rightSideBlock>
 </template>
 
 <script>
+import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
 
 import { mapGetters } from "vuex";
 
 export default {
   components: {
+    rightSideBlock,
     cButton
   },
 
@@ -142,25 +144,6 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .course {
-  position: fixed;
-  right: -40%;
-  top: 0;
-  padding: 60px 50px;
-  padding-bottom: 0;
-  width: 40%;
-  height: 100vh;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background-color: $white;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-  transition: 400ms ease-in-out;
-  z-index: 3;
-
-  &-open {
-    right: 0;
-  }
-
   &-close {
     color: $dark;
     font-size: 25px;
