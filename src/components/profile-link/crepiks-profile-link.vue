@@ -1,12 +1,28 @@
 <template>
   <router-link class="profile" to="/app/profile">
-    <span class="profile-name">Кажимухан Азат</span>
+    <span class="profile-name">{{ user.lastName }} {{ user.firstName }}</span>
     <i class="bx bx-user-circle profile-icon"></i>
   </router-link>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+export default {
+  data() {
+    return {
+      user: {
+        firstName: null,
+        lastName: null
+      }
+    };
+  },
+
+  computed: mapGetters(["userData", "isLoggedIn"]),
+
+  mounted() {
+    this.user = this.userData;
+  }
+};
 </script>
 
 <style scoped lang="scss">

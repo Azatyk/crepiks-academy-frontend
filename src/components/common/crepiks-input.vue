@@ -5,7 +5,7 @@
       :type="type"
       class="input"
       :placeholder="placeholder"
-      :value="inputData"
+      :value="value"
       @input="updateValue($event.target.value)"
     />
   </div>

@@ -64,17 +64,20 @@
             class="right-block-input"
             title="Имя"
             v-model="user.firstName"
+            :value="user.firstName"
           />
           <cInput
             class="right-block-input"
             title="Фамилия"
             v-model="user.lastName"
+            :value="user.lastName"
           />
           <cInput
             class="right-block-input"
             title="Почта"
             type="email"
             v-model="user.email"
+            :value="user.email"
           />
           <cButton
             class="right-block-button"
