@@ -3,7 +3,7 @@
     <div class="content-half">
       <logo class="sidebar-logo" />
       <div class="dividing-line"></div>
-      <div class="navigation-links" @click="show = !show">
+      <div class="navigation-links">
         <router-link class="link link-active" to="/app/courses">
           <i class="bx bx-window-alt link-icon"></i>
           <span class="link-text">Курсы</span>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <transition name="fade">
-      <div class="content-half" v-if="show">
+      <div class="content-half">
         <div class="navigation-links-extra">
           <div
             class="link"
@@ -111,8 +111,7 @@ export default {
   data() {
     return {
       hover: false,
-      socials: false,
-      show: true
+      socials: false
     };
   },
   components: {
@@ -122,16 +121,6 @@ export default {
   methods: mapMutations(["logout"])
 };
 </script>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
