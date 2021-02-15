@@ -345,8 +345,8 @@ export default {
 
 <style lang="scss">
 .CodeMirror {
-  width: calc(100vw - 240px);
-  height: calc(100vh - 100px);
+  width: calc(100vw - 240px) !important;
+  height: calc(100vh - 120px) !important;
   overflow: scroll;
   z-index: 1 !important;
 }
