@@ -5,6 +5,8 @@
     :class="{
       unsolid: type == 'unsolid',
       small: size == 'small',
+      big: size == 'big',
+      bold: isBold,
       disabled: isDisabled
     }"
     @click="$emit('click')"
@@ -25,6 +27,10 @@ export default {
     },
     size: {
       type: String
+    },
+    isBold: {
+      type: Boolean,
+      default: false
     },
     isDisabled: {
       type: Boolean,
@@ -63,6 +69,14 @@ export default {
 .small {
   padding: 6px 17px;
   font-size: 13px;
+}
+
+.big {
+  font-size: 17px;
+}
+
+.bold {
+  font-weight: 500;
 }
 
 .disabled {

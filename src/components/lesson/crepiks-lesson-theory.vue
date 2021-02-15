@@ -14,14 +14,18 @@
       class="bx bx-x lesson-theory-close"
       @click="$emit('theory-closed')"
     ></i>
-    <div class="content">
-      <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
-      <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
-      <cButton
-        :text="isTheoryOnly ? 'Слелующий урок' : 'Перейти к заданию'"
-        class="lesson-theory-button"
-        @click="isTheoryOnly ? handleTheoryButton() : $emit('theory-closed')"
-      />
+    <div class="content-full">
+      <div class="content">
+        <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
+        <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
+        <cButton
+          :text="isTheoryOnly ? 'Следующий урок' : 'Перейти к заданию'"
+          :isBold="true"
+          size="big"
+          class="lesson-theory-button"
+          @click="isTheoryOnly ? handleTheoryButton() : $emit('theory-closed')"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -119,7 +123,7 @@ export default {
     top: 4%;
     left: 3%;
     color: $primary;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     cursor: pointer;
     transition: 200ms ease-in-out;
@@ -136,6 +140,7 @@ export default {
     font-size: 35px;
     opacity: 0.6;
     cursor: pointer;
+    z-index: 3;
 
     &:hover {
       opacity: 0.9;
@@ -143,29 +148,37 @@ export default {
   }
 
   &-title {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: $dark;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 600;
   }
 
   &-text {
-    margin-bottom: 35px;
+    margin-bottom: 50px;
     color: $dark;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   &-button {
-    width: 200px;
+    width: 220px;
   }
 }
 
 .content {
-  padding: 5% 0;
+  padding: 100px 0;
+  margin: auto;
   width: 800px;
+  height: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+
+  &-full {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: scroll;
+  }
 }
 </style>
