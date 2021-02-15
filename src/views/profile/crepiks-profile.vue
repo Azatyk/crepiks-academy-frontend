@@ -1,58 +1,60 @@
 <template>
-  <div class="user-profile">
-    <div class="user-profile-info">
-      <div class="user-profile-image">
-        <img
-          class="user-profile-image-locate"
-          src="@/assets/images/profile-image.svg"
-          alt=""
-        />
-      </div>
-      <div class="user-profile-info-container">
-        <div class="user-profile-container">
-          <i class="bx bx-user-circle user-profile-icon"></i>
-          <span class="user-profile-text"
-            >{{ user.lastName }} {{ user.firstName }}</span
-          >
+  <div>
+    <div class="user-profile">
+      <div class="user-profile-info">
+        <div class="user-profile-image">
+          <img
+            class="user-profile-image-locate"
+            src="@/assets/images/profile-image.svg"
+            alt=""
+          />
         </div>
-        <div class="user-profile-container user-profile-container-email">
-          <i class="bx bx-mail-send user-profile-icon"></i>
-          <span class="user-profile-text">{{ user.email }}</span>
-        </div>
-        <div class="user-profile-buttons">
-          <div class="user-profile-button" @click="openProfileEdit = true">
-            Редактировать профиль
+        <div class="user-profile-info-container">
+          <div class="user-profile-container">
+            <i class="bx bx-user-circle user-profile-icon"></i>
+            <span class="user-profile-text"
+              >{{ user.lastName }} {{ user.firstName }}</span
+            >
           </div>
-          <div class="user-profile-button" @click="openChangePassword = true">
-            Изменить пароль
+          <div class="user-profile-container user-profile-container-email">
+            <i class="bx bx-mail-send user-profile-icon"></i>
+            <span class="user-profile-text">{{ user.email }}</span>
           </div>
+          <div class="user-profile-buttons">
+            <div class="user-profile-button" @click="openProfileEdit = true">
+              Редактировать профиль
+            </div>
+            <div class="user-profile-button" @click="openChangePassword = true">
+              Изменить пароль
+            </div>
+          </div>
+          <div class="user-profile-subscription">Подписка не активна</div>
         </div>
-        <div class="user-profile-subscription">Подписка не активна</div>
       </div>
-    </div>
-    <div class="user-profile-courses">
-      <h2 class="user-profile-courses-heading">Мои курсы</h2>
-      <div class="user-profile-courses-container">
-        <courseCard
-          :image="firstCourseImage"
-          title="Базовая верстка сайтов"
-          description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
-          button="Перейти к курсу"
-          class="user-profile-courses-card"
-          progression="true"
-          lessonsAll="32"
-          lessonsDone="14"
-        />
-        <courseCard
-          :image="secondCourseImage"
-          title="Продвинутая верстка сайтов"
-          description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-          button="Перейти к курсу"
-          class="user-profile-courses-card"
-          progression="true"
-          lessonsAll="20"
-          lessonsDone="16"
-        />
+      <div class="user-profile-courses">
+        <h2 class="user-profile-courses-heading">Мои курсы</h2>
+        <div class="user-profile-courses-container">
+          <courseCard
+            :image="firstCourseImage"
+            title="Базовая верстка сайтов"
+            description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
+            button="Перейти к курсу"
+            class="user-profile-courses-card"
+            progression="true"
+            lessonsAll="32"
+            lessonsDone="14"
+          />
+          <courseCard
+            :image="secondCourseImage"
+            title="Продвинутая верстка сайтов"
+            description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
+            button="Перейти к курсу"
+            class="user-profile-courses-card"
+            progression="true"
+            lessonsAll="20"
+            lessonsDone="16"
+          />
+        </div>
       </div>
     </div>
     <profileEdit
