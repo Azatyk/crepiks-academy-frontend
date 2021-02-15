@@ -17,6 +17,11 @@ export default {
     },
     cssCode: {
       type: String
+    },
+
+    lesson: {
+      type: Object,
+      required: true
     }
   },
 
@@ -27,7 +32,7 @@ export default {
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
       this.runCode(iframe);
-      // this.checkLessonTasks(iframe);
+      this.checkLessonTasks(iframe);
     },
 
     runCode(iframe) {
@@ -63,24 +68,33 @@ export default {
           globalTestFunctionAnswer = testFunctionAnswer;
         } else {
           globalTestFunctionAnswer.isDone = false;
+          this.$emit("return-task-result", {
+            status: "error",
+            text: testFunctionAnswer.messageContent
+          });
           break;
         }
       }
 
       if (globalTestFunctionAnswer.isDone) {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
-        this.addCompletedLesson();
-      }
-    },
-
-    async addCompletedLesson() {
-      if (!this.isLessonCompleted(this.lesson.id)) {
-        let userId = this.userData.id;
-        let lessonId = this.lesson.id;
-        await this.$store.dispatch("addCompletedLesson", { userId, lessonId });
-        this.$emit("update-completed-lessons");
+        // this.addCompletedLesson();
+        this.$emit("return-task-result", {
+          status: "success",
+          text:
+            "Отличная работа, вы можете увидеть результат выполнения кода в браузере и после этого перейти к следующему уроку"
+        });
       }
     }
+
+    // async addCompletedLesson() {
+    //   if (!this.isLessonCompleted(this.lesson.id)) {
+    //     let userId = this.userData.id;
+    //     let lessonId = this.lesson.id;
+    //     await this.$store.dispatch("addCompletedLesson", { userId, lessonId });
+    //     this.$emit("update-completed-lessons");
+    //   }
+    // },
   }
 };
 </script>

@@ -99,12 +99,20 @@
           @navigation-opened="isNavigationOpen = true"
           @switch-editor="isCodeEditorScreen = true"
         />
-        <browser :htmlCode="htmlCode" :cssCode="cssCode" />
+        <browser
+          :htmlCode="htmlCode"
+          :cssCode="cssCode"
+          :lesson="lesson"
+          @return-task-result="showTaskResult"
+          @lesson-done="isLessonDone = true"
+        />
       </div>
     </div>
     <lessonFooter
+      :lessons="lessons"
       @theory-opened="isTheoryOpen = true"
       @run-button-clicked="handleRunButton()"
+      :isLessonDone="isLessonDone"
     />
   </div>
 </template>
@@ -146,6 +154,7 @@ export default {
 
   data() {
     return {
+      isLessonDone: false,
       lesson: {
         title: {
           ru: ""
@@ -251,12 +260,17 @@ export default {
     },
 
     handleRunButton() {
-      this.isTaskNotificationOpen = true;
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
           child.handleRunButton();
         }
       }
+    },
+
+    showTaskResult(result) {
+      this.taskNotificationStatus = result.status;
+      this.taskNotificationText = result.text;
+      this.isTaskNotificationOpen = true;
     }
   }
 };

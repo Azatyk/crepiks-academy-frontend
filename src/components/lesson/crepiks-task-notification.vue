@@ -56,6 +56,7 @@ export default {
   display: flex;
   flex-direction: row;
   border: 1px solid $dark;
+  background-color: $white;
   z-index: 3;
   transition: 400ms ease-in-out;
 

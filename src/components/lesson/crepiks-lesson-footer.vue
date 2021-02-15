@@ -3,14 +3,54 @@
     <button class="lesson-footer-theory" @click="$emit('theory-opened')">
       Теория
     </button>
-    <button class="lesson-footer-check" @click="$emit('run-button-clicked')">
-      Проверить
+    <button
+      class="lesson-footer-check"
+      :class="{ 'lesson-footer-check-complete': isLessonDone }"
+      @click="
+        isLessonDone ? nextLessonButtonHandler() : $emit('run-button-clicked')
+      "
+    >
+      {{ isLessonDone ? "Далее" : "Проверить" }}
     </button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    isLessonDone: {
+      type: Boolean,
+      default: false
+    },
+
+    lessons: {
+      type: Array,
+      required: true
+    }
+  },
+
+  methods: {
+    nextLessonButtonHandler() {
+      let currentLessonId = Number(this.$route.params.lessonId); // сначала мы определяем какой будет роут следующего урока
+      let courseId = Number(this.$route.params.courseId);
+      let nextLessonId;
+
+      this.lessons.forEach(lesson => {
+        if (lesson.id == currentLessonId)
+          nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+      });
+
+      this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
+
+      // Отображаем код в браузере при переходе на следующий урок
+      // for (let child of this.$children) {
+      //   if (child.$options._componentTag == "cBrowser") {
+      //     child.runCode();
+      //   }
+      // }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -66,9 +106,13 @@ export default {};
     transition: 200ms ease-in-out;
 
     &:hover {
+      opacity: 0.7;
+    }
+
+    &-complete {
       color: $white;
-      background-color: $primary;
       border-color: $primary;
+      background-color: $primary;
     }
   }
 }
