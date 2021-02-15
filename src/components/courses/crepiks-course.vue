@@ -318,9 +318,10 @@ export default {
 
 .v-lazy-image {
   height: 250px;
-  filter: blur(1px);
+  filter: blur(8px);
   background-color: #e5e5e8;
   border-radius: 20px;
+  transition: filter 0.5s;
 }
 
 .v-lazy-image-loaded {
