@@ -318,7 +318,7 @@ export default {
 
 .v-lazy-image {
   height: 250px;
-  filter: blur(6px);
+  filter: blur(1px);
   background-color: #e5e5e8;
   border-radius: 20px;
 }
