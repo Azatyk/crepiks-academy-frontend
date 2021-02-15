@@ -74,7 +74,7 @@ export default {
           }
         });
 
-        // this.addCompletedLesson();
+        this.$emit("add-completed-lessons");
 
         this.$router.push(
           "/app/courses/" + courseId + "/lessons/" + nextLessonId

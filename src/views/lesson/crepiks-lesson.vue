@@ -18,6 +18,7 @@
       :lessons="lessons"
       @theory-closed="isTheoryOpen = false"
       @navigation-opened="isNavigationOpen = true"
+      @add-completed-lessons="addCompletedLesson()"
     />
     <div class="lesson-screens">
       <div
@@ -105,8 +106,10 @@
           :htmlCode="htmlCode"
           :cssCode="cssCode"
           :lesson="lesson"
+          :completedLessons="completedLessons"
           @return-task-result="showTaskResult"
           @lesson-done="isLessonDone = true"
+          @add-completed-lessons="addCompletedLesson()"
         />
       </div>
     </div>
@@ -272,6 +275,23 @@ export default {
       this.taskNotificationStatus = result.status;
       this.taskNotificationText = result.text;
       this.isTaskNotificationOpen = true;
+    },
+
+    async addCompletedLesson() {
+      if (!this.isLessonCompleted(this.lesson.id)) {
+        let userId = this.userData.id;
+        let lessonId = this.lesson.id;
+        await this.$store.dispatch("addCompletedLesson", { userId, lessonId });
+        await this.getCompletedLessons();
+      }
+    },
+
+    isLessonCompleted(lessonId) {
+      for (let i = 0; i < this.completedLessons.length; i++) {
+        if (this.completedLessons[i].id == lessonId) {
+          return true;
+        }
+      }
     }
   }
 };

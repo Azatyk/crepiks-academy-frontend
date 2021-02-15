@@ -10,11 +10,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     htmlCode: {
       type: String
     },
+
     cssCode: {
       type: String
     },
@@ -22,8 +25,15 @@ export default {
     lesson: {
       type: Object,
       required: true
+    },
+
+    completedLessons: {
+      type: Array,
+      required: true
     }
   },
+
+  computed: mapGetters(["userData"]),
 
   methods: {
     handleRunButton() {
@@ -78,7 +88,7 @@ export default {
 
       if (globalTestFunctionAnswer.isDone) {
         this.$emit("lesson-done"); // Вызываем emit чтобы поменять кнопку "Выполнить" на "Далее"
-        // this.addCompletedLesson();
+        this.$emit("add-completed-lessons");
         this.$emit("return-task-result", {
           status: "success",
           text:
@@ -86,15 +96,6 @@ export default {
         });
       }
     }
-
-    // async addCompletedLesson() {
-    //   if (!this.isLessonCompleted(this.lesson.id)) {
-    //     let userId = this.userData.id;
-    //     let lessonId = this.lesson.id;
-    //     await this.$store.dispatch("addCompletedLesson", { userId, lessonId });
-    //     this.$emit("update-completed-lessons");
-    //   }
-    // },
   }
 };
 </script>
