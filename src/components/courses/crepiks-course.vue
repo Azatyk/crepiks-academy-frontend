@@ -3,13 +3,34 @@
     :isOpen="isCourseOpen"
     @close-block="$emit('close-course-block')"
   >
-    <div class="course-content">
+    <div v-if="this.skeletonLoading" class="skeleton">
+      <div class="skeleton-image">
+        <PuSkeleton :count="1" height="200px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-heading">
+        <PuSkeleton :count="1" height="30px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-text">
+        <PuSkeleton :count="1" height="100px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-button">
+        <PuSkeleton :count="1" height="50px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-lessons-heading">
+        <PuSkeleton :count="1" height="70px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-lessons-blocks">
+        <PuSkeleton :count="5" height="40px" width="100%"></PuSkeleton>
+      </div>
+    </div>
+    <div class="course-content" v-if="!this.skeletonLoading">
       <div class="main-info">
         <img
           class="main-info-image"
           :src="course.iconPath"
           alt="Базовая верстка сайтов"
         />
+
         <h2 class="main-info-title">{{ course.title.ru }}</h2>
         <p class="main-info-description">
           {{ course.description.ru }}
@@ -100,6 +121,7 @@ export default {
           }
         ]
       },
+      skeletonLoading: null,
       completedLessons: [{ id: null }]
     };
   },
@@ -116,8 +138,10 @@ export default {
   watch: {
     async isCourseOpen() {
       if (this.isCourseOpen) {
+        this.skeletonLoading = true;
         const id = this.$route.params.id;
         await this.$store.dispatch("getCourse", id).then(res => {
+          this.skeletonLoading = false;
           this.course = res.data.course;
         });
 
@@ -257,6 +281,34 @@ export default {
 
     &-completed {
       color: $primary;
+    }
+  }
+}
+
+.skeleton {
+  padding: 30px;
+  box-sizing: border-box;
+  width: 100%;
+
+  &-heading {
+    margin-top: 30px;
+  }
+
+  &-text {
+    margin-top: 20px;
+  }
+
+  &-button {
+    margin-top: 20px;
+  }
+
+  &-lessons {
+    &-heading {
+      margin-top: 50px;
+    }
+
+    &-blocks {
+      margin-top: 20px;
     }
   }
 }

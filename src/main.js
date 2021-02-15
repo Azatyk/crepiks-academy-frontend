@@ -4,6 +4,9 @@ import router from "./router";
 import store from "./store";
 import Vuesax from "vuesax";
 import { i18n } from "@/plugins/i18n";
+import Skeleton from "vue-loading-skeleton";
+
+Vue.use(Skeleton);
 
 Vue.config.productionTip = false;
 
