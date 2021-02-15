@@ -84,6 +84,12 @@
           </div>
           <lessonTasks :lesson="lesson" :lessons="lessons" />
         </div>
+        <taskNotification
+          :isActive="isTaskNotificationOpen"
+          :status="taskNotificationStatus"
+          :text="taskNotificationText"
+          @close-notification="isTaskNotificationOpen = false"
+        />
       </div>
       <div
         class="lesson-screen lesson-screen-second"
@@ -112,6 +118,8 @@ import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
 import lessonTasks from "@/components/lesson/crepiks-lesson-tasks";
 import lessonFooter from "@/components/lesson/crepiks-lesson-footer";
 
+import taskNotification from "@/components/lesson/crepiks-task-notification";
+
 import browserHeader from "@/components/lesson/crepiks-browser-header";
 import browser from "@/components/lesson/crepiks-browser";
 
@@ -128,6 +136,7 @@ export default {
     codeEditorHeader,
     lessonTasks,
     lessonFooter,
+    taskNotification,
     navigation,
     theory,
     browserHeader,
@@ -166,6 +175,9 @@ export default {
       completedLessons: [],
       isNavigationOpen: false,
       isTheoryOpen: true,
+      isTaskNotificationOpen: false,
+      taskNotificationStatus: null,
+      taskNotificationText: null,
       isCodeEditorScreen: true,
       isHtmlShowing: true,
       isHtmlExist: true,
@@ -239,6 +251,7 @@ export default {
     },
 
     handleRunButton() {
+      this.isTaskNotificationOpen = true;
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
           child.handleRunButton();
