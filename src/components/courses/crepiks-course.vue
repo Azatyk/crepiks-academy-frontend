@@ -25,7 +25,7 @@
     </div>
     <div class="course-content" v-else>
       <div class="main-info">
-        <img
+        <v-lazy-image
           class="main-info-image"
           :src="course.iconPath"
           alt="Базовая верстка сайтов"
@@ -87,12 +87,15 @@
 import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
 
+import VLazyImage from "v-lazy-image";
+
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     rightSideBlock,
-    cButton
+    cButton,
+    VLazyImage
   },
 
   props: {
@@ -310,6 +313,62 @@ export default {
     &-blocks {
       margin-top: 20px;
     }
+  }
+}
+
+.v-lazy-image {
+  height: 250px;
+  filter: blur(6px);
+  background-color: #e5e5e8;
+  border-radius: 20px;
+}
+
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
+
+@media (max-width: 500px) {
+  .main-info {
+    margin-bottom: 50px;
+
+    &-title {
+      font-size: 25px;
+    }
+
+    &-description {
+      font-size: 13px;
+    }
+
+    &-button {
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 7px;
+    }
+  }
+
+  .course-lessons {
+    &-title {
+      font-size: 16px;
+    }
+
+    &-labels {
+      margin-bottom: 20px;
+    }
+  }
+
+  .lesson {
+    &-title {
+      font-size: 13px;
+    }
+  }
+  .v-lazy-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 414px) {
+  .v-lazy-image {
+    height: 160px;
   }
 }
 </style>
