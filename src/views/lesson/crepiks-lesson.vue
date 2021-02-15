@@ -12,8 +12,10 @@
       :lesson="lesson"
     />
     <theory
+      :isTheoryOnly="isTheoryOnly"
       :isTheoryOpen="isTheoryOpen"
       :lesson="lesson"
+      :lessons="lessons"
       @theory-closed="isTheoryOpen = false"
       @navigation-opened="isNavigationOpen = true"
     />
@@ -155,6 +157,7 @@ export default {
   data() {
     return {
       isLessonDone: false,
+      isTheoryOnly: false,
       lesson: {
         title: {
           ru: ""
@@ -225,15 +228,13 @@ export default {
       .dispatch("getLessons", courseId)
       .then(res => (this.lessons = res.data.course.lessons));
 
-    this.getLesson();
-    this.getCompletedLessons();
-  },
+    await this.getLesson();
+    await this.getCompletedLessons();
 
-  watch: {
-    async $route() {
-      this.isNavigationOpen = false;
-      this.isTheoryOpen = true;
-      this.getLesson();
+    if (!this.lesson.description.ru) {
+      this.isTheoryOnly = true;
+    } else {
+      this.isTheoryOnly = false;
     }
   },
 

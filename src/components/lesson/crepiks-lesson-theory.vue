@@ -1,16 +1,26 @@
 <template>
-  <div class="lesson-theory" :class="{ 'lesson-theory-open': isTheoryOpen }">
+  <div
+    class="lesson-theory"
+    :class="{
+      'lesson-theory-open': isTheoryOpen,
+      'lesson-theory-only': isTheoryOnly
+    }"
+  >
     <span class="lesson-theory-navigation" @click="$emit('navigation-opened')"
       >Список уроков</span
     >
-    <i class="bx bx-x lesson-theory-close" @click="$emit('theory-closed')"></i>
+    <i
+      v-if="!isTheoryOnly"
+      class="bx bx-x lesson-theory-close"
+      @click="$emit('theory-closed')"
+    ></i>
     <div class="content">
       <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
       <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
       <cButton
-        text="Перейти к заданию"
+        :text="isTheoryOnly ? 'Слелующий урок' : 'Перейти к заданию'"
         class="lesson-theory-button"
-        @click="$emit('theory-closed')"
+        @click="isTheoryOnly ? handleTheoryButton() : $emit('theory-closed')"
       />
     </div>
   </div>
@@ -21,17 +31,56 @@ import cButton from "@/components/common/crepiks-button";
 
 export default {
   props: {
+    isTheoryOnly: {
+      type: Boolean,
+      required: true
+    },
     isTheoryOpen: {
       type: Boolean,
       default: false
     },
     lesson: {
       type: Object
+    },
+    lessons: {
+      type: Array,
+      required: true
     }
+  },
+
+  data() {
+    return {
+      isLessonLast: false
+    };
   },
 
   components: {
     cButton
+  },
+
+  methods: {
+    handleTheoryButton() {
+      if (this.isLessonLast) {
+        this.addCompletedLesson();
+        this.$router.push("/app/courses/" + this.$route.params.courseId);
+      } else {
+        let courseId = this.$route.params.courseId;
+        let currentLessonId = Number(this.$route.params.lessonId);
+        let nextLessonId;
+
+        this.lessons.forEach(lesson => {
+          if (lesson.id == currentLessonId) {
+            nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+          }
+        });
+
+        // this.addCompletedLesson();
+
+        this.$router.push(
+          "/app/courses/" + courseId + "/lessons/" + nextLessonId
+        );
+      }
+    }
   }
 };
 </script>
@@ -53,6 +102,12 @@ export default {
   background-color: $white;
   z-index: 3;
   transition: 200ms ease;
+
+  &-only {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
 
   &-open {
     transform: translateY(-99.5vh);
