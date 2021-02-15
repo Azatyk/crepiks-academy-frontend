@@ -37,6 +37,16 @@ export default {
     text: {
       type: String
     }
+  },
+
+  watch: {
+    isActive() {
+      if (this.isActive) {
+        setTimeout(() => {
+          this.$emit("close-notification");
+        }, 5000);
+      }
+    }
   }
 };
 </script>
