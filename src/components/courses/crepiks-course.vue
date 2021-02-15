@@ -23,7 +23,7 @@
         <PuSkeleton :count="5" height="40px" width="100%"></PuSkeleton>
       </div>
     </div>
-    <div class="course-content" v-if="!this.skeletonLoading">
+    <div class="course-content" v-else>
       <div class="main-info">
         <img
           class="main-info-image"
@@ -141,8 +141,8 @@ export default {
         this.skeletonLoading = true;
         const id = this.$route.params.id;
         await this.$store.dispatch("getCourse", id).then(res => {
-          this.skeletonLoading = false;
           this.course = res.data.course;
+          this.skeletonLoading = false;
         });
 
         await this.$store
@@ -286,7 +286,7 @@ export default {
 }
 
 .skeleton {
-  padding: 30px;
+  padding: 30px 0;
   box-sizing: border-box;
   width: 100%;
 
