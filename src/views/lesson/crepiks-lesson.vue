@@ -216,15 +216,15 @@ export default {
     };
   },
 
-  async mounted() {
-    document.addEventListener("keydown", function(event) {
-      if (event.code == "ArrowRight") {
-        this.isCodeEditorScreen = false;
-      } else if (event.code == "ArrowLeft") {
-        this.isCodeEditorScreen = true;
-      }
-    });
+  created() {
+    document.addEventListener("keydown", this.handleArrows);
+  },
 
+  destroyed() {
+    document.removeEventListener("keydown", this.handleArrows);
+  },
+
+  async mounted() {
     let courseId = this.$route.params.courseId;
 
     await this.$store
@@ -244,6 +244,14 @@ export default {
   computed: mapGetters(["userData"]),
 
   methods: {
+    handleArrows(event) {
+      if (event.code == "ArrowRight") {
+        this.isCodeEditorScreen = false;
+      } else if (event.code == "ArrowLeft") {
+        this.isCodeEditorScreen = true;
+      }
+    },
+
     async getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
