@@ -250,6 +250,7 @@ export default {
       this.isTheoryOnly = true;
     } else {
       this.isTheoryOnly = false;
+      this.runCode();
     }
   },
 
@@ -287,6 +288,14 @@ export default {
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
           child.handleRunButton();
+        }
+      }
+    },
+
+    runCode() {
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "browser") {
+          child.runCode();
         }
       }
     },
