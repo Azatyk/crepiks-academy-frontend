@@ -387,10 +387,14 @@ export default {
 </style>
 
 <style lang="scss">
-.CodeMirror {
+.code-editor .CodeMirror {
   width: calc(100vw - 240px) !important;
   height: calc(100vh - 120px) !important;
   overflow: scroll;
   z-index: 1 !important;
+}
+
+.code-editor .CodeMirror-gutters {
+  background-color: #ffffff;
 }
 </style>

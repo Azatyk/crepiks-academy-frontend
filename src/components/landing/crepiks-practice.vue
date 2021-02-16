@@ -323,19 +323,19 @@ export default {
 </style>
 
 <style lang="scss">
-.CodeMirror {
+.practice-editor-editor .CodeMirror {
   height: 100% !important;
   border-radius: 0 0 0 15px;
   z-index: 1 !important;
   width: 100% !important;
 }
 
-.CodeMirror-scroll {
+.practice-editor-editor .CodeMirror-scroll {
   padding-bottom: 0 !important;
   overflow: hidden !important;
 }
 
-.CodeMirror-gutters {
+.practice-editor-editor .CodeMirror-gutters {
   background-color: #ffffff;
 }
 </style>
