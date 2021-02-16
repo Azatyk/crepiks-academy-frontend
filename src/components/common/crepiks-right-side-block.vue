@@ -21,11 +21,11 @@ export default {
 
 .side-block {
   position: fixed;
-  right: -40%;
+  right: -600px;
   top: 0;
   padding: 60px 50px;
   padding-bottom: 0;
-  width: 40%;
+  width: 600px;
   height: 100vh;
   box-sizing: border-box;
   display: flex;

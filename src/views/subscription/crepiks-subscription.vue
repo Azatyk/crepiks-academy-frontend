@@ -39,25 +39,25 @@ export default {
   z-index: 2;
 
   &-light-top {
-    top: -75%;
+    bottom: 80%;
     right: 5%;
     background-color: #25f9cf;
   }
 
   &-dark-top {
-    top: -65%;
+    bottom: 70%;
     right: -20%;
     background-color: #3ae8c5;
   }
 
   &-light-bottom {
-    bottom: -65%;
+    top: 70%;
     left: -20%;
     background-color: #25f9cf;
   }
 
   &-dark-bottom {
-    bottom: -75%;
+    top: 80%;
     left: 5%;
     background-color: #3ae8c5;
   }
