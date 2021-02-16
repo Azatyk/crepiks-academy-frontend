@@ -94,7 +94,7 @@ export default {
   }
 
   &-text {
-    padding-right: 30px;
+    padding-right: 20px;
     margin-bottom: 30px;
     width: 100%;
     box-sizing: border-box;
