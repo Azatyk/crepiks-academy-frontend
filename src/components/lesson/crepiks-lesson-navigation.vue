@@ -100,11 +100,16 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: $white;
-  transition: 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  will-change: transform;
   z-index: 4;
 
   &-open {
-    left: 0;
+    -moz-transform: translateX(500px);
+    -ms-transform: translateX(500px);
+    -webkit-transform: translateX(500px);
+    -o-transform: translateX(500px);
+    transform: translateX(500px);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   }
 }

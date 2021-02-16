@@ -105,7 +105,8 @@ export default {
   border-radius: 10px 10px 0 0;
   background-color: $white;
   z-index: 3;
-  transition: 200ms ease;
+  transition: transform 400ms ease-in-out;
+  will-change: transform;
 
   &-only {
     width: 100vw;
@@ -114,6 +115,10 @@ export default {
   }
 
   &-open {
+    -moz-transform: translateY(-99.5vh);
+    -ms-transform: translateY(-99.5vh);
+    -webkit-transform: translateY(-99.5vh);
+    -o-transform: translateY(-99.5vh);
     transform: translateY(-99.5vh);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
   }

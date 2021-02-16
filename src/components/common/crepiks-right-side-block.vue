@@ -31,11 +31,16 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: $white;
-  transition: 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
+  will-change: transform;
   z-index: 3;
 
   &-open {
-    right: 0;
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   }
 
