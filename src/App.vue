@@ -1,25 +1,77 @@
 <template>
   <div id="app">
-    <transition name="fade">
-      <router-view :key="$route.path" />
-    </transition>
+    <vuescroll :ops="ops">
+      <div class="container">
+        <transition name="fade">
+          <router-view :key="$route.path" />
+        </transition>
+      </div>
+    </vuescroll>
   </div>
 </template>
 
 <script>
-export default {};
+import vuescroll from "vuescroll";
+
+export default {
+  components: {
+    vuescroll
+  },
+
+  data() {
+    return {
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: true,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.1,
+          size: "12px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "2px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: true,
+          background: "#838786",
+          opacity: 1,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "12px",
+          disable: false
+        }
+      }
+    };
+  }
+};
 </script>
 
-<style>
+<style land="scss">
 @import url("./assets/styles/main.css");
 
-/* .fade-enter-active {
-  transition: opacity 2s;
+#app {
+  width: 100vw;
+  height: 100vh;
 }
 
-.fade-leave-active {
-  transition: opacity 2s;
-} */
+.container {
+  min-width: 100vw;
+  width: 100%;
+}
 
 .fade-enter {
   opacity: 0;
