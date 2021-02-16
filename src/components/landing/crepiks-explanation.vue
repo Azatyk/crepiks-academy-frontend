@@ -54,19 +54,19 @@ export default {
     width: 100%;
     text-align: center;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 2.6vw;
     padding-top: 12vh;
   }
 
   &-paragraph {
     width: 78%;
     text-align: center;
-    font-size: 20px;
+    font-size: 1.3vw;
     padding-top: 4vh;
     margin-right: auto;
     margin-left: auto;
     font-weight: lighter;
-    line-height: 27px;
+    line-height: 1.9vw;
   }
 
   &-container {

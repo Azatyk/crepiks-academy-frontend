@@ -27,7 +27,7 @@ export default {};
   text-align: center;
 
   &-content {
-    max-width: 1440px;
+    max-width: 1300px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -38,7 +38,7 @@ export default {};
     margin-left: auto;
     margin-top: 29vh;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 2.6vw;
     color: $dark;
   }
 
@@ -47,8 +47,9 @@ export default {};
     margin-right: auto;
     margin-left: auto;
     padding-top: 5vh;
-    font-size: 20px;
+    font-size: 1.5vw;
     color: $light-dark;
+    line-height: 1.9vw;
   }
 }
 
