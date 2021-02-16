@@ -22,9 +22,13 @@
       </div>
     </div>
     <div class="links">
-      <div class="navigation-link" @click="$emit('navigation-opened')">
-        <span class="navigation-link-title">Список уроков</span>
-        <i class="bx bx-list-ul navigation-link-icon"></i>
+      <div class="header-link" @click="$emit('hint-opened')">
+        <span class="header-link-title">Подсказка</span>
+        <i class="bx bx-help-circle header-link-icon"></i>
+      </div>
+      <div class="header-link" @click="$emit('navigation-opened')">
+        <span class="header-link-title">Список уроков</span>
+        <i class="bx bx-list-ul header-link-icon"></i>
       </div>
       <div class="browser-link" @click="$emit('switch-browser')">
         <span class="browser-link-title">К браузеру</span>
@@ -126,7 +130,7 @@ export default {
   align-items: center;
 }
 
-.navigation-link {
+.header-link {
   margin-right: 40px;
   display: flex;
   flex-direction: row;

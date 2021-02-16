@@ -41,6 +41,7 @@
             :isHtmlExist="isHtmlExist"
             :isCssExist="isCssExist"
             @navigation-opened="isNavigationOpen = true"
+            @hint-opened="isHintOpen = true"
             @index-clicked="isHtmlShowing = true"
             @styles-clicked="isHtmlShowing = false"
             @index-closed="
@@ -59,22 +60,20 @@
               'code-editor-container-center': !isHtmlExist && !isCssExist
             }"
           >
-            <vuescroll :ops="ops">
-              <codemirror
-                class="code-editor"
-                :code="htmlCode"
-                v-model="htmlCode"
-                :options="htmlOptions"
-                v-if="isHtmlShowing && isHtmlExist"
-              />
-              <codemirror
-                class="code-editor"
-                :code="cssCode"
-                v-model="cssCode"
-                :options="cssOptions"
-                v-if="!isHtmlShowing && isCssExist"
-              />
-            </vuescroll>
+            <codemirror
+              class="code-editor"
+              :code="htmlCode"
+              v-model="htmlCode"
+              :options="htmlOptions"
+              v-if="isHtmlShowing && isHtmlExist"
+            />
+            <codemirror
+              class="code-editor"
+              :code="cssCode"
+              v-model="cssCode"
+              :options="cssOptions"
+              v-if="!isHtmlShowing && isCssExist"
+            />
             <img
               v-if="!isHtmlExist && !isCssExist"
               src="@/assets/images/lesson-empty-image.svg"
@@ -88,6 +87,11 @@
             >
           </div>
           <lessonTasks :lesson="lesson" :lessons="lessons" />
+          <hint
+            :isOpen="isHintOpen"
+            :hint="lesson.hint.ru"
+            @close-hint="isHintOpen = false"
+          />
         </div>
         <taskNotification
           :isActive="isTaskNotificationOpen"
@@ -127,6 +131,7 @@
 <script>
 import navigation from "@/components/lesson/crepiks-lesson-navigation";
 import theory from "@/components/lesson/crepiks-lesson-theory";
+import hint from "@/components/lesson/crepiks-lesson-hint";
 
 import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation";
 import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
@@ -143,8 +148,6 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/eclipse.css";
 
-import vuescroll from "vuescroll";
-
 import { mapGetters } from "vuex";
 
 export default {
@@ -159,7 +162,7 @@ export default {
     browserHeader,
     browser,
     codemirror,
-    vuescroll
+    hint
   },
 
   data() {
@@ -182,7 +185,10 @@ export default {
               ru: ""
             }
           }
-        ]
+        ],
+        hint: {
+          ru: ""
+        }
       },
       lessons: [
         {
@@ -194,6 +200,7 @@ export default {
       ],
       completedLessons: [],
       isNavigationOpen: false,
+      isHintOpen: false,
       isTheoryOpen: true,
       isTaskNotificationOpen: false,
       taskNotificationStatus: null,
@@ -217,54 +224,19 @@ export default {
         theme: "eclipse",
         lineNumbers: true,
         line: true
-      },
-      ops: {
-        vuescroll: {
-          mode: "native"
-        },
-        scrollPanel: {
-          initialScrollY: false,
-          initialScrollX: false,
-          scrollingX: false,
-          scrollingY: true,
-          speed: 300,
-          easing: "easeInOutQuint",
-          verticalNativeBarPos: "right"
-        },
-        rail: {
-          background: "#2d2c2c",
-          opacity: 0.2,
-          size: "13px",
-          specifyBorderRadius: "10px",
-          gutterOfEnds: null,
-          gutterOfSide: "8px",
-          keepShow: false
-        },
-        bar: {
-          showDelay: 1000,
-          onlyShowBarOnScroll: true,
-          keepShow: true,
-          background: "#2d2c2c",
-          opacity: 0.3,
-          hoverStyle: false,
-          specifyBorderRadius: "5px",
-          minSize: 0,
-          size: "13px",
-          disable: false
-        }
       }
     };
   },
 
-  created() {
-    document.addEventListener("keydown", this.handleArrows);
-  },
-
-  destroyed() {
-    document.removeEventListener("keydown", this.handleArrows);
-  },
-
   async mounted() {
+    document.addEventListener("keydown", function(event) {
+      if (event.code == "ArrowRight") {
+        this.isCodeEditorScreen = false;
+      } else if (event.code == "ArrowLeft") {
+        this.isCodeEditorScreen = true;
+      }
+    });
+
     let courseId = this.$route.params.courseId;
 
     await this.$store
@@ -284,14 +256,6 @@ export default {
   computed: mapGetters(["userData"]),
 
   methods: {
-    handleArrows(event) {
-      if (event.code == "ArrowRight") {
-        this.isCodeEditorScreen = false;
-      } else if (event.code == "ArrowLeft") {
-        this.isCodeEditorScreen = true;
-      }
-    },
-
     async getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
@@ -427,14 +391,10 @@ export default {
 </style>
 
 <style lang="scss">
-.code-editor .CodeMirror {
+.CodeMirror {
   width: calc(100vw - 240px) !important;
-  height: calc(100vh - 170px) !important;
-  overflow: hidden;
+  height: calc(100vh - 120px) !important;
+  overflow: scroll;
   z-index: 1 !important;
-}
-
-.code-editor .CodeMirror-gutters {
-  background-color: #ffffff;
 }
 </style>
