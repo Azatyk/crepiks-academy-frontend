@@ -45,6 +45,7 @@ export default {
   }
 
   &-close {
+    margin-bottom: 20px;
     color: $dark;
     font-size: 25px;
     opacity: 0.4;

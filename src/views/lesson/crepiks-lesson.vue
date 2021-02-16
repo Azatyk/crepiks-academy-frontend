@@ -59,20 +59,22 @@
               'code-editor-container-center': !isHtmlExist && !isCssExist
             }"
           >
-            <codemirror
-              class="code-editor"
-              :code="htmlCode"
-              v-model="htmlCode"
-              :options="htmlOptions"
-              v-if="isHtmlShowing && isHtmlExist"
-            />
-            <codemirror
-              class="code-editor"
-              :code="cssCode"
-              v-model="cssCode"
-              :options="cssOptions"
-              v-if="!isHtmlShowing && isCssExist"
-            />
+            <vuescroll :ops="ops">
+              <codemirror
+                class="code-editor"
+                :code="htmlCode"
+                v-model="htmlCode"
+                :options="htmlOptions"
+                v-if="isHtmlShowing && isHtmlExist"
+              />
+              <codemirror
+                class="code-editor"
+                :code="cssCode"
+                v-model="cssCode"
+                :options="cssOptions"
+                v-if="!isHtmlShowing && isCssExist"
+              />
+            </vuescroll>
             <img
               v-if="!isHtmlExist && !isCssExist"
               src="@/assets/images/lesson-empty-image.svg"
@@ -141,6 +143,8 @@ import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/eclipse.css";
 
+import vuescroll from "vuescroll";
+
 import { mapGetters } from "vuex";
 
 export default {
@@ -154,7 +158,8 @@ export default {
     theory,
     browserHeader,
     browser,
-    codemirror
+    codemirror,
+    vuescroll
   },
 
   data() {
@@ -212,6 +217,41 @@ export default {
         theme: "eclipse",
         lineNumbers: true,
         line: true
+      },
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.2,
+          size: "13px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "8px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: true,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "13px",
+          disable: false
+        }
       }
     };
   },

@@ -3,62 +3,67 @@
     :isOpen="isCourseOpen"
     @close-block="$emit('close-course-block')"
   >
-    <div class="course-content">
-      <div class="main-info">
-        <img
-          class="main-info-image"
-          :src="course.iconPath"
-          alt="Базовая верстка сайтов"
-        />
-        <h2 class="main-info-title">{{ course.title.ru }}</h2>
-        <p class="main-info-description">
-          {{ course.description.ru }}
-        </p>
-        <cButton
-          text="Перейти к курсу"
-          class="main-info-button"
-          @click="
-            $router.push(
-              '/app/courses/' +
-                $route.params.id +
-                '/lessons/' +
-                course.lessons[0].id
-            )
-          "
-        />
-      </div>
-      <div class="course-lessons">
-        <div class="course-lessons-labels">
-          <div class="course-lessons-title">Уроки курса</div>
-          <div class="course-lessons-amount">
-            {{ course.lessons.length }} урока
+    <vuescroll :ops="ops">
+      <div class="course-content">
+        <div class="main-info">
+          <img
+            class="main-info-image"
+            :src="course.iconPath"
+            alt="Базовая верстка сайтов"
+          />
+          <h2 class="main-info-title">{{ course.title.ru }}</h2>
+          <p class="main-info-description">
+            {{ course.description.ru }}
+          </p>
+          <cButton
+            text="Перейти к курсу"
+            class="main-info-button"
+            @click="
+              $router.push(
+                '/app/courses/' +
+                  $route.params.id +
+                  '/lessons/' +
+                  course.lessons[0].id
+              )
+            "
+          />
+        </div>
+        <div class="course-lessons">
+          <div class="course-lessons-labels">
+            <div class="course-lessons-title">Уроки курса</div>
+            <div class="course-lessons-amount">
+              {{ course.lessons.length }} урока
+            </div>
+          </div>
+          <div class="course-lessons-list">
+            <router-link
+              class="lesson"
+              v-for="(lesson, index) in course.lessons"
+              :key="lesson.id"
+              :to="
+                '/app/courses/' +
+                  $route.params.courseId +
+                  '/lessons/' +
+                  lesson.id
+              "
+            >
+              <div class="lesson-title">
+                <div class="lesson-title-number">{{ index + 1 }}.</div>
+                <div class="lesson-title-text">{{ lesson.title.ru }}</div>
+              </div>
+              <div
+                class="lesson-status"
+                :class="{
+                  'lesson-status-completed': isLessonCompleted(lesson.id)
+                }"
+              >
+                {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
+              </div>
+            </router-link>
           </div>
         </div>
-        <div class="course-lessons-list">
-          <router-link
-            class="lesson"
-            v-for="(lesson, index) in course.lessons"
-            :key="lesson.id"
-            :to="
-              '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
-            "
-          >
-            <div class="lesson-title">
-              <div class="lesson-title-number">{{ index + 1 }}.</div>
-              <div class="lesson-title-text">{{ lesson.title.ru }}</div>
-            </div>
-            <div
-              class="lesson-status"
-              :class="{
-                'lesson-status-completed': isLessonCompleted(lesson.id)
-              }"
-            >
-              {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
-            </div>
-          </router-link>
-        </div>
       </div>
-    </div>
+    </vuescroll>
   </rightSideBlock>
 </template>
 
@@ -66,12 +71,15 @@
 import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
 
+import vuescroll from "vuescroll";
+
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     rightSideBlock,
-    cButton
+    cButton,
+    vuescroll
   },
 
   props: {
@@ -100,7 +108,42 @@ export default {
           }
         ]
       },
-      completedLessons: [{ id: null }]
+      completedLessons: [{ id: null }],
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "10px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "10px",
+          disable: false
+        }
+      }
     };
   },
 
@@ -148,15 +191,16 @@ export default {
 .course {
   &-content {
     padding-bottom: 50px;
+    padding-right: 30px;
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 }
 
 .main-info {
-  margin-top: 30px;
   margin-bottom: 70px;
   width: 100%;
   display: flex;

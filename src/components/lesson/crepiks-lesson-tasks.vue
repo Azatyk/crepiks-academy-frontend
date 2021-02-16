@@ -9,25 +9,31 @@
         :class="{ 'tasks-header-icon-closed': !isOpen }"
       ></i>
     </div>
-    <p
-      class="tasks-description"
-      :class="{ 'tasks-description-hidden': !isOpen }"
-    >
-      {{ lesson.description.ru }}
-    </p>
-    <div
-      class="task"
-      :class="{ 'task-hidden': !isOpen }"
-      v-for="(task, index) in lesson.tasks"
-      :key="index"
-    >
-      <span class="task-dash">—</span>
-      <span class="task-text">{{ task.description.ru }}</span>
-    </div>
+    <vuescroll :ops="ops">
+      <div class="tasks-content">
+        <p
+          class="tasks-description"
+          :class="{ 'tasks-description-hidden': !isOpen }"
+        >
+          {{ lesson.description.ru }}
+        </p>
+        <div
+          class="task"
+          :class="{ 'task-hidden': !isOpen }"
+          v-for="(task, index) in lesson.tasks"
+          :key="index"
+        >
+          <span class="task-dash">—</span>
+          <span class="task-text">{{ task.description.ru }}</span>
+        </div>
+      </div>
+    </vuescroll>
   </div>
 </template>
 
 <script>
+import vuescroll from "vuescroll";
+
 export default {
   props: {
     lesson: {
@@ -38,9 +44,48 @@ export default {
     }
   },
 
+  components: {
+    vuescroll
+  },
+
   data() {
     return {
-      isOpen: true
+      isOpen: true,
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "10px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "10px",
+          disable: false
+        }
+      }
     };
   },
 
@@ -62,6 +107,7 @@ export default {
   bottom: 0;
   right: 0;
   padding: 20px 25px;
+  padding-bottom: 0;
   width: calc(100% - 240px);
   height: 40vh;
   box-sizing: border-box;
@@ -106,6 +152,15 @@ export default {
         transform: rotate(180deg);
       }
     }
+  }
+
+  &-content {
+    padding-right: 30px;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   &-description {
