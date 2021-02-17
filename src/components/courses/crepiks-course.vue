@@ -24,45 +24,25 @@
       </div>
     </div>
     <vuescroll :ops="ops">
-    <div class="course-content" v-else>
-      <div class="main-info">
-        <v-lazy-image
-          class="main-info-image"
-          :src="course.iconPath"
-          alt="Базовая верстка сайтов"
-        />
+      <div class="course-content">
+        <div class="main-info">
+          <v-lazy-image
+            class="main-info-image"
+            :src="course.iconPath"
+            alt="Базовая верстка сайтов"
+          />
 
-        <h2 class="main-info-title">{{ course.title.ru }}</h2>
-        <p class="main-info-description">
-          {{ course.description.ru }}
-        </p>
-        <cButton
-          text="Перейти к курсу"
-          class="main-info-button"
-          @click="
-            $router.push(
-              '/app/courses/' +
-                $route.params.id +
-                '/lessons/' +
-                course.lessons[0].id
-            )
-          "
-        />
-      </div>
-      <div class="course-lessons">
-        <div class="course-lessons-labels">
-          <div class="course-lessons-title">Уроки курса</div>
-          <div class="course-lessons-amount">
-            {{ course.lessons.length }} урока
-          </div>
-        </div>
-        <div class="course-lessons-list">
-          <router-link
-            class="lesson"
-            v-for="(lesson, index) in course.lessons"
-            :key="lesson.id"
-            :to="
-              '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
+          <h2 class="main-info-title">{{ course.title.ru }}</h2>
+          <p class="main-info-description">
+            {{ course.description.ru }}
+          </p>
+          <cButton
+            text="Перейти к курсу"
+            class="main-info-button"
+            @click="
+              $router.push(
+                '/app/courses/' + id + '/lessons/' + course.lessons[0].id
+              )
             "
           />
         </div>
@@ -114,7 +94,7 @@ export default {
     rightSideBlock,
     cButton,
     VLazyImage,
-    vuescroll,
+    vuescroll
   },
 
   props: {
@@ -149,7 +129,7 @@ export default {
         ]
       },
       skeletonLoading: null,
-      completedLessons: [{ id: null }]
+      completedLessons: [{ id: null }],
       ops: {
         vuescroll: {
           mode: "native"
