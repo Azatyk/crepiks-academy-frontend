@@ -3,12 +3,27 @@
     <div>
       <div class="user-profile">
         <div class="user-profile-info">
-          <div class="user-profile-image">
-            <img
-              class="user-profile-image-locate"
-              src="@/assets/images/profile-image.svg"
-              alt=""
-            />
+          <div class="user-profile-image" :style="imageBackground">
+            <div class="user-profile-image-body" :style="imageBody">
+              <div class="user-profile-image-eyes">
+                <div class="user-profile-image-eye">
+                  <div class="user-profile-image-eye-inner" :style="imageBody">
+                    <div class="user-profile-image-pupil"></div>
+                  </div>
+                </div>
+                <div class="user-profile-image-eye">
+                  <div
+                    class="user-profile-image-eye-inner user-profile-image-eye-inner-right"
+                    :style="imageBody"
+                  >
+                    <div class="user-profile-image-pupil"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="user-profile-image-laptop">
+                <i class="bx bxl-apple user-profile-image-laptop-icon"></i>
+              </div>
+            </div>
           </div>
           <div class="user-profile-info-container">
             <div class="user-profile-container">
@@ -113,21 +128,63 @@ export default {
       user: {
         firstName: null,
         lastName: null
-      }
+      },
+      colors: [
+        {
+          background: "#34495e",
+          body: "#f1c40f"
+        },
+        {
+          background: "#1abc9c",
+          body: "#2980b9"
+        }
+      ],
+      randomNumber: null
     };
   },
   computed: {
-    ...mapGetters(["userData"])
+    ...mapGetters(["userData"]),
+
+    imageBody() {
+      if (this.randomNumber) {
+        return "background-color: " + this.colors[this.randomNumber].body + ";";
+      } else {
+        return "";
+      }
+    },
+
+    imageBackground() {
+      if (this.randomNumber) {
+        return (
+          "background-color: " + this.colors[this.randomNumber].background + ";"
+        );
+      } else {
+        return "";
+      }
+    }
   },
   mounted() {
     if (this.userData) {
       this.user = this.userData;
     }
-  },
 
+    this.randomNumber = Math.floor(Math.random() * this.colors.length);
+  },
   watch: {
     userData() {
       this.user = this.userData;
+    },
+
+    openProfileEdit() {
+      if (this.openProfileEdit) {
+        this.openChangePassword = false;
+      }
+    },
+
+    openChangePassword() {
+      if (this.openChangePassword) {
+        this.openProfileEdit = false;
+      }
     }
   }
 };
@@ -155,20 +212,84 @@ export default {
   &-image {
     width: 300px;
     height: 300px;
-    background-color: #ffffff;
+    background-color: #34495e;
     border-radius: 10px;
     position: relative;
     box-shadow: 50px 50px 100px rgba(0, 0, 0, 0.02);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
 
-    &-locate {
-      width: 100px;
-      position: absolute;
-      margin: auto;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      text-align: center;
+    &-body {
+      position: relative;
+      height: 70%;
+      width: 70%;
+      border-radius: 50px 50px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f1c40f;
+      box-shadow: 0 0 60px rgba(0.2, 0.2, 0.2, 0.08);
+    }
+
+    &-eyes {
+      width: 65%;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+    }
+
+    &-eye {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: relative;
+      background-color: #ffffff;
+
+      &-inner {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        bottom: 2px;
+        left: 50%;
+        transform: translate(-30%);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #f1c40f;
+        box-shadow: 0px 0px 44px 1px rgba(0, 0, 0, 0.75);
+
+        &-right {
+          transform: translate(-70%);
+        }
+      }
+    }
+
+    &-pupil {
+      background-color: #000000;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    &-laptop {
+      width: 75%;
+      height: 90px;
+      border-radius: 10px;
+      margin-top: auto;
+      margin-bottom: 0;
+      position: relative;
+      background-color: #95a5a6;
+      box-shadow: 0px -5px 68px -23px rgb(0, 0, 0);
+
+      &-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+      }
     }
   }
 
