@@ -40,6 +40,7 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/variables.scss";
 .landing {
+  width: 100vw;
   background-color: $background;
 }
 

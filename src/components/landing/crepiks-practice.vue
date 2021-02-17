@@ -182,14 +182,14 @@ export default {
   &-heading {
     color: $dark;
     font-weight: 400;
-    font-size: 2.6vw;
+    font-size: 35px;
   }
 
   &-paragraph {
     width: 85%;
     color: $dark;
     padding-top: 15px;
-    font-size: 1.2vw;
+    font-size: 20px;
     font-weight: 300;
     opacity: 0.9;
 
@@ -272,6 +272,18 @@ export default {
       &:hover {
         opacity: 0.6;
       }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .practice {
+    &-heading {
+      font-size: 2.6vw;
+    }
+
+    &-paragraph {
+      font-size: 1.2vw;
     }
   }
 }

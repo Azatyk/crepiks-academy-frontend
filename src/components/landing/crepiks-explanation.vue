@@ -54,19 +54,19 @@ export default {
     width: 100%;
     text-align: center;
     font-weight: 400;
-    font-size: 2.6vw;
+    font-size: 35px;
     padding-top: 12vh;
   }
 
   &-paragraph {
     width: 78%;
     text-align: center;
-    font-size: 1.3vw;
+    font-size: 20px;
     padding-top: 4vh;
     margin-right: auto;
     margin-left: auto;
     font-weight: lighter;
-    line-height: 1.9vw;
+    line-height: 27px;
   }
 
   &-container {
@@ -75,6 +75,19 @@ export default {
 
   &-card {
     margin-top: 10vh;
+  }
+}
+
+@media (min-width: 1440px) {
+  .explanation {
+    &-heading {
+      font-size: 2.6vw;
+    }
+
+    &-paragraph {
+      font-size: 1.3vw;
+      line-height: 1.9vw;
+    }
   }
 }
 
