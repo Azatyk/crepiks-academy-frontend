@@ -3,25 +3,66 @@
     :isOpen="isCourseOpen"
     @close-block="$emit('close-course-block')"
   >
+    <div v-if="this.skeletonLoading" class="skeleton">
+      <div class="skeleton-image">
+        <PuSkeleton :count="1" height="200px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-heading">
+        <PuSkeleton :count="1" height="30px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-text">
+        <PuSkeleton :count="1" height="100px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-button">
+        <PuSkeleton :count="1" height="50px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-lessons-heading">
+        <PuSkeleton :count="1" height="70px" width="100%"></PuSkeleton>
+      </div>
+      <div class="skeleton-lessons-blocks">
+        <PuSkeleton :count="5" height="40px" width="100%"></PuSkeleton>
+      </div>
+    </div>
     <vuescroll :ops="ops">
-      <div class="course-content">
-        <div class="main-info">
-          <img
-            class="main-info-image"
-            :src="course.iconPath"
-            alt="Базовая верстка сайтов"
-          />
-          <h2 class="main-info-title">{{ course.title.ru }}</h2>
-          <p class="main-info-description">
-            {{ course.description.ru }}
-          </p>
-          <cButton
-            text="Перейти к курсу"
-            class="main-info-button"
-            @click="
-              $router.push(
-                '/app/courses/' + id + '/lessons/' + course.lessons[0].id
-              )
+    <div class="course-content" v-else>
+      <div class="main-info">
+        <v-lazy-image
+          class="main-info-image"
+          :src="course.iconPath"
+          alt="Базовая верстка сайтов"
+        />
+
+        <h2 class="main-info-title">{{ course.title.ru }}</h2>
+        <p class="main-info-description">
+          {{ course.description.ru }}
+        </p>
+        <cButton
+          text="Перейти к курсу"
+          class="main-info-button"
+          @click="
+            $router.push(
+              '/app/courses/' +
+                $route.params.id +
+                '/lessons/' +
+                course.lessons[0].id
+            )
+          "
+        />
+      </div>
+      <div class="course-lessons">
+        <div class="course-lessons-labels">
+          <div class="course-lessons-title">Уроки курса</div>
+          <div class="course-lessons-amount">
+            {{ course.lessons.length }} урока
+          </div>
+        </div>
+        <div class="course-lessons-list">
+          <router-link
+            class="lesson"
+            v-for="(lesson, index) in course.lessons"
+            :key="lesson.id"
+            :to="
+              '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
             "
           />
         </div>
@@ -63,6 +104,7 @@
 import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
 
+import VLazyImage from "v-lazy-image";
 import vuescroll from "vuescroll";
 
 import { mapGetters } from "vuex";
@@ -71,7 +113,8 @@ export default {
   components: {
     rightSideBlock,
     cButton,
-    vuescroll
+    VLazyImage,
+    vuescroll,
   },
 
   props: {
@@ -105,7 +148,8 @@ export default {
           }
         ]
       },
-      completedLessons: [{ id: null }],
+      skeletonLoading: null,
+      completedLessons: [{ id: null }]
       ops: {
         vuescroll: {
           mode: "native"
@@ -147,8 +191,10 @@ export default {
   watch: {
     async isCourseOpen() {
       if (this.isCourseOpen) {
+        this.skeletonLoading = true;
         await this.$store.dispatch("getCourse", this.id).then(res => {
           this.course = res.data.course;
+          this.skeletonLoading = false;
         });
 
         await this.$store
@@ -289,6 +335,91 @@ export default {
     &-completed {
       color: $primary;
     }
+  }
+}
+
+.skeleton {
+  padding: 30px 0;
+  box-sizing: border-box;
+  width: 100%;
+
+  &-heading {
+    margin-top: 30px;
+  }
+
+  &-text {
+    margin-top: 20px;
+  }
+
+  &-button {
+    margin-top: 20px;
+  }
+
+  &-lessons {
+    &-heading {
+      margin-top: 50px;
+    }
+
+    &-blocks {
+      margin-top: 20px;
+    }
+  }
+}
+
+.v-lazy-image {
+  height: 250px;
+  filter: blur(8px);
+  background-color: #e5e5e8;
+  border-radius: 20px;
+  transition: filter 0.5s;
+}
+
+.v-lazy-image-loaded {
+  filter: blur(0);
+}
+
+@media (max-width: 500px) {
+  .main-info {
+    margin-bottom: 50px;
+
+    &-title {
+      font-size: 25px;
+    }
+
+    &-description {
+      font-size: 13px;
+    }
+
+    &-button {
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 7px;
+    }
+  }
+
+  .course-lessons {
+    &-title {
+      font-size: 16px;
+    }
+
+    &-labels {
+      margin-bottom: 20px;
+    }
+  }
+
+  .lesson {
+    &-title {
+      font-size: 13px;
+    }
+  }
+  .v-lazy-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 414px) {
+  .v-lazy-image {
+    height: 160px;
   }
 }
 </style>

@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import Vuesax from "vuesax";
 import { i18n } from "@/plugins/i18n";
+import Skeleton from "vue-loading-skeleton";
 import vuescroll from "vuescroll/dist/vuescroll-native";
 
 Vue.config.productionTip = false;
@@ -19,6 +20,7 @@ Vue.use(Vuesax, {
   }
 });
 
+Vue.use(Skeleton);
 Vue.use(vuescroll);
 
 Vue.prototype.$vuescrollConfig = {
