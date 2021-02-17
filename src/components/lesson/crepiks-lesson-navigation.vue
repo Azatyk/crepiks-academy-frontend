@@ -17,39 +17,47 @@
       Урок {{ getLessonIndex() + 1 }}: {{ lesson.title.ru }}
     </h2>
     <div class="navigation-divide-line"></div>
-    <div class="navigation-lessons-list">
-      <router-link
-        class="navigation-lesson"
-        v-for="(lesson, index) in lessons"
-        :key="lesson.id"
-        :to="'/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id"
-      >
-        <div class="navigation-lesson-text">
-          <span class="navigation-lesson-number">{{ index + 1 }}.</span>
-          <span class="navigation-lesson-title">{{ lesson.title.ru }}</span>
-        </div>
-        <div
-          class="navigation-lesson-status"
-          :class="{
-            'navigation-lesson-status-completed': isLessonCompleted(lesson.id),
-            'navigation-lesson-status-current':
-              $route.params.lessonId == lesson.id
-          }"
+    <vuescroll :ops="ops">
+      <div class="navigation-lessons-list">
+        <router-link
+          class="navigation-lesson"
+          v-for="(lesson, index) in lessons"
+          :key="lesson.id"
+          :to="
+            '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
+          "
         >
-          {{
-            $route.params.lessonId != lesson.id
-              ? isLessonCompleted(lesson.id)
-                ? "Пройдено"
-                : "Не пройдено"
-              : "Текущий урок"
-          }}
-        </div>
-      </router-link>
-    </div>
+          <div class="navigation-lesson-text">
+            <span class="navigation-lesson-number">{{ index + 1 }}.</span>
+            <span class="navigation-lesson-title">{{ lesson.title.ru }}</span>
+          </div>
+          <div
+            class="navigation-lesson-status"
+            :class="{
+              'navigation-lesson-status-completed': isLessonCompleted(
+                lesson.id
+              ),
+              'navigation-lesson-status-current':
+                $route.params.lessonId == lesson.id
+            }"
+          >
+            {{
+              $route.params.lessonId != lesson.id
+                ? isLessonCompleted(lesson.id)
+                  ? "Пройдено"
+                  : "Не пройдено"
+                : "Текущий урок"
+            }}
+          </div>
+        </router-link>
+      </div>
+    </vuescroll>
   </div>
 </template>
 
 <script>
+import vuescroll from "vuescroll";
+
 export default {
   props: {
     lessons: {
@@ -66,6 +74,50 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+
+  components: {
+    vuescroll
+  },
+
+  data() {
+    return {
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "10px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "10px",
+          disable: false
+        }
+      }
+    };
   },
 
   methods: {
@@ -100,11 +152,16 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: $white;
-  transition: 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  will-change: transform;
   z-index: 4;
 
   &-open {
-    left: 0;
+    -moz-transform: translateX(500px);
+    -ms-transform: translateX(500px);
+    -webkit-transform: translateX(500px);
+    -o-transform: translateX(500px);
+    transform: translateX(500px);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   }
 }
@@ -169,12 +226,13 @@ export default {
   }
 
   &-lessons-list {
-    padding: 25px 0;
+    margin: 25px 0;
+    padding-right: 30px;
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
   }
 
   &-lesson {

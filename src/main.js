@@ -5,8 +5,7 @@ import store from "./store";
 import Vuesax from "vuesax";
 import { i18n } from "@/plugins/i18n";
 import Skeleton from "vue-loading-skeleton";
-
-Vue.use(Skeleton);
+import vuescroll from "vuescroll/dist/vuescroll-native";
 
 Vue.config.productionTip = false;
 
@@ -20,6 +19,15 @@ Vue.use(Vuesax, {
     dark: "#2e2e3d"
   }
 });
+
+Vue.use(Skeleton);
+Vue.use(vuescroll);
+
+Vue.prototype.$vuescrollConfig = {
+  bar: {
+    background: "#e74c3c"
+  }
+};
 
 new Vue({
   i18n,

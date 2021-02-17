@@ -1,0 +1,109 @@
+<template>
+  <rightSideBlock :isOpen="isOpen" @close-block="$emit('close-hint')">
+    <vuescroll :ops="ops">
+      <div class="hint">
+        <h2 class="hint-heading">Подсказка</h2>
+        <div class="hint-text" v-html="hint"></div>
+        <cButton
+          class="hint-button"
+          text="Понятно"
+          @click="$emit('close-hint')"
+        />
+      </div>
+    </vuescroll>
+  </rightSideBlock>
+</template>
+
+<script>
+import rightSideBlock from "@/components/common/crepiks-right-side-block";
+import cButton from "@/components/common/crepiks-button";
+import vuescroll from "vuescroll";
+
+export default {
+  props: {
+    isOpen: {
+      type: Boolean,
+      default: false
+    },
+    hint: {
+      type: String,
+      required: true
+    }
+  },
+
+  components: {
+    rightSideBlock,
+    cButton,
+    vuescroll
+  },
+
+  data() {
+    return {
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "10px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "10px",
+          disable: false
+        }
+      }
+    };
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/variables.scss";
+
+.hint {
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+
+  &-heading {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  &-text {
+    padding-right: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 22px;
+    line-height: 130%;
+  }
+
+  &-button {
+    width: 120px;
+  }
+}
+</style>

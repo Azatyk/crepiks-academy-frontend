@@ -14,24 +14,30 @@
       class="bx bx-x lesson-theory-close"
       @click="$emit('theory-closed')"
     ></i>
-    <div class="content-full">
-      <div class="content">
-        <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
-        <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
-        <cButton
-          :text="isTheoryOnly ? 'Следующий урок' : 'Перейти к заданию'"
-          :isBold="true"
-          size="big"
-          class="lesson-theory-button"
-          @click="isTheoryOnly ? handleTheoryButton() : $emit('theory-closed')"
-        />
+    <vuescroll :ops="ops">
+      <div class="content-full">
+        <div class="content">
+          <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
+          <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
+          <cButton
+            :text="isTheoryOnly ? 'Следующий урок' : 'Перейти к заданию'"
+            :isBold="true"
+            size="big"
+            class="lesson-theory-button"
+            @click="
+              isTheoryOnly ? handleTheoryButton() : $emit('theory-closed')
+            "
+          />
+        </div>
       </div>
-    </div>
+    </vuescroll>
   </div>
 </template>
 
 <script>
 import cButton from "@/components/common/crepiks-button";
+
+import vuescroll from "vuescroll";
 
 export default {
   props: {
@@ -54,12 +60,48 @@ export default {
 
   data() {
     return {
-      isLessonLast: false
+      isLessonLast: false,
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.2,
+          size: "13px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "8px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: true,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "13px",
+          disable: false
+        }
+      }
     };
   },
 
   components: {
-    cButton
+    cButton,
+    vuescroll
   },
 
   methods: {
@@ -105,7 +147,8 @@ export default {
   border-radius: 10px 10px 0 0;
   background-color: $white;
   z-index: 3;
-  transition: 200ms ease;
+  transition: transform 400ms ease-in-out;
+  will-change: transform;
 
   &-only {
     width: 100vw;
@@ -114,6 +157,10 @@ export default {
   }
 
   &-open {
+    -moz-transform: translateY(-99.5vh);
+    -ms-transform: translateY(-99.5vh);
+    -webkit-transform: translateY(-99.5vh);
+    -o-transform: translateY(-99.5vh);
     transform: translateY(-99.5vh);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
   }
@@ -126,6 +173,7 @@ export default {
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
+    z-index: 3;
     transition: 200ms ease-in-out;
 
     &:hover {
@@ -178,7 +226,6 @@ export default {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    overflow: scroll;
   }
 }
 </style>

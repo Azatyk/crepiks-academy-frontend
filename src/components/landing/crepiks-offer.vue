@@ -48,7 +48,7 @@ export default {
   }
 
   &-text {
-    width: 45%;
+    width: 500px;
     padding: 45px 40px;
     box-sizing: border-box;
     background-color: $white;

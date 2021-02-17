@@ -96,8 +96,10 @@ export default {
       },
       cssCode:
         "body {" +
+        "  padding: 0;" +
+        "  margin: 0;" +
         "  width: 100%;" +
-        "  height: 95vh;" +
+        "  height: 100%;" +
         "  display: flex;" +
         "  justify-content: center;" +
         "  align-items: center;" +
@@ -180,14 +182,14 @@ export default {
   &-heading {
     color: $dark;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 2.6vw;
   }
 
   &-paragraph {
     width: 85%;
     color: $dark;
     padding-top: 15px;
-    font-size: 20px;
+    font-size: 1.2vw;
     font-weight: 300;
     opacity: 0.9;
 
@@ -323,19 +325,19 @@ export default {
 </style>
 
 <style lang="scss">
-.CodeMirror {
+.practice-editor-editor .CodeMirror {
   height: 100% !important;
   border-radius: 0 0 0 15px;
   z-index: 1 !important;
   width: 100% !important;
 }
 
-.CodeMirror-scroll {
+.practice-editor-editor .CodeMirror-scroll {
   padding-bottom: 0 !important;
   overflow: hidden !important;
 }
 
-.CodeMirror-gutters {
+.practice-editor-editor .CodeMirror-gutters {
   background-color: #ffffff;
 }
 </style>

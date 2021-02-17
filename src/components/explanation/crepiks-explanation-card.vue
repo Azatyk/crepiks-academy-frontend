@@ -63,11 +63,16 @@ export default {
   &-heading {
     width: 100%;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 1.8vw;
     margin-left: 15px;
   }
 
   &-number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid $white;
     color: $dark;
     border-radius: 50%;
@@ -75,16 +80,15 @@ export default {
     font-weight: 700;
     margin: auto;
     font-size: 20px;
-    padding: 3px 9px;
   }
 
   &-paragraph {
     width: 100%;
-    font-size: 20px;
+    font-size: 1.2vw;
     margin-top: 15px;
     font-weight: 300;
     opacity: 60%;
-    line-height: 28px;
+    line-height: 1.8vw;
   }
 }
 

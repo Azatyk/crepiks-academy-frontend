@@ -80,7 +80,8 @@ export default {
       password: "",
       isNotificationOpen: false,
       notificationHeading: "",
-      notificationText: ""
+      notificationText: "",
+      isLoading: false
     };
   },
 
@@ -92,6 +93,8 @@ export default {
         this.email.trim() &&
         this.password.trim()
       ) {
+        this.isLoading = true;
+
         const user = {
           firstName: this.firstName.trim(),
           lastName: this.lastName.trim(),
@@ -101,14 +104,19 @@ export default {
 
         this.$store
           .dispatch("register", user)
-          .then(() => this.$router.push("/app/courses"))
+          .then(() => {
+            this.isLoading = false;
+            this.$router.push("/app/courses");
+          })
           .catch(() => {
+            this.isLoading = false;
             this.isNotificationOpen = true;
             (this.notificationHeading = "Что-то пошло нет так"),
               (this.notificationText =
                 "Проверьте ваше подключение к интернету и попробуйте еще раз");
           });
       } else {
+        this.isLoading = false;
         this.isNotificationOpen = true;
         this.notificationHeading = "Заполните все поля";
         this.notificationText =

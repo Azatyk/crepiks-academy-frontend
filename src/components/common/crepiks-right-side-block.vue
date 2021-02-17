@@ -21,25 +21,31 @@ export default {
 
 .side-block {
   position: fixed;
-  right: -40%;
+  right: -600px;
   top: 0;
   padding: 60px 50px;
   padding-bottom: 0;
-  width: 40%;
+  width: 600px;
   height: 100vh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   background-color: $white;
-  transition: 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
+  will-change: transform;
   z-index: 3;
 
   &-open {
-    right: 0;
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   }
 
   &-close {
+    margin-bottom: 20px;
     color: $dark;
     font-size: 25px;
     opacity: 0.4;

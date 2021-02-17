@@ -41,6 +41,7 @@
             :isHtmlExist="isHtmlExist"
             :isCssExist="isCssExist"
             @navigation-opened="isNavigationOpen = true"
+            @hint-opened="isHintOpen = true"
             @index-clicked="isHtmlShowing = true"
             @styles-clicked="isHtmlShowing = false"
             @index-closed="
@@ -86,6 +87,11 @@
             >
           </div>
           <lessonTasks :lesson="lesson" :lessons="lessons" />
+          <hint
+            :isOpen="isHintOpen"
+            :hint="lesson.hint.ru"
+            @close-hint="isHintOpen = false"
+          />
         </div>
         <taskNotification
           :isActive="isTaskNotificationOpen"
@@ -125,6 +131,7 @@
 <script>
 import navigation from "@/components/lesson/crepiks-lesson-navigation";
 import theory from "@/components/lesson/crepiks-lesson-theory";
+import hint from "@/components/lesson/crepiks-lesson-hint";
 
 import filesNavigation from "@/components/lesson/crepiks-lesson-files-navigation";
 import codeEditorHeader from "@/components/lesson/crepiks-code-editor-header";
@@ -154,7 +161,8 @@ export default {
     theory,
     browserHeader,
     browser,
-    codemirror
+    codemirror,
+    hint
   },
 
   data() {
@@ -177,7 +185,10 @@ export default {
               ru: ""
             }
           }
-        ]
+        ],
+        hint: {
+          ru: ""
+        }
       },
       lessons: [
         {
@@ -189,6 +200,7 @@ export default {
       ],
       completedLessons: [],
       isNavigationOpen: false,
+      isHintOpen: false,
       isTheoryOpen: true,
       isTaskNotificationOpen: false,
       taskNotificationStatus: null,
@@ -216,15 +228,15 @@ export default {
     };
   },
 
-  async mounted() {
-    document.addEventListener("keydown", function(event) {
-      if (event.code == "ArrowRight") {
-        this.isCodeEditorScreen = false;
-      } else if (event.code == "ArrowLeft") {
-        this.isCodeEditorScreen = true;
-      }
-    });
+  created() {
+    document.addEventListener("keydown", this.handleArrowsButtons);
+  },
 
+  destroyed() {
+    document.removeEventListener("keydown", this.handleArrowsButtons);
+  },
+
+  async mounted() {
     let courseId = this.$route.params.courseId;
 
     await this.$store
@@ -238,12 +250,21 @@ export default {
       this.isTheoryOnly = true;
     } else {
       this.isTheoryOnly = false;
+      this.runCode();
     }
   },
 
   computed: mapGetters(["userData"]),
 
   methods: {
+    handleArrowsButtons(event) {
+      if (event.code == "ArrowRight") {
+        this.isCodeEditorScreen = false;
+      } else if (event.code == "ArrowLeft") {
+        this.isCodeEditorScreen = true;
+      }
+    },
+
     async getLesson() {
       let courseId = this.$route.params.courseId;
       let lessonId = this.$route.params.lessonId;
@@ -267,6 +288,14 @@ export default {
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
           child.handleRunButton();
+        }
+      }
+    },
+
+    runCode() {
+      for (let child of this.$children) {
+        if (child.$options._componentTag == "browser") {
+          child.runCode();
         }
       }
     },

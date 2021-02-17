@@ -55,7 +55,7 @@ export default {
 
   &-heading {
     color: $dark;
-    font-size: 35px;
+    font-size: 2.2vw;
     font-weight: 400;
 
     &-free {
@@ -64,7 +64,7 @@ export default {
   }
 
   &-paragraph {
-    font-size: 20px;
+    font-size: 1.2vw;
     width: 80%;
     margin-top: 10px;
     color: $light-dark;

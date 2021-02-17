@@ -19,12 +19,14 @@
         </div>
         <courseCard
           class="course-card-block"
-          @linkClick="openCourseBlock"
           :image="firstCourseImage"
+          @course-opened="
+            openCourseId = 1;
+            isFirstCourseOpen = true;
+          "
           :id="1"
           title="Базовая верстка сайтов"
           description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
-          button="Узнать про курс"
         />
         <courseCard
           class="course-card-block"
@@ -32,7 +34,6 @@
           :id="2"
           title="Продвинутая верстка сайтов"
           description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-          button="Узнать про курс"
         />
         <courseCard
           class="course-card-block"
@@ -52,9 +53,10 @@
       />
     </div>
     <course
-      :isCourseOpen="isCourseBlockOpen"
-      @open-course-block="isCourseBlockOpen = true"
-      @close-course-block="closeCourseBlock"
+      :isCourseOpen="isFirstCourseOpen"
+      :id="openCourseId"
+      @open-course-block="isFirstCourseOpen = true"
+      @close-course-block="isFirstCourseOpen = false"
     />
   </div>
 </template>
@@ -84,20 +86,9 @@ export default {
       firstCourseImage: firstCourseImage,
       secondCourseImage: secondCourseImage,
       thirdCourseImage: thirdCourseImage,
-      isCourseBlockOpen: false
+      isFirstCourseOpen: false,
+      openCourseId: 0
     };
-  },
-
-  methods: {
-    openCourseBlock() {
-      this.isCourseBlockOpen = true;
-      this.$router.push("/app/courses/1");
-    },
-
-    closeCourseBlock() {
-      this.isCourseBlockOpen = false;
-      this.$router.push("/app/courses");
-    }
   }
 };
 </script>

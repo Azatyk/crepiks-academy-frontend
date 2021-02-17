@@ -23,6 +23,7 @@
         <PuSkeleton :count="5" height="40px" width="100%"></PuSkeleton>
       </div>
     </div>
+    <vuescroll :ops="ops">
     <div class="course-content" v-else>
       <div class="main-info">
         <v-lazy-image
@@ -63,23 +64,39 @@
             :to="
               '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
             "
-          >
-            <div class="lesson-title">
-              <div class="lesson-title-number">{{ index + 1 }}.</div>
-              <div class="lesson-title-text">{{ lesson.title.ru }}</div>
+          />
+        </div>
+        <div class="course-lessons">
+          <div class="course-lessons-labels">
+            <div class="course-lessons-title">Уроки курса</div>
+            <div class="course-lessons-amount">
+              {{ course.lessons.length }} урока
             </div>
-            <div
-              class="lesson-status"
-              :class="{
-                'lesson-status-completed': isLessonCompleted(lesson.id)
-              }"
+          </div>
+          <div class="course-lessons-list">
+            <router-link
+              class="lesson"
+              v-for="(lesson, index) in course.lessons"
+              :key="lesson.id"
+              :to="'/app/courses/' + id + '/lessons/' + lesson.id"
             >
-              {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
-            </div>
-          </router-link>
+              <div class="lesson-title">
+                <div class="lesson-title-number">{{ index + 1 }}.</div>
+                <div class="lesson-title-text">{{ lesson.title.ru }}</div>
+              </div>
+              <div
+                class="lesson-status"
+                :class="{
+                  'lesson-status-completed': isLessonCompleted(lesson.id)
+                }"
+              >
+                {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
+              </div>
+            </router-link>
+          </div>
         </div>
       </div>
-    </div>
+    </vuescroll>
   </rightSideBlock>
 </template>
 
@@ -88,6 +105,7 @@ import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
 
 import VLazyImage from "v-lazy-image";
+import vuescroll from "vuescroll";
 
 import { mapGetters } from "vuex";
 
@@ -95,13 +113,19 @@ export default {
   components: {
     rightSideBlock,
     cButton,
-    VLazyImage
+    VLazyImage,
+    vuescroll,
   },
 
   props: {
     isCourseOpen: {
       type: Boolean,
       default: false
+    },
+
+    id: {
+      type: Number,
+      required: true
     }
   },
 
@@ -126,24 +150,49 @@ export default {
       },
       skeletonLoading: null,
       completedLessons: [{ id: null }]
+      ops: {
+        vuescroll: {
+          mode: "native"
+        },
+        scrollPanel: {
+          initialScrollY: false,
+          initialScrollX: false,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInOutQuint",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#2d2c2c",
+          opacity: 0.0,
+          size: "10px",
+          specifyBorderRadius: "10px",
+          gutterOfEnds: null,
+          gutterOfSide: "0px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 1000,
+          onlyShowBarOnScroll: true,
+          keepShow: false,
+          background: "#2d2c2c",
+          opacity: 0.3,
+          hoverStyle: false,
+          specifyBorderRadius: "5px",
+          minSize: 0,
+          size: "10px",
+          disable: false
+        }
+      }
     };
-  },
-
-  mounted() {
-    if (
-      this.$route.fullPath == "/app/courses/1" ||
-      this.$route.fullPath == "/app/courses/1/"
-    ) {
-      this.$emit("open-course-block");
-    }
   },
 
   watch: {
     async isCourseOpen() {
       if (this.isCourseOpen) {
         this.skeletonLoading = true;
-        const id = this.$route.params.id;
-        await this.$store.dispatch("getCourse", id).then(res => {
+        await this.$store.dispatch("getCourse", this.id).then(res => {
           this.course = res.data.course;
           this.skeletonLoading = false;
         });
@@ -175,15 +224,16 @@ export default {
 .course {
   &-content {
     padding-bottom: 50px;
+    padding-right: 30px;
     width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 }
 
 .main-info {
-  margin-top: 30px;
   margin-bottom: 70px;
   width: 100%;
   display: flex;

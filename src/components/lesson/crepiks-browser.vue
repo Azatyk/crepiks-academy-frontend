@@ -45,7 +45,11 @@ export default {
       this.checkLessonTasks(iframe);
     },
 
-    runCode(iframe) {
+    runCode() {
+      var iframe =
+        this.$refs.browserFrame.contentDocument ||
+        this.$refs.browserFrame.contentWindow.document; // Приходится получать iframe в этой функции, потому что этот метод мы вызываем отдельно от метода handleRunButton
+
       iframe.head.innerHTML = "";
 
       iframe.body.innerHTML = this.htmlCode;
