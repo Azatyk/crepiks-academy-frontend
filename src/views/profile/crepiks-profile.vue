@@ -223,7 +223,7 @@ export default {
     &-body {
       position: relative;
       height: 70%;
-      width: 70%;
+      width: 205px;
       border-radius: 50px 50px 0 0;
       display: flex;
       flex-direction: column;
@@ -374,6 +374,10 @@ export default {
     &-image {
       width: 220px;
       height: 220px;
+
+      &-body {
+        height: 85%;
+      }
     }
 
     &-subscription {
