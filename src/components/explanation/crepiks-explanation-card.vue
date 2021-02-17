@@ -63,7 +63,7 @@ export default {
   &-heading {
     width: 100%;
     font-weight: 400;
-    font-size: 1.8vw;
+    font-size: 30px;
     margin-left: 15px;
   }
 
@@ -84,11 +84,24 @@ export default {
 
   &-paragraph {
     width: 100%;
-    font-size: 1.2vw;
+    font-size: 20px;
     margin-top: 15px;
     font-weight: 300;
     opacity: 60%;
-    line-height: 1.8vw;
+    line-height: 28px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .card {
+    &-heading {
+      font-size: 1.8vw;
+    }
+
+    &-paragraph {
+      font-size: 1.2vw;
+      line-height: 1.8vw;
+    }
   }
 }
 

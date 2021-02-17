@@ -38,7 +38,7 @@ export default {};
     margin-left: auto;
     margin-top: 29vh;
     font-weight: 400;
-    font-size: 2.6vw;
+    font-size: 35px;
     color: $dark;
   }
 
@@ -47,9 +47,21 @@ export default {};
     margin-right: auto;
     margin-left: auto;
     padding-top: 5vh;
-    font-size: 1.5vw;
+    font-size: 20px;
     color: $light-dark;
-    line-height: 1.9vw;
+  }
+}
+
+@media (min-width: 1440px) {
+  .description {
+    &_heading {
+      font-size: 2.6vw;
+    }
+
+    &-paragraph {
+      font-size: 1.5vw;
+      line-height: 1.9vw;
+    }
   }
 }
 
