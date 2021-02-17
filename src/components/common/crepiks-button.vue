@@ -7,11 +7,15 @@
       small: size == 'small',
       big: size == 'big',
       bold: isBold,
-      disabled: isDisabled
+      disabled: isDisabled,
+      'loading-button': isLoading
     }"
     @click="$emit('click')"
   >
-    {{ text }}
+    <transition name="fade" mode="out-in">
+      <div class="loader loader-arc" v-if="isLoading"></div>
+      <span class="button-text" v-else>{{ text }}</span>
+    </transition>
   </button>
 </template>
 
@@ -33,6 +37,10 @@ export default {
       default: false
     },
     isDisabled: {
+      type: Boolean,
+      default: false
+    },
+    isLoading: {
       type: Boolean,
       default: false
     }
@@ -88,9 +96,66 @@ export default {
   }
 }
 
+.loading-button {
+  position: relative;
+  height: 39px;
+  cursor: default;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 375px) {
   .button {
     padding: 8px 20px;
   }
+}
+
+.loader {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  height: 12px;
+  width: 12px;
+  display: block;
+  border-radius: 50%;
+  background: $primary;
+}
+
+.loader-arc {
+  animation-name: spin;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-image: linear-gradient(270deg, $white 20%, transparent 50%),
+    linear-gradient(180deg, $primary 50%, $white 50%);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

@@ -32,7 +32,7 @@
           placeholder="Введите ваш пароль"
           v-model="password"
         />
-        <cButton class="form-button" text="Войти" />
+        <cButton class="form-button" :isLoading="isLoading" text="Войти" />
         <p class="form-text">
           <span class="form-text-info">Все ещё нет аккаунта?</span>
           <router-link class="form-text form-text-link" to="/auth/register"
@@ -64,25 +64,34 @@ export default {
       password: "",
       isNotificationOpen: false,
       notificationHeading: "",
-      notificationText: ""
+      notificationText: "",
+      isLoading: false
     };
   },
 
   methods: {
     login() {
       if (this.email.trim() && this.password.trim()) {
-        const email = this.email.trim();
-        const password = this.password.trim();
-        this.$store
-          .dispatch("login", { email, password })
-          .then(() => this.$router.push("/app/courses"))
-          .catch(() => {
-            this.isNotificationOpen = true;
-            (this.notificationHeading = "Неверные данные"),
-              (this.notificationText =
-                "Неверная почта или пароль. Проверьте и попробуйте еще раз");
-          });
+        this.isLoading = true;
+        setTimeout(() => {
+          const email = this.email.trim();
+          const password = this.password.trim();
+          this.$store
+            .dispatch("login", { email, password })
+            .then(() => {
+              this.isLoading = false;
+              this.$router.push("/app/courses");
+            })
+            .catch(() => {
+              this.isLoading = false;
+              this.isNotificationOpen = true;
+              (this.notificationHeading = "Неверные данные"),
+                (this.notificationText =
+                  "Неверная почта или пароль. Проверьте и попробуйте еще раз");
+            });
+        }, 3000);
       } else {
+        this.isLoading = false;
         this.isNotificationOpen = true;
         this.notificationHeading = "Введите почту и пароль";
         this.notificationText =
