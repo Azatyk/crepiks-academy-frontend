@@ -1,10 +1,20 @@
 <template>
   <div class="subscription-page">
-    <div class="elipse elipse-dark-top"></div>
-    <div class="elipse elipse-light-top"></div>
-    <div class="elipse elipse-light-bottom"></div>
-    <div class="elipse elipse-dark-bottom"></div>
-    <subscriptionCard />
+    <transition name="downLeft" appear>
+      <div class="elipse elipse-dark-top"></div>
+    </transition>
+    <transition name="downRight" appear>
+      <div class="elipse elipse-light-top"></div>
+    </transition>
+    <transition name="upLeft" appear>
+      <div class="elipse elipse-light-bottom"></div>
+    </transition>
+    <transition name="upRight" appear>
+      <div class="elipse elipse-dark-bottom"></div>
+    </transition>
+    <transition name="card" appear>
+      <subscriptionCard />
+    </transition>
   </div>
 </template>
 
@@ -39,25 +49,25 @@ export default {
   z-index: 2;
 
   &-light-top {
-    bottom: 80%;
+    bottom: 85%;
     right: 5%;
     background-color: #25f9cf;
   }
 
   &-dark-top {
-    bottom: 70%;
+    bottom: 75%;
     right: -20%;
     background-color: #3ae8c5;
   }
 
   &-light-bottom {
-    top: 70%;
+    top: 75%;
     left: -20%;
     background-color: #25f9cf;
   }
 
   &-dark-bottom {
-    top: 80%;
+    top: 85%;
     left: 5%;
     background-color: #3ae8c5;
   }
@@ -67,6 +77,7 @@ export default {
   .elipse {
     width: 400px;
     height: 400px;
+    will-change: transform;
 
     &-light-top {
       top: -50%;
@@ -88,5 +99,66 @@ export default {
       display: none;
     }
   }
+}
+
+.downRight-enter-active,
+.downRight-leave-active {
+  transition: transform 1.7s ease-in-out;
+  will-change: transform;
+}
+
+.downLeft-enter-active,
+.downLeft-leave-active {
+  transition: transform 1.5s ease-in-out;
+}
+
+.downRight-enter,
+.downLeft-enter {
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.downRight-leave-to,
+.downLeft-leave-to {
+  transform: translateY(0);
+}
+
+.upRight-enter-active,
+.upRight-leave-active {
+  transition: transform 1.7s ease-in-out;
+  will-change: transform;
+}
+
+.upLeft-enter-active,
+.upLeft-leave-active {
+  transition: transform 1.5s ease-in-out;
+  will-change: transform;
+}
+
+.upRight-enter,
+.upLeft-enter {
+  -moz-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  -o-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+.upRight-leave-to,
+.upLeft-leave-to {
+  transform: translateY(0);
+}
+
+.card-enter-active,
+.card-leave-active {
+  transition: opacity 1s ease-in-out;
+  will-change: opacity;
+}
+.card-enter,
+.card-leave-to {
+  opacity: 0;
 }
 </style>

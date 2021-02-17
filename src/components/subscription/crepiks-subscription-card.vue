@@ -55,7 +55,7 @@ export default {
   display: flex;
   flex-direction: row;
   border-radius: 20px;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   z-index: 3;
   background-color: $white;
 }
