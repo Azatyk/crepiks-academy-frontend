@@ -137,6 +137,38 @@ export default {
         {
           background: "#1abc9c",
           body: "#2980b9"
+        },
+        {
+          background: "#6c5ce7",
+          body: "fdcb6e"
+        },
+        {
+          background: "#ee5253",
+          body: "#222f3e"
+        },
+        {
+          background: "#54a0ff",
+          body: "#1dd1a1"
+        },
+        {
+          background: "#F97F51",
+          body: "#1dd1a1"
+        },
+        {
+          background: "#2C3A47",
+          body: "#1dd1a1"
+        },
+        {
+          background: "#2C3A47",
+          body: "#1B9CFC"
+        },
+        {
+          background: "#2C3A47",
+          body: "#fa8231"
+        },
+        {
+          background: "#fed330",
+          body: "#303952"
         }
       ],
       randomNumber: null
@@ -219,12 +251,13 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
+    overflow: hidden;
 
     &-body {
       position: relative;
       height: 70%;
       width: 70%;
-      border-radius: 50px 50px 0 0;
+      border-radius: 70px 70px 0 0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -276,12 +309,12 @@ export default {
     &-laptop {
       width: 75%;
       height: 90px;
-      border-radius: 10px;
+      border-radius: 7px;
       margin-top: auto;
       margin-bottom: 0;
       position: relative;
-      background-color: #95a5a6;
-      box-shadow: 0px -5px 68px -23px rgb(0, 0, 0);
+      background-color: #b6b8b9;
+      box-shadow: 0px 0px 68px rgb(0, 0, 0, 0.5);
 
       &-icon {
         position: absolute;
