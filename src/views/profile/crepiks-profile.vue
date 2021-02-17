@@ -123,6 +123,18 @@ export default {
   watch: {
     userData() {
       this.user = this.userData;
+    },
+
+    openProfileEdit() {
+      if (this.openProfileEdit) {
+        this.openChangePassword = false;
+      }
+    },
+
+    openChangePassword() {
+      if (this.openChangePassword) {
+        this.openProfileEdit = false;
+      }
     }
   }
 };
