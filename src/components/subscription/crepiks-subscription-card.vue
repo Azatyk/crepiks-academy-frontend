@@ -7,11 +7,12 @@
       </h1>
       <p class="card-text-description">
         Оформите подписку за 5000 тг и получите доступ ко всем курсам Crepiks на
-        3 месяца
+        месяц
       </p>
       <div class="card-button-promocode">
         <cButton
           @click="$emit('subscription-button-clicked')"
+          :isBold="true"
           class="card-button"
           text="Оформить подписку"
         />
@@ -22,16 +23,20 @@
     </div>
     <div class="card-images">
       <img
-        class="html-css-basic"
+        class="card-image markup-basic"
         src="@/assets/images/html-css-basic.svg"
         alt=""
       />
       <img
-        class="html-css-upgrade"
+        class="card-image markup-upgrade"
         src="@/assets/images/html-css-upgrade.svg"
         alt=""
       />
-      <img class="javascript" src="@/assets/images/javascript.svg" alt="" />
+      <img
+        class="card-image javascript-basic"
+        src="@/assets/images/javascript.svg"
+        alt=""
+      />
     </div>
   </div>
 </template>
@@ -60,42 +65,43 @@ export default {
   background-color: $white;
 }
 
-.card-text {
-  padding: 50px 0 60px 50px;
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+.card {
+  &-text {
+    padding: 50px 0 60px 50px;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
-  &-title {
-    margin-bottom: 15px;
-    color: $dark;
-    font-size: 35px;
-    font-weight: 600;
+    &-title {
+      margin-bottom: 15px;
+      color: $dark;
+      font-size: 35px;
+      font-weight: 600;
 
-    &-important {
-      color: $primary;
+      &-important {
+        color: $primary;
+      }
+    }
+
+    &-description {
+      margin-bottom: 25px;
+      color: $dark;
+      font-size: 20px;
+      font-weight: 600;
+      opacity: 0.8;
     }
   }
 
-  &-description {
-    margin-bottom: 25px;
-    color: $dark;
-    font-size: 20px;
-    font-weight: 600;
-    opacity: 0.8;
-  }
-}
-
-.card-button-promocode {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.card {
   &-button {
     margin-right: 25px;
+    font-weight: bold;
+
+    &-promocode {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
   }
 
   &-promocode {
@@ -116,36 +122,36 @@ export default {
     width: 30%;
     height: 100%;
   }
+
+  &-image {
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
+  }
 }
 
-.html-css-basic {
-  width: 95px;
-  position: absolute;
-  transform: rotate(-18deg);
-  top: 50px;
-  left: 50px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
-}
+.markup {
+  &-basic {
+    transform: rotate(-15deg);
+    top: 50px;
+    left: 50px;
+  }
 
-.html-css-upgrade {
-  width: 95px;
-  position: absolute;
-  left: 85px;
-  top: 130px;
-  transform: rotate(18deg);
-  border-radius: 10px;
-  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+  &-upgrade {
+    left: 85px;
+    top: 110px;
+    transform: rotate(18deg);
+  }
 }
 
 .javascript {
-  width: 95px;
-  position: absolute;
-  top: 195px;
-  left: 50px;
-  transform: rotate(-15deg);
-  border-radius: 10px;
-  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.25);
+  &-basic {
+    top: 175px;
+    left: 50px;
+    transform: rotate(-18deg);
+  }
 }
 
 @media (max-width: 800px) {
