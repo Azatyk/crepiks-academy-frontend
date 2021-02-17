@@ -132,6 +132,14 @@ export default {
       this.updatedUser.firstName = this.userData.firstName;
       this.updatedUser.lastName = this.userData.lastName;
       this.updatedUser.email = this.userData.email;
+    },
+
+    isProfileEditOpen() {
+      if (this.isProfileEditOpen) {
+        this.updatedUser.firstName = this.userData.firstName;
+        this.updatedUser.lastName = this.userData.lastName;
+        this.updatedUser.email = this.userData.email;
+      }
     }
   }
 };
