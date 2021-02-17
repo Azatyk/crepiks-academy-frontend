@@ -1,5 +1,9 @@
 <template>
   <div class="subscription-page">
+    <promocode
+      :isOpen="isPromocodeOpen"
+      @close-promocode-block="isPromocodeOpen = false"
+    />
     <transition name="downLeft" appear>
       <div class="elipse elipse-dark-top"></div>
     </transition>
@@ -13,17 +17,25 @@
       <div class="elipse elipse-dark-bottom"></div>
     </transition>
     <transition name="card" appear>
-      <subscriptionCard />
+      <subscriptionCard @promocode-opened="isPromocodeOpen = true" />
     </transition>
   </div>
 </template>
 
 <script>
 import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
+import promocode from "@/components/subscription/crepiks-subscription-promocode";
 
 export default {
   components: {
-    subscriptionCard
+    subscriptionCard,
+    promocode
+  },
+
+  data() {
+    return {
+      isPromocodeOpen: false
+    };
   }
 };
 </script>

@@ -16,7 +16,7 @@
           class="card-button"
           text="Оформить подписку"
         />
-        <span @click="$emit('open-promocode')" class="card-promocode"
+        <span @click="$emit('promocode-opened')" class="card-promocode"
           >Есть промокод?</span
         >
       </div>
@@ -61,7 +61,7 @@ export default {
   flex-direction: row;
   border-radius: 20px;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-  z-index: 3;
+  z-index: 2;
   background-color: $white;
 }
 
