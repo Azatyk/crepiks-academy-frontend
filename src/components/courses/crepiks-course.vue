@@ -20,10 +20,7 @@
             class="main-info-button"
             @click="
               $router.push(
-                '/app/courses/' +
-                  $route.params.id +
-                  '/lessons/' +
-                  course.lessons[0].id
+                '/app/courses/' + id + '/lessons/' + course.lessons[0].id
               )
             "
           />
@@ -40,12 +37,7 @@
               class="lesson"
               v-for="(lesson, index) in course.lessons"
               :key="lesson.id"
-              :to="
-                '/app/courses/' +
-                  $route.params.courseId +
-                  '/lessons/' +
-                  lesson.id
-              "
+              :to="'/app/courses/' + id + '/lessons/' + lesson.id"
             >
               <div class="lesson-title">
                 <div class="lesson-title-number">{{ index + 1 }}.</div>
@@ -86,6 +78,11 @@ export default {
     isCourseOpen: {
       type: Boolean,
       default: false
+    },
+
+    id: {
+      type: Number,
+      required: true
     }
   },
 
@@ -147,20 +144,10 @@ export default {
     };
   },
 
-  mounted() {
-    if (
-      this.$route.fullPath == "/app/courses/1" ||
-      this.$route.fullPath == "/app/courses/1/"
-    ) {
-      this.$emit("open-course-block");
-    }
-  },
-
   watch: {
     async isCourseOpen() {
       if (this.isCourseOpen) {
-        const id = this.$route.params.id;
-        await this.$store.dispatch("getCourse", id).then(res => {
+        await this.$store.dispatch("getCourse", this.id).then(res => {
           this.course = res.data.course;
         });
 

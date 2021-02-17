@@ -79,14 +79,6 @@ const routes = [
         }
       },
       {
-        path: "courses/:id",
-        name: "course",
-        component: courses,
-        meta: {
-          title: "Курсы"
-        }
-      },
-      {
         path: "subscription",
         name: "subscription",
         component: subscription,

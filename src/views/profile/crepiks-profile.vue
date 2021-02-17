@@ -36,9 +36,13 @@
         <div class="user-profile-courses-container">
           <courseCard
             :image="firstCourseImage"
+            :id="1"
+            @course-opened="
+              openCourseId = 1;
+              isFirstCourseOpen = true;
+            "
             title="Базовая верстка сайтов"
             description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
-            button="Перейти к курсу"
             class="user-profile-courses-card"
             progression="true"
             lessonsAll="32"
@@ -46,9 +50,9 @@
           />
           <courseCard
             :image="secondCourseImage"
+            :id="2"
             title="Продвинутая верстка сайтов"
             description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-            button="Перейти к курсу"
             class="user-profile-courses-card"
             progression="true"
             lessonsAll="20"
@@ -65,11 +69,18 @@
       :isOpenChangePassword="openChangePassword"
       @close-change-password-block="openChangePassword = false"
     />
+    <course
+      :isCourseOpen="isFirstCourseOpen"
+      :id="openCourseId"
+      @open-course-block="isFirstCourseOpen = true"
+      @close-course-block="isFirstCourseOpen = false"
+    />
   </div>
 </template>
 
 <script>
 import courseCard from "@/components/courses/crepiks-course-card";
+import course from "@/components/courses/crepiks-course";
 
 import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
 import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
@@ -82,12 +93,15 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     courseCard,
+    course,
     profileEdit,
     changePassword
   },
   data() {
     return {
       firstCourseImage: firstCourseImage,
+      isFirstCourseOpen: false,
+      openCourseId: 0,
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,

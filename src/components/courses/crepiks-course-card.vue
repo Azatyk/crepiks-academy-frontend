@@ -8,16 +8,10 @@
         <div
           class="card-link"
           v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"
-          @click="$emit('linkClick')"
+          @click="$emit('course-opened')"
         >
-          <span class="card-link card-link-text">{{ button }}</span>
+          <span class="card-link card-link-text">Перейти к курсу</span>
           <i class="bx bx-right-arrow-alt card-link-icon"></i>
-        </div>
-        <div
-          class="card-link card-link-soon"
-          v-else-if="$route.fullPath == '/app/courses/' + id"
-        >
-          Вы просматриваете курс
         </div>
         <div class="card-link card-link-soon" v-else>Скоро</div>
       </div>
@@ -46,9 +40,6 @@ export default {
       type: String
     },
     description: {
-      type: String
-    },
-    button: {
       type: String
     },
     isSoon: {

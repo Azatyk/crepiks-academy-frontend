@@ -73,23 +73,21 @@ export default {
     login() {
       if (this.email.trim() && this.password.trim()) {
         this.isLoading = true;
-        setTimeout(() => {
-          const email = this.email.trim();
-          const password = this.password.trim();
-          this.$store
-            .dispatch("login", { email, password })
-            .then(() => {
-              this.isLoading = false;
-              this.$router.push("/app/courses");
-            })
-            .catch(() => {
-              this.isLoading = false;
-              this.isNotificationOpen = true;
-              (this.notificationHeading = "Неверные данные"),
-                (this.notificationText =
-                  "Неверная почта или пароль. Проверьте и попробуйте еще раз");
-            });
-        }, 3000);
+        const email = this.email.trim();
+        const password = this.password.trim();
+        this.$store
+          .dispatch("login", { email, password })
+          .then(() => {
+            this.isLoading = false;
+            this.$router.push("/app/courses");
+          })
+          .catch(() => {
+            this.isLoading = false;
+            this.isNotificationOpen = true;
+            (this.notificationHeading = "Неверные данные"),
+              (this.notificationText =
+                "Неверная почта или пароль. Проверьте и попробуйте еще раз");
+          });
       } else {
         this.isLoading = false;
         this.isNotificationOpen = true;
