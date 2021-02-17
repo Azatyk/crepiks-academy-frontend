@@ -1,61 +1,63 @@
 <template>
-  <div class="register-page">
-    <notification
-      :isActive="isNotificationOpen"
-      :heading="notificationHeading"
-      :text="notificationText"
-      @close-notification="isNotificationOpen = false"
-      status="error"
-    />
-    <div class="register-content">
-      <router-link to="/" class="register-back">
-        <i class="bx bx-arrow-back register-back-icon"></i>
-        На главную
-      </router-link>
-      <cForm
-        @submit="register"
-        class="form-container"
-        subtitle="Добро пожаловать"
-        title="Создайте аккаунт"
-      >
-        <cInput
-          class="form-input"
-          title="Имя"
-          type="text"
-          placeholder="Как вас зовут?"
-          v-model="firstName"
-        />
-        <cInput
-          class="form-input"
-          title="Фамилия"
-          type="text"
-          placeholder="Какая у вас фамилия?"
-          v-model="lastName"
-        />
-        <cInput
-          class="form-input"
-          title="Почта"
-          type="email"
-          placeholder="Введите вашу почту"
-          v-model="email"
-        />
-        <cInput
-          class="form-input"
-          title="Пароль"
-          type="password"
-          placeholder="Придумайте пароль"
-          v-model="password"
-        />
-        <cButton class="form-button" text="Войти" />
-        <p class="form-text">
-          <span class="form-text-info">Вы уже с нами?</span>
-          <router-link class="form-text form-text-link" to="/auth/login"
-            >Войдите в аккаунт!</router-link
-          >
-        </p>
-      </cForm>
+  <transition name="fadeIn" appear>
+    <div class="register-page">
+      <notification
+        :isActive="isNotificationOpen"
+        :heading="notificationHeading"
+        :text="notificationText"
+        @close-notification="isNotificationOpen = false"
+        status="error"
+      />
+      <div class="register-content">
+        <router-link to="/" class="register-back">
+          <i class="bx bx-arrow-back register-back-icon"></i>
+          На главную
+        </router-link>
+        <cForm
+          @submit="register"
+          class="form-container"
+          subtitle="Добро пожаловать"
+          title="Создайте аккаунт"
+        >
+          <cInput
+            class="form-input"
+            title="Имя"
+            type="text"
+            placeholder="Как вас зовут?"
+            v-model="firstName"
+          />
+          <cInput
+            class="form-input"
+            title="Фамилия"
+            type="text"
+            placeholder="Какая у вас фамилия?"
+            v-model="lastName"
+          />
+          <cInput
+            class="form-input"
+            title="Почта"
+            type="email"
+            placeholder="Введите вашу почту"
+            v-model="email"
+          />
+          <cInput
+            class="form-input"
+            title="Пароль"
+            type="password"
+            placeholder="Придумайте пароль"
+            v-model="password"
+          />
+          <cButton class="form-button" text="Войти" />
+          <p class="form-text">
+            <span class="form-text-info">Вы уже с нами?</span>
+            <router-link class="form-text form-text-link" to="/auth/login"
+              >Войдите в аккаунт!</router-link
+            >
+          </p>
+        </cForm>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -219,5 +221,14 @@ export default {
   .form-text {
     font-size: 12px;
   }
+}
+
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 2s;
+}
+.fadeIn-enter,
+.fadeIn-leave-to {
+  opacity: 0;
 }
 </style>

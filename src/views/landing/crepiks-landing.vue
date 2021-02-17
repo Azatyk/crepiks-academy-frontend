@@ -1,14 +1,16 @@
 <template>
-  <div class="landing">
-    <c-header />
-    <cIntro />
-    <cDescription />
-    <cExplanation />
-    <cPractice />
-    <cOffer />
-    <cQuestions />
-    <cFooter />
-  </div>
+  <transition name="fadeIn" appear>
+    <div class="landing">
+      <c-header />
+      <cIntro />
+      <cDescription />
+      <cExplanation />
+      <cPractice />
+      <cOffer />
+      <cQuestions />
+      <cFooter />
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -39,5 +41,14 @@ export default {
 @import "@/assets/styles/variables.scss";
 .landing {
   background-color: $background;
+}
+
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 2s;
+}
+.fadeIn-enter,
+.fadeIn-leave-to {
+  opacity: 0;
 }
 </style>

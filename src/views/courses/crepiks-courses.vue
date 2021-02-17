@@ -1,64 +1,66 @@
 <template>
-  <div class="courses-page">
-    <profileLink />
-    <div class="courses-half">
-      <div class="search-input">
-        <input
-          type="text"
-          class="input"
-          placeholder="Чему хотите научиться?"
-          disabled
-        />
-        <div class="button-container">
-          <cButton text="Найти" size="small" :isDisabled="true" />
+  <transition name="fadeIn" appear mode="in-out">
+    <div class="courses-page">
+      <profileLink />
+      <div class="courses-half">
+        <div class="search-input">
+          <input
+            type="text"
+            class="input"
+            placeholder="Чему хотите научиться?"
+            disabled
+          />
+          <div class="button-container">
+            <cButton text="Найти" size="small" :isDisabled="true" />
+          </div>
+        </div>
+        <div class="courses-list">
+          <div class="free-block">
+            <div class="free-block-label">Бесплатно</div>
+          </div>
+          <courseCard
+            class="course-card-block"
+            :image="firstCourseImage"
+            @course-opened="
+              openCourseId = 1;
+              isFirstCourseOpen = true;
+            "
+            :id="1"
+            title="Базовая верстка сайтов"
+            description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
+          />
+          <courseCard
+            class="course-card-block"
+            :image="secondCourseImage"
+            :id="2"
+            title="Продвинутая верстка сайтов"
+            description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
+          />
+          <courseCard
+            class="course-card-block"
+            :image="thirdCourseImage"
+            :id="3"
+            title="Базовый JavaScript"
+            description="Сделайте свой сайт интерактивным и изучите один из самых популярных языков программирования JavaScript"
+            :isSoon="true"
+          />
         </div>
       </div>
-      <div class="courses-list">
-        <div class="free-block">
-          <div class="free-block-label">Бесплатно</div>
-        </div>
-        <courseCard
-          class="course-card-block"
-          :image="firstCourseImage"
-          @course-opened="
-            openCourseId = 1;
-            isFirstCourseOpen = true;
-          "
-          :id="1"
-          title="Базовая верстка сайтов"
-          description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
-        />
-        <courseCard
-          class="course-card-block"
-          :image="secondCourseImage"
-          :id="2"
-          title="Продвинутая верстка сайтов"
-          description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-        />
-        <courseCard
-          class="course-card-block"
-          :image="thirdCourseImage"
-          :id="3"
-          title="Базовый JavaScript"
-          description="Сделайте свой сайт интерактивным и изучите один из самых популярных языков программирования JavaScript"
-          :isSoon="true"
+      <div class="empty-half">
+        <img
+          class="empty-half-image"
+          src="@/assets/images/empty-course-image.png"
+          alt="Выберите курс"
         />
       </div>
-    </div>
-    <div class="empty-half">
-      <img
-        class="empty-half-image"
-        src="@/assets/images/empty-course-image.png"
-        alt="Выберите курс"
+      <course
+        :isCourseOpen="isFirstCourseOpen"
+        :id="openCourseId"
+        @open-course-block="isFirstCourseOpen = true"
+        @close-course-block="isFirstCourseOpen = false"
       />
     </div>
-    <course
-      :isCourseOpen="isFirstCourseOpen"
-      :id="openCourseId"
-      @open-course-block="isFirstCourseOpen = true"
-      @close-course-block="isFirstCourseOpen = false"
-    />
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -234,5 +236,14 @@ export default {
   .free-block {
     height: 115px;
   }
+}
+
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 1s;
+}
+.fadeIn-enter,
+.fadeIn-leave-to {
+  opacity: 0;
 }
 </style>

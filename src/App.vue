@@ -2,9 +2,7 @@
   <div id="app">
     <vuescroll :ops="ops">
       <div class="container">
-        <transition name="fade">
-          <router-view :key="$route.path" />
-        </transition>
+        <router-view :key="$route.path" />
       </div>
     </vuescroll>
   </div>
@@ -71,44 +69,5 @@ export default {
 .container {
   min-width: 100vw;
   width: 100%;
-}
-
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-enter-active {
-  animation: fadeIn 1s ease-in;
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.fade-enter-leave {
-  animation: fadeOut 1s ease-in;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-  }
 }
 </style>

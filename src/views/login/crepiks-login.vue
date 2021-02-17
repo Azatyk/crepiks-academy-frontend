@@ -1,47 +1,49 @@
 <template>
-  <div class="login-page">
-    <notification
-      :isActive="isNotificationOpen"
-      :heading="notificationHeading"
-      :text="notificationText"
-      @close-notification="isNotificationOpen = false"
-      status="error"
-    />
-    <div class="login-content">
-      <router-link to="/" class="login-back">
-        <i class="bx bx-arrow-back login-back-icon"></i>
-        На главную
-      </router-link>
-      <cForm
-        @submit="login"
-        class="form-container"
-        subtitle="С возвращением"
-        title="Войдите в аккаунт"
-      >
-        <cInput
-          class="form-input"
-          title="Почта"
-          type="email"
-          placeholder="Введите вашу почту"
-          v-model="email"
-        />
-        <cInput
-          class="form-input"
-          title="Пароль"
-          type="password"
-          placeholder="Введите ваш пароль"
-          v-model="password"
-        />
-        <cButton class="form-button" :isLoading="isLoading" text="Войти" />
-        <p class="form-text">
-          <span class="form-text-info">Все ещё нет аккаунта?</span>
-          <router-link class="form-text form-text-link" to="/auth/register"
-            >Создайте его!</router-link
-          >
-        </p>
-      </cForm>
+  <transition name="fadeIn" appear>
+    <div class="login-page">
+      <notification
+        :isActive="isNotificationOpen"
+        :heading="notificationHeading"
+        :text="notificationText"
+        @close-notification="isNotificationOpen = false"
+        status="error"
+      />
+      <div class="login-content">
+        <router-link to="/" class="login-back">
+          <i class="bx bx-arrow-back login-back-icon"></i>
+          На главную
+        </router-link>
+        <cForm
+          @submit="login"
+          class="form-container"
+          subtitle="С возвращением"
+          title="Войдите в аккаунт"
+        >
+          <cInput
+            class="form-input"
+            title="Почта"
+            type="email"
+            placeholder="Введите вашу почту"
+            v-model="email"
+          />
+          <cInput
+            class="form-input"
+            title="Пароль"
+            type="password"
+            placeholder="Введите ваш пароль"
+            v-model="password"
+          />
+          <cButton class="form-button" :isLoading="isLoading" text="Войти" />
+          <p class="form-text">
+            <span class="form-text-info">Все ещё нет аккаунта?</span>
+            <router-link class="form-text form-text-link" to="/auth/register"
+              >Создайте его!</router-link
+            >
+          </p>
+        </cForm>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -186,5 +188,14 @@ export default {
   .form-text {
     font-size: 12px;
   }
+}
+
+.fadeIn-enter-active,
+.fadeIn-leave-active {
+  transition: opacity 2s;
+}
+.fadeIn-enter,
+.fadeIn-leave-to {
+  opacity: 0;
 }
 </style>
