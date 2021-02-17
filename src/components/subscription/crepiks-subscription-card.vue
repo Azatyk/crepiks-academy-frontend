@@ -2,7 +2,7 @@
   <div class="subscription-card">
     <div class="card-text">
       <h1 class="card-text-title">
-        Получи доступ ко
+        Получите доступ ко
         <span class="card-text-title-important">всем</span> курсам с подпиской
       </h1>
       <p class="card-text-description">
@@ -68,7 +68,7 @@ export default {
 .card {
   &-text {
     padding: 50px 0 60px 50px;
-    width: 60%;
+    width: 61%;
     height: 100%;
     display: flex;
     flex-direction: column;

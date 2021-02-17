@@ -88,9 +88,7 @@
             :class="{ dark_circle_active: hover }"
           ></div>
           <span class="subscription-text"
-            >Получи полный доступ с
-            <span class="subscription-text-important">Pro</span>
-            подпиской!</span
+            >Получите полный доступ к курсам с подпиской!</span
           >
           <i
             class="bx bx-right-arrow-alt subscription-icon"
@@ -252,11 +250,11 @@ export default {
 
   &-text {
     position: absolute;
-    left: 10%;
-    bottom: 15%;
+    left: 8%;
+    bottom: 13%;
     width: 70%;
     color: $white;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 500;
 
     &-important {
