@@ -23,7 +23,7 @@
       </div>
       <cButton
         class="promocode-button"
-        text="Использовать промокод"
+        text="Использовать"
         :isLoading="isLoading"
         @click="handlePromocodeButton()"
       />
@@ -114,7 +114,7 @@ export default {
   }
 
   &-button {
-    width: 230px;
+    width: 160px;
   }
 }
 </style>

@@ -140,13 +140,13 @@ export default {
 
 .upRight-enter-active,
 .upRight-leave-active {
-  transition: transform 1.7s ease-in-out;
+  transition: transform 1.5s ease-in-out;
   will-change: transform;
 }
 
 .upLeft-enter-active,
 .upLeft-leave-active {
-  transition: transform 1.5s ease-in-out;
+  transition: transform 1.3s ease-in-out;
   will-change: transform;
 }
 
@@ -167,8 +167,24 @@ export default {
 .card-enter-active,
 .card-leave-active {
   transition: opacity 1s ease-in-out;
+  animation: fadeIn 2s ease-in-out;
   will-change: opacity;
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .card-enter,
 .card-leave-to {
   opacity: 0;
