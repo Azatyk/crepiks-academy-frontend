@@ -17,7 +17,14 @@
       <div class="elipse elipse-dark-bottom"></div>
     </transition>
     <transition name="card" appear>
-      <subscriptionCard @promocode-opened="isPromocodeOpen = true" />
+      <subscriptionCard
+        @subscription-button-clicked="payment = true"
+        v-if="!this.payment"
+        @promocode-opened="isPromocodeOpen = true"
+      />
+    </transition>
+    <transition name="card" appear>
+      <payment v-if="this.payment" />
     </transition>
   </div>
 </template>
@@ -25,16 +32,19 @@
 <script>
 import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
 import promocode from "@/components/subscription/crepiks-subscription-promocode";
+import payment from "@/components/subscription/crepiks-subscription-payment";
 
 export default {
   components: {
     subscriptionCard,
-    promocode
+    promocode,
+    payment
   },
 
   data() {
     return {
-      isPromocodeOpen: false
+      isPromocodeOpen: false,
+      payment: false
     };
   }
 };
