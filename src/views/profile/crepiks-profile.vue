@@ -256,11 +256,11 @@ export default {
     &-body {
       position: relative;
       height: 70%;
-      width: 70%;
-      border-radius: 70px 70px 0 0;
+      width: 205px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      border-radius: 70px 70px 0 0;
       background-color: #f1c40f;
       box-shadow: 0 0 60px rgba(0.2, 0.2, 0.2, 0.08);
     }
@@ -407,6 +407,10 @@ export default {
     &-image {
       width: 220px;
       height: 220px;
+
+      &-body {
+        height: 85%;
+      }
     }
 
     &-subscription {
