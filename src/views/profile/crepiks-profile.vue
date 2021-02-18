@@ -63,9 +63,9 @@
               title="Базовая верстка сайтов"
               description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
               class="user-profile-courses-card"
-              progression="true"
-              lessonsAll="32"
-              lessonsDone="14"
+              :progression="true"
+              :lessons="lessons"
+              :completedLessons="completedLessons"
             />
             <courseCard
               :image="secondCourseImage"
@@ -73,9 +73,9 @@
               title="Продвинутая верстка сайтов"
               description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
               class="user-profile-courses-card"
-              progression="true"
-              lessonsAll="20"
-              lessonsDone="16"
+              :progression="true"
+              :lessons="lessons"
+              :completedLessons="completedLessons"
             />
           </div>
         </div>
@@ -125,6 +125,8 @@ export default {
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
+      lessons: [],
+      completedLessons: [],
       user: {
         firstName: null,
         lastName: null
@@ -163,12 +165,21 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     if (this.userData) {
       this.user = this.userData;
     }
 
     this.randomNumber = Math.floor(Math.random() * this.colors.length);
+
+    await this.$store.dispatch("getLessons", 1).then(res => {
+      this.lessons = res.data.course.lessons;
+      console.log(res.data);
+    });
+
+    await this.$store
+      .dispatch("getCompletedLessons", this.userData.id)
+      .then(res => (this.completedLessons = res.data.completedLessons));
   },
   watch: {
     userData() {
