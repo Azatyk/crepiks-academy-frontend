@@ -41,7 +41,10 @@
             class="main-info-button"
             @click="
               $router.push(
-                '/app/courses/' + id + '/lessons/' + course.lessons[0].id
+                '/app/courses/' +
+                  id +
+                  '/lessons/' +
+                  getLastUncompletedLessonId()
               )
             "
           />
@@ -184,7 +187,9 @@ export default {
     }
   },
 
-  computed: mapGetters(["userData"]),
+  computed: {
+    ...mapGetters(["userData"])
+  },
 
   methods: {
     isLessonCompleted(lessonId) {
@@ -192,6 +197,22 @@ export default {
         if (this.completedLessons[i].id == lessonId) {
           return true;
         }
+      }
+    },
+
+    getLastUncompletedLessonId() {
+      if (this.completedLessons.length > 0) {
+        const lastCompletedLessonId = this.completedLessons[
+          this.completedLessons.length - 1
+        ].id;
+
+        for (let i = 0; i < this.course.lessons.length; i++) {
+          if (this.course.lessons[i].id == lastCompletedLessonId) {
+            return this.course.lessons[i + 1].id;
+          }
+        }
+      } else {
+        return this.course.lessons[0].id;
       }
     }
   }
