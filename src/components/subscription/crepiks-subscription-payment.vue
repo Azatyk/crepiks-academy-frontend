@@ -9,7 +9,11 @@
         </div>
         <div class="payment-paragraph">
           Оформляя подписку вы соглашаетесь с
-          <span class="payment-paragraph-green">условиями транзакций</span>
+          <span
+            class="payment-paragraph-green"
+            @click="$emit('open-transactions-block')"
+            >условиями транзакций</span
+          >
         </div>
         <cButton class="payment-button" text="Оплатить 5000тг" />
       </div>
@@ -137,6 +141,7 @@ export default {
     border-radius: 20px;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
     align-items: flex-end;
+    background-color: $white;
 
     &-line {
       width: 100%;
