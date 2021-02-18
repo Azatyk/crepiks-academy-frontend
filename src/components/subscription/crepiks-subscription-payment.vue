@@ -59,10 +59,10 @@ export default {
     height: 90%;
     box-sizing: border-box;
     background-color: $white;
-    border-radius: 30px;
-    box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
     display: flex;
-    padding: 30px 40px;
+    padding: 30px;
     justify-content: space-between;
     z-index: 1;
   }
@@ -75,14 +75,14 @@ export default {
   }
 
   &-heading {
-    font-size: 25px;
+    font-size: 27px;
     font-weight: 500;
     color: $dark;
     margin: 0;
   }
 
   &-paragraph {
-    font-size: 12px;
+    font-size: 13px;
     color: $dark;
     opacity: 0.8;
     margin-top: 10px;
@@ -119,9 +119,10 @@ export default {
     }
 
     &-sign {
-      margin-bottom: 2px;
+      margin-bottom: 8px;
       font-size: 25px;
       color: $light-dark;
+      opacity: 0.7;
     }
   }
 
@@ -133,8 +134,8 @@ export default {
     right: 0;
     display: flex;
     flex-direction: column;
-    border-radius: 30px;
-    box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.75);
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.08);
     align-items: flex-end;
 
     &-line {
@@ -155,7 +156,7 @@ export default {
     }
 
     &-text {
-      font-size: 10px;
+      font-size: 9px;
       color: $light-dark;
       margin-top: 5px;
     }

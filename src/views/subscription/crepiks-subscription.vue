@@ -16,15 +16,14 @@
     <transition name="upRight" appear>
       <div class="elipse elipse-dark-bottom"></div>
     </transition>
-    <transition name="card" appear>
-      <subscriptionCard
-        @subscription-button-clicked="payment = true"
-        v-if="!this.payment"
-        @promocode-opened="isPromocodeOpen = true"
-      />
-    </transition>
-    <transition name="card" appear>
-      <payment v-if="this.payment" />
+    <transition name="card" appear mode="out-in">
+      <transition name="introCard" v-if="!this.payment" appear>
+        <subscriptionCard
+          @subscription-button-clicked="payment = true"
+          @promocode-opened="isPromocodeOpen = true"
+        />
+      </transition>
+      <payment v-else />
     </transition>
   </div>
 </template>
@@ -176,12 +175,22 @@ export default {
 
 .card-enter-active,
 .card-leave-active {
-  transition: opacity 1s ease-in-out;
-  animation: fadeIn 2s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   will-change: opacity;
 }
 
-@keyframes fadeIn {
+.card-enter,
+.card-leave-to {
+  opacity: 0;
+}
+
+.introCard-enter-active {
+  transition: opacity 1s ease-in-out;
+  animation: longFadeIn 2s ease-in-out;
+  will-change: opacity;
+}
+
+@keyframes longFadeIn {
   0% {
     opacity: 0;
   }
@@ -195,8 +204,13 @@ export default {
   }
 }
 
-.card-enter,
-.card-leave-to {
+.introCard-leave-active {
+  transition: opacity 1s ease-in-out;
+  will-change: opacity;
+}
+
+.introCard-enter,
+.introCard-leave-to {
   opacity: 0;
 }
 </style>
