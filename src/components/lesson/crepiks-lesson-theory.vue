@@ -20,7 +20,13 @@
           <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
           <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
           <cButton
-            :text="isTheoryOnly ? 'Следующий урок' : 'Перейти к заданию'"
+            :text="
+              isLessonLast
+                ? 'Завершить курс'
+                : isTheoryOnly
+                ? 'Следующий урок'
+                : 'Перейти к заданию'
+            "
             :isBold="true"
             size="big"
             class="lesson-theory-button"
@@ -49,6 +55,10 @@ export default {
       type: Boolean,
       default: false
     },
+    isLessonLast: {
+      type: Boolean,
+      default: false
+    },
     lesson: {
       type: Object
     },
@@ -60,7 +70,6 @@ export default {
 
   data() {
     return {
-      isLessonLast: false,
       ops: {
         vuescroll: {
           mode: "native"
@@ -107,8 +116,8 @@ export default {
   methods: {
     handleTheoryButton() {
       if (this.isLessonLast) {
-        this.addCompletedLesson();
-        this.$router.push("/app/courses/" + this.$route.params.courseId);
+        this.$emit("add-completed-lessons");
+        this.$router.push("/app/courses/");
       } else {
         let courseId = this.$route.params.courseId;
         let currentLessonId = Number(this.$route.params.lessonId);

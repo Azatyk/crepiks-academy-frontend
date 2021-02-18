@@ -15,6 +15,7 @@
       <theory
         :isTheoryOnly="isTheoryOnly"
         :isTheoryOpen="isTheoryOpen"
+        :isLessonLast="CheckIsLessonLast"
         :lesson="lesson"
         :lessons="lessons"
         @theory-closed="isTheoryOpen = false"
@@ -256,7 +257,17 @@ export default {
     }
   },
 
-  computed: mapGetters(["userData"]),
+  computed: {
+    ...mapGetters(["userData"]),
+
+    CheckIsLessonLast() {
+      if (this.lesson.id == this.lessons[this.lessons.length - 1].id) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
 
   methods: {
     handleArrowsButtons(event) {
