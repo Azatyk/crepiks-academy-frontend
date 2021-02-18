@@ -16,12 +16,9 @@
         <div class="card-link card-link-soon" v-else>Скоро</div>
       </div>
     </div>
-    <div
-      class="course-progression"
-      :class="{ progression: progression == 'true' }"
-    >
+    <div class="course-progression" :class="{ progression: progression }">
       <div class="course-progression-text">
-        Пройдено уроков {{ lessonsDone }} из {{ lessonsAll }}
+        Пройдено уроков {{ completedLessons.length }} из {{ lessons.length }}
       </div>
       <div class="course-card-progression">
         <div :style="fill" class="course-card-progression-fill"></div>
@@ -50,19 +47,28 @@ export default {
       type: Number
     },
     progression: {
-      type: String,
-      default: "false"
+      type: Boolean,
+      required: false,
+      default: false
     },
-    lessonsAll: {
-      type: String
+    lessons: {
+      type: Array,
+      required: false,
+      default: () => []
     },
-    lessonsDone: {
-      type: String
+    completedLessons: {
+      type: Array,
+      required: false,
+      default: () => []
     }
   },
   computed: {
     fill() {
-      return "width: " + (this.lessonsDone / this.lessonsAll) * 100 + "%";
+      return (
+        "width: " +
+        (this.completedLessons.length / this.lessons.length) * 100 +
+        "%"
+      );
     }
   }
 };

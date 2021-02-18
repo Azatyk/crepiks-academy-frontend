@@ -60,11 +60,15 @@ export default {
 
 @media (max-width: 1024px) {
   .side-block {
-    width: 60%;
-    right: -60%;
+    width: 600px;
+    right: -600px;
 
     &-open {
-      right: 0;
+      -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      -o-transform: translateX(-100%);
+      transform: translateX(-100%);
       box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     }
   }
@@ -76,7 +80,12 @@ export default {
     right: -100%;
 
     &-open {
-      right: 0;
+      -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+      -o-transform: translateX(-100%);
+      transform: translateX(-100%);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
     }
   }
 }
