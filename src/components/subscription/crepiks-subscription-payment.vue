@@ -36,6 +36,7 @@
           title="Имя на карте"
           placeholder="Введите имя на карте"
         />
+        <!-- <input type="text" @input="handleInput"> -->
         <div class="payment-card-container">
           <cInput
             class="payment-card-input"
@@ -113,6 +114,8 @@ export default {
         this.notificationText = "Необходимо заполнить каждое поле";
       }
     }
+
+    // handleInput() {}
   }
 };
 </script>
