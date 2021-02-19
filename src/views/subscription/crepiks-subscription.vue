@@ -4,6 +4,10 @@
       :isOpen="isPromocodeOpen"
       @close-promocode-block="isPromocodeOpen = false"
     />
+    <transactions
+      :isOpen="isTransactionsOpen"
+      @close-transactions-block="isTransactionsOpen = false"
+    />
     <transition name="downLeft" appear>
       <div class="elipse elipse-dark-top"></div>
     </transition>
@@ -23,7 +27,7 @@
           @promocode-opened="isPromocodeOpen = true"
         />
       </transition>
-      <payment v-else />
+      <payment @open-transactions-block="isTransactionsOpen = true" v-else />
     </transition>
   </div>
 </template>
@@ -32,18 +36,21 @@
 import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
 import promocode from "@/components/subscription/crepiks-subscription-promocode";
 import payment from "@/components/subscription/crepiks-subscription-payment";
+import transactions from "@/components/subscription/crepiks-subscription-transactions";
 
 export default {
   components: {
     subscriptionCard,
     promocode,
-    payment
+    payment,
+    transactions
   },
 
   data() {
     return {
       isPromocodeOpen: false,
-      payment: false
+      payment: false,
+      isTransactionsOpen: false
     };
   }
 };
