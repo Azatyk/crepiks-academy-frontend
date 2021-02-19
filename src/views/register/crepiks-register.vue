@@ -42,6 +42,14 @@
           />
           <cInput
             class="form-input"
+            title="Номер"
+            type="number"
+            placeholder="8-(707)-777-77-77"
+            :maxlength="11"
+            v-model="phoneNumber"
+          />
+          <cInput
+            class="form-input"
             title="Пароль"
             type="password"
             placeholder="Придумайте пароль"
@@ -79,6 +87,7 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
+      phoneNumber: "",
       password: "",
       isNotificationOpen: false,
       notificationHeading: "",
@@ -93,6 +102,7 @@ export default {
         this.firstName.trim() &&
         this.lastName.trim() &&
         this.email.trim() &&
+        this.phoneNumber.trim() &&
         this.password.trim()
       ) {
         this.isLoading = true;
@@ -101,6 +111,7 @@ export default {
           firstName: this.firstName.trim(),
           lastName: this.lastName.trim(),
           email: this.email.trim(),
+          phoneNumber: this.phoneNumber.trim(),
           password: this.password.trim()
         };
 
@@ -147,6 +158,7 @@ export default {
 }
 
 .register-back {
+  position: relative;
   margin-top: 40px;
   display: flex;
   align-items: center;
@@ -155,7 +167,7 @@ export default {
   font-weight: 500;
   text-decoration: none;
   margin-left: 30px;
-  z-index: 10;
+  z-index: 3;
 
   &-icon {
     margin-right: 5px;
@@ -169,6 +181,7 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 .form-input {

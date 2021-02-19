@@ -206,7 +206,6 @@ export default {
 
     await this.$store.dispatch("getLessons", 1).then(res => {
       this.lessons = res.data.course.lessons;
-      console.log(res.data);
     });
 
     await this.$store

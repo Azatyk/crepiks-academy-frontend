@@ -120,6 +120,7 @@ export default {
 }
 
 .login-back {
+  position: relative;
   margin-top: 40px;
   margin-left: 30px;
   display: flex;
@@ -128,6 +129,7 @@ export default {
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
+  z-index: 3;
 
   &-icon {
     margin-right: 5px;
@@ -141,6 +143,7 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .form-input {
