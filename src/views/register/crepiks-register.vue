@@ -43,10 +43,9 @@
           <cInput
             class="form-input"
             title="Номер"
-            type="number"
-            placeholder="8-(707)-777-77-77"
-            :maxlength="11"
+            v-mask="'+7(###)-###-##-##'"
             v-model="phoneNumber"
+            placeholder="8-(707)-777-77-77"
           />
           <cInput
             class="form-input"
