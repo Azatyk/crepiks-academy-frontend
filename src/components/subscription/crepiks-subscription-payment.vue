@@ -24,8 +24,11 @@
           title="Номер карты"
           placeholder="0000 0000 0000 0000"
         />
-
-        <cInput title="Имя на карте" placeholder="Введите имя на карте" />
+        <cInput
+          v-model="cardName"
+          title="Имя на карте"
+          placeholder="Введите имя на карте"
+        />
         <div class="payment-card-container">
           <cInput
             class="payment-card-input"
@@ -75,8 +78,14 @@ export default {
       cardNumber: "",
       cardMonth: "",
       cardYear: "",
-      cardCvc: ""
+      cardCvc: "",
+      cardName: ""
     };
+  },
+  watch: {
+    cardName() {
+      this.cardName = event.target.value.toUpperCase();
+    }
   }
 };
 </script>
