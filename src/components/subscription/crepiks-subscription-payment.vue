@@ -1,5 +1,12 @@
 <template>
   <div class="payment">
+    <notification
+      :isActive="isNotificationOpen"
+      :heading="notificationHeading"
+      :text="notificationText"
+      @close-notification="isNotificationOpen = false"
+      status="error"
+    />
     <div class="payment-front">
       <div class="payment-text">
         <div class="payment-heading">Оплата подписки на месяц</div>
@@ -15,7 +22,7 @@
             >условиями транзакций</span
           >
         </div>
-        <cButton class="payment-button" text="Оплатить 5000тг" />
+        <cButton class="payment-button" text="Оплатить 5000тг" @click="pay" />
       </div>
       <div class="payment-card">
         <cInput
@@ -67,11 +74,13 @@
 <script>
 import cButton from "@/components/common/crepiks-button";
 import cInput from "@/components/common/crepiks-input";
+import notification from "@/components/common/crepiks-notification";
 
 export default {
   components: {
     cButton,
-    cInput
+    cInput,
+    notification
   },
   data() {
     return {
@@ -79,12 +88,30 @@ export default {
       cardMonth: "",
       cardYear: "",
       cardCvc: "",
-      cardName: ""
+      cardName: "",
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: ""
     };
   },
   watch: {
     cardName() {
       this.cardName = event.target.value.toUpperCase();
+    }
+  },
+  methods: {
+    pay() {
+      if (
+        !this.cardName.trim() ||
+        !this.cardMonth.trim() ||
+        !this.cardYear.trim() ||
+        !this.cardCvc.trim() ||
+        !this.cardNumber.trim()
+      ) {
+        this.isNotificationOpen = true;
+        this.notificationHeading = "Заполните все поля";
+        this.notificationText = "Необходимо заполнить каждое поле";
+      }
     }
   }
 };
