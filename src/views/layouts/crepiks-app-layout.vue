@@ -57,12 +57,14 @@ export default {
 }
 
 @media (max-width: 414px) {
-  .profile {
-    top: 35px;
-  }
-
   .logo {
     top: 30px;
+  }
+}
+
+@media (max-width: 374px) {
+  .logo {
+    top: 25px;
   }
 }
 </style>

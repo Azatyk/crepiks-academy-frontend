@@ -106,17 +106,17 @@ export default {
     width: 400px;
     height: 400px;
     will-change: transform;
+  }
+}
 
+@media (max-width: 414px) {
+  .elipse {
     &-light-top {
-      top: -50%;
-      right: -10%;
-      background-color: #25f9cf;
+      display: none;
     }
 
     &-dark-top {
-      top: -40%;
-      right: -35%;
-      background-color: #3ae8c5;
+      display: none;
     }
 
     &-light-bottom {

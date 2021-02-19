@@ -1,74 +1,97 @@
 <template>
-  <div class="payment">
-    <notification
-      :isActive="isNotificationOpen"
-      :heading="notificationHeading"
-      :text="notificationText"
-      @close-notification="isNotificationOpen = false"
-      status="error"
+  <div class="wrapper">
+    <div class="payment-text" v-if="!mobileWidth">
+      <div class="payment-heading">Оплата подписки на месяц</div>
+      <div class="payment-paragraph">
+        Приобретая подписку на платформе Crepiks за 5000 тг вы получаете доступ
+        ко всем курсам на платформе на один месяц
+      </div>
+      <div class="payment-paragraph">
+        Оформляя подписку вы соглашаетесь с
+        <span
+          class="payment-paragraph-green"
+          @click="$emit('open-transactions-block')"
+          >условиями транзакций</span
+        >
+      </div>
+    </div>
+    <div class="payment">
+      <notification
+        :isActive="isNotificationOpen"
+        :heading="notificationHeading"
+        :text="notificationText"
+        @close-notification="isNotificationOpen = false"
+        status="error"
+      />
+      <div class="payment-front">
+        <div class="payment-text" v-if="mobileWidth">
+          <div class="payment-heading">Оплата подписки на месяц</div>
+          <div class="payment-paragraph">
+            Приобретая подписку на платформе Crepiks за 5000 тг вы получаете
+            доступ ко всем курсам на платформе на один месяц
+          </div>
+          <div class="payment-paragraph">
+            Оформляя подписку вы соглашаетесь с
+            <span
+              class="payment-paragraph-green"
+              @click="$emit('open-transactions-block')"
+              >условиями транзакций</span
+            >
+          </div>
+          <cButton class="payment-button" text="Оплатить 5000тг" @click="pay" />
+        </div>
+        <div class="payment-card">
+          <cInput
+            v-mask="'#### #### #### ####'"
+            v-model="cardNumber"
+            title="Номер карты"
+            placeholder="0000 0000 0000 0000"
+          />
+          <cInput
+            v-model="cardName"
+            title="Имя на карте"
+            placeholder="Введите имя на карте"
+          />
+          <!-- <input type="text" @input="handleInput"> -->
+          <div class="payment-card-container">
+            <cInput
+              class="payment-card-input"
+              v-mask="'##'"
+              v-model="cardMonth"
+              title="Месяц"
+              placeholder="XX"
+            />
+            <span class="payment-card-sign">/</span>
+            <cInput
+              class="payment-card-input"
+              v-mask="'##'"
+              v-model="cardYear"
+              title="Год"
+              placeholder="YY"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="payment-back">
+        <div class="payment-back-line"></div>
+        <div class="payment-back-block">
+          <cInput
+            class="payment-back-input"
+            v-mask="'###'"
+            v-model="cardCvc"
+            title="CVC/CVV"
+            placeholder="XXX"
+          />
+          <div class="payment-back-text">Цифры на обратной стороне карты</div>
+        </div>
+      </div>
+    </div>
+    <cButton
+      class="payment-button"
+      text="Оплатить 5000тг"
+      @click="pay"
+      v-if="!mobileWidth"
     />
-    <div class="payment-front">
-      <div class="payment-text">
-        <div class="payment-heading">Оплата подписки на месяц</div>
-        <div class="payment-paragraph">
-          Приобретая подписку на платформе Crepiks за 5000 тг вы получаете
-          доступ ко всем курсам на платформе на один месяц
-        </div>
-        <div class="payment-paragraph">
-          Оформляя подписку вы соглашаетесь с
-          <span
-            class="payment-paragraph-green"
-            @click="$emit('open-transactions-block')"
-            >условиями транзакций</span
-          >
-        </div>
-        <cButton class="payment-button" text="Оплатить 5000тг" @click="pay" />
-      </div>
-      <div class="payment-card">
-        <cInput
-          v-mask="'#### #### #### ####'"
-          v-model="cardNumber"
-          title="Номер карты"
-          placeholder="0000 0000 0000 0000"
-        />
-        <cInput
-          v-model="cardName"
-          title="Имя на карте"
-          placeholder="Введите имя на карте"
-        />
-        <!-- <input type="text" @input="handleInput"> -->
-        <div class="payment-card-container">
-          <cInput
-            class="payment-card-input"
-            v-mask="'##'"
-            v-model="cardMonth"
-            title="Месяц"
-            placeholder="XX"
-          />
-          <span class="payment-card-sign">/</span>
-          <cInput
-            class="payment-card-input"
-            v-mask="'##'"
-            v-model="cardYear"
-            title="Год"
-            placeholder="YY"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="payment-back">
-      <div class="payment-back-line"></div>
-      <div class="payment-back-block">
-        <cInput
-          class="payment-back-input"
-          v-mask="'###'"
-          v-model="cardCvc"
-          title="CVC/CVV"
-          placeholder="XXX"
-        />
-        <div class="payment-back-text">Цифры на обратной стороне карты</div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -92,7 +115,8 @@ export default {
       cardName: "",
       isNotificationOpen: false,
       notificationHeading: "",
-      notificationText: ""
+      notificationText: "",
+      mobileWidth: true
     };
   },
   watch: {
@@ -113,15 +137,37 @@ export default {
         this.notificationHeading = "Заполните все поля";
         this.notificationText = "Необходимо заполнить каждое поле";
       }
+    },
+    handleResize() {
+      if (window.innerWidth <= 414) {
+        this.mobileWidth = false;
+      } else {
+        this.mobileWidth = true;
+      }
     }
-
-    // handleInput() {}
+  },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   }
 };
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/styles/variables.scss";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
 
 .payment {
   position: relative;
@@ -219,6 +265,7 @@ export default {
       height: 30%;
       background-color: $primary;
       margin-top: 40px;
+      opacity: 0.5;
     }
 
     &-block {
@@ -235,6 +282,82 @@ export default {
       font-size: 9px;
       color: $light-dark;
       margin-top: 5px;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .wrapper {
+    height: 544px;
+  }
+
+  .payment {
+    width: 100%;
+    height: 280px;
+
+    &-front {
+      border-radius: 0 20px 20px 0;
+      width: 62%;
+    }
+
+    &-card {
+      width: 100%;
+    }
+
+    &-back {
+      border-radius: 0 20px 20px 0;
+      width: 100%;
+      right: 30px;
+
+      &-block {
+        width: 23%;
+        margin-right: 8px;
+        margin-top: 25px;
+      }
+      &-text {
+        font-size: 7px;
+      }
+    }
+
+    &-text {
+      width: 90%;
+      height: fit-content;
+    }
+
+    &-button {
+      padding: 12px 0;
+      width: 90%;
+      margin-top: 0;
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  .wrapper {
+    height: 452px;
+  }
+
+  .payment {
+    height: 240px;
+
+    &-front {
+      padding: 20px;
+    }
+
+    &-heading {
+      font-size: 22px;
+    }
+
+    &-paragraph {
+      font-size: 11px;
+      color: $dark;
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+    &-button {
+      padding: 10px 0;
+      width: 90%;
+      margin-top: 0;
     }
   }
 }

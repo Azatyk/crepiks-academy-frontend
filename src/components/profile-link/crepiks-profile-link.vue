@@ -73,4 +73,10 @@ export default {
     top: 35px;
   }
 }
+
+@media (max-width: 374px) {
+  .profile {
+    top: 30px;
+  }
+}
 </style>
