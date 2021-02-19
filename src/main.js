@@ -6,6 +6,8 @@ import Vuesax from "vuesax";
 import { i18n } from "@/plugins/i18n";
 import Skeleton from "vue-loading-skeleton";
 import vuescroll from "vuescroll/dist/vuescroll-native";
+import { VueMaskDirective } from "v-mask";
+Vue.directive("mask", VueMaskDirective);
 
 Vue.config.productionTip = false;
 

@@ -18,19 +18,43 @@
         <cButton class="payment-button" text="Оплатить 5000тг" />
       </div>
       <div class="payment-card">
-        <cInput title="Номер карты" placeholder="0000 0000 0000 0000" />
+        <cInput
+          v-mask="'#### #### #### ####'"
+          v-model="cardNumber"
+          title="Номер карты"
+          placeholder="0000 0000 0000 0000"
+        />
+
         <cInput title="Имя на карте" placeholder="Введите имя на карте" />
         <div class="payment-card-container">
-          <cInput class="payment-card-input" title="Месяц" placeholder="XX" />
+          <cInput
+            class="payment-card-input"
+            v-mask="'##'"
+            v-model="cardMonth"
+            title="Месяц"
+            placeholder="XX"
+          />
           <span class="payment-card-sign">/</span>
-          <cInput class="payment-card-input" title="Год" placeholder="YY" />
+          <cInput
+            class="payment-card-input"
+            v-mask="'##'"
+            v-model="cardYear"
+            title="Год"
+            placeholder="YY"
+          />
         </div>
       </div>
     </div>
     <div class="payment-back">
       <div class="payment-back-line"></div>
       <div class="payment-back-block">
-        <cInput class="payment-back-input" title="CVC/CVV" placeholder="XXX" />
+        <cInput
+          class="payment-back-input"
+          v-mask="'###'"
+          v-model="cardCvc"
+          title="CVC/CVV"
+          placeholder="XXX"
+        />
         <div class="payment-back-text">Цифры на обратной стороне карты</div>
       </div>
     </div>
@@ -45,6 +69,14 @@ export default {
   components: {
     cButton,
     cInput
+  },
+  data() {
+    return {
+      cardNumber: "",
+      cardMonth: "",
+      cardYear: "",
+      cardCvc: ""
+    };
   }
 };
 </script>
