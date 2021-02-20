@@ -307,6 +307,7 @@ export default {
     &-front {
       border-radius: 0 20px 20px 0;
       width: 62%;
+      padding: 5%;
     }
 
     &-card {
@@ -316,12 +317,12 @@ export default {
     &-back {
       border-radius: 0 20px 20px 0;
       width: 100%;
-      right: 30px;
+      right: 5%;
 
       &-block {
-        width: 23%;
+        width: 25%;
         margin-right: 8px;
-        margin-top: 25px;
+        margin-top: 20px;
       }
       &-text {
         font-size: 7px;
@@ -343,15 +344,11 @@ export default {
 
 @media (max-width: 374px) {
   .wrapper {
-    height: 452px;
+    height: 430px;
   }
 
   .payment {
     height: 240px;
-
-    &-front {
-      padding: 20px;
-    }
 
     &-heading {
       font-size: 22px;
@@ -361,8 +358,9 @@ export default {
       font-size: 11px;
       color: $dark;
       opacity: 0.8;
-      margin-top: 10px;
+      margin-top: 8px;
     }
+
     &-button {
       padding: 10px 0;
       width: 90%;
