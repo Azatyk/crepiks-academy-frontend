@@ -297,7 +297,7 @@ export default {
 
 @media (max-width: 414px) {
   .wrapper {
-    height: 544px;
+    height: 530px;
   }
 
   .payment {
@@ -312,6 +312,10 @@ export default {
 
     &-card {
       width: 100%;
+    }
+
+    &-heading {
+      font-size: 26px;
     }
 
     &-back {
