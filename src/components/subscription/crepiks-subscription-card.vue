@@ -126,7 +126,6 @@ export default {
   &-image {
     position: absolute;
     width: 95px;
-    height: 95px;
     border-radius: 10px;
     box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
   }
@@ -183,22 +182,26 @@ export default {
     border-radius: 7px;
   }
 
-  .html-css-basic {
-    width: 75px;
-    top: 30px;
-    left: 20px;
-  }
+  .markup {
+    &-basic {
+      width: 75px;
+      top: 30px;
+      left: 20px;
+    }
 
-  .html-css-upgrade {
-    width: 75px;
-    top: 79px;
-    left: 45px;
+    &-upgrade {
+      width: 75px;
+      top: 79px;
+      left: 45px;
+    }
   }
 
   .javascript {
-    width: 75px;
-    top: 135px;
-    left: 20px;
+    &-basic {
+      width: 75px;
+      top: 135px;
+      left: 20px;
+    }
   }
 }
 
@@ -238,20 +241,25 @@ export default {
 
   .card-button {
     margin-right: 10px;
+    font-size: 12px;
   }
 
-  .html-css-basic {
-    left: 50px;
-  }
+  .markup {
+    &-basic {
+      left: 50px;
+    }
 
-  .html-css-upgrade {
-    left: 120px;
-    top: 20px;
+    &-upgrade {
+      left: 120px;
+      top: 20px;
+    }
   }
 
   .javascript {
-    left: 190px;
-    top: 30px;
+    &-basic {
+      left: 190px;
+      top: 30px;
+    }
   }
 }
 </style>
