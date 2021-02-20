@@ -391,9 +391,9 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     padding: 0;
-    border-radius: 30px 30px 0 0;
-    box-shadow: 50px 50px 100px rgba(0, 0, 0, 0.02);
-    background-color: $primary;
+    border-radius: 25px 25px 0 0;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.25);
+    background-color: $white;
 
     &-logo {
       display: none;
@@ -423,10 +423,10 @@ export default {
   .link {
     width: auto;
     margin-bottom: 0;
-    color: $white;
+    color: $dark;
 
     &.router-link-exact-active {
-      color: $white;
+      color: $primary;
       opacity: 1;
     }
   }
