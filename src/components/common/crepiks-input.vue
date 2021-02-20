@@ -34,10 +34,10 @@ export default {
       type: Number
     },
     name: {
-      type: Number
+      type: String
     },
     autocomplete: {
-      type: Number
+      type: String
     }
   },
 
