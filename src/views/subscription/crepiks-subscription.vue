@@ -1,5 +1,6 @@
 <template>
   <div class="subscription-page">
+    <profileLink />
     <promocode
       :isOpen="isPromocodeOpen"
       @close-promocode-block="isPromocodeOpen = false"
@@ -37,13 +38,15 @@ import subscriptionCard from "@/components/subscription/crepiks-subscription-car
 import promocode from "@/components/subscription/crepiks-subscription-promocode";
 import payment from "@/components/subscription/crepiks-subscription-payment";
 import transactions from "@/components/subscription/crepiks-subscription-transactions";
+import profileLink from "@/components/profile-link/crepiks-profile-link";
 
 export default {
   components: {
     subscriptionCard,
     promocode,
     payment,
-    transactions
+    transactions,
+    profileLink
   },
 
   data() {

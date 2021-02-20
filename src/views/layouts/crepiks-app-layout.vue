@@ -59,6 +59,7 @@ export default {
 @media (max-width: 414px) {
   .logo {
     top: 30px;
+    opacity: 0.75;
   }
 }
 
