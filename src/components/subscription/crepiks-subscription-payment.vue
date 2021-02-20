@@ -302,7 +302,7 @@ export default {
 
   .payment {
     width: 100%;
-    height: 280px;
+    height: 240px;
 
     &-front {
       border-radius: 0 20px 20px 0;
@@ -316,6 +316,11 @@ export default {
 
     &-heading {
       font-size: 26px;
+      width: 251px;
+    }
+
+    &-paragraph {
+      width: 274px;
     }
 
     &-back {
@@ -356,6 +361,7 @@ export default {
 
     &-heading {
       font-size: 22px;
+      width: 212px;
     }
 
     &-paragraph {
@@ -363,6 +369,7 @@ export default {
       color: $dark;
       opacity: 0.8;
       margin-top: 8px;
+      width: 246px;
     }
 
     &-button {
