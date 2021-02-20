@@ -55,6 +55,22 @@ export default {
       payment: false,
       isTransactionsOpen: false
     };
+  },
+  methods: {
+    handleResize() {
+      if (window.innerWidth <= 414) {
+        this.payment = true;
+      } else {
+        this.payment = false;
+      }
+    }
+  },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
   }
 };
 </script>
