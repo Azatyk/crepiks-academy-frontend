@@ -7,6 +7,8 @@
       :placeholder="placeholder"
       :value="value"
       :maxlength="maxlength"
+      :name="name"
+      :autocomplete="autocomplete"
       @input="updateValue($event.target.value)"
     />
   </div>
@@ -29,6 +31,12 @@ export default {
       type: String
     },
     maxlength: {
+      type: Number
+    },
+    name: {
+      type: Number
+    },
+    autocomplete: {
       type: Number
     }
   },

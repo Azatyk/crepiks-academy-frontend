@@ -46,13 +46,17 @@
             v-model="cardNumber"
             title="Номер карты"
             placeholder="0000 0000 0000 0000"
+            name="cardnumber"
+            autocomplete="cc-number"
           />
           <cInput
             v-model="cardName"
             title="Имя на карте"
             placeholder="Введите имя на карте"
+            name="ccname"
+            autocomplete="cc-name"
           />
-          <!-- <input type="text" @input="handleInput"> -->
+          <!-- <input type="text" > -->
           <div class="payment-card-container">
             <cInput
               class="payment-card-input"
@@ -60,6 +64,8 @@
               v-model="cardMonth"
               title="Месяц"
               placeholder="XX"
+              name="ccmonth"
+              autocomplete="cc-exp-month"
             />
             <span class="payment-card-sign">/</span>
             <cInput
@@ -68,6 +74,8 @@
               v-model="cardYear"
               title="Год"
               placeholder="YY"
+              name="ccyear"
+              autocomplete="cc-exp-year"
             />
           </div>
         </div>
@@ -81,6 +89,7 @@
             v-model="cardCvc"
             title="CVC/CVV"
             placeholder="XXX"
+            name="cvc"
           />
           <div class="payment-back-text">Цифры на обратной стороне карты</div>
         </div>
