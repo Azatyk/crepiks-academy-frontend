@@ -7,7 +7,7 @@
     }"
   >
     <span class="lesson-theory-navigation" @click="$emit('navigation-opened')"
-      >Список уроков</span
+      >Список тем</span
     >
     <i
       v-if="!isTheoryOnly"
@@ -24,7 +24,7 @@
               isLessonLast
                 ? 'Завершить курс'
                 : isTheoryOnly
-                ? 'Следующий урок'
+                ? 'Следующая тема'
                 : 'Перейти к заданию'
             "
             :isBold="true"

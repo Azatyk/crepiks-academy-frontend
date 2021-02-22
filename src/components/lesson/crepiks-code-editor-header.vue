@@ -27,7 +27,7 @@
         <i class="bx bx-help-circle header-link-icon"></i>
       </div>
       <div class="header-link" @click="$emit('navigation-opened')">
-        <span class="header-link-title">Список уроков</span>
+        <span class="header-link-title">Список тем</span>
         <i class="bx bx-list-ul header-link-icon"></i>
       </div>
       <div class="browser-link" @click="$emit('switch-browser')">

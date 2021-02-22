@@ -14,7 +14,7 @@
       ></i>
     </div>
     <h2 class="navigation-title">
-      Урок {{ getLessonIndex() + 1 }}: {{ lesson.title.ru }}
+      Тема {{ getLessonIndex() + 1 }}: {{ lesson.title.ru }}
     </h2>
     <div class="navigation-divide-line"></div>
     <vuescroll :ops="ops">
@@ -46,7 +46,7 @@
                 ? isLessonCompleted(lesson.id)
                   ? "Пройдено"
                   : "Не пройдено"
-                : "Текущий урок"
+                : "Текущая тема"
             }}
           </div>
         </router-link>

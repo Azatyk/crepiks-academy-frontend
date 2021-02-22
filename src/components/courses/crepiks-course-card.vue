@@ -18,7 +18,7 @@
     </div>
     <div class="course-progression" :class="{ progression: progression }">
       <div class="course-progression-text">
-        Пройдено уроков {{ completedLessons.length }} из {{ lessons.length }}
+        Пройдено тем {{ completedLessons.length }} из {{ lessons.length }}
       </div>
       <div class="course-card-progression">
         <div :style="fill" class="course-card-progression-fill"></div>

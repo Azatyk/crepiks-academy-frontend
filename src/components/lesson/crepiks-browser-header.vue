@@ -6,7 +6,7 @@
     </div>
     <span class="browser-header-size">1920x800</span>
     <div class="navigation-link" @click="$emit('navigation-opened')">
-      <span class="navigation-link-title">Список уроков</span>
+      <span class="navigation-link-title">Список тем</span>
       <i class="bx bx-list-ul navigation-link-icon"></i>
     </div>
   </div>
