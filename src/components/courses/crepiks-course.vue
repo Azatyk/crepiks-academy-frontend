@@ -206,6 +206,13 @@ export default {
           this.completedLessons.length - 1
         ].id;
 
+        if (
+          this.course.lessons[this.course.lessons.length - 1].id ==
+          lastCompletedLessonId
+        ) {
+          return this.course.lessons[0].id;
+        }
+
         for (let i = 0; i < this.course.lessons.length; i++) {
           if (this.course.lessons[i].id == lastCompletedLessonId) {
             return this.course.lessons[i + 1].id;
