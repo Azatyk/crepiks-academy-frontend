@@ -53,7 +53,7 @@
           <div class="course-lessons-labels">
             <div class="course-lessons-title">Темы курса</div>
             <div class="course-lessons-amount">
-              {{ course.lessons.length }} урока
+              {{ course.lessons.length }} темы
             </div>
           </div>
           <div class="course-lessons-list">
