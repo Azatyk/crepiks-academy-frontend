@@ -33,7 +33,7 @@ export default {};
 
   &-size {
     position: absolute;
-    height: 100%;
+    height: 50px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -69,7 +69,6 @@ export default {};
 }
 
 .navigation-link {
-  margin-right: 40px;
   display: flex;
   flex-direction: row;
   color: $dark;
