@@ -82,7 +82,7 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-    padding: 0 30px;
+    width: 150px;
     height: 50px;
     display: flex;
     justify-content: center;
