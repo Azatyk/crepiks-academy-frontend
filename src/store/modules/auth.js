@@ -83,6 +83,9 @@ export default {
       };
       state.userData = data.user;
     },
+    updateUserData(state) {
+      state.userData = JSON.parse(localStorage.getItem("user")) || {};
+    },
     logout(state) {
       state.token = {};
       state.userData = null;

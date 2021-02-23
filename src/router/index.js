@@ -1,28 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import cSoon from "@/views/soon/cSoon";
-import cHowPay from "@/views/how-pay/cHowPay";
+import landing from "@/views/landing/crepiks-landing";
 
-import cLanding from "@/views/landing/cLanding";
+import register from "@/views/register/crepiks-register";
+import login from "@/views/login/crepiks-login";
 
-import cRegister from "@/views/register/cRegister";
-import cLogin from "@/views/login/cLogin";
+import courses from "@/views/courses/crepiks-courses";
+import subscription from "@/views/subscription/crepiks-subscription";
+import lesson from "@/views/lesson/crepiks-lesson";
 
-import cHome from "@/views/home/cHome";
+import emptyLayout from "@/views/layouts/crepiks-empty-layout";
+import appLayout from "@/views/layouts/crepiks-app-layout";
 
-import cCourses from "@/views/courses/cCourses";
-import cCourse from "@/views/course/cCourse";
-import cLesson from "@/views/lesson/cLesson";
-
-// import cTrainer from "@/views/trainer/cTrainer";
-
-import cEmpty from "@/views/empty/cEmpty";
-
-import cDefaultLayout from "@/views/layouts/cDefaultLayout";
-import cAppLayout from "@/views/layouts/cAppLayout";
-import cMainNavigationLayout from "@/views/layouts/cMainNavigationLayout";
-import cAuthLayout from "@/views/layouts/cAuthLayout";
+import profile from "@/views/profile/crepiks-profile";
 
 import store from "@/store";
 
@@ -31,122 +22,77 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: cDefaultLayout,
+    component: emptyLayout,
     children: [
       {
-        path: "auth",
-        name: "auth",
-        component: cAuthLayout,
-        children: [
-          {
-            path: "register",
-            name: "register",
-            component: cRegister,
-            meta: {
-              title: "Регистрация",
-              noAuthOnly: true
-            }
-          },
-          {
-            path: "login",
-            name: "login",
-            component: cLogin,
-            meta: {
-              title: "Вход",
-              noAuthOnly: true
-            }
-          }
-        ]
-      },
-      {
-        path: "",
-        name: "landing",
-        component: cLanding,
+        path: "auth/register",
+        name: "register",
+        component: register,
         meta: {
-          title: "Crepiks Academy - программируй вместе с нами",
+          title: "Регистрация",
           noAuthOnly: true
         }
       },
       {
-        path: "app",
-        component: cAppLayout,
+        path: "auth/login",
+        name: "login",
+        component: login,
         meta: {
-          needAuth: true
-        },
-        children: [
-          {
-            path: "",
-            component: cMainNavigationLayout,
-            children: [
-              {
-                path: "home",
-                name: "home",
-                component: cHome,
-                meta: {
-                  title: "Главная"
-                }
-              },
-              {
-                path: "soon",
-                name: "soon",
-                component: cSoon,
-                meta: {
-                  title: "Скоро"
-                }
-              },
-              {
-                path: "how-get",
-                name: "how-pay",
-                component: cHowPay,
-                meta: {
-                  title: "Как получить курс?"
-                }
-              },
-              {
-                path: "courses",
-                name: "courses",
-                component: cCourses,
-                meta: {
-                  title: "Курсы"
-                }
-              },
-              {
-                path: "courses/:id",
-                name: "course",
-                component: cCourse,
-                meta: {
-                  title: "Курс"
-                }
-              }
-              // {
-              //   path: "trainer",
-              //   name: "trainer",
-              //   component: cTrainer,
-              //   meta: {
-              //     title: "Тренажёр",
-              //   },
-              // },
-            ]
-          },
-          {
-            path: "courses/:courseId/lessons/:lessonId",
-            name: "lesson",
-            component: cLesson,
-            meta: {
-              title: "Урок",
-              needAuth: true,
-              shouldHaveCourse: true
-            }
-          },
-          {
-            path: "empty",
-            name: "empty",
-            component: cEmpty,
-            meta: {
-              title: "Crepiks Academy - программируй вместе с нами"
-            }
-          }
-        ]
+          title: "Вход",
+          noAuthOnly: true
+        }
+      },
+      {
+        path: "",
+        name: "landing",
+        component: landing,
+        meta: {
+          title: "Crepiks — курсы программирования",
+          noAuthOnly: true
+        }
+      },
+      {
+        path: "app/courses/:courseId/lessons/:lessonId",
+        name: "lesson",
+        component: lesson,
+        meta: {
+          title: "Урок",
+          needAuth: true,
+          shouldHaveCourse: true
+        }
+      }
+    ]
+  },
+  {
+    path: "/app",
+    component: appLayout,
+    meta: {
+      needAuth: true
+    },
+    children: [
+      {
+        path: "courses",
+        name: "courses",
+        component: courses,
+        meta: {
+          title: "Курсы"
+        }
+      },
+      {
+        path: "subscription",
+        name: "subscription",
+        component: subscription,
+        meta: {
+          title: "Получите доступ ко всем курсам"
+        }
+      },
+      {
+        path: "profile",
+        name: "profile",
+        component: profile,
+        meta: {
+          title: "Профиль пользователя"
+        }
       }
     ]
   }
@@ -176,7 +122,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.noAuthOnly)) {
     if (store.getters.isLoggedIn) {
       next({
-        path: "/app/home",
+        path: "/app/courses",
         query: { redirect: to.fullPath }
       });
     } else {
@@ -186,27 +132,27 @@ router.beforeEach((to, from, next) => {
     next();
   }
 
-  if (to.name == "lesson") {
-    var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
-    var isPurchasedCourse = false;
+  // if (to.name == "lesson") {
+  //   var purchasedCourses = JSON.parse(localStorage.getItem("purchasedCourses"));
+  //   var isPurchasedCourse = false;
 
-    purchasedCourses.forEach(course => {
-      if (course.id == Number(to.params.courseId)) {
-        isPurchasedCourse = true;
-      } else {
-        isPurchasedCourse = false;
-      }
-    });
-    if (isPurchasedCourse == false) {
-      next({
-        path: "/app/how-get"
-      });
-    } else {
-      next();
-    }
-  } else {
-    next();
-  }
+  //   purchasedCourses.forEach(course => {
+  //     if (course.id == Number(to.params.courseId)) {
+  //       isPurchasedCourse = true;
+  //     } else {
+  //       isPurchasedCourse = false;
+  //     }
+  //   });
+  //   if (isPurchasedCourse == false) {
+  //     next({
+  //       path: "/app/how-get"
+  //     });
+  //   } else {
+  //     next();
+  //   }
+  // } else {
+  //   next();
+  // }
 });
 
 export default router;
