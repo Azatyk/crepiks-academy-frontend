@@ -98,8 +98,9 @@ export default {
     margin-bottom: 30px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 22px;
-    line-height: 130%;
+    color: $dark;
+    font-size: 20px;
+    line-height: 150%;
   }
 
   &-button {
