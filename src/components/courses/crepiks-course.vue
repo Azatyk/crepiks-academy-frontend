@@ -208,18 +208,21 @@ export default {
     },
 
     getLastUncompletedLessonId() {
+      console.log("oenpeknptnpemnpem");
       if (this.completedLessons.length > 0) {
-        const lastCompletedLessonId = this.completedLessons[
-          this.completedLessons.length - 1
-        ].id;
+        if (this.completedLessons.length == this.course.lessons.length) {
+          return this.course.lessons[0].id;
+        } else {
+          const lastCompletedLessonId = this.completedLessons[
+            this.completedLessons.length - 1
+          ].id;
 
-        for (let i = 0; i < this.course.lessons.length; i++) {
-          if (this.course.lessons[i].id == lastCompletedLessonId) {
-            return this.course.lessons[i + 1].id;
+          for (let i = 0; i < this.course.lessons.length; i++) {
+            if (this.course.lessons[i].id == lastCompletedLessonId) {
+              return this.course.lessons[i + 1].id;
+            }
           }
         }
-      } else {
-        return this.course.lessons[0].id;
       }
     }
   }
