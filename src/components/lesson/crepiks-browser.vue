@@ -57,7 +57,7 @@ export default {
       if (
         iframe.querySelector("link") &&
         iframe.querySelector("link").getAttribute("rel") == "stylesheet" &&
-        iframe.querySelector("link").getAttribute("href") == "style.css"
+        iframe.querySelector("link").getAttribute("href") == "styles.css"
       ) {
         iframe.head.innerHTML = `<style>${this.cssCode}</style>`;
       }
