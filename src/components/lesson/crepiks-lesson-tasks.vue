@@ -2,7 +2,7 @@
   <div class="tasks" :class="{ 'tasks-closed': !isOpen }">
     <div class="tasks-header" @click="isOpen = !isOpen">
       <h3 class="tasks-header-title">
-        Урок {{ getLessonIndex() }}: {{ lesson.title.ru }}
+        Тема {{ getLessonIndex() }}: {{ lesson.title.ru }}
       </h3>
       <i
         class="bx bx-chevron-down tasks-header-icon"

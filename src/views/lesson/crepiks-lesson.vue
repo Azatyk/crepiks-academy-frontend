@@ -95,12 +95,6 @@
               @close-hint="isHintOpen = false"
             />
           </div>
-          <taskNotification
-            :isActive="isTaskNotificationOpen"
-            :status="taskNotificationStatus"
-            :text="taskNotificationText"
-            @close-notification="isTaskNotificationOpen = false"
-          />
         </div>
         <div
           class="lesson-screen lesson-screen-second"
@@ -120,6 +114,12 @@
             @add-completed-lessons="addCompletedLesson()"
           />
         </div>
+        <taskNotification
+          :isActive="isTaskNotificationOpen"
+          :status="taskNotificationStatus"
+          :text="taskNotificationText"
+          @close-notification="isTaskNotificationOpen = false"
+        />
       </div>
       <lessonFooter
         :lessons="lessons"

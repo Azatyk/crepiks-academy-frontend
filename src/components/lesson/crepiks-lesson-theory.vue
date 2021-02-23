@@ -7,7 +7,7 @@
     }"
   >
     <span class="lesson-theory-navigation" @click="$emit('navigation-opened')"
-      >Список уроков</span
+      >Список тем</span
     >
     <i
       v-if="!isTheoryOnly"
@@ -24,7 +24,7 @@
               isLessonLast
                 ? 'Завершить курс'
                 : isTheoryOnly
-                ? 'Следующий урок'
+                ? 'Следующая тема'
                 : 'Перейти к заданию'
             "
             :isBold="true"
@@ -208,13 +208,14 @@ export default {
     margin-bottom: 30px;
     color: $dark;
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &-text {
     margin-bottom: 50px;
     color: $dark;
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 150%;
   }
 
   &-button {
@@ -225,7 +226,7 @@ export default {
 .content {
   padding: 100px 0;
   margin: auto;
-  width: 800px;
+  width: 750px;
   height: auto;
   box-sizing: border-box;
   display: flex;

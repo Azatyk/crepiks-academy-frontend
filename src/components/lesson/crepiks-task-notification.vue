@@ -56,7 +56,7 @@ export default {
 
 .task-notification {
   position: fixed;
-  bottom: 25px;
+  bottom: 70px;
   right: -460px;
   padding: 20px 15px;
   padding-right: 35px;

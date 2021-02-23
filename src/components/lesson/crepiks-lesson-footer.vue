@@ -31,7 +31,7 @@ export default {
 
   methods: {
     nextLessonButtonHandler() {
-      let currentLessonId = Number(this.$route.params.lessonId); // сначала мы определяем какой будет роут следующего урока
+      let currentLessonId = Number(this.$route.params.lessonId); // сначала мы определяем какой будет роут следующей темф
       let courseId = Number(this.$route.params.courseId);
       let nextLessonId;
 
@@ -82,7 +82,7 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-    padding: 0 30px;
+    width: 150px;
     height: 50px;
     display: flex;
     justify-content: center;
