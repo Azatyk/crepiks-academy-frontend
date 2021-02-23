@@ -171,6 +171,13 @@ export default {
     };
   },
 
+  created() {
+    if (this.isMobile) {
+      this.ops.rail.size = "0px";
+      this.ops.bar.size = "0px";
+    }
+  },
+
   watch: {
     async isCourseOpen() {
       if (this.isCourseOpen) {
@@ -188,7 +195,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["userData"])
+    ...mapGetters(["userData", "isMobile"])
   },
 
   methods: {
@@ -371,7 +378,7 @@ export default {
   height: 250px;
   filter: blur(8px);
   background-color: #e5e5e8;
-  border-radius: 20px;
+  border-radius: 10px;
   transition: filter 0.5s;
 }
 
@@ -414,13 +421,17 @@ export default {
     }
   }
   .v-lazy-image {
-    height: 200px;
+    height: auto;
   }
 }
 
 @media (max-width: 414px) {
+  .course-content {
+    padding-right: 0;
+  }
+
   .v-lazy-image {
-    height: 160px;
+    height: auto;
   }
 }
 </style>

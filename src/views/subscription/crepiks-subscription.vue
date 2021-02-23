@@ -39,6 +39,7 @@ import promocode from "@/components/subscription/crepiks-subscription-promocode"
 import payment from "@/components/subscription/crepiks-subscription-payment";
 import transactions from "@/components/subscription/crepiks-subscription-transactions";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -56,22 +57,12 @@ export default {
       isTransactionsOpen: false
     };
   },
-  methods: {
-    handleResize() {
-      if (window.innerWidth <= 414) {
-        this.payment = true;
-      } else {
-        this.payment = false;
-      }
-    }
-  },
+
   created() {
-    window.addEventListener("resize", this.handleResize);
-    this.handleResize();
+    if (this.isMobile) this.payment = true;
   },
-  destroyed() {
-    window.removeEventListener("resize", this.handleResize);
-  }
+
+  computed: mapGetters(["isMobile"])
 };
 </script>
 

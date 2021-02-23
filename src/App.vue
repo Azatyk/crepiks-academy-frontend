@@ -18,6 +18,7 @@ export default {
 
   data() {
     return {
+      isMobile: null,
       ops: {
         vuescroll: {
           mode: "native"
@@ -54,6 +55,18 @@ export default {
         }
       }
     };
+  },
+
+  created() {
+    if (document.body.clientWidth <= 414) {
+      this.isMobile = true;
+      this.ops.rail.size = "0px";
+      this.ops.bar.size = "0px";
+    } else {
+      this.isMobile = false;
+    }
+
+    this.$store.commit("setIsMobile", this.isMobile);
   }
 };
 </script>
