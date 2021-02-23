@@ -46,6 +46,9 @@
               >
                 Изменить пароль
               </div>
+              <div class="user-profile-button" @click="logout">
+                <span class="user-profile-button">Выйти</span>
+              </div>
             </div>
             <div class="user-profile-subscription">Подписка не активна</div>
           </div>
@@ -109,6 +112,7 @@ import profileEdit from "@/components/profile/crepiks-profile-edit";
 import changePassword from "@/components/profile/crepiks-change-password";
 
 import { mapGetters } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   components: {
@@ -228,7 +232,8 @@ export default {
         this.openProfileEdit = false;
       }
     }
-  }
+  },
+  methods: mapMutations(["logout"])
 };
 </script>
 
@@ -374,6 +379,12 @@ export default {
     opacity: 0.8;
   }
 
+  &-button:last-child {
+    display: none;
+    color: #e74c3c;
+    opacity: 0.9;
+  }
+
   &-subscription {
     box-sizing: border-box;
     padding: 12px 20px;
@@ -434,7 +445,7 @@ export default {
       &-container {
         margin-left: 50px;
         margin-top: 0;
-        padding-top: 40px;
+        padding-top: 4px;
         box-sizing: border-box;
       }
     }
@@ -446,6 +457,10 @@ export default {
       &-card {
         width: 95%;
       }
+    }
+
+    &-button:last-child {
+      display: block;
     }
   }
 }
