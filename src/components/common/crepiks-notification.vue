@@ -97,6 +97,7 @@ export default {
   right: -550px;
   padding: 20px 30px 20px 15px;
   max-width: 500px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -185,6 +186,26 @@ export default {
 
     &:hover {
       opacity: 0.8;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .notification {
+    right: -100%;
+    max-width: 95%;
+    width: 95%;
+
+    &-active {
+      right: 2.5%;
+    }
+
+    &-heading {
+      font-size: 16px;
+    }
+
+    &-paragraph {
+      font-size: 14px;
     }
   }
 }
