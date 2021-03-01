@@ -24,17 +24,17 @@
     <div class="card-images">
       <img
         class="card-image markup-basic"
-        src="@/assets/images/html-css-basic.svg"
+        src="@/assets/images/basic-markup-image-small.png"
         alt=""
       />
       <img
         class="card-image markup-upgrade"
-        src="@/assets/images/html-css-upgrade.svg"
+        src="@/assets/images/pro-markup-image-small.png"
         alt=""
       />
       <img
         class="card-image javascript-basic"
-        src="@/assets/images/javascript.svg"
+        src="@/assets/images/basic-js-image-small.png"
         alt=""
       />
     </div>
