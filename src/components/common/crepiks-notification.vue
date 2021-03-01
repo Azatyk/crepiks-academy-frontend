@@ -28,10 +28,7 @@
       <h2 class="notification-heading" v-if="heading != ''">{{ heading }}</h2>
       <p class="notification-paragraph">{{ text }}</p>
     </div>
-    <i
-      class="bx bx-x notification-close"
-      @click="$emit('close-notification')"
-    ></i>
+    <i class="bx bx-x notification-close" @click="handleCloseButton()"></i>
   </div>
 </template>
 
@@ -64,13 +61,29 @@ export default {
     }
   },
 
+  data() {
+    return {
+      setTimeoutId: null
+    };
+  },
+
   watch: {
     isActive() {
       if (this.isActive) {
-        setTimeout(() => {
+        this.setTimeoutId = setTimeout(() => {
           this.$emit("close-notification");
         }, 7000);
       }
+    }
+  },
+
+  methods: {
+    handleCloseButton() {
+      if (this.setTimeoutId) {
+        clearTimeout(this.setTimeoutId);
+      }
+
+      this.$emit("close-notification");
     }
   }
 };
