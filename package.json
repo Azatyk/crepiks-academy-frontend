@@ -41,8 +41,7 @@
     "less": "^3.11.3",
     "less-loader": "^6.1.2",
     "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1",
-    "vue-template-compiler": "^2.6.11"
+    "prettier": "^1.19.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

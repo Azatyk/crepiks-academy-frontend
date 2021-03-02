@@ -18,7 +18,7 @@
       <div class="content-full">
         <div class="content">
           <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
-          <p class="lesson-theory-text" v-html="lesson.theory.ru"></p>
+          <theoryText :theoryText="lesson.theory.ru" />
           <cButton
             :text="
               isLessonLast
@@ -42,6 +42,7 @@
 
 <script>
 import cButton from "@/components/common/crepiks-button";
+import theoryText from "@/components/lesson/crepiks-theory-text";
 
 import vuescroll from "vuescroll";
 
@@ -110,6 +111,7 @@ export default {
 
   components: {
     cButton,
+    theoryText,
     vuescroll
   },
 
