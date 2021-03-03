@@ -91,6 +91,7 @@ export default {
     font-size: 16px;
     font-weight: 500;
     border: none;
+    outline: none;
     border-left: 1px solid $border;
     border-top: 1px solid $border;
     background-color: $background;

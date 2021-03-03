@@ -67,7 +67,7 @@ export default {
   flex-direction: row;
   border: 1px solid $dark;
   background-color: $white;
-  z-index: 3;
+  z-index: 2;
   transition: 400ms ease-in-out;
 
   &-open {
