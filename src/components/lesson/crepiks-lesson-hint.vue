@@ -27,7 +27,8 @@ export default {
     },
     hint: {
       type: String,
-      required: true
+      required: false,
+      default: ""
     }
   },
 
