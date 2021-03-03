@@ -19,6 +19,7 @@
         <div class="content">
           <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
           <theoryText :theoryText="lesson.theory.ru" />
+          <codemirror v-if="false" />
           <cButton
             :text="
               isLessonLast
@@ -42,9 +43,9 @@
 
 <script>
 import cButton from "@/components/common/crepiks-button";
-import theoryText from "@/components/lesson/crepiks-theory-text";
 
 import vuescroll from "vuescroll";
+import theoryText from "@/components/lesson/crepiks-theory-text";
 
 export default {
   props: {
@@ -105,14 +106,28 @@ export default {
           size: "13px",
           disable: false
         }
+      },
+      htmlOptions: {
+        tabSize: 4,
+        mode: "text/html",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      },
+      cssOptions: {
+        tabSize: 2,
+        mode: "text/css",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
       }
     };
   },
 
   components: {
     cButton,
-    theoryText,
-    vuescroll
+    vuescroll,
+    theoryText
   },
 
   methods: {
@@ -239,5 +254,14 @@ export default {
     height: 100%;
     box-sizing: border-box;
   }
+}
+</style>
+
+<style lang="scss">
+.CodeMirror {
+  width: 750px !important;
+  min-height: 0px !important;
+  height: auto !important;
+  z-index: 3 !important;
 }
 </style>

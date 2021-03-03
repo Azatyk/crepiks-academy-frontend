@@ -1,44 +1,88 @@
+<template>
+  <div>
+    <runtimeTemplate :template="theoryText"></runtimeTemplate>
+    <codemirror v-if="false" />
+  </div>
+</template>
+
 <script>
-import Vue from "vue";
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
 import "codemirror/theme/eclipse.css";
 
+import runtimeTemplate from "v-runtime-template";
+
 export default {
   props: {
     theoryText: {
       type: String,
-      required: true
+      required: false
     }
   },
 
   components: {
-    codemirror
+    codemirror,
+    runtimeTemplate
   },
 
   data() {
     return {
-      compiledTemplate: null
+      html: {
+        readOnly: true,
+        tabSize: 4,
+        mode: "text/html",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      },
+      css: {
+        readOnly: true,
+        tabSize: 2,
+        mode: "text/css",
+        theme: "eclipse",
+        lineNumbers: true,
+        line: true
+      }
     };
-  },
-
-  watch: {
-    theoryText() {}
-  },
-
-  render(createElement) {
-    this.compiledTemplate = Vue.compile(
-      "<section><h1>Hello, World!</h1></section>"
-    );
-    if (this.compiledTemplate) {
-      console.log(this.compiledTemplate);
-      return this.compiledTemplate.render.call(this, createElement);
-    } else return null;
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped></style>
+
+<style lang="scss">
 @import "@/assets/styles/variables.scss";
+
+.theory-text {
+  margin-bottom: 50px;
+  color: $dark;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.theory-code-editor .CodeMirror {
+  width: 750px !important;
+  height: auto !important;
+  box-sizing: border-box;
+  font-size: 18px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  z-index: 3 !important;
+}
+
+.theory-code-editor .CodeMirror-code {
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.theory-code-editor .CodeMirror-cursor {
+  display: none;
+}
+
+.theory-code-editor .CodeMirror-linenumbers {
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: $white;
+}
 </style>
