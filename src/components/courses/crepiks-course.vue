@@ -208,7 +208,6 @@ export default {
     },
 
     getLastUncompletedLessonId() {
-      console.log("oenpeknptnpemnpem");
       if (this.completedLessons.length > 0) {
         if (this.completedLessons.length == this.course.lessons.length) {
           return this.course.lessons[0].id;
@@ -223,6 +222,8 @@ export default {
             }
           }
         }
+      } else {
+        return this.course.lessons[0].id;
       }
     }
   }

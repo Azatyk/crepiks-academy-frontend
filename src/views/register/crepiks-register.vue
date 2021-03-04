@@ -123,8 +123,6 @@ export default {
           password: this.password.trim()
         };
 
-        console.log(user.phoneNumber);
-
         this.$store
           .dispatch("register", user)
           .then(() => {
