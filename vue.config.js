@@ -1,4 +1,5 @@
 module.exports = {
+  runtimeCompiler: true,
   css: {
     loaderOptions: {
       less: {
@@ -10,6 +11,13 @@ module.exports = {
           },
           javascriptEnabled: true
         }
+      }
+    }
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        vue$: "vue/dist/vue.esm.js"
       }
     }
   }

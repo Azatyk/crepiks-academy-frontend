@@ -4,7 +4,7 @@ import auth from "./modules/auth";
 import mailing from "./modules/mailing";
 import profile from "./modules/profile";
 import courses from "./modules/courses";
-import i18n from "./modules/i18n";
+import clientWidth from "./modules/clientWidth";
 
 Vue.use(Vuex);
 
@@ -14,6 +14,6 @@ export default new Vuex.Store({
     mailing,
     profile,
     courses,
-    i18n
+    clientWidth
   }
 });

@@ -6,10 +6,11 @@ export default {
     token: {
       accessToken: localStorage.getItem("token") || ""
     },
-    userData: JSON.parse(localStorage.getItem("user")) || {}
+    userData: JSON.parse(localStorage.getItem("user")) || {},
+    purchasedCourses: []
   },
   actions: {
-    login({ commit }, { email, password }) {
+    login({ commit, dispatch }, { email, password }) {
       return new Promise((resolve, reject) => {
         request({
           url: "auth/login",
@@ -25,6 +26,7 @@ export default {
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
             commit("authSuccess", res.data);
+            dispatch("getPurchasedCourses", res.data.user.id);
             resolve(res);
           })
           .catch(err => {
@@ -33,20 +35,39 @@ export default {
           });
       });
     },
-    register({ dispatch }, user) {
+    register({ commit, dispatch }, user) {
       return new Promise((resolve, reject) => {
-        let loginData = {
-          email: user.email,
-          password: user.password
-        };
         request({
           url: "auth/register",
           data: user,
           method: "POST"
         })
           .then(res => {
+            const token = res.data.auth.accessToken;
+            const user = res.data.user;
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+            commit("authSuccess", res.data);
+            dispatch("getPurchasedCourses", res.data.user.id);
             resolve(res);
-            dispatch("login", loginData);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+    getPurchasedCourses(ctx, userId) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/users/" + userId + "/purchased-courses",
+          method: "GET"
+        })
+          .then(res => {
+            localStorage.setItem(
+              "purchasedCourses",
+              JSON.stringify(res.data.purchasedCourses)
+            );
+            resolve(res);
           })
           .catch(err => {
             reject(err);
@@ -61,6 +82,9 @@ export default {
         accessTokenExpiredAt: data.auth.accessTokenExpiredAt
       };
       state.userData = data.user;
+    },
+    updateUserData(state) {
+      state.userData = JSON.parse(localStorage.getItem("user")) || {};
     },
     logout(state) {
       state.token = {};
