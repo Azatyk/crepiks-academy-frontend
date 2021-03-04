@@ -110,9 +110,20 @@ export default {
           firstName: this.firstName.trim(),
           lastName: this.lastName.trim(),
           email: this.email.trim(),
-          phoneNumber: this.phoneNumber.trim(),
+          phoneNumber: `7${this.phoneNumber.trim()[3] +
+            this.phoneNumber.trim()[4] +
+            this.phoneNumber.trim()[5] +
+            this.phoneNumber.trim()[8] +
+            this.phoneNumber.trim()[9] +
+            this.phoneNumber.trim()[10] +
+            this.phoneNumber.trim()[12] +
+            this.phoneNumber.trim()[13] +
+            this.phoneNumber.trim()[15] +
+            this.phoneNumber.trim()[16]}`,
           password: this.password.trim()
         };
+
+        console.log(user.phoneNumber);
 
         this.$store
           .dispatch("register", user)
