@@ -43,16 +43,18 @@ export default {};
   }
 
   &-paragraph {
-    width: 80%;
+    padding-top: 5vh;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 5vh;
-    font-size: 20px;
-    color: $light-dark;
+    width: 80%;
+    color: $dark;
+    font-size: 24px;
+    line-height: 130%;
+    opacity: 0.6;
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1500px) {
   .description {
     &_heading {
       font-size: 2.6vw;

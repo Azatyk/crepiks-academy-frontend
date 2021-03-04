@@ -38,7 +38,7 @@ export default {
   box-sizing: border-box;
   background-image: url(../../assets/images/offer-image-landing.svg);
   background-repeat: no-repeat;
-  background-position: bottom 35% right 25%;
+  background-position: bottom 50% right 25%;
   background-size: 52%;
 
   &-content {

@@ -188,10 +188,11 @@ export default {
   &-paragraph {
     width: 85%;
     color: $dark;
-    padding-top: 15px;
-    font-size: 20px;
-    font-weight: 300;
-    opacity: 0.9;
+    padding-top: 20px;
+    font-size: 22px;
+    font-weight: 400;
+    opacity: 0.7;
+    line-height: 130%;
 
     &-bold {
       font-weight: 400;
@@ -276,7 +277,7 @@ export default {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1500px) {
   .practice {
     &-heading {
       font-size: 2.6vw;

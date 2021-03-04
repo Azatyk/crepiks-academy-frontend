@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-image">
-      <div class="card-image-container"></div>
+      <img :src="gif" :alt="heading" class="card-image-container" />
     </div>
     <div class="card-text">
       <div class="card-title">
@@ -16,13 +16,16 @@
 <script>
 export default {
   props: {
+    number: {
+      type: String
+    },
+    gif: {
+      type: String
+    },
     heading: {
       type: String
     },
     paragraph: {
-      type: String
-    },
-    number: {
       type: String
     }
   }
@@ -43,9 +46,9 @@ export default {
 
     &-container {
       width: 100%;
-      height: 320px;
+      height: auto;
       background-color: $white;
-      border-radius: 15px;
+      border-radius: 5px;
     }
   }
 
@@ -68,7 +71,7 @@ export default {
   }
 
   &-number {
-    width: 30px;
+    width: 35px;
     height: 30px;
     display: flex;
     align-items: center;
@@ -86,13 +89,12 @@ export default {
     width: 100%;
     font-size: 20px;
     margin-top: 15px;
-    font-weight: 300;
     opacity: 60%;
-    line-height: 28px;
+    line-height: 140%;
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1500px) {
   .card {
     &-heading {
       font-size: 1.8vw;

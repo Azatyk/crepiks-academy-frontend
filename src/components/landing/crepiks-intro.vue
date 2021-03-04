@@ -55,7 +55,7 @@ export default {
 
   &-heading {
     color: $dark;
-    font-size: 35px;
+    font-size: 37px;
     font-weight: 400;
 
     &-free {
@@ -64,9 +64,9 @@ export default {
   }
 
   &-paragraph {
-    font-size: 20px;
+    font-size: 22px;
     width: 80%;
-    margin-top: 10px;
+    margin-top: 15px;
     color: $light-dark;
   }
 
@@ -75,7 +75,7 @@ export default {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1500px) {
   .intro {
     &_heading {
       font-size: 2.2vw;

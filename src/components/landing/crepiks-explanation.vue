@@ -10,12 +10,14 @@
       <div class="explanation-container">
         <cExplanationCard
           number="1"
+          :gif="theoryGif"
           heading="Теория"
           paragraph="Теория - это небольшой текст с иллюстрациями и иногда с тестами в каждом уроке. Читайте теорию, делайте конспекты и если что-нибудь забудете - теория всегда доступна."
         />
         <cExplanationCard
           class="explanation-card"
           number="2"
+          :gif="practiceGif"
           heading="Практика"
           paragraph="Сразу после теории у вас будет возможность попрактиковаться и написать реальный код, выполняя небольшие задания. Вам не нужно ничего скачивать - все, что нужно для практики уже на платформе."
         />
@@ -26,9 +28,19 @@
 
 <script>
 import cExplanationCard from "@/components/explanation/crepiks-explanation-card.vue";
+import theoryGif from "@/assets/gifs/theory.gif";
+import practiceGif from "@/assets/gifs/practice.gif";
+
 export default {
   components: {
     cExplanationCard
+  },
+
+  data() {
+    return {
+      theoryGif: theoryGif,
+      practiceGif: practiceGif
+    };
   }
 };
 </script>
@@ -51,22 +63,22 @@ export default {
   }
 
   &-heading {
+    padding-top: 12vh;
     width: 100%;
     text-align: center;
     font-weight: 400;
-    font-size: 35px;
-    padding-top: 12vh;
+    font-size: 38px;
   }
 
   &-paragraph {
+    padding-top: 5vh;
     width: 78%;
     text-align: center;
-    font-size: 20px;
-    padding-top: 4vh;
+    font-size: 23px;
     margin-right: auto;
     margin-left: auto;
-    font-weight: lighter;
-    line-height: 27px;
+    line-height: 140%;
+    opacity: 0.7;
   }
 
   &-container {
@@ -78,7 +90,7 @@ export default {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1500px) {
   .explanation {
     &-heading {
       font-size: 2.6vw;
