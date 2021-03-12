@@ -1,6 +1,13 @@
 <template>
   <transition name="fadeIn" appear mode="in-out">
     <div class="courses-page">
+      <notification
+        :heading="notificationHeading"
+        :text="notificationText"
+        :status="notificationStatus"
+        :isActive="isNotificationActive"
+        @close-notification="isNotificationActive = false"
+      />
       <profileLink />
       <div class="courses-half">
         <div class="search-input">
@@ -58,6 +65,28 @@
         :id="openCourseId"
         @open-course-block="isFirstCourseOpen = true"
         @close-course-block="isFirstCourseOpen = false"
+        @need-subscription-notification="
+          notificationHeading = 'Курс доступен по подписке';
+          notificationText =
+            'Оформите подписку для получения доступа к этому и всем остальным курсам Crepiks';
+          notificationStatus = 'error';
+          isNotificationActive = true;
+        "
+        @getting-lesson-error-notification="
+          notificationHeading = 'Что-то пошло не так';
+          notificationText =
+            'Проверьте ваше подключение к интернету и попробуйте снова';
+          notificationStatus = 'error';
+          isNotificationActive = true;
+        "
+        @getting-course-error-notification="
+          notificationHeading = 'Что-то пошло не так';
+          notificationText =
+            'Проверьте ваше подключение к интернету и попробуйте снова';
+          notificationStatus = 'error';
+          isCourseOpen = false;
+          isNotificationActive = true;
+        "
       />
     </div>
   </transition>
@@ -72,15 +101,16 @@ import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
 import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
 
 import course from "@/components/courses/crepiks-course";
-
 import profileLink from "@/components/profile-link/crepiks-profile-link";
+import notification from "@/components/common/crepiks-notification";
 
 export default {
   components: {
     cButton,
     courseCard,
     course,
-    profileLink
+    profileLink,
+    notification
   },
 
   data() {
@@ -89,7 +119,11 @@ export default {
       secondCourseImage: secondCourseImage,
       thirdCourseImage: thirdCourseImage,
       isFirstCourseOpen: false,
-      openCourseId: 0
+      openCourseId: 0,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
+      isNotificationActive: false
     };
   }
 };

@@ -6,11 +6,10 @@ export default {
     token: {
       accessToken: localStorage.getItem("token") || ""
     },
-    userData: JSON.parse(localStorage.getItem("user")) || {},
-    purchasedCourses: []
+    userData: JSON.parse(localStorage.getItem("user")) || {}
   },
   actions: {
-    login({ commit, dispatch }, { email, password }) {
+    login({ commit }, { email, password }) {
       return new Promise((resolve, reject) => {
         request({
           url: "auth/login",
@@ -26,7 +25,6 @@ export default {
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
             commit("authSuccess", res.data);
-            dispatch("getPurchasedCourses", res.data.user.id);
             resolve(res);
           })
           .catch(err => {
@@ -35,7 +33,7 @@ export default {
           });
       });
     },
-    register({ commit, dispatch }, user) {
+    register({ commit }, user) {
       return new Promise((resolve, reject) => {
         request({
           url: "auth/register",
@@ -48,25 +46,6 @@ export default {
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
             commit("authSuccess", res.data);
-            dispatch("getPurchasedCourses", res.data.user.id);
-            resolve(res);
-          })
-          .catch(err => {
-            reject(err);
-          });
-      });
-    },
-    getPurchasedCourses(ctx, userId) {
-      return new Promise((resolve, reject) => {
-        request({
-          url: "/users/" + userId + "/purchased-courses",
-          method: "GET"
-        })
-          .then(res => {
-            localStorage.setItem(
-              "purchasedCourses",
-              JSON.stringify(res.data.purchasedCourses)
-            );
             resolve(res);
           })
           .catch(err => {
