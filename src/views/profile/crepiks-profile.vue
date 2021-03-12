@@ -50,7 +50,24 @@
                 <span class="user-profile-button">Выйти</span>
               </div>
             </div>
-            <div class="user-profile-subscription">Подписка не активна</div>
+            <div
+              :class="
+                hasSubscription
+                  ? 'user-profile-subscription user-profile-subscription-active'
+                  : 'user-profile-subscription'
+              "
+            >
+              {{ hasSubscription ? "Подписка активна" : "Подписка не активна" }}
+            </div>
+            <router-link
+              v-if="!hasSubscription"
+              to="/app/subscription"
+              class="user-profile-link"
+              >Активировать подписку</router-link
+            >
+            <span v-else class="user-profile-expired"
+              >Истекает: {{ subscriptionExpiredAt }}</span
+            >
           </div>
         </div>
         <div class="user-profile-courses">
@@ -135,6 +152,8 @@ export default {
         firstName: null,
         lastName: null
       },
+      hasSubscription: false,
+      subscriptionExpiredAt: null,
       colors: [
         {
           background: "#34495e",
@@ -215,6 +234,35 @@ export default {
     await this.$store
       .dispatch("getCompletedLessons", this.userData.id)
       .then(res => (this.completedLessons = res.data.completedLessons));
+
+    await this.$store
+      .dispatch("getSubscriptions", this.userData.id)
+      .then(res => {
+        if (res.data.subscriptions.length > 0) {
+          if (
+            Date.parse(
+              res.data.subscriptions[res.data.subscriptions.length - 1]
+                .expiredAt
+            ) > Date.now()
+          ) {
+            this.hasSubscription = true;
+            const expiredDate = new Date(
+              Date.parse(
+                res.data.subscriptions[res.data.subscriptions.length - 1]
+                  .expiredAt
+              )
+            );
+            this.subscriptionExpiredAt =
+              ("0" + expiredDate.getDate()).slice(-2) +
+              "." +
+              ("0" + (expiredDate.getMonth() + 1)).slice(-2) +
+              "." +
+              expiredDate.getFullYear();
+          }
+        } else {
+          this.hasSubscription = false;
+        }
+      });
   },
   watch: {
     userData() {
@@ -386,15 +434,40 @@ export default {
   }
 
   &-subscription {
-    box-sizing: border-box;
+    margin: 40px 0 15px 0;
     padding: 12px 20px;
+    box-sizing: border-box;
     color: $primary;
-    border: 1px solid $primary;
-    text-align: center;
     font-weight: 700;
     font-size: 15px;
-    margin-top: 40px;
+    text-align: center;
+    border: 1px solid $primary;
     border-radius: 8px;
+
+    &-active {
+      color: $white;
+      background-color: $primary;
+    }
+  }
+
+  &-link {
+    color: $primary;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &-expired {
+    color: $dark;
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 0.5;
   }
 
   &-courses {

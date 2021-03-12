@@ -5,6 +5,7 @@ import mailing from "./modules/mailing";
 import profile from "./modules/profile";
 import courses from "./modules/courses";
 import clientWidth from "./modules/clientWidth";
+import subscriptions from "./modules/subscriptions";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     mailing,
     profile,
     courses,
-    clientWidth
+    clientWidth,
+    subscriptions
   }
 });
