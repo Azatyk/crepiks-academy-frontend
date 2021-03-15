@@ -185,8 +185,13 @@ export default {
             this.$emit("getting-course-error-notification");
           });
 
+        const payload = {
+          userId: this.userData.id,
+          courseId: this.id
+        };
+
         await this.$store
-          .dispatch("getCompletedLessons", this.userData.id)
+          .dispatch("getCompletedLessons", payload)
           .then(res => (this.completedLessons = res.data.completedLessons));
       }
     }
