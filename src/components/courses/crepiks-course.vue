@@ -39,14 +39,7 @@
           <cButton
             text="Перейти к курсу"
             class="main-info-button"
-            @click="
-              $router.push(
-                '/app/courses/' +
-                  id +
-                  '/lessons/' +
-                  getLastUncompletedLessonId()
-              )
-            "
+            @click="handleToLessonButton()"
           />
         </div>
         <div class="course-lessons">
@@ -182,13 +175,23 @@ export default {
     async isCourseOpen() {
       if (this.isCourseOpen) {
         this.skeletonLoading = true;
-        await this.$store.dispatch("getCourse", this.id).then(res => {
-          this.course = res.data.course;
-          this.skeletonLoading = false;
-        });
+        await this.$store
+          .dispatch("getCourse", this.id)
+          .then(res => {
+            this.course = res.data.course;
+            this.skeletonLoading = false;
+          })
+          .catch(() => {
+            this.$emit("getting-course-error-notification");
+          });
+
+        const payload = {
+          userId: this.userData.id,
+          courseId: this.id
+        };
 
         await this.$store
-          .dispatch("getCompletedLessons", this.userData.id)
+          .dispatch("getCompletedLessons", payload)
           .then(res => (this.completedLessons = res.data.completedLessons));
       }
     }
@@ -199,6 +202,26 @@ export default {
   },
 
   methods: {
+    handleToLessonButton() {
+      this.$store
+        .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
+        .then(() => {
+          this.$router.push(
+            "/app/courses/" +
+              this.id +
+              "/lessons/" +
+              this.getLastUncompletedLessonId()
+          );
+        })
+        .catch(err => {
+          if (err.response.status == 403) {
+            this.$emit("need-subscription-notification");
+          } else {
+            this.$emit("getting-lesson-error-notification");
+          }
+        });
+    },
+
     isLessonCompleted(lessonId) {
       for (let i = 0; i < this.completedLessons.length; i++) {
         if (this.completedLessons[i].id == lessonId) {
