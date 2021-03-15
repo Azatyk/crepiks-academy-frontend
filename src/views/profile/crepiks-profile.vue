@@ -234,11 +234,13 @@ export default {
       this.lessons = res.data.course.lessons;
     });
 
-    let userId = this.userData.id;
-    let courseId = 1;
+    const payload = {
+      userId: this.userData.id,
+      courseId: 1
+    };
 
     await this.$store
-      .dispatch("getCompletedLessons", { userId, courseId })
+      .dispatch("getCompletedLessons", payload)
       .then(res => (this.completedLessons = res.data.completedLessons));
 
     await this.$store
