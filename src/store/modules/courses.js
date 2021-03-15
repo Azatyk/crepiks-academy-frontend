@@ -56,10 +56,11 @@ export default {
           });
       });
     },
-    getCompletedLessons(ctx, userId) {
+    getCompletedLessons(ctx, { userId, courseId }) {
       return new Promise((resolve, reject) => {
         request({
-          url: "/users/" + userId + "/completed-lessons",
+          url:
+            "/users/" + userId + "/courses/" + courseId + "/completed-lessons",
           method: "GET"
         })
           .then(res => {

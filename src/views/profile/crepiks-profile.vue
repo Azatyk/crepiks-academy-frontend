@@ -36,6 +36,12 @@
               <i class="bx bx-mail-send user-profile-icon"></i>
               <span class="user-profile-text">{{ user.email }}</span>
             </div>
+            <div class="user-profile-container">
+              <i class="bx bx-phone user-profile-icon"></i>
+              <span class="user-profile-text">{{
+                user.phoneNumber ? user.phoneNumber : "-"
+              }}</span>
+            </div>
             <div class="user-profile-buttons">
               <div class="user-profile-button" @click="openProfileEdit = true">
                 Редактировать профиль
@@ -70,7 +76,7 @@
             >
           </div>
         </div>
-        <div class="user-profile-courses">
+        <div class="user-profile-courses" v-if="hasSubscription">
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
           <div class="user-profile-courses-container">
             <courseCard
@@ -148,10 +154,7 @@ export default {
       openChangePassword: false,
       lessons: [],
       completedLessons: [],
-      user: {
-        firstName: null,
-        lastName: null
-      },
+      user: {},
       hasSubscription: false,
       subscriptionExpiredAt: null,
       colors: [
@@ -231,8 +234,11 @@ export default {
       this.lessons = res.data.course.lessons;
     });
 
+    let userId = this.userData.id;
+    let courseId = 1;
+
     await this.$store
-      .dispatch("getCompletedLessons", this.userData.id)
+      .dispatch("getCompletedLessons", { userId, courseId })
       .then(res => (this.completedLessons = res.data.completedLessons));
 
     await this.$store
@@ -389,15 +395,16 @@ export default {
     }
   }
 
+  &-container:first-child {
+    margin-top: 0;
+  }
+
   &-container {
     display: flex;
     width: 100%;
     color: $dark;
     opacity: 0.6;
-
-    &-email {
-      margin-top: 10px;
-    }
+    margin-top: 10px;
   }
 
   &-icon {
