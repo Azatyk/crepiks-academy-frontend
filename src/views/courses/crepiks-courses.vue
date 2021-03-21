@@ -88,6 +88,7 @@
           isNotificationActive = true;
         "
       />
+      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false" />
     </div>
   </transition>
 </template>
@@ -103,6 +104,7 @@ import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
 import course from "@/components/courses/crepiks-course";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
 import notification from "@/components/common/crepiks-notification";
+import modal from "@/components/common/crepiks-modal";
 
 export default {
   components: {
@@ -110,7 +112,8 @@ export default {
     courseCard,
     course,
     profileLink,
-    notification
+    notification,
+    modal
   },
 
   data() {
@@ -123,8 +126,21 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "",
-      isNotificationActive: false
+      isNotificationActive: false,
+      isModalOpen: false
     };
+  },
+
+  methods: {
+    openModal() {
+      this.isModalOpen = true;
+    }
+  },
+
+  mounted() {
+    this.$root.$on("open-modal", () => {
+      this.openModal();
+    });
   }
 };
 </script>
