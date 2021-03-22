@@ -8,7 +8,7 @@
     <i class="bx bx-x modal-close" @click="$emit('modal-closed')"></i>
     <vuescroll :ops="ops">
       <div class="content-full">
-        <div class="content"></div>
+        <div class="content"><slot></slot></div>
       </div>
     </vuescroll>
   </div>

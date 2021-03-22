@@ -88,7 +88,17 @@
           isNotificationActive = true;
         "
       />
-      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false" />
+      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
+        <h2 class="modal-heading">
+          Добро пожаловать на платформу
+          <span class="modal-heading-green">Crepiks</span>
+        </h2>
+        <p class="modal-paragraph">
+          Перед тем как начать обучение, давайте познакомимся с платформой.
+          Специально для вас мы подготовили видео, в котором подробно показано
+          как надо проходить курсы.
+        </p>
+      </modal>
     </div>
   </transition>
 </template>
@@ -195,6 +205,21 @@ export default {
 
   &:focus {
     padding-left: 20px;
+  }
+}
+
+.modal {
+  &-heading {
+    font-size: 35px;
+
+    &-green {
+      color: $primary;
+    }
+  }
+
+  &-paragraph {
+    font-size: 25px;
+    margin-top: 30px;
   }
 }
 
