@@ -98,6 +98,7 @@
           Специально для вас мы подготовили видео, в котором подробно показано
           как надо проходить курсы.
         </p>
+        <faq :faq="faq" v-for="(faq, index) in faqs" :key="index" />
       </modal>
     </div>
   </transition>
@@ -115,6 +116,7 @@ import course from "@/components/courses/crepiks-course";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
 import notification from "@/components/common/crepiks-notification";
 import modal from "@/components/common/crepiks-modal";
+import faq from "@/components/common/crepiks-faq";
 
 export default {
   components: {
@@ -123,7 +125,8 @@ export default {
     course,
     profileLink,
     notification,
-    modal
+    modal,
+    faq
   },
 
   data() {
@@ -137,7 +140,24 @@ export default {
       notificationText: "",
       notificationStatus: "",
       isNotificationActive: false,
-      isModalOpen: false
+      isModalOpen: true,
+      faqs: [
+        {
+          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
+          answer:
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+        },
+        {
+          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
+          answer:
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+        },
+        {
+          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
+          answer:
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+        }
+      ]
     };
   },
 
@@ -210,7 +230,10 @@ export default {
 
 .modal {
   &-heading {
-    font-size: 35px;
+    color: $dark;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 30px;
 
     &-green {
       color: $primary;
@@ -218,8 +241,9 @@ export default {
   }
 
   &-paragraph {
-    font-size: 25px;
-    margin-top: 30px;
+    color: $dark;
+    font-size: 20px;
+    line-height: 150%;
   }
 }
 
