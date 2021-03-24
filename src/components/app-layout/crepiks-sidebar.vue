@@ -21,6 +21,10 @@
     <transition name="fade">
       <div class="content-half">
         <div class="navigation-links-extra">
+          <div class="link link-exit" @click="openModal">
+            <i class="bx bx-chevron-up-square link-icon"></i>
+            <span class="link-text">Инструкция</span>
+          </div>
           <div
             class="link"
             @click="socials = true"
@@ -106,14 +110,22 @@ export default {
   data() {
     return {
       hover: false,
-      socials: false
+      socials: false,
+      isModalOpen: false
     };
   },
   components: {
     logo
   },
 
-  methods: mapMutations(["logout"]),
+  methods: {
+    ...mapMutations(["logout"]),
+    openModal() {
+      setTimeout(() => {
+        this.$root.$emit("open-modal");
+      }, 1);
+    }
+  },
 
   watch: {
     hover() {
