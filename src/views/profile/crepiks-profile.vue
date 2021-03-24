@@ -569,6 +569,10 @@ export default {
       display: block;
     }
   }
+
+  .skeleton {
+    width: 100%;
+  }
 }
 
 @media (max-width: 525px) {
