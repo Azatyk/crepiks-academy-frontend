@@ -78,7 +78,43 @@
         </div>
         <div class="user-profile-courses" v-if="hasSubscription">
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
-          <div class="user-profile-courses-container">
+          <div class="skeleton" v-if="isLoading">
+            <div class="skeleton-container">
+              <PuSkeleton
+                :count="1"
+                height="100px"
+                width="100px"
+                class="skeleton-image"
+              ></PuSkeleton>
+              <div class="skeleton-wrapper">
+                <div class="skeleton-title">
+                  <PuSkeleton
+                    :count="1"
+                    height="20px"
+                    width="100%"
+                  ></PuSkeleton>
+                </div>
+                <div class="skeleton-description">
+                  <PuSkeleton
+                    :count="1"
+                    height="40px"
+                    width="100%"
+                  ></PuSkeleton>
+                </div>
+                <div class="skeleton-button">
+                  <PuSkeleton
+                    :count="1"
+                    height="20px"
+                    width="100%"
+                  ></PuSkeleton>
+                </div>
+              </div>
+            </div>
+            <div class="skeleton-progression">
+              <PuSkeleton :count="1" height="38px" width="100%"></PuSkeleton>
+            </div>
+          </div>
+          <div class="user-profile-courses-container" v-else>
             <courseCard
               v-for="course in courses"
               :key="course.id"
@@ -190,7 +226,8 @@ export default {
           body: "#303952"
         }
       ],
-      randomNumber: null
+      randomNumber: null,
+      isLoading: true
     };
   },
   computed: {
@@ -224,7 +261,10 @@ export default {
 
     await this.$store
       .dispatch("getOneUserCourses", this.userData.id)
-      .then(res => (this.courses = res.data.courses));
+      .then(res => {
+        this.courses = res.data.courses;
+        this.isLoading = false;
+      });
   },
   watch: {
     userData() {
@@ -445,6 +485,36 @@ export default {
     &-card:last-child {
       margin-top: 60px;
     }
+  }
+}
+
+.skeleton {
+  width: 400px;
+  margin-top: 60px;
+
+  &-image {
+    margin-right: 10px;
+  }
+
+  &-container {
+    width: 100%;
+    display: flex;
+  }
+
+  &-wrapper {
+    width: 100%;
+  }
+
+  &-title {
+    margin-bottom: 5px;
+  }
+
+  &-description {
+    margin-bottom: 10px;
+  }
+
+  &-progression {
+    margin-top: 20px;
   }
 }
 
