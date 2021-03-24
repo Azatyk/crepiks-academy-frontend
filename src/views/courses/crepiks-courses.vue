@@ -88,18 +88,6 @@
           isNotificationActive = true;
         "
       />
-      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
-        <h2 class="modal-heading">
-          Добро пожаловать на платформу
-          <span class="modal-heading-green">Crepiks</span>
-        </h2>
-        <p class="modal-paragraph">
-          Перед тем как начать обучение, давайте познакомимся с платформой.
-          Специально для вас мы подготовили видео, в котором подробно показано
-          как надо проходить курсы.
-        </p>
-        <faq :faq="faq" v-for="(faq, index) in faqs" :key="index" />
-      </modal>
     </div>
   </transition>
 </template>
@@ -115,8 +103,6 @@ import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
 import course from "@/components/courses/crepiks-course";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
 import notification from "@/components/common/crepiks-notification";
-import modal from "@/components/common/crepiks-modal";
-import faq from "@/components/common/crepiks-faq";
 
 export default {
   components: {
@@ -124,9 +110,7 @@ export default {
     courseCard,
     course,
     profileLink,
-    notification,
-    modal,
-    faq
+    notification
   },
 
   data() {
@@ -139,38 +123,8 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "",
-      isNotificationActive: false,
-      isModalOpen: false,
-      faqs: [
-        {
-          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
-          answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
-        },
-        {
-          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
-          answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
-        },
-        {
-          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
-          answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
-        }
-      ]
+      isNotificationActive: false
     };
-  },
-
-  methods: {
-    openModal() {
-      this.isModalOpen = true;
-    }
-  },
-
-  mounted() {
-    this.$root.$on("open-modal", () => {
-      this.openModal();
-    });
   }
 };
 </script>
@@ -225,25 +179,6 @@ export default {
 
   &:focus {
     padding-left: 20px;
-  }
-}
-
-.modal {
-  &-heading {
-    color: $dark;
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 30px;
-
-    &-green {
-      color: $primary;
-    }
-  }
-
-  &-paragraph {
-    color: $dark;
-    font-size: 20px;
-    line-height: 150%;
   }
 }
 
