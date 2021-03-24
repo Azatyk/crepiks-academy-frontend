@@ -18,6 +18,7 @@
         :isLessonLast="CheckIsLessonLast"
         :lesson="lesson"
         :lessons="lessons"
+        :isLoading="isLoading"
         @theory-closed="isTheoryOpen = false"
         @navigation-opened="isNavigationOpen = true"
         @add-completed-lessons="addCompletedLesson()"
@@ -172,6 +173,7 @@ export default {
     return {
       isLessonDone: false,
       isTheoryOnly: false,
+      isLoading: true,
       lesson: {
         title: {
           ru: ""
@@ -288,6 +290,7 @@ export default {
           this.lesson = res.data.lesson;
           this.htmlCode = this.lesson.htmlCode;
           this.cssCode = this.lesson.cssCode;
+          this.isLoading = false;
         });
     },
 
