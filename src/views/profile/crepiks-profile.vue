@@ -80,28 +80,20 @@
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
           <div class="user-profile-courses-container">
             <courseCard
+              v-for="course in courses"
+              :key="course.id"
               :image="firstCourseImage"
-              :id="1"
+              :id="course.id"
               @course-opened="
-                openCourseId = 1;
-                isFirstCourseOpen = true;
+                openCourseId = course.id;
+                isCourseOpen = true;
               "
-              title="Базовая верстка сайтов"
-              description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
+              :title="course.title.ru"
+              :description="course.description.ru"
               class="user-profile-courses-card"
               :progression="true"
-              :lessons="lessons"
-              :completedLessons="completedLessons"
-            />
-            <courseCard
-              :image="secondCourseImage"
-              :id="2"
-              title="Продвинутая верстка сайтов"
-              description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-              class="user-profile-courses-card"
-              :progression="true"
-              :lessons="lessons"
-              :completedLessons="completedLessons"
+              :lessons="course.lessons"
+              :completedLessons="course.completedLessons"
             />
           </div>
         </div>
@@ -115,10 +107,10 @@
         @close-change-password-block="openChangePassword = false"
       />
       <course
-        :isCourseOpen="isFirstCourseOpen"
+        :isCourseOpen="isCourseOpen"
         :id="openCourseId"
-        @open-course-block="isFirstCourseOpen = true"
-        @close-course-block="isFirstCourseOpen = false"
+        @open-course-block="isCourseOpen = true"
+        @close-course-block="isCourseOpen = false"
       />
     </div>
   </transition>
@@ -147,13 +139,12 @@ export default {
   data() {
     return {
       firstCourseImage: firstCourseImage,
-      isFirstCourseOpen: false,
+      isCourseOpen: false,
       openCourseId: 0,
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
-      lessons: [],
-      completedLessons: [],
+      courses: [],
       user: {},
       hasSubscription: false,
       subscriptionExpiredAt: null,
@@ -231,18 +222,9 @@ export default {
 
     this.randomNumber = Math.floor(Math.random() * this.colors.length);
 
-    await this.$store.dispatch("getLessons", 1).then(res => {
-      this.lessons = res.data.course.lessons;
-    });
-
-    const payload = {
-      userId: this.userData.id,
-      courseId: 1
-    };
-
     await this.$store
-      .dispatch("getCompletedLessons", payload)
-      .then(res => (this.completedLessons = res.data.completedLessons));
+      .dispatch("getOneUserCourses", this.userData.id)
+      .then(res => (this.courses = res.data.courses));
   },
   watch: {
     userData() {

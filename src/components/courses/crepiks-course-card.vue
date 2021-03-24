@@ -4,7 +4,9 @@
       <img class="card-image" :src="image" :alt="title" />
       <div class="card-text">
         <h2 class="card-text-title">{{ title }}</h2>
-        <p class="card-text-description">{{ description }}</p>
+        <p class="card-text-description">
+          {{ description.substring(0, 99) + ".." }}
+        </p>
         <div
           class="card-link"
           v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"

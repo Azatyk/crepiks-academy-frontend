@@ -56,6 +56,21 @@ export default {
           });
       });
     },
+    getOneUserCourses(ctx, userId) {
+      return new Promise((resolve, reject) => {
+        request({
+          url: "/courses/" + "/users/" + userId,
+          method: "GET"
+        })
+          .then(res => {
+            resolve(res);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
+    },
+
     getCompletedLessons(ctx, { userId, courseId }) {
       return new Promise((resolve, reject) => {
         request({
