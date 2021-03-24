@@ -4,9 +4,11 @@
       <div class="faq-question" @click="handleQuestionClick">
         {{ faq.question }} <i class="bx bxs-chevron-down faq-down-arrow"></i>
       </div>
-      <div class="faq-answer" v-show="isAnswerOpen">
-        {{ faq.answer }}
-      </div>
+      <transition name="fade">
+        <div class="faq-answer" v-if="isAnswerOpen">
+          {{ faq.answer }}
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -71,5 +73,18 @@ export default {
     color: $light-dark;
     font-size: 20px;
   }
+}
+
+.fade-enter-active {
+  transition: opacity 1000ms;
+}
+
+.fade-leave-active {
+  transition: opacity 500ms;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -140,7 +140,7 @@ export default {
       notificationText: "",
       notificationStatus: "",
       isNotificationActive: false,
-      isModalOpen: false,
+      isModalOpen: true,
       faqs: [
         {
           question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
