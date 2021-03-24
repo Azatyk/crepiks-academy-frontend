@@ -103,6 +103,7 @@ export default {
       color: $dark;
       font-size: 16px;
       font-weight: 300;
+      user-select: none;
     }
   }
 
@@ -132,6 +133,7 @@ export default {
       color: $dark;
       font-size: 16px;
       font-weight: 300;
+      user-select: none;
     }
   }
 }

@@ -103,6 +103,7 @@ export default {
     cursor: pointer;
     transition: 200ms ease-in-out;
     opacity: 0.7;
+    user-select: none;
 
     &:hover {
       background-color: $white;
