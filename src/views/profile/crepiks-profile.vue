@@ -72,7 +72,7 @@
               >Активировать подписку</router-link
             >
             <span v-else class="user-profile-expired"
-              >Истекает: {{ subscriptionExpiredAt }}</span
+              >Истекает: {{ user.subscription.expiredDate }}</span
             >
           </div>
         </div>
@@ -226,6 +226,7 @@ export default {
   async mounted() {
     if (this.userData) {
       this.user = this.userData;
+      this.hasSubscription = this.userData.subscription.hasSubscription;
     }
 
     this.randomNumber = Math.floor(Math.random() * this.colors.length);
@@ -242,35 +243,6 @@ export default {
     await this.$store
       .dispatch("getCompletedLessons", payload)
       .then(res => (this.completedLessons = res.data.completedLessons));
-
-    await this.$store
-      .dispatch("getSubscriptions", this.userData.id)
-      .then(res => {
-        if (res.data.subscriptions.length > 0) {
-          if (
-            Date.parse(
-              res.data.subscriptions[res.data.subscriptions.length - 1]
-                .expiredAt
-            ) > Date.now()
-          ) {
-            this.hasSubscription = true;
-            const expiredDate = new Date(
-              Date.parse(
-                res.data.subscriptions[res.data.subscriptions.length - 1]
-                  .expiredAt
-              )
-            );
-            this.subscriptionExpiredAt =
-              ("0" + expiredDate.getDate()).slice(-2) +
-              "." +
-              ("0" + (expiredDate.getMonth() + 1)).slice(-2) +
-              "." +
-              expiredDate.getFullYear();
-          }
-        } else {
-          this.hasSubscription = false;
-        }
-      });
   },
   watch: {
     userData() {
