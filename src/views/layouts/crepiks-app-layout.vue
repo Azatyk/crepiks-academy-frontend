@@ -89,8 +89,8 @@ export default {
 .modal {
   &-heading {
     color: $dark;
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 35px;
+    font-weight: 600;
     margin-bottom: 30px;
 
     &-green {

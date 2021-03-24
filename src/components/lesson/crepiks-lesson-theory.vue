@@ -283,7 +283,7 @@ export default {
   width: 750px;
 
   &-title {
-    width: 100%;
+    width: 40%;
   }
 
   &-paragraph {

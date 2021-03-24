@@ -135,6 +135,7 @@ export default {
       color: $dark;
       font-size: 18px;
       font-weight: 500;
+      user-select: none;
     }
 
     &-icon {
