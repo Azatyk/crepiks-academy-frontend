@@ -16,7 +16,24 @@
     ></i>
     <vuescroll :ops="ops">
       <div class="content-full">
-        <div class="content">
+        <div class="skeleton" v-if="isLoading">
+          <div class="skeleton-title">
+            <PuSkeleton :count="1" height="46px" width="100%"></PuSkeleton>
+          </div>
+          <div class="skeleton-paragraph">
+            <PuSkeleton :count="7" height="15px" width="100%"></PuSkeleton>
+          </div>
+          <div class="skeleton-paragraph">
+            <PuSkeleton :count="7" height="15px" width="100%"></PuSkeleton>
+          </div>
+          <div class="skeleton-paragraph">
+            <PuSkeleton :count="7" height="15px" width="100%"></PuSkeleton>
+          </div>
+          <div class="skeleton-paragraph">
+            <PuSkeleton :count="7" height="15px" width="100%"></PuSkeleton>
+          </div>
+        </div>
+        <div class="content" v-else>
           <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
           <theoryText :theoryText="lesson.theory.ru" />
           <codemirror v-if="false" />
@@ -67,6 +84,9 @@ export default {
     lessons: {
       type: Array,
       required: true
+    },
+    isLoading: {
+      type: Boolean
     }
   },
 
@@ -253,6 +273,22 @@ export default {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+  }
+}
+
+.skeleton {
+  padding: 100px 0;
+  box-sizing: border-box;
+  margin: auto;
+  width: 750px;
+
+  &-title {
+    width: 40%;
+  }
+
+  &-paragraph {
+    width: 100%;
+    margin-top: 30px;
   }
 }
 </style>

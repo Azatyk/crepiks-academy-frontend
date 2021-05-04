@@ -21,52 +21,61 @@
     <transition name="fade">
       <div class="content-half">
         <div class="navigation-links-extra">
-          <div
-            class="link"
-            @click="socials = true"
-            :class="{ link_inactive: socials }"
-          >
-            <i class="bx bx-help-circle link-icon"></i>
-            <span class="link-text">Помощь</span>
+          <div class="link" @click="openModal">
+            <i class="bx bx-chevron-up-square link-icon"></i>
+            <span class="link-text">Инструкция</span>
           </div>
-          <div class="socials-links" :class="{ socials_links_active: socials }">
-            <a
-              href="https://wa.me/77078139703"
-              class="socials-link"
-              target="_blank"
+          <div class="link-help">
+            <div
+              class="link"
+              @click="socials = true"
+              :class="{ link_inactive: socials }"
             >
-              <i class="bx bxl-whatsapp socials-link-icon"></i>
-            </a>
-            <a
-              href="https://t.me/CrepiksAcademyBot"
-              class="socials-link"
-              target="_blank"
+              <i class="bx bx-help-circle link-icon"></i>
+              <span class="link-text">Помощь</span>
+            </div>
+            <div
+              class="socials-links"
+              :class="{ socials_links_active: socials }"
             >
-              <i class="bx bxl-telegram socials-link-icon"></i>
-            </a>
-            <a
-              href="https://www.instagram.com/crepiks_academy/"
-              class="socials-link"
-              target="_blank"
-            >
-              <i class="bx bxl-instagram socials-link-icon"></i>
-            </a>
-            <a
-              href="mailto:crepiks.academy@mail.ru"
-              class="socials-link"
-              target="_blank"
-            >
-              <i class="bx bx-mail-send socials-link-icon"></i>
-            </a>
-            <a
-              href="https://vk.com/public200320088"
-              class="socials-link"
-              target="_blank"
-            >
-              <i class="bx bxl-vk socials-link-icon"></i>
-            </a>
-            <div @click="socials = false" class="socials-link socials-link-x">
-              <i class="bx bx-x socials-link-icon"></i>
+              <a
+                href="https://wa.me/77078139703"
+                class="socials-link"
+                target="_blank"
+              >
+                <i class="bx bxl-whatsapp socials-link-icon"></i>
+              </a>
+              <a
+                href="https://t.me/CrepiksAcademyBot"
+                class="socials-link"
+                target="_blank"
+              >
+                <i class="bx bxl-telegram socials-link-icon"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/crepiks_academy/"
+                class="socials-link"
+                target="_blank"
+              >
+                <i class="bx bxl-instagram socials-link-icon"></i>
+              </a>
+              <a
+                href="mailto:crepiks.academy@mail.ru"
+                class="socials-link"
+                target="_blank"
+              >
+                <i class="bx bx-mail-send socials-link-icon"></i>
+              </a>
+              <a
+                href="https://vk.com/public200320088"
+                class="socials-link"
+                target="_blank"
+              >
+                <i class="bx bxl-vk socials-link-icon"></i>
+              </a>
+              <div @click="socials = false" class="socials-link socials-link-x">
+                <i class="bx bx-x socials-link-icon"></i>
+              </div>
             </div>
           </div>
           <div class="link link-exit" @click="logout">
@@ -106,14 +115,22 @@ export default {
   data() {
     return {
       hover: false,
-      socials: false
+      socials: false,
+      isModalOpen: false
     };
   },
   components: {
     logo
   },
 
-  methods: mapMutations(["logout"]),
+  methods: {
+    ...mapMutations(["logout"]),
+    openModal() {
+      setTimeout(() => {
+        this.$root.$emit("open-modal");
+      }, 1);
+    }
+  },
 
   watch: {
     hover() {
@@ -193,6 +210,10 @@ export default {
   &.router-link-exact-active {
     color: $primary;
     opacity: 0.9;
+  }
+
+  &-help {
+    position: relative;
   }
 
   &-exit:hover {

@@ -36,6 +36,12 @@
               <i class="bx bx-mail-send user-profile-icon"></i>
               <span class="user-profile-text">{{ user.email }}</span>
             </div>
+            <div class="user-profile-container">
+              <i class="bx bx-phone user-profile-icon"></i>
+              <span class="user-profile-text">{{
+                user.phoneNumber ? user.phoneNumber : "-"
+              }}</span>
+            </div>
             <div class="user-profile-buttons">
               <div class="user-profile-button" @click="openProfileEdit = true">
                 Редактировать профиль
@@ -66,36 +72,64 @@
               >Активировать подписку</router-link
             >
             <span v-else class="user-profile-expired"
-              >Истекает: {{ subscriptionExpiredAt }}</span
+              >Истекает: {{ user.subscription.expiredDate }}</span
             >
           </div>
         </div>
-        <div class="user-profile-courses">
+        <div class="user-profile-courses" v-if="hasSubscription">
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
-          <div class="user-profile-courses-container">
+          <div class="skeleton" v-if="isLoading">
+            <div class="skeleton-container">
+              <PuSkeleton
+                :count="1"
+                height="100px"
+                width="100px"
+                class="skeleton-image"
+              ></PuSkeleton>
+              <div class="skeleton-wrapper">
+                <div class="skeleton-title">
+                  <PuSkeleton
+                    :count="1"
+                    height="20px"
+                    width="100%"
+                  ></PuSkeleton>
+                </div>
+                <div class="skeleton-description">
+                  <PuSkeleton
+                    :count="1"
+                    height="40px"
+                    width="100%"
+                  ></PuSkeleton>
+                </div>
+                <div class="skeleton-button">
+                  <PuSkeleton
+                    :count="1"
+                    height="20px"
+                    width="100%"
+                  ></PuSkeleton>
+                </div>
+              </div>
+            </div>
+            <div class="skeleton-progression">
+              <PuSkeleton :count="1" height="38px" width="100%"></PuSkeleton>
+            </div>
+          </div>
+          <div class="user-profile-courses-container" v-else>
             <courseCard
+              v-for="course in courses"
+              :key="course.id"
               :image="firstCourseImage"
-              :id="1"
+              :id="course.id"
               @course-opened="
-                openCourseId = 1;
-                isFirstCourseOpen = true;
+                openCourseId = course.id;
+                isCourseOpen = true;
               "
-              title="Базовая верстка сайтов"
-              description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
+              :title="course.title.ru"
+              :description="course.description.ru"
               class="user-profile-courses-card"
               :progression="true"
-              :lessons="lessons"
-              :completedLessons="completedLessons"
-            />
-            <courseCard
-              :image="secondCourseImage"
-              :id="2"
-              title="Продвинутая верстка сайтов"
-              description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-              class="user-profile-courses-card"
-              :progression="true"
-              :lessons="lessons"
-              :completedLessons="completedLessons"
+              :lessons="course.lessons"
+              :completedLessons="course.completedLessons"
             />
           </div>
         </div>
@@ -109,10 +143,10 @@
         @close-change-password-block="openChangePassword = false"
       />
       <course
-        :isCourseOpen="isFirstCourseOpen"
+        :isCourseOpen="isCourseOpen"
         :id="openCourseId"
-        @open-course-block="isFirstCourseOpen = true"
-        @close-course-block="isFirstCourseOpen = false"
+        @open-course-block="isCourseOpen = true"
+        @close-course-block="isCourseOpen = false"
       />
     </div>
   </transition>
@@ -141,17 +175,13 @@ export default {
   data() {
     return {
       firstCourseImage: firstCourseImage,
-      isFirstCourseOpen: false,
+      isCourseOpen: false,
       openCourseId: 0,
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
-      lessons: [],
-      completedLessons: [],
-      user: {
-        firstName: null,
-        lastName: null
-      },
+      courses: [],
+      user: {},
       hasSubscription: false,
       subscriptionExpiredAt: null,
       colors: [
@@ -196,7 +226,8 @@ export default {
           body: "#303952"
         }
       ],
-      randomNumber: null
+      randomNumber: null,
+      isLoading: true
     };
   },
   computed: {
@@ -223,50 +254,16 @@ export default {
   async mounted() {
     if (this.userData) {
       this.user = this.userData;
+      this.hasSubscription = this.userData.subscription.hasSubscription;
     }
 
     this.randomNumber = Math.floor(Math.random() * this.colors.length);
 
-    await this.$store.dispatch("getLessons", 1).then(res => {
-      this.lessons = res.data.course.lessons;
-    });
-
-    const payload = {
-      userId: this.userData.id,
-      courseId: 1
-    };
-
     await this.$store
-      .dispatch("getCompletedLessons", payload)
-      .then(res => (this.completedLessons = res.data.completedLessons));
-
-    await this.$store
-      .dispatch("getSubscriptions", this.userData.id)
+      .dispatch("getOneUserCourses", this.userData.id)
       .then(res => {
-        if (res.data.subscriptions.length > 0) {
-          if (
-            Date.parse(
-              res.data.subscriptions[res.data.subscriptions.length - 1]
-                .expiredAt
-            ) > Date.now()
-          ) {
-            this.hasSubscription = true;
-            const expiredDate = new Date(
-              Date.parse(
-                res.data.subscriptions[res.data.subscriptions.length - 1]
-                  .expiredAt
-              )
-            );
-            this.subscriptionExpiredAt =
-              ("0" + expiredDate.getDate()).slice(-2) +
-              "." +
-              ("0" + (expiredDate.getMonth() + 1)).slice(-2) +
-              "." +
-              expiredDate.getFullYear();
-          }
-        } else {
-          this.hasSubscription = false;
-        }
+        this.courses = res.data.courses;
+        this.isLoading = false;
       });
   },
   watch: {
@@ -394,15 +391,16 @@ export default {
     }
   }
 
+  &-container:first-child {
+    margin-top: 0;
+  }
+
   &-container {
     display: flex;
     width: 100%;
     color: $dark;
     opacity: 0.6;
-
-    &-email {
-      margin-top: 10px;
-    }
+    margin-top: 10px;
   }
 
   &-icon {
@@ -490,6 +488,36 @@ export default {
   }
 }
 
+.skeleton {
+  width: 400px;
+  margin-top: 60px;
+
+  &-image {
+    margin-right: 10px;
+  }
+
+  &-container {
+    width: 100%;
+    display: flex;
+  }
+
+  &-wrapper {
+    width: 100%;
+  }
+
+  &-title {
+    margin-bottom: 5px;
+  }
+
+  &-description {
+    margin-bottom: 10px;
+  }
+
+  &-progression {
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 1244px) {
   .user-profile {
     padding: 100px 5%;
@@ -540,6 +568,10 @@ export default {
     &-button:last-child {
       display: block;
     }
+  }
+
+  .skeleton {
+    width: 100%;
   }
 }
 

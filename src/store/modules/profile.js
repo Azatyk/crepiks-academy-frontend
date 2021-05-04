@@ -2,14 +2,13 @@ import { request } from "@/requests/request";
 
 export default {
   actions: {
-    getUserData({ commit }, id) {
+    getUserData(ctx, id) {
       return new Promise((resolve, reject) => {
         request({
           url: "/users/" + id,
           method: "GET"
         })
           .then(res => {
-            commit("saveUserData", res);
             resolve(res);
           })
           .catch(err => {

@@ -33,6 +33,14 @@
             v-model="updatedUser.email"
             :maxlength="maxlength"
           />
+          <cInput
+            class="right-block-input"
+            title="Номер"
+            v-mask="'+7(###)-###-##-##'"
+            placeholder="+7(707)-777-77-77"
+            v-model="updatedUser.phoneNumber"
+            :maxlength="maxlength"
+          />
           <cButton
             class="right-block-button"
             text="Изменить"
@@ -76,12 +84,14 @@ export default {
       user: {
         firstName: null,
         lastName: null,
-        email: null
+        email: null,
+        phoneNumber: null
       },
       updatedUser: {
         firstName: null,
         lastName: null,
-        email: null
+        email: null,
+        phoneNumber: null
       },
       userId: null
     };
@@ -93,7 +103,17 @@ export default {
       let updatedData = {
         firstName: this.updatedUser.firstName,
         lastName: this.updatedUser.lastName,
-        email: this.updatedUser.email
+        email: this.updatedUser.email,
+        phoneNumber: `7${this.updatedUser.phoneNumber[3] +
+          this.updatedUser.phoneNumber[4] +
+          this.updatedUser.phoneNumber[5] +
+          this.updatedUser.phoneNumber[8] +
+          this.updatedUser.phoneNumber[9] +
+          this.updatedUser.phoneNumber[10] +
+          this.updatedUser.phoneNumber[12] +
+          this.updatedUser.phoneNumber[13] +
+          this.updatedUser.phoneNumber[15] +
+          this.updatedUser.phoneNumber[16]}`
       };
 
       let id = this.userId;
@@ -122,6 +142,7 @@ export default {
       this.updatedUser.firstName = this.userData.firstName;
       this.updatedUser.lastName = this.userData.lastName;
       this.updatedUser.email = this.userData.email;
+      this.updatedUser.phoneNumber = this.userData.phoneNumber;
       this.userId = this.user.id;
     }
   },
@@ -132,6 +153,7 @@ export default {
       this.updatedUser.firstName = this.userData.firstName;
       this.updatedUser.lastName = this.userData.lastName;
       this.updatedUser.email = this.userData.email;
+      this.updatedUser.phoneNumber = this.userData.phoneNumber;
     },
 
     isProfileEditOpen() {
@@ -139,6 +161,7 @@ export default {
         this.updatedUser.firstName = this.userData.firstName;
         this.updatedUser.lastName = this.userData.lastName;
         this.updatedUser.email = this.userData.email;
+        this.updatedUser.phoneNumber = this.userData.phoneNumber;
       }
     }
   }

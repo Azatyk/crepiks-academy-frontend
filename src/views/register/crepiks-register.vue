@@ -127,6 +127,9 @@ export default {
           .dispatch("register", user)
           .then(() => {
             this.isLoading = false;
+            setTimeout(() => {
+              this.$root.$emit("open-modal");
+            }, 1);
             this.$router.push("/app/courses");
           })
           .catch(() => {
