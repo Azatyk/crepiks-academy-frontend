@@ -3,6 +3,7 @@
     <div class="landing">
       <div class="landing-inner">
         <intro />
+        <explanation />
       </div>
     </div>
   </transition>
@@ -10,10 +11,12 @@
 
 <script>
 import intro from "@/components/landing/crepiks-landing-intro.vue";
+import explanation from "@/components/landing/crepiks-landing-explanation.vue";
 
 export default {
   components: {
-    intro
+    intro,
+    explanation
   }
 };
 </script>
