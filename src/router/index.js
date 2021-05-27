@@ -61,15 +61,6 @@ const routes = [
           needAuth: true,
           shouldHaveCourse: true
         }
-      },
-      {
-        path: "/404",
-        name: "404",
-        component: notFoundPage,
-        meta: {
-          title: "Страница не найдена",
-          noAuthOnly: false
-        }
       }
     ]
   },
@@ -105,6 +96,15 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    path: "*",
+    name: "404",
+    component: notFoundPage,
+    meta: {
+      title: "Страница не найдена",
+      noAuthOnly: false
+    }
   }
 ];
 
