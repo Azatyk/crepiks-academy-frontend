@@ -1,47 +1,36 @@
 <template>
   <transition name="fadeIn" appear>
     <div class="landing">
-      <c-header />
-      <cIntro />
-      <cDescription />
-      <cExplanation />
-      <cPractice />
-      <cOffer />
-      <cQuestions />
-      <cFooter />
+      <div class="landing-inner">
+        <intro />
+      </div>
     </div>
   </transition>
 </template>
 
 <script>
-import cHeader from "@/components/landing/crepiks-header.vue";
-import cIntro from "@/components/landing/crepiks-intro.vue";
-import cDescription from "@/components/landing/crepiks-description.vue";
-import cExplanation from "@/components/landing/crepiks-explanation.vue";
-import cPractice from "@/components/landing/crepiks-practice.vue";
-import cOffer from "@/components/landing/crepiks-offer.vue";
-import cQuestions from "@/components/landing/crepiks-questions.vue";
-import cFooter from "@/components/landing/crepiks-footer.vue";
+import intro from "@/components/landing/crepiks-landing-intro.vue";
 
 export default {
   components: {
-    cHeader,
-    cIntro,
-    cDescription,
-    cExplanation,
-    cPractice,
-    cOffer,
-    cQuestions,
-    cFooter
+    intro
   }
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "@/assets/styles/variables.scss";
 .landing {
   width: 100vw;
   background-color: $background;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-inner {
+    max-width: 1440px;
+    width: 1440px;
+  }
 }
 
 .fadeIn-enter-active,
