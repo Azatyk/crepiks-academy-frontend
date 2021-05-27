@@ -131,7 +131,7 @@ export default {
 .content {
   padding: 100px 0;
   margin: auto;
-  width: 750px;
+  max-width: 750px;
   height: auto;
   box-sizing: border-box;
   display: flex;
@@ -141,6 +141,24 @@ export default {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+  }
+}
+
+@media (max-width: 414px) {
+  .content {
+    padding: 70px 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .content {
+    padding-top: 100px 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .content {
+    padding-top: 50px 0;
   }
 }
 </style>

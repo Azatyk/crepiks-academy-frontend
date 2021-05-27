@@ -50,11 +50,11 @@
             </div>
           </div>
           <div class="course-lessons-list">
-            <router-link
+            <div
               class="lesson"
               v-for="(lesson, index) in course.lessons"
               :key="lesson.id"
-              :to="'/app/courses/' + id + '/lessons/' + lesson.id"
+              @click="handleExactLessonClick(lesson.id)"
             >
               <div class="lesson-title">
                 <div class="lesson-title-number">{{ index + 1 }}.</div>
@@ -68,10 +68,29 @@
               >
                 {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
               </div>
-            </router-link>
+            </div>
           </div>
         </div>
       </div>
+      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
+        <div class="modal">
+          <div class="modal-container">
+            <div class="modal-title">Дальше нужен компьютер</div>
+            <div class="modal-text">
+              Для начала курса тебе понадобится компьютер или ноутбук. Зачем?
+              Дело в том, что писать код на телефоне не очень удобно, поэтому мы
+              хотим, чтобы ты сразу привыкал к печати на клавиатуре
+            </div>
+            <div class="modal-image">
+              <img
+                class="modal-image-inner"
+                src="@/assets/images/need-laptop-image.svg"
+                alt="need-laptop-image"
+              />
+            </div>
+          </div>
+        </div>
+      </modal>
     </vuescroll>
   </rightSideBlock>
 </template>
@@ -79,6 +98,7 @@
 <script>
 import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
+import modal from "@/components/common/crepiks-modal";
 
 import VLazyImage from "v-lazy-image";
 import vuescroll from "vuescroll";
@@ -90,7 +110,8 @@ export default {
     rightSideBlock,
     cButton,
     VLazyImage,
-    vuescroll
+    vuescroll,
+    modal
   },
 
   props: {
@@ -160,7 +181,8 @@ export default {
           size: "10px",
           disable: false
         }
-      }
+      },
+      isModalOpen: false
     };
   },
 
@@ -203,23 +225,35 @@ export default {
 
   methods: {
     handleToLessonButton() {
-      this.$store
-        .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
-        .then(() => {
-          this.$router.push(
-            "/app/courses/" +
-              this.id +
-              "/lessons/" +
-              this.getLastUncompletedLessonId()
-          );
-        })
-        .catch(err => {
-          if (err.response.status == 403) {
-            this.$emit("need-subscription-notification");
-          } else {
-            this.$emit("getting-lesson-error-notification");
-          }
-        });
+      if (this.isMobile) {
+        this.isModalOpen = true;
+      } else {
+        this.$store
+          .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
+          .then(() => {
+            this.$router.push(
+              "/app/courses/" +
+                this.id +
+                "/lessons/" +
+                this.getLastUncompletedLessonId()
+            );
+          })
+          .catch(err => {
+            if (err.response.status == 403) {
+              this.$emit("need-subscription-notification");
+            } else {
+              this.$emit("getting-lesson-error-notification");
+            }
+          });
+      }
+    },
+
+    handleExactLessonClick(lessonId) {
+      if (this.isMobile) {
+        this.isModalOpen = true;
+      } else {
+        this.$router.push("/app/courses/" + this.id + "/lessons/" + lessonId);
+      }
     },
 
     isLessonCompleted(lessonId) {
@@ -413,6 +447,44 @@ export default {
   filter: blur(0);
 }
 
+.modal {
+  width: 98%;
+
+  &-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+
+  &-title {
+    font-size: 30px;
+    line-height: 32px;
+    color: $dark;
+  }
+
+  &-text {
+    margin-top: 20px;
+    color: $light-dark;
+    line-height: 24px;
+  }
+
+  &-image {
+    margin-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+@media (max-width: 375px) {
+  .modal {
+    &-image {
+      margin-top: 100px;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .main-info {
     margin-bottom: 50px;
@@ -459,6 +531,23 @@ export default {
 
   .v-lazy-image {
     height: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .modal {
+    &-title {
+      font-size: 25px;
+    }
+
+    &-text {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &-image {
+      margin-top: 30px;
+    }
   }
 }
 </style>
