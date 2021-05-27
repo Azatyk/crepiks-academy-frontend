@@ -9,6 +9,7 @@ import login from "@/views/login/crepiks-login";
 import courses from "@/views/courses/crepiks-courses";
 import subscription from "@/views/subscription/crepiks-subscription";
 import lesson from "@/views/lesson/crepiks-lesson";
+import notFoundPage from "@/views/404/crepiks-404";
 
 import emptyLayout from "@/views/layouts/crepiks-empty-layout";
 import appLayout from "@/views/layouts/crepiks-app-layout";
@@ -59,6 +60,15 @@ const routes = [
           title: "Урок",
           needAuth: true,
           shouldHaveCourse: true
+        }
+      },
+      {
+        path: "/404",
+        name: "404",
+        component: notFoundPage,
+        meta: {
+          title: "Страница не найдена",
+          noAuthOnly: false
         }
       }
     ]
