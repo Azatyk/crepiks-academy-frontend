@@ -4,6 +4,10 @@
       <div class="landing-inner">
         <intro />
         <explanation />
+        <trial />
+        <mockup />
+        <questions />
+        <cFooter />
       </div>
     </div>
   </transition>
@@ -12,11 +16,19 @@
 <script>
 import intro from "@/components/landing/crepiks-landing-intro.vue";
 import explanation from "@/components/landing/crepiks-landing-explanation.vue";
+import trial from "@/components/landing/crepiks-landing-trial.vue";
+import mockup from "@/components/landing/crepiks-landing-mockup.vue";
+import questions from "@/components/landing/crepiks-landing-questions.vue";
+import cFooter from "@/components/landing/crepiks-landing-footer.vue";
 
 export default {
   components: {
     intro,
-    explanation
+    explanation,
+    trial,
+    mockup,
+    questions,
+    cFooter
   }
 };
 </script>
@@ -33,6 +45,9 @@ export default {
   &-inner {
     max-width: 1440px;
     width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 

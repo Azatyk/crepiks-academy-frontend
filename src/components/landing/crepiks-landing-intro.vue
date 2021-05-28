@@ -1,14 +1,14 @@
 <template>
   <div class="intro">
     <div class="intro-content">
-      <div class="intro-title">
+      <h2 class="intro-title">
         Привет, мы поможем тебе освоить основы
         <span class="intro-title-green">веб-программирования</span>
-      </div>
-      <div class="intro-text">
+      </h2>
+      <p class="intro-text">
         Попробуй веб-программирования на практике. Мы подготовили для тебя
         небольшой бесплатный интерактив с основами создания сайтов
-      </div>
+      </p>
       <cButton text="Перейти к интерактиву" class="intro-button"
         ><img
           src="@/assets/images/cursor-icon.svg"

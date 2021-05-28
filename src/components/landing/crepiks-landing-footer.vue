@@ -23,6 +23,7 @@ export default {
   background-color: #f2f2f3;
   padding: 10vh 12%;
   box-sizing: border-box;
+  width: 100%;
 
   &-email {
     opacity: 0.8;

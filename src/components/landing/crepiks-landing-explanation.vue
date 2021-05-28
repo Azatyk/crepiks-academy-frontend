@@ -1,22 +1,22 @@
 <template>
   <div class="explanation">
-    <div class="explanation-title">
+    <h2 class="explanation-title">
       Что ещё за <span class="explanation-title-green">интерактив</span>?
       <img
         src="@/assets/images/smile-think.svg"
         alt="smile-think"
         class="explanation-title-smile"
       />
-    </div>
-    <div class="explanation-text">
+    </h2>
+    <p class="explanation-text">
       Интерактив — это обучающий материал с практикой. Изучив новую тему, ты
       сможешь сразу же опробовать знания на реальном примере.
-    </div>
-    <div class="explanation-text">
+    </p>
+    <p class="explanation-text">
       Каждая тема интерактива состоит из
       <span class="explanation-text-green">теории</span> и
       <span class="explanation-text-green">практики</span>
-    </div>
+    </p>
     <img
       src="@/assets/images/curve-arrow.svg"
       class="explanation-arrow"
@@ -24,11 +24,11 @@
     />
     <div class="explanation-card">
       <div class="explanation-content">
-        <div class="explanation-content-title">Теория</div>
-        <div class="explanation-content-text">
+        <h4 class="explanation-content-title">Теория</h4>
+        <p class="explanation-content-text">
           Это текстовый теоретический материал с примерами кода и объяснением
           темы
-        </div>
+        </p>
       </div>
       <div class="explanation-image">
         <img
@@ -54,9 +54,10 @@ export default {};
   align-items: center;
   margin-top: 300px;
   margin-bottom: 100px;
+  width: 1203px;
 
   &-title {
-    width: 1203px;
+    width: 100%;
     font-size: 60px;
     color: $dark;
     opacity: 0.85;
@@ -71,7 +72,7 @@ export default {};
   }
 
   &-text {
-    width: 1203px;
+    width: 100%;
     font-size: 44px;
     color: $dark;
     margin-top: 30px;
@@ -90,7 +91,7 @@ export default {};
   }
 
   &-card {
-    width: 1203px;
+    width: 100%;
     background-color: $white;
     border-radius: 20px;
     height: 515px;
@@ -107,6 +108,7 @@ export default {};
       font-size: 50px;
       color: $dark;
       margin-top: 70px;
+      font-weight: 400;
     }
 
     &-text {
