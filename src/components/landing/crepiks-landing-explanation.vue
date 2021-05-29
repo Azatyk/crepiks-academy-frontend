@@ -14,34 +14,73 @@
     </p>
     <p class="explanation-text">
       Каждая тема интерактива состоит из
-      <span class="explanation-text-green">теории</span> и
-      <span class="explanation-text-green">практики</span>
+      <span class="explanation-text-green" @click="isTheoryOpen = true"
+        >теории</span
+      >
+      и
+      <span class="explanation-text-green" @click="isTheoryOpen = false"
+        >практики</span
+      >
     </p>
-    <img
-      src="@/assets/images/curve-arrow.svg"
-      class="explanation-arrow"
-      alt="curve-arrow"
-    />
-    <div class="explanation-card">
-      <div class="explanation-content">
-        <h4 class="explanation-content-title">Теория</h4>
-        <p class="explanation-content-text">
-          Это текстовый теоретический материал с примерами кода и объяснением
-          темы
-        </p>
+    <transition name="fade" mode="out-in">
+      <img
+        src="@/assets/images/curve-arrow.svg"
+        class="explanation-arrow"
+        alt="explanation-arrow"
+        key="theory"
+        v-if="isTheoryOpen"
+      />
+      <img
+        src="@/assets/images/curve-arrow.svg"
+        class="explanation-arrow-right"
+        alt="explanation-arrow"
+        key="practice"
+        v-else
+      />
+    </transition>
+    <transition name="fade" mode="out-in">
+      <div class="explanation-card" v-if="isTheoryOpen" key="theory">
+        <div class="explanation-content">
+          <h4 class="explanation-content-title">Теория</h4>
+          <p class="explanation-content-text">
+            Это текстовый теоретический материал с примерами кода и объяснением
+            темы
+          </p>
+        </div>
+        <div class="explanation-image">
+          <img
+            src="@/assets/images/explanation-macbook-mockup.svg"
+            alt="explanation-macbook-mockup"
+          />
+        </div>
       </div>
-      <div class="explanation-image">
-        <img
-          src="@/assets/images/explanation-macbook-mockup.svg"
-          alt="explanation-macbook-mockup"
-        />
+      <div class="explanation-card" v-else key="practice">
+        <div class="explanation-content">
+          <h4 class="explanation-content-title">Практика</h4>
+          <p class="explanation-content-text">
+            Встроенный текстовый редактор, в котором ты сможешь написать
+            реальный код
+          </p>
+        </div>
+        <div class="explanation-image">
+          <img
+            src="@/assets/images/explanation-macbook-mockup.svg"
+            alt="explanation-macbook-mockup"
+          />
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isTheoryOpen: true
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -123,5 +162,21 @@ export default {};
     display: flex;
     align-items: center;
   }
+
+  &-arrow {
+    &-right {
+      margin-left: 400px;
+    }
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

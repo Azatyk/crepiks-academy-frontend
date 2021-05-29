@@ -9,7 +9,10 @@
         Попробуй веб-программирования на практике. Мы подготовили для тебя
         небольшой бесплатный интерактив с основами создания сайтов
       </p>
-      <cButton text="Перейти к интерактиву" class="intro-button"
+      <cButton
+        text="Перейти к интерактиву"
+        class="intro-button"
+        @click="$router.push('/auth/register')"
         ><img
           src="@/assets/images/cursor-icon.svg"
           alt="cursor-icon"
