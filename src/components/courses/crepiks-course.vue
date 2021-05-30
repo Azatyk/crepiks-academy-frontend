@@ -75,7 +75,7 @@
       <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
         <div class="modal">
           <div class="modal-container">
-            <div class="modal-title">Дальше нужен компьютер</div>
+            <h2 class="modal-title">Дальше нужен компьютер</h2>
             <div class="modal-text">
               Для начала курса тебе понадобится компьютер или ноутбук. Зачем?
               Дело в том, что писать код на телефоне не очень удобно, поэтому мы
@@ -461,12 +461,13 @@ export default {
     font-size: 30px;
     line-height: 32px;
     color: $dark;
+    opacity: 0.9;
   }
 
   &-text {
     margin-top: 20px;
     color: $light-dark;
-    line-height: 24px;
+    line-height: 26px;
   }
 
   &-image {
@@ -480,7 +481,7 @@ export default {
 @media (max-width: 375px) {
   .modal {
     &-image {
-      margin-top: 100px;
+      margin-top: 95px;
     }
   }
 }
