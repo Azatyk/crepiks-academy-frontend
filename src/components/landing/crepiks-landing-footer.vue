@@ -46,7 +46,7 @@ export default {
 
 @media (max-width: 1000px) {
   .footer {
-    padding: 10vh 5%;
+    padding: 10vh 7.5%;
   }
 }
 

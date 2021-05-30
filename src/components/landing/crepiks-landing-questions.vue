@@ -141,23 +141,23 @@ export default {};
 
 @media (max-width: 1024px) {
   .questions {
-    padding: 10vh 5%;
+    padding: 10vh 7.5%;
 
     &-text {
       width: 100%;
       display: flex;
     }
 
+    &-heading {
+      width: auto;
+    }
+
     &-subheading {
-      width: 300px;
+      margin-left: 20px;
     }
 
     &-content {
       flex-direction: column;
-    }
-
-    &-heading {
-      width: 100%;
     }
 
     &-links {
@@ -204,6 +204,16 @@ export default {};
 
     &-icon {
       height: 15px;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .questions {
+    margin-top: 0;
+
+    &-subheading {
+      margin-left: 0;
     }
   }
 }

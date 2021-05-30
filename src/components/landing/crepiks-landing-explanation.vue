@@ -46,6 +46,24 @@
         />
       </transition>
     </div>
+    <div class="explanation-container-mobile">
+      <transition name="fade" mode="out-in">
+        <img
+          src="@/assets/images/curve-arrow-small.svg"
+          class="explanation-arrow"
+          alt="explanation-arrow"
+          key="theory"
+          v-if="isTheoryOpen"
+        />
+        <img
+          src="@/assets/images/curve-arrow-small.svg"
+          class="explanation-arrow-right"
+          alt="explanation-arrow"
+          key="practice"
+          v-else
+        />
+      </transition>
+    </div>
     <transition name="fade" mode="out-in">
       <div class="explanation-card" v-if="isTheoryOpen" key="theory">
         <div class="explanation-card-content">
@@ -103,10 +121,10 @@ export default {
   align-items: center;
   margin-top: 300px;
   margin-bottom: 100px;
-  width: 1203px;
+  width: 100%;
 
   &-title {
-    width: 100%;
+    width: 85%;
     font-size: 50px;
     color: $dark;
     opacity: 0.85;
@@ -121,7 +139,7 @@ export default {
   }
 
   &-text {
-    width: 100%;
+    width: 85%;
     font-size: 30px;
     color: $dark;
     margin-top: 30px;
@@ -146,7 +164,7 @@ export default {
   }
 
   &-card {
-    width: 100%;
+    width: 85%;
     background-color: $white;
     border-radius: 20px;
     height: 515px;
@@ -190,15 +208,196 @@ export default {
 
   &-container {
     width: 100%;
+
+    &-mobile {
+      display: none;
+    }
   }
 
   &-arrow {
     width: 400px;
-    margin-left: 200px;
+    margin-left: 300px;
 
     &-right {
       width: 400px;
-      margin-left: 330px;
+      margin-left: 430px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .explanation {
+    margin-top: 200px;
+
+    &-title {
+      font-size: 35px;
+
+      &-smile {
+        height: 40px;
+      }
+    }
+
+    &-text {
+      font-size: 22px;
+      line-height: 35px;
+    }
+
+    &-arrow {
+      width: 300px;
+      margin-left: 220px;
+
+      &-right {
+        width: 300px;
+        margin-left: 310px;
+      }
+    }
+
+    &-card {
+      &-text {
+        line-height: 30px;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 941px) {
+  .explanation {
+    &-card {
+      height: fit-content;
+
+      &-title {
+        font-size: 30px;
+        color: $dark;
+        margin-top: 50px;
+        font-weight: 400;
+      }
+
+      &-text {
+        font-size: 17px;
+        line-height: 25px;
+      }
+    }
+  }
+}
+
+@media (max-width: 864px) {
+  .explanation {
+    &-card {
+      &-title {
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 739px) {
+  .explanation {
+    &-card {
+      padding: 30px 50px;
+      margin-top: 100px;
+      flex-direction: column;
+      align-items: center;
+
+      &-content {
+        width: 100%;
+      }
+
+      &-title {
+        font-size: 27px;
+      }
+
+      &-text {
+        font-size: 15px;
+      }
+
+      &-image {
+        width: 100%;
+        margin-top: 50px;
+        margin-right: 0;
+      }
+    }
+
+    &-container {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .explanation {
+    height: 100vh;
+
+    &-title {
+      font-size: 26px;
+
+      &-smile {
+        display: none;
+      }
+    }
+
+    &-text {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    &-container {
+      &-mobile {
+        display: block;
+      }
+    }
+
+    &-card {
+      padding: 20px 30px;
+      margin-top: 10px;
+
+      &-content {
+        width: 100%;
+      }
+
+      &-title {
+        font-size: 27px;
+      }
+
+      &-text {
+        font-size: 17px;
+      }
+
+      &-image {
+        width: 100%;
+        margin-top: 50px;
+        margin-right: 0;
+      }
+    }
+
+    &-arrow {
+      width: 160px;
+      margin-left: -80px;
+      align-self: flex-start;
+
+      &-right {
+        width: 160px;
+        margin-left: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .explanation {
+    height: fit-content;
+
+    &-title {
+      font-size: 22px;
+
+      &-smile {
+        display: none;
+      }
+    }
+
+    &-text {
+      font-size: 16px;
+      line-height: 30px;
     }
   }
 }

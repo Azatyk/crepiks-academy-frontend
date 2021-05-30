@@ -172,12 +172,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1203px;
+  width: 100%;
 
   &-title {
     color: $dark;
     font-size: 50px;
-    width: 100%;
+    width: 85%;
 
     &-green {
       color: $primary;
@@ -188,7 +188,7 @@ export default {
     color: $light-dark;
     margin-top: 25px;
     font-size: 30px;
-    width: 100%;
+    width: 85%;
     line-height: 44px;
 
     &-dark {
@@ -197,7 +197,7 @@ export default {
   }
 
   &-editor {
-    width: 100%;
+    width: 85%;
     margin-top: 80px;
     border-radius: 15px;
     display: flex;
@@ -274,6 +274,21 @@ export default {
   }
 }
 
+@media (max-width: 1100px) {
+  .trial {
+    margin-top: 100px;
+
+    &-title {
+      font-size: 35px;
+    }
+
+    &-text {
+      font-size: 22px;
+      line-height: 35px;
+    }
+  }
+}
+
 @media (max-width: 720px) {
   .trial {
     &-editor {
@@ -298,6 +313,66 @@ export default {
     }
   }
 }
+
+@media (max-width: 414px) {
+  .trial {
+    height: 100vh;
+
+    &-title {
+      font-size: 26px;
+      line-height: 35px;
+    }
+
+    &-text {
+      font-size: 20px;
+      line-height: 33px;
+      margin-top: 16px;
+    }
+
+    &-editor {
+      margin-top: 20px;
+
+      &-block {
+        width: 100%;
+        height: 30vh;
+        border-right: 0;
+        border-bottom: 1px solid #d1d2d6;
+        border-radius: 15px 15px 0 0;
+      }
+
+      &-block:last-child {
+        border-radius: 0 0 15px 15px;
+        border-bottom: 0;
+      }
+
+      &-browser {
+        border-radius: 0 0 15px 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .trial {
+    height: fit-content;
+
+    &-title {
+      font-size: 23px;
+      line-height: 30px;
+    }
+
+    &-text {
+      font-size: 18px;
+      line-height: 30px;
+    }
+
+    &-editor {
+      &-block {
+        height: 50vh;
+      }
+    }
+  }
+}
 </style>
 
 <style lang="scss">
@@ -315,5 +390,11 @@ export default {
 
 .trial-editor-editor .CodeMirror-gutters {
   background-color: #ffffff;
+}
+
+@media (max-width: 414px) {
+  .CodeMirror-scroll {
+    width: 272px !important;
+  }
 }
 </style>

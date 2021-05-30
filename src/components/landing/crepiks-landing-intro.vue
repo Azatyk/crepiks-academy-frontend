@@ -73,7 +73,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 925px;
+    height: fit-content;
+    width: 80%;
+    z-index: 10;
   }
 
   &-title {
@@ -127,28 +129,271 @@ export default {
     position: absolute;
 
     &-left {
-      top: 130px;
+      top: 60px;
       left: 50px;
     }
 
     &-middle-left {
-      top: 500px;
+      top: 470px;
       left: 100px;
     }
 
     &-bottom {
-      bottom: -80px;
+      top: 90vh;
       left: 40%;
     }
 
     &-middle-right {
-      top: 570px;
+      top: 490px;
       right: 100px;
     }
 
     &-right {
-      top: 120px;
+      top: 60px;
       right: 100px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .intro {
+    width: 100vw;
+    overflow-x: hidden;
+
+    &-content {
+      width: 100%;
+    }
+
+    &-title {
+      font-size: 35px;
+      width: 85%;
+    }
+
+    &-login {
+      right: 7.5%;
+    }
+
+    &-text {
+      font-size: 25px;
+      line-height: 35px;
+      width: 65%;
+    }
+
+    &-image {
+      position: absolute;
+
+      &-left {
+        top: 90px;
+        left: -10px;
+      }
+
+      &-middle-left {
+        top: 470px;
+        left: -30px;
+      }
+
+      &-bottom {
+        bottom: -10px;
+        left: 40%;
+      }
+
+      &-middle-right {
+        top: 490px;
+        right: -30px;
+      }
+
+      &-right {
+        top: 90px;
+        right: -10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 665px) {
+  .intro {
+    &-title {
+      font-size: 30px;
+      width: 95%;
+    }
+
+    &-login {
+      right: 7.5%;
+    }
+
+    &-text {
+      font-size: 18px;
+      width: 80%;
+    }
+
+    &-button {
+      margin-top: 40px;
+      padding: 15px 20px;
+      font-size: 20px;
+
+      &-icon {
+        display: none;
+      }
+    }
+
+    &-image {
+      position: absolute;
+
+      &-left {
+        top: 90px;
+        left: -70px;
+      }
+
+      &-middle-left {
+        top: 610px;
+        left: -70px;
+      }
+
+      &-bottom {
+        bottom: -40px;
+        left: 30%;
+      }
+
+      &-middle-right {
+        top: 610px;
+        right: -70px;
+      }
+
+      &-right {
+        top: 90px;
+        right: -50px;
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .intro {
+    &-title {
+      font-size: 28px;
+      width: 85%;
+      line-height: 35px;
+      opacity: 0.85;
+    }
+
+    &-text {
+      line-height: 150%;
+    }
+
+    &-button {
+      padding: 12px 35px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    &-login {
+      font-size: 15px;
+      top: 30px;
+    }
+
+    &-image {
+      position: absolute;
+
+      &-left {
+        top: 90px;
+        left: -20px;
+        width: 150px;
+      }
+
+      &-middle-left {
+        top: 70vh;
+        left: -70px;
+        transform: rotate(-28.46deg);
+      }
+
+      &-bottom {
+        top: 75vh;
+        left: 30%;
+        width: 150px;
+      }
+
+      &-middle-right {
+        top: 70vh;
+        right: -30px;
+        width: 150px;
+      }
+
+      &-right {
+        right: 30px;
+        transform: rotate(-28.2deg);
+        width: 150px;
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .intro {
+    &-title {
+      font-size: 26px;
+    }
+
+    &-text {
+      font-size: 16px;
+    }
+
+    &-image {
+      position: absolute;
+
+      &-left {
+        top: 60px;
+        left: -20px;
+        width: 150px;
+      }
+
+      &-right {
+        right: 30px;
+        top: 60px;
+      }
+    }
+  }
+}
+
+@media (max-width: 320px) {
+  .intro {
+    &-title {
+      font-size: 23px;
+    }
+
+    &-text {
+      font-size: 14px;
+    }
+
+    &-image {
+      position: absolute;
+
+      &-left {
+        top: 30px;
+        width: 110px;
+      }
+
+      &-middle-left {
+        top: 70vh;
+        left: -70px;
+        width: 110px;
+      }
+
+      &-bottom {
+        top: 78vh;
+        left: 30%;
+        width: 110px;
+      }
+
+      &-middle-right {
+        top: 70vh;
+        right: -30px;
+        width: 110px;
+      }
+
+      &-right {
+        top: 30px;
+        width: 110px;
+      }
     }
   }
 }
