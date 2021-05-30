@@ -14,58 +14,68 @@
     </p>
     <p class="explanation-text">
       Каждая тема интерактива состоит из
-      <span class="explanation-text-green" @click="isTheoryOpen = true"
+      <span
+        class="explanation-text-green"
+        :class="{ 'explanation-text-green-active': isTheoryOpen }"
+        @click="isTheoryOpen = true"
         >теории</span
       >
       и
-      <span class="explanation-text-green" @click="isTheoryOpen = false"
+      <span
+        class="explanation-text-green"
+        :class="{ 'explanation-text-green-active': !isTheoryOpen }"
+        @click="isTheoryOpen = false"
         >практики</span
       >
     </p>
-    <transition name="fade" mode="out-in">
-      <img
-        src="@/assets/images/curve-arrow.svg"
-        class="explanation-arrow"
-        alt="explanation-arrow"
-        key="theory"
-        v-if="isTheoryOpen"
-      />
-      <img
-        src="@/assets/images/curve-arrow.svg"
-        class="explanation-arrow-right"
-        alt="explanation-arrow"
-        key="practice"
-        v-else
-      />
-    </transition>
+    <div class="explanation-container">
+      <transition name="fade" mode="out-in">
+        <img
+          src="@/assets/images/curve-arrow.svg"
+          class="explanation-arrow"
+          alt="explanation-arrow"
+          key="theory"
+          v-if="isTheoryOpen"
+        />
+        <img
+          src="@/assets/images/curve-arrow.svg"
+          class="explanation-arrow-right"
+          alt="explanation-arrow"
+          key="practice"
+          v-else
+        />
+      </transition>
+    </div>
     <transition name="fade" mode="out-in">
       <div class="explanation-card" v-if="isTheoryOpen" key="theory">
-        <div class="explanation-content">
-          <h4 class="explanation-content-title">Теория</h4>
-          <p class="explanation-content-text">
+        <div class="explanation-card-content">
+          <h4 class="explanation-card-title">Теория</h4>
+          <p class="explanation-card-text">
             Это текстовый теоретический материал с примерами кода и объяснением
             темы
           </p>
         </div>
-        <div class="explanation-image">
+        <div class="explanation-card-image">
           <img
             src="@/assets/images/explanation-macbook-mockup.svg"
             alt="explanation-macbook-mockup"
+            class="explanation-card-image-inner"
           />
         </div>
       </div>
       <div class="explanation-card" v-else key="practice">
-        <div class="explanation-content">
-          <h4 class="explanation-content-title">Практика</h4>
-          <p class="explanation-content-text">
+        <div class="explanation-card-content">
+          <h4 class="explanation-card-title">Практика</h4>
+          <p class="explanation-card-text">
             Встроенный текстовый редактор, в котором ты сможешь написать
             реальный код
           </p>
         </div>
-        <div class="explanation-image">
+        <div class="explanation-card-image">
           <img
             src="@/assets/images/explanation-macbook-mockup.svg"
             alt="explanation-macbook-mockup"
+            class="explanation-card-image-inner"
           />
         </div>
       </div>
@@ -97,7 +107,7 @@ export default {
 
   &-title {
     width: 100%;
-    font-size: 60px;
+    font-size: 50px;
     color: $dark;
     opacity: 0.85;
 
@@ -112,20 +122,26 @@ export default {
 
   &-text {
     width: 100%;
-    font-size: 44px;
+    font-size: 30px;
     color: $dark;
     margin-top: 30px;
     opacity: 0.7;
+    line-height: 44px;
 
     &-green {
       color: $primary;
       text-decoration: underline;
       cursor: pointer;
       transition: 200ms ease-in-out;
+      opacity: 0.7;
+
+      &-active {
+        opacity: 1;
+      }
     }
 
     &-green:hover {
-      opacity: 0.8;
+      opacity: 0.7;
     }
   }
 
@@ -134,38 +150,55 @@ export default {
     background-color: $white;
     border-radius: 20px;
     height: 515px;
-    padding: 50px 50px;
+    padding: 40px 60px;
     box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
     box-shadow: 0px 0px 50px rgba(60, 60, 60, 0.05);
-  }
 
-  &-content {
-    width: 40%;
+    &-content {
+      width: 40%;
+    }
 
     &-title {
-      font-size: 50px;
+      font-size: 40px;
       color: $dark;
-      margin-top: 70px;
+      margin-top: 80px;
       font-weight: 400;
     }
 
     &-text {
-      font-size: 30px;
+      font-size: 26px;
       color: $light-dark;
-      margin-top: 40px;
+      margin-top: 35px;
+      line-height: 38px;
+    }
+
+    &-image {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      width: 60%;
+      margin-right: -30px;
+
+      &-inner {
+        width: 100%;
+      }
     }
   }
 
-  &-image {
-    height: 100%;
-    display: flex;
-    align-items: center;
+  &-container {
+    width: 100%;
   }
 
   &-arrow {
+    width: 400px;
+    margin-left: 200px;
+
     &-right {
-      margin-left: 400px;
+      width: 400px;
+      margin-left: 330px;
     }
   }
 }

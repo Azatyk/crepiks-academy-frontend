@@ -176,7 +176,7 @@ export default {
 
   &-title {
     color: $dark;
-    font-size: 60px;
+    font-size: 50px;
     width: 100%;
 
     &-green {
@@ -186,9 +186,10 @@ export default {
 
   &-text {
     color: $light-dark;
-    margin-top: 50px;
-    font-size: 45px;
+    margin-top: 25px;
+    font-size: 30px;
     width: 100%;
+    line-height: 44px;
 
     &-dark {
       color: $dark;
@@ -197,7 +198,7 @@ export default {
 
   &-editor {
     width: 100%;
-    margin-top: 100px;
+    margin-top: 80px;
     border-radius: 15px;
     display: flex;
     box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.02);

@@ -88,16 +88,16 @@ export default {
   }
 
   &-text {
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 30px;
     color: $light-dark;
     width: 78%;
     text-align: center;
-    line-height: 40px;
+    line-height: 44px;
   }
 
   &-button {
-    margin-top: 30px;
+    margin-top: 40px;
     padding: 20px 30px;
     font-size: 20px;
 
@@ -114,12 +114,13 @@ export default {
     right: 80px;
     text-decoration: none;
     color: $dark;
+    opacity: 0.5;
     transition: 200ms ease-in-out;
     font-size: 20px;
   }
 
   &-login:hover {
-    opacity: 0.8;
+    opacity: 0.7;
   }
 
   &-image {

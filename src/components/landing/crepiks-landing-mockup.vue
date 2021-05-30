@@ -38,29 +38,31 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .mockup {
-  width: 1378px;
-  height: 793px;
+  width: 100%;
+  height: 650px;
   margin-top: 330px;
   background-image: url(../../assets/images/macbook-mockup.svg);
   background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   display: flex;
 
   &-text {
-    width: 466px;
-    height: 414px;
-    padding: 45px 40px;
+    width: 400px;
+    height: fit-content;
+    padding: 35px 30px;
     box-sizing: border-box;
     background-color: $white;
     border-radius: 20px;
     box-shadow: 50px 50px 100px rgba(0, 0, 0, 0.02);
-    margin-top: 160px;
-    margin-left: 200px;
+    margin-top: 130px;
+    margin-left: 330px;
     z-index: 2;
   }
 
   &-heading {
     font-weight: 500;
-    font-size: 33px;
+    font-size: 28px;
     line-height: 120%;
     width: 97%;
 
@@ -70,7 +72,7 @@ export default {
   }
 
   &-paragraph {
-    font-size: 20px;
+    font-size: 17px;
     margin-top: 15px;
     color: $dark;
     opacity: 0.8;
@@ -82,6 +84,7 @@ export default {
 
   &-image {
     margin-left: -100px;
+    width: 500px;
   }
 }
 </style>
