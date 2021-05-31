@@ -13,6 +13,8 @@
         text="Перейти к интерактиву"
         class="intro-button"
         @click="$router.push('/auth/register')"
+        @mouseover="startRotation"
+        @mouseout="stopRotation"
         ><img
           src="@/assets/images/cursor-icon.svg"
           alt="cursor-icon"
@@ -22,26 +24,31 @@
     <router-link to="/auth/login" class="intro-login">Войти</router-link>
     <img
       class="intro-image intro-image-left"
+      :class="{ 'intro-image-left-rotation': rotation }"
       src="@/assets/images/laptop-left.svg"
       alt="laptop"
     />
     <img
       class="intro-image intro-image-middle-left"
+      :class="{ 'intro-image-middle-left-rotation': rotation }"
       src="@/assets/images/laptop-middle-left.svg"
       alt="laptop"
     />
     <img
       class="intro-image intro-image-bottom"
+      :class="{ 'intro-image-bottom-rotation': rotation }"
       src="@/assets/images/laptop-bottom.svg"
       alt="laptop"
     />
     <img
       class="intro-image intro-image-middle-right"
+      :class="{ 'intro-image-middle-right-rotation': rotation }"
       src="@/assets/images/laptop-middle-right.svg"
       alt="laptop"
     />
     <img
       class="intro-image intro-image-right"
+      :class="{ 'intro-image-right-rotation': rotation }"
       src="@/assets/images/laptop-right.svg"
       alt="laptop"
     />
@@ -54,6 +61,21 @@ import cButton from "@/components/common/crepiks-button";
 export default {
   components: {
     cButton
+  },
+  data() {
+    return {
+      rotation: false
+    };
+  },
+  methods: {
+    startRotation() {
+      this.rotation = true;
+      console.log(this.rotation);
+    },
+    stopRotation() {
+      this.rotation = false;
+      console.log(this.rotation);
+    }
   }
 };
 </script>
@@ -132,26 +154,51 @@ export default {
     &-left {
       top: 60px;
       left: -10px;
+
+      &-rotation {
+        animation: rotation-left 4s ease infinite;
+        animation-timing-function: linear;
+      }
     }
 
     &-middle-left {
       top: 470px;
       left: 100px;
+
+      &-rotation {
+        animation: rotation-middle-left 4s ease infinite;
+        animation-timing-function: linear;
+      }
     }
 
     &-bottom {
       top: 90vh;
       left: 40%;
+
+      &-rotation {
+        animation: rotation-bottom 4s ease infinite;
+        animation-timing-function: linear;
+      }
     }
 
     &-middle-right {
       top: 490px;
       right: 100px;
+
+      &-rotation {
+        animation: rotation-middle-right 4s ease infinite;
+        animation-timing-function: linear;
+      }
     }
 
     &-right {
       top: 60px;
       right: 20px;
+
+      &-rotation {
+        animation: rotation-right 4s ease infinite;
+        animation-timing-function: linear;
+      }
     }
   }
 }
@@ -396,6 +443,126 @@ export default {
         width: 110px;
       }
     }
+  }
+}
+
+@-webkit-keyframes rotation-left {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  16% {
+    transform: translate(100px, 500px);
+  }
+  32% {
+    transform: translate(600px, 600px);
+  }
+  48% {
+    transform: translate(1200px, 400px);
+  }
+  65% {
+    transform: translate(1200px, 0px);
+  }
+  82% {
+    transform: translate(500px, -50px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@-webkit-keyframes rotation-middle-left {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  16% {
+    transform: translate(500px, 200px);
+  }
+  32% {
+    transform: translate(1000px, 0px);
+  }
+  48% {
+    transform: translate(1200px, -400px);
+  }
+  65% {
+    transform: translate(500px, -600px);
+  }
+  82% {
+    transform: translate(-100px, -400px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@-webkit-keyframes rotation-bottom {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  16% {
+    transform: translate(650px, -200px);
+  }
+  32% {
+    transform: translate(680px, -650px);
+  }
+  48% {
+    transform: translate(0px, -800px);
+  }
+  65% {
+    transform: translate(-680px, -680px);
+  }
+  82% {
+    transform: translate(-500px, -200px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@-webkit-keyframes rotation-middle-right {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  16% {
+    transform: translate(100px, -500px);
+  }
+  32% {
+    transform: translate(-500px, -550px);
+  }
+  48% {
+    transform: translate(-1200px, -500px);
+  }
+  65% {
+    transform: translate(-1100px, 0px);
+  }
+  82% {
+    transform: translate(-500px, 200px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@-webkit-keyframes rotation-right {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  16% {
+    transform: translate(-500px, -100px);
+  }
+  32% {
+    transform: translate(-1200px, 0px);
+  }
+  48% {
+    transform: translate(-1100px, 500px);
+  }
+  65% {
+    transform: translate(-600px, 600px);
+  }
+  82% {
+    transform: translate(-100px, 400px);
+  }
+  100% {
+    transform: translate(0px, 0px);
   }
 }
 </style>

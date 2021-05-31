@@ -11,6 +11,8 @@
       'loading-button': isLoading
     }"
     @click="$emit('click')"
+    @mouseover="$emit('mouseover')"
+    @mouseout="$emit('mouseout')"
   >
     <transition name="fade" mode="out-in">
       <div class="loader loader-arc" v-if="isLoading"></div>
