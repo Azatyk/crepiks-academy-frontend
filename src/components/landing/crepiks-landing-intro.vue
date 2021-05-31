@@ -156,7 +156,7 @@ export default {
       left: -10px;
 
       &-rotation {
-        animation: rotation-left 4s ease infinite;
+        animation: rotation-left 3.5s ease-in-out infinite;
         animation-timing-function: linear;
       }
     }
@@ -166,7 +166,7 @@ export default {
       left: 100px;
 
       &-rotation {
-        animation: rotation-middle-left 4s ease infinite;
+        animation: rotation-middle-left ease-in-out 3.5s infinite;
         animation-timing-function: linear;
       }
     }
@@ -176,7 +176,7 @@ export default {
       left: 40%;
 
       &-rotation {
-        animation: rotation-bottom 4s ease infinite;
+        animation: rotation-bottom ease-in-out 3.5s infinite;
         animation-timing-function: linear;
       }
     }
@@ -186,7 +186,7 @@ export default {
       right: 100px;
 
       &-rotation {
-        animation: rotation-middle-right 4s ease infinite;
+        animation: rotation-middle-right ease-in-out 3.5s infinite;
         animation-timing-function: linear;
       }
     }
@@ -196,7 +196,7 @@ export default {
       right: 20px;
 
       &-rotation {
-        animation: rotation-right 4s ease infinite;
+        animation: rotation-right ease-in-out 3.5s infinite;
         animation-timing-function: linear;
       }
     }
@@ -448,121 +448,91 @@ export default {
 
 @-webkit-keyframes rotation-left {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
-  16% {
-    transform: translate(100px, 500px);
+  5% {
+    transform: translate(0, 3px);
   }
-  32% {
-    transform: translate(600px, 600px);
+  45% {
+    transform: translate(0, 40px);
   }
-  48% {
-    transform: translate(1200px, 400px);
-  }
-  65% {
-    transform: translate(1200px, 0px);
-  }
-  82% {
-    transform: translate(500px, -50px);
+  95% {
+    transform: translate(0, 3px);
   }
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
 }
 
 @-webkit-keyframes rotation-middle-left {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
-  16% {
-    transform: translate(500px, 200px);
+  5% {
+    transform: translate(0, 3px);
   }
-  32% {
-    transform: translate(1000px, 0px);
+  56% {
+    transform: translate(0, 60px);
   }
-  48% {
-    transform: translate(1200px, -400px);
-  }
-  65% {
-    transform: translate(500px, -600px);
-  }
-  82% {
-    transform: translate(-100px, -400px);
+  95% {
+    transform: translate(0, 3px);
   }
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
 }
 
 @-webkit-keyframes rotation-bottom {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
-  16% {
-    transform: translate(650px, -200px);
+  5% {
+    transform: translate(0, 3px);
   }
-  32% {
-    transform: translate(680px, -650px);
+  50% {
+    transform: translate(0, 40px);
   }
-  48% {
-    transform: translate(0px, -800px);
-  }
-  65% {
-    transform: translate(-680px, -680px);
-  }
-  82% {
-    transform: translate(-500px, -200px);
+  95% {
+    transform: translate(0, 3px);
   }
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
 }
 
 @-webkit-keyframes rotation-middle-right {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
-  16% {
-    transform: translate(100px, -500px);
+  5% {
+    transform: translate(0, 3px);
   }
-  32% {
-    transform: translate(-500px, -550px);
+  45% {
+    transform: translate(0, 60px);
   }
-  48% {
-    transform: translate(-1200px, -500px);
-  }
-  65% {
-    transform: translate(-1100px, 0px);
-  }
-  82% {
-    transform: translate(-500px, 200px);
+  95% {
+    transform: translate(0, 3px);
   }
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
 }
 
 @-webkit-keyframes rotation-right {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
-  16% {
-    transform: translate(-500px, -100px);
+  5% {
+    transform: translate(0, 3px);
   }
-  32% {
-    transform: translate(-1200px, 0px);
+  55% {
+    transform: translate(0, 40px);
   }
-  48% {
-    transform: translate(-1100px, 500px);
-  }
-  65% {
-    transform: translate(-600px, 600px);
-  }
-  82% {
-    transform: translate(-100px, 400px);
+  95% {
+    transform: translate(0, 3px);
   }
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0, 0);
   }
 }
 </style>
