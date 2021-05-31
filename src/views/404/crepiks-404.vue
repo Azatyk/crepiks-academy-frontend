@@ -4,11 +4,11 @@
       <div class="notFound-image">
         <img src="@/assets/images/not-found-image.svg" alt="not-found-image" />
       </div>
-      <div class="notFound-title">Упс... Страница не найдена!</div>
-      <div class="notFound-text">
+      <h2 class="notFound-title">Упс... Страница не найдена!</h2>
+      <p class="notFound-text">
         Мы не смогли найти такую страницу. Убедитесь, что вы не ошиблись в
         адресе страницы или вернитесь на главную
-      </div>
+      </p>
       <cButton text="На главную" class="notFound-button" @click="handleClick" />
     </div>
   </div>
@@ -65,6 +65,7 @@ export default {
     width: 80%;
     color: $light-dark;
     font-size: 20px;
+    line-height: 30px;
   }
 
   &-button {
