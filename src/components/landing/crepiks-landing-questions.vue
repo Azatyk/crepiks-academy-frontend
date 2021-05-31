@@ -192,11 +192,7 @@ export default {};
     &-subheading {
       font-size: 14px;
     }
-  }
-}
 
-@media (max-width: 450px) {
-  .questions {
     &-link {
       font-size: 11px;
       padding: 5px 10px;
@@ -210,9 +206,16 @@ export default {};
 
 @media (max-width: 414px) {
   .questions {
-    margin-top: 0;
+    margin-top: 30px;
+
+    &-heading {
+      font-size: 26px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
 
     &-subheading {
+      font-size: 20px;
       margin-left: 0;
     }
   }

@@ -257,6 +257,7 @@ export default {
     background-image: url(../../assets/images/iphone-mockup.svg);
     height: 812px;
     padding: 0;
+    margin-top: 200px;
 
     &-text {
       width: 60%;
@@ -273,7 +274,8 @@ export default {
     &-paragraph {
       font-size: 9px;
       margin-top: 12px;
-      line-height: 10px;
+      line-height: 14px;
+      opacity: 0.8;
     }
 
     &-image {
@@ -285,6 +287,15 @@ export default {
       margin-top: 18px;
       font-size: 10px;
       border-radius: 6px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .mockup {
+    &-image {
+      width: 240px;
+      margin-top: -45px;
     }
   }
 }

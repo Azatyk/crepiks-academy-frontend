@@ -216,11 +216,11 @@ export default {
 
   &-arrow {
     width: 400px;
-    margin-left: 300px;
+    margin-left: 270px;
 
     &-right {
       width: 400px;
-      margin-left: 430px;
+      margin-left: 400px;
     }
   }
 }
@@ -348,8 +348,9 @@ export default {
     }
 
     &-card {
-      padding: 20px 30px;
+      padding: 15px 30px;
       margin-top: 10px;
+      padding-bottom: 40px;
 
       &-content {
         width: 100%;
@@ -361,6 +362,7 @@ export default {
 
       &-text {
         font-size: 17px;
+        line-height: 28px;
       }
 
       &-image {

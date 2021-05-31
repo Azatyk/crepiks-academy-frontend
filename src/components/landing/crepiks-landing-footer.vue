@@ -59,6 +59,11 @@ export default {
       align-items: flex-start;
       margin-top: 5px;
     }
+
+    &-logo {
+      width: 90px;
+      opacity: 0.85;
+    }
   }
 }
 

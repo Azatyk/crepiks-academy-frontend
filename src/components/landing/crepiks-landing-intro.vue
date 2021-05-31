@@ -127,10 +127,11 @@ export default {
 
   &-image {
     position: absolute;
+    opacity: 0.8;
 
     &-left {
       top: 60px;
-      left: 50px;
+      left: -10px;
     }
 
     &-middle-left {
@@ -150,7 +151,7 @@ export default {
 
     &-right {
       top: 60px;
-      right: 100px;
+      right: 20px;
     }
   }
 }
@@ -260,7 +261,7 @@ export default {
       }
 
       &-right {
-        top: 90px;
+        top: 80px;
         right: -50px;
       }
     }
@@ -295,14 +296,14 @@ export default {
       position: absolute;
 
       &-left {
-        top: 90px;
-        left: -20px;
+        top: 70px;
+        left: -40px;
         width: 150px;
       }
 
       &-middle-left {
-        top: 70vh;
-        left: -70px;
+        top: 65vh;
+        left: -100px;
         transform: rotate(-28.46deg);
       }
 
@@ -313,13 +314,13 @@ export default {
       }
 
       &-middle-right {
-        top: 70vh;
-        right: -30px;
+        top: 65vh;
+        right: -60px;
         width: 150px;
       }
 
       &-right {
-        right: 30px;
+        right: 10px;
         transform: rotate(-28.2deg);
         width: 150px;
       }
@@ -341,14 +342,14 @@ export default {
       position: absolute;
 
       &-left {
-        top: 60px;
-        left: -20px;
+        top: 50px;
+        left: -60px;
         width: 150px;
       }
 
       &-right {
-        right: 30px;
-        top: 60px;
+        right: 0px;
+        top: 50px;
       }
     }
   }

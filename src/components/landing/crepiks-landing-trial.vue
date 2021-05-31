@@ -316,7 +316,8 @@ export default {
 
 @media (max-width: 414px) {
   .trial {
-    height: 100vh;
+    height: fit-content;
+    margin-top: 300px;
 
     &-title {
       font-size: 26px;
@@ -333,20 +334,7 @@ export default {
       margin-top: 20px;
 
       &-block {
-        width: 100%;
-        height: 30vh;
-        border-right: 0;
-        border-bottom: 1px solid #d1d2d6;
-        border-radius: 15px 15px 0 0;
-      }
-
-      &-block:last-child {
-        border-radius: 0 0 15px 15px;
-        border-bottom: 0;
-      }
-
-      &-browser {
-        border-radius: 0 0 15px 15px;
+        height: 40vh;
       }
     }
   }
