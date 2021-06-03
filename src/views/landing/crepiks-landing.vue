@@ -3,11 +3,31 @@
     <div class="landing">
       <div class="landing-inner">
         <intro />
-        <explanation />
-        <trial />
-        <mockup />
-        <questions />
-        <cFooter />
+        <explanation
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <trial
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <mockup
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <questions
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <cFooter
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
       </div>
     </div>
   </transition>

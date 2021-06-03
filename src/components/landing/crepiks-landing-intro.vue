@@ -13,8 +13,6 @@
         text="Перейти к интерактиву"
         class="intro-button"
         @click="$router.push('/auth/register')"
-        @mouseover="startRotation"
-        @mouseout="stopRotation"
         ><img
           src="@/assets/images/cursor-icon.svg"
           alt="cursor-icon"
@@ -64,18 +62,8 @@ export default {
   },
   data() {
     return {
-      rotation: false
+      rotation: true
     };
-  },
-  methods: {
-    startRotation() {
-      this.rotation = true;
-      console.log(this.rotation);
-    },
-    stopRotation() {
-      this.rotation = false;
-      console.log(this.rotation);
-    }
   }
 };
 </script>
