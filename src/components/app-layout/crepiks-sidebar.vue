@@ -21,10 +21,10 @@
     <transition name="fade">
       <div class="content-half">
         <div class="navigation-links-extra">
-          <div class="link" @click="openModal">
+          <!-- <div class="link" @click="openModal">
             <i class="bx bx-chevron-up-square link-icon"></i>
             <span class="link-text">Инструкция</span>
-          </div>
+          </div> -->
           <div class="link-help">
             <div
               class="link"
