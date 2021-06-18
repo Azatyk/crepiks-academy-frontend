@@ -91,7 +91,7 @@
         </div>
         <div class="explanation-card-image">
           <img
-            src="@/assets/images/explanation-macbook-mockup.svg"
+            src="@/assets/images/practice.png"
             alt="explanation-macbook-mockup"
             class="explanation-card-image-inner"
           />
