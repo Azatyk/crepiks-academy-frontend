@@ -21,7 +21,7 @@
         :heading="notificationHeading"
         :text="notificationText"
         @close-notification="isNotificationOpen = false"
-        status="error"
+        :status="notificationStatus"
       />
       <div class="payment-front">
         <div class="payment-text" v-if="mobileWidth">
@@ -125,6 +125,7 @@ export default {
       isNotificationOpen: false,
       notificationHeading: "",
       notificationText: "",
+      notificationStatus: "error",
       mobileWidth: true
     };
   },
@@ -135,17 +136,22 @@ export default {
   },
   methods: {
     pay() {
-      if (
-        !this.cardName.trim() ||
-        !this.cardMonth.trim() ||
-        !this.cardYear.trim() ||
-        !this.cardCvc.trim() ||
-        !this.cardNumber.trim()
-      ) {
-        this.isNotificationOpen = true;
-        this.notificationHeading = "Заполните все поля";
-        this.notificationText = "Необходимо заполнить каждое поле";
-      }
+      this.isNotificationOpen = true;
+      this.notificationHeading = "Оплата не доступна";
+      this.notificationStatus = "warning";
+      this.notificationText =
+        "Спасибо за желание приобрести подписку. На данный момень оплата недоступна. Для более подробной информации свяжитесь с поддержкой";
+      // if (
+      //   !this.cardName.trim() ||
+      //   !this.cardMonth.trim() ||
+      //   !this.cardYear.trim() ||
+      //   !this.cardCvc.trim() ||
+      //   !this.cardNumber.trim()
+      // ) {
+      //   this.isNotificationOpen = true;
+      //   this.notificationHeading = "Заполните все поля";
+      //   this.notificationText = "Необходимо заполнить каждое поле";
+      // }
     },
     handleResize() {
       if (window.innerWidth <= 414) {
