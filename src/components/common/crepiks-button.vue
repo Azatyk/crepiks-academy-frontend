@@ -11,10 +11,12 @@
       'loading-button': isLoading
     }"
     @click="$emit('click')"
+    @mouseover="$emit('mouseover')"
+    @mouseout="$emit('mouseout')"
   >
     <transition name="fade" mode="out-in">
       <div class="loader loader-arc" v-if="isLoading"></div>
-      <span class="button-text" v-else>{{ text }}</span>
+      <span class="button-text" v-else>{{ text }}<slot></slot></span>
     </transition>
   </button>
 </template>

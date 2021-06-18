@@ -23,6 +23,7 @@ export default {
   background-color: #f2f2f3;
   padding: 10vh 12%;
   box-sizing: border-box;
+  width: 100%;
 
   &-email {
     opacity: 0.8;
@@ -45,7 +46,7 @@ export default {
 
 @media (max-width: 1000px) {
   .footer {
-    padding: 10vh 5%;
+    padding: 10vh 7.5%;
   }
 }
 
@@ -57,6 +58,11 @@ export default {
       flex-direction: column;
       align-items: flex-start;
       margin-top: 5px;
+    }
+
+    &-logo {
+      width: 90px;
+      opacity: 0.85;
     }
   }
 }

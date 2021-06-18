@@ -1,47 +1,73 @@
 <template>
   <transition name="fadeIn" appear>
     <div class="landing">
-      <c-header />
-      <cIntro />
-      <cDescription />
-      <cExplanation />
-      <cPractice />
-      <cOffer />
-      <cQuestions />
-      <cFooter />
+      <div class="landing-inner">
+        <intro />
+        <explanation
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <trial
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <mockup
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <questions
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+        <cFooter
+          data-aos="fade-in"
+          data-aos-duration="1000"
+          data-aos-delay="200"
+        />
+      </div>
     </div>
   </transition>
 </template>
 
 <script>
-import cHeader from "@/components/landing/crepiks-header.vue";
-import cIntro from "@/components/landing/crepiks-intro.vue";
-import cDescription from "@/components/landing/crepiks-description.vue";
-import cExplanation from "@/components/landing/crepiks-explanation.vue";
-import cPractice from "@/components/landing/crepiks-practice.vue";
-import cOffer from "@/components/landing/crepiks-offer.vue";
-import cQuestions from "@/components/landing/crepiks-questions.vue";
-import cFooter from "@/components/landing/crepiks-footer.vue";
+import intro from "@/components/landing/crepiks-landing-intro.vue";
+import explanation from "@/components/landing/crepiks-landing-explanation.vue";
+import trial from "@/components/landing/crepiks-landing-trial.vue";
+import mockup from "@/components/landing/crepiks-landing-mockup.vue";
+import questions from "@/components/landing/crepiks-landing-questions.vue";
+import cFooter from "@/components/landing/crepiks-landing-footer.vue";
 
 export default {
   components: {
-    cHeader,
-    cIntro,
-    cDescription,
-    cExplanation,
-    cPractice,
-    cOffer,
-    cQuestions,
+    intro,
+    explanation,
+    trial,
+    mockup,
+    questions,
     cFooter
   }
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "@/assets/styles/variables.scss";
 .landing {
   width: 100vw;
   background-color: $background;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &-inner {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .fadeIn-enter-active,

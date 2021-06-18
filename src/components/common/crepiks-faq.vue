@@ -62,7 +62,6 @@ export default {
     position: absolute;
     right: 0;
     top: 20%;
-    // transform: translate(0, -50%);
     font-size: 25px;
   }
 
