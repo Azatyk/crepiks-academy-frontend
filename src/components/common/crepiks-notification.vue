@@ -72,7 +72,7 @@ export default {
       if (this.isActive) {
         this.setTimeoutId = setTimeout(() => {
           this.$emit("close-notification");
-        }, 7000);
+        }, 1200000);
       }
     }
   },
@@ -103,7 +103,7 @@ export default {
   align-items: center;
   border-radius: 10px;
   background-color: $white;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
   transition: 350ms ease-in-out;
   z-index: 7;
 
@@ -120,9 +120,10 @@ export default {
   }
 
   &-mark {
+    position: absolute;
     margin-right: 10px;
-    height: 70px;
-    width: 8px;
+    height: calc(100% - 40px);
+    width: 4px;
     border-radius: 10px;
     background-color: black;
 
@@ -141,6 +142,7 @@ export default {
 
   &-icon {
     margin-right: 10px;
+    margin-left: 10px;
     font-size: 25px;
 
     &-success {
@@ -173,6 +175,7 @@ export default {
   &-paragraph {
     color: $dark;
     font-size: 16px;
+    line-height: 140%;
     opacity: 0.8;
   }
 
