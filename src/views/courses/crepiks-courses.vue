@@ -8,6 +8,13 @@
         :isActive="isNotificationActive"
         @close-notification="isNotificationActive = false"
       />
+      <ad-notification
+        :heading="adNotificationHeading"
+        :text="adNotificationText"
+        :image-path="adNotificationImagePath"
+        :isActive="isAdNotificationActive"
+        @close-notification="isAdNotificationActive = false"
+      />
       <profileLink />
       <div class="courses-half">
         <div class="search-input">
@@ -104,13 +111,17 @@ import course from "@/components/courses/crepiks-course";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
 import notification from "@/components/common/crepiks-notification";
 
+import adNotification from "@/components/common/crepiks-ad-notification";
+import adNotificationImage from "@/assets/images/ad-notification-carrot-image.png";
+
 export default {
   components: {
     cButton,
     courseCard,
     course,
     profileLink,
-    notification
+    notification,
+    "ad-notification": adNotification
   },
 
   data() {
@@ -123,8 +134,29 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "",
-      isNotificationActive: false
+      isNotificationActive: false,
+      adNotificationHeading: "",
+      adNotificationText: "",
+      adNotificationImagePath: "",
+      isAdNotificationActive: false,
+      adNotificationImage: adNotificationImage
     };
+  },
+
+  mounted() {
+    this.openAdNotification();
+  },
+
+  methods: {
+    openAdNotification() {
+      setTimeout(() => {
+        this.adNotificationHeading = "Уже половина? А ты быстрый!";
+        this.adNotificationText =
+          "Прямо сейчас ты прошел половину интерактива «Базовая верстка», а значит осталось совсем немного. У нас для тебя кое-что есть, жми «Подробнее»";
+        this.adNotificationImagePath = this.adNotificationImage;
+        this.isAdNotificationActive = true;
+      }, 2000);
+    }
   }
 };
 </script>

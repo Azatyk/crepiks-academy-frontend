@@ -4,14 +4,10 @@
       <logo class="sidebar-logo" />
       <div class="dividing-line"></div>
       <div class="navigation-links">
-        <router-link class="link link-active" to="/app/courses">
+        <router-link class="link" to="/app/courses">
           <i class="bx bx-window-alt link-icon"></i>
           <span class="link-text">Курсы</span>
         </router-link>
-        <!-- <router-link class="link" to="/app/sandbox">
-          <i class="bx bx-dice-5 link-icon"></i>
-          <span class="link-text">Песочница</span>
-        </router-link> -->
         <router-link class="link" to="/app/subscription">
           <i class="bx bx-receipt link-icon"></i>
           <span class="link-text">Подписка</span>
@@ -25,6 +21,17 @@
             <i class="bx bx-chevron-up-square link-icon"></i>
             <span class="link-text">Инструкция</span>
           </div> -->
+          <transition name="link-fade">
+            <div
+              class="link link-ad"
+              @click="openAdBlock"
+              v-if="isAdActive"
+              key="link-ad"
+            >
+              <i class="bx bx-dish link-icon"></i>
+              <span class="link-text">У нас кое-что есть</span>
+            </div>
+          </transition>
           <div class="link-help">
             <div
               class="link"
@@ -109,7 +116,7 @@
 
 <script>
 import logo from "@/components/common/crepiks-logo";
-import { mapMutations } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -129,8 +136,13 @@ export default {
       setTimeout(() => {
         this.$root.$emit("open-modal");
       }, 1);
+    },
+    openAdBlock() {
+      console.log("ad block");
     }
   },
+
+  computed: mapGetters(["isAdActive"]),
 
   watch: {
     hover() {
@@ -218,6 +230,15 @@ export default {
 
   &-exit:hover {
     color: #e74c3c;
+  }
+
+  &-ad {
+    color: $primary;
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &-icon {
@@ -457,5 +478,14 @@ export default {
   .sidebar {
     width: 100%;
   }
+}
+
+.link-fade-enter-active,
+.link-fade-leave-active {
+  transition: opacity 0.5s;
+}
+.link-fade-enter,
+.link-fade-leave-to {
+  opacity: 0;
 }
 </style>
