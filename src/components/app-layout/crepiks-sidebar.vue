@@ -24,7 +24,7 @@
           <transition name="link-fade">
             <div
               class="link link-ad"
-              @click="openAdBlock"
+              @click="$emit('open-ad-page')"
               v-if="isAdActive"
               key="link-ad"
             >

@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
+      <modal :isModalOpen="isModalOpen" @close-modal="isModalOpen = false">
         <div class="modal">
           <div class="modal-container">
             <h2 class="modal-title">Дальше нужен компьютер</h2>
