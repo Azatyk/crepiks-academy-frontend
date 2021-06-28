@@ -54,7 +54,7 @@
             placeholder="Придумайте пароль"
             v-model="password"
           />
-          <cButton class="form-button" text="Войти" />
+          <cButton class="form-button">Войти</cButton>
           <p class="form-text">
             <span class="form-text-info">Вы уже с нами?</span>
             <router-link class="form-text form-text-link" to="/auth/login"

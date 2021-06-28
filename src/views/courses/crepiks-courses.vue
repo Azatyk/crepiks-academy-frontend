@@ -25,7 +25,7 @@
             disabled
           />
           <div class="button-container">
-            <cButton text="Найти" size="small" :isDisabled="true" />
+            <cButton size="small" :isDisabled="true">Найти</cButton>
           </div>
         </div>
         <div class="courses-list">

@@ -38,7 +38,7 @@
               >условиями транзакций</span
             >
           </div>
-          <cButton class="payment-button" text="Оплатить 5000тг" @click="pay" />
+          <cButton class="payment-button" @click="pay">Оплатить 5000тг</cButton>
         </div>
         <div class="payment-card">
           <cInput
@@ -95,12 +95,9 @@
         </div>
       </div>
     </div>
-    <cButton
-      class="payment-button"
-      text="Оплатить 5000тг"
-      @click="pay"
-      v-if="!mobileWidth"
-    />
+    <cButton class="payment-button" @click="pay" v-if="!mobileWidth"
+      >Оплатить 5000тг</cButton
+    >
   </div>
 </template>
 

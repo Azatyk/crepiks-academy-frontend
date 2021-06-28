@@ -10,11 +10,9 @@
         Ты освоишь основы создание веб сайтов с помощью языка разметки HTML и
         таблицы каскадных стилей CSS
       </p>
-      <cButton
-        @click="$router.push('/auth/register')"
-        class="mockup-button"
-        text="Начать учиться"
-      />
+      <cButton @click="$router.push('/auth/register')" class="mockup-button"
+        >Начать учиться</cButton
+      >
     </div>
     <img
       class="mockup-image"

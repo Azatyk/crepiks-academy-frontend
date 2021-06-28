@@ -36,11 +36,9 @@
           <p class="main-info-description">
             {{ course.description.ru }}
           </p>
-          <cButton
-            text="Перейти к курсу"
-            class="main-info-button"
-            @click="handleToLessonButton()"
-          />
+          <cButton class="main-info-button" @click="handleToLessonButton()"
+            >Перейти к курсу</cButton
+          >
         </div>
         <div class="course-lessons">
           <div class="course-lessons-labels">

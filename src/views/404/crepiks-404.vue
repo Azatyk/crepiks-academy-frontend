@@ -9,7 +9,7 @@
         Мы не смогли найти такую страницу. Убедитесь, что вы не ошиблись в
         адресе страницы или вернитесь на главную
       </p>
-      <cButton text="На главную" class="notFound-button" @click="handleClick" />
+      <cButton class="notFound-button" @click="handleClick">На главную</cButton>
     </div>
   </div>
 </template>

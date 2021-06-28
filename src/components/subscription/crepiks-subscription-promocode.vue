@@ -23,10 +23,10 @@
       </div>
       <cButton
         class="promocode-button"
-        text="Использовать"
         :isLoading="isLoading"
         @click="handlePromocodeButton()"
-      />
+        >Использовать</cButton
+      >
     </rightSideBlock>
   </div>
 </template>

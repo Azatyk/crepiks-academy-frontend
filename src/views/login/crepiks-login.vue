@@ -33,7 +33,7 @@
             placeholder="Введите ваш пароль"
             v-model="password"
           />
-          <cButton class="form-button" :isLoading="isLoading" text="Войти" />
+          <cButton class="form-button" :isLoading="isLoading">Войти</cButton>
           <p class="form-text">
             <span class="form-text-info">Все ещё нет аккаунта?</span>
             <router-link class="form-text form-text-link" to="/auth/register"

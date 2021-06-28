@@ -8,16 +8,13 @@
       big: size == 'big',
       bold: isBold,
       disabled: isDisabled,
-      'loading-button': isLoading
+      'button-loading': isLoading
     }"
     @click="$emit('click')"
     @mouseover="$emit('mouseover')"
     @mouseout="$emit('mouseout')"
   >
-    <transition name="fade" mode="out-in">
-      <div class="loader loader-arc" v-if="isLoading"></div>
-      <span class="button-text" v-else>{{ text }}<slot></slot></span>
-    </transition>
+    <span class="button-content"><slot></slot></span>
   </button>
 </template>
 
@@ -54,6 +51,7 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .button {
+  position: relative;
   padding: 10px 25px;
   box-sizing: border-box;
   color: $white;
@@ -68,6 +66,40 @@ export default {
 
   &:hover {
     opacity: 0.7;
+  }
+
+  &-loading {
+    cursor: default;
+
+    & .button-content {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 11px;
+      height: 11px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border: 3.5px solid transparent;
+      border-top-color: $white;
+      border-radius: 50%;
+      transition: 250ms ease-in-out;
+      animation: button-loading-spinner 1s ease infinite;
+    }
+  }
+
+  &-content {
+    transition: 250ms ease-in-out;
   }
 }
 
@@ -98,66 +130,19 @@ export default {
   }
 }
 
-.loading-button {
-  position: relative;
-  height: 39px;
-  cursor: default;
-
-  &:hover {
-    opacity: 1;
-  }
-}
-
 @media (max-width: 375px) {
   .button {
     padding: 8px 20px;
   }
 }
 
-.loader {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  border-radius: 50%;
-}
-
-.loader:after {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  height: 12px;
-  width: 12px;
-  display: block;
-  border-radius: 50%;
-  background: $primary;
-}
-
-.loader-arc {
-  animation-name: spin;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  background-image: linear-gradient(270deg, $white 20%, transparent 50%),
-    linear-gradient(180deg, $primary 50%, $white 50%);
-}
-
-@keyframes spin {
+@keyframes button-loading-spinner {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0turn);
   }
+
   to {
-    transform: rotate(360deg);
+    transform: rotate(1turn);
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
 }
 </style>

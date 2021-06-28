@@ -4,11 +4,9 @@
       <div class="hint">
         <h2 class="hint-heading">Подсказка</h2>
         <div class="hint-text" v-html="hint"></div>
-        <cButton
-          class="hint-button"
-          text="Понятно"
-          @click="$emit('close-hint')"
-        />
+        <cButton class="hint-button" @click="$emit('close-hint')"
+          >Понятно</cButton
+        >
       </div>
     </vuescroll>
   </rightSideBlock>
