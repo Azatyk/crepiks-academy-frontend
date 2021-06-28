@@ -12,6 +12,10 @@ export default {
     return {
       isMobile: null
     };
+  },
+
+  mounted() {
+    this.$router.push("/");
   }
 };
 </script>

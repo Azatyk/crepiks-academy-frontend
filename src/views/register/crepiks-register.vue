@@ -9,7 +9,7 @@
         status="error"
       />
       <div class="register-content">
-        <router-link to="/" class="register-back">
+        <router-link to="/home" class="register-back">
           <i class="bx bx-arrow-back register-back-icon"></i>
           На главную
         </router-link>

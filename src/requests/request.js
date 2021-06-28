@@ -25,7 +25,7 @@ request.interceptors.response.use(
   err => {
     if (err.response.status === 401) {
       store.commit("logout");
-      router.push("/");
+      router.push("/home");
     }
     return Promise.reject(err);
   }
