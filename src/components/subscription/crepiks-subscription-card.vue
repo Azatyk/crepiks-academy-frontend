@@ -14,8 +14,8 @@
           @click="$emit('subscription-button-clicked')"
           :isBold="true"
           class="card-button"
-          text="Оформить подписку"
-        />
+          >Оформить подписку</cButton
+        >
         <span @click="$emit('promocode-opened')" class="card-promocode"
           >Есть промокод?</span
         >

@@ -36,11 +36,9 @@
           <p class="main-info-description">
             {{ course.description.ru }}
           </p>
-          <cButton
-            text="Перейти к курсу"
-            class="main-info-button"
-            @click="handleToLessonButton()"
-          />
+          <cButton class="main-info-button" @click="handleToLessonButton()"
+            >Перейти к курсу</cButton
+          >
         </div>
         <div class="course-lessons">
           <div class="course-lessons-labels">
@@ -72,7 +70,7 @@
           </div>
         </div>
       </div>
-      <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
+      <modal :isModalOpen="isModalOpen" @close-modal="isModalOpen = false">
         <div class="modal">
           <div class="modal-container">
             <h2 class="modal-title">Дальше нужен компьютер</h2>

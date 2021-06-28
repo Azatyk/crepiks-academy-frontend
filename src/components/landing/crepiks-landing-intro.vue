@@ -9,11 +9,8 @@
         Попробуй веб-программирования на практике. Мы подготовили для тебя
         небольшой бесплатный интерактив с основами создания сайтов
       </p>
-      <cButton
-        text="Перейти к интерактиву"
-        class="intro-button"
-        @click="$router.push('/auth/register')"
-        ><img
+      <cButton class="intro-button" @click="$router.push('/auth/register')"
+        >Перейти к интерактиву<img
           src="@/assets/images/cursor-icon.svg"
           alt="cursor-icon"
           class="intro-button-icon"

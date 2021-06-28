@@ -38,20 +38,20 @@
           <theoryText :theoryText="lesson.theory.ru" />
           <codemirror v-if="false" />
           <cButton
-            :text="
-              isLessonLast
-                ? 'Завершить курс'
-                : isTheoryOnly
-                ? 'Следующая тема'
-                : 'Перейти к заданию'
-            "
             :isBold="true"
             size="big"
             class="lesson-theory-button"
             @click="
               isTheoryOnly ? handleTheoryButton() : $emit('theory-closed')
             "
-          />
+            >{{
+              isLessonLast
+                ? "Завершить курс"
+                : isTheoryOnly
+                ? "Следующая тема"
+                : "Перейти к заданию"
+            }}</cButton
+          >
         </div>
       </div>
     </vuescroll>

@@ -35,11 +35,9 @@
             placeholder="Повторите новый пароль"
             type="password"
           />
-          <cButton
-            class="right-block-button"
-            text="Изменить"
-            @click="changePassword"
-          />
+          <cButton class="right-block-button" @click="changePassword"
+            >Изменить</cButton
+          >
         </div>
       </div>
     </rightSideBlock>

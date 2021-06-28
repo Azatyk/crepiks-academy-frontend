@@ -1,11 +1,11 @@
 <template>
   <div class="app-page">
-    <sidebar />
+    <sidebar @open-ad-page="isAdPageOpen = true" />
     <div class="app-page-content">
       <router-view></router-view>
     </div>
     <Logo class="logo" />
-    <modal :isModalOpen="isModalOpen" @modal-closed="isModalOpen = false">
+    <modal :isModalOpen="isModalOpen" @close-modal="isModalOpen = false">
       <h2 class="modal-heading">
         Добро пожаловать на платформу
         <span class="modal-heading-green">Crepiks</span>
@@ -37,6 +37,10 @@
         </transition>
       </div>
     </modal>
+    <ad-page
+      :is-modal-open="isAdPageOpen"
+      @close-modal="isAdPageOpen = false"
+    />
   </div>
 </template>
 
@@ -44,16 +48,19 @@
 import sidebar from "@/components/app-layout/crepiks-sidebar";
 import Logo from "@/components/common/crepiks-logo.vue";
 import modal from "@/components/common/crepiks-modal";
+import adPage from "@/components/common/crepiks-ad-page.vue";
 
 export default {
   components: {
     sidebar,
     Logo,
-    modal
+    modal,
+    "ad-page": adPage
   },
   data() {
     return {
       isModalOpen: false,
+      isAdPageOpen: false,
       faqs: [
         {
           question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",

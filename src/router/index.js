@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+import splashScreen from "@/views/splash-screen/crepiks-splash-screen";
+
 import landing from "@/views/landing/crepiks-landing";
 
 import register from "@/views/register/crepiks-register";
@@ -26,6 +28,14 @@ const routes = [
     component: emptyLayout,
     children: [
       {
+        path: "/",
+        name: "splash",
+        component: splashScreen,
+        meta: {
+          title: "Crepiks"
+        }
+      },
+      {
         path: "auth/register",
         name: "register",
         component: register,
@@ -44,7 +54,7 @@ const routes = [
         }
       },
       {
-        path: "",
+        path: "home",
         name: "landing",
         component: landing,
         meta: {

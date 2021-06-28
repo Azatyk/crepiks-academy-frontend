@@ -41,11 +41,9 @@
             v-model="updatedUser.phoneNumber"
             :maxlength="maxlength"
           />
-          <cButton
-            class="right-block-button"
-            text="Изменить"
-            @click="changeUserData"
-          />
+          <cButton class="right-block-button" @click="changeUserData"
+            >Изменить</cButton
+          >
         </div>
       </div>
     </rightSideBlock>

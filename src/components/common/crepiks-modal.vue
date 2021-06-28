@@ -5,7 +5,7 @@
       'modal-open': isModalOpen
     }"
   >
-    <i class="bx bx-x modal-close" @click="$emit('modal-closed')"></i>
+    <i class="bx bx-x modal-close" @click="$emit('close-modal')"></i>
     <vuescroll :ops="ops">
       <div class="content-full">
         <div class="content"><slot></slot></div>
@@ -23,6 +23,10 @@ export default {
       type: Boolean,
       default: false
     }
+    // wide: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
 
   data() {
@@ -41,9 +45,9 @@ export default {
           verticalNativeBarPos: "right"
         },
         rail: {
-          background: "#2d2c2c",
+          background: "#2d2c2c10",
           opacity: 0.2,
-          size: "13px",
+          size: "10px",
           specifyBorderRadius: "10px",
           gutterOfEnds: null,
           gutterOfSide: "8px",
@@ -53,12 +57,12 @@ export default {
           showDelay: 1000,
           onlyShowBarOnScroll: true,
           keepShow: true,
-          background: "#2d2c2c",
+          background: "#2d2c2c80",
           opacity: 0.3,
           hoverStyle: false,
           specifyBorderRadius: "5px",
           minSize: 0,
-          size: "13px",
+          size: "10px",
           disable: false
         }
       },
@@ -119,11 +123,12 @@ export default {
     right: 3%;
     font-size: 35px;
     opacity: 0.6;
+    transition: 200ms ease-in-out;
     cursor: pointer;
     z-index: 3;
 
     &:hover {
-      opacity: 0.9;
+      opacity: 0.4;
     }
   }
 }

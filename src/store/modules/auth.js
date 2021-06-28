@@ -69,7 +69,7 @@ export default {
       state.token = {};
       state.userData = null;
       window.localStorage.removeItem("token");
-      router.push("/");
+      router.push("/home");
     }
   },
   getters: {

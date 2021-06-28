@@ -6,6 +6,7 @@ import profile from "./modules/profile";
 import courses from "./modules/courses";
 import clientWidth from "./modules/clientWidth";
 import subscriptions from "./modules/subscriptions";
+import adStatus from "./modules/adStatus";
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     profile,
     courses,
     clientWidth,
-    subscriptions
+    subscriptions,
+    adStatus
   }
 });

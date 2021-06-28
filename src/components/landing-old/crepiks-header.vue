@@ -2,11 +2,9 @@
   <div class="header">
     <div class="header-content">
       <logo class="header-logo" />
-      <cButton
-        @click="$router.push('/auth/login')"
-        text="Войти"
-        type="unsolid"
-      />
+      <cButton @click="$router.push('/auth/login')" type="unsolid"
+        >Войти</cButton
+      >
     </div>
   </div>
 </template>

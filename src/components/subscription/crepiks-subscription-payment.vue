@@ -38,7 +38,7 @@
               >условиями транзакций</span
             >
           </div>
-          <cButton class="payment-button" text="Оплатить 5000тг" @click="pay" />
+          <cButton class="payment-button" @click="pay">Оплатить 5000тг</cButton>
         </div>
         <div class="payment-card">
           <cInput
@@ -95,12 +95,9 @@
         </div>
       </div>
     </div>
-    <cButton
-      class="payment-button"
-      text="Оплатить 5000тг"
-      @click="pay"
-      v-if="!mobileWidth"
-    />
+    <cButton class="payment-button" @click="pay" v-if="!mobileWidth"
+      >Оплатить 5000тг</cButton
+    >
   </div>
 </template>
 
@@ -140,7 +137,7 @@ export default {
       this.notificationHeading = "Оплата не доступна";
       this.notificationStatus = "warning";
       this.notificationText =
-        "Спасибо за желание приобрести подписку. На данный момень оплата недоступна. Для более подробной информации свяжитесь с поддержкой";
+        "Спасибо за желание приобрести подписку. На данный момент оплата недоступна. Для более подробной информации свяжитесь с поддержкой";
       // if (
       //   !this.cardName.trim() ||
       //   !this.cardMonth.trim() ||

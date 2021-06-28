@@ -9,7 +9,7 @@
         status="error"
       />
       <div class="login-content">
-        <router-link to="/" class="login-back">
+        <router-link to="/home" class="login-back">
           <i class="bx bx-arrow-back login-back-icon"></i>
           На главную
         </router-link>
@@ -33,7 +33,7 @@
             placeholder="Введите ваш пароль"
             v-model="password"
           />
-          <cButton class="form-button" :isLoading="isLoading" text="Войти" />
+          <cButton class="form-button" :isLoading="isLoading">Войти</cButton>
           <p class="form-text">
             <span class="form-text-info">Все ещё нет аккаунта?</span>
             <router-link class="form-text form-text-link" to="/auth/register"

@@ -9,7 +9,7 @@
         status="error"
       />
       <div class="register-content">
-        <router-link to="/" class="register-back">
+        <router-link to="/home" class="register-back">
           <i class="bx bx-arrow-back register-back-icon"></i>
           На главную
         </router-link>
@@ -54,7 +54,7 @@
             placeholder="Придумайте пароль"
             v-model="password"
           />
-          <cButton class="form-button" text="Войти" />
+          <cButton class="form-button">Войти</cButton>
           <p class="form-text">
             <span class="form-text-info">Вы уже с нами?</span>
             <router-link class="form-text form-text-link" to="/auth/login"
