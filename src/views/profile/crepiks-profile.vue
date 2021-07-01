@@ -118,17 +118,13 @@
             <courseCard
               v-for="course in courses"
               :key="course.id"
-              :image="firstCourseImage"
-              :id="course.id"
+              :course="course"
               @course-opened="
                 openCourseId = course.id;
                 isCourseOpen = true;
               "
-              :title="course.title.ru"
-              :description="course.description.ru"
               class="user-profile-courses-card"
               :progression="true"
-              :lessons="course.lessons"
               :completedLessons="course.completedLessons"
             />
           </div>
@@ -482,8 +478,12 @@ export default {
       margin-top: 30px;
     }
 
-    &-card:last-child {
-      margin-top: 60px;
+    &-card:first-child {
+      margin-top: 0;
+    }
+
+    &-card {
+      margin-top: 30px;
     }
   }
 }

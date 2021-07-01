@@ -29,34 +29,15 @@
           </div>
         </div>
         <div class="courses-list">
-          <div class="free-block">
-            <div class="free-block-label">Бесплатно</div>
-          </div>
           <courseCard
             class="course-card-block"
-            :image="firstCourseImage"
+            v-for="(course, index) in courses"
+            :key="index"
+            :course="course"
             @course-opened="
               openCourseId = 1;
-              isFirstCourseOpen = true;
+              isCourseOpen = true;
             "
-            :id="1"
-            title="Базовая верстка сайтов"
-            description="Узнайте как создаются сайты с нуля и создайте базовую верстку сайта с помощью HTML и CSS всего за пару вечеров"
-          />
-          <courseCard
-            class="course-card-block"
-            :image="secondCourseImage"
-            :id="2"
-            title="Продвинутая верстка сайтов"
-            description="Узнайте все тонкости современной верстки сайтов от сеток до градиентов и создайте свой первый одностраничный сайт"
-          />
-          <courseCard
-            class="course-card-block"
-            :image="thirdCourseImage"
-            :id="3"
-            title="Базовый JavaScript"
-            description="Сделайте свой сайт интерактивным и изучите один из самых популярных языков программирования JavaScript"
-            :isSoon="true"
           />
         </div>
       </div>
@@ -68,10 +49,10 @@
         />
       </div>
       <course
-        :isCourseOpen="isFirstCourseOpen"
+        :isCourseOpen="isCourseOpen"
         :id="openCourseId"
-        @open-course-block="isFirstCourseOpen = true"
-        @close-course-block="isFirstCourseOpen = false"
+        @open-course-block="isCourseOpen = true"
+        @close-course-block="isCourseOpen = false"
         @need-subscription-notification="
           notificationHeading = 'Курс доступен по подписке';
           notificationText =
@@ -103,10 +84,6 @@
 import cButton from "@/components/common/crepiks-button";
 import courseCard from "@/components/courses/crepiks-course-card";
 
-import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
-import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
-import thirdCourseImage from "@/assets/images/basic-js-image-small.png";
-
 import course from "@/components/courses/crepiks-course";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
 import notification from "@/components/common/crepiks-notification";
@@ -126,10 +103,8 @@ export default {
 
   data() {
     return {
-      firstCourseImage: firstCourseImage,
-      secondCourseImage: secondCourseImage,
-      thirdCourseImage: thirdCourseImage,
-      isFirstCourseOpen: false,
+      courses: [],
+      isCourseOpen: false,
       openCourseId: 0,
       notificationHeading: "",
       notificationText: "",
@@ -145,6 +120,7 @@ export default {
 
   mounted() {
     this.openAdNotification();
+    this.getCourses();
   },
 
   methods: {
@@ -156,6 +132,20 @@ export default {
         this.adNotificationImagePath = this.adNotificationImage;
         this.isAdNotificationActive = true;
       }, 2000);
+    },
+    getCourses() {
+      this.$store
+        .dispatch("getCourses")
+        .then(res => {
+          this.courses = res.data.courses;
+        })
+        .catch(() => {
+          this.isNotificationActive = true;
+          this.notificationHeading = "Не удалось получить курсы";
+          this.notificationStatus = "error";
+          this.notificationText =
+            "Проверьте ваше подключение к интернету и попробуйте снова";
+        });
     }
   }
 };
@@ -225,38 +215,13 @@ export default {
 }
 
 .courses-list {
-  position: relative;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
 }
 
-.free-block {
-  position: absolute;
-  left: -20px;
-  top: -20px;
-  width: 440px;
-  height: 140px;
-  border: 2px solid $primary;
-  border-radius: 10px;
-  z-index: 0;
-
-  &-label {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    width: 90px;
-    display: block;
-    color: $primary;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-    background-color: $background;
-  }
-}
-
 .course-card-block {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
 @media (max-width: 1024px) {

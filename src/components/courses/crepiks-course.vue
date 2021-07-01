@@ -28,7 +28,7 @@
         <div class="main-info">
           <v-lazy-image
             class="main-info-image"
-            :src="course.iconPath"
+            :src="course.imagePath"
             alt="Базовая верстка сайтов"
           />
 
@@ -117,7 +117,6 @@ export default {
       type: Boolean,
       default: false
     },
-
     id: {
       type: Number,
       required: true
@@ -134,6 +133,7 @@ export default {
           ru: ""
         },
         iconPath: "",
+        imagePath: "",
         lessons: [
           {
             id: null,
@@ -192,10 +192,10 @@ export default {
   },
 
   watch: {
-    async isCourseOpen() {
+    isCourseOpen() {
       if (this.isCourseOpen) {
         this.skeletonLoading = true;
-        await this.$store
+        this.$store
           .dispatch("getCourse", this.id)
           .then(res => {
             this.course = res.data.course;
@@ -210,7 +210,7 @@ export default {
           courseId: this.id
         };
 
-        await this.$store
+        this.$store
           .dispatch("getCompletedLessons", payload)
           .then(res => (this.completedLessons = res.data.completedLessons));
       }

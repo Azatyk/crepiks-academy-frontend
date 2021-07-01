@@ -1,15 +1,21 @@
 <template>
   <div class="course-card-wrapper">
+    <div class="free-block" v-if="course.free">
+      <div class="free-block-label">Бесплатно</div>
+    </div>
     <div class="course-card">
-      <img class="card-image" :src="image" :alt="title" />
+      <div class="card-image-wrapper">
+        <img class="card-image" :src="course.iconPath" :alt="course.title" />
+      </div>
       <div class="card-text">
-        <h2 class="card-text-title">{{ title }}</h2>
+        <h2 class="card-text-title">{{ course.title.ru }}</h2>
         <p class="card-text-description">
-          {{ description.substring(0, 99) + ".." }}
+          <!-- {{ course.description.substring(0, 99) + ".." }} -->
+          {{ course.description.ru.substring(0, 99) + ".." }}
         </p>
         <div
           class="card-link"
-          v-if="!isSoon && $route.fullPath !== '/app/courses/' + id"
+          v-if="!course.soon && $route.fullPath !== '/app/courses/' + course.id"
           @click="$emit('course-opened')"
         >
           <span class="card-link card-link-text">Перейти к курсу</span>
@@ -20,7 +26,8 @@
     </div>
     <div class="course-progression" :class="{ progression: progression }">
       <div class="course-progression-text">
-        Пройдено тем {{ completedLessons.length }} из {{ lessons.length }}
+        Пройдено тем {{ completedLessons.length }} из
+        {{ course.lessons.length }}
       </div>
       <div class="course-card-progression">
         <div :style="fill" class="course-card-progression-fill"></div>
@@ -32,31 +39,13 @@
 <script>
 export default {
   props: {
-    image: {
-      type: String
-    },
-    title: {
-      type: String
-    },
-    description: {
-      type: String
-    },
-    isSoon: {
-      type: Boolean,
-      default: false
-    },
-    id: {
-      type: Number
+    course: {
+      type: Object
     },
     progression: {
       type: Boolean,
       required: false,
       default: false
-    },
-    lessons: {
-      type: Array,
-      required: false,
-      default: () => []
     },
     completedLessons: {
       type: Array,
@@ -68,7 +57,7 @@ export default {
     fill() {
       return (
         "width: " +
-        (this.completedLessons.length / this.lessons.length) * 100 +
+        (this.completedLessons.length / this.course.lessons.length) * 100 +
         "%"
       );
     }
@@ -82,6 +71,7 @@ export default {
 .course-card-wrapper {
   width: 400px;
   z-index: 2;
+  position: relative;
 }
 
 .course-card {
@@ -106,11 +96,35 @@ export default {
 
 .course-progression {
   display: none;
-  margin-top: 20px;
+  margin-top: 35px;
 
   &-text {
     font-size: 14px;
     color: $light-dark;
+  }
+}
+
+.free-block {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 440px;
+  height: 140px;
+  border: 2px solid $primary;
+  border-radius: 10px;
+  z-index: 0;
+
+  &-label {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    width: 90px;
+    display: block;
+    color: $primary;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    background-color: $background;
   }
 }
 
@@ -119,9 +133,12 @@ export default {
 }
 
 .card-image {
-  margin-right: 10px;
-  height: 100px;
-  width: 100px;
+  &-wrapper {
+    margin-right: 10px;
+    width: 226px;
+  }
+
+  width: 100%;
 }
 
 .card-text {
@@ -177,6 +194,12 @@ export default {
   }
 }
 
+@media (max-width: 1024px) {
+  .free-block {
+    width: 107%;
+  }
+}
+
 @media (max-width: 460px) {
   .card-text {
     &-title {
@@ -212,6 +235,10 @@ export default {
   .card-image {
     width: 80px;
     height: 80px;
+  }
+
+  .free-block {
+    height: 115px;
   }
 }
 </style>
