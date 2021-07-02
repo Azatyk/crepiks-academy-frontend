@@ -76,7 +76,7 @@
             >
           </div>
         </div>
-        <div class="user-profile-courses" v-if="hasSubscription">
+        <div class="user-profile-courses">
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
           <div class="skeleton" v-if="isLoading">
             <div class="skeleton-container">
@@ -118,17 +118,14 @@
             <courseCard
               v-for="course in courses"
               :key="course.id"
-              :image="firstCourseImage"
-              :id="course.id"
+              :course="course"
+              :courseFreeProp="0"
               @course-opened="
                 openCourseId = course.id;
                 isCourseOpen = true;
               "
-              :title="course.title.ru"
-              :description="course.description.ru"
               class="user-profile-courses-card"
               :progression="true"
-              :lessons="course.lessons"
               :completedLessons="course.completedLessons"
             />
           </div>
@@ -251,7 +248,7 @@ export default {
       }
     }
   },
-  async mounted() {
+  mounted() {
     if (this.userData) {
       this.user = this.userData;
       this.hasSubscription = this.userData.subscription.hasSubscription;
@@ -259,12 +256,18 @@ export default {
 
     this.randomNumber = Math.floor(Math.random() * this.colors.length);
 
-    await this.$store
-      .dispatch("getOneUserCourses", this.userData.id)
-      .then(res => {
+    this.$store.dispatch("getOneUserCourses", this.userData.id).then(res => {
+      if (this.hasSubscription) {
         this.courses = res.data.courses;
-        this.isLoading = false;
-      });
+      } else {
+        for (let i = 0; i < res.data.courses.length; i++) {
+          if (res.data.courses[i].free) {
+            this.courses.push(res.data.courses[i]);
+          }
+        }
+      }
+      this.isLoading = false;
+    });
   },
   watch: {
     userData() {
@@ -482,8 +485,12 @@ export default {
       margin-top: 30px;
     }
 
-    &-card:last-child {
-      margin-top: 60px;
+    &-card:first-child {
+      margin-top: 0;
+    }
+
+    &-card {
+      margin-top: 30px;
     }
   }
 }
