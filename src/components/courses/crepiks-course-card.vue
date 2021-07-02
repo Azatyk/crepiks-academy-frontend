@@ -115,7 +115,7 @@ export default {
   height: 140px;
   border: 2px solid $primary;
   border-radius: 10px;
-  z-index: 0;
+  z-index: -1;
 
   &-label {
     position: absolute;
