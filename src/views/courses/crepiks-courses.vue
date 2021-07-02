@@ -34,6 +34,7 @@
             v-for="(course, index) in courses"
             :key="index"
             :course="course"
+            :courseFreeProp="course.free"
             @course-opened="
               openCourseId = 1;
               isCourseOpen = true;

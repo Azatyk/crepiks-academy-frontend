@@ -1,6 +1,6 @@
 <template>
   <div class="course-card-wrapper">
-    <div class="free-block" v-if="course.free">
+    <div class="free-block" v-if="courseFreeProp">
       <div class="free-block-label">Бесплатно</div>
     </div>
     <div class="course-card">
@@ -10,7 +10,6 @@
       <div class="card-text">
         <h2 class="card-text-title">{{ course.title.ru }}</h2>
         <p class="card-text-description">
-          <!-- {{ course.description.substring(0, 99) + ".." }} -->
           {{ course.description.ru.substring(0, 99) + ".." }}
         </p>
         <div
@@ -41,6 +40,10 @@ export default {
   props: {
     course: {
       type: Object
+    },
+    courseFreeProp: {
+      type: Number,
+      default: 0
     },
     progression: {
       type: Boolean,
@@ -96,7 +99,7 @@ export default {
 
 .course-progression {
   display: none;
-  margin-top: 35px;
+  margin-top: 10px;
 
   &-text {
     font-size: 14px;
