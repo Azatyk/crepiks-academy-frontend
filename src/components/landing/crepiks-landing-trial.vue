@@ -266,6 +266,7 @@ export default {
       font-weight: 500;
       z-index: 2;
       transition: 200ms ease-in-out;
+      cursor: pointer;
 
       &:hover {
         opacity: 0.6;
