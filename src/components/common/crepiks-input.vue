@@ -59,7 +59,6 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .input-container {
-  width: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
