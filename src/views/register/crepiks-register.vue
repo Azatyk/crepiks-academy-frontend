@@ -53,7 +53,7 @@
             "
             class="register-form-container"
             subtitle="Еще пару вопросов"
-            title="Привет!"
+            :title="'Привет, ' + firstName + '!'"
             buttonText="Далее"
             :activeForm="activeForm"
             v-if="activeForm == 'contacts'"
