@@ -14,53 +14,93 @@
           На главную
         </router-link>
         <cForm
-          @submit="register"
-          class="form-container"
-          subtitle="Добро пожаловать"
-          title="Создайте аккаунт"
+          @main-button-clicked="
+            checkIsFormTrim('contacts', firstName, lastName)
+          "
+          class="register-form-container"
+          subtitle="Мы — Crepiks. А ты?"
+          title="Мы кажется не знакомы."
+          buttonText="Далее"
+          :activeForm="activeForm"
+          v-if="activeForm == 'credentials'"
+          @contacts-button-clicked="
+            checkIsFormTrim('contacts', firstName, lastName)
+          "
+          @additional-button-clicked="
+            checkIsFormTrim('contacts', firstName, lastName)
+          "
         >
           <cInput
-            class="form-input"
+            class="register-form-input"
             title="Имя"
             type="text"
-            placeholder="Как вас зовут?"
+            placeholder="Как тебя зовут?"
             v-model="firstName"
           />
           <cInput
-            class="form-input"
+            class="register-form-input"
             title="Фамилия"
             type="text"
-            placeholder="Какая у вас фамилия?"
+            placeholder="Какая у тебя фамилия?"
             v-model="lastName"
           />
+        </cForm>
+        <cForm
+          @main-button-clicked="
+            checkIsFormTrim('additional', email, phoneNumber)
+          "
+          class="register-form-container"
+          subtitle="Еще пару вопросов"
+          :title="'Привет, ' + firstName + '!'"
+          buttonText="Далее"
+          :activeForm="activeForm"
+          v-if="activeForm == 'contacts'"
+          @credentials-button-clicked="activeForm = 'credentials'"
+          @additional-button-clicked="
+            checkIsFormTrim('additional', email, phoneNumber)
+          "
+        >
           <cInput
-            class="form-input"
+            class="register-form-input"
             title="Почта"
             type="email"
             placeholder="Введите вашу почту"
             v-model="email"
           />
           <cInput
-            class="form-input"
+            class="register-form-input"
             title="Номер"
             v-mask="'+7(###)-###-##-##'"
             v-model="phoneNumber"
             placeholder="+7(707)-777-77-77"
           />
+        </cForm>
+        <cForm
+          @main-button-clicked="register"
+          class="register-form-container"
+          subtitle="Мы правда рады, что ты тут"
+          title="И последний шаг"
+          buttonText="Завершить"
+          :activeForm="activeForm"
+          v-if="activeForm == 'additional'"
+          :isLoading="isLoading"
+          @credentials-button-clicked="activeForm = 'credentials'"
+          @contacts-button-clicked="activeForm = 'contacts'"
+        >
+          <selectCheckbox
+            class="register-form-select"
+            title="Пол"
+            :options="selectOptions"
+            :chosenOption="chosenSelectOption"
+            @option-clicked="selectOptionClicked"
+          />
           <cInput
-            class="form-input"
+            class="register-form-input"
             title="Пароль"
             type="password"
             placeholder="Придумайте пароль"
             v-model="password"
           />
-          <cButton class="form-button">Войти</cButton>
-          <p class="form-text">
-            <span class="form-text-info">Вы уже с нами?</span>
-            <router-link class="form-text form-text-link" to="/auth/login"
-              >Войдите в аккаунт!</router-link
-            >
-          </p>
         </cForm>
       </div>
     </div>
@@ -68,19 +108,18 @@
 </template>
 
 <script>
-import cForm from "@/components/common/crepiks-form";
+import cForm from "@/components/register/crepiks-form-register";
 import cInput from "@/components/common/crepiks-input";
-import cButton from "@/components/common/crepiks-button";
+import selectCheckbox from "@/components/common/crepiks-select-checkbox";
 import notification from "@/components/common/crepiks-notification";
 
 export default {
   components: {
     cForm,
     cInput,
-    cButton,
+    selectCheckbox,
     notification
   },
-
   data() {
     return {
       firstName: "",
@@ -91,19 +130,15 @@ export default {
       isNotificationOpen: false,
       notificationHeading: "",
       notificationText: "",
-      isLoading: false
+      isLoading: false,
+      activeForm: "credentials",
+      selectOptions: ["Мужской", "Женский", "Не указывать"],
+      chosenSelectOption: "Мужской"
     };
   },
-
   methods: {
     register() {
-      if (
-        this.firstName.trim() &&
-        this.lastName.trim() &&
-        this.email.trim() &&
-        this.phoneNumber.trim() &&
-        this.password.trim()
-      ) {
+      if (this.password.trim()) {
         this.isLoading = true;
 
         const user = {
@@ -137,14 +172,28 @@ export default {
             this.isNotificationOpen = true;
             (this.notificationHeading = "Что-то пошло нет так"),
               (this.notificationText =
-                "Проверьте ваше подключение к интернету и попробуйте еще раз");
+                "Проверь подключение к интернету и попробуй еще раз");
           });
       } else {
         this.isLoading = false;
         this.isNotificationOpen = true;
-        this.notificationHeading = "Заполните все поля";
+        this.notificationHeading = "Заполни все поля";
         this.notificationText =
-          "Мы не сможем создать вам аккаунт, если вы не расскажите о себе";
+          "ы не сможем создать тебе аккаунт, если ты не расскажешь о себе";
+      }
+    },
+    selectOptionClicked(option) {
+      this.chosenSelectOption = option;
+    },
+    checkIsFormTrim(nextFormName, fisrtValue, secondValue) {
+      if (fisrtValue.trim() && secondValue.trim()) {
+        this.activeForm = nextFormName;
+      } else {
+        this.isLoading = false;
+        this.isNotificationOpen = true;
+        this.notificationHeading = "Заполни все поля";
+        this.notificationText =
+          "Мы не сможем создать тебе аккаунт, если ты не расскажешь о себе";
       }
     }
   }
@@ -154,96 +203,94 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.register-page {
-  width: 100%;
-  height: 100vh;
-  background-color: $background;
-}
-
-.register-content {
-  padding: 0.1px 0;
-  margin: auto;
-  width: 100%;
-  max-width: 1140px;
-  height: 100%;
-}
-
-.register-back {
-  position: relative;
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  color: $primary;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  margin-left: 30px;
-  z-index: 3;
-
-  &-icon {
-    margin-right: 5px;
-    font-size: 20px;
-  }
-}
-
-.form-container {
-  position: absolute;
-  width: 100%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.form-input {
-  margin-bottom: 20px;
-}
-
-.form-button {
-  margin-top: 10px;
-  width: 100%;
-}
-
-.form-text {
-  margin-top: 15px;
-  width: 100%;
-  color: $dark;
-  font-size: 14px;
-  font-weight: 500;
-  opacity: 1;
-
-  &-info {
-    margin-right: 5px;
-    opacity: 0.5;
+.register {
+  &-page {
+    width: 100%;
+    height: 100vh;
+    background-color: $background;
   }
 
-  &-link {
-    margin: 0;
+  &-content {
+    padding: 0.1px 0;
+    margin: auto;
+    width: 100%;
+    max-width: 1140px;
+    height: 100%;
+  }
+
+  &-back {
+    position: relative;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
     color: $primary;
+    font-size: 16px;
+    font-weight: 500;
     text-decoration: none;
-    opacity: 0.7;
-    transition: 200ms ease-in-out;
+    margin-left: 30px;
+    z-index: 3;
 
-    &:hover {
-      opacity: 1;
+    &-icon {
+      margin-right: 5px;
+      font-size: 20px;
+    }
+  }
+
+  &-form {
+    &-container {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    &-input {
+      margin-bottom: 20px;
+    }
+
+    &-select {
+      margin-bottom: 28px;
     }
   }
 }
 
-@media (max-width: 560px) {
-  .register-back {
-    margin-top: 30px;
-    font-size: 14px;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 
-  .form-input {
-    margin-bottom: 15px;
+@media (max-width: 560px) {
+  .register {
+    &-back {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    &-form {
+      &-input {
+        margin-bottom: 15px;
+      }
+
+      &-select {
+        margin-bottom: 23px;
+      }
+    }
   }
 }
 
 @media (max-width: 374px) {
-  .form-text {
-    font-size: 12px;
+  .register {
+    &-form {
+      &-text {
+        font-size: 12px;
+      }
+    }
   }
 }
 
