@@ -2,12 +2,16 @@
   <div class="form-container">
     <logo class="logo" />
     <div class="form">
-      <h1 class="form-title">{{ title }}</h1>
-      <h2 class="form-subtitle">{{ subtitle }}</h2>
-      <slot></slot>
-      <cButton class="form-button" @click="$emit('main-button-clicked')">{{
-        buttonText
-      }}</cButton>
+      <transition name="fade" mode="out-in">
+        <div class="form-inner" v-if="true" :key="activeForm">
+          <h1 class="form-title">{{ title }}</h1>
+          <h2 class="form-subtitle">{{ subtitle }}</h2>
+          <slot></slot>
+          <cButton class="form-button" @click="$emit('main-button-clicked')">{{
+            buttonText
+          }}</cButton>
+        </div>
+      </transition>
       <p class="form-text">
         <span class="form-text-info">Ты уже с нами?</span>
         <router-link class="form-text form-text-link" to="/auth/login"
@@ -81,6 +85,10 @@ export default {
   border-radius: 20px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.05);
 
+  &-inner {
+    width: 100%;
+  }
+
   &-container {
     margin: auto;
     display: flex;
@@ -94,6 +102,7 @@ export default {
     font-weight: 500;
     opacity: 0.5;
     margin-bottom: 20px;
+    text-align: center;
   }
 
   &-title {
@@ -102,6 +111,7 @@ export default {
     font-weight: 500;
     opacity: 0.8;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   &-button {
@@ -168,6 +178,15 @@ export default {
   margin-right: -15px; // точка в логотипе создает ощущение, что логотип расположен не по центру и по этому приходится ровнять визуально с помощью отрицательного margin
   width: 170px;
   opacity: 0.8;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @media (max-width: 560px) {

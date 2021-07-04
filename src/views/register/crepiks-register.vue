@@ -13,99 +13,94 @@
           <i class="bx bx-arrow-back register-back-icon"></i>
           На главную
         </router-link>
-        <transition name="fade" mode="out-in">
-          <cForm
-            @main-button-clicked="
-              checkIsFormTrim('contacts', firstName, lastName)
-            "
-            class="register-form-container"
-            subtitle="Мы — Crepiks. А ты?"
-            title="Мы кажется не знакомы."
-            buttonText="Далее"
-            :activeForm="activeForm"
-            v-if="activeForm == 'credentials'"
-            @contacts-button-clicked="
-              checkIsFormTrim('contacts', firstName, lastName)
-            "
-            @additional-button-clicked="
-              checkIsFormTrim('contacts', firstName, lastName)
-            "
-            key="credentials"
-          >
-            <cInput
-              class="register-form-input"
-              title="Имя"
-              type="text"
-              placeholder="Как тебя зовут?"
-              v-model="firstName"
-            />
-            <cInput
-              class="register-form-input"
-              title="Фамилия"
-              type="text"
-              placeholder="Какая у тебя фамилия?"
-              v-model="lastName"
-            />
-          </cForm>
-          <cForm
-            @main-button-clicked="
-              checkIsFormTrim('additional', email, phoneNumber)
-            "
-            class="register-form-container"
-            subtitle="Еще пару вопросов"
-            :title="'Привет, ' + firstName + '!'"
-            buttonText="Далее"
-            :activeForm="activeForm"
-            v-if="activeForm == 'contacts'"
-            @credentials-button-clicked="activeForm = 'credentials'"
-            @additional-button-clicked="
-              checkIsFormTrim('additional', email, phoneNumber)
-            "
-            key="contacts"
-          >
-            <cInput
-              class="register-form-input"
-              title="Почта"
-              type="email"
-              placeholder="Введите вашу почту"
-              v-model="email"
-            />
-            <cInput
-              class="register-form-input"
-              title="Номер"
-              v-mask="'+7(###)-###-##-##'"
-              v-model="phoneNumber"
-              placeholder="+7(707)-777-77-77"
-            />
-          </cForm>
-          <cForm
-            @main-button-clicked="register"
-            class="register-form-container"
-            subtitle="Мы правда рады, что ты тут"
-            title="И последний шаг"
-            buttonText="Завершить"
-            :activeForm="activeForm"
-            v-if="activeForm == 'additional'"
-            @credentials-button-clicked="activeForm = 'credentials'"
-            @contacts-button-clicked="activeForm = 'contacts'"
-            key="additional"
-          >
-            <selectCheckbox
-              class="register-form-select"
-              title="Пол"
-              :options="selectOptions"
-              :chosenOption="chosenSelectOption"
-              @option-clicked="selectOptionClicked"
-            />
-            <cInput
-              class="register-form-input"
-              title="Пароль"
-              type="password"
-              placeholder="Придумайте пароль"
-              v-model="password"
-            />
-          </cForm>
-        </transition>
+        <cForm
+          @main-button-clicked="
+            checkIsFormTrim('contacts', firstName, lastName)
+          "
+          class="register-form-container"
+          subtitle="Мы — Crepiks. А ты?"
+          title="Мы кажется не знакомы."
+          buttonText="Далее"
+          :activeForm="activeForm"
+          v-if="activeForm == 'credentials'"
+          @contacts-button-clicked="
+            checkIsFormTrim('contacts', firstName, lastName)
+          "
+          @additional-button-clicked="
+            checkIsFormTrim('contacts', firstName, lastName)
+          "
+        >
+          <cInput
+            class="register-form-input"
+            title="Имя"
+            type="text"
+            placeholder="Как тебя зовут?"
+            v-model="firstName"
+          />
+          <cInput
+            class="register-form-input"
+            title="Фамилия"
+            type="text"
+            placeholder="Какая у тебя фамилия?"
+            v-model="lastName"
+          />
+        </cForm>
+        <cForm
+          @main-button-clicked="
+            checkIsFormTrim('additional', email, phoneNumber)
+          "
+          class="register-form-container"
+          subtitle="Еще пару вопросов"
+          :title="'Привет, ' + firstName + '!'"
+          buttonText="Далее"
+          :activeForm="activeForm"
+          v-if="activeForm == 'contacts'"
+          @credentials-button-clicked="activeForm = 'credentials'"
+          @additional-button-clicked="
+            checkIsFormTrim('additional', email, phoneNumber)
+          "
+        >
+          <cInput
+            class="register-form-input"
+            title="Почта"
+            type="email"
+            placeholder="Введите вашу почту"
+            v-model="email"
+          />
+          <cInput
+            class="register-form-input"
+            title="Номер"
+            v-mask="'+7(###)-###-##-##'"
+            v-model="phoneNumber"
+            placeholder="+7(707)-777-77-77"
+          />
+        </cForm>
+        <cForm
+          @main-button-clicked="register"
+          class="register-form-container"
+          subtitle="Мы правда рады, что ты тут"
+          title="И последний шаг"
+          buttonText="Завершить"
+          :activeForm="activeForm"
+          v-if="activeForm == 'additional'"
+          @credentials-button-clicked="activeForm = 'credentials'"
+          @contacts-button-clicked="activeForm = 'contacts'"
+        >
+          <selectCheckbox
+            class="register-form-select"
+            title="Пол"
+            :options="selectOptions"
+            :chosenOption="chosenSelectOption"
+            @option-clicked="selectOptionClicked"
+          />
+          <cInput
+            class="register-form-input"
+            title="Пароль"
+            type="password"
+            placeholder="Придумайте пароль"
+            v-model="password"
+          />
+        </cForm>
       </div>
     </div>
   </transition>
