@@ -13,17 +13,23 @@
           <i class="bx bx-arrow-back register-back-icon"></i>
           На главную
         </router-link>
-        <transition name="fade">
+        <transition name="fade" mode="out-in">
           <cForm
-            @main-button-clicked="activeForm = 'contacts'"
+            @main-button-clicked="
+              checkIsFormTrim('contacts', firstName, lastName)
+            "
             class="register-form-container"
             subtitle="Мы — Crepiks. А ты?"
             title="Мы кажется не знакомы."
             buttonText="Далее"
             :activeForm="activeForm"
             v-if="activeForm == 'credentials'"
-            @contacts-button-clicked="activeForm = 'contacts'"
-            @additional-button-clicked="activeForm = 'additional'"
+            @contacts-button-clicked="
+              checkIsFormTrim('contacts', firstName, lastName)
+            "
+            @additional-button-clicked="
+              checkIsFormTrim('contacts', firstName, lastName)
+            "
             key="credentials"
           >
             <cInput
@@ -42,7 +48,9 @@
             />
           </cForm>
           <cForm
-            @main-button-clicked="activeForm = 'additional'"
+            @main-button-clicked="
+              checkIsFormTrim('additional', email, phoneNumber)
+            "
             class="register-form-container"
             subtitle="Еще пару вопросов"
             title="Привет!"
@@ -50,7 +58,9 @@
             :activeForm="activeForm"
             v-if="activeForm == 'contacts'"
             @credentials-button-clicked="activeForm = 'credentials'"
-            @additional-button-clicked="activeForm = 'additional'"
+            @additional-button-clicked="
+              checkIsFormTrim('additional', email, phoneNumber)
+            "
             key="contacts"
           >
             <cInput
@@ -132,13 +142,7 @@ export default {
   },
   methods: {
     register() {
-      if (
-        this.firstName.trim() &&
-        this.lastName.trim() &&
-        this.email.trim() &&
-        this.phoneNumber.trim() &&
-        this.password.trim()
-      ) {
+      if (this.password.trim()) {
         this.isLoading = true;
 
         const user = {
@@ -172,18 +176,29 @@ export default {
             this.isNotificationOpen = true;
             (this.notificationHeading = "Что-то пошло нет так"),
               (this.notificationText =
-                "Проверьте ваше подключение к интернету и попробуйте еще раз");
+                "Проверь подключение к интернету и попробуй еще раз");
           });
       } else {
         this.isLoading = false;
         this.isNotificationOpen = true;
-        this.notificationHeading = "Заполните все поля";
+        this.notificationHeading = "Заполни все поля";
         this.notificationText =
-          "Мы не сможем создать вам аккаунт, если вы не расскажите о себе";
+          "ы не сможем создать тебе аккаунт, если ты не расскажешь о себе";
       }
     },
     selectOptionClicked(option) {
       this.chosenSelectOption = option;
+    },
+    checkIsFormTrim(nextFormName, fisrtValue, secondValue) {
+      if (fisrtValue.trim() && secondValue.trim()) {
+        this.activeForm = nextFormName;
+      } else {
+        this.isLoading = false;
+        this.isNotificationOpen = true;
+        this.notificationHeading = "Заполни все поля";
+        this.notificationText =
+          "Мы не сможем создать тебе аккаунт, если ты не расскажешь о себе";
+      }
     }
   }
 };
