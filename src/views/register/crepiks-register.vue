@@ -83,6 +83,7 @@
           buttonText="Завершить"
           :activeForm="activeForm"
           v-if="activeForm == 'additional'"
+          :isLoading="isLoading"
           @credentials-button-clicked="activeForm = 'credentials'"
           @contacts-button-clicked="activeForm = 'contacts'"
         >

@@ -7,9 +7,12 @@
           <h1 class="form-title">{{ title }}</h1>
           <h2 class="form-subtitle">{{ subtitle }}</h2>
           <slot></slot>
-          <cButton class="form-button" @click="$emit('main-button-clicked')">{{
-            buttonText
-          }}</cButton>
+          <cButton
+            class="form-button"
+            @click="$emit('main-button-clicked')"
+            :isLoading="isLoading"
+            >{{ buttonText }}</cButton
+          >
         </div>
       </transition>
       <p class="form-text">
@@ -66,6 +69,9 @@ export default {
     },
     activeForm: {
       type: String
+    },
+    isLoading: {
+      type: Boolean
     }
   }
 };
