@@ -92,7 +92,7 @@
             <lessonTasks :lesson="lesson" :lessons="lessons" />
             <hint
               :isOpen="isHintOpen"
-              :hint="lesson.hint.ru"
+              :hint="lesson.hint"
               @close-hint="isHintOpen = false"
             />
           </div>
@@ -175,15 +175,10 @@ export default {
       isTheoryOnly: false,
       isLoading: true,
       lesson: {
-        title: {
-          ru: ""
-        },
-        theory: {
-          ru: ""
-        },
-        description: {
-          ru: ""
-        },
+        title: "",
+        theoryBlocks: [],
+        theoryBlocksContent: [],
+        description: "",
         tasks: [
           {
             description: {
@@ -191,16 +186,13 @@ export default {
             }
           }
         ],
-        hint: {
-          ru: ""
-        }
+        hintBlocks: [],
+        hintBlocksContent: []
       },
       lessons: [
         {
           id: null,
-          title: {
-            ru: ""
-          }
+          title: ""
         }
       ],
       completedLessons: [],
@@ -251,7 +243,7 @@ export default {
     await this.getLesson();
     await this.getCompletedLessons();
 
-    if (!this.lesson.description.ru) {
+    if (!this.lesson.description) {
       this.isTheoryOnly = true;
     } else {
       this.isTheoryOnly = false;
@@ -288,6 +280,7 @@ export default {
         .dispatch("getLesson", { courseId, lessonId })
         .then(res => {
           this.lesson = res.data.lesson;
+          console.log(res.data.lesson);
           this.htmlCode = this.lesson.htmlCode;
           this.cssCode = this.lesson.cssCode;
           this.isLoading = false;

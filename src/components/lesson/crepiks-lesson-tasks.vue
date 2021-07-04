@@ -2,7 +2,7 @@
   <div class="tasks" :class="{ 'tasks-closed': !isOpen }">
     <div class="tasks-header" @click="isOpen = !isOpen">
       <h3 class="tasks-header-title">
-        Тема {{ getLessonIndex() }}: {{ lesson.title.ru }}
+        Тема {{ getLessonIndex() }}: {{ lesson.title }}
       </h3>
       <i
         class="bx bx-chevron-down tasks-header-icon"
@@ -15,7 +15,7 @@
           class="tasks-description"
           :class="{ 'tasks-description-hidden': !isOpen }"
         >
-          {{ lesson.description.ru }}
+          {{ lesson.description }}
         </p>
         <div
           class="task"
@@ -24,7 +24,7 @@
           :key="index"
         >
           <span class="task-dash">—</span>
-          <span class="task-text">{{ task.description.ru }}</span>
+          <span class="task-text">{{ task.description }}</span>
         </div>
       </div>
     </vuescroll>

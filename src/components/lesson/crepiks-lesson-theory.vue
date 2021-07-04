@@ -34,8 +34,11 @@
           </div>
         </div>
         <div class="content" v-else>
-          <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
-          <theoryText :theoryText="lesson.theory.ru" />
+          <h1 class="lesson-theory-title">{{ lesson.title }}</h1>
+          <runtime-text
+            :theoryBlocks="lesson.theoryBlocks"
+            :theoryBlocksContent="lesson.theoryBlocksContent"
+          />
           <codemirror v-if="false" />
           <cButton
             :isBold="true"
@@ -62,7 +65,7 @@
 import cButton from "@/components/common/crepiks-button";
 
 import vuescroll from "vuescroll";
-import theoryText from "@/components/lesson/crepiks-theory-text";
+import runtimeText from "@/components/lesson/crepiks-lesson-runtime-text";
 
 export default {
   props: {
@@ -88,6 +91,12 @@ export default {
     isLoading: {
       type: Boolean
     }
+  },
+
+  components: {
+    cButton,
+    vuescroll,
+    "runtime-text": runtimeText
   },
 
   data() {
@@ -142,12 +151,6 @@ export default {
         line: true
       }
     };
-  },
-
-  components: {
-    cButton,
-    vuescroll,
-    theoryText
   },
 
   methods: {

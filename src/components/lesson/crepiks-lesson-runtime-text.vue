@@ -1,6 +1,11 @@
 <template>
   <div>
-    <runtimeTemplate :template="theoryText"></runtimeTemplate>
+    <runtimeTemplate
+      v-for="(theoryBlock, index) in theoryBlocks"
+      class="block"
+      :key="index"
+      :template="theoryBlock"
+    ></runtimeTemplate>
     <codemirror v-if="false" />
   </div>
 </template>
@@ -15,9 +20,13 @@ import runtimeTemplate from "v-runtime-template";
 
 export default {
   props: {
-    theoryText: {
-      type: String,
-      required: false
+    theoryBlocks: {
+      type: Array,
+      required: true
+    },
+    theoryBlocksContent: {
+      type: Array,
+      required: true
     }
   },
 
@@ -28,6 +37,7 @@ export default {
 
   data() {
     return {
+      contentTexts: this.theoryBlocksContent,
       html: {
         readOnly: true,
         tabSize: 4,
@@ -84,5 +94,10 @@ export default {
   padding: 20px 0;
   box-sizing: border-box;
   background-color: $white;
+}
+
+.block {
+  margin-bottom: 20px;
+  width: 100%;
 }
 </style>

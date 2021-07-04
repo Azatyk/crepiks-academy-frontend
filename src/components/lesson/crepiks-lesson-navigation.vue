@@ -14,7 +14,7 @@
       ></i>
     </div>
     <h2 class="navigation-title">
-      Тема {{ getLessonIndex() + 1 }}: {{ lesson.title.ru }}
+      Тема {{ getLessonIndex() + 1 }}: {{ lesson.title }}
     </h2>
     <div class="navigation-divide-line"></div>
     <vuescroll :ops="ops">
@@ -29,7 +29,7 @@
         >
           <div class="navigation-lesson-text">
             <span class="navigation-lesson-number">{{ index + 1 }}.</span>
-            <span class="navigation-lesson-title">{{ lesson.title.ru }}</span>
+            <span class="navigation-lesson-title">{{ lesson.title }}</span>
           </div>
           <div
             class="navigation-lesson-status"
