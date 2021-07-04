@@ -72,7 +72,7 @@ export default {
       if (this.isActive) {
         this.setTimeoutId = setTimeout(() => {
           this.$emit("close-notification");
-        }, 1200000);
+        }, 7000);
       }
     }
   },
