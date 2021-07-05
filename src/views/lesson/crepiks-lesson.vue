@@ -280,7 +280,6 @@ export default {
         .dispatch("getLesson", { courseId, lessonId })
         .then(res => {
           this.lesson = res.data.lesson;
-          console.log(res.data.lesson);
           this.htmlCode = this.lesson.htmlCode;
           this.cssCode = this.lesson.cssCode;
           this.isLoading = false;

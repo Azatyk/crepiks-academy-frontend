@@ -97,7 +97,39 @@ export default {
 }
 
 .block {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 100%;
+}
+
+.text-block {
+  color: $dark;
+  font-size: 20px;
+  line-height: 180%;
+}
+
+.image-block {
+  width: 100%;
+  border-radius: 10px;
+}
+</style>
+
+<style lang="scss">
+.code-editor-block .CodeMirror {
+  width: 750px !important;
+  height: auto !important;
+  min-height: 0px !important;
+  font-size: 18px;
+  border: 1px solid #3c3c3c10;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+  z-index: 3 !important;
+}
+
+.code-editor-block .CodeMirror-code {
+  padding: 20px 0;
+}
+
+.code-editor-block .CodeMirror-cursor {
+  display: none;
 }
 </style>

@@ -251,13 +251,6 @@ export default {
     font-weight: 700;
   }
 
-  &-text {
-    margin-bottom: 50px;
-    color: $dark;
-    font-size: 20px;
-    line-height: 150%;
-  }
-
   &-button {
     width: 220px;
   }
@@ -293,14 +286,5 @@ export default {
     width: 100%;
     margin-top: 30px;
   }
-}
-</style>
-
-<style lang="scss">
-.CodeMirror {
-  width: 750px !important;
-  min-height: 0px !important;
-  height: auto !important;
-  z-index: 3 !important;
 }
 </style>
