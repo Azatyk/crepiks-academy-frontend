@@ -36,8 +36,8 @@
         <div class="content" v-else>
           <h1 class="lesson-theory-title">{{ lesson.title }}</h1>
           <runtime-text
-            :theoryBlocks="lesson.theoryBlocks"
-            :theoryBlocksContent="lesson.theoryBlocksContent"
+            :blocks="lesson.theoryBlocks"
+            :contentTexts="lesson.theoryBlocksContent"
           />
           <codemirror v-if="false" />
           <cButton
