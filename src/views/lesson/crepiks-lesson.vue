@@ -181,9 +181,7 @@ export default {
         description: "",
         tasks: [
           {
-            description: {
-              ru: ""
-            }
+            descriptionRu: ""
           }
         ],
         hintBlocks: [],
