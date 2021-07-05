@@ -33,7 +33,7 @@ export default {
   background-color: $white;
   transition: transform 400ms ease-in-out;
   will-change: transform;
-  z-index: 3;
+  z-index: 4;
 
   &-open {
     -moz-transform: translateX(-100%);

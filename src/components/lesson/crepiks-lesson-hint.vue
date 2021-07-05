@@ -3,7 +3,7 @@
     <vuescroll :ops="ops">
       <div class="hint">
         <h2 class="hint-heading">Подсказка</h2>
-        <div class="hint-text" v-html="hint"></div>
+        <runtime-text :blocks="hintBlocks" :contentTexts="hintBlocksContent" />
         <cButton class="hint-button" @click="$emit('close-hint')"
           >Понятно</cButton
         >
@@ -16,6 +16,7 @@
 import rightSideBlock from "@/components/common/crepiks-right-side-block";
 import cButton from "@/components/common/crepiks-button";
 import vuescroll from "vuescroll";
+import runtimeText from "@/components/lesson/crepiks-lesson-runtime-text";
 
 export default {
   props: {
@@ -23,17 +24,21 @@ export default {
       type: Boolean,
       default: false
     },
-    hint: {
-      type: String,
-      required: false,
-      default: ""
+    hintBlocks: {
+      type: Array,
+      required: true
+    },
+    hintBlocksContent: {
+      type: Array,
+      required: true
     }
   },
 
   components: {
     rightSideBlock,
     cButton,
-    vuescroll
+    vuescroll,
+    "runtime-text": runtimeText
   },
 
   data() {
@@ -83,6 +88,7 @@ export default {
 
 .hint {
   padding-bottom: 80px;
+  padding-right: 10px;
   display: flex;
   flex-direction: column;
 
