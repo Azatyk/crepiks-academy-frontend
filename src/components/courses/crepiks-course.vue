@@ -32,9 +32,9 @@
             alt="Базовая верстка сайтов"
           />
 
-          <h2 class="main-info-title">{{ course.title.ru }}</h2>
+          <h2 class="main-info-title">{{ course.title }}</h2>
           <p class="main-info-description">
-            {{ course.description.ru }}
+            {{ course.description }}
           </p>
           <cButton class="main-info-button" @click="handleToLessonButton()"
             >Перейти к курсу</cButton
@@ -56,7 +56,7 @@
             >
               <div class="lesson-title">
                 <div class="lesson-title-number">{{ index + 1 }}.</div>
-                <div class="lesson-title-text">{{ lesson.title.ru }}</div>
+                <div class="lesson-title-text">{{ lesson.title }}</div>
               </div>
               <div
                 class="lesson-status"

@@ -8,9 +8,9 @@
         <img class="card-image" :src="course.iconPath" :alt="course.title" />
       </div>
       <div class="card-text">
-        <h2 class="card-text-title">{{ course.title.ru }}</h2>
+        <h2 class="card-text-title">{{ course.title }}</h2>
         <p class="card-text-description">
-          {{ course.description.ru.substring(0, 99) + ".." }}
+          {{ course.description.substring(0, 99) + ".." }}
         </p>
         <div
           class="card-link"

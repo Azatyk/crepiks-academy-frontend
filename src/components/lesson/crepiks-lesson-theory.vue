@@ -34,8 +34,11 @@
           </div>
         </div>
         <div class="content" v-else>
-          <h1 class="lesson-theory-title">{{ lesson.title.ru }}</h1>
-          <theoryText :theoryText="lesson.theory.ru" />
+          <h1 class="lesson-theory-title">{{ lesson.title }}</h1>
+          <runtime-text
+            :theoryBlocks="lesson.theoryBlocks"
+            :theoryBlocksContent="lesson.theoryBlocksContent"
+          />
           <codemirror v-if="false" />
           <cButton
             :isBold="true"
@@ -62,7 +65,7 @@
 import cButton from "@/components/common/crepiks-button";
 
 import vuescroll from "vuescroll";
-import theoryText from "@/components/lesson/crepiks-theory-text";
+import runtimeText from "@/components/lesson/crepiks-lesson-runtime-text";
 
 export default {
   props: {
@@ -88,6 +91,12 @@ export default {
     isLoading: {
       type: Boolean
     }
+  },
+
+  components: {
+    cButton,
+    vuescroll,
+    "runtime-text": runtimeText
   },
 
   data() {
@@ -142,12 +151,6 @@ export default {
         line: true
       }
     };
-  },
-
-  components: {
-    cButton,
-    vuescroll,
-    theoryText
   },
 
   methods: {
@@ -248,13 +251,6 @@ export default {
     font-weight: 700;
   }
 
-  &-text {
-    margin-bottom: 50px;
-    color: $dark;
-    font-size: 20px;
-    line-height: 150%;
-  }
-
   &-button {
     width: 220px;
   }
@@ -290,14 +286,5 @@ export default {
     width: 100%;
     margin-top: 30px;
   }
-}
-</style>
-
-<style lang="scss">
-.CodeMirror {
-  width: 750px !important;
-  min-height: 0px !important;
-  height: auto !important;
-  z-index: 3 !important;
 }
 </style>

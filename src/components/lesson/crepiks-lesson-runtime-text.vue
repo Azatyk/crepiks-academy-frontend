@@ -1,6 +1,11 @@
 <template>
   <div>
-    <runtimeTemplate :template="theoryText"></runtimeTemplate>
+    <runtimeTemplate
+      v-for="(theoryBlock, index) in theoryBlocks"
+      class="block"
+      :key="index"
+      :template="theoryBlock"
+    ></runtimeTemplate>
     <codemirror v-if="false" />
   </div>
 </template>
@@ -15,9 +20,13 @@ import runtimeTemplate from "v-runtime-template";
 
 export default {
   props: {
-    theoryText: {
-      type: String,
-      required: false
+    theoryBlocks: {
+      type: Array,
+      required: true
+    },
+    theoryBlocksContent: {
+      type: Array,
+      required: true
     }
   },
 
@@ -28,6 +37,7 @@ export default {
 
   data() {
     return {
+      contentTexts: this.theoryBlocksContent,
       html: {
         readOnly: true,
         tabSize: 4,
@@ -84,5 +94,42 @@ export default {
   padding: 20px 0;
   box-sizing: border-box;
   background-color: $white;
+}
+
+.block {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.text-block {
+  color: $dark;
+  font-size: 20px;
+  line-height: 180%;
+}
+
+.image-block {
+  width: 100%;
+  border-radius: 10px;
+}
+</style>
+
+<style lang="scss">
+.code-editor-block .CodeMirror {
+  width: 750px !important;
+  height: auto !important;
+  min-height: 0px !important;
+  font-size: 18px;
+  border: 1px solid #3c3c3c10;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+  z-index: 3 !important;
+}
+
+.code-editor-block .CodeMirror-code {
+  padding: 20px 0;
+}
+
+.code-editor-block .CodeMirror-cursor {
+  display: none;
 }
 </style>
