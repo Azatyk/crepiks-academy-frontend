@@ -134,6 +134,7 @@ export default {
         this.isAdNotificationActive = true;
       }, 2000);
     },
+
     getCourses() {
       this.$store
         .dispatch("getCourses")
