@@ -199,7 +199,8 @@ export default {
           {
             descriptionRu: ""
           }
-        ]
+        ],
+        successMessage: ""
       },
       lessons: [
         {
@@ -291,6 +292,7 @@ export default {
       await this.$store
         .dispatch("getLesson", { courseId, lessonId })
         .then(res => {
+          console.log(res.data.lesson);
           this.lesson.id = res.data.lesson.id;
           this.lesson.courseId = res.data.lesson.courseId;
           this.lesson.title = res.data.lesson.title;
@@ -298,6 +300,8 @@ export default {
           this.lesson.htmlCode = res.data.lesson.htmlCode;
           this.lesson.cssCode = res.data.lesson.cssCode;
           this.lesson.tasks = res.data.lesson.tasks;
+          this.lesson.successMessage = res.data.lesson.successMessage;
+
           if (res.data.lesson.theoryBlocks)
             this.lesson.theoryBlocks = res.data.lesson.theoryBlocks;
           if (res.data.lesson.theoryBlocksContent)
