@@ -5,6 +5,13 @@
       @keydown.right="isCodeEditorScreen = false"
       @keydown.left="isCodeEditorScreen = true"
     >
+      <notification
+        :isActive="isNotificationOpen"
+        :heading="notificationHeading"
+        :text="notificationText"
+        :status="notificationStatus"
+        @close-notification="isNotificationOpen = false"
+      />
       <navigation
         :isNavigationOpen="isNavigationOpen"
         @navigation-closed="isNavigationOpen = false"
@@ -92,7 +99,8 @@
             <lessonTasks :lesson="lesson" :lessons="lessons" />
             <hint
               :isOpen="isHintOpen"
-              :hint="lesson.hint"
+              :hintBlocks="lesson.hintBlocks"
+              :hintBlocksContent="lesson.hintBlocksContent"
               @close-hint="isHintOpen = false"
             />
           </div>
@@ -133,6 +141,7 @@
 </template>
 
 <script>
+import notification from "@/components/common/crepiks-notification";
 import navigation from "@/components/lesson/crepiks-lesson-navigation";
 import theory from "@/components/lesson/crepiks-lesson-theory";
 import hint from "@/components/lesson/crepiks-lesson-hint";
@@ -156,6 +165,7 @@ import { mapGetters } from "vuex";
 
 export default {
   components: {
+    notification,
     filesNavigation,
     codeEditorHeader,
     lessonTasks,
@@ -171,6 +181,10 @@ export default {
 
   data() {
     return {
+      isNotificationOpen: false,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
       isLessonDone: false,
       isTheoryOnly: false,
       isLoading: true,
@@ -178,16 +192,15 @@ export default {
         title: "",
         theoryBlocks: [],
         theoryBlocksContent: [],
+        hintBlocks: [],
+        hintBlocksContent: [],
         description: "",
         tasks: [
           {
-            description: {
-              ru: ""
-            }
+            descriptionRu: ""
           }
         ],
-        hintBlocks: [],
-        hintBlocksContent: []
+        successMessage: ""
       },
       lessons: [
         {
@@ -279,11 +292,36 @@ export default {
       await this.$store
         .dispatch("getLesson", { courseId, lessonId })
         .then(res => {
-          this.lesson = res.data.lesson;
+          console.log(res.data.lesson);
+          this.lesson.id = res.data.lesson.id;
+          this.lesson.courseId = res.data.lesson.courseId;
+          this.lesson.title = res.data.lesson.title;
+          this.lesson.description = res.data.lesson.description;
+          this.lesson.htmlCode = res.data.lesson.htmlCode;
+          this.lesson.cssCode = res.data.lesson.cssCode;
+          this.lesson.tasks = res.data.lesson.tasks;
+          this.lesson.successMessage = res.data.lesson.successMessage;
+
+          if (res.data.lesson.theoryBlocks)
+            this.lesson.theoryBlocks = res.data.lesson.theoryBlocks;
+          if (res.data.lesson.theoryBlocksContent)
+            this.lesson.theoryBlocksContent =
+              res.data.lesson.theoryBlocksContent;
+          if (res.data.lesson.hintBlocks)
+            this.lesson.hintBlocks = res.data.lesson.hintBlocks;
+          if (res.data.lesson.hintBlocksContent)
+            this.lesson.hintBlocksContent = res.data.lesson.hintBlocksContent;
           this.htmlCode = this.lesson.htmlCode;
           this.cssCode = this.lesson.cssCode;
-          this.isLoading = false;
-        });
+        })
+        .catch(() => {
+          this.notificationHeading = "Что-то пошло не так";
+          this.notificationText =
+            "Пожалуйста, перезагрузи интернет и всё должно заработать";
+          this.notificationStatus = "error";
+          this.isNotificationOpen = true;
+        })
+        .finally(() => (this.isLoading = false));
     },
 
     async getCompletedLessons() {

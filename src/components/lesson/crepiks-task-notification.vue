@@ -44,7 +44,7 @@ export default {
       if (this.isActive) {
         setTimeout(() => {
           this.$emit("close-notification");
-        }, 5000);
+        }, 1000000);
       }
     }
   }
@@ -56,7 +56,7 @@ export default {
 
 .task-notification {
   position: fixed;
-  bottom: 70px;
+  bottom: 75px;
   right: -460px;
   padding: 20px 15px;
   padding-right: 35px;
@@ -66,12 +66,14 @@ export default {
   display: flex;
   flex-direction: row;
   border: 1px solid $dark;
+  border-radius: 8px;
   background-color: $white;
+  box-shadow: 0 0 10px #3c3c3c10;
   z-index: 2;
-  transition: 400ms ease-in-out;
+  transition: 300ms ease-in-out;
 
   &-open {
-    right: 20px;
+    right: 25px;
   }
 
   &-success {
@@ -97,7 +99,8 @@ export default {
 
   &-text {
     color: $dark;
-    font-size: 16px;
+    font-size: 17px;
+    line-height: 160%;
     opacity: 0.8;
   }
 
@@ -109,7 +112,7 @@ export default {
     font-size: 20px;
     opacity: 0.5;
     cursor: pointer;
-    transition: 100ms ease-in-out;
+    transition: 200ms ease-in-out;
 
     &:hover {
       opacity: 0.8;
