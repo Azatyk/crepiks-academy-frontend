@@ -21,7 +21,7 @@
         <faq v-for="(faq, index) in faqs" :key="index" :faq="faq" />
       </div>
       <p class="instructions-paragraph">
-        Желаем продуктивного обучения и увидимся на интерактике!
+        Желаем продуктивного обучения и увидимся на интерактиве!
       </p>
       <cButton class="instructions-button" @click="$emit('close-modal')"
         >К платформе</cButton

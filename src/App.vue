@@ -16,6 +16,15 @@ export default {
 
   mounted() {
     this.$router.push("/");
+  },
+
+  created() {
+    if (document.body.clientWidth <= 414) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+    this.$store.commit("setIsMobile", this.isMobile);
   }
 };
 </script>
