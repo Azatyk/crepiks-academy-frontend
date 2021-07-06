@@ -140,6 +140,7 @@ export default {
   height: auto;
   box-sizing: border-box;
   display: flex;
+  align-items: center;
   flex-direction: column;
 
   &-full {

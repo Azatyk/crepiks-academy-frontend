@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="faq">
-      <div class="faq-question" @click="handleQuestionClick">
+      <div
+        class="faq-question"
+        :class="{ 'faq-question-active': isAnswerOpen }"
+        @click="handleQuestionClick"
+      >
         {{ faq.question }} <i class="bx bxs-chevron-down faq-down-arrow"></i>
       </div>
       <div
@@ -70,6 +74,11 @@ export default {
     user-select: none;
     position: relative;
     margin-bottom: 5px;
+    transition: all 500ms;
+
+    &-active {
+      color: $primary;
+    }
   }
 
   &-question:hover {
