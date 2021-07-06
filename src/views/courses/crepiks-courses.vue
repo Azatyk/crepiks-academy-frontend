@@ -120,7 +120,7 @@ export default {
   },
 
   mounted() {
-    this.openAdNotification();
+    // this.openAdNotification();
     this.getCourses();
   },
 
