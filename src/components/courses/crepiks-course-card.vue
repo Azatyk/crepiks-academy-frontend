@@ -114,7 +114,7 @@ export default {
   left: -20px;
   top: -20px;
   width: 440px;
-  height: 133px;
+  height: 136px;
   border: 2px solid $primary;
   border-radius: 10px;
   z-index: -1;
