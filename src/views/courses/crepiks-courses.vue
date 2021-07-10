@@ -233,6 +233,7 @@ export default {
 
   .courses-list {
     padding-left: 5%;
+    box-sizing: border-box;
   }
 
   .courses-page {
@@ -265,9 +266,13 @@ export default {
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 374px) {
   .free-block {
     height: 115px;
+  }
+
+  .courses-half {
+    width: 100%;
   }
 }
 

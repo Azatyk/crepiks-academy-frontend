@@ -138,12 +138,11 @@ export default {
 }
 
 .card-image {
+  width: 100px;
   &-wrapper {
     margin-right: 10px;
-    width: 226px;
+    width: 100px;
   }
-
-  width: 100%;
 }
 
 .card-text {
@@ -174,7 +173,7 @@ export default {
   opacity: 0.7;
   cursor: pointer;
   font-size: 14px;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
   transition: 200ms ease-in-out;
 
   &:hover {
@@ -202,7 +201,7 @@ export default {
 
 @media (max-width: 1024px) {
   .free-block {
-    width: 107%;
+    width: 110%;
   }
 }
 
@@ -218,11 +217,20 @@ export default {
   }
 
   .card-link {
-    font-size: 3.5vw;
+    font-size: 12px;
+  }
+
+  .card-image {
+    width: 85px;
+    height: 85px;
+  }
+
+  .free-block {
+    height: 120px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 379px) {
   .card-text {
     &-title {
       font-size: 3.2vw;
@@ -234,17 +242,12 @@ export default {
     }
   }
 
+  .free-block {
+    width: 112%;
+  }
+
   .card-link {
     font-size: 3.1vw;
-  }
-
-  .card-image {
-    width: 80px;
-    height: 80px;
-  }
-
-  .free-block {
-    height: 115px;
   }
 }
 </style>
