@@ -78,40 +78,42 @@
         </div>
         <div class="user-profile-courses">
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
-          <div class="skeleton" v-if="isLoading">
-            <div class="skeleton-container">
-              <PuSkeleton
-                :count="1"
-                height="100px"
-                width="100px"
-                class="skeleton-image"
-              ></PuSkeleton>
-              <div class="skeleton-wrapper">
-                <div class="skeleton-title">
-                  <PuSkeleton
-                    :count="1"
-                    height="20px"
-                    width="100%"
-                  ></PuSkeleton>
-                </div>
-                <div class="skeleton-description">
-                  <PuSkeleton
-                    :count="1"
-                    height="40px"
-                    width="100%"
-                  ></PuSkeleton>
-                </div>
-                <div class="skeleton-button">
-                  <PuSkeleton
-                    :count="1"
-                    height="20px"
-                    width="100%"
-                  ></PuSkeleton>
+          <div class="user-profile-courses-container" v-if="isLoading">
+            <div v-for="index in 3" :key="index">
+              <div class="skeleton">
+                <PuSkeleton
+                  :count="1"
+                  height="100px"
+                  width="100px"
+                  class="skeleton-image"
+                ></PuSkeleton>
+                <div class="skeleton-wrapper">
+                  <div class="skeleton-title">
+                    <PuSkeleton
+                      :count="1"
+                      height="20px"
+                      width="100%"
+                    ></PuSkeleton>
+                  </div>
+                  <div class="skeleton-description">
+                    <PuSkeleton
+                      :count="1"
+                      height="40px"
+                      width="100%"
+                    ></PuSkeleton>
+                  </div>
+                  <div class="skeleton-button">
+                    <PuSkeleton
+                      :count="1"
+                      height="20px"
+                      width="100%"
+                    ></PuSkeleton>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="skeleton-progression">
-              <PuSkeleton :count="1" height="38px" width="100%"></PuSkeleton>
+              <div class="skeleton-progression">
+                <PuSkeleton :count="1" height="38px" width="100%"></PuSkeleton>
+              </div>
             </div>
           </div>
           <div class="user-profile-courses-container" v-else>
@@ -506,15 +508,11 @@ export default {
 
 .skeleton {
   width: 400px;
-  margin-top: 60px;
+  display: flex;
+  margin-top: 30px;
 
   &-image {
     margin-right: 10px;
-  }
-
-  &-container {
-    width: 100%;
-    display: flex;
   }
 
   &-wrapper {
@@ -530,7 +528,7 @@ export default {
   }
 
   &-progression {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 
