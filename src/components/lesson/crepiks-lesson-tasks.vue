@@ -165,11 +165,12 @@ export default {
   }
 
   &-description {
-    margin: 8px 0;
+    margin-top: 10px;
+    margin-bottom: 16px;
     color: $dark;
     font-size: 18px;
     font-weight: 500;
-    line-height: 1.3;
+    line-height: 160%;
     opacity: 0.7;
     transition: 200ms ease-in-out;
 
@@ -184,7 +185,8 @@ export default {
   color: $dark;
   font-size: 18px;
   font-weight: 500;
-  opacity: 0.7;
+  line-height: 160%;
+  opacity: 0.9;
   transition: 200ms ease-in-out;
 
   &-dash {

@@ -292,7 +292,6 @@ export default {
       await this.$store
         .dispatch("getLesson", { courseId, lessonId })
         .then(res => {
-          console.log(res.data.lesson);
           this.lesson.id = res.data.lesson.id;
           this.lesson.courseId = res.data.lesson.courseId;
           this.lesson.title = res.data.lesson.title;

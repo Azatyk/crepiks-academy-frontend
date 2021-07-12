@@ -35,6 +35,11 @@ export default {
     runtimeTemplate
   },
 
+  mounted() {
+    console.log(this.blocks);
+    console.log(this.contentTexts);
+  },
+
   data() {
     return {
       html: {
