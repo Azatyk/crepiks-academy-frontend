@@ -1,40 +1,41 @@
 <template>
   <modal :isModalOpen="isModalOpen" @close-modal="$emit('close-modal')">
-    <h2 class="modal-heading">
-      Добро пожаловать на платформу
-      <span class="modal-heading-green">Crepiks</span>
-    </h2>
-    <p class="modal-paragraph">
-      Перед тем как начать обучение, давайте познакомимся с платформой.
-      Специально для вас мы подготовили видео, в котором подробно показано как
-      надо проходить курсы.
-    </p>
-    <div
-      v-for="(item, index) in faqs"
-      class="faq"
-      :key="index"
-      @click="faqTrigger(index)"
-      :class="{ 'faq-ext-active': currentFaq === index }"
-    >
-      <div class="faq-question">
-        {{ item.question }} <i class="bx bxs-chevron-down faq-down-arrow"></i>
+    <div class="instructions-inner">
+      <h2 class="instructions-heading">
+        Добро пожаловать к нам,
+        <span class="instructions-heading-green"
+          >{{ userData.firstName }}!</span
+        >
+      </h2>
+      <p class="instructions-paragraph">
+        Как настроение? Готов начать изучение веб-программирования? Надеемся,
+        что да, а пока, мы подготовили для тебя небольшую экскурсию по платформе
+        в виде видео:
+      </p>
+      <div class="instructions-video"></div>
+      <p class="instructions-paragraph">
+        Отлично, ты готов(-а) начать! Если у тебя остались вопросы, взгляни на
+        часто задаваемые или напиши нам в любую социальную сеть:
+      </p>
+      <div class="instructions-container">
+        <faq v-for="(faq, index) in faqs" :key="index" :faq="faq" />
       </div>
-      <transition
-        mode="out-in"
-        name="faq-fade"
-        @before-enter="beforeEnterFaq"
-        @enter="enterFaq"
+      <p class="instructions-paragraph">
+        Желаем продуктивного обучения и увидимся на интерактиве!
+      </p>
+      <cButton class="instructions-button" @click="$emit('close-modal')"
+        >К платформе</cButton
       >
-        <div class="faq-answer" v-show="currentFaq === index">
-          {{ item.answer }}
-        </div>
-      </transition>
     </div>
   </modal>
 </template>
 
 <script>
-import modal from "@/components/common/crepiks-modal.vue";
+import modal from "@/components/common/crepiks-modal";
+import faq from "@/components/common/crepiks-faq";
+import cButton from "@/components/common/crepiks-button";
+
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -44,48 +45,42 @@ export default {
     }
   },
   components: {
-    modal
+    modal,
+    faq,
+    cButton
   },
+  computed: mapGetters(["userData"]),
   data() {
     return {
       faqs: [
         {
-          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
+          question: "Зачем мне всё это?",
+          answer:
+            "Быть программистом — круто. Раз ты тут, значит ты это понимаешь. Программирование буквально поможет поменять твою жизнь"
+        },
+        {
+          question: "Как вернуть деньги?",
           answer:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
         },
         {
-          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
+          question: "Вы сохраняете мой код?",
           answer:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
         },
         {
-          question: "Lorem ipsum dolor, sit amet consectetur adipisicing?",
+          question: "Что такое интерактив?",
+          answer:
+            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+        },
+        {
+          question: "Как можно купить подписку?",
           answer:
             "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
         }
       ],
       currentFaq: -10
     };
-  },
-  methods: {
-    faqTrigger: function(newFaq) {
-      if (newFaq === this.currentFaq) {
-        this.currentFaq = -10;
-      } else {
-        this.currentFaq = newFaq;
-      }
-    },
-    beforeEnterFaq: function(faq) {
-      faq.style.display = "block";
-      faq.style.maxHeight = null;
-      faq.myHeight = faq.offsetHeight;
-      faq.style.maxHeight = 0;
-      faq.style.display = null;
-    },
-    enterFaq: function(faq) {
-      faq.style.maxHeight = faq.myHeight + "px";
-    }
   }
 };
 </script>
@@ -93,12 +88,17 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.modal {
+.instructions {
+  &-inner {
+    width: 75%;
+    margin-bottom: 80px;
+  }
+
   &-heading {
     color: $dark;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 
     &-green {
       color: $primary;
@@ -106,79 +106,26 @@ export default {
   }
 
   &-paragraph {
-    color: $dark;
-    font-size: 20px;
-    line-height: 150%;
-  }
-}
-
-@keyframes accordeonAni {
-  0% {
-    max-height: 0;
-  }
-}
-
-.faq {
-  width: 100%;
-  margin-top: 15px;
-
-  &-question {
-    width: 100%;
-    height: 40px;
-    padding: 10px 0;
-    box-sizing: border-box;
-    color: $dark;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: 200ms ease-in-out;
-    user-select: none;
-    position: relative;
-  }
-
-  &-question:hover {
-    opacity: 1;
-  }
-
-  &-down-arrow {
-    position: absolute;
-    right: 0;
-    top: 20%;
-    font-size: 25px;
-  }
-
-  &-answer {
-    width: 100%;
-    padding: 10px 0;
-    box-sizing: border-box;
     color: $light-dark;
-    font-size: 20px;
-  }
-}
-
-.faq-fade {
-  &-enter {
-    max-height: 0;
-    display: block;
+    font-size: 22px;
+    line-height: 150%;
+    margin-top: 30px;
   }
 
-  &-enter-active {
-    animation: accordeonAni 400ms ease-out;
-    overflow: hidden;
+  &-video {
+    height: 290px;
+    width: 100%;
+    background-color: #e1e1e1;
+    border-radius: 10px;
+    margin-top: 30px;
   }
 
-  &-leave {
-    display: block;
+  &-container {
+    margin-top: 40px;
   }
 
-  &-leave-to {
-    display: block;
-  }
-
-  &-leave-active {
-    animation: accordeonAni 400ms ease-out;
-    animation-direction: reverse;
-    overflow: hidden;
+  &-button {
+    margin-top: 35px;
   }
 }
 </style>

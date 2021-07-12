@@ -162,9 +162,9 @@ export default {
           .dispatch("register", user)
           .then(() => {
             this.isLoading = false;
-            // setTimeout(() => {
-            //   this.$root.$emit("open-modal");
-            // }, 1);
+            setTimeout(() => {
+              this.$root.$emit("open-modal");
+            }, 1);
             this.$router.push("/app/courses");
           })
           .catch(() => {
@@ -256,20 +256,10 @@ export default {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 @media (max-width: 560px) {
   .register {
     &-back {
-      margin-top: 30px;
-      font-size: 14px;
+      display: none;
     }
 
     &-form {
@@ -292,6 +282,15 @@ export default {
       }
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .fadeIn-enter-active,

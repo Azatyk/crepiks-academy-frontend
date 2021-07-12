@@ -191,32 +191,6 @@ export default {
     }
   },
 
-  watch: {
-    isCourseOpen() {
-      if (this.isCourseOpen) {
-        this.skeletonLoading = true;
-        this.$store
-          .dispatch("getCourse", this.id)
-          .then(res => {
-            this.course = res.data.course;
-            this.skeletonLoading = false;
-          })
-          .catch(() => {
-            this.$emit("getting-course-error-notification");
-          });
-
-        const payload = {
-          userId: this.userData.id,
-          courseId: this.id
-        };
-
-        this.$store
-          .dispatch("getCompletedLessons", payload)
-          .then(res => (this.completedLessons = res.data.completedLessons));
-      }
-    }
-  },
-
   computed: {
     ...mapGetters(["userData", "isMobile"])
   },
@@ -226,6 +200,7 @@ export default {
       if (this.isMobile) {
         this.isModalOpen = true;
       } else {
+        console.log("not mobile");
         this.$store
           .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
           .then(() => {
@@ -279,6 +254,32 @@ export default {
         }
       } else {
         return this.course.lessons[0].id;
+      }
+    }
+  },
+
+  watch: {
+    isCourseOpen() {
+      if (this.isCourseOpen) {
+        this.skeletonLoading = true;
+        this.$store
+          .dispatch("getCourse", this.id)
+          .then(res => {
+            this.course = res.data.course;
+            this.skeletonLoading = false;
+          })
+          .catch(() => {
+            this.$emit("getting-course-error-notification");
+          });
+
+        const payload = {
+          userId: this.userData.id,
+          courseId: this.id
+        };
+
+        this.$store
+          .dispatch("getCompletedLessons", payload)
+          .then(res => (this.completedLessons = res.data.completedLessons));
       }
     }
   }

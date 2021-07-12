@@ -8,10 +8,12 @@
         <img class="card-image" :src="course.iconPath" :alt="course.title" />
       </div>
       <div class="card-text">
-        <h2 class="card-text-title">{{ course.title }}</h2>
-        <p class="card-text-description">
-          {{ course.description.substring(0, 99) + ".." }}
-        </p>
+        <div>
+          <h2 class="card-text-title">{{ course.title }}</h2>
+          <p class="card-text-description">
+            {{ course.description.substring(0, 99) + ".." }}
+          </p>
+        </div>
         <div
           class="card-link"
           v-if="!course.soon && $route.fullPath !== '/app/courses/' + course.id"
@@ -112,7 +114,7 @@ export default {
   left: -20px;
   top: -20px;
   width: 440px;
-  height: 140px;
+  height: 136px;
   border: 2px solid $primary;
   border-radius: 10px;
   z-index: -1;
@@ -136,17 +138,17 @@ export default {
 }
 
 .card-image {
+  width: 100px;
   &-wrapper {
     margin-right: 10px;
-    width: 226px;
+    width: 100px;
   }
-
-  width: 100%;
 }
 
 .card-text {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   &-title {
     margin-bottom: 5px;
@@ -156,7 +158,6 @@ export default {
   }
 
   &-description {
-    margin-bottom: 10px;
     color: $dark;
     font-size: 13px;
     font-weight: 500;
@@ -171,6 +172,8 @@ export default {
   color: $primary;
   opacity: 0.7;
   cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 2px;
   transition: 200ms ease-in-out;
 
   &:hover {
@@ -179,7 +182,6 @@ export default {
 
   &-text {
     margin-right: 5px;
-    font-size: 14px;
     font-weight: 500;
   }
 
@@ -199,7 +201,7 @@ export default {
 
 @media (max-width: 1024px) {
   .free-block {
-    width: 107%;
+    width: 110%;
   }
 }
 
@@ -210,16 +212,25 @@ export default {
     }
 
     &-description {
-      font-size: 3vw;
+      font-size: 2.6vw;
     }
   }
 
   .card-link {
-    font-size: 3.5vw;
+    font-size: 12px;
+  }
+
+  .card-image {
+    width: 85px;
+    height: 85px;
+  }
+
+  .free-block {
+    height: 120px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 379px) {
   .card-text {
     &-title {
       font-size: 3.2vw;
@@ -231,17 +242,12 @@ export default {
     }
   }
 
+  .free-block {
+    width: 112%;
+  }
+
   .card-link {
     font-size: 3.1vw;
-  }
-
-  .card-image {
-    width: 80px;
-    height: 80px;
-  }
-
-  .free-block {
-    height: 115px;
   }
 }
 </style>

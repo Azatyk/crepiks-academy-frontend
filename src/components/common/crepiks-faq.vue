@@ -1,14 +1,22 @@
 <template>
   <div>
     <div class="faq">
-      <div class="faq-question" @click="handleQuestionClick">
+      <div
+        class="faq-question"
+        :class="{ 'faq-question-active': isAnswerOpen }"
+        @click="handleQuestionClick"
+      >
         {{ faq.question }} <i class="bx bxs-chevron-down faq-down-arrow"></i>
       </div>
-      <transition name="fade">
-        <div class="faq-answer" v-if="isAnswerOpen">
-          {{ faq.answer }}
-        </div>
-      </transition>
+      <div
+        class="faq-answer"
+        ref="myText"
+        :style="[
+          isAnswerOpen ? { height: computedHeight, paddingBottom: '10px' } : {}
+        ]"
+      >
+        {{ faq.answer }}
+      </div>
     </div>
   </div>
 </template>
@@ -17,18 +25,30 @@
 export default {
   props: {
     faq: {
-      type: [Array, Object]
+      type: Object
     }
   },
   data() {
     return {
-      isAnswerOpen: false
+      isAnswerOpen: false,
+      computedHeight: 0
     };
   },
   methods: {
     handleQuestionClick() {
       this.isAnswerOpen = !this.isAnswerOpen;
+    },
+    initHeight() {
+      this.$refs["myText"].style.height = "auto";
+
+      const height = getComputedStyle(this.$refs["myText"]).height;
+      this.computedHeight = height;
+
+      this.$refs["myText"].style.height = 0;
     }
+  },
+  mounted() {
+    this.initHeight();
   }
 };
 </script>
@@ -38,7 +58,8 @@ export default {
 
 .faq {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
+  backgound-color: $white;
 
   &-question {
     width: 100%;
@@ -52,6 +73,12 @@ export default {
     transition: 200ms ease-in-out;
     user-select: none;
     position: relative;
+    margin-bottom: 5px;
+    transition: all 500ms;
+
+    &-active {
+      color: $primary;
+    }
   }
 
   &-question:hover {
@@ -67,23 +94,11 @@ export default {
 
   &-answer {
     width: 100%;
-    padding: 10px 0;
-    box-sizing: border-box;
     color: $light-dark;
     font-size: 20px;
+    height: 0;
+    overflow: hidden;
+    transition: 500ms;
   }
-}
-
-.fade-enter-active {
-  transition: opacity 1000ms;
-}
-
-.fade-leave-active {
-  transition: opacity 500ms;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

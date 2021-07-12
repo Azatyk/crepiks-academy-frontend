@@ -45,6 +45,7 @@ export default {
   }
 
   &-close {
+    width: fit-content;
     margin-bottom: 20px;
     color: $dark;
     font-size: 25px;

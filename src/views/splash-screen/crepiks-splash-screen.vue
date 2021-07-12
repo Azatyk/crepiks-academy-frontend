@@ -30,7 +30,8 @@ export default {
     notificationHeading: "",
     notificationText: "",
     notificationStatus: "error",
-    isNotificationActive: false
+    isNotificationActive: false,
+    prevRoute: null
   }),
 
   mounted() {
@@ -39,7 +40,11 @@ export default {
         this.$store
           .dispatch("getUserData", JSON.parse(localStorage.getItem("user")).id)
           .then(() => {
-            this.$router.push("/app/courses");
+            if (this.prevRoute.path == "/") {
+              this.$router.push("/app/courses");
+            } else {
+              this.$router.push(this.prevRoute.path);
+            }
           })
           .catch(err => {
             if (err.response.status == 403) {
@@ -58,7 +63,14 @@ export default {
     }, 2000);
   },
 
-  methods: mapMutations(["logout"])
+  methods: mapMutations(["logout"]),
+
+  beforeRouteEnter(to, from, next) {
+    // функция получения предыдущего роута через vue-router с помощью 'navigation guards'
+    next(vm => {
+      vm.prevRoute = from;
+    });
+  }
 };
 </script>
 

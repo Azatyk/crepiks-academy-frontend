@@ -21,14 +21,14 @@
     <transition name="upRight" appear>
       <div class="elipse elipse-dark-bottom"></div>
     </transition>
-    <transition name="card" appear mode="out-in">
-      <transition name="introCard" v-if="!this.payment" appear>
-        <subscriptionCard
-          @subscription-button-clicked="payment = true"
-          @promocode-opened="isPromocodeOpen = true"
-        />
-      </transition>
-      <payment @open-transactions-block="isTransactionsOpen = true" v-else />
+    <transition name="introCard" v-if="!this.payment" appear>
+      <subscriptionCard
+        @subscription-button-clicked="payment = true"
+        @promocode-opened="isPromocodeOpen = true"
+      />
+    </transition>
+    <transition name="paymentCard" v-else mode="out-in">
+      <payment @open-transactions-block="isTransactionsOpen = true" />
     </transition>
   </div>
 </template>
@@ -190,14 +190,13 @@ export default {
   transform: translateY(0);
 }
 
-.card-enter-active,
-.card-leave-active {
-  transition: opacity 0.3s ease-in-out;
-  will-change: opacity;
+.paymentCard-enter-active,
+.paymentCard-leave-active {
+  transition: opacity 0.5s ease-in-out;
 }
 
-.card-enter,
-.card-leave-to {
+.paymentCard-enter,
+.paymentCard-leave-to {
   opacity: 0;
 }
 
