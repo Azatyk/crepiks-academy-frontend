@@ -277,12 +277,21 @@ export default {
     openProfileEdit() {
       if (this.openProfileEdit) {
         this.openChangePassword = false;
+        this.isCourseOpen = false;
       }
     },
 
     openChangePassword() {
       if (this.openChangePassword) {
         this.openProfileEdit = false;
+        this.isCourseOpen = false;
+      }
+    },
+
+    isCourseOpen() {
+      if (this.isCourseOpen) {
+        this.openProfileEdit = false;
+        this.openChangePassword = false;
       }
     }
   },
