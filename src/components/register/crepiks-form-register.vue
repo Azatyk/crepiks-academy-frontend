@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <logo class="logo" />
+    <logo class="form-logo" />
     <div class="form">
       <transition name="fade" mode="out-in">
         <div class="form-inner" v-if="true" :key="activeForm">
@@ -177,29 +177,20 @@ export default {
       }
     }
   }
-}
 
-.logo {
-  margin-bottom: 30px;
-  margin-right: -15px; // точка в логотипе создает ощущение, что логотип расположен не по центру и по этому приходится ровнять визуально с помощью отрицательного margin
-  width: 170px;
-  opacity: 0.8;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+  &-logo {
+    margin-bottom: 30px;
+    margin-right: -15px; // точка в логотипе создает ощущение, что логотип расположен не по центру и по этому приходится ровнять визуально с помощью отрицательного margin
+    width: 170px;
+    opacity: 0.8;
+  }
 }
 
 @media (max-width: 560px) {
   .form {
     width: 85%;
     box-sizing: border-box;
-    padding: 35px 30px;
+    padding: 30px 30px;
     border-radius: 15px;
 
     &-title {
@@ -209,25 +200,38 @@ export default {
     &-subtitle {
       font-size: 16px;
     }
-  }
 
-  .logo {
-    width: 130px;
-    margin-bottom: 20px;
+    &-switcher {
+      margin-top: 20px;
+    }
+
+    &-logo {
+      width: 130px;
+      margin-bottom: 15px;
+    }
   }
 }
 
 @media (max-width: 374px) {
-  .logo {
-    display: none;
-  }
-
   .form {
     padding: 25px 25px 18px;
 
     &-title {
       font-size: 18px;
     }
+
+    &-logo {
+      display: none;
+    }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

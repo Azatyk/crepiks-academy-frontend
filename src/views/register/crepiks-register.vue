@@ -256,20 +256,10 @@ export default {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 @media (max-width: 560px) {
   .register {
     &-back {
-      margin-top: 30px;
-      font-size: 14px;
+      display: none;
     }
 
     &-form {
@@ -292,6 +282,15 @@ export default {
       }
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .fadeIn-enter-active,
