@@ -200,7 +200,6 @@ export default {
       if (this.isMobile) {
         this.isModalOpen = true;
       } else {
-        console.log("not mobile");
         this.$store
           .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
           .then(() => {
