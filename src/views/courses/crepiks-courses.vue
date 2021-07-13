@@ -28,7 +28,28 @@
             <cButton size="small" :isDisabled="true">Найти</cButton>
           </div>
         </div>
-        <div class="courses-list">
+        <div class="courses-list" v-if="isLoading">
+          <div class="skeleton" v-for="index in 3" :key="index">
+            <PuSkeleton
+              :count="1"
+              height="100px"
+              width="100px"
+              class="skeleton-image"
+            ></PuSkeleton>
+            <div class="skeleton-container">
+              <div class="skeleton-title">
+                <PuSkeleton :count="1" height="20px" width="100%"></PuSkeleton>
+              </div>
+              <div class="skeleton-description">
+                <PuSkeleton :count="1" height="40px" width="100%"></PuSkeleton>
+              </div>
+              <div class="skeleton-button">
+                <PuSkeleton :count="1" height="20px" width="100%"></PuSkeleton>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="courses-list" v-else>
           <courseCard
             class="course-card-block"
             v-for="(course, index) in courses"
@@ -115,7 +136,8 @@ export default {
       adNotificationText: "",
       adNotificationImagePath: "",
       isAdNotificationActive: false,
-      adNotificationImage: adNotificationImage
+      adNotificationImage: adNotificationImage,
+      isLoading: true
     };
   },
 
@@ -140,6 +162,7 @@ export default {
         .dispatch("getCourses")
         .then(res => {
           this.courses = res.data.courses;
+          this.isLoading = false;
         })
         .catch(() => {
           this.isNotificationActive = true;
@@ -224,6 +247,34 @@ export default {
 
 .course-card-block {
   margin-bottom: 60px;
+}
+
+.skeleton {
+  display: flex;
+  width: 410px;
+  margin-bottom: 60px;
+
+  &-wrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-image {
+    margin-right: 10px;
+  }
+
+  &-container {
+    width: 100%;
+  }
+
+  &-title {
+    margin-bottom: 5px;
+  }
+
+  &-description {
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 1024px) {
