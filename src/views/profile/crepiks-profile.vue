@@ -121,7 +121,6 @@
               v-for="course in courses"
               :key="course.id"
               :course="course"
-              :courseFreeProp="0"
               @course-opened="
                 openCourseId = course.id;
                 isCourseOpen = true;

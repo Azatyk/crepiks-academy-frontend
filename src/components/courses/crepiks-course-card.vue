@@ -1,7 +1,10 @@
 <template>
   <div class="course-card-wrapper">
-    <div class="free-block" v-if="courseFreeProp">
-      <div class="free-block-label">Бесплатно</div>
+    <div
+      class="free-block"
+      v-if="course.lessons[0] ? course.lessons[0].free : 0"
+    >
+      <div class="free-block-label">Попробуй бесплатно</div>
     </div>
     <div class="course-card">
       <div class="card-image-wrapper">
@@ -42,10 +45,6 @@ export default {
   props: {
     course: {
       type: Object
-    },
-    courseFreeProp: {
-      type: Number,
-      default: 0
     },
     progression: {
       type: Boolean,
@@ -123,7 +122,7 @@ export default {
     position: absolute;
     top: -10px;
     right: 20px;
-    width: 90px;
+    width: 167px;
     display: block;
     color: $primary;
     font-size: 14px;

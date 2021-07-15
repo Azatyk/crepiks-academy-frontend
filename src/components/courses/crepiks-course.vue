@@ -229,7 +229,7 @@ export default {
           })
           .catch(err => {
             if (err.response.status == 403) {
-              this.$emit("need-subscription-notification");
+              this.$emit("need-buy-subscription-notification");
             } else {
               this.$emit("getting-lesson-error-notification");
             }
