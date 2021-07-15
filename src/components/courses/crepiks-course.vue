@@ -52,7 +52,7 @@
               class="lesson"
               v-for="(lesson, index) in course.lessons"
               :key="lesson.id"
-              @click="handleExactLessonClick(lesson.id)"
+              @click="handleExactLessonClick(lesson.id, lesson.free)"
             >
               <div class="lesson-title">
                 <div class="lesson-title-number">{{ index + 1 }}.</div>
@@ -63,8 +63,12 @@
                 :class="{
                   'lesson-status-completed': isLessonCompleted(lesson.id)
                 }"
+                v-if="userData.subscription.hasSubscription || lesson.free"
               >
                 {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
+              </div>
+              <div class="lesson-status" v-else>
+                <i class="bx bxs-lock-alt lesson-status-lock"></i>
               </div>
             </div>
           </div>
@@ -180,7 +184,8 @@ export default {
           disable: false
         }
       },
-      isModalOpen: false
+      isModalOpen: false,
+      isLastUncompletedLessonFree: false
     };
   },
 
@@ -203,12 +208,19 @@ export default {
         this.$store
           .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
           .then(() => {
-            this.$router.push(
-              "/app/courses/" +
-                this.id +
-                "/lessons/" +
-                this.getLastUncompletedLessonId()
-            );
+            if (
+              this.userData.subscription.hasSubscription ||
+              this.isLastUncompletedLessonFree
+            ) {
+              this.$router.push(
+                "/app/courses/" +
+                  this.id +
+                  "/lessons/" +
+                  this.getLastUncompletedLessonId()
+              );
+            } else {
+              this.$emit("need-buy-subscription-notification");
+            }
           })
           .catch(err => {
             if (err.response.status == 403) {
@@ -220,11 +232,15 @@ export default {
       }
     },
 
-    handleExactLessonClick(lessonId) {
+    handleExactLessonClick(lessonId, lessonFree) {
       if (this.isMobile) {
         this.isModalOpen = true;
       } else {
-        this.$router.push("/app/courses/" + this.id + "/lessons/" + lessonId);
+        if (this.userData.subscription.hasSubscription || Boolean(lessonFree)) {
+          this.$router.push("/app/courses/" + this.id + "/lessons/" + lessonId);
+        } else {
+          this.$emit("need-buy-subscription-notification");
+        }
       }
     },
 
@@ -247,6 +263,9 @@ export default {
 
           for (let i = 0; i < this.course.lessons.length; i++) {
             if (this.course.lessons[i].id == lastCompletedLessonId) {
+              this.isLastUncompletedLessonFree = this.course.lessons[
+                i + 1
+              ].free;
               return this.course.lessons[i + 1].id;
             }
           }
@@ -401,6 +420,11 @@ export default {
 
     &-completed {
       color: $primary;
+    }
+
+    &-lock {
+      font-size: 17px;
+      opacity: 0.7;
     }
   }
 }

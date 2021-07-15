@@ -18,6 +18,13 @@
         :lessons="lessons"
         :completedLessons="completedLessons"
         :lesson="lesson"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationOpen = true;
+        "
       />
       <theory
         :isTheoryOnly="isTheoryOnly"
@@ -29,6 +36,13 @@
         @theory-closed="isTheoryOpen = false"
         @navigation-opened="isNavigationOpen = true"
         @add-completed-lessons="addCompletedLesson()"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationOpen = true;
+        "
       />
       <div class="lesson-screens">
         <div

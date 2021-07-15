@@ -19,10 +19,11 @@
     <div class="navigation-divide-line"></div>
     <vuescroll :ops="ops">
       <div class="navigation-lessons-list">
-        <router-link
+        <div
           class="navigation-lesson"
           v-for="(lesson, index) in lessons"
           :key="lesson.id"
+          @click="handleExactLessonClick(lesson.id, lesson.free)"
           :to="
             '/app/courses/' + $route.params.courseId + '/lessons/' + lesson.id
           "
@@ -40,6 +41,7 @@
               'navigation-lesson-status-current':
                 $route.params.lessonId == lesson.id
             }"
+            v-if="userData.subscription.hasSubscription || lesson.free"
           >
             {{
               $route.params.lessonId != lesson.id
@@ -49,7 +51,10 @@
                 : "Текущая тема"
             }}
           </div>
-        </router-link>
+          <div class="navigation-lesson-status" v-else>
+            <i class="bx bxs-lock-alt navigation-lesson-status-lock"></i>
+          </div>
+        </div>
       </div>
     </vuescroll>
   </div>
@@ -57,6 +62,8 @@
 
 <script>
 import vuescroll from "vuescroll";
+
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -120,6 +127,10 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["userData"])
+  },
+
   methods: {
     isLessonCompleted(lessonId) {
       for (let i = 0; i < this.completedLessons.length; i++) {
@@ -132,6 +143,16 @@ export default {
     getLessonIndex() {
       for (let i = 0; i < this.lessons.length; i++) {
         if (this.lessons[i].id == this.lesson.id) return i;
+      }
+    },
+
+    handleExactLessonClick(lessonId, lessonFree) {
+      if (this.userData.subscription.hasSubscription || Boolean(lessonFree)) {
+        this.$router.push(
+          "/app/courses/" + this.$route.params.courseId + "/lessons/" + lessonId
+        );
+      } else {
+        this.$emit("need-buy-subscription-notification");
       }
     }
   }
@@ -279,6 +300,11 @@ export default {
       &-current {
         color: #3498db;
         opacity: 1;
+      }
+
+      &-lock {
+        font-size: 17px;
+        opacity: 0.7;
       }
     }
   }

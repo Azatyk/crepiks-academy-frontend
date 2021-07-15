@@ -67,6 +67,8 @@ import cButton from "@/components/common/crepiks-button";
 import vuescroll from "vuescroll";
 import runtimeText from "@/components/lesson/crepiks-lesson-runtime-text";
 
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     isTheoryOnly: {
@@ -153,6 +155,10 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["userData"])
+  },
+
   methods: {
     handleTheoryButton() {
       if (this.isLessonLast) {
@@ -162,18 +168,27 @@ export default {
         let courseId = this.$route.params.courseId;
         let currentLessonId = Number(this.$route.params.lessonId);
         let nextLessonId;
+        let nextLessonFree;
 
         this.lessons.forEach(lesson => {
           if (lesson.id == currentLessonId) {
             nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+            nextLessonFree = this.lessons[this.lessons.indexOf(lesson) + 1]
+              .free;
           }
         });
 
-        this.$emit("add-completed-lessons");
-
-        this.$router.push(
-          "/app/courses/" + courseId + "/lessons/" + nextLessonId
-        );
+        if (
+          this.userData.subscription.hasSubscription ||
+          Boolean(nextLessonFree)
+        ) {
+          this.$emit("add-completed-lessons");
+          this.$router.push(
+            "/app/courses/" + courseId + "/lessons/" + nextLessonId
+          );
+        } else {
+          this.$emit("need-buy-subscription-notification");
+        }
       }
     }
   }

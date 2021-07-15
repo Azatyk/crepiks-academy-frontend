@@ -97,6 +97,13 @@
           isCourseOpen = false;
           isNotificationActive = true;
         "
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationActive = true;
+        "
       />
     </div>
   </transition>
