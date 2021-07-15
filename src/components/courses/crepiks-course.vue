@@ -212,12 +212,17 @@ export default {
               this.userData.subscription.hasSubscription ||
               this.isLastUncompletedLessonFree
             ) {
-              this.$router.push(
-                "/app/courses/" +
-                  this.id +
-                  "/lessons/" +
-                  this.getLastUncompletedLessonId()
-              );
+              if (this.id == 2) {
+                // захардкоженное условие для отображения заголовков второго курса
+                this.$emit("second-course-lesson-clicked");
+              } else {
+                this.$router.push(
+                  "/app/courses/" +
+                    this.id +
+                    "/lessons/" +
+                    this.getLastUncompletedLessonId()
+                );
+              }
             } else {
               this.$emit("need-buy-subscription-notification");
             }
@@ -237,7 +242,14 @@ export default {
         this.isModalOpen = true;
       } else {
         if (this.userData.subscription.hasSubscription || Boolean(lessonFree)) {
-          this.$router.push("/app/courses/" + this.id + "/lessons/" + lessonId);
+          if (this.id == 2) {
+            // захардкоженное условие для отображения заголовков второго курса
+            this.$emit("second-course-lesson-clicked");
+          } else {
+            this.$router.push(
+              "/app/courses/" + this.id + "/lessons/" + lessonId
+            );
+          }
         } else {
           this.$emit("need-buy-subscription-notification");
         }

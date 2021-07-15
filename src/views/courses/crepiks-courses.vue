@@ -57,7 +57,7 @@
             :course="course"
             :courseFreeProp="course.free"
             @course-opened="
-              openCourseId = 1;
+              openCourseId = course.id;
               isCourseOpen = true;
             "
           />
@@ -101,6 +101,13 @@
           notificationHeading = 'Доступно по подписке';
           notificationText =
             'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationActive = true;
+        "
+        @second-course-lesson-clicked="
+          notificationHeading = 'Курс на данный момент недоступен';
+          notificationText =
+            'В скором времени проблемы будут решены и вам откроется доступ к курсу';
           notificationStatus = 'warning';
           isNotificationActive = true;
         "

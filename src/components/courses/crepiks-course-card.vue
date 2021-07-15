@@ -17,7 +17,7 @@
         <div
           class="card-link"
           v-if="!course.soon && $route.fullPath !== '/app/courses/' + course.id"
-          @click="$emit('course-opened')"
+          @click="$emit('course-opened', course.id)"
         >
           <span class="card-link card-link-text">Перейти к курсу</span>
           <i class="bx bx-right-arrow-alt card-link-icon"></i>
