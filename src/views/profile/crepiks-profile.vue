@@ -262,8 +262,9 @@ export default {
       if (this.hasSubscription) {
         this.courses = res.data.courses;
       } else {
+        console.log(res.data.courses);
         for (let i = 0; i < res.data.courses.length; i++) {
-          if (res.data.courses[i].free) {
+          if (res.data.courses[i].lessons[0].free) {
             this.courses.push(res.data.courses[i]);
           }
         }
