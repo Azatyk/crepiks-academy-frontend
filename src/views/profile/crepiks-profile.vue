@@ -1,6 +1,13 @@
 <template>
   <transition name="fadeIn" appear>
     <div>
+      <notification
+        :heading="notificationHeading"
+        :text="notificationText"
+        :status="notificationStatus"
+        :isActive="isNotificationActive"
+        @close-notification="isNotificationActive = false"
+      />
       <div class="user-profile">
         <div class="user-profile-info">
           <div class="user-profile-image" :style="imageBackground">
@@ -146,6 +153,13 @@
         :id="openCourseId"
         @open-course-block="isCourseOpen = true"
         @close-course-block="isCourseOpen = false"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationActive = true;
+        "
       />
     </div>
   </transition>
@@ -154,6 +168,7 @@
 <script>
 import courseCard from "@/components/courses/crepiks-course-card";
 import course from "@/components/courses/crepiks-course";
+import notification from "@/components/common/crepiks-notification";
 
 import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
 import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
@@ -169,13 +184,18 @@ export default {
     courseCard,
     course,
     profileEdit,
-    changePassword
+    changePassword,
+    notification
   },
   data() {
     return {
       firstCourseImage: firstCourseImage,
       isCourseOpen: false,
       openCourseId: 0,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
+      isNotificationActive: false,
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
