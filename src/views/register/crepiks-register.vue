@@ -164,7 +164,7 @@ export default {
             this.isLoading = false;
             setTimeout(() => {
               this.$root.$emit("open-modal");
-            }, 1);
+            }, 1000);
             this.$router.push("/app/courses");
           })
           .catch(() => {

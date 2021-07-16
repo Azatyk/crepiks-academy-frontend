@@ -24,8 +24,8 @@
           <transition name="link-fade">
             <div
               class="link link-ad"
-              @click="$emit('open-ad-page')"
-              v-if="isAdActive"
+              @click="handleAdSidebarLinkClick"
+              v-if="isLocalAdSidebarLinkActive"
               key="link-ad"
             >
               <i class="bx bx-dish link-icon"></i>
@@ -123,7 +123,8 @@ export default {
     return {
       hover: false,
       socials: false,
-      isModalOpen: false
+      isModalOpen: false,
+      isLocalAdSidebarLinkActive: false
     };
   },
   components: {
@@ -137,12 +138,16 @@ export default {
         this.$root.$emit("open-modal");
       }, 1);
     },
-    openAdBlock() {
-      console.log("ad block");
+    handleAdSidebarLinkClick() {
+      this.$store.commit("setAdBanner", true);
     }
   },
 
-  computed: mapGetters(["isAdActive"]),
+  computed: mapGetters(["isAdSidebarLinkActive"]),
+
+  mounted() {
+    this.isLocalAdSidebarLinkActive = this.isAdSidebarLinkActive;
+  },
 
   watch: {
     hover() {
@@ -150,6 +155,13 @@ export default {
         setTimeout(() => {
           this.hover = false;
         }, 1000);
+      }
+    },
+    isAdSidebarLinkActive() {
+      if (this.isAdSidebarLinkActive) {
+        this.isLocalAdSidebarLinkActive = true;
+      } else {
+        this.isLocalAdSidebarLinkActive = false;
       }
     }
   }

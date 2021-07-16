@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     isLessonDone: {
@@ -29,18 +31,32 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters(["userData"])
+  },
+
   methods: {
     nextLessonButtonHandler() {
       let currentLessonId = Number(this.$route.params.lessonId); // сначала мы определяем какой будет роут следующей темф
       let courseId = Number(this.$route.params.courseId);
       let nextLessonId;
+      let nextLessonFree;
 
       this.lessons.forEach(lesson => {
-        if (lesson.id == currentLessonId)
+        if (lesson.id === currentLessonId) {
           nextLessonId = this.lessons[this.lessons.indexOf(lesson) + 1].id;
+          nextLessonFree = this.lessons[this.lessons.indexOf(lesson) + 1].free;
+        }
       });
 
-      this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
+      if (
+        this.userData.subscription.hasSubscription ||
+        Boolean(nextLessonFree)
+      ) {
+        this.$router.push(`/app/courses/${courseId}/lessons/${nextLessonId}`); // а потом пушим на этот самый роут
+      } else {
+        this.$emit("need-buy-subscription-notification");
+      }
     }
   }
 };

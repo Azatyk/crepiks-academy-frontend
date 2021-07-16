@@ -1,6 +1,6 @@
 <template>
   <div class="app-page">
-    <sidebar @open-ad-page="isAdPageOpen = true" />
+    <sidebar />
     <div class="app-page-content">
       <router-view></router-view>
     </div>
@@ -9,10 +9,7 @@
       :isModalOpen="isInstructionsModalOpen"
       @close-modal="isInstructionsModalOpen = false"
     />
-    <ad-page
-      :is-modal-open="isAdPageOpen"
-      @close-modal="isAdPageOpen = false"
-    />
+    <ad-page :is-modal-open="isAdBannerOpen" @close-modal="closeAdBanner" />
   </div>
 </template>
 
@@ -21,6 +18,8 @@ import sidebar from "@/components/app-layout/crepiks-sidebar";
 import Logo from "@/components/common/crepiks-logo.vue";
 import instructionsModal from "@/components/instructions/crepiks-instructions.vue";
 import adPage from "@/components/common/crepiks-ad-page.vue";
+
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -32,18 +31,31 @@ export default {
   data() {
     return {
       isInstructionsModalOpen: false,
-      isAdPageOpen: false
+      isAdBannerOpen: false
     };
   },
+  computed: mapGetters(["isAdBannerActive"]),
   methods: {
     openModal() {
       this.isInstructionsModalOpen = true;
+    },
+    closeAdBanner() {
+      this.$store.commit("setAdBanner", false);
     }
   },
   mounted() {
     this.$root.$on("open-modal", () => {
       this.openModal();
     });
+  },
+  watch: {
+    isAdBannerActive() {
+      if (this.isAdBannerActive) {
+        this.isAdBannerOpen = true;
+      } else {
+        this.isAdBannerOpen = false;
+      }
+    }
   }
 };
 </script>

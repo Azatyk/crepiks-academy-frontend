@@ -12,8 +12,8 @@
         :heading="adNotificationHeading"
         :text="adNotificationText"
         :image-path="adNotificationImagePath"
-        :isActive="isAdNotificationActive"
-        @close-notification="isAdNotificationActive = false"
+        :isActive="isLocalAdNotificationActive"
+        @close-notification="isLocalAdNotificationActive = false"
       />
       <profileLink />
       <div class="courses-half">
@@ -127,6 +127,8 @@ import notification from "@/components/common/crepiks-notification";
 import adNotification from "@/components/common/crepiks-ad-notification";
 import adNotificationImage from "@/assets/images/ad-notification-carrot-image.png";
 
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     cButton,
@@ -149,14 +151,20 @@ export default {
       adNotificationHeading: "",
       adNotificationText: "",
       adNotificationImagePath: "",
-      isAdNotificationActive: false,
+      isLocalAdNotificationActive: false,
       adNotificationImage: adNotificationImage,
       isLoading: true
     };
   },
 
+  computed: mapGetters(["isAdNotificationActive", "isAdSidebarLinkActive"]),
+
   mounted() {
-    // this.openAdNotification();
+    if (this.isAdNotificationActive && !this.isAdSidebarLinkActive) {
+      this.openAdNotification();
+      this.$store.commit("setAdNotification", false);
+      this.$store.commit("setAdSidebarLink", true);
+    }
     this.getCourses();
   },
 
@@ -167,7 +175,7 @@ export default {
         this.adNotificationText =
           "Прямо сейчас ты прошел половину интерактива «Базовая верстка», а значит осталось совсем немного. У нас для тебя кое-что есть, жми «Подробнее»";
         this.adNotificationImagePath = this.adNotificationImage;
-        this.isAdNotificationActive = true;
+        this.isLocalAdNotificationActive = true;
       }, 2000);
     },
 
