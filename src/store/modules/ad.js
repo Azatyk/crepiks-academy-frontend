@@ -5,11 +5,19 @@ const storeIsAdSidebarLinkActive = isAdSidebarLinkActive => {
   );
 };
 
+const storeIsAdNotificationActive = isAdNotificationActive => {
+  localStorage.setItem(
+    "isAdNotificationActive",
+    JSON.stringify(isAdNotificationActive)
+  );
+};
+
 export default {
   state: {
     isAdSidebarLinkActive:
       JSON.parse(localStorage.getItem("isAdSidebarLinkActive")) || false,
-    isAdNotificationActive: false,
+    isAdNotificationActive:
+      JSON.parse(localStorage.getItem("isAdNotificationActive")) || false,
     isAdBannerActive: false
   },
   mutations: {
@@ -19,6 +27,7 @@ export default {
     },
     setAdNotification(state, newStatus) {
       state.isAdNotificationActive = newStatus;
+      storeIsAdNotificationActive(newStatus);
     },
     setAdBanner(state, newStatus) {
       state.isAdBannerActive = newStatus;

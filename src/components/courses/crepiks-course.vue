@@ -184,8 +184,7 @@ export default {
           disable: false
         }
       },
-      isModalOpen: false,
-      isLastUncompletedLessonFree: false
+      isModalOpen: false
     };
   },
 
@@ -202,6 +201,7 @@ export default {
 
   methods: {
     handleToLessonButton() {
+      let isLastUncompletedLessonFree = this.getLastUncompletedLesson().free;
       if (this.isMobile) {
         this.isModalOpen = true;
       } else {
@@ -210,7 +210,7 @@ export default {
           .then(() => {
             if (
               this.userData.subscription.hasSubscription ||
-              this.isLastUncompletedLessonFree
+              isLastUncompletedLessonFree
             ) {
               if (this.id == 2) {
                 // захардкоженное условие для отображения заголовков второго курса
@@ -220,7 +220,7 @@ export default {
                   "/app/courses/" +
                     this.id +
                     "/lessons/" +
-                    this.getLastUncompletedLessonId()
+                    this.getLastUncompletedLesson().id
                 );
               }
             } else {
@@ -264,10 +264,14 @@ export default {
       }
     },
 
-    getLastUncompletedLessonId() {
+    getLastUncompletedLesson() {
       if (this.completedLessons.length > 0) {
         if (this.completedLessons.length == this.course.lessons.length) {
-          return this.course.lessons[0].id;
+          let lesson = {
+            id: this.course.lessons[0].id,
+            free: this.course.lessons[0].free
+          };
+          return lesson;
         } else {
           const lastCompletedLessonId = this.completedLessons[
             this.completedLessons.length - 1
@@ -275,15 +279,20 @@ export default {
 
           for (let i = 0; i < this.course.lessons.length; i++) {
             if (this.course.lessons[i].id == lastCompletedLessonId) {
-              this.isLastUncompletedLessonFree = this.course.lessons[
-                i + 1
-              ].free;
-              return this.course.lessons[i + 1].id;
+              let lesson = {
+                id: this.course.lessons[i + 1].id,
+                free: this.course.lessons[i + 1].free
+              };
+              return lesson;
             }
           }
         }
       } else {
-        return this.course.lessons[0].id;
+        let lesson = {
+          id: this.course.lessons[0].id,
+          free: this.course.lessons[0].free
+        };
+        return lesson;
       }
     }
   },
