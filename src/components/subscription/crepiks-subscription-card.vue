@@ -89,7 +89,7 @@ export default {
     &-title {
       width: 80%;
       font-size: 24px;
-      font-weight: 400;
+      font-weight: 600;
       line-height: 130%;
       margin-bottom: 10px;
       color: $dark;
@@ -133,7 +133,6 @@ export default {
   .subscription {
     &-card {
       width: 100%;
-      height: 200px;
       margin-top: 20px;
 
       &-title {

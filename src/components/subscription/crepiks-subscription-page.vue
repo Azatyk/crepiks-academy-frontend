@@ -1,12 +1,12 @@
 <template>
   <div class="subscription">
     <h2 class="subscription-title">
-      Подписка на доступ к
+      Подписка на доступ к<br />
       <span class="subscription-title-green">интерактивам</span>
     </h2>
     <p class="subscription-text">
       Оформи подписку и получи доступ ко всем интерактивам Crepiks. Все
-      интерактивы, которые появятся за время подписки, тоже доступны.
+      интерактивы, которые появятся за время подписки, тоже доступны.<br />
       <span @click="$emit('promocode-opened')" class="subscription-text-green"
         >Есть промокод?</span
       >
@@ -71,11 +71,12 @@ export default {
   }
 
   &-text {
-    font-size: 22px;
-    line-height: 150%;
-    color: $light-dark;
-    width: 85%;
     margin-bottom: 30px;
+    width: 85%;
+    color: $light-dark;
+    font-size: 20px;
+    line-height: 160%;
+    opacity: 0.8;
 
     &-green {
       color: $primary;
@@ -83,7 +84,7 @@ export default {
       transition: 200ms ease-in-out;
 
       &:hover {
-        opacity: 0.8;
+        opacity: 0.7;
       }
     }
   }
