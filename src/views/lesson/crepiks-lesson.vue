@@ -18,6 +18,13 @@
         :lessons="lessons"
         :completedLessons="completedLessons"
         :lesson="lesson"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationOpen = true;
+        "
       />
       <theory
         :isTheoryOnly="isTheoryOnly"
@@ -29,6 +36,13 @@
         @theory-closed="isTheoryOpen = false"
         @navigation-opened="isNavigationOpen = true"
         @add-completed-lessons="addCompletedLesson()"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationOpen = true;
+        "
       />
       <div class="lesson-screens">
         <div
@@ -135,6 +149,13 @@
         @theory-opened="isTheoryOpen = true"
         @run-button-clicked="handleRunButton()"
         :isLessonDone="isLessonDone"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationOpen = true;
+        "
       />
     </div>
   </transition>
@@ -265,7 +286,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["userData"]),
+    ...mapGetters([
+      "userData",
+      "isAdSidebarLinkActive",
+      "isAdNotificationActive"
+    ]),
 
     CheckIsLessonLast() {
       if (this.lesson.id == this.lessons[this.lessons.length - 1].id) {
@@ -329,9 +354,12 @@ export default {
         courseId: this.$route.params.courseId
       };
 
-      await this.$store
-        .dispatch("getCompletedLessons", payload)
-        .then(res => (this.completedLessons = res.data.completedLessons));
+      await this.$store.dispatch("getCompletedLessons", payload).then(res => {
+        this.completedLessons = res.data.completedLessons;
+        if (!this.isAdSidebarLinkActive && this.completedLessons.length == 3) {
+          this.$store.commit("setAdNotification", true);
+        }
+      });
     },
 
     handleRunButton() {

@@ -52,7 +52,7 @@
               class="lesson"
               v-for="(lesson, index) in course.lessons"
               :key="lesson.id"
-              @click="handleExactLessonClick(lesson.id)"
+              @click="handleExactLessonClick(lesson.id, lesson.free)"
             >
               <div class="lesson-title">
                 <div class="lesson-title-number">{{ index + 1 }}.</div>
@@ -63,8 +63,12 @@
                 :class="{
                   'lesson-status-completed': isLessonCompleted(lesson.id)
                 }"
+                v-if="userData.subscription.hasSubscription || lesson.free"
               >
                 {{ isLessonCompleted(lesson.id) ? "Пройдено" : "Не пройден" }}
+              </div>
+              <div class="lesson-status" v-else>
+                <i class="bx bxs-lock-alt lesson-status-lock"></i>
               </div>
             </div>
           </div>
@@ -197,23 +201,35 @@ export default {
 
   methods: {
     handleToLessonButton() {
+      let isLastUncompletedLessonFree = this.getLastUncompletedLesson().free;
       if (this.isMobile) {
         this.isModalOpen = true;
       } else {
-        console.log("not mobile");
         this.$store
           .dispatch("getLesson", { lessonId: this.course.lessons[0].id })
           .then(() => {
-            this.$router.push(
-              "/app/courses/" +
-                this.id +
-                "/lessons/" +
-                this.getLastUncompletedLessonId()
-            );
+            if (
+              this.userData.subscription.hasSubscription ||
+              isLastUncompletedLessonFree
+            ) {
+              if (this.id == 2) {
+                // захардкоженное условие для отображения заголовков второго курса
+                this.$emit("second-course-lesson-clicked");
+              } else {
+                this.$router.push(
+                  "/app/courses/" +
+                    this.id +
+                    "/lessons/" +
+                    this.getLastUncompletedLesson().id
+                );
+              }
+            } else {
+              this.$emit("need-buy-subscription-notification");
+            }
           })
           .catch(err => {
             if (err.response.status == 403) {
-              this.$emit("need-subscription-notification");
+              this.$emit("need-buy-subscription-notification");
             } else {
               this.$emit("getting-lesson-error-notification");
             }
@@ -221,11 +237,22 @@ export default {
       }
     },
 
-    handleExactLessonClick(lessonId) {
+    handleExactLessonClick(lessonId, lessonFree) {
       if (this.isMobile) {
         this.isModalOpen = true;
       } else {
-        this.$router.push("/app/courses/" + this.id + "/lessons/" + lessonId);
+        if (this.userData.subscription.hasSubscription || Boolean(lessonFree)) {
+          if (this.id == 2) {
+            // захардкоженное условие для отображения заголовков второго курса
+            this.$emit("second-course-lesson-clicked");
+          } else {
+            this.$router.push(
+              "/app/courses/" + this.id + "/lessons/" + lessonId
+            );
+          }
+        } else {
+          this.$emit("need-buy-subscription-notification");
+        }
       }
     },
 
@@ -237,10 +264,14 @@ export default {
       }
     },
 
-    getLastUncompletedLessonId() {
+    getLastUncompletedLesson() {
       if (this.completedLessons.length > 0) {
         if (this.completedLessons.length == this.course.lessons.length) {
-          return this.course.lessons[0].id;
+          let lesson = {
+            id: this.course.lessons[0].id,
+            free: this.course.lessons[0].free
+          };
+          return lesson;
         } else {
           const lastCompletedLessonId = this.completedLessons[
             this.completedLessons.length - 1
@@ -248,12 +279,20 @@ export default {
 
           for (let i = 0; i < this.course.lessons.length; i++) {
             if (this.course.lessons[i].id == lastCompletedLessonId) {
-              return this.course.lessons[i + 1].id;
+              let lesson = {
+                id: this.course.lessons[i + 1].id,
+                free: this.course.lessons[i + 1].free
+              };
+              return lesson;
             }
           }
         }
       } else {
-        return this.course.lessons[0].id;
+        let lesson = {
+          id: this.course.lessons[0].id,
+          free: this.course.lessons[0].free
+        };
+        return lesson;
       }
     }
   },
@@ -402,6 +441,11 @@ export default {
 
     &-completed {
       color: $primary;
+    }
+
+    &-lock {
+      font-size: 17px;
+      opacity: 0.7;
     }
   }
 }

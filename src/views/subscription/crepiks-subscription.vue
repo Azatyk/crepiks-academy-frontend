@@ -21,31 +21,34 @@
     <transition name="upRight" appear>
       <div class="elipse elipse-dark-bottom"></div>
     </transition>
-    <transition name="introCard" v-if="!this.payment" appear>
-      <subscriptionCard
-        @subscription-button-clicked="payment = true"
+    <transition name="introCard" appear>
+      <subscriptionPage
+        @subscription-card-clicked="subscriptionCardClicked"
         @promocode-opened="isPromocodeOpen = true"
       />
     </transition>
-    <transition name="paymentCard" v-else mode="out-in">
-      <payment @open-transactions-block="isTransactionsOpen = true" />
-    </transition>
+    <!-- <transition name="paymentCard" v-else mode="out-in">
+      <payment
+        @open-transactions-block="isTransactionsOpen = true"
+        :subscriptionPeriodProp="subscriptionPeriod"
+      />
+    </transition> -->
   </div>
 </template>
 
 <script>
-import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
+import subscriptionPage from "@/components/subscription/crepiks-subscription-page";
 import promocode from "@/components/subscription/crepiks-subscription-promocode";
-import payment from "@/components/subscription/crepiks-subscription-payment";
+// import payment from "@/components/subscription/crepiks-subscription-payment";
 import transactions from "@/components/subscription/crepiks-subscription-transactions";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
-    subscriptionCard,
+    subscriptionPage,
     promocode,
-    payment,
+    // payment,
     transactions,
     profileLink
   },
@@ -53,8 +56,9 @@ export default {
   data() {
     return {
       isPromocodeOpen: false,
-      payment: false,
-      isTransactionsOpen: false
+      // payment: false,
+      isTransactionsOpen: false,
+      subscriptionPeriod: 3
     };
   },
 
@@ -62,7 +66,14 @@ export default {
     if (this.isMobile) this.payment = true;
   },
 
-  computed: mapGetters(["isMobile"])
+  computed: mapGetters(["isMobile"]),
+
+  methods: {
+    subscriptionCardClicked(subscriptionPeriod) {
+      this.subscriptionPeriod = subscriptionPeriod;
+      // this.payment = true;
+    }
+  }
 };
 </script>
 
@@ -87,26 +98,28 @@ export default {
   z-index: 2;
 
   &-light-top {
-    bottom: 85%;
+    bottom: 92%;
     right: 5%;
+    opacity: 0.85;
     background-color: #25f9cf;
   }
 
   &-dark-top {
-    bottom: 75%;
+    bottom: 82%;
     right: -20%;
-    background-color: #3ae8c5;
+    background-color: $primary;
   }
 
   &-light-bottom {
-    top: 75%;
+    top: 88%;
     left: -20%;
-    background-color: #25f9cf;
+    background-color: $primary;
   }
 
   &-dark-bottom {
-    top: 85%;
+    top: 95%;
     left: 5%;
+    opacity: 0.85;
     background-color: #3ae8c5;
   }
 }
@@ -119,7 +132,17 @@ export default {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 920px) {
+  .subscription-page {
+    height: fit-content;
+    overflow: auto;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 13% 5%;
+    box-sizing: border-box;
+  }
+
   .elipse {
     &-light-top {
       display: none;
@@ -136,6 +159,12 @@ export default {
     &-dark-bottom {
       display: none;
     }
+  }
+}
+
+@media (max-width: 760px) {
+  .subscription-page {
+    padding: 120px 5%;
   }
 }
 

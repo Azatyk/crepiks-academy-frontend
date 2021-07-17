@@ -1,7 +1,7 @@
 <template>
   <div class="course-card-wrapper">
     <div class="free-block" v-if="courseFreeProp">
-      <div class="free-block-label">Бесплатно</div>
+      <div class="free-block-label">Попробуй бесплатно</div>
     </div>
     <div class="course-card">
       <div class="card-image-wrapper">
@@ -17,7 +17,7 @@
         <div
           class="card-link"
           v-if="!course.soon && $route.fullPath !== '/app/courses/' + course.id"
-          @click="$emit('course-opened')"
+          @click="$emit('course-opened', course.id)"
         >
           <span class="card-link card-link-text">Перейти к курсу</span>
           <i class="bx bx-right-arrow-alt card-link-icon"></i>
@@ -123,7 +123,7 @@ export default {
     position: absolute;
     top: -10px;
     right: 20px;
-    width: 90px;
+    width: 167px;
     display: block;
     color: $primary;
     font-size: 14px;

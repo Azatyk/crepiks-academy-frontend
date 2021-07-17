@@ -12,8 +12,8 @@
         :heading="adNotificationHeading"
         :text="adNotificationText"
         :image-path="adNotificationImagePath"
-        :isActive="isAdNotificationActive"
-        @close-notification="isAdNotificationActive = false"
+        :isActive="isLocalAdNotificationActive"
+        @close-notification="isLocalAdNotificationActive = false"
       />
       <profileLink />
       <div class="courses-half">
@@ -28,15 +28,36 @@
             <cButton size="small" :isDisabled="true">Найти</cButton>
           </div>
         </div>
-        <div class="courses-list">
+        <div class="courses-list" v-if="isLoading">
+          <div class="skeleton" v-for="index in 3" :key="index">
+            <PuSkeleton
+              :count="1"
+              height="100px"
+              width="100px"
+              class="skeleton-image"
+            ></PuSkeleton>
+            <div class="skeleton-container">
+              <div class="skeleton-title">
+                <PuSkeleton :count="1" height="20px" width="100%"></PuSkeleton>
+              </div>
+              <div class="skeleton-description">
+                <PuSkeleton :count="1" height="40px" width="100%"></PuSkeleton>
+              </div>
+              <div class="skeleton-button">
+                <PuSkeleton :count="1" height="20px" width="100%"></PuSkeleton>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="courses-list" v-else>
           <courseCard
             class="course-card-block"
             v-for="(course, index) in courses"
             :key="index"
             :course="course"
-            :courseFreeProp="course.free"
+            :courseFreeProp="course.lessons[0] ? course.lessons[0].free : 0"
             @course-opened="
-              openCourseId = 1;
+              openCourseId = course.id;
               isCourseOpen = true;
             "
           />
@@ -76,6 +97,20 @@
           isCourseOpen = false;
           isNotificationActive = true;
         "
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationActive = true;
+        "
+        @second-course-lesson-clicked="
+          notificationHeading = 'Курс на данный момент недоступен';
+          notificationText =
+            'В скором времени проблемы будут решены и вам откроется доступ к курсу';
+          notificationStatus = 'warning';
+          isNotificationActive = true;
+        "
       />
     </div>
   </transition>
@@ -91,6 +126,8 @@ import notification from "@/components/common/crepiks-notification";
 
 import adNotification from "@/components/common/crepiks-ad-notification";
 import adNotificationImage from "@/assets/images/ad-notification-carrot-image.png";
+
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -114,13 +151,20 @@ export default {
       adNotificationHeading: "",
       adNotificationText: "",
       adNotificationImagePath: "",
-      isAdNotificationActive: false,
-      adNotificationImage: adNotificationImage
+      isLocalAdNotificationActive: false,
+      adNotificationImage: adNotificationImage,
+      isLoading: true
     };
   },
 
+  computed: mapGetters(["isAdNotificationActive", "isAdSidebarLinkActive"]),
+
   mounted() {
-    // this.openAdNotification();
+    if (this.isAdNotificationActive && !this.isAdSidebarLinkActive) {
+      this.openAdNotification();
+      this.$store.commit("setAdNotification", false);
+      this.$store.commit("setAdSidebarLink", true);
+    }
     this.getCourses();
   },
 
@@ -131,7 +175,7 @@ export default {
         this.adNotificationText =
           "Прямо сейчас ты прошел половину интерактива «Базовая верстка», а значит осталось совсем немного. У нас для тебя кое-что есть, жми «Подробнее»";
         this.adNotificationImagePath = this.adNotificationImage;
-        this.isAdNotificationActive = true;
+        this.isLocalAdNotificationActive = true;
       }, 2000);
     },
 
@@ -140,6 +184,7 @@ export default {
         .dispatch("getCourses")
         .then(res => {
           this.courses = res.data.courses;
+          this.isLoading = false;
         })
         .catch(() => {
           this.isNotificationActive = true;
@@ -224,6 +269,34 @@ export default {
 
 .course-card-block {
   margin-bottom: 60px;
+}
+
+.skeleton {
+  display: flex;
+  width: 410px;
+  margin-bottom: 60px;
+
+  &-wrapper {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-image {
+    margin-right: 10px;
+  }
+
+  &-container {
+    width: 100%;
+  }
+
+  &-title {
+    margin-bottom: 5px;
+  }
+
+  &-description {
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 1024px) {

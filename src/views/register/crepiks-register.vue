@@ -164,7 +164,7 @@ export default {
             this.isLoading = false;
             setTimeout(() => {
               this.$root.$emit("open-modal");
-            }, 1);
+            }, 1000);
             this.$router.push("/app/courses");
           })
           .catch(() => {
@@ -179,7 +179,7 @@ export default {
         this.isNotificationOpen = true;
         this.notificationHeading = "Заполни все поля";
         this.notificationText =
-          "ы не сможем создать тебе аккаунт, если ты не расскажешь о себе";
+          "Мы не сможем создать тебе аккаунт, если ты не расскажешь о себе";
       }
     },
     selectOptionClicked(option) {

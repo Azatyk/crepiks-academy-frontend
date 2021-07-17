@@ -1,6 +1,13 @@
 <template>
   <transition name="fadeIn" appear>
     <div>
+      <notification
+        :heading="notificationHeading"
+        :text="notificationText"
+        :status="notificationStatus"
+        :isActive="isNotificationActive"
+        @close-notification="isNotificationActive = false"
+      />
       <div class="user-profile">
         <div class="user-profile-info">
           <div class="user-profile-image" :style="imageBackground">
@@ -78,40 +85,42 @@
         </div>
         <div class="user-profile-courses">
           <h2 class="user-profile-courses-heading">Мои курсы</h2>
-          <div class="skeleton" v-if="isLoading">
-            <div class="skeleton-container">
-              <PuSkeleton
-                :count="1"
-                height="100px"
-                width="100px"
-                class="skeleton-image"
-              ></PuSkeleton>
-              <div class="skeleton-wrapper">
-                <div class="skeleton-title">
-                  <PuSkeleton
-                    :count="1"
-                    height="20px"
-                    width="100%"
-                  ></PuSkeleton>
-                </div>
-                <div class="skeleton-description">
-                  <PuSkeleton
-                    :count="1"
-                    height="40px"
-                    width="100%"
-                  ></PuSkeleton>
-                </div>
-                <div class="skeleton-button">
-                  <PuSkeleton
-                    :count="1"
-                    height="20px"
-                    width="100%"
-                  ></PuSkeleton>
+          <div class="user-profile-courses-container" v-if="isLoading">
+            <div v-for="index in 3" :key="index">
+              <div class="skeleton">
+                <PuSkeleton
+                  :count="1"
+                  height="100px"
+                  width="100px"
+                  class="skeleton-image"
+                ></PuSkeleton>
+                <div class="skeleton-wrapper">
+                  <div class="skeleton-title">
+                    <PuSkeleton
+                      :count="1"
+                      height="20px"
+                      width="100%"
+                    ></PuSkeleton>
+                  </div>
+                  <div class="skeleton-description">
+                    <PuSkeleton
+                      :count="1"
+                      height="40px"
+                      width="100%"
+                    ></PuSkeleton>
+                  </div>
+                  <div class="skeleton-button">
+                    <PuSkeleton
+                      :count="1"
+                      height="20px"
+                      width="100%"
+                    ></PuSkeleton>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="skeleton-progression">
-              <PuSkeleton :count="1" height="38px" width="100%"></PuSkeleton>
+              <div class="skeleton-progression">
+                <PuSkeleton :count="1" height="38px" width="100%"></PuSkeleton>
+              </div>
             </div>
           </div>
           <div class="user-profile-courses-container" v-else>
@@ -144,6 +153,13 @@
         :id="openCourseId"
         @open-course-block="isCourseOpen = true"
         @close-course-block="isCourseOpen = false"
+        @need-buy-subscription-notification="
+          notificationHeading = 'Доступно по подписке';
+          notificationText =
+            'Необходимо приобрести подписку чтобы перейти к этому уроку';
+          notificationStatus = 'warning';
+          isNotificationActive = true;
+        "
       />
     </div>
   </transition>
@@ -152,6 +168,7 @@
 <script>
 import courseCard from "@/components/courses/crepiks-course-card";
 import course from "@/components/courses/crepiks-course";
+import notification from "@/components/common/crepiks-notification";
 
 import firstCourseImage from "@/assets/images/basic-markup-image-small.png";
 import secondCourseImage from "@/assets/images/pro-markup-image-small.png";
@@ -167,13 +184,18 @@ export default {
     courseCard,
     course,
     profileEdit,
-    changePassword
+    changePassword,
+    notification
   },
   data() {
     return {
       firstCourseImage: firstCourseImage,
       isCourseOpen: false,
       openCourseId: 0,
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
+      isNotificationActive: false,
       secondCourseImage: secondCourseImage,
       openProfileEdit: false,
       openChangePassword: false,
@@ -261,7 +283,10 @@ export default {
         this.courses = res.data.courses;
       } else {
         for (let i = 0; i < res.data.courses.length; i++) {
-          if (res.data.courses[i].free) {
+          if (
+            res.data.courses[i].lessons[0] &&
+            res.data.courses[i].lessons[0].free
+          ) {
             this.courses.push(res.data.courses[i]);
           }
         }
@@ -506,15 +531,11 @@ export default {
 
 .skeleton {
   width: 400px;
-  margin-top: 60px;
+  display: flex;
+  margin-top: 30px;
 
   &-image {
     margin-right: 10px;
-  }
-
-  &-container {
-    width: 100%;
-    display: flex;
   }
 
   &-wrapper {
@@ -530,7 +551,7 @@ export default {
   }
 
   &-progression {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 

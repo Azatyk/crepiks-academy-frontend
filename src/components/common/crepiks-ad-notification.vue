@@ -10,7 +10,7 @@
       <p class="ad-text__paragraph">
         {{ text }}
       </p>
-      <button class="ad-text__link">
+      <button class="ad-text__link" @click="handleAdNotificationClick">
         Подробнее <i class="bx bx-right-arrow-alt ad-text__link-icon"></i>
       </button>
     </div>
@@ -50,15 +50,12 @@ export default {
 
   methods: {
     handleCloseButton() {
-      if (this.setTimeoutId) {
-        clearTimeout(this.setTimeoutId);
-      }
-
       this.$emit("close-notification");
+    },
 
-      setTimeout(() => {
-        this.$store.commit("setAdStatus", true);
-      }, 700);
+    handleAdNotificationClick() {
+      this.$store.commit("setAdBanner", true);
+      this.$emit("close-notification");
     }
   }
 };

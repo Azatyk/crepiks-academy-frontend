@@ -1,14 +1,24 @@
 <template>
-  <router-link class="profile" to="/app/profile">
-    <span class="profile-name">{{ user.lastName }} {{ user.firstName }}</span>
-    <i class="bx bx-user-circle profile-icon"></i>
-  </router-link>
+  <div class="profile-wrapper">
+    <div>
+      <Logo class="logo" />
+    </div>
+    <router-link class="profile" to="/app/profile">
+      <span class="profile-name">{{ user.lastName }} {{ user.firstName }}</span>
+      <i class="bx bx-user-circle profile-icon"></i>
+    </router-link>
+  </div>
 </template>
 
 <script>
+import Logo from "@/components/common/crepiks-logo.vue";
+
 import { mapGetters } from "vuex";
 
 export default {
+  components: {
+    Logo
+  },
   data() {
     return {
       user: {
@@ -30,9 +40,6 @@ export default {
 @import "@/assets/styles/variables.scss";
 
 .profile {
-  position: absolute;
-  top: 50px;
-  right: 5%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,6 +49,14 @@ export default {
   transition: 200ms ease-in-out;
   z-index: 1;
   text-decoration: none;
+
+  &-wrapper {
+    width: 90%;
+    position: absolute;
+    top: 50px;
+    display: flex;
+    justify-content: space-between;
+  }
 
   &:hover {
     opacity: 1;
@@ -58,25 +73,33 @@ export default {
   }
 }
 
+.logo {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .profile {
-    right: 5%;
-
     &-name {
       display: none;
     }
+  }
+
+  .logo {
+    display: block;
+    position: absolute;
+    width: 100px;
   }
 }
 
 @media (max-width: 414px) {
   .profile {
-    top: 35px;
+    &-wrapper {
+      top: 35px;
+    }
   }
-}
 
-@media (max-width: 374px) {
-  .profile {
-    top: 30px;
+  .logo {
+    opacity: 0.75;
   }
 }
 </style>
