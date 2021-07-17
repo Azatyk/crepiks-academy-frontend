@@ -1,10 +1,12 @@
 <template>
   <div class="wrapper">
     <div class="payment-text" v-if="!mobileWidth">
-      <div class="payment-heading">Оплата подписки на месяц</div>
+      <div class="payment-heading">
+        Оплата подписки на {{ subscriptionPeriodText }}
+      </div>
       <div class="payment-paragraph">
-        Приобретая подписку на платформе Crepiks за 5000 тг вы получаете доступ
-        ко всем курсам на платформе на один месяц
+        Приобретая подписку на платформе Crepiks на определенный срок, ты
+        получаешь доступ ко всем интерактивам на платформе
       </div>
       <div class="payment-paragraph">
         Оформляя подписку вы соглашаетесь с
@@ -25,10 +27,12 @@
       />
       <div class="payment-front">
         <div class="payment-text" v-if="mobileWidth">
-          <div class="payment-heading">Оплата подписки на месяц</div>
+          <div class="payment-heading">
+            Оплата подписки на {{ subscriptionPeriodText }}
+          </div>
           <div class="payment-paragraph">
-            Приобретая подписку на платформе Crepiks за 5000 тг вы получаете
-            доступ ко всем курсам на платформе на один месяц
+            Приобретая подписку на платформе Crepiks на определенный срок, ты
+            получаешь доступ ко всем интерактивам на платформе
           </div>
           <div class="payment-paragraph">
             Оформляя подписку вы соглашаетесь с
@@ -38,7 +42,9 @@
               >условиями транзакций</span
             >
           </div>
-          <cButton class="payment-button" @click="pay">Оплатить 5000тг</cButton>
+          <cButton class="payment-button" @click="pay"
+            >Оплатить {{ subscriptionPrice }}тг</cButton
+          >
         </div>
         <div class="payment-card">
           <cInput
@@ -96,7 +102,7 @@
       </div>
     </div>
     <cButton class="payment-button" @click="pay" v-if="!mobileWidth"
-      >Оплатить 5000тг</cButton
+      >Оплатить {{ subscriptionPrice }}тг</cButton
     >
   </div>
 </template>
@@ -112,6 +118,12 @@ export default {
     cInput,
     notification
   },
+  props: {
+    subscriptionPeriodProp: {
+      type: Number,
+      default: 3
+    }
+  },
   data() {
     return {
       cardNumber: "",
@@ -123,7 +135,10 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "error",
-      mobileWidth: true
+      mobileWidth: true,
+      subscriptionPeriod: 3,
+      subscriptionPeriodText: "",
+      subscriptionPrice: null
     };
   },
   watch: {
@@ -156,6 +171,19 @@ export default {
       } else {
         this.mobileWidth = true;
       }
+    }
+  },
+  mounted() {
+    this.subscriptionPeriod = this.subscriptionPeriodProp;
+    if (this.subscriptionPeriod == 1) {
+      this.subscriptionPeriodText = "один месяц";
+      this.subscriptionPrice = 5990;
+    } else if (this.subscriptionPeriod == 3) {
+      this.subscriptionPeriodText = "три месяца";
+      this.subscriptionPrice = 9990;
+    } else if (this.subscriptionPeriod == 6) {
+      this.subscriptionPeriodText = "пол года";
+      this.subscriptionPrice = 17990;
     }
   },
   created() {

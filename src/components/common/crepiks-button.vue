@@ -104,8 +104,14 @@ export default {
 }
 
 .unsolid {
-  background-color: transparent;
+  background-color: $white;
   color: $primary;
+  border: 1px solid $white;
+
+  &:hover {
+    background-color: #fcfcfc;
+    opacity: 1;
+  }
 }
 
 .small {

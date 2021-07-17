@@ -1,42 +1,55 @@
 <template>
-  <div class="subscription-card">
-    <div class="card-text">
-      <h1 class="card-text-title">
-        Получите доступ ко
-        <span class="card-text-title-important">всем</span> курсам с подпиской
-      </h1>
-      <p class="card-text-description">
-        Оформите подписку за 5000 тг и получите доступ ко всем курсам Crepiks на
-        месяц
-      </p>
-      <div class="card-button-promocode">
-        <cButton
-          @click="$emit('subscription-button-clicked')"
-          :isBold="true"
-          class="card-button"
-          >Оформить подписку</cButton
-        >
-        <span @click="$emit('promocode-opened')" class="card-promocode"
-          >Есть промокод?</span
-        >
+  <div class="subscription">
+    <h2 class="subscription-title">
+      Подписка на доступ к
+      <span class="subscription-title-green">интерактивам</span>
+    </h2>
+    <p class="subscription-text">
+      Оформи подписку и получи доступ ко всем интерактивам Crepiks. Все
+      интерактивы, которые появятся за время подписки, тоже доступны.
+      <span @click="$emit('promocode-opened')" class="subscription-text-green"
+        >Есть промокод?</span
+      >
+    </p>
+    <div class="subscription-cards">
+      <div
+        class="subscription-card"
+        @click="$emit('subscription-card-clicked', 1)"
+      >
+        <div>
+          <h3 class="subscription-card-title">Подписка на 1 месяц</h3>
+          <p class="subscription-card-text">
+            Доступ ко всем интерактивам на платформе на 1 месяц
+          </p>
+        </div>
+        <cButton class="subscription-button">5990 тг</cButton>
       </div>
-    </div>
-    <div class="card-images">
-      <img
-        class="card-image markup-basic"
-        src="@/assets/images/basic-markup-image-small.png"
-        alt=""
-      />
-      <img
-        class="card-image markup-upgrade"
-        src="@/assets/images/pro-markup-image-small.png"
-        alt=""
-      />
-      <img
-        class="card-image javascript-basic"
-        src="@/assets/images/basic-js-image-small.png"
-        alt=""
-      />
+      <div
+        class="subscription-card subscription-card-main"
+        @click="$emit('subscription-card-clicked', 3)"
+      >
+        <div>
+          <h3 class="subscription-card-title subscription-card-title-main">
+            Подписка на 3 месяца
+          </h3>
+          <p class="subscription-card-text subscription-card-text-main">
+            Доступ ко всем интерактивам на платформе на 3 месяцa
+          </p>
+        </div>
+        <cButton type="unsolid" class="subscription-button">9990 тг</cButton>
+      </div>
+      <div
+        class="subscription-card"
+        @click="$emit('subscription-card-clicked', 6)"
+      >
+        <div>
+          <h3 class="subscription-card-title">Подписка на пол года</h3>
+          <p class="subscription-card-text">
+            Доступ ко всем интерактивам на платформе на 6 месяцев
+          </p>
+        </div>
+        <cButton class="subscription-button">17990 тг</cButton>
+      </div>
     </div>
   </div>
 </template>
@@ -54,211 +67,88 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/variables.scss";
 
-.subscription-card {
-  width: 700px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  border-radius: 20px;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-  z-index: 2;
-  background-color: $white;
-}
+.subscription {
+  width: 75%;
 
-.card {
+  &-title {
+    font-size: 47px;
+    line-height: 109.34%;
+    color: $dark;
+    margin-bottom: 15px;
+
+    &-green {
+      color: $primary;
+    }
+  }
+
   &-text {
-    padding: 50px 0 60px 50px;
-    width: 61%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    font-size: 22px;
+    line-height: 150%;
+    color: $light-dark;
+    width: 85%;
+    margin-bottom: 30px;
 
-    &-title {
-      margin-bottom: 15px;
-      color: $dark;
-      font-size: 35px;
-      font-weight: 600;
+    &-green {
+      color: $primary;
+      cursor: pointer;
+      transition: 200ms ease-in-out;
 
-      &-important {
-        color: $primary;
+      &:hover {
+        opacity: 0.8;
       }
     }
-
-    &-description {
-      margin-bottom: 25px;
-      color: $dark;
-      font-size: 20px;
-      font-weight: 600;
-      opacity: 0.8;
-    }
   }
 
-  &-button {
-    margin-right: 25px;
-    font-weight: bold;
-
-    &-promocode {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
+  &-cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  &-promocode {
-    color: $primary;
-    font-size: 18px;
-    font-weight: 500;
-    opacity: 0.7;
+  &-card {
+    width: 240px;
+    height: 300px;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $white;
+    box-shadow: 0px 0px 20px rgba(60, 60, 60, 0.07);
+    border-radius: 15px;
     cursor: pointer;
     transition: 200ms ease-in-out;
 
     &:hover {
-      opacity: 0.5;
+      transform: scale(1.05);
     }
-  }
 
-  &-images {
-    position: relative;
-    width: 30%;
-    height: 100%;
-  }
-
-  &-image {
-    position: absolute;
-    width: 95px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.markup {
-  &-basic {
-    transform: rotate(-15deg);
-    top: 50px;
-    left: 50px;
-  }
-
-  &-upgrade {
-    left: 85px;
-    top: 110px;
-    transform: rotate(18deg);
-  }
-}
-
-.javascript {
-  &-basic {
-    top: 175px;
-    left: 50px;
-    transform: rotate(-18deg);
-  }
-}
-
-@media (max-width: 800px) {
-  .subscription-card {
-    width: 500px;
-    height: fit-content;
-  }
-
-  .card-text {
-    padding: 30px 0 30px 30px;
-    width: 70%;
+    &-main {
+      background-color: $primary;
+    }
 
     &-title {
-      font-size: 25px;
-    }
-
-    &-description {
-      font-size: 15px;
-    }
-  }
-
-  .card-promocode {
-    font-size: 11px;
-  }
-
-  .card-button {
-    font-size: 13px;
-    padding: 8px 20px;
-    border-radius: 7px;
-  }
-
-  .markup {
-    &-basic {
-      width: 75px;
-      top: 30px;
-      left: 20px;
-    }
-
-    &-upgrade {
-      width: 75px;
-      top: 79px;
-      left: 45px;
-    }
-  }
-
-  .javascript {
-    &-basic {
-      width: 75px;
-      top: 135px;
-      left: 20px;
-    }
-  }
-}
-
-@media (max-width: 530px) {
-  .subscription-card {
-    width: 315px;
-    padding-right: 0;
-    flex-direction: column-reverse;
-    align-items: center;
-  }
-
-  .card-text {
-    padding: 25px 25px 20px 30px;
-    box-sizing: border-box;
-    width: 100%;
-
-    &-title {
-      font-size: 20px;
+      width: 80%;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 130%;
       margin-bottom: 10px;
+      color: $dark;
+
+      &-main {
+        color: $white;
+      }
     }
 
-    &-description {
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-  }
+    &-text {
+      width: 75%;
+      font-size: 16px;
+      line-height: 130%;
+      color: $light-dark;
 
-  .card-promocode {
-    margin-top: 0px;
-    font-size: 11px;
-  }
-
-  .card-images {
-    height: 110px;
-    width: 100%;
-  }
-
-  .card-button {
-    margin-right: 10px;
-    font-size: 12px;
-  }
-
-  .markup {
-    &-basic {
-      left: 50px;
-    }
-
-    &-upgrade {
-      left: 120px;
-      top: 20px;
-    }
-  }
-
-  .javascript {
-    &-basic {
-      left: 190px;
-      top: 30px;
+      &-main {
+        color: $white;
+      }
     }
   }
 }
