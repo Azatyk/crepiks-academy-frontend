@@ -42,6 +42,7 @@ import promocode from "@/components/subscription/crepiks-subscription-promocode"
 // import payment from "@/components/subscription/crepiks-subscription-payment";
 import transactions from "@/components/subscription/crepiks-subscription-transactions";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
+import { setSubscription } from "@/requests/subscriptions";
 import { mapGetters } from "vuex";
 
 export default {
@@ -57,8 +58,8 @@ export default {
     return {
       isPromocodeOpen: false,
       // payment: false,
-      isTransactionsOpen: false,
-      subscriptionPeriod: 3
+      isTransactionsOpen: false
+      // subscriptionPeriod: 3,
     };
   },
 
@@ -66,12 +67,57 @@ export default {
     if (this.isMobile) this.payment = true;
   },
 
-  computed: mapGetters(["isMobile"]),
+  computed: mapGetters(["isMobile", "userData"]),
 
   methods: {
     subscriptionCardClicked(subscriptionPeriod) {
-      this.subscriptionPeriod = subscriptionPeriod;
-      // this.payment = true;
+      let price;
+      let subscriptionDays;
+
+      switch (subscriptionPeriod) {
+        case 1:
+          price = 5990;
+          subscriptionDays = 30;
+          break;
+        case 3:
+          price = 9990;
+          subscriptionDays = 90;
+          break;
+        case 6:
+          price = 17990;
+          subscriptionDays = 180;
+          break;
+      }
+
+      this.pay(price, subscriptionDays);
+    },
+
+    pay(amount, subscriptionDays) {
+      let userId = this.userData.id;
+
+      var widget = new window.cp.CloudPayments();
+      widget.pay(
+        "auth", // или 'charge'
+        {
+          publicId: "pk_5d2c51d3f8c784b79c51f227be4dd", //id из личного кабинета
+          description: "Оплата подписки в crepiks.com", //назначение
+          amount: amount, //сумма
+          currency: "KZT", //валюта
+          skin: "mini" //дизайн виджета (необязательно)
+        },
+        {
+          onSuccess: function() {
+            setSubscription(userId, { days: subscriptionDays })
+              .then(res => console.log(res))
+              .catch(err => console.log(err));
+          },
+          onFail: function() {
+            console.log("fail");
+          }
+          // onComplete: function(paymentResult, options) {
+          // },
+        }
+      );
     }
   }
 };
