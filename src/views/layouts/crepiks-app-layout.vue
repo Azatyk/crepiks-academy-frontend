@@ -4,7 +4,6 @@
     <div class="app-page-content">
       <router-view></router-view>
     </div>
-    <Logo class="logo" />
     <instructionsModal
       :isModalOpen="isInstructionsModalOpen"
       @close-modal="isInstructionsModalOpen = false"
@@ -15,7 +14,6 @@
 
 <script>
 import sidebar from "@/components/app-layout/crepiks-sidebar";
-import Logo from "@/components/common/crepiks-logo.vue";
 import instructionsModal from "@/components/instructions/crepiks-instructions.vue";
 import adPage from "@/components/common/crepiks-ad-page.vue";
 
@@ -24,7 +22,6 @@ import { mapGetters } from "vuex";
 export default {
   components: {
     sidebar,
-    Logo,
     instructionsModal,
     "ad-page": adPage
   },
@@ -74,10 +71,6 @@ export default {
   }
 }
 
-.logo {
-  display: none;
-}
-
 @media (max-width: 1024px) {
   .app-page {
     &-content {
@@ -85,27 +78,6 @@ export default {
       padding: 0;
       width: 100%;
     }
-  }
-
-  .logo {
-    display: block;
-    position: absolute;
-    left: 5%;
-    top: 50px;
-    width: 100px;
-  }
-}
-
-@media (max-width: 414px) {
-  .logo {
-    top: 30px;
-    opacity: 0.75;
-  }
-}
-
-@media (max-width: 374px) {
-  .logo {
-    top: 25px;
   }
 }
 </style>

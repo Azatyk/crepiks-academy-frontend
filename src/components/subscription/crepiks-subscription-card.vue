@@ -1,110 +1,69 @@
 <template>
-  <div class="subscription">
-    <h2 class="subscription-title">
-      Подписка на доступ к
-      <span class="subscription-title-green">интерактивам</span>
-    </h2>
-    <p class="subscription-text">
-      Оформи подписку и получи доступ ко всем интерактивам Crepiks. Все
-      интерактивы, которые появятся за время подписки, тоже доступны.
-      <span @click="$emit('promocode-opened')" class="subscription-text-green"
-        >Есть промокод?</span
+  <div
+    class="subscription-card"
+    :class="{ 'subscription-card-main': main }"
+    @click="$emit('subscription-card-clicked', subscriptionPeriod)"
+  >
+    <div>
+      <h3
+        class="subscription-card-title"
+        :class="{ 'subscription-card-title-main': main }"
       >
-    </p>
-    <div class="subscription-cards">
-      <div
-        class="subscription-card"
-        @click="$emit('subscription-card-clicked', 1)"
+        Подписка на {{ subscriptionPeriodText }}
+      </h3>
+      <p
+        class="subscription-card-text"
+        :class="{ 'subscription-card-text-main': main }"
       >
-        <div>
-          <h3 class="subscription-card-title">Подписка на 1 месяц</h3>
-          <p class="subscription-card-text">
-            Доступ ко всем интерактивам на платформе на 1 месяц
-          </p>
-        </div>
-        <cButton class="subscription-button">5990 тг</cButton>
-      </div>
-      <div
-        class="subscription-card subscription-card-main"
-        @click="$emit('subscription-card-clicked', 3)"
-      >
-        <div>
-          <h3 class="subscription-card-title subscription-card-title-main">
-            Подписка на 3 месяца
-          </h3>
-          <p class="subscription-card-text subscription-card-text-main">
-            Доступ ко всем интерактивам на платформе на 3 месяцa
-          </p>
-        </div>
-        <cButton type="unsolid" class="subscription-button">9990 тг</cButton>
-      </div>
-      <div
-        class="subscription-card"
-        @click="$emit('subscription-card-clicked', 6)"
-      >
-        <div>
-          <h3 class="subscription-card-title">Подписка на пол года</h3>
-          <p class="subscription-card-text">
-            Доступ ко всем интерактивам на платформе на 6 месяцев
-          </p>
-        </div>
-        <cButton class="subscription-button">17990 тг</cButton>
-      </div>
+        Доступ ко всем интерактивам на платформе на {{ subscriptionPeriodText }}
+      </p>
     </div>
+    <cButton class="subscription-button" :type="main ? 'unsolid' : 'solid'"
+      >{{ subscriptionPrice }} тг</cButton
+    >
   </div>
 </template>
 
 <script>
-import cButton from "@/components/common/crepiks-button";
+import cButton from "@/components/common/crepiks-button.vue";
 
 export default {
   components: {
     cButton
+  },
+  data() {
+    return {
+      subscriptionPeriodText: ""
+    };
+  },
+  props: {
+    subscriptionPeriod: {
+      type: Number,
+      default: 3
+    },
+    subscriptionPrice: {
+      type: Number
+    },
+    main: {
+      type: Boolean
+    }
+  },
+  mounted() {
+    if (this.subscriptionPeriod == 1) {
+      this.subscriptionPeriodText = "1 месяц";
+    } else if (this.subscriptionPeriod == 3) {
+      this.subscriptionPeriodText = "3 месяца";
+    } else if (this.subscriptionPeriod == 6) {
+      this.subscriptionPeriodText = "пол года";
+    }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "@/assets/styles/variables.scss";
 
 .subscription {
-  width: 75%;
-
-  &-title {
-    font-size: 47px;
-    line-height: 109.34%;
-    color: $dark;
-    margin-bottom: 15px;
-
-    &-green {
-      color: $primary;
-    }
-  }
-
-  &-text {
-    font-size: 22px;
-    line-height: 150%;
-    color: $light-dark;
-    width: 85%;
-    margin-bottom: 30px;
-
-    &-green {
-      color: $primary;
-      cursor: pointer;
-      transition: 200ms ease-in-out;
-
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
-
-  &-cards {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   &-card {
     width: 240px;
     height: 300px;
@@ -120,7 +79,7 @@ export default {
     transition: 200ms ease-in-out;
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
     &-main {
@@ -148,6 +107,41 @@ export default {
 
       &-main {
         color: $white;
+      }
+    }
+  }
+}
+
+@media (max-width: 1320px) {
+  .subscription {
+    &-card {
+      width: 210px;
+      height: 260px;
+
+      &-title {
+        font-size: 20px;
+      }
+
+      &-text {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .subscription {
+    &-card {
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+
+      &-title {
+        font-size: 23px;
+      }
+
+      &-text {
+        font-size: 15px;
       }
     }
   }
