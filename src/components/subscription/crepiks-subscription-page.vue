@@ -18,6 +18,7 @@
         :subscriptionPeriod="card.period"
         :subscriptionPrice="card.price"
         :main="card.main"
+        @subscription-card-clicked="$emit('subscription-card-clicked', $event)"
       />
     </div>
   </div>
