@@ -6,6 +6,7 @@
         :heading="notificationHeading"
         :text="notificationText"
         @close-notification="isNotificationOpen = false"
+        @open-notification="isNotificationOpen = true"
         status="error"
       />
       <div class="login-content">

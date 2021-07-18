@@ -10,23 +10,26 @@
     <div
       class="notification-mark"
       :class="{
-        'notification-mark-success': status == 'success',
-        'notification-mark-warning': status == 'warning',
-        'notification-mark-error': status == 'error'
+        'notification-mark-success': statusLocal == 'success',
+        'notification-mark-warning': statusLocal == 'warning',
+        'notification-mark-error': statusLocal == 'error'
       }"
     ></div>
     <i
       class="notification-icon"
       :class="{
-        'bx bxs-check-circle notification-icon-success': status == 'success',
+        'bx bxs-check-circle notification-icon-success':
+          statusLocal == 'success',
         'bx bxs-alarm-exclamation notification-icon-warning':
-          status == 'warning',
-        'bx bxs-x-circle notification-icon-error': status == 'error'
+          statusLocal == 'warning',
+        'bx bxs-x-circle notification-icon-error': statusLocal == 'error'
       }"
     ></i>
     <div class="notification-text">
-      <h2 class="notification-heading" v-if="heading != ''">{{ heading }}</h2>
-      <p class="notification-paragraph">{{ text }}</p>
+      <h2 class="notification-heading" v-if="headingLocal != ''">
+        {{ headingLocal }}
+      </h2>
+      <p class="notification-paragraph">{{ textLocal }}</p>
     </div>
     <i class="bx bx-x notification-close" @click="handleCloseButton()"></i>
   </div>
@@ -63,16 +66,32 @@ export default {
 
   data() {
     return {
-      setTimeoutId: null
+      setTimeoutId: null,
+      statusLocal: "",
+      headingLocal: "",
+      textLocal: ""
     };
   },
 
   watch: {
     isActive() {
       if (this.isActive) {
+        this.statusLocal = this.status;
+        this.headingLocal = this.heading;
+        this.textLocal = this.text;
         this.setTimeoutId = setTimeout(() => {
           this.$emit("close-notification");
         }, 7000);
+      }
+    },
+
+    heading() {
+      if (this.isActive) {
+        this.$emit("close-notification");
+        clearTimeout(this.setTimeoutId);
+        setTimeout(() => {
+          this.$emit("open-notification");
+        }, 350);
       }
     }
   },

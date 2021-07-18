@@ -7,6 +7,7 @@
         :status="notificationStatus"
         :isActive="isNotificationActive"
         @close-notification="isNotificationActive = false"
+        @open-notification="isNotificationActive = true"
       />
       <img
         src="@/assets/images/logo.svg"

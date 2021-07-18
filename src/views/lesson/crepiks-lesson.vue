@@ -11,6 +11,7 @@
         :text="notificationText"
         :status="notificationStatus"
         @close-notification="isNotificationOpen = false"
+        @open-notification="isNotificationOpen = true"
       />
       <navigation
         :isNavigationOpen="isNavigationOpen"

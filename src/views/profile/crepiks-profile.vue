@@ -7,6 +7,7 @@
         :status="notificationStatus"
         :isActive="isNotificationActive"
         @close-notification="isNotificationActive = false"
+        @open-notification="isNotificationActive = true"
       />
       <div class="user-profile">
         <div class="user-profile-info">
