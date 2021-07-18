@@ -98,6 +98,14 @@ export default {
   }
 }
 
+@media (max-width: 460px) {
+  .splash-screen {
+    &__logo {
+      width: 180px;
+    }
+  }
+}
+
 .fadeIn-enter-active,
 .fadeIn-leave-active {
   transition: opacity 2s;
