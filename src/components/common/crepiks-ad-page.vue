@@ -23,15 +23,27 @@
         Давай так, оформи подписку на месяц до того, как ты закончишь первый
         интерактив и получи скидку
       </p>
-      <div class="ad-page__price">-10%</div>
-      <subscription-payment />
+      <div class="ad-page__discount">-10%</div>
+      <div class="ad-page__subscription-cards">
+        <subscriptionCard
+          v-for="(card, index) in cards"
+          :key="index"
+          :subscriptionPeriod="card.period"
+          :subscriptionPrice="card.price"
+          :main="card.main"
+          @subscription-card-clicked="subscriptionCardClicked"
+        />
+      </div>
     </div>
   </modal>
 </template>
 
 <script>
 import modal from "@/components/common/crepiks-modal.vue";
-import subscriptionPayment from "@/components/subscription/crepiks-subscription-payment.vue";
+import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
+
+import { setSubscription } from "@/requests/subscriptions";
+import { mapGetters } from "vuex";
 
 export default {
   props: {
@@ -43,7 +55,83 @@ export default {
 
   components: {
     modal,
-    "subscription-payment": subscriptionPayment
+    subscriptionCard
+  },
+
+  data() {
+    return {
+      cards: [
+        {
+          period: 1,
+          price: 5990,
+          main: false
+        },
+        {
+          period: 3,
+          price: 9390,
+          main: true
+        },
+        {
+          period: 6,
+          price: 16990,
+          main: false
+        }
+      ]
+    };
+  },
+
+  computed: mapGetters(["userData"]),
+
+  methods: {
+    subscriptionCardClicked(subscriptionPeriod) {
+      let price;
+      let subscriptionDays;
+
+      switch (subscriptionPeriod) {
+        case 1:
+          price = 5990;
+          subscriptionDays = 30;
+          break;
+        case 3:
+          price = 9390;
+          subscriptionDays = 90;
+          break;
+        case 6:
+          price = 16990;
+          subscriptionDays = 180;
+          break;
+      }
+
+      this.pay(price, subscriptionDays);
+    },
+
+    pay(amount, subscriptionDays) {
+      let userId = this.userData.id;
+
+      var widget = new window.cp.CloudPayments();
+      widget.pay(
+        "auth", // или 'charge'
+        {
+          publicId: "pk_5d2c51d3f8c784b79c51f227be4dd", //id из личного кабинета
+          description: "Оплата подписки в crepiks.com", //назначение
+          amount: amount, //сумма
+          currency: "KZT", //валюта
+          skin: "mini" //дизайн виджета (необязательно)
+        },
+        {
+          onSuccess: function() {
+            setSubscription(userId, { days: subscriptionDays })
+              .then(res => console.log(res))
+              .catch(err => console.log(err));
+          },
+          onFail: function() {
+            console.log("fail");
+          }
+          // onComplete: function(paymentResult, options) {
+          // },
+        }
+      );
+    }
   }
 };
 </script>
@@ -56,50 +144,58 @@ export default {
   width: 80%;
   display: flex;
   flex-direction: column;
-}
 
-.ad-page__image {
-  margin-bottom: 80px;
-  width: 100%;
-  height: auto;
-}
+  &__image {
+    margin-bottom: 80px;
+    width: 100%;
+    height: auto;
+  }
 
-.ad-page__title {
-  margin-bottom: 30px;
-  color: $dark;
-  font-size: 28px;
-  font-weight: 500;
-  opacity: 0.8;
-}
+  &__title {
+    margin-bottom: 30px;
+    color: $dark;
+    font-size: 28px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
 
-.ad-page__description {
-  margin-bottom: 20px;
-  color: $dark;
-  font-size: 22px;
-  line-height: 170%;
-  opacity: 0.7;
-}
+  &__description {
+    margin-bottom: 20px;
+    color: $dark;
+    font-size: 22px;
+    line-height: 170%;
+    opacity: 0.7;
+  }
 
-.ad-page__bold {
-  font-weight: bold;
-}
+  &__bold {
+    font-weight: bold;
+  }
 
-.ad-page__important {
-  margin: 30px 0;
-  color: $primary;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 160%;
-}
+  &__important {
+    margin: 30px 0;
+    color: $primary;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 160%;
+  }
 
-.ad-page__price {
-  margin-right: 30px;
-  margin-bottom: 60px;
-  color: $primary;
-  font-size: 200px;
-  font-weight: bold;
-  text-align: center;
-  opacity: 0.5;
+  &__discount {
+    margin-right: 30px;
+    margin-bottom: 60px;
+    color: $primary;
+    font-size: 200px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0.5;
+  }
+
+  &__subscription-cards {
+    margin-left: -100px;
+    width: 820px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 </style>
