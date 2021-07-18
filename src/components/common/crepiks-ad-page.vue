@@ -23,7 +23,7 @@
         Давай так, оформи подписку на месяц до того, как ты закончишь первый
         интерактив и получи скидку
       </p>
-      <div class="ad-page__discount">-10%</div>
+      <div class="ad-page__discount">-15%</div>
       <div class="ad-page__subscription-cards">
         <subscriptionCard
           v-for="(card, index) in cards"
