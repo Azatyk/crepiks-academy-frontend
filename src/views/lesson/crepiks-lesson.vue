@@ -338,12 +338,16 @@ export default {
           this.htmlCode = this.lesson.htmlCode;
           this.cssCode = this.lesson.cssCode;
         })
-        .catch(() => {
-          this.notificationHeading = "Что-то пошло не так";
-          this.notificationText =
-            "Пожалуйста, перезагрузи интернет и всё должно заработать";
-          this.notificationStatus = "error";
-          this.isNotificationOpen = true;
+        .catch(err => {
+          if (err.response.status == 403) {
+            this.$router.push("/app/courses");
+          } else {
+            this.notificationHeading = "Что-то пошло не так";
+            this.notificationText =
+              "Пожалуйста, перезагрузи интернет и всё должно заработать";
+            this.notificationStatus = "error";
+            this.isNotificationOpen = true;
+          }
         })
         .finally(() => (this.isLoading = false));
     },
