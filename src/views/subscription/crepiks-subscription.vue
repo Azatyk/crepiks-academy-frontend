@@ -76,15 +76,15 @@ export default {
 
       switch (subscriptionPeriod) {
         case 1:
-          price = 5990;
+          price = 6990;
           subscriptionDays = 30;
           break;
         case 3:
-          price = 9990;
+          price = 10990;
           subscriptionDays = 90;
           break;
         case 6:
-          price = 17990;
+          price = 19990;
           subscriptionDays = 180;
           break;
       }
