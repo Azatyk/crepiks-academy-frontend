@@ -35,17 +35,17 @@ export default {
       cards: [
         {
           period: 1,
-          price: 5990,
+          price: 6990,
           main: false
         },
         {
           period: 3,
-          price: 9990,
+          price: 10990,
           main: true
         },
         {
           period: 6,
-          price: 17990,
+          price: 19990,
           main: false
         }
       ]

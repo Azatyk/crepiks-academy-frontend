@@ -7,6 +7,7 @@
         :status="notificationStatus"
         :isActive="isNotificationActive"
         @close-notification="isNotificationActive = false"
+        @open-notification="isNotificationActive = true"
       />
       <img
         src="@/assets/images/logo.svg"
@@ -94,6 +95,14 @@ export default {
     margin-bottom: 40px;
     width: 360px;
     height: auto;
+  }
+}
+
+@media (max-width: 460px) {
+  .splash-screen {
+    &__logo {
+      width: 180px;
+    }
   }
 }
 

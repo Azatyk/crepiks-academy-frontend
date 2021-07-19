@@ -6,6 +6,7 @@
       :status="notificationStatus"
       :isActive="isNotificationActive"
       @close-notification="isNotificationActive = false"
+      @open-notification="isNotificationActive = true"
     />
     <h2 class="trial-title">
       Хочешь попробовать? <span class="trial-title-green">Дерзай</span>

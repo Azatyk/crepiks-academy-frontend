@@ -23,6 +23,7 @@
         :heading="notificationHeading"
         :text="notificationText"
         @close-notification="isNotificationOpen = false"
+        @open-notification="isNotificationOpen = true"
         :status="notificationStatus"
       />
       <div class="payment-front">
