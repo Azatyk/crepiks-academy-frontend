@@ -57,7 +57,8 @@ export default {
         iframe.querySelector("link").getAttribute("rel") == "stylesheet" &&
         iframe.querySelector("link").getAttribute("href") == "styles.css"
       ) {
-        iframe.head.innerHTML = `<style>${this.cssCode}</style>`;
+        iframe.head.innerHTML =
+          iframe.head.innerHTML + `<style>${this.cssCode}</style>`;
       }
     },
 
