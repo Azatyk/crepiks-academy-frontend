@@ -212,6 +212,7 @@ export default {
 }
 
 .courses-half {
+  width: 40%;
   display: flex;
   flex-direction: column;
 }
@@ -274,7 +275,7 @@ export default {
 
 .skeleton {
   display: flex;
-  width: 410px;
+  width: 100%;
   margin-bottom: 60px;
 
   &-wrapper {
@@ -337,6 +338,10 @@ export default {
   .courses-page {
     padding-top: 90px;
     padding-bottom: 30px;
+  }
+
+  .courses-half {
+    width: 100%;
   }
 }
 
