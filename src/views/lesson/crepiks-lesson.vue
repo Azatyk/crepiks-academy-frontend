@@ -471,7 +471,7 @@ export default {
 
 .code-editor-container {
   width: 100%;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 170px);
 
   &-center {
     display: flex;
@@ -506,8 +506,8 @@ export default {
 <style lang="scss">
 .CodeMirror {
   width: calc(100vw - 240px) !important;
-  height: calc(100vh - 120px) !important;
-  overflow: scroll;
+  height: calc(100vh - 170px) !important;
+  overflow: hidden !important;
   z-index: 1 !important;
 }
 </style>
