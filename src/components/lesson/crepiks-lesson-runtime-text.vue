@@ -124,7 +124,7 @@ export default {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.04);
   z-index: 3 !important;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .code-editor-block .CodeMirror-code {

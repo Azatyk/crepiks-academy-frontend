@@ -367,10 +367,11 @@ export default {
 
 <style lang="scss">
 .trial-editor-editor .CodeMirror {
+  width: 100% !important;
   height: 100% !important;
   border-radius: 0 0 0 15px;
   z-index: 1 !important;
-  width: 100% !important;
+  overflow: hidden;
 }
 
 .trial-editor-editor .CodeMirror-scroll {
