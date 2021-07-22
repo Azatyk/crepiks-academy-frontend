@@ -178,11 +178,11 @@ export default {
   z-index: 4;
 
   &-open {
-    -moz-transform: translateX(500px);
-    -ms-transform: translateX(500px);
-    -webkit-transform: translateX(500px);
-    -o-transform: translateX(500px);
-    transform: translateX(500px);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
   }
 }
@@ -272,10 +272,12 @@ export default {
     }
 
     &-text {
+      width: 75%;
       display: flex;
       flex-direction: row;
       color: $dark;
       font-size: 17px;
+      line-height: 140%;
       opacity: 0.6;
 
       &-current {
