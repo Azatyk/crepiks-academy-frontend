@@ -25,7 +25,7 @@ export default {
         })
           .then(res => {
             localStorage.setItem("user", JSON.stringify(res.data.user));
-            commit("updateUserData");
+            commit("storeUserData");
             resolve(res);
           })
           .catch(err => {
