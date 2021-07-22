@@ -151,6 +151,21 @@ export default {
 }
 
 @media (max-width: 414px) {
+  .modal {
+    bottom: -100vh;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+
+    &-open {
+      -moz-transform: translateY(-100vh);
+      -ms-transform: translateY(-100vh);
+      -webkit-transform: translateY(-100vh);
+      -o-transform: translateY(-100vh);
+      transform: translateY(-100vh);
+    }
+  }
+
   .content {
     padding: 70px 0;
   }
