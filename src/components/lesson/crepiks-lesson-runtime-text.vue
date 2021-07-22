@@ -109,19 +109,22 @@ export default {
 .image-block {
   width: 100%;
   border-radius: 10px;
+  box-shadow: 0 0 10px #3c3c3c25;
 }
 </style>
 
 <style lang="scss">
 .code-editor-block .CodeMirror {
-  width: 750px !important;
+  width: 96% !important;
+  box-sizing: border-box;
   height: auto !important;
   min-height: 0px !important;
   font-size: 18px;
-  border: 1px solid #3c3c3c10;
+  border: 1px solid #3c3c3c20;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.02);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.04);
   z-index: 3 !important;
+  overflow-y: hidden;
 }
 
 .code-editor-block .CodeMirror-code {
