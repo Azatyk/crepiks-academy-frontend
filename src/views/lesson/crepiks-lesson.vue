@@ -361,7 +361,11 @@ export default {
 
       await this.$store.dispatch("getCompletedLessons", payload).then(res => {
         this.completedLessons = res.data.completedLessons;
-        if (!this.isAdSidebarLinkActive && this.completedLessons.length == 3) {
+        if (
+          !this.isAdSidebarLinkActive &&
+          this.completedLessons.length == 3 &&
+          !this.userData.subscription.hasSubscription
+        ) {
           this.$store.commit("setAdNotification", true);
         }
       });

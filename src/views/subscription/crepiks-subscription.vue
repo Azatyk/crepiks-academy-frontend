@@ -108,7 +108,10 @@ export default {
         {
           onSuccess: function() {
             setSubscription(userId, { days: subscriptionDays })
-              .then(res => console.log(res))
+              .then(res => {
+                console.log(res);
+                this.$store.commit("setAdSidebarLink", false);
+              })
               .catch(err => console.log(err));
           },
           onFail: function() {
