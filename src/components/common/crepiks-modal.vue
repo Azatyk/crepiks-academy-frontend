@@ -5,7 +5,11 @@
       'modal-open': isModalOpen
     }"
   >
-    <i class="bx bx-x modal-close" @click="$emit('close-modal')"></i>
+    <i
+      class="bx bx-x modal-close"
+      :class="{ 'modal-close-hide': isCloseButtonHide }"
+      @click="$emit('close-modal')"
+    ></i>
     <vuescroll :ops="ops">
       <div class="content-full">
         <div class="content"><slot></slot></div>
@@ -22,6 +26,10 @@ import { mapGetters } from "vuex";
 export default {
   props: {
     isModalOpen: {
+      type: Boolean,
+      default: false
+    },
+    isCloseButtonHide: {
       type: Boolean,
       default: false
     }
@@ -142,6 +150,10 @@ export default {
 
     &:hover {
       opacity: 0.4;
+    }
+
+    &-hide {
+      display: none;
     }
   }
 }

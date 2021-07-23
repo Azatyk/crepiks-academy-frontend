@@ -1,5 +1,9 @@
 <template>
-  <modal :isModalOpen="isModalOpen" @close-modal="$emit('close-modal')">
+  <modal
+    :isModalOpen="isModalOpen"
+    :isCloseButtonHide="isMobile ? true : false"
+    @close-modal="$emit('close-modal')"
+  >
     <div class="instructions-inner">
       <h2 class="instructions-heading">
         Добро пожаловать к нам,
@@ -62,7 +66,7 @@ export default {
     faq,
     cButton
   },
-  computed: mapGetters(["userData"]),
+  computed: mapGetters(["userData", "isMobile"]),
   data() {
     return {
       faqs: [
