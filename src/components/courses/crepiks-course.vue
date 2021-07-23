@@ -44,7 +44,7 @@
           <div class="course-lessons-labels">
             <div class="course-lessons-title">Темы курса</div>
             <div class="course-lessons-amount">
-              {{ course.lessons.length }} темы
+              {{ course.lessons.length }}
             </div>
           </div>
           <div class="course-lessons-list">
@@ -397,7 +397,7 @@ export default {
     color: $dark;
     font-size: 15px;
     font-weight: 400;
-    opacity: 0.7;
+    opacity: 0.9;
   }
 
   &-list {
