@@ -145,4 +145,21 @@ export default {
     margin-top: 35px;
   }
 }
+
+@media (max-width: 414px) {
+  .instructions {
+    &-inner {
+      width: 80%;
+    }
+
+    &-heading {
+      font-size: 27px;
+      margin-top: 40px;
+    }
+
+    &-paragraph {
+      font-size: 18px;
+    }
+  }
+}
 </style>

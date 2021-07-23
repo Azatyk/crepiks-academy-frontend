@@ -17,6 +17,8 @@
 <script>
 import vuescroll from "vuescroll";
 
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     isModalOpen: {
@@ -85,6 +87,17 @@ export default {
 
   components: {
     vuescroll
+  },
+
+  computed: {
+    ...mapGetters(["isMobile"])
+  },
+
+  created() {
+    if (this.isMobile) {
+      this.ops.rail.size = "0px";
+      this.ops.bar.size = "0px";
+    }
   }
 };
 </script>

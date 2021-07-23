@@ -37,7 +37,7 @@ export default {
 
   data() {
     return {
-      isInstructionsModalOpen: false,
+      isInstructionsModalOpen: true,
       isAdBannerOpen: false
     };
   },

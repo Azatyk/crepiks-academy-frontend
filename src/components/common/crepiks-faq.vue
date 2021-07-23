@@ -108,4 +108,16 @@ export default {
     transition: 500ms;
   }
 }
+
+@media (max-width: 414px) {
+  .faq {
+    &-question {
+      font-size: 16px;
+    }
+
+    &-answer {
+      font-size: 16px;
+    }
+  }
+}
 </style>
