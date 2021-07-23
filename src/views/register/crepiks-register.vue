@@ -140,41 +140,49 @@ export default {
   methods: {
     register() {
       if (this.password.trim()) {
-        this.isLoading = true;
+        if (this.password.length >= 8) {
+          this.isLoading = true;
 
-        const user = {
-          firstName: this.firstName.trim(),
-          lastName: this.lastName.trim(),
-          email: this.email.trim(),
-          phoneNumber: `7${this.phoneNumber.trim()[3] +
-            this.phoneNumber.trim()[4] +
-            this.phoneNumber.trim()[5] +
-            this.phoneNumber.trim()[8] +
-            this.phoneNumber.trim()[9] +
-            this.phoneNumber.trim()[10] +
-            this.phoneNumber.trim()[12] +
-            this.phoneNumber.trim()[13] +
-            this.phoneNumber.trim()[15] +
-            this.phoneNumber.trim()[16]}`,
-          password: this.password.trim()
-        };
+          const user = {
+            firstName: this.firstName.trim(),
+            lastName: this.lastName.trim(),
+            email: this.email.trim(),
+            phoneNumber: `7${this.phoneNumber.trim()[3] +
+              this.phoneNumber.trim()[4] +
+              this.phoneNumber.trim()[5] +
+              this.phoneNumber.trim()[8] +
+              this.phoneNumber.trim()[9] +
+              this.phoneNumber.trim()[10] +
+              this.phoneNumber.trim()[12] +
+              this.phoneNumber.trim()[13] +
+              this.phoneNumber.trim()[15] +
+              this.phoneNumber.trim()[16]}`,
+            password: this.password.trim()
+          };
 
-        this.$store
-          .dispatch("register", user)
-          .then(() => {
-            this.isLoading = false;
-            setTimeout(() => {
-              this.$root.$emit("open-modal");
-            }, 1000);
-            this.$router.push("/app/courses");
-          })
-          .catch(() => {
-            this.isLoading = false;
-            this.isNotificationOpen = true;
-            (this.notificationHeading = "Что-то пошло нет так"),
-              (this.notificationText =
-                "Проверь подключение к интернету и попробуй еще раз");
-          });
+          this.$store
+            .dispatch("register", user)
+            .then(() => {
+              this.isLoading = false;
+              setTimeout(() => {
+                this.$root.$emit("open-modal");
+              }, 1000);
+              this.$router.push("/app/courses");
+            })
+            .catch(() => {
+              this.isLoading = false;
+              this.isNotificationOpen = true;
+              (this.notificationHeading = "Что-то пошло нет так"),
+                (this.notificationText =
+                  "Проверь подключение к интернету и попробуй еще раз");
+            });
+        } else {
+          this.isLoading = false;
+          this.isNotificationOpen = true;
+          this.notificationHeading = "Слишком короткий пароль";
+          this.notificationText =
+            "Пароль должен состоять минимум из 8 символов";
+        }
       } else {
         this.isLoading = false;
         this.isNotificationOpen = true;
@@ -188,7 +196,27 @@ export default {
     },
     checkIsFormTrim(nextFormName, fisrtValue, secondValue) {
       if (fisrtValue.trim() && secondValue.trim()) {
-        this.activeForm = nextFormName;
+        if (nextFormName == "additional") {
+          if (fisrtValue.search("@") !== -1) {
+            if (secondValue.length < 17) {
+              this.isLoading = false;
+              this.isNotificationOpen = true;
+              this.notificationHeading = "Номер телефона не полностью заполнен";
+              this.notificationText =
+                "Необходимо ввести все цифры номера телефона";
+            } else {
+              this.activeForm = nextFormName;
+            }
+          } else {
+            this.isLoading = false;
+            this.isNotificationOpen = true;
+            this.notificationHeading = "Неверная почта";
+            this.notificationText =
+              "Почта обязательно должна содержать знак '@'";
+          }
+        } else {
+          this.activeForm = nextFormName;
+        }
       } else {
         this.isLoading = false;
         this.isNotificationOpen = true;
