@@ -134,7 +134,10 @@
             :lesson="lesson"
             :completedLessons="completedLessons"
             @return-task-result="showTaskResult"
-            @lesson-done="isLessonDone = true"
+            @lesson-done="
+              isLessonDone = true;
+              isCodeEditorScreen = false;
+            "
             @add-completed-lessons="addCompletedLesson()"
           />
         </div>
