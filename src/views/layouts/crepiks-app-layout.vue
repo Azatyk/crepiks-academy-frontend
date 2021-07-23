@@ -9,6 +9,13 @@
       @close-modal="isInstructionsModalOpen = false"
     />
     <ad-page :is-modal-open="isAdBannerOpen" @close-modal="closeAdBanner" />
+    <transition name="fade" appear>
+      <subscriptionSuccessModal
+        v-if="isSubscriptionSuccessModalOpen"
+        @close-modal="$store.commit('setSubscriptionSuccessModal', false)"
+        @route-to-courses="routeToCourses"
+      />
+    </transition>
   </div>
 </template>
 
@@ -16,6 +23,7 @@
 import sidebar from "@/components/app-layout/crepiks-sidebar";
 import instructionsModal from "@/components/instructions/crepiks-instructions.vue";
 import adPage from "@/components/common/crepiks-ad-page.vue";
+import subscriptionSuccessModal from "@/components/subscription/crepiks-subscription-success-modal";
 
 import { mapGetters } from "vuex";
 
@@ -23,28 +31,38 @@ export default {
   components: {
     sidebar,
     instructionsModal,
-    "ad-page": adPage
+    "ad-page": adPage,
+    subscriptionSuccessModal
   },
+
   data() {
     return {
       isInstructionsModalOpen: false,
       isAdBannerOpen: false
     };
   },
-  computed: mapGetters(["isAdBannerActive"]),
+
+  computed: mapGetters(["isAdBannerActive", "isSubscriptionSuccessModalOpen"]),
+
   methods: {
     openModal() {
       this.isInstructionsModalOpen = true;
     },
     closeAdBanner() {
       this.$store.commit("setAdBanner", false);
+    },
+    routeToCourses() {
+      this.$store.commit("setSubscriptionSuccessModal", false);
+      this.$router.push("/app/courses");
     }
   },
+
   mounted() {
     this.$root.$on("open-modal", () => {
       this.openModal();
     });
   },
+
   watch: {
     isAdBannerActive() {
       if (this.isAdBannerActive) {
@@ -79,5 +97,18 @@ export default {
       width: 100%;
     }
   }
+}
+
+.fade-enter-active {
+  transition: opacity 1s;
+}
+
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

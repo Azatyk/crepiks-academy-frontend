@@ -76,7 +76,7 @@ export default {
 
       switch (subscriptionPeriod) {
         case 1:
-          price = 6990;
+          price = 1;
           subscriptionDays = 30;
           break;
         case 3:
@@ -111,6 +111,7 @@ export default {
               .then(() => {
                 this.$store.commit("setAdSidebarLink", false);
                 this.updateUserData();
+                this.$store.commit("setSubscriptionSuccessModal", true);
               })
               .catch(err => console.log(err));
           },
@@ -131,11 +132,6 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    }
-  },
-  watch: {
-    userData() {
-      console.log(this.userData);
     }
   }
 };
