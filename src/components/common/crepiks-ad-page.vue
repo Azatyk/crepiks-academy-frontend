@@ -89,7 +89,7 @@ export default {
 
       switch (subscriptionPeriod) {
         case 1:
-          price = 1;
+          price = 5990;
           subscriptionDays = 30;
           break;
         case 3:
