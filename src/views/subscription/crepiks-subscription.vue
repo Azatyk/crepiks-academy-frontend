@@ -76,7 +76,7 @@ export default {
 
       switch (subscriptionPeriod) {
         case 1:
-          price = 6990;
+          price = 1;
           subscriptionDays = 30;
           break;
         case 3:
@@ -106,9 +106,13 @@ export default {
           skin: "mini" //дизайн виджета (необязательно)
         },
         {
-          onSuccess: function() {
+          onSuccess: () => {
             setSubscription(userId, { days: subscriptionDays })
-              .then(res => console.log(res))
+              .then(() => {
+                this.$store.commit("setAdSidebarLink", false);
+                this.updateUserData();
+                this.$store.commit("setSubscriptionSuccessModal", true);
+              })
               .catch(err => console.log(err));
           },
           onFail: function() {
@@ -118,6 +122,16 @@ export default {
           // },
         }
       );
+    },
+    updateUserData() {
+      this.$store
+        .dispatch("getUserData", this.userData.id)
+        .then(res => {
+          this.$store.commit("updateUserData", res.data.user);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

@@ -113,22 +113,27 @@ export default {
 .login {
   &-page {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: $background;
+    position: fixed;
   }
 
   &-content {
     padding: 0.1px 0;
     margin: auto;
     width: 100%;
+    height: 100%;
     max-width: 1140px;
     height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &-back {
-    position: relative;
-    margin-top: 40px;
-    margin-left: 30px;
+    position: absolute;
+    top: 40px;
+    left: 130px;
     display: flex;
     align-items: center;
     color: $primary;
@@ -146,10 +151,6 @@ export default {
   &-form {
     &-container {
       width: 100%;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
       z-index: 1;
     }
 

@@ -1,5 +1,9 @@
 <template>
-  <modal :isModalOpen="isModalOpen" @close-modal="$emit('close-modal')">
+  <modal
+    :isModalOpen="isModalOpen"
+    :isCloseButtonHide="isMobile ? true : false"
+    @close-modal="$emit('close-modal')"
+  >
     <div class="instructions-inner">
       <h2 class="instructions-heading">
         Добро пожаловать к нам,
@@ -9,13 +13,24 @@
       </h2>
       <p class="instructions-paragraph">
         Как настроение? Готов начать изучение веб-программирования? Надеемся,
-        что да, а пока, мы подготовили для тебя небольшую экскурсию по платформе
-        в виде видео:
+        что да, ведь начать — это всегда непросто. Тем не менее, ты тут, прямо
+        перед компьютером и готов начать делать что-то по-настоящему интересное
+        и полезное.
+      </p>
+      <img
+        src="@/assets/images/instructions-welcome-image.svg"
+        alt="Добро пожаловать!"
+        class="instructions-image"
+      />
+      <p class="instructions-paragraph">
+        Мы подготовили специальную платформу для обучения, с текстовой теорией и
+        возможность сразу попрактиковаться в написании кода. Чтобы тебе было
+        проще, мы подготовили небольшое видео с экскурсом по платформе:
       </p>
       <div class="instructions-video"></div>
       <p class="instructions-paragraph">
-        Отлично, ты готов(-а) начать! Если у тебя остались вопросы, взгляни на
-        часто задаваемые или напиши нам в любую социальную сеть:
+        Отлично, ты готов начать! Если у тебя остались вопросы, взгляни на часто
+        задаваемые или напиши нам в любую социальную сеть:
       </p>
       <div class="instructions-container">
         <faq v-for="(faq, index) in faqs" :key="index" :faq="faq" />
@@ -23,9 +38,11 @@
       <p class="instructions-paragraph">
         Желаем продуктивного обучения и увидимся на интерактиве!
       </p>
-      <cButton class="instructions-button" @click="$emit('close-modal')"
-        >К платформе</cButton
-      >
+      <div>
+        <cButton class="instructions-button" @click="$emit('close-modal')"
+          >К платформе</cButton
+        >
+      </div>
     </div>
   </modal>
 </template>
@@ -49,34 +66,29 @@ export default {
     faq,
     cButton
   },
-  computed: mapGetters(["userData"]),
+  computed: mapGetters(["userData", "isMobile"]),
   data() {
     return {
       faqs: [
         {
-          question: "Зачем мне всё это?",
+          question: "Что такое интерактив?",
           answer:
-            "Быть программистом — круто. Раз ты тут, значит ты это понимаешь. Программирование буквально поможет поменять твою жизнь"
+            "Интерактив — это обучающий материал, состоящий из текстовой теории с примерами кода, объяснением темы и возможностью попрактиковаться в написании кода. Ты читаешь текстовый материал, а потом пробуешь написать код по этой теме."
         },
         {
-          question: "Как вернуть деньги?",
+          question: "Кто проверяет мой код?",
           answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+            "Автоматические тесты. Это специальный код, который проверяет твою работу и указывает на ошибки, если они есть. Тесты позволяют не ждать ответа от человека, а сразу переходить к следующим темам после выполнения."
         },
         {
           question: "Вы сохраняете мой код?",
           answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+            "Нет. Более того, мы не заставляем проходить темы по очередности. Наверняка у тебя не получится запомнить всё с первого раза и возможность повторить нужную тему, снова выполнив задание очень важна."
         },
         {
-          question: "Что такое интерактив?",
+          question: "А если мне было не понятно?",
           answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
-        },
-        {
-          question: "Как можно купить подписку?",
-          answer:
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas, corporis quae itaque earum eaque, voluptates esse placeat porro cupiditate quibusdam deserunt odit perspiciatis officia sint. Ad omnis possimus blanditiis officiis."
+            "Тесты хоть и постараются объяснить твою ошибку, это всё же просто код, который проверяет код. Поэтому если ты столкнулся с нерешаемым тестом или не понимаешь, почему он решается именно так — напиши нам, и мы постараемся объяснить."
         }
       ],
       currentFaq: -10
@@ -90,13 +102,15 @@ export default {
 
 .instructions {
   &-inner {
-    width: 75%;
     margin-bottom: 80px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
   }
 
   &-heading {
     color: $dark;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 600;
     margin-bottom: 10px;
 
@@ -105,11 +119,18 @@ export default {
     }
   }
 
+  &-image {
+    margin: 50px 0;
+    width: 70%;
+    align-self: center;
+  }
+
   &-paragraph {
-    color: $light-dark;
-    font-size: 22px;
-    line-height: 150%;
     margin-top: 30px;
+    color: $dark;
+    font-size: 22px;
+    line-height: 190%;
+    opacity: 0.85;
   }
 
   &-video {
@@ -126,6 +147,23 @@ export default {
 
   &-button {
     margin-top: 35px;
+  }
+}
+
+@media (max-width: 414px) {
+  .instructions {
+    &-inner {
+      width: 80%;
+    }
+
+    &-heading {
+      font-size: 27px;
+      margin-top: 40px;
+    }
+
+    &-paragraph {
+      font-size: 18px;
+    }
   }
 }
 </style>

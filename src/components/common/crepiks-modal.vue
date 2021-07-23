@@ -5,7 +5,11 @@
       'modal-open': isModalOpen
     }"
   >
-    <i class="bx bx-x modal-close" @click="$emit('close-modal')"></i>
+    <i
+      class="bx bx-x modal-close"
+      :class="{ 'modal-close-hide': isCloseButtonHide }"
+      @click="$emit('close-modal')"
+    ></i>
     <vuescroll :ops="ops">
       <div class="content-full">
         <div class="content"><slot></slot></div>
@@ -17,9 +21,15 @@
 <script>
 import vuescroll from "vuescroll";
 
+import { mapGetters } from "vuex";
+
 export default {
   props: {
     isModalOpen: {
+      type: Boolean,
+      default: false
+    },
+    isCloseButtonHide: {
       type: Boolean,
       default: false
     }
@@ -85,6 +95,17 @@ export default {
 
   components: {
     vuescroll
+  },
+
+  computed: {
+    ...mapGetters(["isMobile"])
+  },
+
+  created() {
+    if (this.isMobile) {
+      this.ops.rail.size = "0px";
+      this.ops.bar.size = "0px";
+    }
   }
 };
 </script>
@@ -125,10 +146,14 @@ export default {
     opacity: 0.6;
     transition: 200ms ease-in-out;
     cursor: pointer;
-    z-index: 3;
+    z-index: 5;
 
     &:hover {
       opacity: 0.4;
+    }
+
+    &-hide {
+      display: none;
     }
   }
 }

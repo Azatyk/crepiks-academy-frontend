@@ -1,5 +1,8 @@
 <template>
-  <div class="side-block" :class="{ 'side-block-open': isOpen }">
+  <div
+    class="side-block"
+    :class="{ 'side-block-open': isOpen, 'side-block-wide': isWide }"
+  >
     <i class="bx bx-x side-block-close" @click="$emit('close-block')"></i>
     <slot></slot>
   </div>
@@ -9,6 +12,11 @@
 export default {
   props: {
     isOpen: {
+      type: Boolean,
+      default: false
+    },
+
+    isWide: {
       type: Boolean,
       default: false
     }
@@ -52,10 +60,16 @@ export default {
     opacity: 0.4;
     cursor: pointer;
     transition: 200ms ease-in-out;
+    z-index: 4;
 
     &:hover {
       opacity: 0.8;
     }
+  }
+
+  &-wide {
+    right: -800px;
+    width: 800px;
   }
 }
 

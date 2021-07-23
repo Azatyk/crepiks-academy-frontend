@@ -1,5 +1,9 @@
 <template>
-  <rightSideBlock :isOpen="isOpen" @close-block="$emit('close-hint')">
+  <rightSideBlock
+    :isOpen="isOpen"
+    @close-block="$emit('close-hint')"
+    :isWide="true"
+  >
     <vuescroll :ops="ops">
       <div class="hint">
         <h2 class="hint-heading">Подсказка</h2>

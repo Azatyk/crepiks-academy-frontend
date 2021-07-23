@@ -7,6 +7,7 @@ import courses from "./modules/courses";
 import clientWidth from "./modules/clientWidth";
 import subscriptions from "./modules/subscriptions";
 import ad from "./modules/ad";
+import subscription from "./modules/subscription";
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     courses,
     clientWidth,
     subscriptions,
-    ad
+    ad,
+    subscription
   }
 });

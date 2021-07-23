@@ -59,7 +59,7 @@ export default {
 .faq {
   width: 100%;
   margin-top: 10px;
-  backgound-color: $white;
+  background-color: $white;
 
   &-question {
     width: 100%;
@@ -78,6 +78,10 @@ export default {
 
     &-active {
       color: $primary;
+
+      & .faq-down-arrow {
+        transform: rotate(180deg);
+      }
     }
   }
 
@@ -90,15 +94,30 @@ export default {
     right: 0;
     top: 20%;
     font-size: 25px;
+    transition: 200ms ease-in-out;
   }
 
   &-answer {
     width: 100%;
-    color: $light-dark;
-    font-size: 20px;
     height: 0;
+    color: $dark;
+    font-size: 19px;
+    line-height: 160%;
+    opacity: 0.8;
     overflow: hidden;
     transition: 500ms;
+  }
+}
+
+@media (max-width: 414px) {
+  .faq {
+    &-question {
+      font-size: 16px;
+    }
+
+    &-answer {
+      font-size: 16px;
+    }
   }
 }
 </style>

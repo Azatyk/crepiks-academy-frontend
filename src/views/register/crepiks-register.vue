@@ -207,8 +207,9 @@ export default {
 .register {
   &-page {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: $background;
+    position: fixed;
   }
 
   &-content {
@@ -217,11 +218,15 @@ export default {
     width: 100%;
     max-width: 1140px;
     height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &-back {
-    position: relative;
-    margin-top: 40px;
+    position: absolute;
+    top: 40px;
+    left: 130px;
     display: flex;
     align-items: center;
     color: $primary;
@@ -239,11 +244,7 @@ export default {
 
   &-form {
     &-container {
-      position: absolute;
       width: 100%;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
       z-index: 2;
     }
 
