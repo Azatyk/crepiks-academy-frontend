@@ -307,8 +307,11 @@ export default {
   }
 
   .courses-list {
-    padding-left: 5%;
     box-sizing: border-box;
+  }
+
+  .courses-half {
+    width: 100%;
   }
 
   .courses-page {
@@ -338,6 +341,10 @@ export default {
   .courses-page {
     padding-top: 90px;
     padding-bottom: 30px;
+  }
+
+  .courses-list {
+    padding-left: 5%;
   }
 
   .courses-half {

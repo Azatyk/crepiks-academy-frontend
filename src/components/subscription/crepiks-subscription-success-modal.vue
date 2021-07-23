@@ -75,9 +75,11 @@ export default {
     font-weight: bold;
     color: $dark;
     margin-bottom: 15px;
+    text-align: center;
   }
 
   &-text {
+    font-size: 18px;
     color: $dark;
     margin-bottom: 30px;
     line-height: 160%;
@@ -96,6 +98,42 @@ export default {
 
     &:hover {
       opacity: 0.4;
+    }
+  }
+}
+
+@media (max-width: 836px) {
+  .modal {
+    &-window {
+      width: 90%;
+      padding: 45px 43px;
+    }
+
+    &-title {
+      font-size: 24px;
+    }
+
+    &-text {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .modal {
+    &-window {
+      width: 90%;
+      padding: 45px 40px;
+      margin-bottom: 40px;
+    }
+
+    &-title {
+      font-size: 26px;
+      font-weight: normal;
+    }
+
+    &-text {
+      font-size: 16px;
     }
   }
 }
