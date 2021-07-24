@@ -5,19 +5,18 @@
         class="file"
         :class="{ 'file-active': isHtmlShowing }"
         v-if="isHtmlExist"
+        @click="$emit('index-clicked')"
       >
-        <span class="file-title" @click="$emit('index-clicked')"
-          >index.html</span
-        >
+        <span class="file-title">index.html</span>
         <i class="bx bx-x file-icon" @click="$emit('index-closed')"></i>
       </div>
       <div
         class="file"
         :class="{ 'file-active': !isHtmlShowing }"
         v-if="isCssExist"
+        @click="$emit('styles-clicked')"
       >
-        <span class="file-title" @click="$emit('styles-clicked')"
-          >styles.css</span
+        <span class="file-title">styles.css</span
         ><i class="bx bx-x file-icon" @click="$emit('styles-closed')"></i>
       </div>
     </div>
@@ -91,6 +90,12 @@ export default {
   align-items: center;
   border-right: 1px solid #d1d2d6;
   background-color: $background;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+
+  &:hover {
+    background-color: $white;
+  }
 
   &-active {
     background-color: $white;
@@ -100,15 +105,8 @@ export default {
     color: $dark;
     font-size: 16px;
     font-weight: 400;
-    cursor: pointer;
-    transition: 200ms ease-in-out;
     opacity: 0.7;
     user-select: none;
-
-    &:hover {
-      background-color: $white;
-      opacity: 1;
-    }
   }
 
   &-icon {
