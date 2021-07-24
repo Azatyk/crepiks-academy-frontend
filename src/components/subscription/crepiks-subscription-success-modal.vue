@@ -94,7 +94,7 @@ export default {
     opacity: 0.6;
     transition: 200ms ease-in-out;
     cursor: pointer;
-    z-index: 3;
+    z-index: 6;
 
     &:hover {
       opacity: 0.4;

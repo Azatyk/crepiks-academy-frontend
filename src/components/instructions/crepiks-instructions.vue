@@ -27,7 +27,14 @@
         возможность сразу попрактиковаться в написании кода. Чтобы тебе было
         проще, мы подготовили небольшое видео с экскурсом по платформе:
       </p>
-      <div class="instructions-video"></div>
+      <imageModal
+        class="instructions-container-image"
+        fileName="code-page-instruction.png"
+      />
+      <imageModal
+        class="instructions-container-image"
+        fileName="browser-page-instruction.png"
+      />
       <p class="instructions-paragraph">
         Отлично, ты готов начать! Если у тебя остались вопросы, взгляни на часто
         задаваемые или напиши нам в любую социальную сеть:
@@ -51,6 +58,7 @@
 import modal from "@/components/common/crepiks-modal";
 import faq from "@/components/common/crepiks-faq";
 import cButton from "@/components/common/crepiks-button";
+import imageModal from "@/components/common/crepiks-image-modal";
 
 import { mapGetters } from "vuex";
 
@@ -61,12 +69,16 @@ export default {
       required: true
     }
   },
+
   components: {
     modal,
     faq,
-    cButton
+    cButton,
+    imageModal
   },
+
   computed: mapGetters(["userData", "isMobile"]),
+
   data() {
     return {
       faqs: [
@@ -133,11 +145,7 @@ export default {
     opacity: 0.85;
   }
 
-  &-video {
-    height: 290px;
-    width: 100%;
-    background-color: #e1e1e1;
-    border-radius: 10px;
+  &-container-image {
     margin-top: 30px;
   }
 
