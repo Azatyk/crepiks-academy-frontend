@@ -13,6 +13,13 @@
         @close-notification="isNotificationOpen = false"
         @open-notification="isNotificationOpen = true"
       />
+      <ad-notification
+        :heading="adNotificationHeading"
+        :text="adNotificationText"
+        :image-path="adNotificationImagePath"
+        :isActive="isLocalAdNotificationActive"
+        @close-notification="isLocalAdNotificationActive = false"
+      />
       <navigation
         :isNavigationOpen="isNavigationOpen"
         @navigation-closed="isNavigationOpen = false"
@@ -153,13 +160,7 @@
         @theory-opened="isTheoryOpen = true"
         @run-button-clicked="handleRunButton()"
         :isLessonDone="isLessonDone"
-        @need-buy-subscription-notification="
-          notificationHeading = 'Доступно по подписке';
-          notificationText =
-            'Необходимо приобрести подписку чтобы перейти к этому уроку';
-          notificationStatus = 'warning';
-          isNotificationOpen = true;
-        "
+        @need-buy-subscription-notification="openAdNotification"
       />
     </div>
   </transition>
@@ -181,6 +182,9 @@ import taskNotification from "@/components/lesson/crepiks-task-notification";
 import browserHeader from "@/components/lesson/crepiks-browser-header";
 import browser from "@/components/lesson/crepiks-browser";
 
+import adNotification from "@/components/common/crepiks-ad-notification";
+import adNotificationImage from "@/assets/images/ad-notification-carrot-image.png";
+
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/htmlmixed/htmlmixed.js";
@@ -201,7 +205,8 @@ export default {
     browserHeader,
     browser,
     codemirror,
-    hint
+    hint,
+    "ad-notification": adNotification
   },
 
   data() {
@@ -210,6 +215,11 @@ export default {
       notificationHeading: "",
       notificationText: "",
       notificationStatus: "",
+      adNotificationHeading: "",
+      adNotificationText: "",
+      adNotificationImagePath: "",
+      isLocalAdNotificationActive: false,
+      adNotificationImage: adNotificationImage,
       isLessonDone: false,
       isTheoryOnly: false,
       isLoading: true,
@@ -411,6 +421,14 @@ export default {
           return true;
         }
       }
+    },
+
+    openAdNotification() {
+      this.adNotificationHeading = "Уже 10 уроков? А ты быстрый!";
+      this.adNotificationText =
+        "Прямо сейчас ты прошел 10 уроков интерактива «Базовая верстка», а значит ты стал ближе к своей цели, стать программистом. Следующие уроки будут доступны после приробретения полписки. У нас для тебя кое-что есть, жми «Подробнее»";
+      this.adNotificationImagePath = this.adNotificationImage;
+      this.isLocalAdNotificationActive = true;
     }
   }
 };
