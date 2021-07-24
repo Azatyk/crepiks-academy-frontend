@@ -1,11 +1,42 @@
 <template>
   <div class="page">
-    <router-view></router-view>
+    <div>
+      <router-view></router-view>
+    </div>
+    <ad-page :is-modal-open="isAdBannerActive" @close-modal="closeAdBanner" />
+    <transition name="fade" appear>
+      <subscriptionSuccessModal
+        v-if="isSubscriptionSuccessModalOpen"
+        @close-modal="$store.commit('setSubscriptionSuccessModal', false)"
+        @route-to-courses="routeToCourses"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
-export default {};
+import adPage from "@/components/common/crepiks-ad-page.vue";
+import subscriptionSuccessModal from "@/components/subscription/crepiks-subscription-success-modal";
+
+import { mapGetters } from "vuex";
+
+export default {
+  components: {
+    "ad-page": adPage,
+    subscriptionSuccessModal
+  },
+
+  computed: mapGetters(["isAdBannerActive", "isSubscriptionSuccessModalOpen"]),
+
+  methods: {
+    closeAdBanner() {
+      this.$store.commit("setAdBanner", false);
+    },
+    routeToCourses() {
+      this.$store.commit("setSubscriptionSuccessModal", false);
+    }
+  }
+};
 </script>
 
 <style scoped>
