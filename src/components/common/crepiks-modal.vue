@@ -11,7 +11,7 @@
       @click="$emit('close-modal')"
     ></i>
     <vuescroll :ops="ops">
-      <div class="content-full">
+      <div ref="scrollContent" class="content-full">
         <div class="content"><slot></slot></div>
       </div>
     </vuescroll>
@@ -105,6 +105,14 @@ export default {
     if (this.isMobile) {
       this.ops.rail.size = "0px";
       this.ops.bar.size = "0px";
+    }
+  },
+
+  watch: {
+    isModalOpen() {
+      if (this.isModalOpen) {
+        this.$refs.scrollContent.scrollIntoView();
+      }
     }
   }
 };
