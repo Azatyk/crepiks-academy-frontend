@@ -9,7 +9,7 @@
       интерактивы, которые появятся за время подписки, тоже доступны.<br />
       <!-- <span @click="$emit('promocode-opened')" class="subscription-text-green"
         >Есть промокод?</span
-      >  -->С условиями транзакций можно ознакомится
+      >  -->С условиями транзакций можно ознакомиться
       <span
         class="subscription-text-green"
         @click="$emit('open-transactions-block')"
