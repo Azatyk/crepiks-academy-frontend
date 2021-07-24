@@ -44,7 +44,7 @@ export default {
       if (this.isActive) {
         setTimeout(() => {
           this.$emit("close-notification");
-        }, 7000);
+        }, 20000);
       }
     }
   }
