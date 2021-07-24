@@ -7,9 +7,14 @@
     <p class="subscription-text">
       Оформи подписку и получи доступ ко всем интерактивам Crepiks. Все
       интерактивы, которые появятся за время подписки, тоже доступны.<br />
-      <span @click="$emit('promocode-opened')" class="subscription-text-green"
+      <!-- <span @click="$emit('promocode-opened')" class="subscription-text-green"
         >Есть промокод?</span
-      >
+      >  -->С условиями транзакций можно ознакомится
+      <span
+        class="subscription-text-green"
+        @click="$emit('open-transactions-block')"
+        >здесь</span
+      >.
     </p>
     <div class="subscription-cards">
       <subscriptionCard

@@ -25,6 +25,7 @@
       <subscriptionPage
         @subscription-card-clicked="subscriptionCardClicked"
         @promocode-opened="isPromocodeOpen = true"
+        @open-transactions-block="isTransactionsOpen = true"
       />
     </transition>
     <!-- <transition name="paymentCard" v-else mode="out-in">
