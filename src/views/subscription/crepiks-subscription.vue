@@ -76,7 +76,7 @@ export default {
 
       switch (subscriptionPeriod) {
         case 1:
-          price = 1;
+          price = 6990;
           subscriptionDays = 30;
           break;
         case 3:
@@ -291,7 +291,7 @@ export default {
 
 .introCard-enter-active {
   transition: opacity 1s ease-in-out;
-  animation: longFadeIn 2s ease-in-out;
+  animation: longFadeIn 1s ease-in-out;
   will-change: opacity;
 }
 

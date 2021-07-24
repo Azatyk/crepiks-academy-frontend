@@ -158,7 +158,7 @@ export default {
 
     &-heading {
       font-size: 27px;
-      margin-top: 40px;
+      margin-top: 70px;
     }
 
     &-paragraph {

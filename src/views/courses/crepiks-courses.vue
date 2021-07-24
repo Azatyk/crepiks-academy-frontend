@@ -172,9 +172,9 @@ export default {
   methods: {
     openAdNotification() {
       setTimeout(() => {
-        this.adNotificationHeading = "Уже половина? А ты быстрый!";
+        this.adNotificationHeading = "Уже 10 уроков? А ты быстрый!";
         this.adNotificationText =
-          "Прямо сейчас ты прошел половину интерактива «Базовая верстка», а значит осталось совсем немного. У нас для тебя кое-что есть, жми «Подробнее»";
+          "Прямо сейчас ты прошел 10 уроков интерактива «Базовая верстка», а значит ты стал ближе к своей цели, стать программистом. У нас для тебя кое-что есть, жми «Подробнее»";
         this.adNotificationImagePath = this.adNotificationImage;
         this.isLocalAdNotificationActive = true;
       }, 2000);

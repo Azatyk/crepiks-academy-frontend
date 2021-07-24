@@ -134,7 +134,10 @@
             :lesson="lesson"
             :completedLessons="completedLessons"
             @return-task-result="showTaskResult"
-            @lesson-done="isLessonDone = true"
+            @lesson-done="
+              isLessonDone = true;
+              isCodeEditorScreen = false;
+            "
             @add-completed-lessons="addCompletedLesson()"
           />
         </div>
@@ -363,7 +366,7 @@ export default {
         this.completedLessons = res.data.completedLessons;
         if (
           !this.isAdSidebarLinkActive &&
-          this.completedLessons.length == 3 &&
+          this.completedLessons.length == 10 &&
           !this.userData.subscription.hasSubscription
         ) {
           this.$store.commit("setAdNotification", true);
