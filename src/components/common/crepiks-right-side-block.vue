@@ -6,7 +6,9 @@
     <div class="side-block-close-wrapper">
       <i class="bx bx-x side-block-close" @click="$emit('close-block')"></i>
     </div>
-    <slot></slot>
+    <div class="side-block-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -65,12 +67,16 @@ export default {
     position: absolute;
 
     &-wrapper {
-      height: 40px;
+      min-height: 40px;
     }
 
     &:hover {
       opacity: 0.8;
     }
+  }
+
+  &-content {
+    overflow: auto;
   }
 
   &-wide {
