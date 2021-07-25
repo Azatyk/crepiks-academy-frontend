@@ -65,7 +65,7 @@ export default {
     position: absolute;
 
     &-wrapper {
-      margin-bottom: 40px;
+      height: 40px;
     }
 
     &:hover {
