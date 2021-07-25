@@ -21,6 +21,20 @@
       </div>
     </div>
     <div class="links">
+      <div
+        v-if="isTestLesson"
+        class="header-link"
+        @click="$emit('change-test-lesson-active-code')"
+      >
+        <span class="header-link-title">{{
+          testLessonActiveCode == "userCode"
+            ? "Наше решение"
+            : testLessonActiveCode == "solutionCode"
+            ? "Моё решение"
+            : ""
+        }}</span>
+        <i class="bx bx-code-alt header-link-icon"></i>
+      </div>
       <div class="header-link" @click="$emit('hint-opened')">
         <span class="header-link-title">Подсказка</span>
         <i class="bx bx-help-circle header-link-icon"></i>
@@ -51,6 +65,14 @@ export default {
     isCssExist: {
       type: Boolean,
       default: true
+    },
+    isTestLesson: {
+      type: Boolean,
+      default: false
+    },
+    testLessonActiveCode: {
+      type: String,
+      default: ""
     }
   }
 };
