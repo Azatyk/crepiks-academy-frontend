@@ -3,7 +3,9 @@
     class="side-block"
     :class="{ 'side-block-open': isOpen, 'side-block-wide': isWide }"
   >
-    <i class="bx bx-x side-block-close" @click="$emit('close-block')"></i>
+    <div class="side-block-close-wrapper">
+      <i class="bx bx-x side-block-close" @click="$emit('close-block')"></i>
+    </div>
     <slot></slot>
   </div>
 </template>
@@ -54,13 +56,17 @@ export default {
 
   &-close {
     width: fit-content;
-    margin-bottom: 20px;
     color: $dark;
     font-size: 25px;
     opacity: 0.4;
     cursor: pointer;
     transition: 200ms ease-in-out;
     z-index: 4;
+    position: absolute;
+
+    &-wrapper {
+      margin-bottom: 40px;
+    }
 
     &:hover {
       opacity: 0.8;
