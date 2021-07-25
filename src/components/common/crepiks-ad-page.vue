@@ -1,10 +1,10 @@
 <template>
   <modal :is-modal-open="isModalOpen" @close-modal="$emit('close-modal')">
     <div class="ad-page">
-      <img
-        src="@/assets/images/part-course-ad-image.png"
-        alt="Азамат: Изучишь основы, а что дальше?"
+      <v-lazy-image
         class="ad-page__image"
+        :src="adImage"
+        alt="Азамат: Изучишь основы, а что дальше?"
       />
       <h2 class="ad-page__title">Берёт Азамат, бери и ты</h2>
       <p class="ad-page__description">
@@ -41,6 +41,8 @@
 <script>
 import modal from "@/components/common/crepiks-modal.vue";
 import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
+import VLazyImage from "v-lazy-image";
+import adImage from "@/assets/images/part-course-ad-image.png";
 
 import { setSubscription } from "@/requests/subscriptions";
 import { mapGetters } from "vuex";
@@ -55,7 +57,8 @@ export default {
 
   components: {
     modal,
-    subscriptionCard
+    subscriptionCard,
+    VLazyImage
   },
 
   data() {
@@ -76,7 +79,8 @@ export default {
           price: 16990,
           main: false
         }
-      ]
+      ],
+      adImage: adImage
     };
   },
 

@@ -11,7 +11,7 @@
         <div>
           <h2 class="card-text-title">{{ course.title }}</h2>
           <p class="card-text-description">
-            {{ course.description.substring(0, 99) + ".." }}
+            {{ course.description.substring(0, 79) + ".." }}
           </p>
         </div>
         <div
@@ -139,6 +139,7 @@ export default {
 
 .card-image {
   width: 100px;
+
   &-wrapper {
     margin-right: 10px;
     width: 100px;
