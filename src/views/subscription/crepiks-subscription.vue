@@ -1,5 +1,13 @@
 <template>
   <div class="subscription-page">
+    <notification
+      :heading="notificationHeading"
+      :text="notificationText"
+      :status="notificationStatus"
+      :isActive="isNotificationActive"
+      @close-notification="isNotificationActive = false"
+      @open-notification="isNotificationActive = true"
+    />
     <profileLink />
     <promocode
       :isOpen="isPromocodeOpen"
@@ -43,6 +51,7 @@ import promocode from "@/components/subscription/crepiks-subscription-promocode"
 // import payment from "@/components/subscription/crepiks-subscription-payment";
 import transactions from "@/components/subscription/crepiks-subscription-transactions";
 import profileLink from "@/components/profile-link/crepiks-profile-link";
+import notification from "@/components/common/crepiks-notification";
 import { setSubscription } from "@/requests/subscriptions";
 import { mapGetters } from "vuex";
 
@@ -52,11 +61,16 @@ export default {
     promocode,
     // payment,
     transactions,
-    profileLink
+    profileLink,
+    notification
   },
 
   data() {
     return {
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
+      isNotificationActive: false,
       isPromocodeOpen: false,
       // payment: false,
       isTransactionsOpen: false
@@ -114,7 +128,13 @@ export default {
                 this.updateUserData();
                 this.$store.commit("setSubscriptionSuccessModal", true);
               })
-              .catch(err => console.log(err));
+              .catch(() => {
+                this.notificationHeading = "Что-то пошло не так";
+                this.notificationText =
+                  "Какие-то проблемы с подпиской. Попробуй перезагрузить страницу и если подписки не будет — напиши нам";
+                this.notificationStatus = "error";
+                this.isNotificationActive = true;
+              });
           },
           onFail: function() {
             console.log("fail");
@@ -125,14 +145,9 @@ export default {
       );
     },
     updateUserData() {
-      this.$store
-        .dispatch("getUserData", this.userData.id)
-        .then(res => {
-          this.$store.commit("updateUserData", res.data.user);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$store.dispatch("getUserData", this.userData.id).then(res => {
+        this.$store.commit("updateUserData", res.data.user);
+      });
     }
   }
 };

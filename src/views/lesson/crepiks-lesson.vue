@@ -192,8 +192,13 @@
       </div>
       <lessonFooter
         :lessons="lessons"
+        :is-test-lesson="isTestLesson"
         @theory-opened="isTheoryOpen = true"
-        @run-button-clicked="handleRunButton()"
+        @run-button-clicked="
+          isCodeEditorScreen = false;
+          runCode();
+        "
+        @check-button-clicked="handleCheckButton()"
         :isLessonDone="isLessonDone"
         @need-buy-subscription-notification="openAdNotification"
       />
@@ -343,8 +348,6 @@ export default {
       this.isTestLesson = true;
       this.testLessonActiveCode = "userCode";
     }
-    console.log(this.isTestLesson);
-    console.log(this.lesson);
   },
 
   computed: {
@@ -434,7 +437,7 @@ export default {
       });
     },
 
-    handleRunButton() {
+    handleCheckButton() {
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
           child.handleRunButton();

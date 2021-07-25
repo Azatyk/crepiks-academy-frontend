@@ -4,13 +4,19 @@
       Теория
     </button>
     <button
-      class="lesson-footer-check"
+      class="lesson-footer-button lesson-footer-run"
+      @click="$emit('run-button-clicked')"
+    >
+      Выполнить
+    </button>
+    <button
+      class="lesson-footer-button lesson-footer-check"
       :class="{ 'lesson-footer-check-complete': isLessonDone }"
       @click="
-        isLessonDone ? nextLessonButtonHandler() : $emit('run-button-clicked')
+        isLessonDone ? nextLessonButtonHandler() : $emit('check-button-clicked')
       "
     >
-      {{ isLessonDone ? "Далее" : "Проверить" }}
+      {{ isTestLesson ? "Завершить" : isLessonDone ? "Далее" : "Проверить" }}
     </button>
   </div>
 </template>
@@ -21,6 +27,11 @@ import { mapGetters } from "vuex";
 export default {
   props: {
     isLessonDone: {
+      type: Boolean,
+      default: false
+    },
+
+    isTestLesson: {
       type: Boolean,
       default: false
     },
@@ -72,7 +83,7 @@ export default {
   z-index: 2;
 
   &-theory {
-    width: 100%;
+    width: calc(100% - 150px);
     height: 100%;
     display: flex;
     justify-content: center;
@@ -90,14 +101,12 @@ export default {
     transition: 200ms ease-in-out;
 
     &:hover {
-      opacity: 0.6;
+      opacity: 0.5;
     }
   }
 
-  &-check {
+  &-button {
     position: absolute;
-    right: 0;
-    top: 0;
     width: 150px;
     height: 50px;
     display: flex;
@@ -116,8 +125,18 @@ export default {
     transition: 200ms ease-in-out;
 
     &:hover {
-      opacity: 0.7;
+      opacity: 0.5;
     }
+  }
+
+  &-run {
+    right: 150px;
+    top: 0;
+  }
+
+  &-check {
+    right: 0;
+    top: 0;
 
     &-complete {
       color: $white;
