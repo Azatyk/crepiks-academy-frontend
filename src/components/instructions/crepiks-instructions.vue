@@ -17,10 +17,10 @@
         перед компьютером и готов начать делать что-то по-настоящему интересное
         и полезное.
       </p>
-      <img
-        src="@/assets/images/instructions-welcome-image.svg"
-        alt="Добро пожаловать!"
+      <v-lazy-image
         class="instructions-image"
+        :src="instructionsImage"
+        alt="Добро пожаловать!"
       />
       <p class="instructions-paragraph">
         Мы подготовили платформу для обучения, с текстовой теорией и возможность
@@ -59,6 +59,9 @@ import modal from "@/components/common/crepiks-modal";
 import faq from "@/components/common/crepiks-faq";
 import cButton from "@/components/common/crepiks-button";
 import imageModal from "@/components/common/crepiks-image-modal";
+import VLazyImage from "v-lazy-image";
+
+import instructionsImage from "@/assets/images/instructions-welcome-image.svg";
 
 import { mapGetters } from "vuex";
 
@@ -74,7 +77,8 @@ export default {
     modal,
     faq,
     cButton,
-    imageModal
+    imageModal,
+    VLazyImage
   },
 
   computed: mapGetters(["userData", "isMobile"]),
@@ -103,7 +107,8 @@ export default {
             "Тесты хоть и постараются объяснить твою ошибку, это всё же просто код, который проверяет код. Поэтому если ты столкнулся с нерешаемым тестом или не понимаешь, почему он решается именно так — напиши нам, и мы постараемся объяснить."
         }
       ],
-      currentFaq: -10
+      currentFaq: -10,
+      instructionsImage: instructionsImage
     };
   }
 };
