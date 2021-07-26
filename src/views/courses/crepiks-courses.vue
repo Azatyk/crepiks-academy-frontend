@@ -22,11 +22,10 @@
           <input
             type="text"
             class="input"
-            placeholder="Чему хотите научиться?"
-            disabled
+            placeholder="Найди интерактив по душе"
           />
           <div class="button-container">
-            <cButton size="small" :isDisabled="true">Найти</cButton>
+            <cButton @click="handleSearchButton" size="small">Найти</cButton>
           </div>
         </div>
         <div class="courses-list" v-if="isLoading">
@@ -194,6 +193,14 @@ export default {
           this.notificationText =
             "Проверьте ваше подключение к интернету и попробуйте снова";
         });
+    },
+
+    handleSearchButton() {
+      this.notificationHeading = "Поиск не активен";
+      this.notificationText =
+        "Сейчас ты можешь увидеть все активные интерактивы перед собой, поэтому смысла в поиске немного";
+      this.notificationStatus = "warning";
+      this.isNotificationActive = true;
     }
   }
 };
@@ -261,6 +268,7 @@ export default {
   align-items: center;
   border-radius: 0 10px 10px 0;
   background-color: #f0eff4;
+  opacity: 0.7;
 }
 
 .courses-list {

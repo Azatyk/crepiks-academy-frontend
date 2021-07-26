@@ -47,7 +47,7 @@
             <div class="user-profile-container">
               <i class="bx bx-phone user-profile-icon"></i>
               <span class="user-profile-text">{{
-                user.phoneNumber ? user.phoneNumber : "-"
+                user.phoneNumber ? "+" + user.phoneNumber : "-"
               }}</span>
             </div>
             <div class="user-profile-buttons">

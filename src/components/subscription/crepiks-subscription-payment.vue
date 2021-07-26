@@ -183,7 +183,7 @@ export default {
       this.subscriptionPeriodText = "три месяца";
       this.subscriptionPrice = 9990;
     } else if (this.subscriptionPeriod == 6) {
-      this.subscriptionPeriodText = "пол года";
+      this.subscriptionPeriodText = "6 месяцев";
       this.subscriptionPrice = 17990;
     }
   },
