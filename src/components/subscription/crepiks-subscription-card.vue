@@ -54,7 +54,7 @@ export default {
     } else if (this.subscriptionPeriod == 3) {
       this.subscriptionPeriodText = "3 месяца";
     } else if (this.subscriptionPeriod == 6) {
-      this.subscriptionPeriodText = "пол года";
+      this.subscriptionPeriodText = "6 месяцев";
     }
   }
 };

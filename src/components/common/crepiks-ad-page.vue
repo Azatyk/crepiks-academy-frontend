@@ -1,10 +1,18 @@
 <template>
   <modal :is-modal-open="isModalOpen" @close-modal="$emit('close-modal')">
+    <notification
+      :heading="notificationHeading"
+      :text="notificationText"
+      :status="notificationStatus"
+      :isActive="isNotificationActive"
+      @close-notification="isNotificationActive = false"
+      @open-notification="isNotificationActive = true"
+    />
     <div class="ad-page">
-      <img
-        src="@/assets/images/part-course-ad-image.png"
-        alt="Азамат: Изучишь основы, а что дальше?"
+      <v-lazy-image
         class="ad-page__image"
+        :src="adImage"
+        alt="Азамат: Изучишь основы, а что дальше?"
       />
       <h2 class="ad-page__title">Берёт Азамат, бери и ты</h2>
       <p class="ad-page__description">
@@ -41,6 +49,9 @@
 <script>
 import modal from "@/components/common/crepiks-modal.vue";
 import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
+import VLazyImage from "v-lazy-image";
+import adImage from "@/assets/images/part-course-ad-image.png";
+import notification from "@/components/common/crepiks-notification";
 
 import { setSubscription } from "@/requests/subscriptions";
 import { mapGetters } from "vuex";
@@ -55,11 +66,17 @@ export default {
 
   components: {
     modal,
-    subscriptionCard
+    subscriptionCard,
+    VLazyImage,
+    notification
   },
 
   data() {
     return {
+      notificationHeading: "",
+      notificationText: "",
+      notificationStatus: "",
+      isNotificationActive: false,
       cards: [
         {
           period: 1,
@@ -76,7 +93,8 @@ export default {
           price: 16990,
           main: false
         }
-      ]
+      ],
+      adImage: adImage
     };
   },
 
@@ -127,7 +145,13 @@ export default {
                 this.$store.commit("setAdBanner", false);
                 this.$store.commit("setSubscriptionSuccessModal", true);
               })
-              .catch(err => console.log(err));
+              .catch(() => {
+                this.notificationHeading = "Что-то пошло не так";
+                this.notificationText =
+                  "Какие-то проблемы с подпиской. Попробуй перезагрузить страницу и если подписки не будет — напиши нам";
+                this.notificationStatus = "error";
+                this.isNotificationActive = true;
+              });
           },
           onFail: function() {
             console.log("fail");
@@ -138,14 +162,9 @@ export default {
       );
     },
     updateUserData() {
-      this.$store
-        .dispatch("getUserData", this.userData.id)
-        .then(res => {
-          this.$store.commit("updateUserData", res.data.user);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$store.dispatch("getUserData", this.userData.id).then(res => {
+        this.$store.commit("updateUserData", res.data.user);
+      });
     }
   }
 };

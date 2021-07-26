@@ -72,6 +72,8 @@
               :isHtmlShowing="isHtmlShowing"
               :isHtmlExist="isHtmlExist"
               :isCssExist="isCssExist"
+              :isTestLesson="isTestLesson"
+              :testLessonActiveCode="testLessonActiveCode"
               @navigation-opened="isNavigationOpen = true"
               @hint-opened="isHintOpen = true"
               @index-clicked="isHtmlShowing = true"
@@ -85,6 +87,13 @@
                 isHtmlShowing = true;
               "
               @switch-browser="isCodeEditorScreen = false"
+              @change-test-lesson-active-code="
+                testLessonActiveCode == 'userCode'
+                  ? (testLessonActiveCode = 'solutionCode')
+                  : testLessonActiveCode == 'solutionCode'
+                  ? (testLessonActiveCode = 'userCode')
+                  : ''
+              "
             />
             <div
               class="code-editor-container"
@@ -92,20 +101,46 @@
                 'code-editor-container-center': !isHtmlExist && !isCssExist
               }"
             >
-              <codemirror
-                class="code-editor"
-                :code="htmlCode"
-                v-model="htmlCode"
-                :options="htmlOptions"
-                v-if="isHtmlShowing && isHtmlExist"
-              />
-              <codemirror
-                class="code-editor"
-                :code="cssCode"
-                v-model="cssCode"
-                :options="cssOptions"
-                v-if="!isHtmlShowing && isCssExist"
-              />
+              <div v-if="isHtmlShowing && isHtmlExist">
+                <codemirror
+                  class="code-editor"
+                  :code="htmlCode"
+                  v-model="htmlCode"
+                  :options="htmlOptions"
+                  v-if="
+                    !isTestLesson ||
+                      (isTestLesson && testLessonActiveCode == 'userCode')
+                  "
+                />
+                <codemirror
+                  class="code-editor"
+                  :code="lesson.htmlCodeSolution"
+                  :options="htmlOptions"
+                  v-else-if="
+                    isTestLesson && testLessonActiveCode == 'solutionCode'
+                  "
+                />
+              </div>
+              <div v-if="!isHtmlShowing && isCssExist">
+                <codemirror
+                  class="code-editor"
+                  :code="cssCode"
+                  v-model="cssCode"
+                  :options="cssOptions"
+                  v-if="
+                    !isTestLesson ||
+                      (isTestLesson && testLessonActiveCode == 'userCode')
+                  "
+                />
+                <codemirror
+                  class="code-editor"
+                  :code="lesson.cssCodeSolution"
+                  :options="cssOptions"
+                  v-else-if="
+                    isTestLesson && testLessonActiveCode == 'solutionCode'
+                  "
+                />
+              </div>
               <img
                 v-if="!isHtmlExist && !isCssExist"
                 src="@/assets/images/lesson-empty-image.svg"
@@ -157,8 +192,13 @@
       </div>
       <lessonFooter
         :lessons="lessons"
+        :is-test-lesson="isTestLesson"
         @theory-opened="isTheoryOpen = true"
-        @run-button-clicked="handleRunButton()"
+        @run-button-clicked="
+          isCodeEditorScreen = false;
+          runCode();
+        "
+        @check-button-clicked="handleCheckButton()"
         :isLessonDone="isLessonDone"
         @need-buy-subscription-notification="openAdNotification"
       />
@@ -223,6 +263,9 @@ export default {
       isLessonDone: false,
       isTheoryOnly: false,
       isLoading: true,
+      isTestLesson: false,
+      testLessonActiveCode: null,
+      htmlCodeSolution: "",
       lesson: {
         title: "",
         theoryBlocks: [],
@@ -230,6 +273,8 @@ export default {
         hintBlocks: [],
         hintBlocksContent: [],
         description: "",
+        htmlCodeSolution: "",
+        cssCodeSolution: "",
         tasks: [
           {
             descriptionRu: ""
@@ -282,6 +327,7 @@ export default {
   },
 
   async mounted() {
+    this.isTestLesson = false;
     let courseId = this.$route.params.courseId;
 
     await this.$store
@@ -296,6 +342,11 @@ export default {
     } else {
       this.isTheoryOnly = false;
       this.runCode();
+    }
+
+    if (this.lesson.htmlCodeSolution || this.lesson.cssCodeSolution) {
+      this.isTestLesson = true;
+      this.testLessonActiveCode = "userCode";
     }
   },
 
@@ -339,6 +390,8 @@ export default {
           this.lesson.cssCode = res.data.lesson.cssCode;
           this.lesson.tasks = res.data.lesson.tasks;
           this.lesson.successMessage = res.data.lesson.successMessage;
+          this.lesson.htmlCodeSolution = res.data.lesson.htmlCodeSolution;
+          this.lesson.cssCodeSolution = res.data.lesson.cssCodeSolution;
 
           if (res.data.lesson.theoryBlocks)
             this.lesson.theoryBlocks = res.data.lesson.theoryBlocks;
@@ -384,7 +437,7 @@ export default {
       });
     },
 
-    handleRunButton() {
+    handleCheckButton() {
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
           child.handleRunButton();
