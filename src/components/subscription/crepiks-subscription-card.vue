@@ -1,25 +1,31 @@
 <template>
   <div
     class="subscription-card"
-    :class="{ 'subscription-card-main': main }"
-    @click="$emit('subscription-card-clicked', subscriptionPeriod)"
+    :class="{ 'subscription-card-main': card.main }"
+    @click="$emit('subscription-card-clicked', card.period)"
   >
     <div>
       <h3
         class="subscription-card-title"
-        :class="{ 'subscription-card-title-main': main }"
+        :class="{ 'subscription-card-title-main': card.main }"
       >
         Подписка на {{ subscriptionPeriodText }}
       </h3>
       <p
         class="subscription-card-text"
-        :class="{ 'subscription-card-text-main': main }"
+        :class="{ 'subscription-card-text-main': card.main }"
       >
-        Доступ ко всем интерактивам на платформе на {{ subscriptionPeriodText }}
+        Доступ ко всем интерактивам на платформе на
+        {{ card.subscriptionPeriodText }}
       </p>
     </div>
-    <cButton class="subscription-button" :type="main ? 'unsolid' : 'solid'"
-      >{{ subscriptionPrice }} тг</cButton
+    <p v-if="withoutDiscountPrice" class="subscription-card-price-original">
+      {{ withoutDiscountPrice }}
+    </p>
+    <cButton
+      class="subscription-button"
+      :type="card.main ? 'unsolid' : 'solid'"
+      >{{ price }}</cButton
     >
   </div>
 </template>
@@ -31,30 +37,47 @@ export default {
   components: {
     cButton
   },
+
   data() {
     return {
-      subscriptionPeriodText: ""
+      subscriptionPeriodText: "",
+      price: "",
+      withoutDiscountPrice: ""
     };
   },
+
   props: {
-    subscriptionPeriod: {
-      type: Number,
-      default: 3
+    card: {
+      type: Object
     },
-    subscriptionPrice: {
-      type: Number
-    },
-    main: {
-      type: Boolean
+    currency: {
+      type: String,
+      default: "RUB"
     }
   },
+
   mounted() {
-    if (this.subscriptionPeriod == 1) {
+    if (this.card.period == 1) {
       this.subscriptionPeriodText = "1 месяц";
-    } else if (this.subscriptionPeriod == 3) {
+    } else if (this.card.period == 3) {
       this.subscriptionPeriodText = "3 месяца";
-    } else if (this.subscriptionPeriod == 6) {
+    } else if (this.card.period == 6) {
       this.subscriptionPeriodText = "6 месяцев";
+    }
+
+    this.price = this.card.priceRUB;
+    this.withoutDiscountPrice = this.card.withoutDiscountPriceRUB;
+  },
+
+  watch: {
+    currency() {
+      if (this.currency == "RUB") {
+        this.price = this.card.priceRUB;
+        this.withoutDiscountPrice = this.card.withoutDiscountPriceRUB;
+      } else if (this.currency == "KZT") {
+        this.price = this.card.priceKZT;
+        this.withoutDiscountPrice = this.card.withoutDiscountPriceKZT;
+      }
     }
   }
 };
@@ -108,6 +131,13 @@ export default {
       &-main {
         color: $white;
       }
+    }
+
+    &-price-original {
+      color: $light-dark;
+      text-decoration: line-through;
+      text-decoration-color: red;
+      text-decoration-thickness: 2px;
     }
   }
 }

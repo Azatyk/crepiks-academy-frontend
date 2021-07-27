@@ -16,14 +16,29 @@
         >здесь</span
       >.
     </p>
+    <div class="subscription-currency-wrapper">
+      <span
+        class="subscription-currency"
+        :class="{ 'subscription-currency-active': currency == 'RUB' }"
+        @click="currency = 'RUB'"
+        >RUB</span
+      >
+      <span
+        class="subscription-currency"
+        :class="{ 'subscription-currency-active': currency == 'KZT' }"
+        @click="currency = 'KZT'"
+        >KZT</span
+      >
+    </div>
     <div class="subscription-cards">
       <subscriptionCard
         v-for="(card, index) in cards"
         :key="index"
-        :subscriptionPeriod="card.period"
-        :subscriptionPrice="card.price"
-        :main="card.main"
-        @subscription-card-clicked="$emit('subscription-card-clicked', $event)"
+        :card="card"
+        :currency="currency"
+        @subscription-card-clicked="
+          $emit('subscription-card-clicked', $event, currency)
+        "
       />
     </div>
   </div>
@@ -31,26 +46,31 @@
 
 <script>
 import subscriptionCard from "@/components/subscription/crepiks-subscription-card";
+
 export default {
   components: {
     subscriptionCard
   },
   data() {
     return {
+      currency: "RUB",
       cards: [
         {
           period: 1,
-          price: 6990,
+          priceRUB: "1199 ₽",
+          priceKZT: "6990 тг",
           main: false
         },
         {
           period: 3,
-          price: 10990,
+          priceRUB: "1899 ₽",
+          priceKZT: "10990 тг",
           main: true
         },
         {
           period: 6,
-          price: 19990,
+          priceRUB: "3499 ₽",
+          priceKZT: "19990 тг",
           main: false
         }
       ]
@@ -99,6 +119,26 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &-currency {
+    color: $dark;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 200ms ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &-wrapper {
+      margin-bottom: 15px;
+    }
+
+    &-active {
+      color: $primary;
+      text-decoration: underline;
+    }
   }
 }
 
