@@ -1,6 +1,6 @@
 <template>
   <div class="profile-wrapper">
-    <div>
+    <div @click="$router.push('/app/courses')">
       <Logo class="logo" />
     </div>
     <router-link class="profile" to="/app/profile">
