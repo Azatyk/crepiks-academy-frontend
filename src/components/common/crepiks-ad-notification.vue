@@ -1,7 +1,7 @@
 <template>
   <div class="ad-notification" :class="{ 'ad-notification__open': isActive }">
     <img
-      src="@/assets/images/ad-notification-carrot-image.png"
+      :src="require(`@/assets/images/${imageFileName}`)"
       alt="Реклама"
       class="ad-notification__image"
     />
@@ -10,7 +10,11 @@
       <p class="ad-text__paragraph">
         {{ text }}
       </p>
-      <button class="ad-text__link" @click="handleAdNotificationClick">
+      <button
+        v-if="isDetailsButtonActive"
+        class="ad-text__link"
+        @click="handleAdNotificationClick"
+      >
         Подробнее <i class="bx bx-right-arrow-alt ad-text__link-icon"></i>
       </button>
     </div>
@@ -32,13 +36,17 @@ export default {
       type: String,
       required: true
     },
-    imagePath: {
+    imageFileName: {
       type: String,
       required: true
     },
     isActive: {
       type: Boolean,
       required: true
+    },
+    isDetailsButtonActive: {
+      type: Boolean,
+      default: true
     }
   },
 

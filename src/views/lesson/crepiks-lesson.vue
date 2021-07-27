@@ -16,9 +16,18 @@
       <ad-notification
         :heading="adNotificationHeading"
         :text="adNotificationText"
-        :image-path="adNotificationImagePath"
+        imageFileName="ad-notification-carrot-image.png"
         :isActive="isLocalAdNotificationActive"
         @close-notification="isLocalAdNotificationActive = false"
+        :isDetailsButtonActive="true"
+      />
+      <ad-notification
+        :heading="adNotificationHeading"
+        :text="adNotificationText"
+        imageFileName="ad-notification-present.svg"
+        :isActive="isPresentAdNotificationActive"
+        @close-notification="isPresentAdNotificationActive = false"
+        :isDetailsButtonActive="false"
       />
       <navigation
         :isNavigationOpen="isNavigationOpen"
@@ -223,7 +232,6 @@ import browserHeader from "@/components/lesson/crepiks-browser-header";
 import browser from "@/components/lesson/crepiks-browser";
 
 import adNotification from "@/components/common/crepiks-ad-notification";
-import adNotificationImage from "@/assets/images/ad-notification-carrot-image.png";
 
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
@@ -257,9 +265,8 @@ export default {
       notificationStatus: "",
       adNotificationHeading: "",
       adNotificationText: "",
-      adNotificationImagePath: "",
       isLocalAdNotificationActive: false,
-      adNotificationImage: adNotificationImage,
+      isPresentAdNotificationActive: false,
       isLessonDone: false,
       isTheoryOnly: false,
       isLoading: true,
@@ -434,6 +441,13 @@ export default {
         ) {
           this.$store.commit("setAdNotification", true);
         }
+
+        if (
+          this.completedLessons.length == 3 &&
+          !this.userData.subscription.hasSubscription
+        ) {
+          this.openPresentAdNotification();
+        }
       });
     },
 
@@ -480,8 +494,14 @@ export default {
       this.adNotificationHeading = "Уже 10 уроков? А ты быстрый!";
       this.adNotificationText =
         "Прямо сейчас ты прошел 10 уроков интерактива «Базовая верстка», а значит ты стал ближе к своей цели, стать программистом. Следующие уроки будут доступны после приробретения подписки. У нас для тебя кое-что есть, жми «Подробнее»";
-      this.adNotificationImagePath = this.adNotificationImage;
       this.isLocalAdNotificationActive = true;
+    },
+
+    openPresentAdNotification() {
+      this.adNotificationHeading = "Круто! Ты уже прошел 3 урока!";
+      this.adNotificationText =
+        "В таком же заряженном темпе пройди 10 уроков. Там мы для тебя кое-что приготовили!";
+      this.isPresentAdNotificationActive = true;
     }
   }
 };

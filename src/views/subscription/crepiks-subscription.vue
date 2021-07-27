@@ -85,29 +85,46 @@ export default {
   computed: mapGetters(["isMobile", "userData"]),
 
   methods: {
-    subscriptionCardClicked(subscriptionPeriod) {
+    subscriptionCardClicked(subscriptionPeriod, currency) {
       let price;
       let subscriptionDays;
 
-      switch (subscriptionPeriod) {
-        case 1:
-          price = 6990;
-          subscriptionDays = 30;
-          break;
-        case 3:
-          price = 10990;
-          subscriptionDays = 90;
-          break;
-        case 6:
-          price = 19990;
-          subscriptionDays = 180;
-          break;
+      if (currency == "RUB") {
+        switch (subscriptionPeriod) {
+          case 1:
+            price = 1199;
+            subscriptionDays = 30;
+            break;
+          case 3:
+            price = 1899;
+            subscriptionDays = 90;
+            break;
+          case 6:
+            price = 3499;
+            subscriptionDays = 180;
+            break;
+        }
+      } else if (currency == "KZT") {
+        switch (subscriptionPeriod) {
+          case 1:
+            price = 6990;
+            subscriptionDays = 30;
+            break;
+          case 3:
+            price = 10990;
+            subscriptionDays = 90;
+            break;
+          case 6:
+            price = 19990;
+            subscriptionDays = 180;
+            break;
+        }
       }
 
-      this.pay(price, subscriptionDays);
+      this.pay(price, currency, subscriptionDays);
     },
 
-    pay(amount, subscriptionDays) {
+    pay(amount, currency, subscriptionDays) {
       let userId = this.userData.id;
 
       var widget = new window.cp.CloudPayments();
@@ -117,7 +134,7 @@ export default {
           publicId: "pk_5d2c51d3f8c784b79c51f227be4dd", //id из личного кабинета
           description: "Оплата подписки в crepiks.com", //назначение
           amount: amount, //сумма
-          currency: "KZT", //валюта
+          currency: currency, //валюта
           skin: "mini" //дизайн виджета (необязательно)
         },
         {

@@ -12,9 +12,10 @@
       <ad-notification
         :heading="adNotificationHeading"
         :text="adNotificationText"
-        :image-path="adNotificationImagePath"
+        imageFileName="ad-notification-carrot-image.png"
         :isActive="isLocalAdNotificationActive"
         @close-notification="isLocalAdNotificationActive = false"
+        :isDetailsButtonActive="true"
       />
       <profileLink />
       <div class="courses-half">
@@ -125,7 +126,6 @@ import profileLink from "@/components/profile-link/crepiks-profile-link";
 import notification from "@/components/common/crepiks-notification";
 
 import adNotification from "@/components/common/crepiks-ad-notification";
-import adNotificationImage from "@/assets/images/ad-notification-carrot-image.png";
 
 import { mapGetters } from "vuex";
 
@@ -150,9 +150,7 @@ export default {
       isNotificationActive: false,
       adNotificationHeading: "",
       adNotificationText: "",
-      adNotificationImagePath: "",
       isLocalAdNotificationActive: false,
-      adNotificationImage: adNotificationImage,
       isLoading: true
     };
   },
@@ -174,7 +172,6 @@ export default {
         this.adNotificationHeading = "Уже 10 уроков? А ты быстрый!";
         this.adNotificationText =
           "Прямо сейчас ты прошел 10 уроков интерактива «Базовая верстка», а значит ты стал ближе к своей цели, стать программистом. Следующие уроки будут доступны после приробретения подписки. У нас для тебя кое-что есть, жми «Подробнее»";
-        this.adNotificationImagePath = this.adNotificationImage;
         this.isLocalAdNotificationActive = true;
       }, 2000);
     },
