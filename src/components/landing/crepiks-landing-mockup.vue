@@ -3,8 +3,8 @@
     <div class="mockup-text">
       <h2 class="mockup-heading">
         Интересно? <br />
-        Лови <span class="mockup-heading-green">бесплатный</span> интерактив по
-        основам веб-программирования
+        Попробуй <span class="mockup-heading-green">бесплатно</span> интерактив
+        по основам веб-программирования
       </h2>
       <p class="mockup-paragraph">
         Пройди 10 уроков первого интерактива и получи скидку в -15%. Начни прямо
@@ -74,6 +74,7 @@ export default {
     margin-top: 15px;
     color: $dark;
     opacity: 0.8;
+    line-height: 140%;
   }
 
   &-button {
@@ -235,7 +236,6 @@ export default {
     &-paragraph {
       font-size: 14px;
       margin-top: 15px;
-      line-height: 25px;
     }
 
     &-image {
@@ -252,15 +252,17 @@ export default {
 
 @media (max-width: 414px) {
   .mockup {
-    height: 800px;
+    height: 440px;
     padding: 0;
-    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
 
     &-text {
+      margin: 0;
       width: 80%;
-      margin-left: 0;
-      margin-top: 190px;
-      box-shadow: 0px 0px 57.2657px rgba(0, 0, 0, 0.13);
+      border: 1px solid #1abc9c80;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     }
 
     &-heading {
@@ -269,20 +271,20 @@ export default {
     }
 
     &-paragraph {
-      font-size: 12px;
+      font-size: 14px;
       margin-top: 12px;
-      line-height: 14px;
       opacity: 0.8;
     }
 
     &-image {
       margin-top: -120px;
+      display: none;
     }
 
     &-button {
       margin-top: 25px;
-      font-size: 13px;
-      padding: 12px 35px;
+      font-size: 14px;
+      padding: 10px 30px;
       border-radius: 6px;
     }
   }
