@@ -121,6 +121,7 @@ export default {
     selectCheckbox,
     notification
   },
+
   data() {
     return {
       firstName: "",
@@ -137,6 +138,7 @@ export default {
       chosenSelectOption: "Мужской"
     };
   },
+
   methods: {
     register() {
       if (this.password.trim()) {
