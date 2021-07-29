@@ -4,14 +4,14 @@
       <h2 class="mockup-heading">
         Интересно? <br />
         Лови <span class="mockup-heading-green">бесплатный</span> интерактив по
-        основам верстки сайтов
+        основам веб-программирования
       </h2>
       <p class="mockup-paragraph">
         Ты освоишь основы создание веб сайтов с помощью языка разметки HTML и
         таблицы каскадных стилей CSS
       </p>
       <cButton @click="$router.push('/auth/register')" class="mockup-button"
-        >Начать учиться</cButton
+        >Попробовать бесплатно</cButton
       >
     </div>
     <img
@@ -252,38 +252,37 @@ export default {
 
 @media (max-width: 414px) {
   .mockup {
-    background-image: url(../../assets/images/iphone-mockup.svg);
-    height: 812px;
+    height: 800px;
     padding: 0;
-    margin-top: 200px;
+    margin-top: 100px;
 
     &-text {
-      width: 60%;
+      width: 80%;
       margin-left: 0;
       margin-top: 190px;
       box-shadow: 0px 0px 57.2657px rgba(0, 0, 0, 0.13);
     }
 
     &-heading {
-      font-size: 16px;
-      line-height: 18px;
+      font-size: 20px;
+      line-height: 26px;
     }
 
     &-paragraph {
-      font-size: 9px;
+      font-size: 12px;
       margin-top: 12px;
       line-height: 14px;
       opacity: 0.8;
     }
 
     &-image {
-      width: 250px;
-      margin-top: -10px;
+      margin-top: -120px;
     }
 
     &-button {
-      margin-top: 18px;
-      font-size: 10px;
+      margin-top: 25px;
+      font-size: 13px;
+      padding: 12px 35px;
       border-radius: 6px;
     }
   }
