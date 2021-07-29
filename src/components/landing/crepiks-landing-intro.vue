@@ -9,8 +9,10 @@
         Попробуй веб-программирование на практике. Мы подготовили для тебя
         небольшой бесплатный интерактив с основами создания сайтов
       </p>
-      <cButton class="intro-button" @click="$router.push('/auth/register')"
-        >Перейти к интерактиву<img
+      <cButton
+        class="intro-button"
+        @click="$router.push({ name: 'register', query: $route.query })"
+        >Попробовать бесплатно<img
           src="@/assets/images/cursor-icon.svg"
           alt="cursor-icon"
           class="intro-button-icon"
@@ -57,6 +59,7 @@ export default {
   components: {
     cButton
   },
+
   data() {
     return {
       rotation: true

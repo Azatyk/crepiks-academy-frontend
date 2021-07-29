@@ -14,10 +14,6 @@ export default {
     };
   },
 
-  mounted() {
-    this.$router.push("/");
-  },
-
   created() {
     if (document.body.clientWidth <= 414) {
       this.isMobile = true;

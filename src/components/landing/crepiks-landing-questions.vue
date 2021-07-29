@@ -3,7 +3,7 @@
     <div class="questions-content">
       <div class="questions-text">
         <h2 class="questions-heading">Остались вопросы?</h2>
-        <div class="questions-subheading">Напишите нам!</div>
+        <div class="questions-subheading">Напиши нам!</div>
       </div>
       <div class="questions-links">
         <a

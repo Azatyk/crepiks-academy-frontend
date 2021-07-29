@@ -164,6 +164,7 @@ export default {
       this.$store.commit("setAdSidebarLink", true);
     }
     this.getCourses();
+    console.log(this.$route);
   },
 
   methods: {

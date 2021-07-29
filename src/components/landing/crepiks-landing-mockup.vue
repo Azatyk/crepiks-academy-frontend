@@ -3,15 +3,15 @@
     <div class="mockup-text">
       <h2 class="mockup-heading">
         Интересно? <br />
-        Лови <span class="mockup-heading-green">бесплатный</span> интерактив по
-        основам верстки сайтов
+        Попробуй <span class="mockup-heading-green">бесплатно</span> интерактив
+        по основам веб-программирования
       </h2>
       <p class="mockup-paragraph">
-        Ты освоишь основы создание веб сайтов с помощью языка разметки HTML и
-        таблицы каскадных стилей CSS
+        Пройди 10 уроков первого интерактива и получи скидку в -15%. Начни прямо
+        сейчас
       </p>
       <cButton @click="$router.push('/auth/register')" class="mockup-button"
-        >Начать учиться</cButton
+        >Попробовать бесплатно</cButton
       >
     </div>
     <img
@@ -74,6 +74,7 @@ export default {
     margin-top: 15px;
     color: $dark;
     opacity: 0.8;
+    line-height: 140%;
   }
 
   &-button {
@@ -235,7 +236,6 @@ export default {
     &-paragraph {
       font-size: 14px;
       margin-top: 15px;
-      line-height: 25px;
     }
 
     &-image {
@@ -252,38 +252,39 @@ export default {
 
 @media (max-width: 414px) {
   .mockup {
-    background-image: url(../../assets/images/iphone-mockup.svg);
-    height: 812px;
+    height: 440px;
     padding: 0;
-    margin-top: 200px;
+    justify-content: center;
+    align-items: center;
 
     &-text {
-      width: 60%;
-      margin-left: 0;
-      margin-top: 190px;
-      box-shadow: 0px 0px 57.2657px rgba(0, 0, 0, 0.13);
+      margin: 0;
+      width: 80%;
+      border: 1px solid #1abc9c80;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     }
 
     &-heading {
-      font-size: 16px;
-      line-height: 18px;
+      font-size: 20px;
+      line-height: 26px;
     }
 
     &-paragraph {
-      font-size: 9px;
+      font-size: 14px;
       margin-top: 12px;
-      line-height: 14px;
       opacity: 0.8;
     }
 
     &-image {
-      width: 250px;
-      margin-top: -10px;
+      margin-top: -120px;
+      display: none;
     }
 
     &-button {
-      margin-top: 18px;
-      font-size: 10px;
+      margin-top: 25px;
+      font-size: 14px;
+      padding: 10px 30px;
       border-radius: 6px;
     }
   }
