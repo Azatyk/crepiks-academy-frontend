@@ -12,7 +12,7 @@
       <cButton
         class="intro-button"
         @click="$router.push({ name: 'register', query: $route.query })"
-        >Перейти к интерактиву<img
+        >Попробовать бесплатно<img
           src="@/assets/images/cursor-icon.svg"
           alt="cursor-icon"
           class="intro-button-icon"
