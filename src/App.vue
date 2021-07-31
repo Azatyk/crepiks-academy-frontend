@@ -21,6 +21,11 @@ export default {
       this.isMobile = false;
     }
     this.$store.commit("setIsMobile", this.isMobile);
+  },
+
+  mounted() {
+    this.$store.commit("setSource", this.$route.query);
+    this.$router.push("/").catch(() => {});
   }
 };
 </script>
