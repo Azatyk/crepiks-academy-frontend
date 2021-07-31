@@ -114,6 +114,10 @@ import cInput from "@/components/common/crepiks-input";
 import selectCheckbox from "@/components/common/crepiks-select-checkbox";
 import notification from "@/components/common/crepiks-notification";
 
+import { setSource } from "@/requests/source.js";
+
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     cForm,
@@ -138,6 +142,8 @@ export default {
       chosenSelectOption: "Мужской"
     };
   },
+
+  computed: mapGetters(["source"]),
 
   methods: {
     register() {
@@ -164,12 +170,13 @@ export default {
 
           this.$store
             .dispatch("register", user)
-            .then(() => {
+            .then(res => {
               this.isLoading = false;
               setTimeout(() => {
                 this.$root.$emit("open-modal");
               }, 1000);
               this.$router.push("/app/courses");
+              setSource(res.data.user.id, this.source);
             })
             .catch(() => {
               this.isLoading = false;
