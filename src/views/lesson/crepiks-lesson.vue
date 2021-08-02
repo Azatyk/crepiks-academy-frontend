@@ -181,6 +181,8 @@
           />
           <browser
             :htmlCode="htmlCode"
+            :htmlCodeSolution="lesson.htmlCodeSolution"
+            :cssCodeSolution="lesson.cssCodeSolution"
             :cssCode="cssCode"
             :lesson="lesson"
             :completedLessons="completedLessons"
@@ -272,7 +274,6 @@ export default {
       isLoading: true,
       isTestLesson: false,
       testLessonActiveCode: null,
-      htmlCodeSolution: "",
       lesson: {
         title: "",
         theoryBlocks: [],
@@ -462,7 +463,11 @@ export default {
     runCode() {
       for (let child of this.$children) {
         if (child.$options._componentTag == "browser") {
-          child.runCode();
+          child.runCode(
+            this.isTestLesson
+              ? this.testLessonActiveCode == "solutionCode"
+              : false
+          );
         }
       }
     },
