@@ -24,7 +24,7 @@
           :key="index"
         >
           <span class="task-dash">—</span>
-          <span class="task-text">{{ task.descriptionRu }}</span>
+          <span class="task-text">{{ task.description }}</span>
         </div>
       </div>
     </vuescroll>

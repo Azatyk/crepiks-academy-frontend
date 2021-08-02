@@ -284,7 +284,7 @@ export default {
         cssCodeSolution: "",
         tasks: [
           {
-            descriptionRu: ""
+            description: ""
           }
         ],
         successMessage: ""
