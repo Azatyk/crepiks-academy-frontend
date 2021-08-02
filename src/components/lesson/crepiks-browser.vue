@@ -18,6 +18,16 @@ export default {
       type: String
     },
 
+    htmlCodeSolution: {
+      type: String,
+      default: ""
+    },
+
+    cssCodeSolution: {
+      type: String,
+      default: ""
+    },
+
     cssCode: {
       type: String
     },
@@ -41,16 +51,18 @@ export default {
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Получаем сам frame (для метода для адаптивности к браузерам)
 
-      this.runCode(iframe);
+      this.runCode(false);
       this.checkLessonTasks(iframe);
     },
 
-    runCode() {
+    runCode(isSolutionCode) {
       var iframe =
         this.$refs.browserFrame.contentDocument ||
         this.$refs.browserFrame.contentWindow.document; // Приходится получать iframe в этой функции, потому что этот метод мы вызываем отдельно от метода handleRunButton
 
-      iframe.documentElement.innerHTML = this.htmlCode;
+      iframe.documentElement.innerHTML = isSolutionCode
+        ? this.htmlCodeSolution
+        : this.htmlCode;
 
       if (
         iframe.querySelector("link") &&
@@ -58,7 +70,10 @@ export default {
         iframe.querySelector("link").getAttribute("href") == "styles.css"
       ) {
         iframe.head.innerHTML =
-          iframe.head.innerHTML + `<style>${this.cssCode}</style>`;
+          iframe.head.innerHTML +
+          `<style>${
+            isSolutionCode ? this.cssCodeSolution : this.cssCode
+          }</style>`;
       }
     },
 
